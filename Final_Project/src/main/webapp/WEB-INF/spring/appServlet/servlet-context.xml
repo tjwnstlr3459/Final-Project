@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- DB 접속정보를 저장하는 dataSource객체 생성 -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@1.220.236.74:15213:xe"/>
+		<beans:property name="username" value="sys as sysdba"/>
+		<beans:property name="password" value="1234"/>
+	</beans:bean>
+	
+	<!-- Mybatis 설정 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/><!-- 위에서 만든 DB의 접속 정보를 넣어준다 -->
+		<beans:property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<beans:property name="mapperLocations" value="classpath:/mapper/*mapper.xml"/>
+	</beans:bean>
+	
+	<!-- jdbcTemplate를 대체한다 -->
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSession"/>
+	</beans:bean>
+	
+	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<!-- 파일 업로드용 bean 생성 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 파일용량 설정 -->
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
+	
+	<!-- 트랜잭션 관리용 객체 -->
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 위에서 만든 dataSource를 받아 transactionManager에 넘겨준다 -->
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+	</beans:bean>
+	
+	
+	<!-- AOP 테스트 -->
+	<!-- <beans:bean id="log" class="kr.or.common.LogClass"/>
+	<beans:bean id="logging" class="kr.or.common.LoggingClass"/> -->
+	
+	<!-- Before 테스트 -->
+	<!-- <beans:bean id="before" class="kr.or.common.BeforeAdvice"/> -->
+	
+	<!-- AfterRetuning 테스트 -->
+	<!-- <beans:bean id="after1" class="kr.or.common.AfterReturningAdvice"/> -->
+	
+	<!-- AfterThrowing 테스트 -->
+	<!-- <beans:bean id="after2" class="kr.or.common.AfterThrowingAdvice"/> -->
+	
+	<!-- Around 테스트 -->
+	<!-- <beans:bean id="around" class="kr.or.common.AroundAdvice"/>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.*(*,..))" id="allPointcut"/>
+		위에 bean log를 넣어준것
+		<aop:aspect ref="around">
+			<aop:around method="aroundLog" pointcut-ref="allPointcut"/>
+			
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- AOP 어노테이션 방식 사용 선언 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- 트랜잭션 어노테이션 사용 @Transactional-->
+	<tx:annotation-driven/>
+	
+	<!-- 스케쥴링 어노테이션 사용 -->
+	<task:annotation-driven/>
+	
+	<!-- 웹소켓 전체채팅용 설정 -->
+	<!-- <beans:bean id="allMemberChat" class="kr.or.member.model.service.AllMemberChat"/>
+	<websocket:handlers>
+		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
+	</websocket:handlers> -->
+	
+	<context:component-scan base-package="kr.or.iei" />
+	<context:component-scan base-package="kr.or.member" />
+	
+	
+</beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

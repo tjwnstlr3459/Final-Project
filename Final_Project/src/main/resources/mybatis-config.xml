@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<!-- board의 board와 file  -->
+	<typeAliases>
+		<typeAlias type="kr.or.board.model.vo.Board" alias="b"/>
+		<typeAlias type="kr.or.board.model.vo.File" alias="f"/>
+		<typeAlias type="kr.or.member.model.vo.Member" alias="m"/>
+		<typeAlias type="kr.or.coupon.model.vo.Coupon" alias="c"/>
+		<typeAlias type="kr.or.member.model.vo.Dm" alias="d"/>
+	</typeAliases>
+</configuration>

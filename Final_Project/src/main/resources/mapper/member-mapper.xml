@@ -1,0 +1,128 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	로그인
+   <select id="selectOneMember" parameterType="m" resultType="m">
+   	select
+   		member_id as memberId,
+   		member_pw as memberPw,
+   		member_name as memberName,
+   		phone,
+   		address,
+   		gender
+   	from member where member_id=#{memberId} and member_pw=#{memberPw}
+   </select>
+   
+   회원가입
+   <insert id="insertMember" parameterType="m">
+   	insert into member values(
+   						#{memberId},
+   						#{memberPw},
+   						#{memberName},
+   						#{phone},
+   						#{address},
+   						#{gender})
+   </insert>
+   
+   아이디 찾기
+   <select id="searchId" parameterType="m" resultType="m">
+   	select
+   		member_id as memberId,
+   		member_pw as memberPw,
+   		member_name as memberName,
+   		phone,
+   		address,
+   		gender
+   	from member where member_name=#{memberName} and phone=#{phone}
+   </select>
+   
+   비밀번호 찾기
+   <select id="searchPw" parameterType="m" resultType="m">
+   	select
+   		member_id as memberId,
+   		member_pw as memberPw,
+   		member_name as memberName,
+   		phone,
+   		address,
+   		gender
+   	from member where member_Id=#{memberId} and phone=#{phone}
+   </select>
+   
+    탈퇴
+	<delete id="deleteMember" parameterType="String">
+   		delete from member where member_Id=#{memberId}
+    </delete> 
+    
+    마이페이지를위한 검색
+   <select id="selectOneMemberMypage" parameterType="String" resultType="m">
+   	select
+   		member_id as memberId,
+   		member_pw as memberPw,
+   		member_name as memberName,
+   		phone,
+   		address,
+   		gender
+   	from member where member_id=#{memberId}
+   </select>
+   
+   정보수정
+   <update id="update" parameterType="m">
+   	update member set
+   		phone=#{phone},
+   		address=#{address},
+   		gender=#{gender}
+   	where member_id=#{memberId}
+   </update>
+   
+   전체멤버출력
+   <select id="selectAllMember" resultType="m">
+   	select
+   		member_id as memberId,
+   		member_pw as memberPw,
+   		member_name as memberName,
+   		phone,
+   		address,
+   		gender
+   	from member
+   </select>
+   
+    전체멤버출력
+   <select id="selectMemberCount" resultType="int" >
+   	select count(*) from member
+   </select>
+   
+   비번변경
+   <update id="updatePw" parameterType="m">
+   	update member set
+   		member_pw=#{memberPw}
+   	where member_id=#{memberId}
+   </update>
+   
+   
+   쿠폰찾기
+   <select id="selectCoupon" parameterType="m" resultType="c">
+   select 
+   		coupon_no as couponNo,
+   		coupon_name as couponName,
+   		coupon_content as couponContent,
+   		member_id as memberId,
+   		start_date as startDate,
+   		end_date as endDate,
+   		status
+   		from coupon where member_id=#{memberId}
+   </select>
+</mapper> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
