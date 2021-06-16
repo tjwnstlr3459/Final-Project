@@ -2,21 +2,61 @@
     pageEncoding="UTF-8"%>
     <!-- JSTL Core 태그 -->
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+   
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+   <link rel="stylesheet" type="text/css" href="resources/css/login.css" />
+   <script src="resources/js/login.js" ></script>
 </head>
 <body>
-	<h1>미지막 파이널</h1>
-	<h2>narae 연습</h2>
-	<h2>혜영이</h2>
-	혜영 연습
-	코딩코딩
-	
-	코뎅코뎅
+	<a href="/myClub.do">마이클럽</a>
+	<div class="intro">
+   <div class="animated-bar"></div>
+
+   <div class="slide slide-a">
+      <div class="slide-content">
+         <p class="slide-a-child">나 몰랐는데..</p>
+         <h1 class="slide-a-child" style="font-size:35px; font-weight: bold;">영화</h1>
+         <p class="slide-a-child">좋아하네..</p>
+      </div>
+   </div>
+
+   <div class="slide slide-b">
+      <div class="slide-content">
+         <h2 class="slide-b-child">나 몰랐는데..</h2>
+         <p class="slide-b-child">여행</p>
+         <p class="slide-b-child">좋아하네..</p>
+      </div>
+   </div>
+
+   <div class="slide slide-c">
+      <div class="slide-content">
+         <h2 class="slide-c-child">나 몰랐는데..</h2>
+         <ul>
+            <li class="slide-c-child"><p>스포츠,</p></li>
+            <li class="slide-c-child"><p> 와인,</p></li>&nbsp;&nbsp;
+            <li class="slide-c-child"><p> 등산,</p></li>&nbsp;&nbsp;
+            <li class="slide-c-child"><p> 맛집탐방</p></li>
+         </ul>
+         <h2>좋아하네..</h2>
+      </div>
+   </div>
+
+   <div class="slide slide-d">
+      <div class="slide-content">
+         <h2 class="slide-d-child">너나들이와 함께</h2>
+         <p class="slide-d-child">좋아하는 것을<a href="http://mohamdhasan.pro/" target="_blank">해볼까요?</a></p>
+         <button class="slide-d-child replay">ENTER</button>
+      </div>
+   </div>
+
+</div>
 </body>
 </html>
 
