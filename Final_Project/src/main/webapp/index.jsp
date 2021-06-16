@@ -11,31 +11,51 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
-   <link rel="stylesheet" type="text/css" href="/css/login.css" />
-    <script src="/js/login.js" ></script>
+   <link rel="stylesheet" type="text/css" href="resources/css/login.css" />
+    <script src="resources/js/login.js" ></script>
 </head>
 <body>
-	<h1>미지막 파이널</h1>
-	<h2>narae 연습</h2>
-	<h2>혜영이</h2>
-	<h2>영범이@@</h2>
-	<h2>자자 시작해봅시다</h2>
-	<div class="content">
-        <h1>나 몰랐는데.. <span class="in" id="word-switcher">
-                <p class="glitch active" data-text="음악" data-oid="0" onclick="location.href='#'">음악</p>
-                <p class="glitch" data-text="등산" data-oid="1" onclick="location.href='#'">등산</p>
-                <p class="glitch" data-text="영화" data-oid="2" onclick="location.href='#'">영화</p>
-                <p class="glitch" data-text="게임" data-oid="3" onclick="location.href='#'">게임</p>
-                <p class="glitch" data-text="와인" data-oid="4" onclick="location.href='#'">와인</p>
-                <p class="glitch" data-text="여행" data-oid="5" onclick="location.href='#'">여행</p>
-            </span> 좋아하네..</h1>
-        <br><br><br>
-        <div class="login-form">
-            <button id="go">
-                <a href="#">Enter</a>
-            </button>
-        </div>
-    </div>
+	<div class="intro">
+   <div class="animated-bar"></div>
+
+   <div class="slide slide-a">
+      <div class="slide-content">
+         <p class="slide-a-child">나 몰랐는데..</p>
+         <h1 class="slide-a-child" style="font-size:35px; font-weight: bold;">영화</h1>
+         <p class="slide-a-child">좋아하네..</p>
+      </div>
+   </div>
+
+   <div class="slide slide-b">
+      <div class="slide-content">
+         <h2 class="slide-b-child">나 몰랐는데..</h2>
+         <p class="slide-b-child">여행</p>
+         <p class="slide-b-child">좋아하네..</p>
+      </div>
+   </div>
+
+   <div class="slide slide-c">
+      <div class="slide-content">
+         <h2 class="slide-c-child">나 몰랐는데..</h2>
+         <ul>
+            <li class="slide-c-child"><p>스포츠,</p></li>
+            <li class="slide-c-child"><p> 와인,</p></li>&nbsp;&nbsp;
+            <li class="slide-c-child"><p> 등산,</p></li>&nbsp;&nbsp;
+            <li class="slide-c-child"><p> 맛집탐방</p></li>
+         </ul>
+         <h2>좋아하네..</h2>
+      </div>
+   </div>
+
+   <div class="slide slide-d">
+      <div class="slide-content">
+         <h2 class="slide-d-child">너나들이와 함께</h2>
+         <p class="slide-d-child">좋아하는 것을<a href="http://mohamdhasan.pro/" target="_blank">해볼까요?</a></p>
+         <button class="slide-d-child replay">ENTER</button>
+      </div>
+   </div>
+
+</div>
 </body>
 </html>
 
