@@ -110,7 +110,6 @@
 	</websocket:handlers> -->
 	
 	<context:component-scan base-package="kr.or.iei" />
-	<context:component-scan base-package="kr.or.member" />
 	
 	
 </beans:beans>
