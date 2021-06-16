@@ -1,4 +1,4 @@
-@charset "UTF-8";
+
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,600);
 
 * {
@@ -8,7 +8,8 @@
 body {
   display: table-cell;
   vertical-align: middle;
-  background-image: url(sea-3652697_1920.jpg);
+  background-image: url(/resources/image/sea-3652697_1920.jpg);
+  background-
 }
 
 h1 {
