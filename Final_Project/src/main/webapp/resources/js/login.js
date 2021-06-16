@@ -1,36 +1,75 @@
-(function() {
-    $(function() {
-      var calculateWidths, count, delay, doChange, switcher;
-      // word switcher
-      switcher = $('#word-switcher');
-      delay = 2000;
-      count = switcher.find('p').length;
-      calculateWidths = function() {
-        switcher.find('p').each(function(index) {
-          $(this).attr('data-width', $(this).width());
-        });
-        switcher.width(switcher.find('.active').attr('data-width'));
-      };
-      doChange = function() {
-        var currentItem, nextItem;
-        nextItem = void 0;
-        currentItem = parseInt(switcher.find('.active').attr('data-oid'));
-        if (currentItem === count - 1) {
-          nextItem = 0;
-        } else {
-          nextItem = currentItem + 1;
+/*global $, document, setTimeout, i*/
+$(document).ready(function () {
+
+    'use strict';
+
+    var slide  = $('.slide'),
+        slideAelements = $('.slide-a-child'),
+        slideBelements = $('.slide-b-child'),
+        slideCelements = $('.slide-c-child'),
+        slideDelements = $('.slide-d-child'),
+        replay = $('button.replay');
+
+
+
+    slide.each(function (i) {
+        if (i < 3) {
+            setTimeout(function () {
+                slide.eq(i).fadeOut();
+            }, 2500 * (i + 1));
         }
-        switcher.addClass('in');
-        switcher.find('[data-oid="' + currentItem + '"]').removeClass('active');
-        switcher.find('[data-oid="' + nextItem + '"]').addClass('active');
-        switcher.width(switcher.find('[data-oid="' + nextItem + '"]').attr('data-width'));
-        setTimeout(doChange, delay);
-      };
-      calculateWidths();
-      $(window).resize(function() {
-        calculateWidths();
-      });
-      setTimeout(doChange, delay);
     });
-  
-  }).call(this);
+
+
+    function animateSlideA() {
+      slideAelements.each(function (i) {
+          setTimeout(function () {
+              slideAelements.eq(i).addClass('is-visible');
+          }, 150 * (i + 1));
+      });
+    }
+
+    function animateSlideB() {
+      slideBelements.each(function (i) {
+          setTimeout(function () {
+              slideBelements.eq(i).addClass('is-visible');
+          }, 150 * (i + 1));
+      });
+   }
+
+     function animateSlideC() {
+      slideCelements.each(function (i) {
+          setTimeout(function () {
+              slideCelements.eq(i).addClass('is-visible');
+          }, 75 * (i + 1));
+      });
+    }
+
+    function animateSlideD() {
+      slideDelements.each(function (i) {
+          setTimeout(function () {
+              slideDelements.eq(i).addClass('is-visible');
+          }, 150 * (i + 1));
+      });
+    }
+
+    animateSlideA();
+
+    setTimeout(function () {
+       animateSlideB();
+    }, 2500);
+
+    setTimeout(function () {
+       animateSlideC();
+    }, 5000);
+
+    setTimeout(function () {
+       animateSlideD();
+    }, 5000);
+
+
+   replay.on('click', function () {
+     location.reload(true);
+   });
+
+});
