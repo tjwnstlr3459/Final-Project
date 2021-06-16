@@ -12,9 +12,10 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
    <link rel="stylesheet" type="text/css" href="resources/css/login.css" />
-    <script src="resources/js/login.js" ></script>
+   <script src="resources/js/login.js" ></script>
 </head>
 <body>
+	<a href="/myClub.do">마이클럽</a>
 	<div class="intro">
    <div class="animated-bar"></div>
 
