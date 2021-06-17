@@ -1,0 +1,131 @@
+/* 헤더 부분 */
+:root{
+    --backColor:#2e2d31;			/* 관리자 메인 배경 색 */
+    --mainTextColor:#67dfdf;		/* 관리자 메인 글씨  */
+    --menuTextColor:#ffffff;		/* 관리자 메뉴 글씨  */
+    --underLine:#4d4d4d;			/* 구분 밑 줄 */
+    --contentBackColor:#201f22;		/* 해당 메뉴의 컨텐츠 배경 색 */
+}
+html{
+    min-width:1200px;
+    /* background-color:#1a1525; */
+}
+body{
+    padding:0;
+    margin:0;
+    max-width:1200px;
+    height:1000px;
+    margin:auto;
+}
+header{
+    width:100%;
+    height:50px;
+    /* background-color:var(--backColor); */
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+.logo{
+    display:block;
+    width:140px;
+    height:40px;
+    text-align:center;
+    /* color:var(--mainTextColor); */
+    background-image: url('/resources/image/icons/logo-img.png');
+    background-size:100% 100%;
+    font-size:1.5rem;
+    margin-top:10px;
+}
+/* body의 사이드 부분 */
+.wrap{
+    height:100%;
+    display:flex;
+    /* flex-direction:column; */
+    background-color: var(--contentBackColor);
+    z-index:100;
+}
+nav{
+    width:250px;
+    height:100%;
+    background-color:var(--backColor);
+    box-shadow: 20px 0px 10px rgba(0,0,0,0.2);
+}
+.adminInfoWrap{
+    width:100%;
+    height:200px;
+    padding:10px 0;
+}
+.adminImg{
+    width:150px;
+    height:150px;
+    margin:auto;
+    /* background-image: url('admin-IU1.png'); */
+/* background-size: 100% 100%; */
+    margin-bottom:10px;
+}
+.adminImg>img{
+    width:100%;
+    height:100%;
+}
+.adminInfo{
+    width:150px;
+    height:30px;
+    margin: auto;
+    /* background-color:#999; */
+    color:var(--mainTextColor);
+    text-align:center;
+}
+.adminInfo>span:first-child {
+    font-size:1.5rem;
+}
+.divLine{
+    width:80%;
+    height:1px;
+    margin:10px auto;
+    box-sizing:border-box;
+    background-color:var(--underLine);
+}
+.menu{
+    margin:0;
+    padding:0;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+}
+.menu a{
+    text-decoration: none;
+    color:var(--menuTextColor);
+    display:flex;
+    width:100%;
+    height:100%;
+    padding-left:35px;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    align-items:center;
+    box-sizing:border-box;
+    transition-duration: 0.2s;
+}
+.menu>li{
+    width:100%;
+    height:40px;
+    margin:auto;
+}
+.menu img{
+    width:25px;
+    height:25px;
+}
+.menu span{
+    margin-left:30px;
+}
+.menu>li:hover>a{
+    padding-left:35px;
+    border-left:5px solid var(--mainTextColor);
+    border-right:5px solid var(--mainTextColor);
+    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
+}
+.menu>li:first-child>a{
+    padding-left:35px;
+    border-left:5px solid var(--mainTextColor);
+    border-right:5px solid var(--mainTextColor);
+    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
+}

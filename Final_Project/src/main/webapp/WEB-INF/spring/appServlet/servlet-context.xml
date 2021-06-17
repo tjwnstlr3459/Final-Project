@@ -111,7 +111,8 @@
 	</websocket:handlers> -->
 	
 	<context:component-scan base-package="kr.or.iei" />
-	<context:component-scan base-package="kr.or.club" />
+	<context:component-scan base-package="kr.or.club" /><!-- 마이클럽 -->
+	<context:component-scan base-package="kr.or.admin" /><!-- 관리 -->
 	
 	
 </beans:beans>

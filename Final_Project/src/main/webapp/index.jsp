@@ -16,6 +16,7 @@
 </head>
 <body>
 	<a href="/myClub.do">마이클럽</a>
+	<a href="/adminMain.do">관리자 페이지</a>	
 	<div class="intro">
    <div class="animated-bar"></div>
 
