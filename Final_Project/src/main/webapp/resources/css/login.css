@@ -27,8 +27,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-animation: bar 5s 3 linear;
-          animation: bar 5s 3 linear;
+  -webkit-animation: bar 3s 3 linear;
+          animation: bar 3s 3 linear;
 }
 .intro .slide {
   width: 100%;
@@ -231,12 +231,6 @@ body {
     display: none !important;
   }
 
-  button.replay {
-    width: 80px !important;
-    height: 80px !important;
-    line-height: 80px !important;
-    font-size: 14px !important;
-  }
 
   a:hover::after {
     width: 140px !important;
