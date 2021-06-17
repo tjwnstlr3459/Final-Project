@@ -22,8 +22,8 @@
 
    <div class="slide slide-a">
       <div class="slide-content">
-         <p class="slide-a-child">나 몰랐는데..</p>
-         <h1 class="slide-a-child" style="font-size:35px; font-weight: bold;">영화</h1>
+         <h2 class="slide-a-child">나 몰랐는데..</h2>
+         <h1 class="slide-a-child" style="font-size:30px; font-weight: bold;">영화</h1>
          <p class="slide-a-child">좋아하네..</p>
          <button class="slide-a-child" onclick="location.href='/main.jsp';">ENTER</button>
       </div>
@@ -55,7 +55,7 @@
    <div class="slide slide-d">
       <div class="slide-content">
          <h2 class="slide-d-child">너나들이와 함께</h2>
-         <p class="slide-d-child">좋아하는 것을<a href="http://mohamdhasan.pro/" target="_blank">해볼까요?</a></p>
+         <p class="slide-d-child">좋아하는 것을해볼까요?</a></p>
          <button class="slide-d-child" onclick="location.href='/main.jsp';">ENTER</button>
       </div>
    </div>
