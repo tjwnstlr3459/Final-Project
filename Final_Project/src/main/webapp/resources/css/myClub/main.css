@@ -3311,3 +3311,123 @@ footer ul li {
 	margin-bottom: 20px;
 	padding-left: 15px;
 }
+
+/* 모달창*/
+/* 모달창 */
+.postModal {
+  border: 0px solid black;
+  width: 100%;
+  position: absolute;
+  top: 150px;
+}
+.postModalPan {
+  border: 0px solid blueviolet;
+  width: 450px;
+  margin: 0 auto;
+  background-color: #d5d5d5f1;
+  border-radius: 10px;
+}
+.postUser {
+  border: 0px solid black;
+  width: 80%;
+  height: 50px;
+  margin: 0 auto;
+}
+.postImg {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+}
+.postContent {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 80%;
+  height: 50px;
+}
+.postLike {
+  width: 80%;
+  height: 30px;
+  border: 0px solid black;
+  margin: 0 auto;
+}
+.postLike > div {
+  float: left;
+  border: 0px solid black;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+.modalComent {
+  border: 0px solid black;
+  width: 80%;
+  height: 50px;
+  margin: 0 auto;
+}
+.modalComent > div:first-child {
+  width: 15%;
+  border: 0px solid black;
+  height: 50px;
+  float: left;
+  margin-left: 10px;
+}
+.modalComent > div:nth-child(2) {
+  width: 100%;
+  border: 1px solid black;
+  height: 50px;
+}
+.modalComentWrite {
+  border: 0px solid black;
+  width: 80%;
+  height: 50px;
+  margin: 0 auto;
+}
+.modalComentWrite > div:first-child {
+  width: 15%;
+  border: 0px solid black;
+  height: 50px;
+  float: left;
+  margin-left: 10px;
+}
+.modalComentWrite > div:nth-child(2) {
+  width: 100%;
+  border: 1px solid black;
+  height: 50px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+.modalUserImg {
+  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-top: 5px;
+  float: left;
+}
+.modalUserId {
+  border: 0px solid black;
+  height: 100%;
+  width: 100px;
+  float: left;
+}
+.modalUserId > div {
+  height: 50%;
+  border: 1px solid black;
+}
+.imgimg {
+  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.comentWrite {
+  font-size: 12px;
+  height: 80%;
+  width: 65%;
+  margin-left: 5px;
+}
