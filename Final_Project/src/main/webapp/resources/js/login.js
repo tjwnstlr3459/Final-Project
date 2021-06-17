@@ -61,11 +61,11 @@ $(document).ready(function () {
 
     setTimeout(function () {
        animateSlideC();
-    }, 5000);
+    }, 2500);
 
     setTimeout(function () {
        animateSlideD();
-    }, 5000);
+    }, 2500);
 
 
    replay.on('click', function () {
