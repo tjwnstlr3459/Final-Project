@@ -32,12 +32,15 @@
 </head>
 <script>
 	$(function() {
-		$(".entry-thumb").click(function() {
-			$(".postModal").css("display", "block");
-			$(".postModal").css("zindex", "1000");
-		});
+	  $(".entry-thumb").click(function() {
+		$(".postModal").css("display", "block");
+		$(".postModal").css("z-index", "10000");
+        $("#top").css("background", "rgba(0,0,0,.75)");
+        $("#top").css("z-index", "10000");
+	});
 		$(".modalClose").click(function(){
-			$(".postModal").css("display", "none");
+		$(".postModal").css("display", "none");
+   		$("#top").css("background", "none");
 		});
 	});
 </script>
@@ -62,13 +65,13 @@
               <img src="/resources/image/user04.jpg" />
             </div>
             <div>서준식</div>
-            <hr />
+            <hr width="95%" style="margin: 0 auto" />
             <div>읽지 않은 메세지 1 건</div>
             <div>#여행 #요리 #음식</div>
           </div>
-          <hr width="80%" style="margin: 0 auto" />
+          <hr/>
           <div class="myClubList">
-            <div class="clubListOne"><img /></div>
+            <div class="clubListOne"><img src="/resources/image/6.jpg" /></div>
             <div class="clubListName">
               <div>클럽소개</div>
               <div class="clubJang" style="float: right">
@@ -82,7 +85,7 @@
           <!-- 오른쪽 컨텐츠-->
           <div class="rightConSelect">
             <input type="text" name="search" />
-            <button style="height: 30px">Search</button>
+            <button class="postSearch">Search</button>
             <select>
               <option>모든날짜</option>
               <option>지난 1시간</option>
@@ -98,6 +101,7 @@
             <article
               class="brick entry format-standard animate-this"
               id="check"
+              style="z-index: 0"
             >
               <div class="entry-thumb">
                 <a href="#" class="thumb-link" id="cccdd">
@@ -173,29 +177,36 @@
               <div class="imgimg"><img src="/resources/image/user04.jpg" /></div>
             </div>
             <div>
-              <div style="float: left">
-                <div style="font-weight: bold; font-size: 12px">바람돌이</div>
-                <div>
-                  <p style="font-size: 12px; line-height: 10px; margin: 0px">
+              <div style="width: 70%; float: left">
+                <div style="font-weight: bold; font-size: 12px; float: left;">바람돌이</div>
+                <div style="width: 85%;
+                float: left;">
+                  <p style="font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-bottom: 10px;">
                     안녕하세요 감사해요 잘있어요 다시만나요
                   </p>
                 </div>
+              </div>
+              <div style="width: 30px; float: left;height: 100%; display: flex;align-items: center;">
+                <img
+                  src="/resources/image/icons/down.png"
+                  style="width: 30px;"
+                />
               </div>
               <div style="float: left"></div>
             </div>
           </div>
           <hr />
           <div class="modalComentWrite">
-            <div>
+            <div style="float: left;">
               <div class="imgimg"><img src="/resources/image/user04.jpg" /></div>
             </div>
-            <div style="margin-bottom: 20px">
+            <div style="margin-bottom: 20px;float: left;">
               <input type="text" name="coment" class="comentWrite" />
             </div>
-            <div>
+            <div style="float: left;">
               <img
-                src="/resources/image/icons/down.png"
-                style="width: 30px; float: left"
+                src="/resources/image/icons/check.png"
+                style="width: 30px;    margin-left: 10px;margin-top: 10px;"
               />
             </div>
           </div>
@@ -203,7 +214,6 @@
         </div>
       </div>
     </section>
-	</section>
 	<!-- bricks -->
 	<div id="preloader">
 		<div id="loader"></div>
