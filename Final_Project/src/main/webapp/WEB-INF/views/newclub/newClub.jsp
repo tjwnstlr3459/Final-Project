@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/newClub.css" />
 </head>
-<%@include file="/WEB-INF/views/common/adminHeader.jsp" %>
 <body>
     <div class="wrapper">
         <div class="container">
