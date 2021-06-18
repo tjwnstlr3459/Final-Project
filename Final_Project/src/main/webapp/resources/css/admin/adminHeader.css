@@ -9,6 +9,7 @@
     --fontCantarell1:'Bilbo', cursive;
     --fontCantarell2:'Cantarell', sans-serif;
     --contentShadow:0px 0px 20px rgba(0,0,0,0.7);
+    --background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.2),rgba(95, 235, 248, 0.1));
 }
 html{        
     min-width:1200px;
@@ -133,9 +134,25 @@ nav{
 section{
     width:1000px;
     height:100%;
-    overflow:scroll;
+    overflow-y:scroll;
     box-sizing:border-box;
 }
+/* 스크롤바 디자인 시작 */
+section::-webkit-scrollbar {
+  width: 10px;
+}
+section::-webkit-scrollbar-thumb {
+  background-color: #67dfdf;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+section::-webkit-scrollbar-track {
+  background-color: var(--contentBackColor);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+/* 스크롤바 디자인 끝 */
 .content-wrap{
     /* height:2000px; */
     margin:30px;
@@ -148,30 +165,41 @@ section{
 }
 .searchBar-wrap{
     width:100%;
-    height:100px;
-    border-radius: 10px;
     display:flex;
     justify-content: center;
     align-items: center;
+    padding-bottom:30px;
 }
 .searchBar-wrap>*{
-    height:30px;
+    height:40px;
     box-sizing:border-box;
     outline:none;
 }
+.searchBar-wrap>input[type="search"]{
+	width:400px;
+}
+#searchBtn{
+	padding:0;
+	margin:0;
+	width:40px;
+	height:40px;
+}
+#searchBtn>img{
+	width:100%;
+	height:100%;
+}
 .list-wrap{
     width:100%;
-    /* height:800px; */
     margin-top:30px;
+    padding:30px 0;
 }
 .list-wrap>*{
     width:90%;
     margin:auto;
-    padding-bottom:30px;
 }
 .list-header{
     height:30px;
-    padding:30px 0 0 0;
+    padding:0;
     display:flex;
     position:relative;
 }
@@ -188,6 +216,7 @@ section{
     font-size:0.9rem;
     width:100%;
     border-collapse: collapse;
+    padding-bottom:30px;
 }
 .list>thead>tr{
     height:40px;
@@ -198,8 +227,34 @@ section{
     border-bottom:1px solid var(--underLine);
     padding:5px 0;
 }
+.inquiryList tbody>tr:hover{
+	background:var(--background);
+}
+/* 메뉴별 타이틀 */
+.title-wrap{
+	width:20%;
+	margin:auto;
+}
+.title-wrap>h2{
+	color:#ffffff;
+	text-align:center;
+	padding:20px 0px;
+}
+.list a{
+	text-decoration:none;
+	 color:#ffffff;
+}
 #sort{
 	position:absolute;
 	right:0;
 	height:30px;
+}
+
+#ofHidden{
+	display:block;
+	width:300px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	
 }

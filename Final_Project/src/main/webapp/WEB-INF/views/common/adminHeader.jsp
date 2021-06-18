@@ -32,7 +32,7 @@
                 <li><a href="/adminMain.do"><img src="/resources/image/icons/analytics_white.png" alt=""><span>차트 / 통계</span></a></li>
                 <li><a href="/adminInquiryList.do"><img src="/resources/image/icons/supportAgent_white.png" alt=""><span>문의 / 신고</span></a></li>
                 <li><a href="/adminMemberList.do"><img src="/resources/image/icons/person_white.png" alt=""><span>회원 목록</span></a></li>
-                <li><a href="/adminClubList.do"><img src="/resources/image/icons/groups_white.png" alt=""><span>모임 목록</span></a></li>
+                <li><a href="/adminClubList.do"><img src="/resources/image/icons/groups_white.png" alt=""><span>클럽 목록</span></a></li>
                 <li><a href="/adminRestrictionList.do"><img src="/resources/image/icons/gavel_white.png" alt=""><span>제재 목록</span></a></li>
                 <li><a href="/adminNoticeList.do"><img src="/resources/image/icons/note_white.png" alt=""><span>공지 목록</span></a></li>
             </ul>

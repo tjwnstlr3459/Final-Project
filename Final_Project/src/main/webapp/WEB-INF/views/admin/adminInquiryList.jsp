@@ -12,11 +12,6 @@
 	    border-right:5px solid var(--mainTextColor);
 	    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
 	}
-	.title-wrap>h2{
-		color:#ffffff;
-		text-align:center;
-		padding:10px 0px;
-	}
 </style>
 </head>
 <body>
@@ -35,9 +30,9 @@
 							<button class="btns" id="deleteInquiryBtn">선택 삭제</button>
 							<select name="sort" id="sort">
 								<option value="date" selected>최신순</option>
-								<option value="answer" selected>답변 미완료</option>
-								<option value="inquiry" selected>문의</option>
-								<option value="report" selected>신고</option>							
+								<option value="answer" >답변 미완료</option>
+								<option value="inquiry" >문의</option>
+								<option value="report" >신고</option>							
 							</select>
 						</div>
 					</div>
@@ -50,7 +45,7 @@
                             </thead>
                             <tbody>
                             	<tr>
-                            		<td><input type="checkbox" class="checkInquiry"></td><td>no</td><td>문의</td><td>유저1</td><td>구현할게 너무 많은거 아닌가요?</td><td>빨리 빨리 하시는게 어떠세요?</td><td>2021-06-15</td><td>답변 완료</td>
+                            		<td><input type="checkbox" class="checkInquiry"></td><td>no</td><td>문의</td><td>유저1</td><td><a href="#">구현할게 너무 많은거 아닌가요?</a></td><td>빨리 빨리 하시는게 어떠세요?</td><td>2021-06-15</td><td>답변 완료</td>
                             	</tr>
                             	<tr>
                             		<td><input type="checkbox" class="checkInquiry"></td><td>no</td><td>신고</td><td>유저2</td><td>구현할게 너무 많은거 아닌가요?</td><td>빨리 빨리 하시는게 어떠세요?</td><td>2021-06-15</td><td>답변 중</td>
