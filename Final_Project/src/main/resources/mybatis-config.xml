@@ -7,6 +7,6 @@
 	
 	
 	<typeAliases>
-		<!--<typeAlias type="kr.or.member.model.vo.Member" alias="m"/> -->
+		<typeAlias type="kr.or.member.model.vo.Member" alias="m"/> 
 	</typeAliases>
 </configuration>
