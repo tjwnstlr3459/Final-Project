@@ -33,6 +33,13 @@
                             <div class="board">
                                 게시글 올리기
                             </div>
+                            <div class="content">
+                           	
+                           	</div>
+                           	<div class="comment">
+                           		<div class="like"></div>
+                           		<div class="commentWrite"></div>
+                           	</div>
                             <div>2.내용입니다</div>
                             <div>3.내용입니다</div>
                             <div>4.내용입니다</div>
