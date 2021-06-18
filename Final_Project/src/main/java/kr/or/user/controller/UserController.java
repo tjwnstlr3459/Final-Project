@@ -19,6 +19,11 @@ public class UserController {
 		return "user/login";
 	}
 	
+	@RequestMapping(value="/join.do")
+	public String join(User u, Model model) {
+		return "user/join";
+	}
+	
 	@RequestMapping(value="/gLogin.do")
 	public String gLogin() {
 		return "user/login";
