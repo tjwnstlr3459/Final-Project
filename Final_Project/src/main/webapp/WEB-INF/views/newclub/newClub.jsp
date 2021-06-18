@@ -9,10 +9,9 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/newClub.css" />
+
 </head>
-<%@include file="/WEB-INF/views/admin/adminHeader.jsp" %>
-<body>
-    <div class="wrapper">
+<body>  
         <div class="container">
             <div class="wrap">
                 <div class="navi">
@@ -31,9 +30,18 @@
                     </div>
                     <div class="middle">
                         <div class="tab-cont">
-                            <div class="board">
-                                게시글 올리기
+                            <div class="nt-head">
+			                   <div class="photo"></div>
+			                   <div class="username"></div>
+			                   <div class="notice-view"></div>
                             </div>
+                            <div class="content" style= "display : block;">
+                           	
+                           	</div>
+                           	<div class="comment" style= "display : block;">
+                           		<div class="like"></div>
+                           		<div class="commentWrite"></div>
+                           	</div>
                             <div>2.내용입니다</div>
                             <div>3.내용입니다</div>
                             <div>4.내용입니다</div>
@@ -47,7 +55,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <script>
         var tabBtn = $(".navi > .menu > li");     //각각의 버튼을 변수에 저장
         var tabCont = $(".tab-cont > div");       //각각의 콘텐츠를 변수에 저장
