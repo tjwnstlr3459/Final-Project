@@ -8,9 +8,11 @@
 	--fontBilbo:'Bilbo', cursive;	/* bilbo 폰트 */
     --fontCantarell1:'Bilbo', cursive;
     --fontCantarell2:'Cantarell', sans-serif;
+    --contentShadow:0px 0px 20px rgba(0,0,0,0.7);
 }
-html{
-            min-width:1200px;
+html{        
+    min-width:1200px;
+    background-color:#333333;
 }
 body{
     padding:0;
@@ -47,7 +49,7 @@ nav{
     width:200px;
     height:100%;
     background-color:var(--backColor);
-    box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
+    box-shadow: 10px 0px 10px rgba(0,0,0,0.4);
     box-sizing:border-box;
 }
 .adminInfoWrap{
@@ -139,11 +141,14 @@ section{
     margin:30px;
     box-sizing:border-box;
 }
+.box-option{
+	background-color:var(--backColor);
+    box-shadow:var(--contentShadow);
+    border-radius:10px;
+}
 .searchBar-wrap{
     width:100%;
     height:100px;
-    background-color:var(--backColor);
-    box-shadow:0px 0px 20px rgba(0,0,0,0.2);
     border-radius: 10px;
     display:flex;
     justify-content: center;
@@ -157,10 +162,7 @@ section{
 .list-wrap{
     width:100%;
     /* height:800px; */
-    background-color:var(--backColor);
-    border-radius:10px;
     margin-top:30px;
-    box-shadow:0px 0px 20px rgba(0,0,0,0.2);
 }
 .list-wrap>*{
     width:90%;
@@ -171,6 +173,7 @@ section{
     height:30px;
     padding:30px 0 0 0;
     display:flex;
+    position:relative;
 }
 .option-wrap{
     display:flex;
@@ -194,4 +197,9 @@ section{
     text-align:center;
     border-bottom:1px solid var(--underLine);
     padding:5px 0;
+}
+#sort{
+	position:absolute;
+	right:0;
+	height:30px;
 }
