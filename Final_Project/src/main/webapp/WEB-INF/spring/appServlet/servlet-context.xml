@@ -113,12 +113,12 @@
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.club" /><!-- 마이클럽 -->
 	<context:component-scan base-package="kr.or.admin" /><!-- 관리 -->
-<<<<<<< HEAD
+
 	<context:component-scan base-package="kr.or.member" /><!-- 관리 -->
 	
-=======
+
 	<context:component-scan base-package="kr.or.newclub" /><!-- 모임개설 -->
->>>>>>> refs/heads/final
+
 	
 </beans:beans>
 

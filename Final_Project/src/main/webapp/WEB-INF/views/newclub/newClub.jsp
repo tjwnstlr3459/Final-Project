@@ -35,10 +35,10 @@
 			                   <div class="username"></div>
 			                   <div class="notice-view"></div>
                             </div>
-                            <div class="content" style= "display : block;">
+                            <div class="content">
                            	
                            	</div>
-                           	<div class="comment" style= "display : block;">
+                           	<div class="comment">
                            		<div class="like"></div>
                            		<div class="commentWrite"></div>
                            	</div>
