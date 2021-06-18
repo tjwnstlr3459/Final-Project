@@ -9,16 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>너나들이</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
    <link rel="stylesheet" type="text/css" href="resources/css/login.css" />
    <script src="resources/js/login.js" ></script>
 </head>
 <body>
-	<a href="/myClub.do">마이클럽</a>
-	<a href="/adminMain.do">관리자 페이지</a>
-	<a href="/newClub.do">모임개설페이지</a>
-	<a href="/join.do">회원가입</a>
 	<div class="intro">
    <div class="animated-bar"></div>
 
