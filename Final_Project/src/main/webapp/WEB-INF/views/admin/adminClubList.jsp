@@ -21,17 +21,20 @@
 		<!-- content -->
 		<section>
 			<div class="content-wrap">
-                <!-- 검색 div -->
-                <div class="searchBar-wrap box-option">
-                    <select class="" name="category" id="keywords">
-                        <option value="name" selected>클럽명</option>
-                        <option value="category">카테고리</option>
-                    </select>
-                    <input type="search" class="searchBar" name="user">
-                    <button class="btns" id="searchBtn">검색</button>
-                </div>
+				<div class="title-wrap box-option">
+					<h2>클럽 목록</h2>
+				</div>
                 <!-- 목록 div -->
                 <div class="list-wrap box-option">
+	                <!-- 검색 div -->
+	                <div class="searchBar-wrap">
+	                    <select class="" name="category" id="keywords">
+	                        <option value="name" selected>클럽명</option>
+	                        <option value="category">카테고리</option>
+	                    </select>
+	                    <input type="search" class="searchBar" name="user">
+	                    <button class="btns" id="searchBtn"><img src="/resources/image/icons/search_black.png"></button>
+	                </div>
                     <div class="list-header">
                         <div class="option-wrap">
                             <!-- ajax>배열[]사용>controller 에서 String[] 을 매개변수로 받아서 사용 -->
@@ -56,76 +59,103 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" class="checkUser"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="checkClub"></td><td>123</td><td>스포츠</td><td>FC발냄새</td><td>유저1</td><td>0</td><td>2021-06-17</td><td>2021-06-18</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
                                 </tr>
                             </tbody>
                         </table>
