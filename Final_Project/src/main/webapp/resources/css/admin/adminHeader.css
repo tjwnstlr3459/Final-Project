@@ -1,26 +1,27 @@
 /* 헤더 부분 */
 :root{
     --backColor:#2e2d31;			/* 관리자 메인 배경 색 */
-    --mainTextColor:#67dfdf;		/* 관리자 메인 글씨  */
-    --menuTextColor:#ffffff;		/* 관리자 메뉴 글씨  */
-    --underLine:#4d4d4d;			/* 구분 밑 줄 */
-    --contentBackColor:#201f22;		/* 해당 메뉴의 컨텐츠 배경 색 */
+	--mainTextColor:#67dfdf;		/* 관리자 메인 글씨  */
+	--menuTextColor:#ffffff;		/* 관리자 메뉴 글씨  */
+	--underLine:#4d4d4d;			/* 구분 밑 줄 */
+	--contentBackColor:#201f22;		/* 해당 메뉴의 컨텐츠 배경 색 */
+	--fontBilbo:'Bilbo', cursive;	/* bilbo 폰트 */
+    --fontCantarell1:'Bilbo', cursive;
+    --fontCantarell2:'Cantarell', sans-serif;
 }
 html{
-    min-width:1200px;
-    /* background-color:#1a1525; */
+            min-width:1200px;
 }
 body{
     padding:0;
     margin:0;
-    max-width:1200px;
-    height:1000px;
+    width:1200px;
+    height:100vh;
     margin:auto;
 }
 header{
     width:100%;
     height:50px;
-    /* background-color:var(--backColor); */
     display:flex;
     justify-content: center;
     align-items:center;
@@ -30,7 +31,6 @@ header{
     width:140px;
     height:40px;
     text-align:center;
-    /* color:var(--mainTextColor); */
     background-image: url('/resources/image/icons/logo-img.png');
     background-size:100% 100%;
     font-size:1.5rem;
@@ -40,15 +40,15 @@ header{
 .wrap{
     height:100%;
     display:flex;
-    /* flex-direction:column; */
     background-color: var(--contentBackColor);
     z-index:100;
 }
 nav{
-    width:250px;
+    width:200px;
     height:100%;
     background-color:var(--backColor);
-    box-shadow: 20px 0px 10px rgba(0,0,0,0.2);
+    box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
+    box-sizing:border-box;
 }
 .adminInfoWrap{
     width:100%;
@@ -59,8 +59,6 @@ nav{
     width:150px;
     height:150px;
     margin:auto;
-    /* background-image: url('admin-IU1.png'); */
-/* background-size: 100% 100%; */
     margin-bottom:10px;
 }
 .adminImg>img{
@@ -71,12 +69,17 @@ nav{
     width:150px;
     height:30px;
     margin: auto;
-    /* background-color:#999; */
     color:var(--mainTextColor);
     text-align:center;
 }
 .adminInfo>span:first-child {
     font-size:1.5rem;
+    font-family:var(--fontBilbo);
+}
+.adminInfo>span:last-child {
+    font-size:0.9rem;
+    font-family:var(--fontCantarell1);
+    font-family:var(--fontCantarell2);
 }
 .divLine{
     width:80%;
@@ -98,7 +101,7 @@ nav{
     display:flex;
     width:100%;
     height:100%;
-    padding-left:35px;
+    padding-left:25px;
     border-left:5px solid transparent;
     border-right:5px solid transparent;
     align-items:center;
@@ -115,17 +118,80 @@ nav{
     height:25px;
 }
 .menu span{
-    margin-left:30px;
+    margin-left:25px;
+    font-size:0.9rem;
 }
 .menu>li:hover>a{
-    padding-left:35px;
+    padding-left:25px;
     border-left:5px solid var(--mainTextColor);
     border-right:5px solid var(--mainTextColor);
     background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
 }
-.menu>li:first-child>a{
-    padding-left:35px;
-    border-left:5px solid var(--mainTextColor);
-    border-right:5px solid var(--mainTextColor);
-    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
+/* body의 content 부분 */
+section{
+    width:1000px;
+    height:100%;
+    overflow:scroll;
+    box-sizing:border-box;
+}
+.content-wrap{
+    /* height:2000px; */
+    margin:30px;
+    box-sizing:border-box;
+}
+.searchBar-wrap{
+    width:100%;
+    height:100px;
+    background-color:var(--backColor);
+    box-shadow:0px 0px 20px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchBar-wrap>*{
+    height:30px;
+    box-sizing:border-box;
+    outline:none;
+}
+.list-wrap{
+    width:100%;
+    /* height:800px; */
+    background-color:var(--backColor);
+    border-radius:10px;
+    margin-top:30px;
+    box-shadow:0px 0px 20px rgba(0,0,0,0.2);
+}
+.list-wrap>*{
+    width:90%;
+    margin:auto;
+    padding-bottom:30px;
+}
+.list-header{
+    height:30px;
+    padding:30px 0 0 0;
+    display:flex;
+}
+.option-wrap{
+    display:flex;
+    align-items:center;
+}
+.option-wrap>*{
+    display:block;
+    height:100%;
+}
+.list{
+    color:#fff;
+    font-size:0.9rem;
+    width:100%;
+    border-collapse: collapse;
+}
+.list>thead>tr{
+    height:40px;
+    border-bottom:2px solid var(--mainTextColor);
+}
+.list td{
+    text-align:center;
+    border-bottom:1px solid var(--underLine);
+    padding:5px 0;
 }
