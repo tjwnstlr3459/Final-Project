@@ -113,21 +113,11 @@
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.club" /><!-- 마이클럽 -->
 	<context:component-scan base-package="kr.or.admin" /><!-- 관리 -->
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/tjwnstlr3459/Final-Project.git
 	<context:component-scan base-package="kr.or.member" /><!-- 관리 -->
-<<<<<<< HEAD
 	
 
-=======
->>>>>>> branch 'main' of https://github.com/tjwnstlr3459/Final-Project.git
 	<context:component-scan base-package="kr.or.newclub" /><!-- 모임개설 -->
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/tjwnstlr3459/Final-Project.git
 	
 </beans:beans>
 
