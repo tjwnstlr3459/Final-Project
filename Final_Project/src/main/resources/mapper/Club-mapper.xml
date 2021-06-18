@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club">
+<select id="memberClubList"  parameterType="m" resultType="c">
+	SELECT
+		CLUB_NO as clubNo,
+		CLUB_CG  as clubCg,            
+		CLUB_NAME  as clubName,
+		CLUB_INTRO  as clubIntro,
+		CLUB_OPENER  as clubOpener,        
+		FILENAME,  
+		FILEPATH, 
+		CLUB_RATING as clubRating,
+		ISPUBLIC,
+		ENROLL_DATE as enrollDate,
+		LAST_DATE as lastDate,
+		WARNING_COUNT as warningCount
+	FROM CLUB WHERE 
+	CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK= #{memberNick})
+</select>
+
+<select id="memberClubPosts" parameterType="m" resultType="b">
+SELECT
+	 A.board_no as boardNo,
+	 A.club_no as clubNo,
+	 A.board_cg as boardCg,
+	 A.BOARD_WRITER as clubMember,
+	 A.board_title as boardTitle,
+	 A.board_content as boardContent,
+	 A.fileName,
+	 A.filePath,
+	 A.board_views as boardViews,
+	 A.BOARD_good as cbGood,
+	 A.enroll_date as enrollDate,
+	 B.CLUB_NAME AS clubName 
+FROM CLUB_BOARD A, CLUB B WHERE 
+A.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{memberNick})
+</select>
+</mapper>

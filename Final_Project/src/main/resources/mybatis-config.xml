@@ -7,6 +7,10 @@
 	
 	
 	<typeAliases>
-		<typeAlias type="kr.or.member.model.vo.Member" alias="m"/> 
+		<typeAlias type="kr.or.member.model.vo.Member" alias="m"/>
+		<!-- 모임 -->
+		<typeAlias type="kr.or.club.model.vo.Club" alias="c"/>
+		<!-- 모임게시판 -->
+		<typeAlias type="kr.or.club.model.vo.Board" alias="b"/>  
 	</typeAliases>
 </configuration>

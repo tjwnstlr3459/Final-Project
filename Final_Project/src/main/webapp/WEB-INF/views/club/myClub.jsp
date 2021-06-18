@@ -6,6 +6,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta charset="utf-8" />
+ <!-- JSTL Core 태그 -->
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 
 <title>Category Page - Abstract</title>
 <meta name="description" content="" />
@@ -64,21 +67,28 @@
             <div class="myInfoImg">
               <img src="/resources/image/user04.jpg" />
             </div>
-            <div>서준식</div>
+            <div>${sessionScope.m.memberNick}</div>
             <hr width="95%" style="margin: 0 auto" />
             <div>읽지 않은 메세지 1 건</div>
-            <div>#여행 #요리 #음식</div>
+            
+	           	<span>#${m.hobby1 }</span>
+	           	<span>#${m.hobby2 }</span>
+	           	<span>#${m.hobby3 }</span>
+	           	<!-- <div>#여행 #요리 #음식</div> -->
+            
           </div>
           <hr/>
-          <div class="myClubList">
-            <div class="clubListOne"><img src="/resources/image/6.jpg" /></div>
-            <div class="clubListName">
-              <div>클럽소개</div>
-              <div class="clubJang" style="float: right">
-                <img src="/resources/image/user04.jpg" />
-              </div>
-            </div>
-          </div>
+          <c:forEach items="${clubList}" var="l" varStatus="i">
+	          <div class="myClubList">
+	            <div class="clubListOne"><img src="/resources/image/6.jpg" /></div>
+	            <div class="clubListName">
+	              <div>${l.clubName}</div>
+	              <div class="clubJang" style="float: right">
+	                <img src="/resources/image/user04.jpg" />
+	              </div>
+	            </div>
+	          </div>
+          </c:forEach>
         </div>
 
         <div class="rightCon">
@@ -97,43 +107,45 @@
           <!-- brick-wrapper -->
           <div class="bricks-wrapper">
             <div class="grid-sizer"></div>
-            <!--게시물 시작-->
-            <article
-              class="brick entry format-standard animate-this"
-              id="check"
-              style="z-index: 0"
-            >
-              <div class="entry-thumb">
-                <a href="#" class="thumb-link" id="cccdd">
-                  <img
-                    src="/resources/image/user04.jpg"
-                    class="postsCheck"
-                    alt="building"
-                  /><!--이미지-->
-                </a>
-              </div>
-              <div class="entry-text">
-                <div class="entry-header">
-                  <div class="entry-meta">
-                    <span class="cat-links">
-                      <a href="#">클럽이름</a>
-                      <!--태그-->
-                    </span>
-                  </div>
-                  <h1 class="entry-title">
-                    <a href="single-standard.html">제목</a>
-                  </h1>
-                  <!--제목-->
-                </div>
-                <div class="entry-excerpt">
-                  <!--내용-->
-                  est ad minim elit reprehenderit nisi officia aute incididunt
-                  velit sint in aliqua cillum in consequat consequat in culpa in
-                  anim.
-                </div>
-              </div>
-            </article>
-            <!-- end article -->
+            
+            
+            <c:forEach items="${clubPosts }" var="l">
+	            <!--게시물 시작-->
+	            <article
+	              class="brick entry format-standard animate-this"
+	              id="check"
+	              style="z-index: 0"
+	            >
+	              <div class="entry-thumb">
+	                <a href="#" class="thumb-link" id="cccdd">
+	                  <img
+	                    src="/resources/image/user04.jpg"
+	                    class="postsCheck"
+	                    alt="building"
+	                  /><!--이미지-->
+	                </a>
+	              </div>
+	              <div class="entry-text">
+	                <div class="entry-header">
+	                  <div class="entry-meta">
+	                    <span class="cat-links">
+	                      <a href="#">${l.clubName}</a>
+	                      <!--태그-->
+	                    </span>
+	                  </div>
+	                  <h1 class="entry-title">
+	                    <a href="single-standard.html">${l.boardTitle}</a>
+	                  </h1>
+	                  <!--제목-->
+	                </div>
+	                <div class="entry-excerpt">
+	                  <!--내용-->
+	                  ${l.boardContent }
+	                </div>
+	              </div>
+	            </article>
+	            <!-- end article -->
+            </c:forEach>
 
             <!-- end article -->
           </div>
