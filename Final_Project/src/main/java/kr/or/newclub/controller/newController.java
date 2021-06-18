@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class controller {
+public class newController {
 
 	@RequestMapping(value = "newClub.do")
 	public String newClub(){
