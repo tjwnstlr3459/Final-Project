@@ -39,9 +39,7 @@
                         <div class="option-wrap">
                             <!-- ajax>배열[]사용>controller 에서 String[] 을 매개변수로 받아서 사용 -->
                             <button class="btns" id="selectMessageBtn">선택 쪽지발송</button>
-                            <button class="btns" id="allMessageBtn">전체 쪽지발송</button>
                             <button class="btns" id="selectMailBtn">선택 메일발송</button>
-                            <button class="btns" id="allMailBtn">전체 메일발송</button>
                             <select name="sort" id="sort">
                                 <option value="date" selected>최근 개설순</option>
                                 <option value="dateDesc">이전 개설순</option>

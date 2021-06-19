@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NUNADRI - NoticeList</title>
+<title>NUNADRI - AdminJoin</title>
 <style>
 	.menu>li:nth-child(6)>a{
 	    padding-left:25px;
@@ -20,7 +20,7 @@
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
 		<!-- content -->
 		<section>
-		
+			
 		</section>
 	</div>
 </body>
