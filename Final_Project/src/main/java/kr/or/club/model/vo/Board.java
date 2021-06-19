@@ -8,7 +8,7 @@ public class Board {
 	private int clubNo;
 	private int boardCg;
 	private String clubMember;
-	private String boardTilte;
+	private String boardTitle;
 	private String boardContent;
 	private String fileName;
 	private String filePath;

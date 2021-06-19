@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kr.or.club.model.dao.ClubDao;
+import kr.or.club.model.vo.Board;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -20,8 +21,8 @@ public class ClubService {
 		return (ArrayList<Club>)list;
 	}
 
-	public ArrayList<Club> memberClubPosts(Member m) {
-		List<Club> list = dao.memberClubPosts(m);
-		return (ArrayList<Club>)list;
+	public ArrayList<Board> memberClubPosts(Member m) {
+		List<Board> list = dao.memberClubPosts(m);
+		return (ArrayList<Board>)list;
 	}
 }
