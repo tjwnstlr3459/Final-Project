@@ -26,6 +26,7 @@ public class MemberController {
 			if(member != null) {
 				session.setAttribute("m", member);
 				System.out.println(member.getMemberNick()+"환영한다능");
+				model.addAttribute("msg","로그인성공!");		
 			}else {
 				model.addAttribute("msg","아이디/비밀번호를 확인하세요");		
 			}
