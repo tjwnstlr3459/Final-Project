@@ -1,5 +1,7 @@
 package kr.or.club.model.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,9 +22,23 @@ public class ClubDao {
 		return list;
 	}
 
-	public List<Board> memberClubPosts(Member m) {
-		List list = session.selectList("club.memberClubPosts",m);
+//	public List<Board> memberClubPosts(Member m) {
+//		List list = session.selectList("club.memberClubPosts",m);
+//		return list;
+//	}
+
+	public List<Board> morePhoto(int start, int end, Member m) {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("m",m.getMemberNick());
+		
+		List<Board> list = session.selectList("club.phtoMore",map);
 		return list;
+	}
+
+	public int totalCount(Member m) {
+		return session.selectOne("club.totalCount",m);
 	}
 	
 	
