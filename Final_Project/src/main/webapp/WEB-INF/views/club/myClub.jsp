@@ -35,20 +35,6 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
-<script>
-	$(function() {
-		$(".entry-thumb").click(function() {
-			$(".postModal").css("display", "block");
-			$(".postModal").css("z-index", "10000");
-			$("#top").css("background", "rgba(0,0,0,.75)");
-			$("#top").css("z-index", "10000");
-		});
-		$(".modalClose").click(function() {
-			$(".postModal").css("display", "none");
-			$("#top").css("background", "none");
-		});
-	});
-</script>
 
 <body id="top">
 	<!-- page header
@@ -145,14 +131,12 @@
 						</article>
 						<!-- end article -->
 					</c:forEach> --%>
-
-
 					<!-- end article -->
 				</div>
 				<!-- 오른쪽 컨텐츠 종료-->
+			</div>
 				<button class="btn btn-outline-info btn-block" currentCount="0"
 					value="" totalCount="${totalCount }" id="more-btn">더보기</button>
-			</div>
 			<!-- end brick-wrapper -->
 		</div>
 
@@ -247,12 +231,32 @@
 	<script src="/resources/js/myClub/main.js"></script>
 </body>
 <script>
+	/* $(".postsCheck").click(function() {
+		$(".postModal").css("display", "block");
+		$(".postModal").css("z-index", "10000");
+		$("#top").css("background", "rgba(0,0,0,.75)");
+		$("#top").css("z-index", "10000");
+	}); */
+$(function() {
+	$(".modalClose").click(function() {
+		$(".postModal").css("display", "none");
+		$("#top").css("background", "none");
+	});
+});
+function func1(){
+	$(".postModal").css("display", "block");
+	$(".postModal").css("z-index", "10000");
+	$("#top").css("background", "rgba(0,0,0,.75)");
+	$("#top").css("z-index", "10000");
+}
+
 $(function() {
 	more(1);
 	$("#more-btn").click(function() {
 		more($(this).val());
 	});
 });
+
 function more(start) {//더보기 클릭시
 	$.ajax({
 		url : "/photoMore.do",
@@ -261,42 +265,37 @@ function more(start) {//더보기 클릭시
 		}, //시작번호를 매개변수로 1-5 1-10
 		type : "post",
 		success : function(data) {
-			
 			for (var i = 0; i < data.length; i++) {
-				//var p = data[i];
+				var p = data[i];
 				var html = "";
-				/* html += "<div class='photo'>";
-				html += "<img src='/upload/photo/"+p.filepath+"'>";
-				html += "<p class='caption'>" + p.photoContent
-						+ "</p></div>"; */
-						
-                html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
-                	 html +=  '<div class="entry-thumb">';
-                html +=   '<a href="#" class="thumb-link" id="cccdd">';
-                html +=     '<img src="/resources/image/user04.jpg"class="postsCheck"alt="building"/>';
+                	 html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
+                	 html +=  '<div class="entry-thumb" onclick="func1(this)">';
+                	 html +=   '<a href="#" class="thumb-link" id="cccdd">';
+                	 html +=     '<img src="/resources/image/user04.jpg"class="postsCheck"alt="building"/>';
                 	 html +=    '</a>';
                 	 html +=   '</div>';
                 	 html +=   '<div class="entry-text">';
                 	 html +=    '<div class="entry-header">';
                 	 html +=    '<div class="entry-meta">';
                 	 html +=    '<span class="cat-links">';
-                	 html +=        '<a href="#">테스트/a>';
+                	 html +=        '<a href="#">'+p.clubName+'</a>';
                 	 html +=    '</span>';
                 	 html +=   '</div>';
                 	 html +=  '<h1 class="entry-title">';
-                	 html +=     '<a href="single-standard.html">${listMore.boardTitle}</a>';
+                	 html +=     '<a href="single-standard.html">'+p.boardTitle+'</a>';
                 	 html +=  '</h1>';
                 	 html +=  '</div>';
                 	 html +=  '<div class="entry-excerpt">';
-                	 html += '테스트';
+                	 html +=  p.boardContent;
                 	 html += '</div> ';
                 	 html +=  '</div>';
                 	 html +=   '</article>';
 				$(".photoWrapper").append(html);
 			}
-
+			
 			//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
-			$("#more-btn").val(Number(start) + 5);
+			$("#more-btn").val(Number(start) + 5
+			);
 			var curr = $("#more-btn").attr("currentCount"); //현재값
 			$("#more-btn").attr("currentCount", curr + data.length);//현재값 = 현재값+데이터길이 변경 
 
