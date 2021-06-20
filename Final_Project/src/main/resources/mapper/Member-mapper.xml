@@ -16,6 +16,18 @@
 		   enroll_date as enrollDate,
 		   last_date as lastDate,
 		   age
-	from member where email = #{email} and member_pw = #{memberPw}
+	from member 
+	<if test="email != null">
+		where email = #{email} 
+	</if>
+	<if test="memberPw != null">
+		and member_pw=#{memberPw}
+	</if>
+	<if test="memberNick != null">
+		where member_nick=#{memberNick}
+	</if>
 </select>
+<insert id="insertMember" parameterType="m">
+	insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, '임시', #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 0, sysdate, sysdate, #{age})
+</insert>
 </mapper>
