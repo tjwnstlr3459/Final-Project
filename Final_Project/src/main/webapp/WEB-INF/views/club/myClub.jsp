@@ -9,6 +9,7 @@
 <meta charset="utf-8" />
 <!-- JSTL Core 태그 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 
@@ -63,7 +64,6 @@
 					<span>#${m.hobby1 }</span> <span>#${m.hobby2 }</span> <span>#${m.hobby3
 						}</span>
 					<!-- <div>#여행 #요리 #음식</div> -->
-
 				</div>
 				<hr />
 				<c:forEach items="${clubList}" var="l" varStatus="i">
@@ -95,53 +95,22 @@
 					</select>
 				</div>
 				<!-- brick-wrapper -->
-				<div class="bricks-wrapper">
+				<div class="bricks-wrapper" style="height: 1200px">
 					<div class="grid-sizer"></div>
 					<div class="photoWrapper">
 						
 					</div>
-					<%-- <c:forEach items="${clubPosts }" var="l">
-						<!--게시물 시작-->
-						<article class="brick entry format-standard animate-this"
-							id="check" style="z-index: 0">
-							<div class="entry-thumb">
-								<a href="#" class="thumb-link" id="cccdd"> <img
-									src="/resources/image/user04.jpg" class="postsCheck"
-									alt="building" />
-								<!--이미지-->
-								</a>
-							</div>
-							<div class="entry-text">
-								<div class="entry-header">
-									<div class="entry-meta">
-										<span class="cat-links"> <a href="#">${l.clubName}</a>
-											<!--태그-->
-										</span>
-									</div>
-									<h1 class="entry-title">
-										<a href="single-standard.html">${l.boardTitle}</a>
-									</h1>
-									<!--제목-->
-								</div>
-								<div class="entry-excerpt">
-									<!--내용-->
-									${l.boardContent }
-								</div>
-							</div>
-						</article>
-						<!-- end article -->
-					</c:forEach> --%>
-					<!-- end article -->
 				</div>
 				<!-- 오른쪽 컨텐츠 종료-->
 			</div>
 				<button class="btn btn-outline-info btn-block" currentCount="0"
-					value="" totalCount="${totalCount }" id="more-btn">더보기</button>
+					value="" totalCount="${totalCount }" id="more-btn"><img src="/resources/image/icons/more.png"></button>
 			<!-- end brick-wrapper -->
 		</div>
-
+		
+		
+		<!-- 게시물 모달창 -->
 		<div class="postModal" style="display: none">
-			<!-- 게시물 모달창 -->
 			<div class="postModalPan"
 				style="padding-bottom: 20px; padding-top: 20px">
 				<div class="postUser">
@@ -149,8 +118,8 @@
 						<img src="/resources/image/user04.jpg" />
 					</div>
 					<div class="modalUserId">
-						<div>바람돌이</div>
-						<div>낚시모임</div>
+						<div class="modalMemberName">유저네임</div>
+						<div class="modalClubName">클럽이름</div>
 					</div>
 					<div class="modalClose" style="float: right">
 						<img src="/resources/image/icons/x.png" style="width: 30px;">
@@ -162,7 +131,7 @@
 					<img src="/resources/image/user04.jpg" />
 				</div>
 				<!--이미지-->
-				<div class="postContent">흰 천과 바람만 있으면 어디든 갈수있어..</div>
+				<div class="postContent"></div>
 				<!--내용-->
 				<div class="postLike">
 					<div>
@@ -217,13 +186,11 @@
 				<!--댓글 작성-->
 			</div>
 		</div>
-
 	</section>
 	<!-- bricks -->
 	<div id="preloader">
 		<div id="loader"></div>
 	</div>
-
 	<!-- Java Script
    ================================================== -->
 	<script src="/resources/js/myClub/jquery-2.1.3.min.js"></script>
@@ -242,10 +209,23 @@ $(function() {
 		$(".postModal").css("display", "none");
 		$("#top").css("background", "none");
 	});
+	
+	
 });
-function func1(){
+	
+//모달클릭
+function func1(e){
 	$(".postModal").css("display", "block");
 	$(".postModal").css("z-index", "10000");
+	
+	
+	
+	
+	$(".modalMemberName").html($(".cName").html());
+	$(".modalClubName").html($(".clubName").html());
+	$(".postContent").html($(".entry-excerpt").html());
+	
+	//배경어둡게
 	$("#top").css("background", "rgba(0,0,0,.75)");
 	$("#top").css("z-index", "10000");
 }
@@ -262,7 +242,7 @@ function more(start) {//더보기 클릭시
 		url : "/photoMore.do",
 		data : {
 			start : start
-		}, //시작번호를 매개변수로 1-5 1-10
+		}, //시작번호를 매개변수로 1-5 1-10f
 		type : "post",
 		success : function(data) {
 			for (var i = 0; i < data.length; i++) {
@@ -270,7 +250,7 @@ function more(start) {//더보기 클릭시
 				var html = "";
                 	 html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
                 	 html +=  '<div class="entry-thumb" onclick="func1(this)">';
-                	 html +=   '<a href="#" class="thumb-link" id="cccdd">';
+                	 html +=   '<a href="#" class="thumb-link">';
                 	 html +=     '<img src="/resources/image/user04.jpg"class="postsCheck"alt="building"/>';
                 	 html +=    '</a>';
                 	 html +=   '</div>';
@@ -278,16 +258,15 @@ function more(start) {//더보기 클릭시
                 	 html +=    '<div class="entry-header">';
                 	 html +=    '<div class="entry-meta">';
                 	 html +=    '<span class="cat-links">';
-                	 html +=        '<a href="#">'+p.clubName+'</a>';
+                	 html +=	'<div class="cName" style="display:none">'+p.boardWriter+'</div>';
+                	 html +=        '<a href="#" class="clubName">'+p.clubName+'</a>';
                 	 html +=    '</span>';
                 	 html +=   '</div>';
                 	 html +=  '<h1 class="entry-title">';
-                	 html +=     '<a href="single-standard.html">'+p.boardTitle+'</a>';
+                	 html +=     '<a href="single-standard.html" class="bTitle">'+p.boardTitle+'</a>';
                 	 html +=  '</h1>';
                 	 html +=  '</div>';
-                	 html +=  '<div class="entry-excerpt">';
-                	 html +=  p.boardContent;
-                	 html += '</div> ';
+                	 html +=  '<div class="entry-excerpt">'+p.boardContent+'</div>';
                 	 html +=  '</div>';
                 	 html +=   '</article>';
 				$(".photoWrapper").append(html);

@@ -1110,7 +1110,7 @@ input::-moz-focus-inner {
 
 .bricks-wrapper .entry-thumb,
 .bricks-wrapper .entry-text {
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 3px rgba(0 0 0 / 40%);
 }
 
 .bricks-wrapper .entry-thumb {
@@ -2370,12 +2370,12 @@ header .logo a {
 
 .bricks-wrapper .grid-sizer,
 .bricks-wrapper .brick {
-  width: 25%;
+  width: 20%;
 }
 
 .bricks-wrapper .brick {
   float: left;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .bricks-wrapper .featured-grid {
@@ -2393,7 +2393,7 @@ header .logo a {
 @media only screen and (max-width: 1280px) {
   .bricks-wrapper .grid-sizer,
   .bricks-wrapper .brick {
-    width: 33.33333%;
+    width: 25.33333%;
   }
 
   .bricks-wrapper .featured-grid {
@@ -2408,7 +2408,7 @@ header .logo a {
 @media only screen and (max-width: 960px) {
   .bricks-wrapper .grid-sizer,
   .bricks-wrapper .brick {
-    width: 35%;
+    width: 40%;
   }
 
   .bricks-wrapper .featured-grid {
