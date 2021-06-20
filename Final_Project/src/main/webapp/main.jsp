@@ -37,9 +37,9 @@
                 </div> <!-- /.row -->
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-1">
+                        <div class="service-item" id="service-1" onclick="location.href=''" style="cursor:pointer">
                             <div class="service-icon">
-                                <i class="fa fa-file-code-o"></i>
+                                <i class="fa fa-apple"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
@@ -50,35 +50,35 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-2">
+                        <div class="service-item" id="service-2" onclick="location.href=''" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-flag"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
                                    <h3>스포츠</h3>
-                                   <p>여러가지 스포츠</p> 
+                                   <p>여러가지 스포츠 동호회를 만들어 같이 즐겨요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-3">
+                        <div class="service-item" id="service-3" onclick="location.href=''" style="cursor:pointer">
                             <div class="service-icon">
-                                <i class="fa fa-institution"></i>
+                                <i class="fa fa-glass"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
                                    <h3>술</h3>
-                                   <p>술자리나 맛난 술 추천</p> 
+                                   <p>도수높은 위스키, 향이 좋은 와인을 함께즐겨요</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-4">
+                        <div class="service-item" id="service-4" onclick="location.href=''" style="cursor:pointer">
                             <div class="service-icon">
-                                <i class="fa fa-flask"></i>
+                                <i class="fa fa-asterisk"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
@@ -89,53 +89,53 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-5">
+                        <div class="service-item" id="service-5" onclick="location.href=''" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-headphones"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>게임</h3>
-                                   <p>롤, 에이펙스 등 게임같이하자!</p> 
+                                   <h3>음악</h3>
                                 </div>
+                                   <p>좋아하는 음악을 공유하고, 함께 콘서트도 즐겨요!</p> 
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-6">
+                        <div class="service-item" id="service-6" onclick="location.href=''" style="cursor:pointer; background-color:firebrick;">
                             <div class="service-icon">
                                 <i class="fa fa-globe"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>게임</h3>
-                                   <p>롤, 에이펙스 등 게임같이하자!</p> 
+                                   <h3>여행</h3>
+                                   <p>사람들과 함께 어우러져 이곳저곳 여행명소로 떠나봅시다!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-7">
+                        <div class="service-item" id="service-7" onclick="location.href=''" style="cursor:pointer; background-color:coral;">
                             <div class="service-icon">
                                 <i class="fa fa-shopping-cart"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>게임</h3>
-                                   <p>롤, 에이펙스 등 게임같이하자!</p> 
+                                   <h3>쇼핑</h3>
+                                   <p>좋아하는 물품들을 공유하고, 함께 쇼핑도 해요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-8">
+                        <div class="service-item" id="service-8" onclick="location.href=''" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-leaf"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>게임</h3>
-                                   <p>롤, 에이펙스 등 게임같이하자!</p> 
+                                   <h3>환경</h3>
+                                   <p>함께 환경을 보호하는 활동을 해보아요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
@@ -160,7 +160,7 @@
                             <img src="/resources/main/images/gallery/p1.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'네발자전거'</h3>
-                                <p>이번에 다같이 산악자전거를 타고왔어요!</p>
+                                <p>자전거 라이딩으로 회원님덜과 파주 평화공원을 다녀왔숨당</p>
                             </div> <!-- /.portfolio-overlay -->
                         </div> <!-- /.portfolio-thumb -->
                     </div> <!-- /.portfolio-item -->
@@ -169,7 +169,7 @@
                             <img src="/resources/main/images/gallery/p2.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'무비메이트'</h3>
-                                <p>블랙위도우를 보러갔다왔습니다.</p>
+                                <p>채팅으로 알게된 회원님과 둘이 킬러의 보디가드 관람! 배꼽 찾아 삼만리</p>
                             </div> <!-- /.portfolio-overlay -->
                         </div> <!-- /.portfolio-thumb -->
                     </div> <!-- /.portfolio-item -->
@@ -230,7 +230,7 @@
                             </div> <!-- /.portfolio-overlay -->
                         </div> <!-- /.portfolio-thumb -->
                     </div> <!-- /.portfolio-item -->
-                    <button onclick="location.href='#'" id="feed_info">MORE</button>
+                    <button onclick="location.href='/feedList.do'" id="feed_info">MORE</button>
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
         </div> <!-- /#portfolio -->

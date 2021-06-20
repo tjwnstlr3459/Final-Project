@@ -31,10 +31,8 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <ul class="social-icons">
-                                <li><a href="#" class="fa fa-facebook"></a></li>
-                                <li><a href="#" class="fa fa-twitter"></a></li>
-                                <li><a href="#" class="fa fa-dribbble"></a></li>
-                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="https://www.facebook.com/%EB%84%88%EB%82%98%EB%93%A4%EC%9D%B4-102411682096038" class="fa fa-facebook" target='_blank'></a></li>
+                                <li><a href="https://www.instagram.com/nunadri_/" class="fa fa-instagram" target='_blank'></a></li>
                             </ul>
                         </div> <!-- /.col-md-12 -->
                     </div> <!-- /.row -->
