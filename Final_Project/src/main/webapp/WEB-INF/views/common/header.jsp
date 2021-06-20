@@ -81,44 +81,7 @@
                     </div> <!-- /.container -->
                 </div> <!-- /.main-header -->
             </div> <!-- /.site-header -->
-            <div class="site-slider">
-                <div class="slider">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            <li>
-                                <div class="overlay"></div>
-                                <img src="/resources/main/images/intro_4.jpg" alt="">
-                                <div class="slider-caption visible-md visible-lg">
-                                    <h2>'너나들이'</h2>
-                                    <p>이곳에서 클럽을 만들고<br>사람들과 건전한 모임을 이어가세요</p>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <a href="#" class="slider-btn" style="font-size: 25px;">클럽 만들기</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="overlay"></div>
-                                <img src="/resources/main/images/intro_2.jpg" alt="">
-                                <div class="slider-caption visible-md visible-lg">
-                                    <h2>'너나들이'</h2>
-                                    <p>당신의 취향이 이곳에 모두 있습니다</p>
-                                    <a href="#" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="overlay"></div>
-                                <img src="/resources/main/images/intro_3.jpg" alt="">
-                                <div class="slider-caption visible-md visible-lg">
-                                    <h2>'너나들이'</h2>
-                                    <p>당신의 클럽을 자랑하세요</p>
-                                    <a href="#" class="slider-btn" style="font-size: 25px;">피드 보러가기</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> <!-- /.flexslider -->
-                </div> <!-- /.slider -->
-            </div> <!-- /.site-slider -->
+
         </div> <!-- /.site-main -->
 </body>
 </html>
