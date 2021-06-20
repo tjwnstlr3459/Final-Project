@@ -59,7 +59,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
+                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button class="btns warningBtn">경고</button><button class="btns restBtn">제재</button><button class="btns deleteBtn">삭제</button></td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
@@ -160,6 +160,18 @@
                     <div class="list-footer">
 
                     </div>
+                </div>
+            </div>
+            <!-- 모달영역 -->
+            <div class="modal">
+                <div class="modal-box">
+                    <h2 class="titleHead">사유</h2>
+                    <textarea name="dmComment" id="summernote" class="textarea" cols="30" rows="10" style="resize:none;"></textarea>
+                    <div class="btn-box">
+                        <button class="btns">확인</button>
+                        <button class="btns">취소</button>
+                    </div>
+                    <button class="btns" id="closeBtn">X</button>
                 </div>
             </div>
 		</section>

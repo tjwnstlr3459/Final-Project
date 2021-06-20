@@ -256,5 +256,41 @@ section::-webkit-scrollbar-track {
 	overflow:hidden;
 	white-space:nowrap;
 	text-overflow:ellipsis;
-	
 }
+/* 관리자 페이지 내의 모달 디자인 */
+.modal{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    display:none;
+    justify-content: center;
+    align-items:center;
+    background-color:rgba(0,0,0,0.8);
+}
+.modal-box{
+    background-color:#ffffff;
+    border-radius:10px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    padding:20px;
+    position:relative;
+}
+.titleHead{
+    margin:0;
+    padding-bottom:10px;
+    width:100%;
+    text-align:center;
+    border-bottom:2px solid #a1a1a1;
+}
+.textarea{
+    margin:20px 0;
+}
+#closeBtn{
+    position:absolute;
+    top:20px;
+    left:20px;
+}
+

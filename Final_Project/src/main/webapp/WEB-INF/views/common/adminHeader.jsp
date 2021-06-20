@@ -10,8 +10,14 @@
 	<!-- Cantarell-font -->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Bilbo&family=Cantarell:ital@1&display=swap" rel="stylesheet">
-	
-	
+	<!-- jquery 라이브러리 -->
+	<script type="text/javascript" src="/resources/js/jquery-3.3.1.js"></script>
+	<!-- summernote 라이브러리 -->
+	<script src="/resources/js/summernote/summernote-lite.js"></script>
+	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
+	<!-- 관리자 js -->
+	<script src="/resources/js/admin/summernote-admin.js"></script>
 <!-- header 영역 -->
     <!-- 왼쪽 관리자,메뉴 영역 -->
     <nav>
