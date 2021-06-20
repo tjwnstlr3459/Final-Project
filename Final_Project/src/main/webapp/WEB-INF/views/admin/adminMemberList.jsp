@@ -165,12 +165,16 @@
             <!-- 모달영역 -->
             <div class="modal">
                 <div class="modal-box">
+                   	<form action="/insertDm.do">
                     <h2 class="titleHead">사유</h2>
-                    <textarea name="dmComment" id="summernote" class="textarea" cols="30" rows="10" style="resize:none;"></textarea>
+                    <textarea name="dmContent" id="summernote" class="textarea" cols="30" rows="10" style="resize:none;"></textarea>
                     <div class="btn-box">
-                        <button class="btns">확인</button>
-                        <button class="btns">취소</button>
+		                   	<input type="hidden" name="sender" value="${sessionScope.m.memberNick }">
+		                   	<input type="hidden" name="receiver" value="유저1">                    	
+	                        <button class="btns">확인</button>
+	                        <button type="button" class="btns">취소</button>
                     </div>
+                   	</form>
                     <button class="btns" id="closeBtn">X</button>
                 </div>
             </div>
