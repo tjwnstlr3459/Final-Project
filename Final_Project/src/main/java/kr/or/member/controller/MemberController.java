@@ -12,8 +12,10 @@ import kr.or.member.model.vo.Member;
 
 @Controller
 public class MemberController {
+	
 	@Autowired
 	private MemberService service;
+	
 	@RequestMapping(value="/loginFrm.do")
 	public String loginFrm() {
 		return "member/loginFrm";
