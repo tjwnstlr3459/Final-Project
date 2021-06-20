@@ -35,21 +35,20 @@ $(document).ready(function() {
 	 });
 });
 //==========================================================================================
-function sendFile(file, el) {			//해당 편집기에 이미지를 드래그해서 추가했을때 sendFile()이 동작하고 매개변수로 this를 받아왔기 때문에 class로 여러개의 편집기를 사용해도 연동은 없다.
-	var formData = new FormData();		//form에서의 이미지(data)를 보내기 위한 객체
-  	formData.append('file', file);
-  	$.ajax({
-    	data: formData,
-    	type: "POST",
-    	url: '/imageUpload.do',
-    	cache: false,
-    	contentType: false,
-    	enctype: 'multipart/formaDta',
-    	processData: false,
-    	success: function(data) {
-      		$(el).summernote('editor.insertImage', data.url);
-    	}
-  	});
+function sendFile(file, el) {
+	data = new FormData();
+	data.append("file", file);
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "/imageUpload.do",
+		contentType : false,
+		enctype : 'multipart/form-data',
+		processData : false,
+		success : function(data) {
+			$(el).summernote('editor.insertImage', data.url);
+		}
+	});
 }
 //모달 오픈 함수
 function modalOpen(){
