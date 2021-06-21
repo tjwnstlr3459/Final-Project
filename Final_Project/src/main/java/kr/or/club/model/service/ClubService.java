@@ -1,6 +1,5 @@
 package kr.or.club.model.service;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +38,22 @@ public class ClubService {
 
 	public int totalCount(Member m) {
 		return dao.totalCount(m);
+	}
+
+	public int insertPost(Board b, ArrayList<Board> fileList) {
+		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
+		int result1 = dao.insertBoard(b);
+		int result = 0;
+		if(result1>0) {
+			//파일 insert하기 전에 board_no가 필요함
+			int boardNo = dao.selectBoardNo();
+			for(Board f : fileList) {
+				f.setBoardNo(boardNo);
+				result += dao.insertFile(f);
+			}
+		}else {
+			return -1;
+		}
+		return result;
 	}
 }

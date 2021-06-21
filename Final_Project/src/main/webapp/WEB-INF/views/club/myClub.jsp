@@ -95,6 +95,7 @@
 						<option>지난 1개월</option>
 					</select>
 				</div>
+				<a href="/insertPostWrite.do">게시물 등록</a>
 				<!-- brick-wrapper -->
 				<div class="bricks-wrapper" style="height: 1200px">
 					<div class="grid-sizer"></div>
@@ -105,7 +106,7 @@
 				<!-- 오른쪽 컨텐츠 종료-->
 			</div>
 				<button class="btn btn-outline-info btn-block" currentCount="0"
-					value="" totalCount="${totalCount }" id="more-btn"><img src="/resources/image/icons/more.png"></button>
+					value="" totalCount="${totalCount }" id="more-btn" style="display:none;"></button>
 			<!-- end brick-wrapper -->
 		</div>
 		
@@ -240,6 +241,24 @@ $(function() {
 	});
 });
 
+//스크롤
+$(window).scroll(function() {
+    var scrolltop = $(document).scrollTop();	//스크롤할때의 값 지정
+    console.log(scrolltop);
+    
+    var height = $(document).height();		//문서의 총길이
+    console.log(height);
+    
+    var height_win = $(window).height();	//화면에 보여지는 길이
+    console.log(height_win);
+    
+ if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {	//스크롤이 바닥에 닿았을시 more메소드 실행
+    more($("#more-btn").val());	//#('more-btn').val()만큼 추가시켜준다
+    							//$("#more-btn").val(Number(start) + 5);
+ }
+});
+
+
 function more(start) {//더보기 클릭시
 	$.ajax({
 		url : "/photoMore.do",
@@ -266,7 +285,7 @@ function more(start) {//더보기 클릭시
                 	 html +=    '</span>';
                 	 html +=   '</div>';
                 	 html +=  '<h1 class="entry-title">';
-                	 html +=     '<a href="single-standard.html" class="bTitle">'+p.boardTitle+'</a>';
+                	 html +=     '<a href="single-standard.html"class="bTitle"style="font-size: 20px;">'+p.boardTitle+'</a>';
                 	 html +=  '</h1>';
                 	 html +=  '</div>';
                 	 html +=  '<div class="entry-excerpt">'+p.boardContent+'</div>';
