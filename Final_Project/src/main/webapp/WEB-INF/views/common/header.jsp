@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -62,17 +63,32 @@
   <nav class="navbar">
         <div class="navbar_logo">
             <i class="fas fa-people-arrows"></i>
-            <a href="#">NUNADRI</a>
+            <a href="/main.jsp">NUNADRI</a>
         </div>
             <ul class="navbar_menu">
                 <li><a href="#">CLUB CATEGORY</a></li>
                 <li><a href="#">CLUB FEED</a></li>
-                <li><a href="#">LOGIN</a></li>
-                <li><a href="#">LOGOUT</a></li>
-                <li><a href="#">PAGE</a></li>
-                <li><a href="#">CREATE CLUB</a></li>
-                <li><a href="#">JOIN</a></li>
-                <li><a href="#">BADREPORT</a></li>
+                <!--<c:choose>
+                <c:when test="${!empty sessionScope.m }"
+                	<c:choose>
+                	<c:when test="${!empty sessionScope.m eq 'ADMIN1' }"-->
+                		<li><a href="/adminMain.do">ADMIN</a></li>
+	                	<li><a href="/logout.do">LOGOUT</a></li>
+	          		<!--</c:when>
+                	<c:otherwise>-->
+	                	<li><a href="/myClub.do">MY CLUB</a></li>
+	                	<li><a href="/logout.do">LOGOUT</a></li>
+	            	<!--</c:otherwise>
+	            </c:choose>
+	            </c:when>
+	            <c:otherwise>-->
+                <li><a href="/lgoinFrm.do">LOGIN</a></li>
+                <li><a href="/join.do">JOIN</a></li>
+                <!--</c:otherwise>
+                </c:choose>-->
+                <li><a href="/newClub.do">CREATE CLUB</a></li>
+                <li><a href="/badReport.do">BADREPORT</a></li>
+                
             </ul>
         <ul class="navbar_icons">
             <li><i class="fab fa-facebook-f"></i></li>
