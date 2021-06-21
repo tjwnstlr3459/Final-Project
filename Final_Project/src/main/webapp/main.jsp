@@ -57,7 +57,7 @@
                                         <c:choose>
                                         <c:when test="${!empty sessionScope.m }">
                                         <c:choose>
-                                        	<c:when test="${sessionScope.m.memberNick eq 'ADMIN1' }">
+                                        	<c:when test="${sessionScope.m.grade lt 2 }">
 											<li><a onclick="location.href='/adminMain.do';" style="cursor: pointer;">관리자 페이지</a></li>
                                         	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">로그아웃</a></li>
 											</c:when>

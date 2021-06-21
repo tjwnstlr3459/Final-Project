@@ -15,7 +15,9 @@
 		   filepath,
 		   enroll_date as enrollDate,
 		   last_date as lastDate,
-		   age
+		   age,
+		   grade,
+		   warning_count as warningCount
 	from member 
 	<if test="email != null">
 		where email = #{email} 
