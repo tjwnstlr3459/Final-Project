@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,102 +59,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button class="btns warningBtn">경고</button><button class="btns restBtn">제재</button><button class="btns deleteBtn">삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>회원</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="checkMember"></td><td>123</td><td>test@email.com</td><td>user1</td><td>#스포츠</td><td>#음악</td><td>#영화</td><td>관리자</td><td>0</td><td>2021-06-17</td><td>2021-06-15</td><td><button>경고</button><button>제재</button><button>삭제</button></td>
-                                </tr>
+                            	<c:forEach items="${list }" var="m">
+	                                <tr>
+	                                    <td><input type="checkbox" class="checkMember"></td><td>${m.sort }</td><td>${m.email }</td><td>${m.memberNick }</td><td>${m.hobby1 }</td><td>${m.hobby2 }</td><td>${m.hobby3 }</td>
+	                                    <td>
+                                    	<c:choose>
+                                    		<c:when test="${m.grade == 0 }">쵝오 관리자</c:when>
+                                    		<c:when test="${m.grade == 1 }">관리자</c:when>
+                                    		<c:otherwise>회원</c:otherwise>
+                                    	</c:choose>
+	                                    </td>
+	                                    <td>${m.warningCount }</td><td>${m.enrollDate }</td><td>${m.lastDate }</td><td><button class="btns warningBtn">경고</button><button class="btns restBtn">제재</button><button class="btns deleteBtn">삭제</button></td>
+	                                </tr>                            		
+                            	</c:forEach>
+                                
                             </tbody>
                         </table>
                     </div>

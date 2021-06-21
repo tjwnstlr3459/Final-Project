@@ -47,10 +47,10 @@ public class AdminController {
 		return "admin/adminInquiryList";
 	}
 	//관리자 회원목록 이동
-	@RequestMapping(value="/adminMemberList.do")
-	public String adminUserList() {
-		return "admin/adminMemberList";
-	}
+//	@RequestMapping(value="/adminMemberList.do")
+//	public String adminUserList() {
+//		return "admin/adminMemberList";
+//	}
 	//관리자 모임목록 이동
 	@RequestMapping(value="/adminClubList.do")
 	public String adminClubList() {
