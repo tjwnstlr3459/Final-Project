@@ -3,6 +3,5 @@ $( document ).ready(function() {
      $('.modal-wrapper').toggleClass('open');
     $('.page-wrapper').toggleClass('blur-it');
      return false;
-    });
-    });
-    
+  });
+});

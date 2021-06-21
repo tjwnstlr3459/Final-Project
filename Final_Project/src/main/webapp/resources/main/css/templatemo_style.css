@@ -692,8 +692,7 @@ hr {
   overflow: hidden;
 }
 .portfolio-item .portfolio-thumb img {
-  width: 212.5px;
-  height: 212.5px;
+  width: 100%;
 }
 .portfolio-item .portfolio-thumb .portfolio-overlay {
   background-color: #ec523f;

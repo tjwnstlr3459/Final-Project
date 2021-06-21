@@ -252,7 +252,7 @@
                 <div class="row">
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p11.png" alt="">
+                            <img src="/resources/main/images/gallery/p1.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'네발자전거'</h3>
                                 <p>자전거 라이딩으로 회원님덜과 파주 평화공원을 다녀왔숨당</p>
@@ -261,7 +261,7 @@
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p12.png" alt="">
+                            <img src="/resources/main/images/gallery/p2.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'무비메이트'</h3>
                                 <p>채팅으로 알게된 회원님과 둘이 킬러의 보디가드 관람! 배꼽 찾아 삼만리</p>
@@ -270,16 +270,16 @@
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p13.png" alt="">
+                            <img src="/resources/main/images/gallery/p7.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'떠나자 어디든'</h3>
-                                <p>너나들이 회원님과 함께 다녀온 스페인, 가우디 성당이 아주 아름다웠습니다</p>
+                                <p>회원님들과 함께 다녀온 강릉여행</p>
                             </div> <!-- /.portfolio-overlay -->
                         </div> <!-- /.portfolio-thumb -->
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p14.png" alt="">
+                            <img src="/resources/main/images/gallery/p8.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'니가사는거라면 나도 끼지'</h3>
                                 <p>그라가스같은 회원님이 와인에 대해 알려주셨어요!</p>
@@ -288,7 +288,7 @@
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p15.png" alt="">
+                            <img src="/resources/main/images/gallery/p3.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'아미회장'</h3>
                                 <p>방탄소년단 콘서트에 같이 다녀왔어요!</p>
@@ -297,7 +297,7 @@
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p16.png" alt="">
+                            <img src="/resources/main/images/gallery/p4.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'6군 스트라이커'</h3>
                                 <p>상암 풋살장을 빌려서 3:3 밀어내기를 했어요!</p>
@@ -309,7 +309,7 @@
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p17.png" alt="">
+                            <img src="/resources/main/images/gallery/p5.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'내일의쇼핑왕'</h3>
                                 <p>옷잘알 친구들과 쇼핑을 했어요!</p>
@@ -318,7 +318,7 @@
                     </div> <!-- /.portfolio-item -->
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
-                            <img src="/resources/main/images/gallery/p18.png" alt="">
+                            <img src="/resources/main/images/gallery/p6.jpg" alt="">
                             <div class="portfolio-overlay">
                                 <h3>'나무나무'</h3>
                                 <p>식목일이 아니어도 나무를 심고 왔어요.</p>
