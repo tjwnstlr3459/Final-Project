@@ -21,4 +21,9 @@ public class DirectMessageService {
 		return (ArrayList<DirectMessage>)dao.selectAllDm();
 	}
 
+	public int updateWarningCount(DirectMessage dm) {
+		System.out.println("dm서비스");
+		return dao.updateWarningCount(dm);
+	}
+
 }

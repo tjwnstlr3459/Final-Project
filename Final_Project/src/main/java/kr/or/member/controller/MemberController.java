@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.MemberPageData;
 import kr.or.user.model.vo.User;
 
 @Controller
@@ -97,5 +98,18 @@ public class MemberController {
 		}
 		model.addAttribute("loc","main.jsp");
 		return "common/msg";
+	}
+	//전체회원list get
+	@RequestMapping(value="/adminMemberList.do")
+	public String allMemberList(int page, Model model) {
+		System.out.println(page);
+		System.out.println("test");
+		MemberPageData mpd = service.selectAllMember(page);
+		for(Member m : mpd.getList()) {
+			System.out.println(m.getEmail());
+		}
+		model.addAttribute("list",mpd.getList());
+		model.addAttribute("navigation",mpd.getNavigation());
+		return "admin/adminMemberList";
 	}
 }

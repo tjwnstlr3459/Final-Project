@@ -47,10 +47,10 @@ public class AdminController {
 		return "admin/adminInquiryList";
 	}
 	//관리자 회원목록 이동
-	@RequestMapping(value="/adminMemberList.do")
-	public String adminUserList() {
-		return "admin/adminMemberList";
-	}
+//	@RequestMapping(value="/adminMemberList.do")
+//	public String adminUserList() {
+//		return "admin/adminMemberList";
+//	}
 	//관리자 모임목록 이동
 	@RequestMapping(value="/adminClubList.do")
 	public String adminClubList() {
@@ -79,7 +79,7 @@ public class AdminController {
 		 */
 		
 		// 내부경로로 저장
-		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		String contextRoot = request.getSession().getServletContext().getRealPath("/");
 		String fileRoot = contextRoot+"resources/fileupload/";
 		
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
@@ -90,9 +90,9 @@ public class AdminController {
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+			//프로퍼티(키:값) 추가
 			jsonObject.addProperty("url", "/resources/fileupload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
 			jsonObject.addProperty("responseCode", "success");
-				
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			jsonObject.addProperty("responseCode", "error");
