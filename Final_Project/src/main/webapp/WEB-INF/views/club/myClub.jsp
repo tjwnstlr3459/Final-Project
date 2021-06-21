@@ -38,6 +38,7 @@
 </head>
 
 <body id="top">
+<%-- <%@include file="/WEB-INF/views/common/header.jsp" %> --%>
 	<!-- page header
    ================================================== -->
 	<section id="page-header">
@@ -214,20 +215,22 @@ $(function() {
 });
 	
 //모달클릭
-function func1(e){
+function func1(obj){
+	var idx = $(".entry-thumb").index(obj);	//선택한 게시물의 인덱스값알아내기
+	
 	$(".postModal").css("display", "block");
 	$(".postModal").css("z-index", "10000");
+	$(".postModal").css("display","flex");
 	
 	
-	
-	
-	$(".modalMemberName").html($(".cName").html());
-	$(".modalClubName").html($(".clubName").html());
-	$(".postContent").html($(".entry-excerpt").html());
+	//모달창 내 해당 값 넣기
+	$(".modalMemberName").html($(".cName").eq(idx).html());		//게시글 작성자
+	$(".modalClubName").html($(".clubName").eq(idx).html());	//해당 게시글 클럽명
+	$(".postContent").html($(".entry-excerpt").eq(idx).html());	//게시글 내용
 	
 	//배경어둡게
-	$("#top").css("background", "rgba(0,0,0,.75)");
-	$("#top").css("z-index", "10000");
+	/* $("#top").css("background", "rgba(0,0,0,.75)");
+	$("#top").css("z-index", "10000"); */
 }
 
 $(function() {
