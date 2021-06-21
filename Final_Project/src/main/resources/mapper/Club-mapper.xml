@@ -64,6 +64,8 @@ SELECT * FROM
 	AND 
 C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m}) ORDER BY A.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
+
+<!-- 전체게시물 수 파악 -->
 <select id="totalCount" parameterType="m" resultType="int">
 SELECT 
     count(*)
@@ -72,6 +74,23 @@ WHERE C.CLUB_NO = A.CLUB_NO
 AND 
 C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{memberNick})
 </select>
+
+<!-- 게시물 등록 -->
+<select id="insertPost" parameterType="b" resultType="int">
+insert into club_board values(
+    CB_SEQ.NEXTVAL,
+    #{clubNo},
+    #{boardCg},
+    #{boardWriter},
+    #{boardTitle},
+    #{boardContent},
+    #{fileName},
+    #{filePath},
+    1,
+    1,
+    to_char(sysdate,'yyyy-mm-dd'))
+</select>
+
 </mapper>
 
 
