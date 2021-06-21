@@ -105,7 +105,7 @@
                                 <div class="slider-caption visible-md visible-lg">
                                     <h2>'너나들이'</h2>
                                     <p>당신의 취향이 이곳에 모두 있습니다</p>
-                                    <a href="/categoryList.do" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
+                                    <a href="#" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
                                 </div>
                             </li>
                             <li>
@@ -114,7 +114,7 @@
                                 <div class="slider-caption visible-md visible-lg">
                                     <h2>'너나들이'</h2>
                                     <p>당신의 클럽을 자랑하세요</p>
-                                    <a href="/freeBoardList.do" class="slider-btn" style="font-size: 25px;">피드 보러가기</a>
+                                    <a href="#" class="slider-btn" style="font-size: 25px;">피드 보러가기</a>
                                 </div>
                             </li>
                         </ul>
@@ -235,7 +235,6 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                 </div> <!-- /.row -->
-        <button onclick="location.href='/categoryList.do'" id="feed_info">MORE</button>
             </div> <!-- /.container -->
         </div> <!-- /#services -->
 
@@ -325,7 +324,7 @@
                             </div> <!-- /.portfolio-overlay -->
                         </div> <!-- /.portfolio-thumb -->
                     </div> <!-- /.portfolio-item -->
-                    <button onclick="location.href='/freeBoardList.do'" id="feed_info">MORE</button>
+                    <button onclick="location.href='/feedList.do'" id="feed_info">MORE</button>
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
         </div> <!-- /#portfolio -->
