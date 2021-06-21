@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,18 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
+#feed_info {
+  background-color: #ec523f;
+  color: white;
+  padding: 15px 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+  float:right;
+  margin-right:200px;
+  }
+#feed_info:hover{
+	cursor:pointer;
+  }
 .posting>img {
 	width: 700px;
 	height: 600px;
@@ -45,13 +57,17 @@
 }
 .etc>button:hover{
 	cursor:pointer;
-
 }
 </style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED</h1>
+	<c:choose>
+	<c:when test="${!empty sessionScope.m }">
+	<button id="feed_info">MAKE FEED</button>
+	</c:when>
+	</c:choose>
 	<div class="container">
 		<div class="posting">
 			<img src="/resources/main/images/intro_1.jpg">
