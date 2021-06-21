@@ -64,6 +64,8 @@ SELECT * FROM
 	AND 
 C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m}) ORDER BY A.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
+
+<!-- 전체게시물 수 파악 -->
 <select id="totalCount" parameterType="m" resultType="int">
 SELECT 
     count(*)
@@ -72,6 +74,35 @@ WHERE C.CLUB_NO = A.CLUB_NO
 AND 
 C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{memberNick})
 </select>
+
+<!-- 게시물 등록 -->
+<insert id="insertPost" parameterType="b">
+insert into club_board values(
+    CB_SEQ.NEXTVAL,
+    #{clubNo},
+    #{boardCg},
+    #{boardWriter},
+    #{boardTitle},
+    #{boardContent},
+    null,
+    null,
+    1,
+    1,
+    to_char(sysdate,'yyyy-mm-dd'))
+</insert>
+
+<!-- 게시글 no를 찾아내기 위한 쿼리 -->
+<select id="selectBoardNo">
+	select max(board_no) from club_board
+</select>
+
+<!-- 파일추가하기위한 쿼리 -->
+<update id="insertFile" parameterType="b">
+	update club_board set 
+		fileName=#{fileName},
+		filePath=#{filePath}
+	where board_no=#{boardNo}
+</update>
 </mapper>
 
 
