@@ -99,7 +99,7 @@
             <!-- 모달영역 -->
             <div class="modal">
                 <div class="modal-box">
-					<form action="/insertDm.do">
+					<form id="insertDmFrm" class="frms" action="/insertDm.do">
                     <h2 class="titleHead">사유</h2>
                     <textarea name="dmContent" id="dmContent" class="summernote" cols="20" rows="10" style="resize:none;"></textarea>
                     <div class="btn-box">
