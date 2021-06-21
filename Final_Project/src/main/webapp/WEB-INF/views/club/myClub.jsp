@@ -38,7 +38,7 @@
 </head>
 
 <body id="top">
-<%-- <%@include file="/WEB-INF/views/common/header.jsp" %> --%>
+<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<!-- page header
    ================================================== -->
 	<section id="page-header">
@@ -95,6 +95,7 @@
 						<option>지난 1개월</option>
 					</select>
 				</div>
+				<a href="/insertPostWrite.do">게시물 등록</a>
 				<!-- brick-wrapper -->
 				<div class="bricks-wrapper" style="height: 1200px">
 					<div class="grid-sizer"></div>
