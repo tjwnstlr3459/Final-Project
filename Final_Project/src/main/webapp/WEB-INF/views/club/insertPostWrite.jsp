@@ -19,7 +19,7 @@
 				<table class="table" style="width: 100%;">
 					<tr class="table-active">
 						<th>작성자</th>
-						<td><input type="hidden" name="photoWriter"
+						<td><input type="hidden" name="BoardWrite"
 							value="${sessionScope.m.memberNick }">${sessionScope.m.memberNick }</td>
 						<th>첨부파일</th>
 						<td style="text-align: left"><input type="file"
@@ -33,9 +33,44 @@
 							</div>
 						</td>
 					</tr>
+					<tr>
+						<th>클럽이름</th>
+						<td>
+							<select name="clubNo" value="6">
+								<option>FC발냄새</option>
+								<option>롤창인생</option>
+								<option>띵곡</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>클럽종류</th>
+						<td>
+							<select name="boardCg" value="5">
+								<option>문의</option>
+								<option>신고</option>
+								<option>스포츠</option>
+								<option>음악</option>
+								<option>여행</option>
+								<option>댄스</option>
+								<option>게임</option>
+								<option>영화</option>
+								<option>드라마</option>
+								<option>코스프레</option>
+								<option>공지사항</option>
+								<option>자유글</option>
+								<option>공지</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="table-active">
+						<th>제목</th>
+						<td colspan="3"><input name="BoardTitle"
+								class="form-control"></td>
+					</tr>
 					<tr class="table-active">
 						<th>내용</th>
-						<td colspan="3"><textarea name="photoContent"
+						<td colspan="3"><textarea name="BoardContent"
 								class="form-control"></textarea></td>
 					</tr>
 					<tr class="table-active">
