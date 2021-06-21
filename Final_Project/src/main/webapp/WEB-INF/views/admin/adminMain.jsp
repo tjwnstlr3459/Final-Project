@@ -21,7 +21,24 @@
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
 		<!-- content -->
 		<section>
-		
+		<table class="list">
+			<thead>
+				<tr>
+					<th>번호</th><th>보낸이</th><th>받는이</th><th>내용</th><th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${list }" var="dm">
+					<tr>
+						<td>${dm.dmNo }</td>
+						<td>${dm.sender }</td>
+						<td>${dm.receiver }</td>
+						<td>${dm.dmContent }</td>
+						<td>${dm.dmDate }</td>
+					</tr>
+				</c:forEach>				
+			</tbody>
+		</table>
 		</section>
 	</div>
 </body>
