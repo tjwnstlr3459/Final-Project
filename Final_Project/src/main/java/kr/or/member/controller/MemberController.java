@@ -126,8 +126,8 @@ public class MemberController {
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
 	public String allMemberList(int page, Model model) {
-		System.out.println(page);
-		System.out.println("test");
+//		System.out.println(page);
+//		System.out.println("test");
 		MemberPageData mpd = service.selectAllMember(page);
 		for(Member m : mpd.getList()) {
 			System.out.println(m.getEmail());

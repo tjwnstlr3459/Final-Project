@@ -100,7 +100,7 @@
             <div class="modal">
                 <div class="modal-box">
 					<form id="insertDmFrm" class="frms" action="/insertDm.do">
-                    <h2 class="titleHead">사유</h2>
+                    <h2 class="titleHead"></h2>
                     <textarea name="dmContent" id="dmContent" class="summernote" cols="20" rows="10" style="resize:none;"></textarea>
                     <div class="btn-box">
 	                   	<input type="hidden" name="sender" value="${sessionScope.m.memberNick }">

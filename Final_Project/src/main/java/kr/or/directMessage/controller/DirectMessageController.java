@@ -17,11 +17,16 @@ public class DirectMessageController {
 	public String insertDm(DirectMessage dm, Model model) {
 		int result = service.insertDm(dm);
 		if(result >0) {
-			model.addAttribute("msg","작성 완료!");
+			int result1 = service.updateWarningCount(dm);
+			if(result1>0) {
+				model.addAttribute("msg","작성 완료!");				
+			}else {
+				model.addAttribute("msg","작성 실패");							
+			}
 		}else {
 			model.addAttribute("msg","작성 실패");			
 		}
-		model.addAttribute("loc","/adminMain.do");
+		model.addAttribute("loc","/adminMemberList.do?page=1");
 		return "common/msg";
 	}
 }

@@ -36,6 +36,7 @@ $(document).ready(function() {
 	 //경고 버튼 클릭 시 
 	 $('.warningBtn').click(function(){
 	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
+	 	$('.titleHead').html('사유');
 	 	$('[name=receiver]').val(memberNick);
 	 	modalOpen();
 	 });
@@ -51,8 +52,13 @@ $(document).ready(function() {
 	 });
 	 //전체 선택
 	 $('#allCheck').click(function(){
+	 	$('.titleHead').html('사유');
 	 	var chk = $(this).is(':checked');
 	 	$('[type=checkbox').attr('checked',chk);
+	 });
+	 //선택 메시지 발송 클릭 시
+	 $('#selectMessageBtn').click(function(){
+	 	$('.titleHead').html('메시지');
 	 });
 	 //선택된 회원 checkbox
 	 $('#selectMessageBtn').click(function(){

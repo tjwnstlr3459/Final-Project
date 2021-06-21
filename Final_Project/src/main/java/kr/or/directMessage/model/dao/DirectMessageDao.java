@@ -23,7 +23,6 @@ public class DirectMessageDao {
 	}
 
 	public int updateWarningCount(DirectMessage dm) {
-		System.out.println("dm디에오");
 		return session.update("directMessage.updateWarningCount",dm);
 	}
 
