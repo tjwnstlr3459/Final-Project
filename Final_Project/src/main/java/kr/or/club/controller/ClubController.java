@@ -20,18 +20,21 @@ public class ClubController {
 	@Autowired
 	private ClubService service;
 	
+	//게시물 추출,총 게시물 수
 	@RequestMapping(value = "/myClub.do")
 	public String myClub(@SessionAttribute(required = false) Member m,Model model){
 		ArrayList<Club> clubList = service.memberClubList(m);
-//		ArrayList<Board> clubPosts = service.memberClubPosts(m);
 		int totalCount = service.totalCount(m);
+		//회원이 속한 모임에 클럽게시물 추출
+//		ArrayList<Board> clubPosts = service.memberClubPosts(m);
+//		model.addAttribute("clubPosts",clubPosts);
 		
 		model.addAttribute("clubList",clubList);
-//		model.addAttribute("clubPosts",clubPosts);
 		model.addAttribute("totalCount",totalCount);
 		return "club/myClub";
 	}
 	
+	//회원이 속한 모임에 클럽게시물 상세출력
 	@ResponseBody
 	@RequestMapping(value = "/photoMore.do")
 	public ArrayList<Board> photoMore(@SessionAttribute(required = false) Member m,Model model, int start) {
