@@ -10,6 +10,7 @@
     <style>
         .container {
             text-align: center;
+            margin-top: 50px;
         }
         .join {
             position: relative;
@@ -111,14 +112,17 @@
             width:70px;
             font-size: 0.9em;
         }
-        
+        .social {
+        	margin-top: 30px;
+        }
     </style>
 </head>
 <body>
+	<%@ include file = "/WEB-INF/views/common/header.jsp" %>
     <div class="container">
         <h2>회원가입</h2>          	
         <div class="join">
-            <form id="joinForm" action="/joinProcessing.do" method="post">
+            <form id="joinForm" action="/joinProcessing.do" method="post" enctype="multipart/form-data">
                 <div class="element">
                     <span class="legend">이메일</span>
                     <input type="email" name="email" placeholder="이메일">
@@ -127,7 +131,7 @@
                 <formgroup id="restForm">
                     <div class="element">
                         <span class="legend">비밀번호</span>
-                        <input type="password" name="memberPw" placeholder="소문자, 대문자, 숫자 포함 8자 이상 30자 이내">
+                        <input type="password" name="memberPw" placeholder="영문, 숫자 포함 8자 이상 30자 이내">
                         <span class="inputMsg"></span>
                     </div>
                     <div class="element">
@@ -164,8 +168,8 @@
                     
                     <div class="element">
                         <span class="legend">주소</span>
-                        <input type="text" id="postcode" placeholder="우편번호"><input type="button" id="findCode" onclick="findPCode()" value="우편번호 찾기"><br>
-                        <input type="text" id="roadAddress" placeholder="도로명주소">
+                        <input type="text" id="postcode" placeholder="우편번호" readonly><input type="button" id="findCode" onclick="findPCode()" value="우편번호 찾기"><br>
+                        <input type="text" id="roadAddress" placeholder="도로명주소" readonly>
                         <span id="guide" style="color:#999;display:none"></span>
                         <input type="text" id="detailAddress" placeholder="상세주소">
                         <span class="inputMsg"></span>
@@ -193,14 +197,14 @@
 
                     <div class="element">
                         <span class="legend">프로필 사진</span>
-                        <input type="file" name="filename">
+                        <input type="file" name="propimg">
                         <span class="inputMsg"></span>
                     </div>
 
                     <input type="submit" value="회원 가입" onclick="return joinCheck()">
                 </formgroup>
                 
-                <button type="button" id="mailCfrm">확인</button>
+                <button type="button" id="mailCfrm">이메일 체크</button>
 
             </form>
             <div class="social">
@@ -210,7 +214,8 @@
                 <a href="#">네이버 로그인</a>
             </div>           
         </div>
-    </div>   
+    </div> 
+    <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
 
     <script>
 	    function findPCode() {
@@ -290,7 +295,7 @@
     					else {
     						$("[name=email]").next().html("");
                             $("#restForm").slideDown(800);
-                            $(this).hide();
+                            $("#mailCfrm").hide();
 
     					}
                     },
@@ -303,11 +308,11 @@
         })
         $("[name=memberPw]").keyup(function() {
             var pw = $(this).val();
-            var pwReg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}/
+            var pwReg = /(?=.*\d)(?=.*[a-zA-Z]).{8,30}/
             if(pwReg.test(pw)) {
                 $(this).next().html("");
             } else {
-                $(this).next().html("대문자, 소문자, 숫자 조합으로 8자 이상 입력해주세요.");
+                $(this).next().html("영문과 숫자 조합으로 8자 이상 입력해주세요.");
             }
         })
         $("[name=memberPw2]").change(function() {
@@ -447,7 +452,7 @@
                 $("[name=memberNick]").css("border", "1px solid #999");
                 $("[name=memberNick]").next().html("");
             }
-            if(address.length == 0) {
+            if(address == "  ") {
                 $("#postcode").css("border", "1px solid red");
                 $("#roadAddress").css("border", "1px solid red");
                 $("#detailAddress").css("border", "1px solid red");
