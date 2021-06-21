@@ -1,6 +1,8 @@
 package kr.or.member.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
+import kr.or.member.model.vo.NaverLogin;
 import kr.or.user.model.vo.User;
 
 @Controller
@@ -21,6 +26,12 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	private NaverLogin naverLogin;
+	@Autowired
+	private void setNaverLoginBO(NaverLogin naverLogin){
+		this.naverLogin = naverLogin;
+	}
 	
 	@RequestMapping(value="/loginFrm.do")
 	public String loginFrm() {
@@ -46,7 +57,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/join.do")
-	public String join(User u, Model model) {
+	public String join(HttpSession session, Model model) {		
+		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
+        
+        /* 생성한 인증 URL을 View로 전달 */
+        model.addAttribute("nUrl",naverAuthUrl);
 		return "user/join";
 	}
 	
@@ -99,6 +115,14 @@ public class MemberController {
 		model.addAttribute("loc","main.jsp");
 		return "common/msg";
 	}
+	
+	@RequestMapping(value="/socialJoin")
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, InterruptedException, ExecutionException {
+		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
+		OAuth2AccessToken oauthToken = naverLogin.getAccessToken(session, code, state);
+    	return "user/socialJoin";
+	}
+	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
 	public String allMemberList(int page, Model model) {

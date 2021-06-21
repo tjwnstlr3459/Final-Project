@@ -211,7 +211,7 @@
                 <span>소셜 서비스로 가입</span>
                 <a href="#">구글 로그인</a>
                 <a href="#">카카오 로그인</a>
-                <a href="#">네이버 로그인</a>
+                <a href="${nUrl}">네이버 로그인</a>
             </div>           
         </div>
     </div> 
