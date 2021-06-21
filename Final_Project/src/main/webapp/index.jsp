@@ -21,18 +21,18 @@
    <div class="slide slide-a">
       <div class="slide-content">
          <h2 class="slide-a-child">나 몰랐는데..</h2>
-         <h1 class="slide-a-child" style="font-size:30px; font-weight: bold;">영화</h1>
-         <p class="slide-a-child">좋아하네..</p>
-         <button class="slide-a-child" onclick="location.href='/main.jsp';">ENTER</button>
+         <h1 class="slide-a-child" style="font-size:32px; font-weight: bold;">영화</h1>
+         <p class="slide-a-child" style=" font-size:30px;">좋아하네..</p>
+         <button class="slide-a-child" onclick="location.href='/main.jsp';" style="background-color:rgba(255,255,255,0.3); font-weight:bold; font-size:25px;" >ENTER</button>
       </div>
    </div>
 
    <div class="slide slide-b">
       <div class="slide-content">
          <h2 class="slide-b-child">나 몰랐는데..</h2>
-         <p class="slide-b-child">여행</p>
-         <p class="slide-b-child">좋아하네..</p>
-         <button class="slide-b-child" onclick="location.href='/main.jsp';">ENTER</button>
+         <p class="slide-b-child" style="font-weight:bold; font-size:32px;">여행</p>
+         <p class="slide-b-child" style=" font-size:30px;">좋아하네..</p>
+         <button class="slide-b-child" onclick="location.href='/main.jsp';" style="background-color:rgba(255,255,255,0.6); font-weight:bold; font-size:25px;">ENTER</button>
       </div>
    </div>
 
@@ -40,21 +40,22 @@
       <div class="slide-content">
          <h2 class="slide-c-child">나 몰랐는데..</h2>
          <ul>
-            <li class="slide-c-child"><p>스포츠,</p></li>
-            <li class="slide-c-child" ><p> 와인,</p></li>&nbsp;&nbsp;
-            <li class="slide-c-child" ><p> 등산,</p></li>&nbsp;&nbsp;
+            <li class="slide-c-child" ><p>스포츠</p></li>
+            <li class="slide-c-child" ><p> 와인</p></li>&nbsp;&nbsp;
+            <li class="slide-c-child" ><p> 등산</p></li>&nbsp;&nbsp;
             <li class="slide-c-child" ><p> 맛집탐방</p></li>
          </ul>
          <h2>좋아하네..</h2>
-         <button class="slide-c-child" onclick="location.href='/main.jsp';">ENTER</button>
+         <button class="slide-c-child" onclick="location.href='/main.jsp';" style="background-color:rgba(255,255,255,0.6); font-weight:bold; font-size:25px;">ENTER</button>
       </div>
    </div>
 
    <div class="slide slide-d">
       <div class="slide-content">
-         <h2 class="slide-d-child">너나들이와 함께</h2>
+         <h2 class="slide-d-child">'너나들이'와 함께</h2>
          <p class="slide-d-child">좋아하는 것을해볼까요?</a></p>
-         <button class="slide-d-child" onclick="location.href='/main.jsp';">ENTER</button>
+         <button class="slide-a-child" onclick="location.href='/main.jsp';" style="background-color:rgba(255,255,255,0.3); font-weight:bold; font-size:25px;">ENTER</button>
+         <button class="slide-a-child" onclick="location.href='/';" style="background-color:rgba(255,255,255,0.3); font-weight:bold; font-size:25px;">REPLAY</button>
       </div>
    </div>
 
