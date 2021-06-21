@@ -68,24 +68,16 @@
             <ul class="navbar_menu">
                 <li><a href="#">CLUB CATEGORY</a></li>
                 <li><a href="#">CLUB FEED</a></li>
-                <!--<c:choose>
-                <c:when test="${!empty sessionScope.m }"
-                	<c:choose>
-                	<c:when test="${!empty sessionScope.m eq 'ADMIN1' }"-->
+
                 		<li><a href="/adminMain.do">ADMIN</a></li>
 	                	<li><a href="/logout.do">LOGOUT</a></li>
-	          		<!--</c:when>
-                	<c:otherwise>-->
+
 	                	<li><a href="/myClub.do">MY CLUB</a></li>
 	                	<li><a href="/logout.do">LOGOUT</a></li>
-	            	<!--</c:otherwise>
-	            </c:choose>
-	            </c:when>
-	            <c:otherwise>-->
+
                 <li><a href="/lgoinFrm.do">LOGIN</a></li>
                 <li><a href="/join.do">JOIN</a></li>
-                <!--</c:otherwise>
-                </c:choose>-->
+
                 <li><a href="/newClub.do">CREATE CLUB</a></li>
                 <li><a href="/badReport.do">BADREPORT</a></li>
                 
