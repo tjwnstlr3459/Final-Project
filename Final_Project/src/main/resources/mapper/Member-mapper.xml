@@ -28,7 +28,7 @@
 	</if>
 </select>
 <insert id="insertMember" parameterType="m">
-	insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, '임시', #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 0, sysdate, sysdate, #{age})
+	insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 0, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age})
 </insert>
 	<!-- 전체회원 select -->
 	<select id="selectAllMember" parameterType="map" resultType="m">

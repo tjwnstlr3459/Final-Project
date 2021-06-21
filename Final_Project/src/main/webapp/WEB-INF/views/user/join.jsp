@@ -138,7 +138,7 @@
                     <div class="element">
                         <span class="legend">이름(닉네임)</span>
                         <input type="text" name="memberNick" placeholder="영문 40자, 한글 13자 이내">
-                        <span class="inputMsg"></span>
+                        <span id="namechk" class="inputMsg"></span>
                     </div>
 
                     <div class="element">
@@ -278,10 +278,7 @@
                 $("[name=email]").next().html("이메일 주소를 확인해주세요.");
             }
             else {         
-                $("[name=email]").next().html("");       
-                //jsp로 옮길 때 삭제
-                $("#restForm").slideDown(800);
-                //삭제 끝
+                $("[name=email]").next().html(""); 
             	$.ajax({
                     url: "/user/chkEmail.do",
                     type: "post",
@@ -337,9 +334,7 @@
                 data: {memberNick:name},
                 success: function(data) {
 					if(data == "1") {
-						$(this).next().html("중복된 닉네임은 사용할 수 없습니다");
-					}
-					else {
+						$("[name=memberNick]").next().html("중복된 이름은 사용할 수 없습니다.");
 					}
                 },
                 error: function() {
@@ -376,6 +371,7 @@
             var pw2 = $("[name=memberPw2]").val();
             var name = $("[name=memberNick]").val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+            var namechk = $("#namechk");
             var age = $("[name=age]").val();
             var gender = $("[name=gender]:checked").val();
             var address = $("#postcode").val() + " " + $("#roadAddress").val() + " " + $("#detailAddress").val();
@@ -429,6 +425,12 @@
                 $("[name=memberPw2]").css("border", "1px solid #999");
                 $("[name=memberPw2]").next().html("");
             }
+            if(namechk.html() == "중복된 이름은 사용할 수 없습니다.") {
+            	$("[name=memberNick]").css("border", "1px solid red");
+            	return false;
+            } else {
+            	$("[name=memberNick]").css("border", "1px solid #999");
+            }
             if(nameByteLength == 0) {
                 $("[name=memberNick]").css("border", "1px solid red");
                 $("[name=memberNick]").next().html("이름은 비워둘 수 없습니다");
@@ -466,6 +468,8 @@
             } else {
             	$(".chkMsg").html("");
             }
+            $("#joinForm").prepend("<input type='hidden' name='address' value='" + address + "'>'");
+            
         }
 
     </script>
