@@ -27,7 +27,13 @@
 		where member_nick=#{memberNick}
 	</if>
 </select>
-<insert id="insertMember" parameterType="m">
-	insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 0, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age})
-</insert>
+	<insert id="insertMember" parameterType="m">
+		insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 0, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age})
+	</insert>
+	<!--  전체회원 select  -->
+	<select id="selectAllMember" parameterType="map" resultType="m">
+		select * from (select rownum as sort, m.* from (select member_no as memberNo, email,member_pw as memberPw,member_nick as memberNick,gender,address,intro,hobby1,hobby2,hobby3,grade,warning_count as warningCount, filename,filepath,enroll_date as enrollDate,last_date as lastDate, age from member order by enroll_date )m)where sort between #{start} and #{end}
+	</select>
+	<!--  전체회원 수  -->
+	<select id="memberCount" resultType="int">select count(*) from member</select>
 </mapper>

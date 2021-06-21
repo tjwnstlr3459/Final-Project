@@ -22,4 +22,9 @@ public class DirectMessageDao {
 		return session.selectList("directMessage.selectAllDm");
 	}
 
+	public int updateWarningCount(DirectMessage dm) {
+		System.out.println("dm디에오");
+		return session.update("directMessage.updateWarningCount",dm);
+	}
+
 }

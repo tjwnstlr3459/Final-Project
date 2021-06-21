@@ -13,4 +13,8 @@
 			dm_date as dmDate
 		from direct_message
 	</select>
+	<!-- 회원 경고 업데이트~ -->
+	<update id="updateWarningCount" parameterType="dm">
+		update member set warning_count=warning_count+1 where member_nick=#{receiver}
+	</update>
 </mapper>

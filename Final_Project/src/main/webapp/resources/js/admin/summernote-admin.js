@@ -1,6 +1,9 @@
 $(document).ready(function() {
     //여기 아래 부분
-	 $('#summernote').summernote({		//모든 textarea에 클래스로 서머노트 적용
+	 $('.summernote').summernote({		//모든 textarea에 클래스로 서머노트 적용
+	 	   width: 500,
+	 	   minWidth:500,
+	 	   maxWidth:500,
 	       height: 300,                 // 에디터 높이
 	       minHeight: null,             // 최소 높이
 	       maxHeight: null,             // 최대 높이
@@ -30,8 +33,33 @@ $(document).ready(function() {
 			    }
 			}              
 	 });
+	 //경고 버튼 클릭 시 
 	 $('.warningBtn').click(function(){
+	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
+	 	$('[name=receiver]').val(memberNick);
 	 	modalOpen();
+	 });
+	 //제재 버튼 클릭 시
+	 $('.restBtn').click(function(){
+	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
+	 	$('[name=receiver]').val(memberNick);
+	 	modalOpen();
+	 });
+	 //모달 'x'버튼 클릭 시
+	 $('.cancelBtn').click(function(){
+	 	modalClose();
+	 });
+	 //전체 선택
+	 $('#allCheck').click(function(){
+	 	var chk = $(this).is(':checked');
+	 	$('[type=checkbox').attr('checked',chk);
+	 });
+	 //선택된 회원 checkbox
+	 $('#selectMessageBtn').click(function(){
+	 	var chkValue = $('.checkMember:checked');
+	 	for(var i=0;i<chkValue.length;i++){
+	 		console.log(chkValue.eq(i).val());	 	
+	 	}
 	 });
 });
 //==========================================================================================
@@ -54,4 +82,8 @@ function sendFile(file, el) {
 function modalOpen(){
 	$(".modal").css('display','flex');
 }
-
+//모달 클로즈 함수
+function modalClose(){
+	$('.modal').css('display','none');
+	$('.summernote').summernote('code','');
+}
