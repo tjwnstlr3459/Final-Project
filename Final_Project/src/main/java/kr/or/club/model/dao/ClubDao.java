@@ -40,6 +40,10 @@ public class ClubDao {
 	public int totalCount(Member m) {
 		return session.selectOne("club.totalCount",m);
 	}
+
+	public int insertPost(Board b) {
+		return session.update("club.insertPost",b);
+	}
 	
 	
 	
