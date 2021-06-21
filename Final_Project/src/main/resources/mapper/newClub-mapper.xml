@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="newclub">
+<select id="boardList" resultType="n">
+	SELECT
+		BOARD_NO as boardNo,
+		CLUB_NO as clubNo,
+		BOARD_CG as boardCg,
+		BOARD_WRITER as boardWriter,
+		BOARD_TITLE as boardTitle,
+		BOARD_CONTENT as boardContent,
+		FILENAME,
+		FILEPATH,
+		BOARD_VIEWS as boardViews,
+		BOARD_GOOD as boardGood,
+		ENROLL_DATE as enrollDate
+		from CLUB_BOARD
+</select>
+</mapper>

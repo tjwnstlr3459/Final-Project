@@ -11,6 +11,8 @@
 		<!-- 모임 -->
 		<typeAlias type="kr.or.club.model.vo.Club" alias="c"/>
 		<!-- 모임게시판 -->
-		<typeAlias type="kr.or.club.model.vo.Board" alias="b"/>  
+		<typeAlias type="kr.or.club.model.vo.Board" alias="b"/>
+		
+		<typeAlias type="kr.or.newclub.model.vo.newClub" alias="n"/>    
 	</typeAliases>
 </configuration>
