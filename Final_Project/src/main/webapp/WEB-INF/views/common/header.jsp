@@ -82,12 +82,12 @@
 	            </c:choose>
 	            </c:when>
 	            <c:otherwise>-->
-                <li><a href="#">LOGIN</a></li>
-                <li><a href="#">JOIN</a></li>
+                <li><a href="/lgoinFrm.do">LOGIN</a></li>
+                <li><a href="/join.do">JOIN</a></li>
                 <!--</c:otherwise>
                 </c:choose>-->
-                <li><a href="#">CREATE CLUB</a></li>
-                <li><a href="#">BADREPORT</a></li>
+                <li><a href="/newClub.do">CREATE CLUB</a></li>
+                <li><a href="/badReport.do">BADREPORT</a></li>
                 
             </ul>
         <ul class="navbar_icons">
