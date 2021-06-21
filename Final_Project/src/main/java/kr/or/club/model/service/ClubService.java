@@ -40,8 +40,4 @@ public class ClubService {
 	public int totalCount(Member m) {
 		return dao.totalCount(m);
 	}
-
-	public int insertPost(Board b) {
-		return dao.insertPost(b);
-	}
 }

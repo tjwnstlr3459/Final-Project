@@ -118,7 +118,7 @@
 	
 	<context:component-scan base-package="kr.or.directMessage" /><!-- 쪽지 -->
 	<context:component-scan base-package="kr.or.newclub" /><!-- 모임개설 -->
-
+	<context:component-scan base-package="kr.or.freeBoard" /><!-- 프리보드쪽 -->
 	
 </beans:beans>
 
