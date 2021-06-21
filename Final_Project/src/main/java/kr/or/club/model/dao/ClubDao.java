@@ -28,7 +28,7 @@ public class ClubDao {
 //	}
 
 	public List<Board> morePhoto(int start, int end, Member m) {
-		HashMap<String,Object> map = new HashMap<>();
+		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("m",m.getMemberNick());
