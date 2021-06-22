@@ -1,0 +1,107 @@
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .join {
+            position: relative;
+            width:300px;
+            margin: 0 auto;
+        }
+        .social > a {
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        #mailCfrm, input[type=submit] {
+            width: 300px;
+            height: 35px;
+            color: white;
+            font-weight: bold;
+            background-color: #ec523f;
+            border: 0;
+        }
+        input, textarea {
+            width: 300px;
+            height: 35px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        textarea { 
+            height:100px; 
+            resize:none;
+        }
+        input:focus, textarea:focus {
+            outline:none;
+        }
+        input[type=checkbox] {
+            width: 15px;
+            height: 15px;
+        }
+        select {
+            width: 300px;
+            height: 35px;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .inputMsg, .chkMsg {
+            display: inline-block;
+            width: 100%;
+            height: 20px;
+            text-align: left;
+            padding-left: 5px;
+            font-size: 0.9em;
+            color: cornflowerblue;
+        }
+        .legend {
+            display: inline-block;
+            width: 100%;
+            text-align: left;
+            font-weight: bold;
+            padding-left: 5px;
+            font-size: 0.8em;
+        }
+        formgroup {
+            display:none;
+        }
+        input[type=radio]{
+            display: none;
+        }
+        input[type=radio]+label{
+            display: inline-block;
+            box-sizing: border-box;
+            height: 35px;
+            width: 96px;
+            border: 1px solid #aaa;
+            line-height: 35px;
+            text-align: center;
+            font-weight:bold;
+            font-size:13px;
+        }
+        input[type=radio]:checked+label{
+            background-color: #333;
+            color: #fff;
+        }
+        #postcode {
+            float: left;
+            width:61%;
+            margin-bottom: 5px;
+        }
+        #findCode {
+            float: right;
+            width: 38%;
+        }
+        #roadAddress {
+            margin-bottom: 5px;
+        }
+        .elementChk {
+            text-align: left;
+        }
+        .elementChk > label {
+            display:inline-block; 
+            width:70px;
+            font-size: 0.9em;
+        }
+        .social {
+        	margin-top: 30px;
+        }
