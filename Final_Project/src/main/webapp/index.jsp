@@ -53,7 +53,7 @@
    <div class="slide slide-d">
       <div class="slide-content">
          <h2 class="slide-d-child">'너나들이'와 함께</h2>
-         <p class="slide-d-child">좋아하는 것을해볼까요?</a></p>
+         <p class="slide-d-child">좋아하는 것을해볼까요?</p>
          <button class="slide-a-child" onclick="location.href='/main.jsp';" style="background-color:rgba(255,255,255,0.3); font-weight:bold; font-size:25px;">ENTER</button>
          <button class="slide-a-child" onclick="location.href='/';" style="background-color:rgba(255,255,255,0.3); font-weight:bold; font-size:25px;">REPLAY</button>
       </div>
