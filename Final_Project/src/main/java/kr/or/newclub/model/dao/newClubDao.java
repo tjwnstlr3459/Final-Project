@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.member.model.vo.Member;
+
 @Repository
 public class newClubDao {
 	@Autowired
@@ -15,4 +17,10 @@ public class newClubDao {
 		List list = session.selectList("newclub.boardList");
 		return list;
 	}
+
+	 public int totalCount(Member m) {
+	      return session.selectOne("club.totalCount",m);
+	 }
+
+	
 }
