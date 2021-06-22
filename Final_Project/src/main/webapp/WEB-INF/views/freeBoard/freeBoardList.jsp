@@ -126,12 +126,7 @@
 			<p class="comments"></p>
 		</div>
 	</div> -->
-	<%--<% String path = request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/") %>
-	 <%= application.getContextPath() %><br>
-	<%= request.getSession().getServletContext().getRealPath("/") %><br>
-	<%= application.getRealPath("/resources/freeBoardUpload/") %> --%>
 			<div class="photoWrapper">
-			<img src="/resources/freeBoardUpload/images/intro_1.jpg">
 			</div>
 			<button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button>
 	<script>
@@ -149,9 +144,6 @@
 				success : function(data){	//data에 포토객체가 여러개 들어있는거죠 gson to list 그거한거
 					for(var i = 0; i<data.length; i++){
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
-						//여기여기1
-						console.log(fb.FILEPATH);
-						console.log(fb.FB_CONTENT);
 						var html = "";				//html초기화
 						html += "<div class='photo'>";			//여기다가 div클ㄹ스
 						html += "<img src='/resources/freeBoardUpload/"+fb.FILEPATH+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
