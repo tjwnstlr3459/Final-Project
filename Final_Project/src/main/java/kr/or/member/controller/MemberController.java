@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import kr.or.category.model.vo.Category;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
@@ -174,10 +175,11 @@ public class MemberController {
 	@RequestMapping(value="/adminMemberList.do")
 	public String allMemberList(int page, Model model) {
 		MemberPageData mpd = service.selectAllMember(page);
-//		for(Member m : mpd.getList()) {
-//			System.out.println(m.getEmail());
-//		}
+		for(Category cg : mpd.getCgList()) {
+			System.out.println(cg.getCgName());
+		}
 		model.addAttribute("list",mpd.getList());
+		model.addAttribute("cgList",mpd.getCgList());
 		model.addAttribute("navigation",mpd.getNavigation());
 		return "admin/adminMemberList";
 	}

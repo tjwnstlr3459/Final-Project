@@ -101,6 +101,13 @@
                 <div class="modal-box">
 					<form id="modalForm" class="frms" action="">
                     <h2 class="titleHead"></h2>
+                    <select name="cgNo" id="cgNo">
+                    <c:forEach items="${cgList }" var="cg">
+                    	<c:if test="${cg.cgKinds eq 100 }">
+                    	<option value="${cg.cgNo }">${cg.cgName }</option>
+                    	</c:if>
+                    </c:forEach>
+                    </select>
                     <textarea name="" id="summernote" class="summernote" cols="20" rows="10" style="resize:none;"></textarea>
                     <div class="btn-box">
 	                   	<input type="hidden" name="sender" value="${sessionScope.m.memberNick }"><!-- 쪽지 보낸 이 : 로그인 된 관리자 닉네임 -->

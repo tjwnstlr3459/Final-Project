@@ -7,6 +7,9 @@
 	
 	
 	<typeAliases>
+		<!-- 카테고리 -->
+		<typeAlias type="kr.or.category.model.vo.Category" alias="cg"/>
+		<!-- 회원 -->
 		<typeAlias type="kr.or.member.model.vo.Member" alias="m"/>
 		<!-- 모임 -->
 		<typeAlias type="kr.or.club.model.vo.Club" alias="c"/>

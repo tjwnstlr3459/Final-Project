@@ -34,9 +34,13 @@ public class MemberDao {
 	}
 
 	public int updateGrade(String[] memberNo) {
-//		int count = 0;
 		int count = sqlSession.update("member.updateGrade",memberNo);
-		System.out.println(count);
+		System.out.println("update : "+count);
 		return count;
 	}
+
+	public List selectAllCategory() {
+		return sqlSession.selectList("category.selectAllCategory");
+	}
+
 }

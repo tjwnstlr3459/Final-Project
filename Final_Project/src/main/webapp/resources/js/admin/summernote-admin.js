@@ -33,6 +33,9 @@ $(document).ready(function() {
 			    }
 			}              
 	 });
+	 $('#cgNo').change(function(){
+	 	console.log($(this).val());
+	 });
 	 //경고 버튼 클릭 시 
 	 $('.warningBtn').click(function(){
 	 	$('#modalForm').attr('action','/insertDm.do');		//form의 action 경로 설정

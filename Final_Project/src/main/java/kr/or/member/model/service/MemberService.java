@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.category.model.dao.CategoryDao;
+import kr.or.category.model.vo.Category;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
@@ -17,6 +19,7 @@ import kr.or.member.model.vo.MemberPageData;
 public class MemberService {
 	@Autowired
 	private MemberDao dao;
+	private CategoryDao cgDao;
 
 	public Member selectOneMember(Member m) {
 		Member member = dao.selectOneMember(m);
@@ -39,7 +42,7 @@ public class MemberService {
 		se.put("start", start);
 		se.put("end",end);
 		
-		List list = dao.selectAllMember(se);	// 전체 게시글을 가지고온다.
+		List list = dao.selectAllMember(se);	// 전체 회원을 가지고온다.
 		int memberCount = dao.memberCount();										//전체 게시글 갯 수
 		//페이지 네비게이션 만들기 전 페이지 설정
 		int totalNaviPage = memberCount%listLength == 0 ? memberCount/listLength : memberCount/listLength+1;		//% == 0인경우 다음페이지 네비게이션을 만들지 않기 위함
@@ -68,7 +71,13 @@ public class MemberService {
 			navigation += "<a href='/adminMemberList.do?page="+navi+"'>다음</a>";
 		}
 		navigation += "</div>";
-		MemberPageData mpd = new MemberPageData(navigation,(ArrayList<Member>)list);
+		
+
+		List cgList = dao.selectAllCategory();
+		MemberPageData mpd = new MemberPageData();
+		mpd.setNavigation(navigation);
+		mpd.setList((ArrayList<Member>)list);
+		mpd.setCgList((ArrayList<Category>)cgList);
 		return mpd;
 	}
 	//회원 관리자로 등록 update
