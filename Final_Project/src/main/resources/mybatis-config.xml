@@ -16,7 +16,7 @@
 		<!-- 모임게시물 -->
 		<typeAlias type="kr.or.club.model.vo.ClubBoard" alias="b"/>
 		<!-- 게시판 -->
-		<typeAlias type="kr.or.board.model.vo.Board" alias="b"/>
+		<typeAlias type="kr.or.board.model.vo.Board" alias="bl"/>
 
 		<typeAlias type="kr.or.newclub.model.vo.newClub" alias="n"/>    
 
