@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -172,14 +173,25 @@ public class MemberController {
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
 	public String allMemberList(int page, Model model) {
-		System.out.println(page);
-		System.out.println("test");
 		MemberPageData mpd = service.selectAllMember(page);
-		for(Member m : mpd.getList()) {
-			System.out.println(m.getEmail());
-		}
+//		for(Member m : mpd.getList()) {
+//			System.out.println(m.getEmail());
+//		}
 		model.addAttribute("list",mpd.getList());
 		model.addAttribute("navigation",mpd.getNavigation());
 		return "admin/adminMemberList";
+	}
+	//관리자로 등급 업그레이드~
+	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateGrade(@RequestParam(value="memberNo[]")String[] memberNo, Model model) {
+		int result = service.updateGrade(memberNo);
+		if(result == memberNo.length) {
+			model.addAttribute("msg","관리자로 등록되었습니다");
+		}else {
+			model.addAttribute("msg","다시 시도해주세요");
+		}
+		model.addAttribute("loc","/adminMemberList.do?page=1");
+		return "common/msg";
 	}
 }

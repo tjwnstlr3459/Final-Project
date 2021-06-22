@@ -69,26 +69,11 @@ public class AdminController {
 	public String adminNoticeList() {
 		return "admin/adminNoticeList";
 	}
-	//관리자로 등급 업그레이드~
-	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)
-	@ResponseBody
-	public String updateGrade(@RequestParam(value="memberNo[]")List<String> memberNo, Model model) {
-		System.out.println(memberNo.size());
-		int result = mService.updateGrade(memberNo);
-		if(result == memberNo.size()) {
-			model.addAttribute("msg","관리자로 등록되었습니다");
-		}else {
-			model.addAttribute("msg","다시 시도해주세요");
-		}
-		model.addAttribute("loc","/adminMemberList.do?page=1");
-		return "common/msg";
-	}
 	//서머노트에 드래그한 이미지를 서버에 업로드
 	@RequestMapping(value="/imageUpload.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
 		JsonObject jsonObject = new JsonObject();
-		System.out.println("test");
 		
         /*
 		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.

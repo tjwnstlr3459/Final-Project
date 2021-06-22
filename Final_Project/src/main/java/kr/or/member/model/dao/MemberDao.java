@@ -2,6 +2,7 @@ package kr.or.member.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,10 @@ public class MemberDao {
 		return sqlSession.selectOne("member.memberCount");
 	}
 
-	public int updateGrade(List<String> memberNo) {
-		return sqlSession.update("member.updateGrade",memberNo);
+	public int updateGrade(String[] memberNo) {
+//		int count = 0;
+		int count = sqlSession.update("member.updateGrade",memberNo);
+		System.out.println(count);
+		return count;
 	}
 }

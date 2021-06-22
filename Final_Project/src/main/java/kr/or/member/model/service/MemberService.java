@@ -3,6 +3,7 @@ package kr.or.member.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,7 +72,7 @@ public class MemberService {
 		return mpd;
 	}
 	//회원 관리자로 등록 update
-	public int updateGrade(List<String> memberNo) {
+	public int updateGrade(String[] memberNo) {
 		return dao.updateGrade(memberNo);
 	}
 }

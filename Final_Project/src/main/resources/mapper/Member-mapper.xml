@@ -43,10 +43,13 @@
 	<select id="memberCount" resultType="int">
 		select count(*) from member
 	</select>
-	<!-- 회원에서 관리자로 업그레이드 -->
-	<!--  
-	<update id="updateGrade" parameterType="list">
-		update member set grade=1 where
+	<!-- 회원에서 관리자로 업그레이드 -->  
+	<update id="updateGrade" parameterType="map">
+		update member set grade=1 where member_no in
+		<foreach collection="array" item="memberNo" open="(" close=")" separator=",">
+			#{memberNo}
+		</foreach>
+		
 	</update>
-	-->
+
 </mapper>
