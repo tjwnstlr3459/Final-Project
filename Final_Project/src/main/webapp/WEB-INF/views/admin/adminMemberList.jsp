@@ -113,6 +113,7 @@
 	                   	<input type="hidden" name="sender" value="${sessionScope.m.memberNick }"><!-- 쪽지 보낸 이 : 로그인 된 관리자 닉네임 -->
 	                   	<input type="hidden" name="receiver"><!-- 쪽지 받는이 : 선택된 회원 nick  js로 넣어줄 것 -->    
 	                   	<input type="hidden" name="email"><!-- 이용제한 대상자 : 선택된 회원 이메일 js로 넣어준다. -->
+	                   	
 	                   	<div class="btns-box">
 	                        <button class="btns">확인</button>
 	                   	</div>                	
