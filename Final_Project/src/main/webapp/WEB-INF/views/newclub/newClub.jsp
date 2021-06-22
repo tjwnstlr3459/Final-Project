@@ -88,7 +88,7 @@
 									<c:forEach items="${list }" var="board">
 										<div class="board-wrap">
 											<div class="userinfo" style="height: 30%;">											
-												<div class="userImg"></div> 
+												<div class="userImg"></div>  
 												<div class="userName">${board.boardWriter }</div>
 												<div class="enrollDate">${board.enrollDate }</div>
 											</div>	
