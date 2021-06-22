@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.club.model.dao.ClubDao;
 import kr.or.club.model.vo.Board;
@@ -29,7 +30,7 @@ public class ClubService {
 
 	public ArrayList<Board> morePhoto(int start, Member m) {
 		//5개씩 사진 가져올거라서
-		int length = 5;
+		int length = 10;
 		int end = start+length-1;
 		
 		List<Board> list = dao.morePhoto(start,end,m);
@@ -40,6 +41,7 @@ public class ClubService {
 		return dao.totalCount(m);
 	}
 
+	@Transactional
 	public int insertPost(Board b, ArrayList<Board> fileList) {
 		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
 		int result1 = dao.insertBoard(b);

@@ -50,7 +50,7 @@ public class ClubDao {
 		return session.update("club.insertPost",b);
 	}
 	
-	//게시물 등록시 board_no를 알아내기위한 메소드
+	//최신게시물 번호 알아내기
 	public int selectBoardNo() {
 		return session.selectOne("club.selectBoardNo");
 	}
