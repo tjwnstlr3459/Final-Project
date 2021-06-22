@@ -3526,3 +3526,48 @@ div {
 	font-weight: bold;
 	font-size:15px;
 }
+
+.bTitle{
+	font-size: 15px; 
+	overflow : hidden;
+	height: 21px;	
+}
+/* .entry-title{
+	width:124px;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.entry-excerpt{
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,7 @@
 							value="${sessionScope.m.memberNick}">${sessionScope.m.memberNick }</td>
 						<th>첨부파일</th>
 						<td style="text-align: left"><input type="file"
-							name="fileName" onchange="loadImg(this);"></td>
+							name="files" onchange="loadImg(this);"></td>
 					</tr>
 					<tr class="table-active">
 						<th>이미지</th>

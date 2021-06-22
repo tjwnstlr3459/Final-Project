@@ -273,32 +273,38 @@ function more(start) {//더보기 클릭시
 			for (var i = 0; i < data.length; i++) {
 				var p = data[i];
 				var html = "";
-                	 html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
-                	 html +=  '<div class="entry-thumb" onclick="func1(this)">';
-                	 html +=   '<a href="#" class="thumb-link">';
-                	 html +=     '<img src="/resources/image/user04.jpg"class="postsCheck"alt="building"/>';
-                	 html +=    '</a>';
-                	 html +=   '</div>';
-                	 html +=   '<div class="entry-text">';
-                	 html +=    '<div class="entry-header">';
-                	 html +=    '<div class="entry-meta">';
-                	 html +=    '<span class="cat-links">';
-                	 html +=	'<div class="cName" style="display:none">'+p.boardWriter+'</div>';
-                	 html +=        '<a href="#" class="clubName">'+p.clubName+'</a>';
-                	 html +=    '</span>';
-                	 html +=   '</div>';
-                	 html +=  '<h1 class="entry-title">';
-                	 html +=     '<a href="single-standard.html"class="bTitle"style="font-size: 20px; overflow : hidden;">'+p.boardTitle+'</a>';
-                	 html +=  '</h1>';
-                	 html +=  '</div>';
-                	 html +=  '<div class="entry-excerpt" style="height: 36px;overflow:hidden;">'+p.boardContent+'</div>';
-                	 html +=  '</div>';
-                	 html +=   '</article>';
+ html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
+ html +=  '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;" >';
+ html +=   '<a href="#" class="thumb-link">';
+ 
+	if(p.filePath != null){ 
+		html +='<img src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building" />';
+	}else{
+		html +='<img src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin-left: 43px;margin-top: 20px;"/>';
+	}
+ 
+ html +=    '</a>';
+ html +=   '</div>';
+ html +=   '<div class="entry-text" style="height: 150PX;">';
+ html +=    '<div class="entry-header">';
+ html +=    '<div class="entry-meta">';
+ html +=    '<span class="cat-links">';
+ html +=	'<div class="cName" style="display:none">'+p.boardWriter+'</div>';
+ html +=        '<a href="#" class="clubName">'+p.clubName+'</a>';
+ html +=    '</span>';
+ html +=   '</div>';
+ html +=  '<h1 class="entry-title" style="width:124px;height: 30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">';
+ html +=     '<a href="single-standard.html"class="bTitle">'+p.boardTitle+'</a>';
+ html +=  '</h1>';
+ html +=  '</div>';
+ html +=  '<div class="entry-excerpt" style="height: 40px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;">'+p.boardContent+'</div>';
+ html +=  '</div>';
+ html +=   '</article>';
 				$(".photoWrapper").append(html);
 			}
 			
 			//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
-			$("#more-btn").val(Number(start) + 5
+			$("#more-btn").val(Number(start) + 10
 			);
 			var curr = $("#more-btn").attr("currentCount"); //현재값
 			$("#more-btn").attr("currentCount", curr + data.length);//현재값 = 현재값+데이터길이 변경 

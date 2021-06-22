@@ -65,7 +65,7 @@
 	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED</h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
-	<button id="feed_info">MAKE FEED</button>
+	<button id="feed_info" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
 	<div class="container">
