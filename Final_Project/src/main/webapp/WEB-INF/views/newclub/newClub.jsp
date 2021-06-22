@@ -84,6 +84,7 @@
 							</div>
 							<div class="middle">
 								<div class="tab-cont">
+<<<<<<< HEAD
 			
 									<div class="board-wrap">
 										<div class="userinfo" style="height: 30%;">											
@@ -96,6 +97,19 @@
 											incididunt. Sunt nulla eu enim irure enim nostrud aliqua
 											consectetur ad consectetur sunt ullamco officia. Ex officia
 											laborum et consequat duis.</div>
+=======
+									<div>
+									<c:forEach items="${list }" var="board">
+										<div class="board-wrap">
+											<div class="userinfo" style="height: 30%;">											
+												<div class="userImg"></div>  
+												<div class="userName">${board.boardWriter }</div>
+												<div class="enrollDate">${board.enrollDate }</div>
+											</div>	
+											<div class="boardcontain" style="height: 40%;">
+												${board.boardContent}
+											</div>
+>>>>>>> refs/heads/final
 											<div class="userview" style="height: 30%;">
 												<div class="usernum">조회수 3명 읽음</div>
 												<div class="btn trigger"><a href="#">상세보기</a></div>
