@@ -84,58 +84,58 @@
 							</div>
 							<div class="middle">
 								<div class="tab-cont">
-			
-									<div class="board-wrap">
-										<div class="userinfo" style="height: 30%;">											
-											<div class="userImg"></div>
-											<div class="userName"></div>
-											<div class="enrollDate"></div>
-										</div>	
-										<div class="boardcontain" style="height: 40%;">
-											Enim labore aliqua consequat ut quis ad occaecat aliquip
-											incididunt. Sunt nulla eu enim irure enim nostrud aliqua
-											consectetur ad consectetur sunt ullamco officia. Ex officia
-											laborum et consequat duis.</div>
-											<div class="userview" style="height: 30%;">
-												<div class="usernum">조회수 3명 읽음</div>
-												<div class="btn trigger"><a href="#">상세보기</a></div>
-											</div>
-											
-											<!-- Modal -->
-											<div class="modal-wrapper">
-												<div class="modal">
-													<div class="head">
-														<a class="btn-close trigger" href="#">
-															<i class="fa fa-times" aria-hidden="true"></i>
-														</a>
-													</div>
-													<div class="content2">
-														<div class="good-job">
-															<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-															<h1>Good Job!</h1>
-														</div>
-														<div class="close-wrapper">
-															<button id="close">닫기</button>
-														</div>
-													</div>
-												</div>
+									<div>
+									<c:forEach items="${list }" var="board">
+										<div class="board-wrap">
+											<div class="userinfo" style="height: 30%;">											
+												<div class="userImg"></div>
+												<div class="userName">${board.boardWriter }</div>
+												<div class="enrollDate">${board.enrollDate }</div>
 											</div>	
+											<div class="boardcontain" style="height: 40%;">
+												${board.boardContent}
+											</div>
+											<div class="userview" style="height: 30%;">
+													<div class="usernum">조회수 3명 읽음</div>
+													<div class="btn trigger"><a href="#">상세보기</a></div>
+											</div>
 										</div>
-										<div>2.내용입니다</div>
-										<div>3.내용입니다</div>
-										<div>4.내용입니다</div>
+									</c:forEach>
 									</div>
-								</div>
-								<div class="right">
-									<div class="chatlist">
-										<div class="chat">채팅하기</div>
-										<div class="chatcontent">채팅목록</div>
-									</div>
+									<div>2.내용입니다</div>
+									<div>3.내용입니다</div>
+									<div>4.내용입니다</div>
 								</div>
 							</div>
-						</div>						
-					</div>
+							<div class="right">
+								<div class="chatlist">
+									<div class="chat">채팅하기</div>
+									<div class="chatcontent">채팅목록</div>
+								</div>
+							</div>
+						</div>
+					</div>						
 				</div>
+			</div>
+			<!-- Modal -->
+                <div class="modal-wrapper">
+                   <div class="modal">
+                      <div class="head">
+                         <a class="btn-close trigger" href="#">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                         </a>
+                      </div>
+                      <div class="content2">
+                         <div class="good-job">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <h1>Good Job!</h1>
+                         </div>
+                         <div class="close-wrapper">
+                            <button id="close">닫기</button>
+                         </div>
+                      </div>
+                   </div>
+                </div>   
 			<script>
 				var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 				var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
@@ -144,7 +144,7 @@
 
 				tabBtn.click(function () {
 					var target = $(this); //버튼의 타겟(순서)을 변수에 저장
-					var index = target.index(); //버튼의 순서를 변수에 저장
+					var index = $(".navi>.menu>li").index(this); //인덱스
 					tabBtn.removeClass("active"); //버튼의 클래스를 삭제
 					target.addClass("active"); //타겟의 클래스를 추가
 					tabCont.css("display", "none");

@@ -14,9 +14,9 @@
  <div class="making_feed_wrap">
         <h3 class="card-header">MAKING FEED!</h3>
         <fieldset>
-                <i class="fas fa-camera" style="font-size:50px; margin-top:50px; margin-bottom:50px;"></i>
+                <i class="fas fa-camera" style="font-size:50px; margin-top:20px; margin-bottom:50px;"></i>
             <div id="img-viewer" >
-                <img id="img-view" width="700px;" height="500px;" margin-top="50px;" alt="">
+                <img id="img-view" width="600px;" height="400px;" margin-top="50px;" alt="">
             </div>
         </fieldset>
     </div>
@@ -38,7 +38,7 @@
             
         </p>
         <div class="making_feed_wrap">
-        <button type="submit" class="btn btn-outline-light" style="margin-top:50px;">MAKE</button>
+        <button type="submit" class="btn btn-outline-light" style="margin-top:30px;">MAKE</button>
         </div>
     </form>
      <!--    <script type="text/javascript" src="dapi.kakao.com/v2/maps/sdk.js?appkey=29f578c657765b5ccc3a6c44ab486de0&libraries=services"></script>
