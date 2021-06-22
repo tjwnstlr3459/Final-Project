@@ -1,7 +1,15 @@
 package kr.or.member.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +18,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
-import kr.or.user.model.vo.User;
+import kr.or.member.model.vo.NaverLogin;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	private NaverLogin naverLogin;
+	@Autowired
+	private void setNaverLoginBO(NaverLogin naverLogin){
+		this.naverLogin = naverLogin;
+	}
 	
 	@RequestMapping(value="/loginFrm.do")
 	public String loginFrm() {
@@ -46,7 +63,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/join.do")
-	public String join(User u, Model model) {
+	public String join(HttpSession session, Model model) {		
+		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
+        
+        /* 생성한 인증 URL을 View로 전달 */
+        model.addAttribute("nUrl",naverAuthUrl);
 		return "user/join";
 	}
 	
@@ -73,13 +95,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/joinProcessing.do")
-	public String joinProcessing(@RequestParam(value = "hobby") List<String> hobbyArr, Member m, Model model) {
-		System.out.println(m.getAddress()); //null
+	public String joinProcessing(@RequestParam(value = "hobby") List<String> hobbyArr, @RequestParam(value = "propimg") MultipartFile propimg,  HttpServletRequest request, Member m, Model model) {
 		System.out.println(m.getFilename()); //빈문자열
 //		m.setHobby1(hobbyArr.get(0));
 //		m.setHobby2(hobbyArr.get(1));
 //		m.setHobby3(hobbyArr.get(2));
 		
+		//관심 카테고리 분리 처리
 		if(hobbyArr.size() == 1) {
 			m.setHobby1(hobbyArr.get(0));
 		} else if(hobbyArr.size() == 2) {
@@ -90,6 +112,46 @@ public class MemberController {
 			m.setHobby2(hobbyArr.get(1));
 			m.setHobby3(hobbyArr.get(2));
 		}
+		
+		//파일 처리 시작
+		String savePath = request.getSession().getServletContext().getRealPath("resources/image/userPic/");
+		//파일명 처리
+		String filename = propimg.getOriginalFilename();
+		String onlyFilename = filename.substring(0, filename.indexOf("."));
+		String extention = filename.substring(filename.indexOf("."));
+		String filepath = null;
+		int count = 0;
+		while(true) {			
+			if(count == 0) {
+				filepath = onlyFilename + extention;
+			} else {
+				filepath = onlyFilename + "_" + count + extention;
+			}
+			File checkFile = new File(savePath + filepath);
+			if(!checkFile.exists()) {
+				break;
+			}
+			count++;
+		}
+		//파일 저장
+		try {
+			FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			byte[] bytes = propimg.getBytes();
+			bos.write(bytes);
+			bos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//파일 처리 종료
+		
+		m.setFilename(filename);
+		m.setFilepath(filepath);
+		
 		int result = service.insertMember(m);
 		if(result > 0) {
 			model.addAttribute("msg","회원가입 성공");
@@ -99,11 +161,19 @@ public class MemberController {
 		model.addAttribute("loc","main.jsp");
 		return "common/msg";
 	}
+	
+	@RequestMapping(value="/socialJoin")
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, InterruptedException, ExecutionException {
+		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
+		OAuth2AccessToken oauthToken = naverLogin.getAccessToken(session, code, state);
+    	return "user/socialJoin";
+	}
+	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
 	public String allMemberList(int page, Model model) {
-//		System.out.println(page);
-//		System.out.println("test");
+		System.out.println(page);
+		System.out.println("test");
 		MemberPageData mpd = service.selectAllMember(page);
 		for(Member m : mpd.getList()) {
 			System.out.println(m.getEmail());
