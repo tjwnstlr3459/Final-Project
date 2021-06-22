@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+import com.google.gson.Gson;
 
 import kr.or.freeBoard.model.service.FreeBoardService;
 import kr.or.freeBoard.model.vo.FreeBoard;
@@ -24,23 +26,36 @@ import kr.or.freeBoard.model.vo.FreeBoard;
 public class FreeBoardController {
 	@Autowired
 	private FreeBoardService service;
-
+	@ResponseBody
+	@RequestMapping(value="/selectFreeBoards.do")
+	public ArrayList<FreeBoard> selectFreeBoards(HttpServletRequest request,int start, Model model) {
+		ArrayList<FreeBoard> list = service.selectFreeBoards(start);
+		//String path = request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/");
+		model.addAttribute("list",list);
+		for(int i =0; i<list.size(); i++) {			
+			System.out.println(list.get(i));
+		}
+		return list;
+	}
 	@RequestMapping(value = "/freeBoardList.do")
-	public String freeBoardList() {
+	public String freeBoardList(Model model) {
+		int FreeBoardtotalCount = service.FreeBoardtotalCount();
+		model.addAttribute("totalCount",FreeBoardtotalCount);
+		System.out.println(FreeBoardtotalCount);
 		return "freeBoard/freeBoardList";
 	}
-
+	@Transactional
 	@RequestMapping(value = "/insertFreeBoardFrm.do")
 	public String insertFreeBoardFrm() {
 		return "freeBoard/freeBoardFrm";
 	}
-
+	@Transactional
 	@RequestMapping(value = "/insertFreeBoard.do")
 	public String insertFreeBoard(MultipartFile files, HttpServletRequest request, FreeBoard fb, Model model) {
 		//ArrayList<FreeBoard> fileList = new ArrayList<FreeBoard>();
 		if (files.isEmpty()) {
 			model.addAttribute("msg", "이미지를 등록하세요!");
-			model.addAttribute("loc", "/insertFreeBoardFrm.do");
+			model.addAttribute("loc", "/freeBoardList.do");
 			return "common/msg";
 		} else {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/");
