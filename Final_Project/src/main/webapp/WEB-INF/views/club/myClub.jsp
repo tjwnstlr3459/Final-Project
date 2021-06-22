@@ -276,13 +276,11 @@ function more(start) {//더보기 클릭시
  html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
  html +=  '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;" >';
  html +=   '<a href="#" class="thumb-link">';
- 
 	if(p.filePath != null){ 
 		html +='<img src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building" />';
 	}else{
 		html +='<img src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin-left: 43px;margin-top: 20px;"/>';
 	}
- 
  html +=    '</a>';
  html +=   '</div>';
  html +=   '<div class="entry-text" style="height: 150PX;">';

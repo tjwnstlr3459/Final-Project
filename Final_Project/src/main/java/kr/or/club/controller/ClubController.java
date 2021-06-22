@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.club.model.service.ClubService;
-import kr.or.club.model.vo.Board;
+import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -44,8 +44,8 @@ public class ClubController {
 	// 회원이 속한 모임에 클럽게시물 상세출력
 	@ResponseBody
 	@RequestMapping(value = "/photoMore.do")
-	public ArrayList<Board> photoMore(@SessionAttribute(required = false) Member m,Model model, int start) {
-		ArrayList<Board> list = service.morePhoto(start,m);
+	public ArrayList<ClubBoard> photoMore(@SessionAttribute(required = false) Member m,Model model, int start) {
+		ArrayList<ClubBoard> list = service.morePhoto(start,m);
 		model.addAttribute("listMore",list);
 		return list;
 	}
@@ -59,10 +59,10 @@ public class ClubController {
 	
 	//게시물 등록
 	@RequestMapping(value="/insertPost.do")
-   public String boardWrite(Board b, MultipartFile files[], HttpServletRequest request, Model model) {
+   public String boardWrite(ClubBoard b, MultipartFile files[], HttpServletRequest request, Model model) {
       //파일 목록을 저장할 리스트 생성
       //같은 클래스명이라 밑에 처럼 길게 나옴
-      ArrayList<Board> fileList = new ArrayList<Board>();
+      ArrayList<ClubBoard> fileList = new ArrayList<ClubBoard>();
       
       System.out.println(b.getBoardContent());
       System.out.println(b.getBoardCg());
@@ -107,7 +107,7 @@ public class ClubController {
                  }
                  count++;
               }
-              Board f = new Board();
+              ClubBoard f = new ClubBoard();
               f.setFileName(filename);
               f.setFilePath(filepath);
               fileList.add(f);
