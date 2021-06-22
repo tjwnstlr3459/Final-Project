@@ -14,8 +14,4 @@ public class FreeBoardController {
 	public String freeBoardList() {
 		return "freeBoard/freeBoardList";
 	}
-	@RequestMapping(value="/insertFreeBoardFrm.do")
-	public String insertFreeBoardFrm() {
-		return "freeBoard/freeBoardFrm";
-	}
 }

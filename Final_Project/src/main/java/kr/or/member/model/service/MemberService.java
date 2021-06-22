@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.or.directMessage.model.vo.DirectMessage;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
@@ -28,7 +27,7 @@ public class MemberService {
 		int result = dao.insertMember(m);
 		return result;
 	}
-	//전체회원 리스트+네비네비
+
 	public MemberPageData selectAllMember(int page) {
 		int listLength = 10;														//목록(화면)에 보여줄 게시글 갯 수
 		int naviPages = 5;

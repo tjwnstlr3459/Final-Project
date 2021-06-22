@@ -174,8 +174,7 @@ body {
   color: #fff;
   border-radius: 50%;
   text-align: center;
-  background-color: rgba(204,88,76,0.6);
-  text-shadow: white;
+  background: #CC584C;
   margin-top: 30px;
   border: 2px solid transparent;
   transition: all 0.5;
@@ -184,23 +183,10 @@ body {
   font-family: "Raleway", sans-serif;
   transition: all 0.5s;
 }
- .intro .slide .slide-content .slide-a-child:hover {
+.intro .slide .slide-content button:hover {
   background: none;
   border: 2px solid #CC584C;
-  color: #CC584C;
-  font-weight:bolder;
-}
- .intro .slide .slide-content .slide-b-child:hover {
-  background: none;
-  border: 2px solid rgba(14,178,154,1);
-  color: rgba(14,178,154,1);
-  font-weight:bolder;
-}
- .intro .slide .slide-content .slide-c-child:hover {
-  background: none;
-  border: 2px solid rgba(62,69,77,1);
-  color: rgba(62,69,77,1);
-  font-weight:bolder;
+  color: #b6483d;
 }
 
 @-webkit-keyframes bar {
