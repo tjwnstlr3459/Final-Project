@@ -1198,7 +1198,7 @@ input::-moz-focus-inner {
 }
 
 .bricks-wrapper .entry-text {
-  padding: 1.8rem 2.8rem 3.6rem;
+  padding: 0.5rem 2rem 0.5rem;
   background-color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -2202,8 +2202,9 @@ header .logo a {
   *
   * ------------------------------------------------------------------- */
 #page-header {
-  padding: 4.2rem 0 0 0;
-  text-align: center;
+ /*  padding: 4.2rem 0 0 0;
+  text-align: center; */
+  margin-bottom: 20px;
 }
 
 #page-header .row {
@@ -2331,7 +2332,7 @@ header .logo a {
   *
   * ------------------------------------------------------------------- */
 #bricks {
-  padding-top: 4.2rem;
+  padding-top: 2.2rem;
 }
 
 #bricks .masonry {
@@ -3315,7 +3316,11 @@ footer ul li {
   width: 100%;
   height: 30%;
   font-size: 12px;
-  background-color: #fe830047;
+  background-color: #ec523f52;
+  font-weight: bold;
+  color:white;
+  padding-left:20px;
+  
 }
 .clubListName > div {
   float: left;

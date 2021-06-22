@@ -38,7 +38,7 @@
 </head>
 
 <body id="top">
-<%-- <%@include file="/WEB-INF/views/common/header.jsp" %> --%>
+<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<!-- page header
    ================================================== -->
 	
@@ -48,9 +48,11 @@
 		<div class="row masonry">
 		<section id="page-header">
 		<div class="row current-cat">
-			<div class="col-full">
+			<div class="col-full" style="width:28%">
 				<h1 style="margin: 0px">Latest Posts</h1>
+				<hr>
 			</div>
+			
 		</div>
 	</section>
 			<div class="leftCon">
@@ -97,8 +99,9 @@
 						<option>지난 1주</option>
 						<option>지난 1개월</option>
 					</select>
+					<a href="/insertPostWrite.do">게시물 등록</a>
 				</div>
-				<a href="/insertPostWrite.do">게시물 등록</a>
+				
 				<!-- brick-wrapper -->
 				<div class="bricks-wrapper" style="height: 1200px">
 					<div class="grid-sizer"></div>
@@ -291,11 +294,11 @@ function more(start) {//더보기 클릭시
  html +=        '<a href="#" class="clubName">'+p.clubName+'</a>';
  html +=    '</span>';
  html +=   '</div>';
- html +=  '<h1 class="entry-title" style="width:124px;height: 30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">';
+ html +=  '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 18px;text-overflow: ellipsis;white-space: nowrap;">';
  html +=     '<a href="single-standard.html"class="bTitle">'+p.boardTitle+'</a>';
  html +=  '</h1>';
  html +=  '</div>';
- html +=  '<div class="entry-excerpt" style="height: 40px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;">'+p.boardContent+'</div>';
+ html +=  '<div class="entry-excerpt" style="height: 70px;overflow: hidden;text-overflow: ellipsis;">'+p.boardContent+'</div>';
  html +=  '</div>';
  html +=   '</article>';
 				$(".photoWrapper").append(html);

@@ -31,6 +31,7 @@ public class ClubController {
 	// 회원이 속한 모임에 클럽게시물 추출
 	@RequestMapping(value = "/myClub.do")
 	public String myClub(@SessionAttribute(required = false) Member m,Model model){
+		
 		ArrayList<Club> clubList = service.memberClubList(m);
 //		ArrayList<Board> clubPosts = service.memberClubPosts(m);
 		int totalCount = service.totalCount(m);
