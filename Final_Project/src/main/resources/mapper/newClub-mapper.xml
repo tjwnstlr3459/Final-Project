@@ -14,6 +14,6 @@
 		BOARD_VIEWS as boardViews,
 		BOARD_GOOD as boardGood,
 		ENROLL_DATE as enrollDate
-		from CLUB_BOARD where club_no=1
+		from CLUB_BOARD WHERE CLUB_N0=1
 </select>
 </mapper>
