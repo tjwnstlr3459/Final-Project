@@ -38,7 +38,7 @@
 
    <div class="slide slide-c">
       <div class="slide-content">
-         <h2 class="slide-c-child">나 몰랐는데...</h2>
+         <h2 class="slide-c-child">나 몰랐는데..</h2>
          <ul>
             <li class="slide-c-child" ><p>스포츠</p></li>
             <li class="slide-c-child" ><p> 와인</p></li>&nbsp;&nbsp;
