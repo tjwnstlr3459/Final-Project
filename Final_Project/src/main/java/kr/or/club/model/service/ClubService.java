@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.club.model.dao.ClubDao;
-import kr.or.club.model.vo.Board;
+import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -28,13 +28,13 @@ public class ClubService {
 //		return (ArrayList<Board>)list;
 //	}
 
-	public ArrayList<Board> morePhoto(int start, Member m) {
+	public ArrayList<ClubBoard> morePhoto(int start, Member m) {
 		//5개씩 사진 가져올거라서
 		int length = 10;
 		int end = start+length-1;
 		
-		List<Board> list = dao.morePhoto(start,end,m);
-		return (ArrayList<Board>)list;
+		List<ClubBoard> list = dao.morePhoto(start,end,m);
+		return (ArrayList<ClubBoard>)list;
 	}
 
 	public int totalCount(Member m) {
@@ -42,14 +42,14 @@ public class ClubService {
 	}
 
 	@Transactional
-	public int insertPost(Board b, ArrayList<Board> fileList) {
+	public int insertPost(ClubBoard b, ArrayList<ClubBoard> fileList) {
 		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
 		int result1 = dao.insertBoard(b);
 		int result = 0;
 		if(result1>0) {
 			//파일 insert하기 전에 board_no가 필요함
 			int boardNo = dao.selectBoardNo();
-			for(Board f : fileList) {
+			for(ClubBoard f : fileList) {
 				f.setBoardNo(boardNo);
 				result += dao.insertFile(f);
 			}
