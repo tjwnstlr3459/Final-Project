@@ -35,9 +35,11 @@ $(document).ready(function() {
 	 });
 	 //경고 버튼 클릭 시 
 	 $('.warningBtn').click(function(){
+	 	$('#modalForm').attr('action','/insertDm.do');		//form의 action 경로 설정
 	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
-	 	$('.titleHead').html('사유');
-	 	$('[name=receiver]').val(memberNick);
+	 	$('.titleHead').html('사유');							//모달 타이틀 설정
+	 	$('#summernote').attr('name','dmContent');			//요소 name을 설정
+	 	$('[name=receiver]').val(memberNick);				//받는사람 설정
 	 	modalOpen();
 	 });
 	 //제재 버튼 클릭 시
@@ -69,17 +71,24 @@ $(document).ready(function() {
 	 	var obj = {
 	 		memberNo : arr
 	 	}
-
-	 	$.ajax({
-	 		url : "/updateGrade.do",
-	 		dataType    :   "json",
-            contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
-            type        :   "post",
-	 		data : obj,
-	 		success : function(data){
-	 			
-	 		}
-	 	});
+	 	//최소 1명 이상은 체크가 되어야 됨
+		if(arr.length > 0 && confirm('관리자로 등록하시겠습니까?')){
+		 	$.ajax({
+		 		url : "/updateGrade.do",
+		 		dataType    :   "json",
+	            contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+	            type        :   "post",
+		 		data : obj,
+		 		success : function(data){
+		 			if(data=="1"){
+		 				alert('관리자로 등록되었습니다');
+		 			}else{
+		 				alert('적용 실패! 다시 시도해주세요');
+		 			}
+		 			window.location.reload();
+		 		}
+		 	});
+		 }
 	 	
 	 });
 	 //선택된 회원 checkbox

@@ -30,7 +30,7 @@ public class MemberService {
 	}
 
 	public MemberPageData selectAllMember(int page) {
-		int listLength = 10;														//목록(화면)에 보여줄 게시글 갯 수
+		int listLength = 50;														//목록(화면)에 보여줄 게시글 갯 수
 		int naviPages = 5;
 		int end = listLength * page;					//list 끝 값
 		int start = end - listLength + 1;				//list 시작 값

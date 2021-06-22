@@ -26,7 +26,7 @@
         </header>
         <div class="divLine"></div>
         <div class="adminInfoWrap">
-            <div class="adminImg"><img src="/resources/image/userPic/admin-IU.png" alt=""></div><!--관리자 프로필 이미지-->
+            <div class="adminImg"><img src="/resources/image/userPic/${sessionScope.m.filepath }" alt=""></div><!--관리자 프로필 이미지-->
             <div class="adminInfo">
                 <span>${sessionScope.m.memberNick }</span><br><!--관리자 닉네임-->
                 <span>${sessionScope.m.email }</span><!--관리자 이메일-->

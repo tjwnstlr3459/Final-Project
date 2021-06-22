@@ -184,14 +184,14 @@ public class MemberController {
 	//관리자로 등급 업그레이드~
 	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateGrade(@RequestParam(value="memberNo[]")String[] memberNo, Model model) {
+	public String updateGrade(@RequestParam(value="memberNo[]")String[] memberNo ) {
 		int result = service.updateGrade(memberNo);
 		if(result == memberNo.length) {
-			model.addAttribute("msg","관리자로 등록되었습니다");
+//			return "관리자로 등록되었습니다";
+			return "1";
 		}else {
-			model.addAttribute("msg","다시 시도해주세요");
+//			return "적용 실패! 다시 시도해주세요";
+			return "0";
 		}
-		model.addAttribute("loc","/adminMemberList.do?page=1");
-		return "common/msg";
 	}
 }
