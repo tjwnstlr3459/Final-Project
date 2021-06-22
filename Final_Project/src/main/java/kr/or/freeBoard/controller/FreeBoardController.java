@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,7 +95,13 @@ public class FreeBoardController {
 			try {
 				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
+                byte[] bytes = files.getBytes(); //try/catch 추가 설정
+                bos.write(bytes);
+                bos.close();
 			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

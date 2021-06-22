@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+<!-- 회원이 속한 클럽 출력 -->
+<select id="selectBoardList" resultType="bl">
+SELECT
+	AB_NO AS abNo,
+	ab_cg as abCg,
+	ab_writer as abWriter,
+	ab_Title as abTitle,
+	ab_content as abContent,
+	fileName,
+	filePath,
+	enroll_date as enrollDate
+FROM ADMIN_BOARD
+</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

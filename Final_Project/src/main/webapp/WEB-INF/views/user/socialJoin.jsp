@@ -21,20 +21,10 @@
             <form id="joinForm" action="/joinProcessing.do" method="post" enctype="multipart/form-data">
                 <div class="element">
                     <span class="legend">이메일</span>
-                    <input type="email" name="email" placeholder="이메일">
+                    <input type="email" name="email" value="${member.email }" readonly>
                     <span class="inputMsg"></span>
                 </div>
-                <formgroup id="restForm">
-                    <div class="element">
-                        <span class="legend">비밀번호</span>
-                        <input type="password" name="memberPw" placeholder="영문, 숫자 포함 8자 이상 30자 이내">
-                        <span class="inputMsg"></span>
-                    </div>
-                    <div class="element">
-                        <span class="legend">비밀번호 확인</span>
-                        <input type="password" name="memberPw2" placeholder="비밀번호 확인">
-                        <span class="inputMsg"></span>
-                    </div>
+                <input type="hidden" name="memberPw" value="${member.memberPw }">
                     <div class="element">
                         <span class="legend">이름(닉네임)</span>
                         <input type="text" name="memberNick" placeholder="영문 40자, 한글 13자 이내">
@@ -98,29 +88,11 @@
                     </div>
 
                     <input type="submit" value="회원 가입" onclick="return joinCheck()">
-                </formgroup>
-                
-                <button type="button" id="mailCfrm">이메일 체크</button>
 
-            </form>
-            <div class="social">
-                <span>소셜 서비스로 가입</span>
-                <a href="#">구글 로그인</a>
-                <a href="#">카카오 로그인</a>
-                <a href="${nUrl}">네이버 로그인</a>
-                <div id="naver_id_login"></div>
-            </div>           
+            </form>     
         </div>
     </div> 
     <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
-	<script type="text/javascript">
-	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/callback.jsp");
-	  	var state = naver_id_login.getUniqState();
-	  	naver_id_login.setButton("white", 3,50);
-	  	naver_id_login.setDomain("http://127.0.0.1");
-	  	naver_id_login.setState(state);
-	  	naver_id_login.init_naver_id_login();
-	 </script>
     <script>
 	    function findPCode() {
 	        new daum.Postcode({
@@ -177,57 +149,6 @@
                 return false;
             }
         }
-
-        $("#mailCfrm").click(function() {
-            var email = $("[name=email]").val();
-            var emailReg = /^([\w\d_\.-]+)@([\w\d_-]+)(\.[\w\d_-]+){1,2}$/;
-            if(email == "") {
-            	$("[name=email]").next().html("이메일 주소를 입력해주세요.");
-            } else if(!emailReg.test(email)) {
-                $("[name=email]").next().html("이메일 주소를 확인해주세요.");
-            }
-            else {         
-                $("[name=email]").next().html(""); 
-            	$.ajax({
-                    url: "/user/chkEmail.do",
-                    type: "post",
-                    data: {email:email},
-                    success: function(data) {
-    					if(data == "1") {
-    						$("[name=email]").next().html("이미 가입된 이메일입니다");
-    					}
-    					else {
-    						$("[name=email]").next().html("");
-                            $("#restForm").slideDown(800);
-                            $("#mailCfrm").hide();
-
-    					}
-                    },
-                    error: function() {
-                        console.log("error")
-                    }
-
-                })
-            }            
-        })
-        $("[name=memberPw]").keyup(function() {
-            var pw = $(this).val();
-            var pwReg = /(?=.*\d)(?=.*[a-zA-Z]).{8,30}/
-            if(pwReg.test(pw)) {
-                $(this).next().html("");
-            } else {
-                $(this).next().html("영문과 숫자 조합으로 8자 이상 입력해주세요.");
-            }
-        })
-        $("[name=memberPw2]").change(function() {
-            var pw = $("[name=memberPw]").val();
-            var pw2 = $(this).val();
-            if(pw == pw2) {
-                $(this).next().html("");
-            } else {
-                $(this).next().html("비밀번호가 일치하지 않습니다.");
-            }
-        })
         $("[name=memberNick]").change(function() {
             var name = $(this).val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
@@ -294,46 +215,7 @@
             var intro = $("[name=intro]").val();
             var introByteLength = intro.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
             var checked = $("input[type=checkbox]:checked").length;
-            
-            console.log(email);
-            console.log(pw);
-            console.log(pw2);
-            console.log(name);
-            console.log(nameByteLength);
-            console.log(age);
-            console.log(gender);
-            console.log(address);   
-            console.log(hobby);
-            console.log(hobby1);
-            console.log(hobby2);
-            console.log(hobby3);
-            console.log(intro);
-            console.log(introByteLength);
 
-            if(!regchk(emailReg, email)) {
-                $("[name=email]").css("border", "1px solid red");
-                $("[name=email]").next().html("이메일 주소를 확인해주세요.");
-                return false;
-            } else {
-                $("[name=email]").css("border", "1px solid #999");
-                $("[name=email]").next().html("");
-            }
-            if(!regchk(pwReg, pw)) {
-                $("[name=memberPw]").css("border", "1px solid red");
-                $("[name=memberPw]").next().html("대문자, 소문자, 숫자 조합으로 8자 이상 입력해주세요.");
-                return false;
-            } else {
-                $("[name=memberPw]").css("border", "1px solid #999");
-                $("[name=memberPw]").next().html("");
-            }
-            if(!(pw == pw2)) {
-                $("[name=memberPw2]").css("border", "1px solid red");
-                $("[name=memberPw2]").next().html("비밀번호가 일치하지 않습니다.");
-                return false;
-            } else {
-                $("[name=memberPw2]").css("border", "1px solid #999");
-                $("[name=memberPw2]").next().html("");
-            }
             if(namechk.html() == "중복된 이름은 사용할 수 없습니다.") {
             	$("[name=memberNick]").css("border", "1px solid red");
             	return false;
