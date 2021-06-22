@@ -154,23 +154,18 @@
     .chatcontent{
         width: 100%;
         height: 80%;
-      	background-color: #f1eeebee;
+      	 background-color: #f1eeebee;
     }
 	.board-wrap{
-<<<<<<< HEAD
-	
+
 		margin: 0 auto;
-=======
-	 	margin: 0 auto;
->>>>>>> refs/heads/final
 	 	width: 580px;
         height: 280px;
      	margin-top: 10px;
      	margin-bottom: 10px;
         background-color: white;
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 10px;
-	}
 
 
     .boardcontain {
