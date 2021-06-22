@@ -70,4 +70,8 @@ public class MemberService {
 		MemberPageData mpd = new MemberPageData(navigation,(ArrayList<Member>)list);
 		return mpd;
 	}
+	//회원 관리자로 등록 update
+	public int updateGrade(List<String> memberNo) {
+		return dao.updateGrade(memberNo);
+	}
 }

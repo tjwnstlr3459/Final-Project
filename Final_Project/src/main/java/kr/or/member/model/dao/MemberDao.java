@@ -31,4 +31,8 @@ public class MemberDao {
 	public int memberCount() {
 		return sqlSession.selectOne("member.memberCount");
 	}
+
+	public int updateGrade(List<String> memberNo) {
+		return sqlSession.update("member.updateGrade",memberNo);
+	}
 }

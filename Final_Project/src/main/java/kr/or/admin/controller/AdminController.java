@@ -26,6 +26,7 @@ import com.google.gson.JsonObject;
 
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
+import kr.or.member.model.service.MemberService;
 
 
 
@@ -34,6 +35,7 @@ public class AdminController {
 	
 	@Autowired
 	private DirectMessageService dmService;
+	private MemberService mService;
 	
 	//관리자 페이지 이동
 	@RequestMapping(value="/adminMain.do")
@@ -70,11 +72,16 @@ public class AdminController {
 	//관리자로 등급 업그레이드~
 	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateGrade(@RequestParam(value="memberNo[]")List<String> memberNo) {
-		for(String no : memberNo) {
-			System.out.println(no);
+	public String updateGrade(@RequestParam(value="memberNo[]")List<String> memberNo, Model model) {
+		System.out.println(memberNo.size());
+		int result = mService.updateGrade(memberNo);
+		if(result == memberNo.size()) {
+			model.addAttribute("msg","관리자로 등록되었습니다");
+		}else {
+			model.addAttribute("msg","다시 시도해주세요");
 		}
-		return null;
+		model.addAttribute("loc","/adminMemberList.do?page=1");
+		return "common/msg";
 	}
 	//서머노트에 드래그한 이미지를 서버에 업로드
 	@RequestMapping(value="/imageUpload.do", produces = "application/json; charset=utf8")

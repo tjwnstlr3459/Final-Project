@@ -43,4 +43,10 @@
 	<select id="memberCount" resultType="int">
 		select count(*) from member
 	</select>
+	<!-- 회원에서 관리자로 업그레이드 -->
+	<!--  
+	<update id="updateGrade" parameterType="list">
+		update member set grade=1 where
+	</update>
+	-->
 </mapper>
