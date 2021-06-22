@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="freeBoard">
-  
+  <insert id="insertFreeBoard" parameterType="fb">
+  	insert into free_board values(
+  				fb_seq.nextval,
+  				#{fbWriter},
+  				#{fbContent},
+  				#{filename},
+  				#{filepath},
+  				0,
+  				0,
+  				#{type},
+  				to_char(sysdate,'yyyy-mm-dd')
+  	)
+  </insert>
 </mapper>
