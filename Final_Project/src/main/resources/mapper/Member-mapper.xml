@@ -3,6 +3,7 @@
 <mapper namespace="member">
 <select id="selectOneMember"  parameterType="m" resultType="m">
 	select member_no as memberNo,
+		   email,
 		   member_pw as memberPw,
 		   member_nick as memberNick,
 		   gender,
@@ -13,6 +14,8 @@
 		   hobby3,
 		   filename,
 		   filepath,
+		   warning_count as warningCount,
+		   grade,
 		   enroll_date as enrollDate,
 		   last_date as lastDate,
 		   age
