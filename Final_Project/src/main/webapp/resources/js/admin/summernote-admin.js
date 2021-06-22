@@ -62,21 +62,24 @@ $(document).ready(function() {
 	 });
 	 //관리자 등록 클릭 시
 	 $('#upgradeBtn').click(function(){
-	 	var chkValue = $('.checkMember:checked');
 	 	var arr = new Array();
-	 	for(var i=0;i<chkValue.length;i++){
-	 		arr.push(chkValue[i].value);
+	 	$('.checkMember:checked').each(function(i){
+	 		arr.push($(this).val());
+	 	});
+	 	var obj = {
+	 		memberNo : arr
 	 	}
-	 	console.log(arr);
 
 	 	$.ajax({
 	 		url : "/updateGrade.do",
-	 		data : {memberNo : arr},
+	 		dataType    :   "json",
+            contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+            type        :   "post",
+	 		data : obj,
 	 		success : function(data){
 	 			
 	 		}
 	 	});
-
 	 	
 	 });
 	 //선택된 회원 checkbox
