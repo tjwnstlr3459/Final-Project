@@ -15,6 +15,13 @@
 	</properties>
 	<dependencies>
 	
+	<!-- OAuth -->
+   <dependency>
+       <groupId>com.github.scribejava</groupId>
+       <artifactId>scribejava-apis</artifactId>
+       <version>8.3.1</version>
+   </dependency>
+	
 	<!-- spring-websocket -->
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
 	<dependency>

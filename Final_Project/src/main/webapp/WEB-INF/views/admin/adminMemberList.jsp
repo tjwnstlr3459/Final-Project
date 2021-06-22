@@ -44,7 +44,7 @@
                             <button class="btns" id="selectMessageBtn">선택 쪽지발송</button>
                             <button class="btns" id="selectMailBtn">선택 메일발송</button>
                             <c:if test="${sessionScope.m.grade eq 0 }">
-                            <button class="btns" id="insertAdminBtn">관리자 등록</button>
+                            <button class="btns" id="upgradeBtn">관리자 등록</button>
                             </c:if>
                             <select name="sort" id="sort">
                                 <option value="date" selected>최근 가입순</option>
@@ -86,7 +86,7 @@
                             </tbody>
                             <tfoot>
                             	<tr>
-                            	<th colspan="12">${navigation }</th>
+                            	<th colspan="12" style="height:30px;">${navigation }</th>
                             	</tr>
                             </tfoot>
                         </table>

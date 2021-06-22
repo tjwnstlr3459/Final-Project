@@ -69,6 +69,9 @@
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 	</beans:bean>
 	
+	<!-- 네이버 로그인 api -->
+	<beans:bean id="naverLogin" class="kr.or.member.model.vo.NaverLogin" />
+	
 	
 	<!-- AOP 테스트 -->
 	<!-- <beans:bean id="log" class="kr.or.common.LogClass"/>

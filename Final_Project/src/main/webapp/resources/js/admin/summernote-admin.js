@@ -60,6 +60,25 @@ $(document).ready(function() {
 	 $('#selectMessageBtn').click(function(){
 	 	$('.titleHead').html('메시지');
 	 });
+	 //관리자 등록 클릭 시
+	 $('#upgradeBtn').click(function(){
+	 	var chkValue = $('.checkMember:checked');
+	 	var arr = new Array();
+	 	for(var i=0;i<chkValue.length;i++){
+	 		arr.push(chkValue[i].value);
+	 	}
+	 	console.log(arr);
+
+	 	$.ajax({
+	 		url : "/updateGrade.do",
+	 		data : {memberNo : arr},
+	 		success : function(data){
+	 			
+	 		}
+	 	});
+
+	 	
+	 });
 	 //선택된 회원 checkbox
 	 $('#selectMessageBtn').click(function(){
 	 	var chkValue = $('.checkMember:checked');
