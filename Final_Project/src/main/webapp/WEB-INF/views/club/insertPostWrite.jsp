@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
- <!-- JSTL Core 태그 -->
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
@@ -12,18 +11,17 @@
 </head>
 <body>
 	<div class="container">
-		<!-- 파일업로드 enctype 필수!! -->
 		<form action="/insertPost.do" method="post" enctype="multipart/form-data">
 			<fieldset>
 				<legend>사진게시판 작성</legend>
 				<table class="table" style="width: 100%;">
 					<tr class="table-active">
 						<th>작성자</th>
-						<td><input type="hidden" name="BoardWrite"
-							value="${sessionScope.m.memberNick }">${sessionScope.m.memberNick }</td>
+						<td><input type="text" name="boardWriter"
+							value="${sessionScope.m.memberNick}">${sessionScope.m.memberNick }</td>
 						<th>첨부파일</th>
 						<td style="text-align: left"><input type="file"
-							name="filename" onchange="loadImg(this);"></td>
+							name="fileName" onchange="loadImg(this);"></td>
 					</tr>
 					<tr class="table-active">
 						<th>이미지</th>
@@ -36,41 +34,23 @@
 					<tr>
 						<th>클럽이름</th>
 						<td>
-							<select name="clubNo" value="6">
-								<option>FC발냄새</option>
-								<option>롤창인생</option>
-								<option>띵곡</option>
-							</select>
+							<input name="clubNo" value="6">
 						</td>
 					</tr>
 					<tr>
 						<th>클럽종류</th>
 						<td>
-							<select name="boardCg" value="5">
-								<option>문의</option>
-								<option>신고</option>
-								<option>스포츠</option>
-								<option>음악</option>
-								<option>여행</option>
-								<option>댄스</option>
-								<option>게임</option>
-								<option>영화</option>
-								<option>드라마</option>
-								<option>코스프레</option>
-								<option>공지사항</option>
-								<option>자유글</option>
-								<option>공지</option>
-							</select>
+							<input name="boardCg" value="5">
 						</td>
 					</tr>
 					<tr class="table-active">
 						<th>제목</th>
-						<td colspan="3"><input name="BoardTitle"
+						<td colspan="3"><input type="text" name="boardTitle"
 								class="form-control"></td>
 					</tr>
 					<tr class="table-active">
 						<th>내용</th>
-						<td colspan="3"><textarea name="BoardContent"
+						<td colspan="3"><textarea name="boardContent"
 								class="form-control"></textarea></td>
 					</tr>
 					<tr class="table-active">
@@ -99,4 +79,4 @@
 	}
 	</script>
 </body>
-</html>
+</html> 

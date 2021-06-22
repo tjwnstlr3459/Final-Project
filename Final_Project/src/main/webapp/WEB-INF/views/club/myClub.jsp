@@ -38,32 +38,33 @@
 </head>
 
 <body id="top">
-<%@include file="/WEB-INF/views/common/header.jsp" %>
+<%-- <%@include file="/WEB-INF/views/common/header.jsp" %> --%>
 	<!-- page header
    ================================================== -->
-	<section id="page-header">
+	
+	<!-- masonry
+   ================================================== -->
+	<section id="bricks" class="with-top-sep">
+		<div class="row masonry">
+		<section id="page-header">
 		<div class="row current-cat">
 			<div class="col-full">
 				<h1 style="margin: 0px">Latest Posts</h1>
 			</div>
 		</div>
 	</section>
-	<!-- masonry
-   ================================================== -->
-	<section id="bricks" class="with-top-sep">
-		<div class="row masonry">
 			<div class="leftCon">
 				<!-- 클러리스트 -->
 				<div class="myInfo">
 					<div class="myInfoImg">
 						<img src="/resources/image/user04.jpg" />
 					</div>
-					<div>${sessionScope.m.memberNick}</div>
+					<div class="userName">${sessionScope.m.memberNick}</div>
 					<hr width="95%" style="margin: 0 auto" />
 					<div>읽지 않은 메세지 1 건</div>
-
-					<span>#${m.hobby1 }</span> <span>#${m.hobby2 }</span> <span>#${m.hobby3
-						}</span>
+					<img src="/resources/image/icons/tag.png">
+					<span>#${m.hobby1 }</span> <span>#${m.hobby2 }</span> <span>#${m.hobby3}</span>
+						
 					<!-- <div>#여행 #요리 #음식</div> -->
 				</div>
 				<hr />
@@ -86,7 +87,9 @@
 				<!-- 오른쪽 컨텐츠-->
 				<div class="rightConSelect">
 					<input type="text" name="search" class="inputStryle" />
+					
 					<button class="postSearch">Search</button>
+					
 					<select>
 						<option>모든날짜</option>
 						<option>지난 1시간</option>
@@ -258,7 +261,8 @@ $(window).scroll(function() {
  }
 });
 
-function more(start) {//더보기 클릭시	
+
+function more(start) {//더보기 클릭시
 	$.ajax({
 		url : "/photoMore.do",
 		data : {
@@ -284,17 +288,18 @@ function more(start) {//더보기 클릭시
                 	 html +=    '</span>';
                 	 html +=   '</div>';
                 	 html +=  '<h1 class="entry-title">';
-                	 html +=     '<a href="single-standard.html" class="bTitle" style="font-size: 20px;">'+p.boardTitle+'</a>';
+                	 html +=     '<a href="single-standard.html"class="bTitle"style="font-size: 20px; overflow : hidden;">'+p.boardTitle+'</a>';
                 	 html +=  '</h1>';
                 	 html +=  '</div>';
-                	 html +=  '<div class="entry-excerpt">'+p.boardContent+'</div>';
+                	 html +=  '<div class="entry-excerpt" style="height: 36px;overflow:hidden;">'+p.boardContent+'</div>';
                 	 html +=  '</div>';
                 	 html +=   '</article>';
 				$(".photoWrapper").append(html);
 			}
 			
 			//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
-			$("#more-btn").val(Number(start) + 5);
+			$("#more-btn").val(Number(start) + 5
+			);
 			var curr = $("#more-btn").attr("currentCount"); //현재값
 			$("#more-btn").attr("currentCount", curr + data.length);//현재값 = 현재값+데이터길이 변경 
 
