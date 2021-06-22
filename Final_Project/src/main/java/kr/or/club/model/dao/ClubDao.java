@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.or.club.model.vo.Board;
+import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -30,13 +30,13 @@ public class ClubDao {
 //	}
 
 	//더보기로 5개씩 출력하기
-	public List<Board> morePhoto(int start, int end, Member m) {
+	public List<ClubBoard> morePhoto(int start, int end, Member m) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("m",m.getMemberNick());
 		
-		List<Board> list = session.selectList("club.phtoMore",map);
+		List<ClubBoard> list = session.selectList("club.phtoMore",map);
 		return list;
 	}
 	
@@ -46,7 +46,7 @@ public class ClubDao {
 	}
 	
 	//게시물 등록
-	public int insertBoard(Board b) {
+	public int insertBoard(ClubBoard b) {
 		return session.update("club.insertPost",b);
 	}
 	
@@ -55,7 +55,7 @@ public class ClubDao {
 		return session.selectOne("club.selectBoardNo");
 	}
 
-	public int insertFile(Board f) {
+	public int insertFile(ClubBoard f) {
 		return session.update("club.insertFile",f);
 	}
 	
