@@ -33,6 +33,12 @@ $(document).ready(function() {
 			    }
 			}              
 	 });
+	 $('.enterBtn').click(function(){
+	 	if($('#summernote').summernote('code') == ''){
+	 		return alert('내용을 적어주세요');
+	 	}
+	 	$('#modalForm').submit();
+	 });
 	 $('#cgNo').change(function(){
 	 	console.log($(this).val());
 	 });
@@ -40,15 +46,20 @@ $(document).ready(function() {
 	 $('.warningBtn').click(function(){
 	 	$('#modalForm').attr('action','/insertDm.do');		//form의 action 경로 설정
 	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
-	 	$('.titleHead').html('사유');							//모달 타이틀 설정
+	 	$('.titleHead').html('경고 사유');							//모달 타이틀 설정
 	 	$('#summernote').attr('name','dmContent');			//요소 name을 설정
 	 	$('[name=receiver]').val(memberNick);				//받는사람 설정
 	 	modalOpen();
 	 });
 	 //제재 버튼 클릭 시
 	 $('.restBtn').click(function(){
-	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
-	 	$('[name=receiver]').val(memberNick);
+	 	$('#modalForm').attr('action','/insertRest.do');		//form의 action 경로 설정
+	 	$('.titleHead').html('제재 사유');							//모달 타이틀 설정
+	 	var restEmail = $(this).parent().parent().children().eq(2).html();		//memberNick 가져옴
+	 	$('[name=restEmail]').val(restEmail);
+	 	$('#summernote').attr('name','restContent');
+	 	modalOpen();
+	 	
 	 	modalOpen();
 	 });
 	 //모달 'x'버튼 클릭 시
@@ -57,7 +68,6 @@ $(document).ready(function() {
 	 });
 	 //전체 선택
 	 $('#allCheck').click(function(){
-	 	$('.titleHead').html('사유');
 	 	var chk = $(this).is(':checked');
 	 	$('[type=checkbox').attr('checked',chk);
 	 });
@@ -121,6 +131,7 @@ function sendFile(file, el) {
 //모달 오픈 함수
 function modalOpen(){
 	$(".modal").css('display','flex');
+	$('.summernote').summernote('code','');
 }
 //모달 클로즈 함수
 function modalClose(){

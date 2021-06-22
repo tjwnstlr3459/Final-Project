@@ -119,6 +119,7 @@
 	<context:component-scan base-package="kr.or.member" /><!-- 관리 -->
 
 	
+	<context:component-scan base-package="kr.or.restriction" /><!-- 이용제한 -->
 	<context:component-scan base-package="kr.or.category" /><!-- 카테고리 -->
 	<context:component-scan base-package="kr.or.board" /><!-- 관리자게시판 -->
 	<context:component-scan base-package="kr.or.directMessage" /><!-- 쪽지 -->

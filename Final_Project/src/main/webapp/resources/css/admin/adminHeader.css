@@ -296,5 +296,5 @@ section::-webkit-scrollbar-track {
 }
 #cgNo{
 	margin-bottom:10px;
-	display:none;
+	/* display:none; */
 }

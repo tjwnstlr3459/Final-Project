@@ -63,7 +63,7 @@
                             </thead>
                             <tbody>
                             	<c:forEach items="${list }" var="m">
-                            	<c:if test="${m.grade gt 1 }">
+                            	<c:if test="${m.grade gt 1 && m.grade != 3}">
 	                                <tr>
 	                                    <td><input type="checkbox" class="checkMember" name="memberNo" value="${m.memberNo }"></td><td>${m.sort }</td><td>${m.email }</td><td>${m.memberNick }</td><td>${m.hobby1 }</td><td>${m.hobby2 }</td><td>${m.hobby3 }</td>
 	                                    <td>
@@ -101,9 +101,9 @@
                 <div class="modal-box">
 					<form id="modalForm" class="frms" action="">
                     <h2 class="titleHead"></h2>
-                    <select name="cgNo" id="cgNo">
+                    <select name="restCg" id="cgNo">
                     <c:forEach items="${cgList }" var="cg">
-                    	<c:if test="${cg.cgKinds eq 100 }">
+                    	<c:if test="${cg.cgKinds eq 110 }">
                     	<option value="${cg.cgNo }">${cg.cgName }</option>
                     	</c:if>
                     </c:forEach>
@@ -112,10 +112,9 @@
                     <div class="btn-box">
 	                   	<input type="hidden" name="sender" value="${sessionScope.m.memberNick }"><!-- 쪽지 보낸 이 : 로그인 된 관리자 닉네임 -->
 	                   	<input type="hidden" name="receiver"><!-- 쪽지 받는이 : 선택된 회원 nick  js로 넣어줄 것 -->    
-	                   	<input type="hidden" name="email"><!-- 이용제한 대상자 : 선택된 회원 이메일 js로 넣어준다. -->
-	                   	
+	                   	<input type="hidden" name="restEmail"><!-- 이용제한 대상자 : 선택된 회원 이메일 js로 넣어준다. -->
 	                   	<div class="btns-box">
-	                        <button class="btns">확인</button>
+	                        <button type="button" class="btns enterBtn">확인</button>
 	                   	</div>                	
                     </div>
                    	</form>

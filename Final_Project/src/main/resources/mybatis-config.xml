@@ -22,6 +22,8 @@
 
 		<!-- 쪽지 -->
 		<typeAlias type="kr.or.directMessage.model.vo.DirectMessage" alias="dm"/>
+		<!-- 이용제한 -->
+		<typeAlias type="kr.or.restriction.model.vo.Restriction" alias="rest"/>
 		
 		<!-- 프리보드 별명 -->
 		<typeAlias type="kr.or.freeBoard.model.vo.FreeBoard" alias="fb"/>
