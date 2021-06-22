@@ -66,8 +66,16 @@ public class AdminController {
 	public String adminNoticeList() {
 		return "admin/adminNoticeList";
 	}
+	//관리자로 등급 업그레이드~
+	@RequestMapping(value="/updateGrade.do")
+	@ResponseBody
+	public String updateGrade(String[] memberNo) {
+		for(int i=0;i<memberNo.length;i++) {
+			System.out.println(memberNo[i]);
+		}
+		return null;
+	}
 	//서머노트에 드래그한 이미지를 서버에 업로드
-	
 	@RequestMapping(value="/imageUpload.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
