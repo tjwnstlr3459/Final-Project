@@ -91,8 +91,8 @@ insert into club_board values(
     to_char(sysdate,'yyyy-mm-dd'))
 </insert>
 
-<!-- 게시글 no를 찾아내기 위한 쿼리 -->
-<select id="selectBoardNo">
+<!-- 최신게시글 no를 찾아내기 위한 쿼리 -->
+<select id="selectBoardNo" resultType="int">
 	select max(board_no) from club_board
 </select>
 

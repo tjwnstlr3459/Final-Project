@@ -45,7 +45,6 @@ public class ClubController {
 	@ResponseBody
 	@RequestMapping(value = "/photoMore.do")
 	public ArrayList<Board> photoMore(@SessionAttribute(required = false) Member m,Model model, int start) {
-		
 		ArrayList<Board> list = service.morePhoto(start,m);
 		model.addAttribute("listMore",list);
 		return list;
@@ -80,7 +79,7 @@ public class ClubController {
           //getRealPath() -> webapp 폴더
           String savePath = request.getSession()
         		  					.getServletContext()
-        		  					.getRealPath("/resources/fileupload/post/");
+        		  					.getRealPath("/resources/fileupload/postImg/");
           
           //파일이 1~여러개라 for문으로 묶어준다
           for(MultipartFile file : files) {
@@ -142,8 +141,7 @@ public class ClubController {
       }else {
     	  model.addAttribute("msg","등록실패");
       }
-      model.addAttribute("loc","/myClub.jsp");
-      
+      model.addAttribute("loc","/myClub.do");
       
       return "common/msg";
    }
