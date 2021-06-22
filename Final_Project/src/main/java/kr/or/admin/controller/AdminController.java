@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -67,11 +68,11 @@ public class AdminController {
 		return "admin/adminNoticeList";
 	}
 	//관리자로 등급 업그레이드~
-	@RequestMapping(value="/updateGrade.do")
+	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateGrade(String[] memberNo) {
-		for(int i=0;i<memberNo.length;i++) {
-			System.out.println(memberNo[i]);
+	public String updateGrade(@RequestParam(value="memberNo[]")List<String> memberNo) {
+		for(String no : memberNo) {
+			System.out.println(no);
 		}
 		return null;
 	}
