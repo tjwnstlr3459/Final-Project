@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>피드게시판</title>
 <style>
-/* container {
+container {
 	padding-top: 100px;
 	margin: 0 auto;
 	text-align: center;
@@ -23,6 +23,7 @@
   }
 #feed_info:hover{
 	cursor:pointer;
+	
   }
 .posting>img {
 	width: 700px;
@@ -36,10 +37,10 @@
 }
 
 .posting {
-	background-color: #ccc;
+	background-color: #f0884c;
 	text-align: center;
 	margin: 0 auto 40px;
-	border:1px solid #ccc;
+	border:3px solid #ccc;
 	width:800px;
 }
 
@@ -47,47 +48,19 @@
 	display:block;
 	text-align: center;
 	margin-right:200px;
+	width:100%;
+	border: 2px solid #ccc;
 }
 
 .etc>button {
 	background-color: transparent;
 	border: none;
-	font-size: 30px;
-	margin: 20px;
+	font-size: 25px;
+	
 }
 .etc>button:hover{
 	cursor:pointer;
 }
- */
-#more-btn{
-		margin-top : 100px;
-	}
-	.photoWrapper{
-		padding-top : 20px;
-		clear : right;
-		display : flex;
-		justify-content : space-around;
-		flex-wrap : wrap;
-	}
-	.photo{
-		border : 1px solid #ccc;
-		margin-top : 30px;
-		width : 18%;
-		
-		height : 122px;
-		overflow : hidden;
-		transition-duration : 1s;
-	}
-	.photo>img{
-		width : 100%;
-		height : 100px;
-	}
-	.photo>p{
-		text-align : center;
-	}
-	.photo>img:hover{
-		transform : scale(1.4);
-	}
 </style>
 
 
@@ -100,35 +73,9 @@
 	<button id="feed_info" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
-	<!-- <div class="container">
-		<div class="posting">
-			<img src="/resources/main/images/intro_1.jpg">
-			<p class="etc">
-				<button>
-					<i class="far fa-heart"></i>
-				</button>
-				<button>
-					<i class="far fa-circle"></i>
-				</button>
-			</p>
-			<p class="comments"></p>
-		</div>
-		<div class="posting">
-			<img src="/resources/main/images/intro_2.jpg">
-			<p class="etc">
-				<button>
-					<i class="far fa-heart"></i>
-				</button>
-				<button>
-					<i class="far fa-circle"></i>
-				</button>
-			</p>
-			<p class="comments"></p>
-		</div>
-	</div> -->
-			<div class="photoWrapper">
-			</div>
+	<div class="container">
 			<button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button>
+	</div>
 	<script>
  	 $(function(){
 		more(1);		//처음에 more함수에 1을주면서 실행할거다 온로드함수기 때문에
@@ -145,10 +92,13 @@
 					for(var i = 0; i<data.length; i++){
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
-						html += "<div class='photo'>";			//여기다가 div클ㄹ스
+						html += "<div class='posting'>";			//여기다가 div클ㄹ스 */
 						html += "<img src='/resources/freeBoardUpload/"+fb.FILEPATH+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
-						html += "<p class='caption'>"+fb.FB_CONTENT+"</p></div>";
-						$(".photoWrapper").append(html);								
+						html += "<p class='fbContent'>"+fb.FB_CONTENT+"</p>";
+						html += "<p class='etc'>"+fb.FB_GOOD;
+						html += fb.FB_VIEWS+"<button><i class='far fa-heart'></i></button><button><i class='far fa-circle'></i></button></p>";
+						html += "<p class='comments'></p></div>";
+						$(".container").append(html);								
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
