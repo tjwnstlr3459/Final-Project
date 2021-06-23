@@ -20,7 +20,7 @@
 		<!-- 게시판네비 -->
 		<typeAlias type="kr.or.board.model.vo.BoardPageData" alias="bpd"/>
 		<!-- 모임상세페이지 -->
-		<typeAlias type="kr.or.newclub.model.vo.newClub" alias="n"/>    
+		<typeAlias type="kr.or.newclub.model.vo.clubBoard" alias="n"/>    
 		<!-- 쪽지 -->
 		<typeAlias type="kr.or.directMessage.model.vo.DirectMessage" alias="dm"/>
 		<!-- 이용제한 -->
