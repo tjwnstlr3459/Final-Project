@@ -73,8 +73,13 @@
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
                                         </c:otherwise>
                                         </c:choose> 
+<<<<<<< HEAD
 										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">CLUB VIEW</a></li> 
                                         <li><a onclick="location.href='/boardList.do?reqPage=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
+=======
+										<li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">create club</a></li> 
+                                        <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li>                                                                         
+>>>>>>> refs/heads/final
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
