@@ -108,10 +108,10 @@
 	<task:annotation-driven/>
 	
 	 <!-- 웹소켓 전체채팅용 설정 -->
-	<!-- <beans:bean id="allMemberChat" class="kr.or.member.model.service.AllMemberChat"/>-->
-	<!-- <websocket:handlers>
+	<beans:bean id="allMemberChat" class="kr.or.newclub.model.service.AllMemberChat"/>
+	<websocket:handlers>
 		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
-	</websocket:handlers>  -->
+	</websocket:handlers>  
 	
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.club" /><!-- 마이클럽 -->
