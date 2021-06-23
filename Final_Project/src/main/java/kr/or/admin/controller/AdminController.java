@@ -31,10 +31,8 @@ import kr.or.member.model.service.MemberService;
 
 @Controller
 public class AdminController {
-	//dasdf
 	@Autowired
 	private DirectMessageService dmService;
-	private MemberService mService;
 	
 	//관리자 페이지 이동
 	@RequestMapping(value="/adminMain.do")
@@ -60,15 +58,10 @@ public class AdminController {
 		return "admin/adminClubList";
 	}
 	//관리자 제재목록 이동
-	@RequestMapping(value="/adminRestrictionList.do")
-	public String adminRestrictionList() {
-		return "admin/adminRestrictionList";
-	}
-	//관리자 공지목록 이동
-	@RequestMapping(value="/adminNoticeList.do")
-	public String adminNoticeList() {
-		return "admin/adminNoticeList";
-	}
+//	@RequestMapping(value="/adminRestrictionList.do")
+//	public String adminRestrictionList() {
+//		return "admin/adminRestrictionList";
+//	}
 	//서머노트에 드래그한 이미지를 서버에 업로드
 	@RequestMapping(value="/imageUpload.do", produces = "application/json; charset=utf8")
 	@ResponseBody

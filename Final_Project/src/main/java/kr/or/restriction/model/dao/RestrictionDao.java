@@ -1,6 +1,7 @@
 package kr.or.restriction.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,5 +30,13 @@ public class RestrictionDao {
 
 	public int updateEndRestMember() {
 		return session.update("member.updateEndRestMember");
+	}
+
+	public List selectAllRest(HashMap<String, Integer> se) {
+		return session.selectList("restriction.selectAllRest",se);
+	}
+
+	public int restCount() {
+		return session.selectOne("restriction.restCount");
 	}
 }

@@ -18,4 +18,23 @@
 	<delete id="deleteRestEndRest">
 		delete from restriction where rest_no in((select rest_no from restriction where end_date &lt; to_char(sysdate,'yyyy-mm-dd')))
 	</delete>
+	<!-- 이용제한 테이블 전체 가져옴 -->
+	<select id="selectAllRest" parameterType="map" resultType="rest">
+		select * from
+		    (select rownum as sort, rest.* from
+		        (select
+		            rest_no as restNo,
+		            rest_email as restEmail,
+		            rest_cg as restCg,
+		            rest_content as restContent,
+		            start_date as startDate,
+		            end_date as endDate,
+		            (select cg_name from category where cg_no = rest_cg) as cgName
+	        from restriction join category on(rest_no = cg_no) order by rest_no desc)rest)
+		where sort between #{start} and #{end}
+	</select>
+	<!-- 이용제한 테이블 row 갯수 -->
+	<select id="restCount" parameterType="int" resultType="int">
+		select count(*) from restriction
+	</select>
 </mapper>

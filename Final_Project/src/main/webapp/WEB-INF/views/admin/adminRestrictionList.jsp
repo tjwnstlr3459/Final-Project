@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,61 +34,17 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach items="${list }" var="rest">
 								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
+									<td>${rest.restNo }</td><td>${rest.restEmail }</td><td>${rest.cgName }</td><td><span id="ofHidden">${rest.restContent }</span></td><td>${rest.startDate }</td><td>${rest.endDate }</td><td><button>해제</button></td>
 								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
-								<tr>
-									<td>no</td><td>user1@gmail.com</td><td>욕설/폭언</td><td><span id="ofHidden">ㅏㅁㄴ;ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㅐㅇ라ㅓㅁㄴ;ㅣㅏㅇ럼니아럼니아럼ㄴ;ㅇ라ㅓㅁㄴㅇ;ㅣ라ㅓㅁ니;아럼;ㅣㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇ낭러ㅣㅁ나어리ㅏㅁㄴ어리</span></td><td>2021-06-01</td><td>2021-07-01</td><td><button>해제</button></td>
-								</tr>
+								</c:forEach>
 							</tbody>
+							<tfoot>
+							<tr>
+								<th colspan="7">${navigation }</th>
+							</tr>
+							</tfoot>
 						</table>
 					</div>
 				</div>

@@ -19,7 +19,6 @@ import kr.or.member.model.vo.MemberPageData;
 public class MemberService {
 	@Autowired
 	private MemberDao dao;
-	private CategoryDao cgDao;
 
 	public Member selectOneMember(Member m) {
 		Member member = dao.selectOneMember(m);

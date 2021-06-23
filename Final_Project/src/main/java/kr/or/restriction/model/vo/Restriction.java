@@ -10,4 +10,6 @@ public class Restriction {
 	private String restContent;
 	private String startDate;
 	private String endDate;
+	private String cgName;
+	private int sort;
 }
