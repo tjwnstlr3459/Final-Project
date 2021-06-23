@@ -46,7 +46,6 @@ public class FreeBoardController {
 		return "freeBoard/freeBoardList";
 	}
 
-	@Transactional
 	@RequestMapping(value = "/insertFreeBoardFrm.do")
 	public String insertFreeBoardFrm() {
 		return "freeBoard/freeBoardFrm";
@@ -58,7 +57,7 @@ public class FreeBoardController {
 		// ArrayList<FreeBoard> fileList = new ArrayList<FreeBoard>();
 		if (files.isEmpty()) {
 			model.addAttribute("msg", "이미지를 등록하세요!");
-			model.addAttribute("loc", "/freeBoardList.do");
+			model.addAttribute("loc", "/insertFreeBoardFrm.do");
 			return "common/msg";
 		} else {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/");
@@ -107,8 +106,7 @@ public class FreeBoardController {
 			}
 			int result = service.insertFreeBoard(fb);
 			if (result > 0) {
-				model.addAttribute("fb", fb);
-				return "freeBoard/freeBoardList";
+				model.addAttribute("msg", "피드등록성공!");
 			} else {
 				model.addAttribute("msg", "피드등록실패!");
 			}

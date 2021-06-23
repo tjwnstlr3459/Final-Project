@@ -54,6 +54,8 @@
 		<div class="making_feed_wrap">
 			<button type="submit" class="btn btn-outline-light"
 				style="margin-top: 30px;">MAKE</button>
+				<button type="reset" class="btn btn-outline-light"
+				style="margin-top: 30px;" onclick="window.location.reload();">RESET</button>
 		</div>
 	</form>
 	<!--    <script type="text/javascript" src="dapi.kakao.com/v2/maps/sdk.js?appkey=29f578c657765b5ccc3a6c44ab486de0&libraries=services"></script>
@@ -104,7 +106,7 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
 				reader.onload=function(e){
 					$("#img-view").attr("src",e.target.result);		
 				}
-			}else{			
+			}else{
 				$("#img-view").attr("src","");
 			}
 		}
