@@ -14,6 +14,31 @@
 		BOARD_VIEWS as boardViews,
 		BOARD_GOOD as boardGood,
 		ENROLL_DATE as enrollDate
-		from CLUB_BOARD WHERE CLUB_N0=1
+		from CLUB_BOARD
 </select>
+<!-- 전체 게시물 확인 -->
+<select id="totalCount" resultType="int"  parameterType="int">
+	SELECT
+		count(*)
+		from CLUB_BOARD WHERE CLUB_NO=#{clubNo}
+</select>
+<select id="boardMore" parameterType="map" resultType="b">
+	SELECT 
+   BOARD_NO as boardNo,
+   CLUB_NO as clubNo,
+   BOARD_CG as boardCg,
+   BOARD_WRITER as boardWriter,
+   BOARD_TITLE as boardTitle,
+   BOARD_CONTENT as boardContent,
+   FILENAME,
+   FILEPATH,
+   BOARD_VIEWS as boardViews,
+   BOARD_GOOD as boardGood,
+   ENROLL_DATE as enrollDate
+FROM
+(SELECT ROWNUM AS RNUM, N.*FROM
+(SELECT * FROM club_board ORDER BY CLUB_NO DESC)N) WHERE CLUB_NO=#{clubNo} AND RNUM BETWEEN #{start} AND #{end}
+</select>
+		
+		
 </mapper>

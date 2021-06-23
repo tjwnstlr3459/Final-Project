@@ -72,7 +72,7 @@
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">Join</a></li>
                                         </c:otherwise>
                                         </c:choose> 
-										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">create club</a></li> 
+										<li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">create club</a></li> 
                                         <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li>                                                                         
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
