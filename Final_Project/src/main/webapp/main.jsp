@@ -58,22 +58,23 @@
                                         <c:when test="${!empty sessionScope.m }">
                                         <c:choose>
                                         	<c:when test="${sessionScope.m.grade lt 2 }">
-											<li><a onclick="location.href='/adminMain.do';" style="cursor: pointer;">관리자 페이지</a></li>
-                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">로그아웃</a></li>
+											<li><a onclick="location.href='/adminMain.do';" style="cursor: pointer;">ADMIN</a></li>
+                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">LOGOUT</a></li>
 											</c:when>
 											<c:otherwise>
-                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">마이클럽</a></li>
-                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">로그아웃</a></li>
+                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">MY CLUB</a></li>
+                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">LOGOUT</a></li>
+                                        	<li><a onclick="location.href='#';" style="cursor: pointer;">CREATE CLUB</a></li>
                                         	</c:otherwise>
                                         </c:choose>
                                         </c:when>
                                         <c:otherwise>
-                                        <li><a onclick="location.href='/loginFrm.do';" style="cursor: pointer;">Login</a></li>
-                                        <li><a onclick="location.href='/join.do';" style="cursor: pointer;">Join</a></li>
+                                        <li><a onclick="location.href='/loginFrm.do';" style="cursor: pointer;">LOGIN</a></li>
+                                        <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
                                         </c:otherwise>
                                         </c:choose> 
-										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">create club</a></li> 
-                                        <li><a onclick="location.href='/boardList.do';" style="cursor: pointer;">Board List</a></li>                                                                         
+										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">CLUB VIEW</a></li> 
+                                        <li><a onclick="location.href='/boardList.do';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
@@ -105,7 +106,7 @@
                                 <div class="slider-caption visible-md visible-lg">
                                     <h2>'너나들이'</h2>
                                     <p>당신의 취향이 이곳에 모두 있습니다</p>
-                                    <a href="/categoryList.do" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
+                                    <a href="#clubCategory" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
                                 </div>
                             </li>
                             <li>

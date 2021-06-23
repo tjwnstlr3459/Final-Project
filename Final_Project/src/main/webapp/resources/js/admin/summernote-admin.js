@@ -101,10 +101,6 @@ $(document).ready(function() {
 	 });
 	 //선택된 회원 쪽지 발송
 	 $('#selectMessageBtn').click(function(){
-	 	var chkValue = $('.checks:checked');
-	 	for(var i=0;i<chkValue.length;i++){
-	 		console.log(chkValue.eq(i).val());	 	
-	 	}
 	 	$('[name=type]').val('multi');
 	 	$('#modalForm').attr('action','/insertDm.do');			//form의 action 경로 설정
 	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
@@ -114,6 +110,7 @@ $(document).ready(function() {
 	 	$('[name=receiver]').val(memberNick);					//받는사람 설정
 	 	modalOpen();
 	 });
+	 //확인 버튼 클릭 시 값에 따라 다르게 동작할 이벤트
 	 $('.enterBtn').click(function(){
 	 	if($('#summernote').summernote('code') == ''){
 	 		return alert('내용을 적어주세요');
@@ -122,7 +119,15 @@ $(document).ready(function() {
 	 	if(checkType == 'one'){
 		 	$('#modalForm').submit();
 	 	}else if(checkType == 'multi'){
+	 		if($('.checks:checked').length == 0) return alert('선택한 회원이 없습니다. 회원을 선택하고 다시 시도해주세요');
 	 		insertMultiDm();
+	 	}
+	 });
+	 //삭제 버튼 클릭 이벤트 함수
+	 $('.deleteBtn').click(function(){
+	 	if(confirm('정말 삭제하시겠습니까?')){
+		 	var memberNo = $(this).parent().parent().find('input').val();
+		 	deleteMember(memberNo);	 	
 	 	}
 	 });
 });
@@ -170,8 +175,27 @@ function insertMultiDm(){
         type        :   "post",
  		data : {sender : sender, dmContent : dmContent, memberNo : arr},
  		success : function(data){
- 			
+ 			if(data == 1){
+ 				alert('메시지 전송이 완료되었습니다');
+ 			}else{
+ 				alert('메시지 전송 오류! 다시 시도해주세요');
+ 			}
+ 			window.location.reload();
  		}
 	});
- 	
+}
+function deleteMember(memberNo){
+	$.ajax({
+		url : "/deleteMember.do",
+		data : {memberNo : memberNo},
+		type : "post",
+		success : function(data){
+			if(data == 1){
+				alert('처리되었습니다');
+			}else{
+				alert('삭제 오류! 다시 시도해주세요');
+			}
+			window.location.reload();
+		}
+	});
 }

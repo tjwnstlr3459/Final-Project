@@ -1,5 +1,9 @@
 package kr.or.restriction.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,5 +21,13 @@ public class RestrictionDao {
 
 	public int updateMemberGrade(Restriction rest) {
 		return session.update("restriction.updateMemberGrade",rest);
+	}
+
+	public int deleteRestEndDate() {
+		return session.delete("restriction.deleteRestEndRest");
+	}
+
+	public int updateEndRestMember() {
+		return session.update("member.updateEndRestMember");
 	}
 }
