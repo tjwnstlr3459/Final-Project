@@ -3,7 +3,7 @@ package kr.or.newclub.model.vo;
 import lombok.Data;
 
 @Data
-public class newClub {
+public class clubBoard {
 	private int boardNo;
 	private int clubNo;
 	private int boardCG;

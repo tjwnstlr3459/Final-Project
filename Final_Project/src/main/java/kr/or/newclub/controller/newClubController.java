@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
 
-import kr.or.club.model.service.ClubService;
-import kr.or.club.model.vo.Board;
+import kr.or.board.model.vo.Board;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
 
