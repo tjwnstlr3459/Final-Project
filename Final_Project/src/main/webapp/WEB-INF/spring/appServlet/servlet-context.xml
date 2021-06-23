@@ -107,11 +107,11 @@
 	<!-- 스케쥴링 어노테이션 사용 -->
 	<task:annotation-driven/>
 	
-	<!-- 웹소켓 전체채팅용 설정 -->
-	<!-- <beans:bean id="allMemberChat" class="kr.or.member.model.service.AllMemberChat"/>
-	<websocket:handlers>
+	 <!-- 웹소켓 전체채팅용 설정 -->
+	<!-- <beans:bean id="allMemberChat" class="kr.or.member.model.service.AllMemberChat"/>-->
+	<!-- <websocket:handlers>
 		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
-	</websocket:handlers> -->
+	</websocket:handlers>  -->
 	
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.club" /><!-- 마이클럽 -->
@@ -119,6 +119,7 @@
 	<context:component-scan base-package="kr.or.member" /><!-- 관리 -->
 
 	
+	<context:component-scan base-package="kr.or.schedul" /><!-- sts 스케쥴 컨트롤러 -->
 	<context:component-scan base-package="kr.or.restriction" /><!-- 이용제한 -->
 	<context:component-scan base-package="kr.or.category" /><!-- 카테고리 -->
 	<context:component-scan base-package="kr.or.board" /><!-- 관리자게시판 -->

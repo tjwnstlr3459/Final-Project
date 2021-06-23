@@ -93,4 +93,8 @@ public class MemberService {
 	public int changeLastDate(Member m) {
 		return dao.updateLastDate(m);		
 	}
+
+	public int deleteMember(String memberNo) {
+		return dao.deleteMemer(memberNo);
+	}
 }

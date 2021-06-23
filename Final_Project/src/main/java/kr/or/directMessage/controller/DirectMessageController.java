@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
@@ -25,5 +28,20 @@ public class DirectMessageController {
 		}
 		model.addAttribute("loc","/adminMain.do");
 		return "common/msg";
+	}
+	@RequestMapping(value="/insertMultiDm",method=RequestMethod.POST)
+	@ResponseBody
+	public String insertMultiDm(@RequestParam(value="memberNo[]")String[] memberNo, DirectMessage dm ) {
+		System.out.println(dm.getSender());
+		System.out.println(dm.getReceiver());
+		System.out.println("==================");
+		for(int i=0;i<memberNo.length;i++) {
+			System.out.println(memberNo[i]);
+		}
+		int result = service.insertMultiDm(dm,memberNo);
+		if(result == memberNo.length) {
+			return "1";
+		}
+		return "0";
 	}
 }

@@ -33,17 +33,12 @@ $(document).ready(function() {
 			    }
 			}              
 	 });
-	 $('.enterBtn').click(function(){
-	 	if($('#summernote').summernote('code') == ''){
-	 		return alert('내용을 적어주세요');
-	 	}
-	 	$('#modalForm').submit();
-	 });
 	 $('#cgNo').change(function(){
 	 	console.log($(this).val());
 	 });
 	 //경고 버튼 클릭 시 
 	 $('.warningBtn').click(function(){
+	 	$('[name=type]').val('one');
 	 	$('#modalForm').attr('action','/insertDm.do');		//form의 action 경로 설정
 	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
 	 	$('.titleHead').html('경고 사유');							//모달 타이틀 설정
@@ -53,13 +48,13 @@ $(document).ready(function() {
 	 });
 	 //제재 버튼 클릭 시
 	 $('.restBtn').click(function(){
+		$('[name=type]').val('one');
+	 	$('#cgNo').css('display','block');						//select 보이기 설정
 	 	$('#modalForm').attr('action','/insertRest.do');		//form의 action 경로 설정
 	 	$('.titleHead').html('제재 사유');							//모달 타이틀 설정
 	 	var restEmail = $(this).parent().parent().children().eq(2).html();		//memberNick 가져옴
-	 	$('[name=restEmail]').val(restEmail);
-	 	$('#summernote').attr('name','restContent');
-	 	modalOpen();
-	 	
+	 	$('[name=restEmail]').val(restEmail);					//받는 회원 이메일 설정
+	 	$('#summernote').attr('name','restContent');			//요소 name 설정
 	 	modalOpen();
 	 });
 	 //모달 'x'버튼 클릭 시
@@ -78,7 +73,7 @@ $(document).ready(function() {
 	 //관리자 등록 클릭 시
 	 $('#upgradeBtn').click(function(){
 	 	var arr = new Array();
-	 	$('.checkMember:checked').each(function(i){
+	 	$('.checks:checked').each(function(i){
 	 		arr.push($(this).val());
 	 	});
 	 	var obj = {
@@ -104,11 +99,35 @@ $(document).ready(function() {
 		 }
 	 	
 	 });
-	 //선택된 회원 checkbox
+	 //선택된 회원 쪽지 발송
 	 $('#selectMessageBtn').click(function(){
-	 	var chkValue = $('.checkMember:checked');
-	 	for(var i=0;i<chkValue.length;i++){
-	 		console.log(chkValue.eq(i).val());	 	
+	 	$('[name=type]').val('multi');
+	 	$('#modalForm').attr('action','/insertDm.do');			//form의 action 경로 설정
+	 	var memberNick = $(this).parent().parent().children().eq(3).html();		//memberNick 가져옴
+	 	console.log(memberNick);
+	 	$('.titleHead').html('메시지');							//모달 타이틀 설정
+	 	$('#summernote').attr('name','dmContent');				//요소 name을 설정
+	 	$('[name=receiver]').val(memberNick);					//받는사람 설정
+	 	modalOpen();
+	 });
+	 //확인 버튼 클릭 시 값에 따라 다르게 동작할 이벤트
+	 $('.enterBtn').click(function(){
+	 	if($('#summernote').summernote('code') == ''){
+	 		return alert('내용을 적어주세요');
+	 	}
+	 	var checkType = $('[name=type]').val();
+	 	if(checkType == 'one'){
+		 	$('#modalForm').submit();
+	 	}else if(checkType == 'multi'){
+	 		if($('.checks:checked').length == 0) return alert('선택한 회원이 없습니다. 회원을 선택하고 다시 시도해주세요');
+	 		insertMultiDm();
+	 	}
+	 });
+	 //삭제 버튼 클릭 이벤트 함수
+	 $('.deleteBtn').click(function(){
+	 	if(confirm('정말 삭제하시겠습니까?')){
+		 	var memberNo = $(this).parent().parent().find('input').val();
+		 	deleteMember(memberNo);	 	
 	 	}
 	 });
 });
@@ -136,5 +155,47 @@ function modalOpen(){
 //모달 클로즈 함수
 function modalClose(){
 	$('.modal').css('display','none');
+	$('#cgNo').css('display','none');
 	$('.summernote').summernote('code','');
+}
+//다중 선택된 회원 쪽지 보내기
+function insertMultiDm(){
+	var checkMemberNo = $('.checks:checked');
+	var arr = new Array();										//선택된 회원 번호 : 받는이
+ 	$('.checks:checked').each(function(i){
+ 		arr.push($(this).val());
+ 	});
+ 	var sender = $('[name=sender]').val();						//보낸이
+ 	var dmContent = $('#summernote').summernote('code');		//내용
+	
+	$.ajax({
+		url : "/insertMultiDm.do",
+		dataType    :   "json",
+        contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+        type        :   "post",
+ 		data : {sender : sender, dmContent : dmContent, memberNo : arr},
+ 		success : function(data){
+ 			if(data == 1){
+ 				alert('메시지 전송이 완료되었습니다');
+ 			}else{
+ 				alert('메시지 전송 오류! 다시 시도해주세요');
+ 			}
+ 			window.location.reload();
+ 		}
+	});
+}
+function deleteMember(memberNo){
+	$.ajax({
+		url : "/deleteMember.do",
+		data : {memberNo : memberNo},
+		type : "post",
+		success : function(data){
+			if(data == 1){
+				alert('처리되었습니다');
+			}else{
+				alert('삭제 오류! 다시 시도해주세요');
+			}
+			window.location.reload();
+		}
+	});
 }

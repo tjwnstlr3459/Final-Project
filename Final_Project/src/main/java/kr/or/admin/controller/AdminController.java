@@ -16,11 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 
 import com.google.gson.JsonObject;
 
@@ -32,7 +31,7 @@ import kr.or.member.model.service.MemberService;
 
 @Controller
 public class AdminController {
-	
+	//dasdf
 	@Autowired
 	private DirectMessageService dmService;
 	private MemberService mService;
@@ -40,6 +39,7 @@ public class AdminController {
 	//관리자 페이지 이동
 	@RequestMapping(value="/adminMain.do")
 	public String adminMain(Model model) {
+		//spspsp
 		ArrayList<DirectMessage> list = dmService.selectAllDm();
 		model.addAttribute("list",list);
 		return "admin/adminMain";

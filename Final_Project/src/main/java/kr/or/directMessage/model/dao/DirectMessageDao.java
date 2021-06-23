@@ -1,7 +1,9 @@
 package kr.or.directMessage.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,19 @@ public class DirectMessageDao {
 
 	public int updateWarningCount(DirectMessage dm) {
 		return session.update("directMessage.updateWarningCount",dm);
+	}
+
+	public int insertMultiDm(DirectMessage dm, String[] memberNo) {
+		int count = 0;
+		for(int i=0;i<memberNo.length;i++) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("dm", dm);
+			map.put("memberNo", memberNo[i]);
+			count += session.insert("directMessage.insertMultiDm",map);
+		}
+		//session.insert("directMessage.insertMultiDm",map)
+		System.out.println("insert : " +count);
+		return count;
 	}
 
 }

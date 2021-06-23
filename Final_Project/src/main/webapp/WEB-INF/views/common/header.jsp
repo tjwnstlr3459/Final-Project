@@ -92,25 +92,34 @@ body {
 			<i class="fas fa-people-arrows"></i> <a href="/main.jsp">NUNADRI</a>
 		</div>
 		<ul class="navbar_menu">
-			<li><a href="#">CLUB CATEGORY</a></li>
-			<li><a href="#">CLUB FEED</a></li>
-
+			<li><a href="/main.jsp#clubCategory">CLUB CATEGORY</a></li>
+			<li><a href="/freeBoardList.do">CLUB FEED</a></li>
+			<c:choose>
+			<c:when test="${!empty sessionScope.m }">
+			<c:choose>
+				<c:when test="${sessionScope.m.grade lt 2 }">
 			<li><a href="/adminMain.do">ADMIN</a></li>
 			<li><a href="/logout.do">LOGOUT</a></li>
-
+				</c:when>
+				<c:otherwise>
 			<li><a href="/myClub.do">MY CLUB</a></li>
 			<li><a href="/logout.do">LOGOUT</a></li>
-
+			<li><a href="#">CREATE CLUB</a></li>
+				</c:otherwise>
+			</c:choose>
+			</c:when>
+			<c:otherwise>
 			<li><a href="/loginFrm.do">LOGIN</a></li>
 			<li><a href="/join.do">JOIN</a></li>
-
-			<li><a href="/newClub.do">CREATE CLUB</a></li>
-			<li><a href="/boardList.do">BOARD LIST</a></li>
+			</c:otherwise>
+			</c:choose>
+			<li><a href="/newClub.do">CLUB VIEW</a></li>
+			<li><a href="/boardList.do?reqPage=1">BOARD LIST</a></li>
 
 		</ul>
 		<ul class="navbar_icons">
-			<li><i class="fab fa-facebook-f"></i></li>
-			<li><i class="fab fa-instagram"></i></li>
+			<li onclick="window.open('https://www.facebook.com/%EB%84%88%EB%82%98%EB%93%A4%EC%9D%B4-102411682096038')" style="cursor:pointer;"><i class="fab fa-facebook-f"></i></li>
+			<li onclick="window.open('https://www.instagram.com/nunadri_/')" style="cursor:pointer;"> <i class="fab fa-instagram"></i></li>
 		</ul>
 	</nav>
 </body>

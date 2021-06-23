@@ -234,4 +234,14 @@ public class MemberController {
 			return "0";
 		}
 	}
+	//클릭된 회원 삭제!
+	@RequestMapping(value="/deleteMember.do")
+	@ResponseBody
+	public String deleteMember(String memberNo) {
+		int result = service.deleteMember(memberNo);
+		if(result >0) {
+			return "1";
+		}
+		return "0";
+	}
 }

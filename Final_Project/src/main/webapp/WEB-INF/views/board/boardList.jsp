@@ -16,80 +16,17 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <!-- 페이지네비css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="/resources/css/board/boardList.css">
   </head>
-  <style>
-    div {
-      border: 0px solid black;
-    }
-    body{
-        margin: 0px;
-        padding: 0px;
-    }
-    .wrap {
-      width: 1000px;
-      height: 1000px;
-      margin: 0 auto;
-      /* background-color: #f5f5f5; */
-    }
-    .topContent {
-      width: 90%;
-    height: 300px;
-    margin: 0 auto;
-    }
-    .topContent > div {
-      float: left;
-      width: 50%;
-      height: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-    .topConImg img {
-      width: 100%;
-      padding: 10px;
-    }
-    .topConMent {
-      height: 80%;
-      font-weight: bold;
-      text-align: center;
-      font-size: 13px;
-    }
-    .nunaMent{
-        line-height: 25px;
-        border: 0px;
-       
-    }
-    .checkBtn {
-      width: 100px;
-      height: 30px;
-      background-color: rgba(82, 193, 252, 0.844);
-      border: 0px;
-      border-radius: 5px;
-      font-weight: bold;
-      color: white;
-      font-size: 13px;
-    }
-    .checkBtn:hover {
-      background-color: rgba(89, 195, 252, 0.741);
-      cursor: pointer;
-    }
-
-    .bottomContent {
-      height: 600px;
-      overflow: hidden;
-    }
-    .bottomMent {
-      height: 50px;
-	padding-left:50px;
-    }
-    .bottomList{
-      width: 900px; 
-      margin: 0 auto;
-    }
-    .listBar{
-        background-color: rgba(0, 0, 0, 0.85);
-        color: white;
-    }
-  </style>
+  
   <body>
   <%@include file="/WEB-INF/views/common/header.jsp"%>
     <!-- 헤더 -->
@@ -100,7 +37,7 @@
           <div>
             <div><h1 style="text-align: center">저희 Nunadri는</h1></div>
             <div class="topConMent">
-              <pre class="nunaMent" style=" background-color: transparent;">
+              <pre class="nunaMent" style=" background-color: transparent; padding: 0px">
 보다 좋은 활동을 추구하기에,
 회원님들과의 만남에 좋은영향을 줄수있도록
 매번 노력에 임하겠습니다.
@@ -119,7 +56,7 @@
 
           <div class="bottomList">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-hover">
                 <thead>
                   <tr class="listBar">
                     <th>No.</th>
@@ -132,8 +69,8 @@
                 <tbody>
                 <c:forEach items="${boardList }" var="l" varStatus="i">
                   <tr>
-                    <td>${i.count }</td>
-                    <td>${l.abTitle }</td>
+                    <td>${l.abNo }</td>
+                    <td><a href="/boardOne.do?abNo=${l.abNo}">${l.abTitle }</a></td>
                     <td>${l.abWriter }</td>
                     <td>${l.enrollDate }</td>
                     <td>${i.count }</td>
@@ -142,6 +79,17 @@
                 </tbody>
               </table>
             </div>
+            <div id="pagination" style="margin-left: 350px;">${pageNavi }</div>	
+          <!-- <ul class="pagination">
+		    <li><a href="#">«</a></li>
+		    <li><a href="#">1</a></li>
+		    <li><a href="#">2</a></li>
+		    <li class="disabled"><a href="#">3</a></li>
+		    <li><a href="#">4</a></li>
+		    <li><a href="#">5</a></li>
+		    <li class="active"><a href="#">6</a></li>
+		    <li><a href="#">»</a></li>
+		  </ul> -->
           </div><!--bottomList end-->
 
           </div>
