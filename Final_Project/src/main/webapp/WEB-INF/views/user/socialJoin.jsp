@@ -86,7 +86,8 @@
                         <input type="file" name="propimg">
                         <span class="inputMsg"></span>
                     </div>
-
+					<input type="hidden" name="joinMethod" value="2">
+					
                     <input type="submit" value="회원 가입" onclick="return joinCheck()">
 
             </form>     

@@ -79,6 +79,14 @@
 	    <version>2.4</version>
 	</dependency>
 	
+	<!--  commons-email -->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-email</artifactId>
+	    <version>1.4</version>
+	</dependency>
+	
+	
 	<!-- lombok -->
 	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 	<dependency>

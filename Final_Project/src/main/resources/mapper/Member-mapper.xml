@@ -19,7 +19,8 @@
 			   grade,
 			   enroll_date as enrollDate,
 			   last_date as lastDate,
-			   age
+			   age,
+			   join_method as joinMethod
 		from member 
 		<if test="email != null">
 			where email = #{email} 
@@ -33,7 +34,7 @@
 	</select>
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="m">
-		insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 2, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age})
+		insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 2, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age}, #{joinMethod})
 	</insert>
 	<!-- 전체회원 select -->
 	<select id="selectAllMember" parameterType="map" resultType="m">

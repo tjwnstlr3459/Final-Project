@@ -47,7 +47,7 @@
   			data: {email:email},
   			type: "post",
   			success: function(data) {
-  				if(data == "1") {
+  				if(data == "1" || data == "2") {
   					alert("이미 가입된 아이디입니다. 로그인 화면으로 이동합니다.")
   					form.action = "/login.do";
   					$("#email").val(email);
