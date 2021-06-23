@@ -55,8 +55,8 @@
     }
 
     .bottomContent {
-      height: 600px;
-      overflow: hidden;
+      /* height: 600px; */
+      /* overflow: hidden; */
     }
     .bottomMent {
       height: 50px;

@@ -17,6 +17,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
+    <!-- 페이지네비css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
     
     <link rel="stylesheet" href="/resources/css/board/boardList.css">
   </head>
@@ -50,7 +56,7 @@
 
           <div class="bottomList">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-hover">
                 <thead>
                   <tr class="listBar">
                     <th>No.</th>
@@ -63,8 +69,8 @@
                 <tbody>
                 <c:forEach items="${boardList }" var="l" varStatus="i">
                   <tr>
-                    <td>${i.count }</td>
-                    <td>${l.abTitle }</td>
+                    <td>${l.abNo }</td>
+                    <td><a href="/boardOne.do?abNo=${l.abNo}">${l.abTitle }</a></td>
                     <td>${l.abWriter }</td>
                     <td>${l.enrollDate }</td>
                     <td>${i.count }</td>
@@ -73,6 +79,17 @@
                 </tbody>
               </table>
             </div>
+            <div id="pagination" style="margin-left: 350px;">${pageNavi }</div>	
+          <!-- <ul class="pagination">
+		    <li><a href="#">«</a></li>
+		    <li><a href="#">1</a></li>
+		    <li><a href="#">2</a></li>
+		    <li class="disabled"><a href="#">3</a></li>
+		    <li><a href="#">4</a></li>
+		    <li><a href="#">5</a></li>
+		    <li class="active"><a href="#">6</a></li>
+		    <li><a href="#">»</a></li>
+		  </ul> -->
           </div><!--bottomList end-->
 
           </div>
