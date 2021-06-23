@@ -1,6 +1,8 @@
 package kr.or.directMessage.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,11 @@ public class DirectMessageService {
 
 	public int updateWarningCount(DirectMessage dm) {
 		return dao.updateWarningCount(dm);
+	}
+
+	public int insertMultiDm(DirectMessage dm, String[] memberNo) {
+		
+		return dao.insertMultiDm(dm,memberNo);
 	}
 
 }

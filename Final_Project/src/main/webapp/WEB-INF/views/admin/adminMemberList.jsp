@@ -58,14 +58,14 @@
                         <table class="list memberList">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" id="allCheck"></th><th>번호</th><th>이메일</th><th>닉네임</th><th>취미1</th><th>취미2</th><th>취미3</th><th>등급</th><th>경고/제재</th><th>최종접속일</th><th>가입일</th>
+                                    <th><input type="checkbox" id="allCheck"></th><th>no</th><th>이메일</th><th>닉네임</th><th>취미1</th><th>취미2</th><th>취미3</th><th>등급</th><th>경고/제재</th><th>최종접속일</th><th>가입일</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach items="${list }" var="m">
-                            	<c:if test="${m.grade gt 1 && m.grade != 3}">
+                            	<c:forEach items="${list }" var="m" varStatus="i">
+                            	<c:if test="${m.grade eq 2 && m.grade != 3}">
 	                                <tr>
-	                                    <td><input type="checkbox" class="checks" name="memberNo" value="${m.memberNo }"></td><td>${m.sort }</td><td>${m.email }</td><td>${m.memberNick }</td><td>${m.hobby1 }</td><td>${m.hobby2 }</td><td>${m.hobby3 }</td>
+	                                    <td><input type="checkbox" class="checks" name="memberNo" value="${m.memberNo }"></td><th>${i.count }</th><td>${m.email }</td><td>${m.memberNick }</td><td>${m.hobby1 }</td><td>${m.hobby2 }</td><td>${m.hobby3 }</td>
 	                                    <td>
                                     	<c:choose>
                                     		<c:when test="${m.grade == 0 }">쵝오 관리자</c:when>

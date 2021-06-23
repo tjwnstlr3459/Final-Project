@@ -1,4 +1,3 @@
-============ admin.js ==========
 $(document).ready(function() {
     //여기 아래 부분
 	 $('.summernote').summernote({		//모든 textarea에 클래스로 서머노트 적용

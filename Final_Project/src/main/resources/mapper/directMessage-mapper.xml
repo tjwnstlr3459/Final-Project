@@ -17,4 +17,12 @@
 	<update id="updateWarningCount" parameterType="dm">
 		update member set warning_count=warning_count+1 where member_nick=#{receiver}
 	</update>
+	<insert id="insertMultiDm" parameterType="map">
+		insert into direct_message values(dm_seq.nextval,#{dm.sender},
+		(select member_nick from member where member_no in
+		<foreach collection="array" item="memberNo" open="(" separator="," close=")">
+			#{memberNo}
+		</foreach>
+		),#{dm.dmContent},to_char(sysdate,'yyyy-mm-dd'))
+	</insert>
 </mapper>
