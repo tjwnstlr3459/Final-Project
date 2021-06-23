@@ -93,7 +93,7 @@ body {
 		</div>
 		<ul class="navbar_menu">
 			<li><a href="#">CLUB CATEGORY</a></li>
-			<li><a href="#">CLUB FEED</a></li>
+			<li><a href="/freeBoardList.do">CLUB FEED</a></li>
 
 			<li><a href="/adminMain.do">ADMIN</a></li>
 			<li><a href="/logout.do">LOGOUT</a></li>
