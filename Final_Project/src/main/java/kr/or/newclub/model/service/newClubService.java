@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.board.model.vo.Board;
-import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.dao.newClubDao;
 
 @Service
