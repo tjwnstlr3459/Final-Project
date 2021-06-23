@@ -5,4 +5,7 @@
 		select cg_no as cgNo, cg_name as cgName, cg_kinds as cgKinds from category
 		
 	</select>
+	<select id="selectCategory" resultType="cg">
+		select cg_no as cgNo, cg_name as cgName, cg_kinds as cgKinds from category where cg_kinds=1		
+	</select>
 </mapper>

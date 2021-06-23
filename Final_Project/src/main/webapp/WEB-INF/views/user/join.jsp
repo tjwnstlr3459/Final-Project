@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,15 +71,9 @@
 
                     <div class="elementChk">
                         <span class="legend">관심분야(3개 선택)</span>
-                        <label><input type="checkbox" name="hobby" value="1">여행</label>
-                        <label><input type="checkbox" name="hobby" value="2">운동</label>
-                        <label><input type="checkbox" name="hobby" value="3">게임</label>
-                        <label><input type="checkbox" name="hobby" value="4">예술</label>
-                        <br>
-                        <label><input type="checkbox" name="hobby" value="5">맛집</label>
-                        <label><input type="checkbox" name="hobby" value="6">영화</label>
-                        <label><input type="checkbox" name="hobby" value="7">술</label>
-                        <label><input type="checkbox" name="hobby" value="8">여행</label>
+                        <c:forEach items="${category }" var="c">
+			            	<label><input type="checkbox" name="hobby" value="${c.cgName }">${c.cgName }</label>
+			            </c:forEach>
                         <span class="chkMsg"></span>
                     </div>
 
@@ -100,6 +95,7 @@
                 <button type="button" id="mailCfrm">이메일 체크</button>
 
             </form>
+            
             <div class="social">
                 <span>소셜 서비스로 가입</span>
                 <a href="#">구글 로그인</a>

@@ -43,4 +43,12 @@ public class MemberDao {
 		return sqlSession.selectList("category.selectAllCategory");
 	}
 
+	public List selectCategory() {
+		return sqlSession.selectList("category.selectCategory");
+	}
+
+	public int updateLastDate(Member m) {
+		return sqlSession.update("member.updateLastdate", m);
+	}
+
 }

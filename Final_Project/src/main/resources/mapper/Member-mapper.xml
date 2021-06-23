@@ -41,6 +41,9 @@
 			enroll_date
 			)m)where sort between #{start} and #{end}
 	</select>
+	<update id="updateLastdate" parameterType="map">
+		update member set last_date=to_char(sysdate, 'YYYY-MM-DD') where email=#{email}
+	</update>
 	<!-- 전체회원 수 -->
 	<select id="memberCount" resultType="int">
 		select count(*) from member

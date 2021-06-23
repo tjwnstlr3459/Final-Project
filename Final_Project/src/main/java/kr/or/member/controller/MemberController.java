@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -49,6 +50,7 @@ public class MemberController {
 		public String login(Member m, HttpSession session, Model model) {		
 			Member member = service.selectOneMember(m);
 			if(member != null) {
+				int result = service.changeLastDate(m);
 				session.setAttribute("m", member);
 				System.out.println(member.getMemberNick()+"환영한다능");
 				model.addAttribute("msg","로그인성공!");		
@@ -67,11 +69,12 @@ public class MemberController {
 	//회원가입 페이지
 	@RequestMapping(value="/join.do")
 	public String join(HttpSession session, Model model) {		
-		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
-        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
-        
-        /* 생성한 인증 URL을 View로 전달 */
-        model.addAttribute("nUrl",naverAuthUrl);
+//		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+//        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);        
+//        /* 생성한 인증 URL을 View로 전달 */
+//        model.addAttribute("nUrl",naverAuthUrl);
+		ArrayList<Category> category = service.getCategory();
+		model.addAttribute("category", category);
 		return "user/join";
 	}
 	

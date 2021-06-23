@@ -84,4 +84,13 @@ public class MemberService {
 	public int updateGrade(String[] memberNo) {
 		return dao.updateGrade(memberNo);
 	}
+	//카테고리 가져오기(회원가입용)
+	public ArrayList<Category> getCategory() {
+		List cgList = dao.selectCategory();
+		return (ArrayList<Category>)cgList;
+	}
+
+	public int changeLastDate(Member m) {
+		return dao.updateLastDate(m);		
+	}
 }
