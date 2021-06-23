@@ -23,4 +23,25 @@ public class BoardController {
 		model.addAttribute("boardList",boardList);
 		return "board/boardList";
 	}
+	
+	//공지상세보기
+	@RequestMapping(value = "/boardOne.do")
+	public String boardOne(Model model) {
+		return "board/boardOne";
+		}
+	
+	//공지글 작성페이지
+	@RequestMapping(value = "/boardOneInsert.do")
+	public String boardOneInsert(Model model) {
+		return "board/boardOneInsert";
+		}
 }
+
+
+
+
+
+
+
+
+
