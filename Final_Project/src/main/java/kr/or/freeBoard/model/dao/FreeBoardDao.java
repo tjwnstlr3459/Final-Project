@@ -24,8 +24,13 @@ public class FreeBoardDao {
 		return sqlSession.selectOne("freeBoard.FreeBoardTotalCount");
 	}
 
-	public ArrayList<FreeBoard> selectFreeBoards(HashMap<Integer, Object> map) {
+	public ArrayList<FreeBoard> selectFreeBoards(HashMap<String,Object> map) {
 		List<FreeBoard> list = sqlSession.selectList("freeBoard.selectFreeBoards",map);
 		return (ArrayList<FreeBoard>)list;
+	}
+
+	public int addHeart(int fbNo) {
+		int result = sqlSession.update("freeBoard.addHeart",fbNo);
+		return result;
 	} 
 }
