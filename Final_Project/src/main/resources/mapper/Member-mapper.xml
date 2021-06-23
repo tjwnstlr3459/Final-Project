@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-<select id="selectOneMember"  parameterType="m" resultType="m">
-	select member_no as memberNo,
-		   email,
-		   member_pw as memberPw,
-		   member_nick as memberNick,
-		   gender,
-		   address,
-		   intro,
-		   hobby1,
-		   hobby2,
-		   hobby3,
-		   filename,
-		   filepath,
-		   warning_count as warningCount,
-		   grade,
-		   enroll_date as enrollDate,
-		   last_date as lastDate,
-		   age
-	from member 
-	<if test="email != null">
-		where email = #{email} 
-	</if>
-	<if test="memberPw != null">
-		and member_pw=#{memberPw}
-	</if>
-	<if test="memberNick != null">
-		where member_nick=#{memberNick}
-	</if>
-</select>
-<insert id="insertMember" parameterType="m">
-	insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 2, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age})
-</insert>
+	<!-- 회원조회 -->
+	<select id="selectOneMember"  parameterType="m" resultType="m">
+		select member_no as memberNo,
+			   email,
+			   member_pw as memberPw,
+			   member_nick as memberNick,
+			   gender,
+			   address,
+			   intro,
+			   hobby1,
+			   hobby2,
+			   hobby3,
+			   filename,
+			   filepath,
+			   warning_count as warningCount,
+			   grade,
+			   enroll_date as enrollDate,
+			   last_date as lastDate,
+			   age
+		from member 
+		<if test="email != null">
+			where email = #{email} 
+		</if>
+		<if test="memberPw != null">
+			and member_pw=#{memberPw}
+		</if>
+		<if test="memberNick != null">
+			where member_nick=#{memberNick}
+		</if>
+	</select>
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="m">
+		insert into member values (member_seq.nextval, #{email}, #{memberPw}, #{memberNick}, #{gender}, #{address}, #{intro}, #{hobby1}, #{hobby2}, #{hobby3},  #{filename}, #{filepath}, 0, 2, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY-MM-DD'), #{age})
+	</insert>
 	<!-- 전체회원 select -->
 	<select id="selectAllMember" parameterType="map" resultType="m">
 		select * from (select rownum as sort, m.* from (select member_no as memberNo, email,member_pw as memberPw,member_nick as memberNick,gender,address,intro,hobby1,hobby2,hobby3,grade,warning_count as warningCount, filename,filepath,enroll_date as enrollDate,last_date as lastDate, age from member order by

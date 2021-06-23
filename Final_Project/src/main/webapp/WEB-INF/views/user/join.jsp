@@ -9,9 +9,6 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <style>
-
-    </style>
 </head>
 <body>
 	<%@ include file = "/WEB-INF/views/common/header.jsp" %>
@@ -216,7 +213,7 @@
             if(pwReg.test(pw)) {
                 $(this).next().html("");
             } else {
-                $(this).next().html("영문과 숫자 조합으로 8자 이상 입력해주세요.");
+                $(this).next().html("영문과 숫자 조합으로 8자 이상");
             }
         })
         $("[name=memberPw2]").change(function() {
@@ -276,7 +273,7 @@
             var email = $("[name=email]").val();
             var emailReg = /^([\w\d_\.-]+)@([\w\d_-]+)(\.[\w\d_-]+){1,2}$/;
             var pw = $("[name=memberPw]").val();
-            var pwReg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}/
+            var pwReg = /(?=.*\d)(?=.*[a-zA-Z]).{8,30}/
             var pw2 = $("[name=memberPw2]").val();
             var name = $("[name=memberNick]").val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
@@ -320,7 +317,7 @@
             }
             if(!regchk(pwReg, pw)) {
                 $("[name=memberPw]").css("border", "1px solid red");
-                $("[name=memberPw]").next().html("대문자, 소문자, 숫자 조합으로 8자 이상 입력해주세요.");
+                $("[name=memberPw]").next().html("영문과 숫자 조합으로 8자 이상 입력해주세요.");
                 return false;
             } else {
                 $("[name=memberPw]").css("border", "1px solid #999");

@@ -64,6 +64,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//회원가입 페이지
 	@RequestMapping(value="/join.do")
 	public String join(HttpSession session, Model model) {		
 		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
@@ -74,6 +75,7 @@ public class MemberController {
 		return "user/join";
 	}
 	
+	//이메일 중복 체크	
 	@ResponseBody
 	@RequestMapping(value="/user/chkEmail.do")
 	public String chkEmail(Member m, Model model) {
@@ -85,6 +87,7 @@ public class MemberController {
 		}
 	}
 	
+	//이름 중복 체크
 	@ResponseBody
 	@RequestMapping(value="/user/chkName.do")
 	public String chkName(Member m, Model model) {
@@ -96,6 +99,7 @@ public class MemberController {
 		}
 	}
 	
+	//회원가입 insert
 	@RequestMapping(value="/joinProcessing.do")
 	public String joinProcessing(@RequestParam(value = "hobby") List<String> hobbyArr, @RequestParam(value = "propimg") MultipartFile propimg,  HttpServletRequest request, Member m, Model model) {
 		//관심 카테고리 분리 처리
@@ -181,6 +185,7 @@ public class MemberController {
 //		return "user/callback";
 //	}
 	
+	//소셜로그인 가입페이지
 	@RequestMapping(value="/socialJoin.do")
 	public String callback(Member m, Model model) {
 		model.addAttribute("member", m);
