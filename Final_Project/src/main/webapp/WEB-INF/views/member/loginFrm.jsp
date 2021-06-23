@@ -19,8 +19,7 @@
 			<form action="/login.do" method="post">
 				<div class="element">
 		        	<span class="legend">이메일</span>
-		        	<input type="email" name="email" placeholder="이메일" style="margin-bottom: 10px;">
-		        	
+		        	<input type="email" name="email" placeholder="이메일" style="margin-bottom: 10px;">		        	
 		        </div>
 		        <div class="element">
 		            <span class="legend">비밀번호</span>
@@ -29,6 +28,8 @@
 		        </div>
 		        <input type="submit" value="로그인">
 	        </form>
+	        <div class="findpw"><a href="javascript:void(0)" id="find">비밀번호 찾기</a></div>
+	        
 	        <div class="social">
                 <span>소셜 로그인</span>
                 <a href="#">구글 로그인</a>
@@ -38,6 +39,21 @@
             </div> 
         </div>        
 	</div>
+	<div class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>비밀번호 찾기</h2>
+			</div>
+			<div class="modal-body">
+				<div class="modal-input">
+					<input type="text" id="findEmail" name="email" placeholder="이메일 주소를 입력해주세요">
+					<button type="button" id="findID">확인</button>
+				</div>
+				<div class="findResult"></div>
+				<button type="button" id="closeModal">닫기</button>
+			</div>
+		</div>	
+	</div>
 	<%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
 	<script type="text/javascript">
 	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/nLogin.jsp");
@@ -46,6 +62,49 @@
 	  	naver_id_login.setDomain("http://127.0.0.1");
 	  	naver_id_login.setState(state);
 	  	naver_id_login.init_naver_id_login();
+	 </script>
+	 <script>
+		$("#find").click(function() {
+			$(".modal").fadeIn();
+			$(".modal").css("display", "flex");
+			
+		})
+		$("#findEmail").keypress(function(event){
+	    	if ( event.which == 13 ) {
+	        	$('#findID').click();
+	         	return false;
+	     	}
+		})
+		$("#closeModal").click(function() {
+			$(".modal").fadeOut();
+		})
+	 	$("#findID").click(function() {
+	 		var email = $("#findEmail").val();
+	 		console.log(email)
+	 		$.ajax({
+	 			url: "/user/chkEmail.do",
+                type: "post",
+                data: {email:email},
+                success: function(data) {
+                	console.log(data)
+					if(data == "1") {
+						$(".findResult").html("");
+						$(".findResult").html("일반 가입된 이메일입니다.");
+					}
+					else if(data == "2") {
+						$(".findResult").html("");
+						$(".findResult").html("소셜 로그인으로 가입된 계정입니다.<br>각 서비스의 비밀번호 찾기를 이용해주세요.");
+					} else {
+						$(".findResult").html("");
+						$(".findResult").html("가입 정보가 없습니다.");
+					}
+                },
+                error: function() {
+                    console.log("error")
+                }
+
+	 		})
+	 	})
 	 </script>
 </body>
 </html>

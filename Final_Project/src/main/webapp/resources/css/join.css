@@ -12,7 +12,7 @@
             margin-top: 5px;
             margin-bottom: 5px;
         }
-        #mailCfrm, input[type=submit] {
+        #mailCfrm, input[type=submit], #closeModal {
             width: 300px;
             height: 35px;
             color: white;
@@ -102,6 +102,68 @@
             width:70px;
             font-size: 0.9em;
         }
+        .findpw {
+        	margin-top: 20px;
+        	width:100%;
+        	text-align:center;
+        	font-weight:bold;
+        	font-size:0.9em;
+        }
+        a {
+        	text-decoration:none;
+        }
+        a:hover {
+        	text-decoration:underline;
+        }
         .social {
         	margin-top: 30px;
+        }
+        #naver_id_login_anchor {
+        	display: inline-block;
+        	width:300px;
+        	height:35px;
+        	line-height:35px;
+        	background-color:#00c73c;
+        	color:white;
+        }
+        .modal {
+        	position:absolute;
+        	width: 100%;
+        	height:100%;
+        	background:rgba(0,0,0,0.8);
+        	top:0;
+        	left:0;
+        	display:none;
+        	justify-content: center;
+        	align-items: center;
+        }
+        .modal-content {
+        	background-color: #fff;
+        	width:400px;
+        	height:200px;
+        	border-radius: 10px;
+        	display:flex;
+        	flex-direction:column; 
+        	justify-content: flex-start;
+        	align-items: center;
+        	text-align:center;
+        }
+        .modal-header {
+        	width:100%;
+        	height: 60px;
+        	border-bottom: 4px solid #ffcdc7;
+        	margin-bottom: 20px;
+        }
+        .modal-input {
+        	display:flex;
+        	align-items: center;
+        }
+        #findEmail {
+        	width:250px;
+        }
+        #findID {
+        	background-color: white;
+        	border:1px solid #ec523f;
+        	width: 50px;
+        	height: 35px;
         }

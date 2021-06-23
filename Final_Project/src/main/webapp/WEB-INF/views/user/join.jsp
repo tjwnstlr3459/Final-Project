@@ -8,8 +8,21 @@
     <title>Insert title here</title>
     <link rel="stylesheet" type="text/css" href="resources/css/join.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- 우편번호 찾기 -->
     <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <!-- 구글 로그인 -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="965050692705-1e3ko23t1g8v9ota8ugu8eigm3c0f076.apps.googleusercontent.com">
+    <!-- 암호화 스크립트 -->
+    <script type="text/javascript" src="/resources/js/core.min.js"></script>
+	<script type="text/javascript" src="/resources/js/sha256.min.js"></script>
+    <!-- 
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>    
+     -->
+    <!-- 네이버 로그인 -->
+    <script type="text/javascript" src="resources/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<!-- 카카오 로그인 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
 	<%@ include file = "/WEB-INF/views/common/header.jsp" %>
@@ -88,13 +101,16 @@
                         <input type="file" name="propimg">
                         <span class="inputMsg"></span>
                     </div>
-
+					<input type="hidden" name="joinMethod" value="1">
                     <input type="submit" value="회원 가입" onclick="return joinCheck()">
                 </formgroup>
                 
                 <button type="button" id="mailCfrm">이메일 체크</button>
 
             </form>
+            <form id="gLogin" method="post">
+            
+            </form> 
             
             <div class="social">
                 <span>소셜 서비스로 가입</span>
@@ -102,6 +118,8 @@
                 <a href="#">카카오 로그인</a>
                 <a href="${nUrl}">네이버 로그인</a>
                 <div id="naver_id_login"></div>
+                <a id="kakao-login-btn"></a>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>           
         </div>
     </div> 
@@ -109,10 +127,70 @@
 	<script type="text/javascript">
 	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/callback.jsp");
 	  	var state = naver_id_login.getUniqState();
-	  	naver_id_login.setButton("white", 3,50);
+	  	naver_id_login.setButton("white", 3,65);
 	  	naver_id_login.setDomain("http://127.0.0.1");
 	  	naver_id_login.setState(state);
 	  	naver_id_login.init_naver_id_login();
+	 </script>
+	 <script>
+	 	Kakao.init('b0e4792bb9bc14ffbeebc4cac841f141'); //발급받은 키 중 javascript키를 사용해준다.
+	 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+	 	Kakao.Auth.createLoginButton({
+	 	    container: '#kakao-login-btn',
+	 	    success: kakaoLogin()
+	 	  })
+	 	  function kakaoLogin() {
+		    Kakao.Auth.login({
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  console.log(response)
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })
+		  }
+	 </script>
+	 <script>
+		function onSignIn(googleUser) {
+			  var profile = googleUser.getBasicProfile();
+			  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			  console.log('Name: ' + profile.getName());
+			  console.log('Image URL: ' + profile.getImageUrl());
+			  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+			  var email = profile.getEmail();
+			  var form = $("#gLogin");
+			  var shaPw = CryptoJS.SHA256(profile.getId()).toString(); 
+			  $.ajax({
+		  			url: "/nLogin.do",
+		  			data: {email:email},
+		  			type: "post",
+		  			success: function(data) {
+		  				if(data == "1" || data == "2") {
+		  					alert("이미 가입된 아이디입니다. 로그인 화면으로 이동합니다.")
+		  					form.attr("action", "/login.do");
+		  					form.submit();
+		  				} else {
+		  					form.attr("action", "/socialJoin.do");
+		  					var inputmail = "<input type='hidden' name='email' value='" + email + "'>";
+		  					var inputpw = "<input type='hidden' name='memberPw' value='" + shaPw + "'>";
+		  					form.append(inputmail);
+		  					form.append(inputpw);
+		  					form.submit();
+		  				}
+		  			},
+		  			error: function() {
+		  				console.log("에러")
+		  			}
+		  		})
+		}
 	 </script>
     <script>
 	    function findPCode() {
@@ -180,13 +258,15 @@
                 $("[name=email]").next().html("이메일 주소를 확인해주세요.");
             }
             else {         
-                $("[name=email]").next().html(""); 
+                $("[name=email]").next().html("");
+                $("[name=email]").next().html("<img src='resources/image/ajax-loader.gif'>");
             	$.ajax({
                     url: "/user/chkEmail.do",
                     type: "post",
                     data: {email:email},
                     success: function(data) {
-    					if(data == "1") {
+    					if(data == "1" || data == "2") {
+    						$("[name=email]").next().html("");
     						$("[name=email]").next().html("이미 가입된 이메일입니다");
     					}
     					else {

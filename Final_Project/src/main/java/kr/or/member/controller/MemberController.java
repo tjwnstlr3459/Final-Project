@@ -82,10 +82,13 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/user/chkEmail.do")
 	public String chkEmail(Member m, Model model) {
+		System.out.println(m.getEmail());
 		Member member = service.selectOneMember(m);
-		if(member != null) {
+		if(member != null && member.getJoinMethod() == 1) {
 			return "1";
-		}else {		
+		} else if(member != null && member.getJoinMethod() == 2) {
+			return "2";
+		} else {		
 			return "0";
 		}
 	}

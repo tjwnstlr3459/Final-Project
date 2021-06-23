@@ -21,6 +21,7 @@ public class Member {
 	private String enrollDate;
 	private String lastDate;
 	private int age;
+	private int joinMethod;
 	//db에서 정렬 되어오는 rnum
 	private int sort;
 }
