@@ -70,3 +70,26 @@
         background-color: rgba(0, 0, 0, 0.85);
         color: white;
     }
+    .adminWriteBtn{
+      width: 80px;
+      height: 30px;
+      background-color: rgba(82, 193, 252, 0.844);
+      border: 0px;
+      border-radius: 5px;
+      font-weight: bold;
+      color: white;
+      font-size: 13px;
+      line-height: 30px;
+    }
+    .adminWriteBtn a{
+      color: white;
+      text-decoration:none;
+      font-size: 13px;
+      margin: 0 atuo;
+      text-align: center;
+      margin-left: 20px;
+      margin-top:20px;
+    }
+    
+    
+    
