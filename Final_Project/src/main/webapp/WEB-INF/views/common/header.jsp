@@ -92,7 +92,7 @@ body {
 			<i class="fas fa-people-arrows"></i> <a href="/main.jsp">NUNADRI</a>
 		</div>
 		<ul class="navbar_menu">
-			<li><a href="#">CLUB CATEGORY</a></li>
+			<li><a href="/main.jsp#clubCategory">CLUB CATEGORY</a></li>
 			<li><a href="/freeBoardList.do">CLUB FEED</a></li>
 			<c:choose>
 			<c:when test="${!empty sessionScope.m }">

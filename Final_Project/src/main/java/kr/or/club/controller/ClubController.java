@@ -147,4 +147,6 @@ public class ClubController {
       return "common/msg";
    }
 	
+	//영범이구역 뿌잉 뿌잉
+	
 }
