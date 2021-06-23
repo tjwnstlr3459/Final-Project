@@ -51,7 +51,7 @@
         <!--topContent-->
         <div class="bottomContent">
           <div class="bottomMent">
-            <h2>공지사항</h2>
+            <h2 style="width:200px;">공지사항</h2>
           </div>
 
           <div class="bottomList">
@@ -62,8 +62,8 @@
                     <th>No.</th>
                     <th>공지제목</th>
                     <th>작성자</th>
-                    <th>날짜</th>
-                    <th>조회수</th>
+                    <th style="text-align: center">날짜</th>
+                    <th style="text-align: center">조회수</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,14 +72,17 @@
                     <td>${l.abNo }</td>
                     <td><a href="/boardOne.do?abNo=${l.abNo}">${l.abTitle }</a></td>
                     <td>${l.abWriter }</td>
-                    <td>${l.enrollDate }</td>
-                    <td>${i.count }</td>
+                    <td style="text-align: center">${l.enrollDate }</td>
+                    <td style="text-align: center">${i.count }</td>
                   </tr>
                 </c:forEach>
                 </tbody>
               </table>
             </div>
-            <div id="pagination" style="margin-left: 350px;">${pageNavi }</div>	
+            <div id="pagination" style="margin-left: 350px;float:left;">${pageNavi }</div>
+            <c:if test="${sessionScope.m.grade lt 2 }">
+            	<div class="adminWriteBtn" style="float:right"><a href="/boardOneInsert.do">글쓰기</a></div>
+            </c:if>	
           <!-- <ul class="pagination">
 		    <li><a href="#">«</a></li>
 		    <li><a href="#">1</a></li>
@@ -91,13 +94,27 @@
 		    <li><a href="#">»</a></li>
 		  </ul> -->
           </div><!--bottomList end-->
-
           </div>
         </div><!--bottomContent-->
-
       </div><!--wrap-->
-
+      
+      <div class="boardModal">
+      	
+      </div>
     <!-- 푸터 -->
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
