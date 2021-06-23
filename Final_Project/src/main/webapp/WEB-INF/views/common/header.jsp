@@ -93,7 +93,7 @@ body {
 		</div>
 		<ul class="navbar_menu">
 			<li><a href="#">CLUB CATEGORY</a></li>
-			<li><a href="#">CLUB FEED</a></li>
+			<li><a href="/freeBoardList.do">CLUB FEED</a></li>
 
 			<li><a href="/adminMain.do">ADMIN</a></li>
 			<li><a href="/logout.do">LOGOUT</a></li>
@@ -105,7 +105,7 @@ body {
 			<li><a href="/join.do">JOIN</a></li>
 
 			<li><a href="/newClub.do">CREATE CLUB</a></li>
-			<li><a href="/boardList.do">BOARD LIST</a></li>
+			<li><a href="/boardList.do?reqpage=1">BOARD LIST</a></li>
 
 		</ul>
 		<ul class="navbar_icons">

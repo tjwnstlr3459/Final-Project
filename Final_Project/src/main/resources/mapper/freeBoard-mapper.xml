@@ -17,7 +17,7 @@
   <select id="FreeBoardTotalCount" resultType="int">
   	select count(fb_no) from free_board
   </select>
-  <select id="selectFreeBoards" parameterType="map" resultType="map">
+  <select id="selectFreeBoards" parameterType="map" resultType="fb">
   	<!-- select 
   		   fb_no as fbNo,
   		   fb_writer as fbWriter,
@@ -29,6 +29,18 @@
   		   type,
   		   fb_date as fbDate
   	from free_board	 -->
-  	select * from(select rownum as rnum, fb.* from (select * from free_board order by fb_no desc) fb ) where rnum between 1 and 10
+  	select fb_no as fbNo,
+  		   fb_writer as fbWriter,
+  		   fb_content as fbContent,
+  		   filename,
+  		   filepath,
+  		   fb_views as fbViews,
+  		   fb_good as fbGood,
+  		   type,
+  		   fb_date as fbDate
+  	 from(select rownum as rnum, fb.* from (select * from free_board order by fb_no desc) fb ) where rnum between #{start} and #{end}
   </select>
+  <update id="addHeart" parameterType="int">
+  		update free_board set fb_good = fb_good + 1 where fb_no = #{fbNo}   
+  </update>
 </mapper>

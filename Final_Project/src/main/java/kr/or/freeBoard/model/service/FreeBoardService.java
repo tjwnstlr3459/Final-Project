@@ -22,12 +22,17 @@ public class FreeBoardService {
 		return dao.FreeBoardtotalCount();
 	}
 	public ArrayList<FreeBoard> selectFreeBoards(int start) {
-		int length = 5;
+		int length = 50;
 		int end = start + length - 1;
-		HashMap<Integer, Object> map = new HashMap<Integer, Object>();
-		map.put(1, start);
-		map.put(2, end);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
 		ArrayList<FreeBoard> list = dao.selectFreeBoards(map);
 		return list;
+	}
+	@Transactional
+	public int addHeart(int fbNo) {
+		int result = dao.addHeart(fbNo);
+		return result;
 	}
 }

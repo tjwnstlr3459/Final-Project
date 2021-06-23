@@ -29,11 +29,10 @@ public class FreeBoardController {
 	@RequestMapping(value = "/selectFreeBoards.do")
 	public ArrayList<FreeBoard> selectFreeBoards(HttpServletRequest request, int start, Model model) {
 		ArrayList<FreeBoard> list = service.selectFreeBoards(start);
-		// String path =
-		// request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/");
-		model.addAttribute("list", list);
+		//model.addAttribute("list", list);
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
+			System.out.println(list.get(i).getTypeString());
 		}
 		return list;
 	}
@@ -51,7 +50,7 @@ public class FreeBoardController {
 		return "freeBoard/freeBoardFrm";
 	}
 
-	@Transactional
+	
 	@RequestMapping(value = "/insertFreeBoard.do")
 	public String insertFreeBoard(MultipartFile files, HttpServletRequest request, FreeBoard fb, Model model) {
 		// ArrayList<FreeBoard> fileList = new ArrayList<FreeBoard>();
@@ -114,5 +113,15 @@ public class FreeBoardController {
 			System.out.println(fb.toString());
 		}
 		return "common/msg";
+	}
+	@ResponseBody
+	@RequestMapping(value="/addHeart.do")
+	public int addHeart(int fbNo) {
+		int result = service.addHeart(fbNo);
+		if(result > 0) {			
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 }
