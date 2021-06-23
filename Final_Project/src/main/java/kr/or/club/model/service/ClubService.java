@@ -58,4 +58,6 @@ public class ClubService {
 		}
 		return result;
 	}
+	
+	//영범이구역 뿌잉뿌잉
 }
