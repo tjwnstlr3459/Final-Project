@@ -74,7 +74,7 @@
                                         </c:otherwise>
                                         </c:choose> 
 										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">CLUB VIEW</a></li> 
-                                        <li><a onclick="location.href='/boardList.do?reqpage=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
+                                        <li><a onclick="location.href='/boardList.do?reqPage=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
@@ -132,7 +132,7 @@
                 </div> <!-- /.row -->
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-1" onclick="location.href='/viewClubList.do?cg_No=11';" style="cursor:pointer">
+                        <div class="service-item" id="service-1" onclick="location.href='/viewClubList.do?cgNo=11';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-apple"></i>
                             </div> <!-- /.service-icon -->
@@ -145,7 +145,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-2" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-2" onclick="location.href='/viewClubList.do?cgNo=4';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-flag"></i>
                             </div> <!-- /.service-icon -->
@@ -236,7 +236,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                 </div> <!-- /.row -->
-        <button onclick="location.href='/categoryList.do'" id="feed_info">MORE</button>
+        <button onclick="location.href='#'" id="feed_info">MORE</button>
             </div> <!-- /.container -->
         </div> <!-- /#services -->
 

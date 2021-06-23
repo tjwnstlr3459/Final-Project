@@ -148,5 +148,10 @@ public class ClubController {
    }
 	
 	//영범이구역 뿌잉 뿌잉
+	@RequestMapping(value="/viewClubList.do")
+	public String viewClubList(int cgNo) {
+		System.out.println(cgNo);
+		return "redirect:/";
+	}
 	
 }
