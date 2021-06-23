@@ -72,7 +72,7 @@
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">Join</a></li>
                                         </c:otherwise>
                                         </c:choose> 
-										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">create club</a></li> 
+										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">club view</a></li> 
                                         <li><a onclick="location.href='/boardList.do';" style="cursor: pointer;">Board List</a></li>                                                                         
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
@@ -105,7 +105,7 @@
                                 <div class="slider-caption visible-md visible-lg">
                                     <h2>'너나들이'</h2>
                                     <p>당신의 취향이 이곳에 모두 있습니다</p>
-                                    <a href="/categoryList.do" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
+                                    <a href="#categoryList" class="slider-btn" style="font-size: 25px;">클럽 카테고리</a>
                                 </div>
                             </li>
                             <li>

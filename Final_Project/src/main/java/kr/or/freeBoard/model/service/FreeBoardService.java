@@ -22,7 +22,7 @@ public class FreeBoardService {
 		return dao.FreeBoardtotalCount();
 	}
 	public ArrayList<FreeBoard> selectFreeBoards(int start) {
-		int length = 5;
+		int length = 50;
 		int end = start + length - 1;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);

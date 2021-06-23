@@ -105,7 +105,7 @@ body {
 			<li><a href="/join.do">JOIN</a></li>
 
 			<li><a href="/newClub.do">CREATE CLUB</a></li>
-			<li><a href="/boardList.do">BOARD LIST</a></li>
+			<li><a href="/boardList.do?reqpage=1">BOARD LIST</a></li>
 
 		</ul>
 		<ul class="navbar_icons">

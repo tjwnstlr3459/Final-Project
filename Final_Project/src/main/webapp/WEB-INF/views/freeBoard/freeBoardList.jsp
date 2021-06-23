@@ -92,7 +92,7 @@ button:hover{
 	</c:when>
 	</c:choose>
 	<div class="container">
-			<button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button>
+			<%-- <button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button> --%>
 	</div>
 	<script>
  	 $(function(){
