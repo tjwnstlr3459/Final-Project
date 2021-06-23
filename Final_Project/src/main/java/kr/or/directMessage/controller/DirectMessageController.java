@@ -39,6 +39,9 @@ public class DirectMessageController {
 			System.out.println(memberNo[i]);
 		}
 		int result = service.insertMultiDm(dm,memberNo);
-		return null;
+		if(result == memberNo.length) {
+			return "1";
+		}
+		return "0";
 	}
 }

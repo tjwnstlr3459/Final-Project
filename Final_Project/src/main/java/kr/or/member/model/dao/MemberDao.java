@@ -51,4 +51,8 @@ public class MemberDao {
 		return sqlSession.update("member.updateLastdate", m);
 	}
 
+	public int deleteMemer(String memberNo) {
+		return sqlSession.delete("member.deleteMember",memberNo);
+	}
+
 }

@@ -1,6 +1,7 @@
 package kr.or.directMessage.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +31,14 @@ public class DirectMessageDao {
 	public int insertMultiDm(DirectMessage dm, String[] memberNo) {
 		int count = 0;
 		for(int i=0;i<memberNo.length;i++) {
-			System.out.println(memberNo[i]);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("dm", dm);
+			map.put("memberNo", memberNo[i]);
+			count += session.insert("directMessage.insertMultiDm",map);
 		}
-		System.out.println(memberNo.length);
 		//session.insert("directMessage.insertMultiDm",map)
-		return 0;
+		System.out.println("insert : " +count);
+		return count;
 	}
 
 }
