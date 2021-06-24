@@ -39,4 +39,8 @@ public class RestrictionDao {
 	public int restCount() {
 		return session.selectOne("restriction.restCount");
 	}
+
+	public int deleteRestMember(String restEmail) {
+		return session.delete("restriction.deleteRestMember",restEmail);
+	}
 }

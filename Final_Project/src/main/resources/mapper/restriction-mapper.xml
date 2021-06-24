@@ -37,4 +37,8 @@
 	<select id="restCount" parameterType="int" resultType="int">
 		select count(*) from restriction
 	</select>
+	<!-- 이용제한회원 풀기 > delete -->
+	<delete id="deleteRestMember" parameterType="string">
+		delete from restriction where rest_email=#{restEmail}
+	</delete>
 </mapper>

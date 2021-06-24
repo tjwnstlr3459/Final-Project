@@ -36,7 +36,7 @@
 							<tbody>
 								<c:forEach items="${list }" var="rest">
 								<tr>
-									<td>${rest.restNo }</td><td>${rest.restEmail }</td><td>${rest.cgName }</td><td><span id="ofHidden">${rest.restContent }</span></td><td>${rest.startDate }</td><td>${rest.endDate }</td><td><button>해제</button></td>
+									<td>${rest.sort }</td><td>${rest.restEmail }</td><td>${rest.cgName }</td><td><span id="ofHidden">${rest.restContent }</span></td><td>${rest.startDate }</td><td>${rest.endDate }</td><td><button class="btns restOffBtn">해제</button></td>
 								</tr>
 								</c:forEach>
 							</tbody>
