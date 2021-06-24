@@ -9,4 +9,5 @@ public class DirectMessage {
 	private String receiver;
 	private String dmContent;
 	private String dmDate;
+	private String readStatus;
 }

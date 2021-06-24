@@ -10,7 +10,8 @@
 			sender,
 			receiver,
 			dm_content as dmContent,
-			dm_date as dmDate
+			dm_date as dmDate,
+			read_status as readStatus
 		from direct_message
 	</select>
 	<!-- 회원 경고 업데이트~ -->
@@ -21,4 +22,15 @@
 		insert into direct_message values(dm_seq.nextval,#{dm.sender},
 		(select member_nick from member where member_no=#{memberNo}),#{dm.dmContent},to_char(sysdate,'yyyy-mm-dd'))
 	</insert>
+	<!-- 일반회원용 DM 조회 -->
+	<select id="selectDmByName" parameterType="string" resultType="dm">
+		select
+			dm_no as dmNo,
+			sender,
+			receiver,
+			dm_content as dmContent,
+			dm_date as dmDate,
+			read_status as readStatus
+		from direct_message where sender=#{memberNick} or receiver=#{memberNick}
+	</select>
 </mapper>
