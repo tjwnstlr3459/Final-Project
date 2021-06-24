@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
- 
+ <link rel="stylesheet" href="/resources/css/board/boardList.css">
   <body>
+  <div class="modalback">
     <!-- 헤더 -->
     <%@include file="/WEB-INF/views/common/header.jsp"%>
     <div>
@@ -47,25 +48,25 @@
             <div class="boardInfo">
               <div class="infoLine">
                 <div>제목</div>
-                <div style="width: 65%">제목정보</div>
+                <div style="width: 65%">${board.abTitle }</div>
                 <div>날짜</div>
-                <div style="width: 15%; border: 0">날짜정보</div>
+                <div style="width: 14%; border: 0">${board.enrollDate }</div>
               </div>
               <div class="infoLine">
                 <div>작성자</div>
-                <div style="width: 27%">작성자</div>
+                <div style="width: 27%">${board.abWriter }</div>
                 <div>이메일</div>
-                <div style="width: 27.7%">이메일</div>
+                <div style="width: 27.7%">${board.abWriter }</div>
                 <div>조회수</div>
-                <div>조회수</div>
+                <div>${board.abWriter }</div>
               </div>
               <div class="infoLine">
                 <div>첨부파일</div>
-                <div style="border: 0px">첨부파일</div>
+                <div style="border: 0px"><input type="file" value="파일첨부"></div>
               </div>
             </div>
 
-            <div class="content"></div><!--게시물 컨텐츠-->
+            <div class="content"><h3 style="text-align: center">${board.abContent }</h3>${board.filePath }</div><!--게시물 컨텐츠-->
 
             <div class="coment">
               <!--댓글-->
@@ -78,7 +79,7 @@
 
               <div class="nameTime" style="width: 10%;">
                 <div>바람돌이</div>
-                <div>2002-04-25</div>
+                <div>${board.abWriter }</div>
               </div>
 
               <div class="mentWriteBox" style="width: 70%;">
@@ -97,8 +98,54 @@
       <!--bottomContent-->
     </div>
     <!--wrap-->
-
     <!-- 푸터 -->
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
+    
+         <!-- 모달 -->
+    <div class="boardModalPan" style="display: none;">
+      <div class="boardModal">
+        <div class="closeModal">X</div>
+        <div class="modalLogo"><img src="/resources/image/icons/man3.png"></div>
+        
+        <div class="adminMent">저희 Nunadri는 회원님들의 의견에<br>귀를 기울이겠습니다.</div>
+        <hr style="border: 1px solid gray; width: 90%;margin-bottom: 5px; margin-top: 5px;">
+        <div class="selectMun">
+          <select>
+            <option>문의</option>
+            <option>신고</option>
+          </select>
+        </div>
+        
+        <div class="fileDay">
+          <div><input type="file" value="파일첨부"></div>
+          <div>작성일 : 2020-05-22</div>
+        </div>
+        <textarea class="textA"></textarea>
+        <input class="checkBtn" style="margin-top:15px; margin-left: 200px; text-align: center;" stype="submit" value="Submit">
+      </div>
+    </div>
+   </div> 
   </body>
+<script>
+    $(".checkBtn").click(function(){
+      $(".boardModalPan").css("display","block");
+      
+      $(".boardModalPan").css("display","flex");
+    });
+
+    $(".closeModal").click(function(){
+      $(".boardModalPan").css("display","none");
+    });
+  </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+

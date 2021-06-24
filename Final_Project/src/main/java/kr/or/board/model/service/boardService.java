@@ -99,6 +99,11 @@ public class boardService {
 		BoardPageData npd = new BoardPageData(list,pageNavi);	//보내는 순서 중요!!
 		return npd;
 	}
+
+	//게시물 상세보기
+	public Board selectBoard(int abNo) {
+		return dao.selectBoard(abNo);
+	}
 }
 
 

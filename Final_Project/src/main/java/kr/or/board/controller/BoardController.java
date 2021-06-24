@@ -53,7 +53,9 @@ public class BoardController {
 	}
 	//공지상세보기
 	@RequestMapping(value = "/boardOne.do")
-	public String boardOne(Model model) {
+	public String boardOne(Model model,int abNo) {
+		Board board = service.selectBoard(abNo);
+		model.addAttribute("board", board);
 		return "board/boardOne";
 		}
 	
@@ -70,9 +72,7 @@ public class BoardController {
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
 		JsonObject jsonObject = new JsonObject();
 		
-        /*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
+        /*String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.*/
 		// 내부경로로 저장
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 		String fileRoot = contextRoot+"resources/fileupload/boardImg/";
@@ -88,11 +88,12 @@ public class BoardController {
             FileOutputStream fos = new FileOutputStream(targetFile); // 경로 + 파일명
             //속도개선 보조 스트림
             BufferedOutputStream bos = new BufferedOutputStream(fos);
-            //bos -> byte타입 벼환
+            //bos -> byte타입 변환
             byte[] bytes = multipartFile.getBytes(); //try/catch 추가 설정
             bos.write(bytes);
             bos.close();
-            jsonObject.addProperty("url", "/resources/fileupload/boardImg/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
+            //contextroot + resources + 저장할 내부 폴더명
+            jsonObject.addProperty("url", "/resources/fileupload/boardImg/"+savedFileName); 
 			jsonObject.addProperty("responseCode", "success");
             
          } catch (FileNotFoundException e) {
@@ -104,7 +105,7 @@ public class BoardController {
             e.printStackTrace();
          }
 	
-		String a = jsonObject.toString();
+		String a = jsonObject.toString();	//Ajax에 값 전달
 		return a;
 	}
 	

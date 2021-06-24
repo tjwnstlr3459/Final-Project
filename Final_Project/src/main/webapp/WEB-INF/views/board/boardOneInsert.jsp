@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
   </head>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
   <body>
@@ -44,9 +43,6 @@
               </form>
               
             </div><!--게시물 컨텐츠-->
-
-            
-
             <div>
               <input class="sendFile" type="button" value="등록하기" />
             </div>
@@ -64,8 +60,7 @@
     <script src="/resources/js/summernote/summernote-lite.js"></script>
     <script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
-    <link rel="stylesheet" href="/resources/css/board/boardOneInsert.css">
-  <script>
+    <link rel="stylesheet" href="/resources/css/board/boardOneInsert.css"><script>
   $('#summernote').summernote({
 		height: 300,                 // 에디터 높이
 		minHeight: null,             // 최소 높이
@@ -88,9 +83,8 @@
 			}
 		}
 });
- /**
-* 이미지 파일 업로드
-*/
+  
+//이미지 파일 업로드
 function uploadSummernoteImageFile(file, editor) {
 	data = new FormData();
 	data.append("file", file);

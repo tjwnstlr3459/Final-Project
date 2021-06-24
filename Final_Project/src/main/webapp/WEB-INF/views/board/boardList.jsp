@@ -52,7 +52,7 @@
         <!--topContent-->
         <div class="bottomContent">
           <div class="bottomMent">
-            <h2 style="width:200px;">공지사항</h2>
+            <h2 style="width:200px;margin-left: 50px;">공지사항</h2>
           </div>
 
           <div class="bottomList">
@@ -98,7 +98,13 @@
           </div>
         </div><!--bottomContent-->
         
-        <!-- 모달 -->
+     
+        
+        
+      </div><!--wrap-->
+    <!-- 푸터 -->
+    <%@include file="/WEB-INF/views/common/footer.jsp"%>
+       <!-- 모달 -->
     <div class="boardModalPan" style="display: none;">
       <div class="boardModal">
         <div class="closeModal">X</div>
@@ -122,11 +128,6 @@
       </div>
     </div>
    </div> 
-        
-        
-      </div><!--wrap-->
-    <!-- 푸터 -->
-    <%@include file="/WEB-INF/views/common/footer.jsp"%>
   </body>
   <script>
     $(".checkBtn").click(function(){
