@@ -134,24 +134,22 @@
 					</div>
 					 
 		 			<div class="right1">
-						<div class="chatlist">
-							<div class="chatcontent">
-								<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
-								<hr> --%>
-								<div class="chatting">
-									<div class="messageArea"></div>
-									<div class="sendBox">
-										<input type="text" id="sendMsg">
-										<button id="sendBtn" onclick="sendMsg();">전송</button>
-									</div>
+							<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
+							<hr> --%>
+							<div class="chatting">
+								<div class="messageArea"></div>
+								<div class="sendBox">
+									<input type="text" id="sendMsg">
+									<button id="sendBtn" onclick="sendMsg();">전송</button>
 								</div>
 							</div>
 						</div>
-					</div> 
-				</div>
+					</div>
+				</div> 
 			</div>
 		</div>
 	</div>
+</div>
 	<!-- Modal -->
 	<div class="modal-wrapper">
 		<div class="modal">
@@ -255,7 +253,7 @@
 			});
 		}
 		$(function() {
-		    initChat('${sessionScope.m.memberId}'); 
+		    initChat('${sessionScope.m.memberNick}'); 
 	});
    var ws;
    var memberId;
@@ -269,7 +267,7 @@
       ws.onmessage = receiveMsg;
       //소켓 연결이 종료되는 수행할 함수 지정
       ws.onclose = endChat;
-      
+      $(".chatting").slideDown();
    }   
    //연결하면 함수들 자동실행
    function startChat(){   
