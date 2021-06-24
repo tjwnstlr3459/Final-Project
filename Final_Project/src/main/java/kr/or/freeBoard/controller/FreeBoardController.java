@@ -29,11 +29,6 @@ public class FreeBoardController {
 	@RequestMapping(value = "/selectFreeBoards.do")
 	public ArrayList<FreeBoard> selectFreeBoards(HttpServletRequest request, int start, Model model) {
 		ArrayList<FreeBoard> list = service.selectFreeBoards(start);
-		//model.addAttribute("list", list);
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-			System.out.println(list.get(i).getTypeString());
-		}
 		return list;
 	}
 
@@ -94,8 +89,8 @@ public class FreeBoardController {
 				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
                 byte[] bytes = files.getBytes(); //try/catch 추가 설정
-                bos.write(bytes);
-                bos.close();
+                bos.write(bytes);		//여기가파일을 진짜 올리는 쪽
+                bos.close();		
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

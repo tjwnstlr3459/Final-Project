@@ -152,9 +152,6 @@ public class ClubController {
 	@RequestMapping(value="/viewClubList.do")
 	public String viewClubList(int cgNo, Model model) {
 		ArrayList<Club> ybClubList = service.viewClubList(cgNo);
-		for(int i = 0; i<ybClubList.size(); i++) {			
-			System.out.println(ybClubList.get(i).toString());
-		}
 		String cgName = service.selectCategoryName(cgNo);
 		model.addAttribute("list",ybClubList);
 		model.addAttribute("cgName", cgName);
