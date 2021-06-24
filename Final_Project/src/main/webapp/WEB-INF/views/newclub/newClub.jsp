@@ -11,7 +11,7 @@
 	content="A front-end template that helps you build fast, modern mobile web apps.">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>모임 개설하기</title>
+<title>클럽 상세페이지</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript"
@@ -49,8 +49,11 @@
 	href="/resources/css/newClub/newClub.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/newClub2.css" />
+	<link rel="stylesheet" type="text/css"
+	href="/resources/css/newClub/chat.css" />
 <!--script-->
 <script src="/resources/js/newClub/modal.js"></script>
+<script src="/resources/js/newClub/chat.js"></script>
 <style>
 #view-source {
 	position: fixed;
@@ -79,7 +82,7 @@
 					</ul>
 				</div>
 				<div class=contain>
-					<div class="left">
+					<div class="left1">
 						<div class="profile">
 							<div class="clubimg"></div>
 							<div class="clubinfo1">
@@ -130,11 +133,11 @@
 						</div>
 					</div>
 					 
-		 			<div class="right">
+		 			<div class="right1">
 						<div class="chatlist">
 							<div class="chatcontent">
-								<button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
-								<hr>
+								<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
+								<hr> --%>
 								<div class="chatting">
 									<div class="messageArea"></div>
 									<div class="sendBox">
@@ -169,6 +172,7 @@
 		</div>
 	</div>
 	<script>
+
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
 
@@ -250,6 +254,62 @@
 					
 			});
 		}
+		$(function() {
+		    initChat('${sessionScope.m.memberId}'); 
+	});
+   var ws;
+   var memberId;
+   function initChat(param){
+      memberId = param;
+      //웹소켓 연결시도
+      ws = new WebSocket("ws://192.168.35.71/chat.do")
+      //소켓 연결 성공 시 실행될 함수 지정
+      ws.onopen = startChat;
+      //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수
+      ws.onmessage = receiveMsg;
+      //소켓 연결이 종료되는 수행할 함수 지정
+      ws.onclose = endChat;
+      
+   }   
+   //연결하면 함수들 자동실행
+   function startChat(){   
+      var data = {type:"enter",msg:memberId};
+      ws.send(JSON.stringify(data));   //자바스크립트 객체를 문자열로 변환해서 서버로 전송
+      appendChat("<p>채팅방에 입장했습니다</p>");
+   }
+   function receiveMsg(param){
+      appendChat(param.data);
+   }
+   function endChat(){   
+      appendChat("<p>채팅이 종료되었습니다</p>");
+   }
+   function appendChat(msg){
+      $(".messageArea").append(msg);// 메시지 내용 추가
+      $(".messageArea").scrollTop($(".messageArea")[0].scrollHeight);// 스크롤용
+   }
+   // 채팅 보내기
+   function sendMsg(){
+      var msg = $("#sendMsg").val();// 메시지 입력창 내용 가져오기
+      
+      // 공백이 아닌 경우 전송
+      if( msg != ''){
+         var data = {type:"chat",msg:msg};
+         //소켓 서버로 문자열 전송
+         ws.send(JSON.stringify(data));
+         //내화면에 출력
+         appendChat("<div class='chat right'>"+msg+"</div>");
+         $("#sendMsg").val("");
+      }
+   }
+   
+   // 엔터키 인식
+   $(function () {
+      $("#sendMsg").on("keydown", function (key) {
+         if (key.keyCode == 13) {
+            sendMsg();
+         }
+      })
+   });
 	</script>
 </body>
 

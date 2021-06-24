@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+   .chatting{
+   width:500px;
+   display: none;
+   }
+   .messageArea{
+   overflow-y : auto;
+   border: 1px solid black;
+   height: 500px;
+   display: flex;
+   flex-direction: column;
+   background-color: #b2c7d9;
+   }
+   .messageArea>p{
+   text-align: center;
+   width: 100%;
+   }
+   #sendMsg{
+   width: 70%;
+   }
+   #sendBtn{
+   width: 20%;
+   }
+   .chat{
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 3px;
+   }
+   .right{
+   background-color: #ffeb33;
+   align-self: flex-end;
+   }
+   .left{
+   background-color: #00ff00;
+   align-self: flex-start;
+   }

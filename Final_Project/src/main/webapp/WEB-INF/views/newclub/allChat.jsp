@@ -44,6 +44,7 @@
    }
 </style>
 <script>
+
    var ws;
    var memberId;
    function initChat(param){
@@ -84,7 +85,7 @@
          //소켓 서버로 문자열 전송
          ws.send(JSON.stringify(data));
          //내화면에 출력
-         appendChat("<div class='chat right'>"+msg+"</div>");
+         appendChat("<div class='chat right1'>"+msg+"</div>");
          $("#sendMsg").val("");
       }
    }
