@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kr.or.category.model.vo.Category;
+import kr.or.directMessage.model.service.DirectMessageService;
+import kr.or.directMessage.model.vo.DirectMessage;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
@@ -35,6 +37,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private DirectMessageService dmService;
 	
 	private NaverLogin naverLogin;
 	@Autowired
@@ -198,6 +203,7 @@ public class MemberController {
 		return "user/socialJoin";
 	}
 	
+	//소셜로그인 시 가입여부 확인
 	@ResponseBody
 	@RequestMapping(value="/nLogin.do")
 	public String nLogin(Member m, Model model) {
@@ -208,6 +214,20 @@ public class MemberController {
 			return "0";
 		}
 	}	
+	
+	//마이페이지
+	@RequestMapping(value="/mypage.do")
+	public String myPage(@SessionAttribute(required = false) Member m, Model model) {
+		Member member = service.selectOneMember(m);
+		ArrayList<DirectMessage> dmList = dmService.selectDmByName(m.getMemberNick());
+		if(member != null) {
+			model.addAttribute("m", member);
+			model.addAttribute("dmList", dmList);
+			return "user/mypage";
+		}else {		
+			return "common/noAuth";
+		}
+	}
 	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")

@@ -28,7 +28,7 @@
 		<if test="memberPw != null">
 			and member_pw=#{memberPw}
 		</if>
-		<if test="memberNick != null">
+		<if test="email == null and memberNick != null">
 			where member_nick=#{memberNick}
 		</if>
 	</select>
@@ -62,5 +62,4 @@
 	<update id="updateEndRestMember">
 		update member set grade=2 where email in ((select rest_email from restriction where end_date &lt; to_char(sysdate,'yyyy-mm-dd')))
 	</update>
-
 </mapper>

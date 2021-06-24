@@ -41,4 +41,8 @@ public class DirectMessageDao {
 		return count;
 	}
 
+	public List selectDmByName(String memberNick) {
+		return session.selectList("directMessage.selectDmByName", memberNick);
+	}
+
 }
