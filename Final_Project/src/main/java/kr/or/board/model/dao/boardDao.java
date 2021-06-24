@@ -33,7 +33,7 @@ public class boardDao {
 	public int totalCount(int type) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("type",type);
-		return session.selectOne("board.totalCount");
+		return session.selectOne("board.totalCount", map);
 	}
 	public Board selectBoard(int abNo) {
 		return session.selectOne("board.selectBaord",abNo);
