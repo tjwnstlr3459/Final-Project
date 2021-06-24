@@ -47,7 +47,7 @@
                             <tbody>
                             	<c:forEach items="${list }" var="bl">
                             	<tr>
-                            		<td><input type="checkbox" class="checkInquiry"></td><td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
+                            		<td><input type="checkbox" class="checks"></td><td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo});" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
                             		<c:choose>
                             			<c:when test="${bl.status.equals('N') }">
 		                            		<td>확인 중</td>                            			
@@ -66,6 +66,13 @@
                             </tfoot>
 						</table>
 					</div>
+				</div>
+			</div>
+			<!-- 모달 -->
+			<div class="modal">
+				<div class="modal-box">
+					
+					<button id="closeBtn" class="btns cancelBtn">X</button>
 				</div>
 			</div>
 		</section>

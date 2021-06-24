@@ -137,6 +137,7 @@ $(document).ready(function() {
 		 	deleteRestMember(restMail);
 	 	}
 	 });
+	 
 });
 //==========================================================================================
 function sendFile(file, el) {
@@ -218,6 +219,17 @@ function deleteRestMember(restEmail){
 				alert('처리 오류! 다시 시도해주세요');
 			}
 			window.location.reload();
+		}
+	});
+}
+//문의/신고 제목 클릭 시 abNo를 ajax로 요청해 selectOne 해오기...
+function selectOneBoard(abNo){
+	$.ajax({
+		url : "/selectOneBoard.do",
+		type : "post",
+		data : {abNo : abNo},
+		success : function(data){
+			console.log(data);
 		}
 	});
 }

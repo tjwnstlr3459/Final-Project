@@ -52,6 +52,20 @@ FROM BOARD
 	</otherwise>
 	</choose>
 </select>
+	<!-- 번호로 selectOne  -->
+	<select id="selectOneBoard" parameterType="bl" resultType="bl">
+		SELECT
+		    AB_NO AS abNo,
+			ab_cg as abCg,
+			ab_writer as abWriter,
+			ab_Title as abTitle,
+			ab_content as abContent,
+			fileName,
+			filePath,
+			enroll_date as enrollDate,
+			status
+		FROM board where ab_no=#{abNo}
+	</select>
 </mapper>
 
 

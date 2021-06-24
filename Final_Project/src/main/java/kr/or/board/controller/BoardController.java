@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import kr.or.board.model.service.boardService;
 import kr.or.board.model.vo.Board;
@@ -34,6 +38,13 @@ public class BoardController {
 		model.addAttribute("list", bpd.getList());
 		model.addAttribute("navigation", bpd.getPageNavi());
 		return "admin/adminBoardList";
+	}
+	//번호로 공지,문의/신고 selectOne > ajax 
+	@RequestMapping(value="/selectOneBoard.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String selectOneBoard(Board bl) {		
+		Board b = service.selectOneBoard(bl);
+		return new Gson().toJson(b);
 	}
 	//공지상세보기
 	@RequestMapping(value = "/boardOne.do")
