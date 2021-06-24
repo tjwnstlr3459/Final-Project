@@ -114,7 +114,7 @@ body {
 			</c:otherwise>
 			</c:choose>
 			<li><a href="/newClub.do?clubNo=6">CLUB VIEW</a></li>
-			<li><a href="/boardList.do?reqPage=1">BOARD LIST</a></li>
+			<li><a href="/boardList.do?reqPage=1&type=1">BOARD LIST</a></li>
 			<li><a href="/badReport.do">BAD REPORT</a></li>
 
 		</ul>

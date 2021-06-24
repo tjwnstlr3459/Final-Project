@@ -19,15 +19,22 @@ public class BoardController {
 	
 	//공지사항 출력
 	@RequestMapping(value = "/boardList.do")
-	public String boardList(Model model,int reqPage) {	//페이지네비reqPage
+	public String boardList(Model model,int reqPage, int type) {	//페이지네비reqPage
 //		ArrayList<Board> boardList = service.boardList();//공지사항목록
 //		model.addAttribute("boardList",boardList);		//공지사항목록
-		BoardPageData bpd = service.selectBoardList(reqPage);	//공지목록,페이지네비 구해오기
+		BoardPageData bpd = service.selectBoardList(reqPage,type);	//공지목록,페이지네비 구해오기
 		model.addAttribute("boardList", bpd.getList());
 		model.addAttribute("pageNavi", bpd.getPageNavi());
-		return "board/boardList";
+		return "board/boardList";			
 	}
-	
+	//문의/신고 출력
+	@RequestMapping(value="/adminBoardList.do")
+	public String adminBoardList(Model model, int reqPage, int type) {
+		BoardPageData bpd = service.selectBoardList(reqPage,type);	//공지목록,페이지네비 구해오기
+		model.addAttribute("list", bpd.getList());
+		model.addAttribute("navigation", bpd.getPageNavi());
+		return "admin/adminBoardList";
+	}
 	//공지상세보기
 	@RequestMapping(value = "/boardOne.do")
 	public String boardOne(Model model) {

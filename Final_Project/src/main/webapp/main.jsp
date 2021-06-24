@@ -94,7 +94,7 @@
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
                                         </c:otherwise>
                                         </c:choose> 
-                                        <li><a onclick="location.href='/boardList.do?reqPage=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
+                                        <li><a onclick="location.href='/boardList.do?reqPage=1&type=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
 										<li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">club view</a></li> 
                                         <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li>                                                                         
                                     </ul>                                    

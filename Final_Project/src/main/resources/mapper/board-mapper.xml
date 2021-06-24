@@ -16,22 +16,39 @@ FROM BOARD
 </select>
 
 <select id="selectBoardListBetween" parameterType="map" resultType="bl">
-SELECT
-    AB_NO AS abNo,
-	ab_cg as abCg,
-	ab_writer as abWriter,
-	ab_Title as abTitle,
-	ab_content as abContent,
-	fileName,
-	filePath,
-	enroll_date as enrollDate
-FROM
-(SELECT rOWNUM AS RNUM, N.*FROM
-(SELECT * FROM BOARD ORDER BY AB_NO DESC)N) WHERE RNUM BETWEEN #{start} AND #{end}
+	SELECT
+	    AB_NO AS abNo,
+		ab_cg as abCg,
+		ab_writer as abWriter,
+		ab_Title as abTitle,
+		ab_content as abContent,
+		fileName,
+		filePath,
+		enroll_date as enrollDate
+	FROM
+	(SELECT rOWNUM AS RNUM, N.*FROM
+	(SELECT * FROM BOARD where 
+	<choose>
+	<when test="type eq 1">
+		ab_cg = 14
+	</when>
+	<otherwise>
+		not ab_cg = 14
+	</otherwise>
+	</choose>
+	ORDER BY AB_NO DESC)N) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
-<select id="totalCount" resultType="int">
-SELECT count(*) FROM BOARD
+<select id="totalCount" parameterType="map" resultType="int">
+	SELECT count(*) FROM BOARD where
+	<choose>
+	<when test="type eq 1">
+		ab_cg = 14
+	</when>
+	<otherwise>
+		not ab_cg = 14
+	</otherwise>
+	</choose>
 </select>
 </mapper>
 
