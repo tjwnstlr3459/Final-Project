@@ -100,6 +100,7 @@ public class boardService {
 		return npd;
 	}
 
+
 	public Board selectOneBoard(Board bl) {
 		ArrayList<Board> list = (ArrayList<Board>)dao.selectOneBoard(bl);
 		Board b = null;
@@ -107,6 +108,12 @@ public class boardService {
 			b = list.get(0);
 		}
 		return b;
+	}
+	
+	//게시물 상세보기
+	public Board selectBoard(int abNo) {
+		return dao.selectBoard(abNo);
+
 	}
 }
 

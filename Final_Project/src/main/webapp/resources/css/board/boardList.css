@@ -8,10 +8,10 @@ body {
 .wrap {
   width: 1000px;
   margin: 0 auto;
-  background-color: #f5f5f5;
 }
 .topContent {
   height: 300px;
+  margin-left: 40px;
 }
 .topContent > div {
   float: left;
@@ -31,7 +31,8 @@ body {
   font-size: 13px;
 }
 .nunaMent {
-  line-height: 25px;
+  line-height: 31px;
+  border: 0px;
 }
 .checkBtn {
   width: 100px;

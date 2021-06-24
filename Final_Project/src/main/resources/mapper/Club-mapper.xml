@@ -103,6 +103,22 @@ insert into club_board values(
 		filePath=#{filePath}
 	where board_no=#{boardNo}
 </update>
+<select id="viewClubList" parameterType="int" resultType="c">
+	SELECT
+		CLUB_NO as clubNo,
+		CLUB_CG  as clubCg,            
+		CLUB_NAME  as clubName,
+		CLUB_INTRO  as clubIntro,
+		CLUB_OPENER  as clubOpener,        
+		FILENAME,  
+		FILEPATH, 
+		CLUB_RATING as clubRating,
+		ISPUBLIC,
+		ENROLL_DATE as enrollDate,
+		LAST_DATE as lastDate,
+		WARNING_COUNT as warningCount
+	FROM CLUB WHERE club_cg = #{cgNo}
+</select>
 </mapper>
 
 

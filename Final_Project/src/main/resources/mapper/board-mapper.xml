@@ -15,6 +15,7 @@ SELECT
 FROM BOARD
 </select>
 
+<!-- 공지게시물 10개 단위로 게시물 가져오기 -->
 <select id="selectBoardListBetween" parameterType="map" resultType="bl">
 	SELECT
 	    AB_NO AS abNo,
@@ -41,6 +42,7 @@ FROM BOARD
 	ORDER BY AB_NO DESC)N) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
+<!-- 공지게시물의 총갯수 -->
 <select id="totalCount" parameterType="map" resultType="int">
 	SELECT count(*) FROM BOARD where
 	<choose>
@@ -53,6 +55,7 @@ FROM BOARD
 	</choose>
 </select>
 	<!-- 번호로 selectOne  -->
+	<!--  
 	<select id="selectOneBoard" parameterType="bl" resultType="bl">
 		SELECT
 		    AB_NO AS abNo,
@@ -66,6 +69,22 @@ FROM BOARD
 			status
 		FROM board where ab_no=#{abNo}
 	</select>
+	-->
+
+<!-- 공지상세보기 -->
+<select id="selectBaord" parameterType="int" resultType="bl">
+	SELECT 
+		AB_NO AS abNo,
+		ab_cg as abCg,
+		ab_writer as abWriter,
+		ab_Title as abTitle,
+		ab_content as abContent,
+		fileName,
+		filePath,
+		enroll_Date as enrollDate
+	FROM BOARD WHERE AB_NO=#{abNo}
+</select>
+
 </mapper>
 
 

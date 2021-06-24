@@ -1,15 +1,28 @@
 package kr.or.board.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import kr.or.board.model.service.boardService;
 import kr.or.board.model.vo.Board;
@@ -48,7 +61,9 @@ public class BoardController {
 	}
 	//공지상세보기
 	@RequestMapping(value = "/boardOne.do")
-	public String boardOne(Model model) {
+	public String boardOne(Model model,int abNo) {
+		Board board = service.selectBoard(abNo);
+		model.addAttribute("board", board);
 		return "board/boardOne";
 		}
 	
@@ -58,13 +73,56 @@ public class BoardController {
 		return "board/boardOneInsert";
 		}
 	
+	
+	//서머노트로 드래그한 이미지 서버에 max용량 설정해서 업로드
+	@RequestMapping(value="/adminImageUpload.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
+		JsonObject jsonObject = new JsonObject();
+		
+        /*String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.*/
+		// 내부경로로 저장
+		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		String fileRoot = contextRoot+"resources/fileupload/boardImg/";
+		
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		
+		File targetFile = new File(fileRoot + savedFileName);	
+		
+		try {
+       	 //스트림 생성
+            FileOutputStream fos = new FileOutputStream(targetFile); // 경로 + 파일명
+            //속도개선 보조 스트림
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            //bos -> byte타입 변환
+            byte[] bytes = multipartFile.getBytes(); //try/catch 추가 설정
+            bos.write(bytes);
+            bos.close();
+            //contextroot + resources + 저장할 내부 폴더명
+            jsonObject.addProperty("url", "/resources/fileupload/boardImg/"+savedFileName); 
+			jsonObject.addProperty("responseCode", "success");
+            
+         } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
+        	 jsonObject.addProperty("responseCode", "error");
+            e.printStackTrace();
+         }
+	
+		String a = jsonObject.toString();	//Ajax에 값 전달
+		return a;
+	}
+	
+	
+	//공지사항 댓글작성
+	@RequestMapping(value = "/insertComent.do")
+	public String insertComent() {
+		
+		
+		return null;
+	}
 }
-
-
-
-
-
-
-
-
-
