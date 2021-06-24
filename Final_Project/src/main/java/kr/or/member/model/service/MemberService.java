@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.category.model.dao.CategoryDao;
 import kr.or.category.model.vo.Category;
 import kr.or.member.model.dao.MemberDao;
+import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
 
@@ -22,6 +23,12 @@ public class MemberService {
 
 	public Member selectOneMember(Member m) {
 		Member member = dao.selectOneMember(m);
+		return member;
+	}
+	
+
+	public Member selectOneMember(String user) {
+		Member member = dao.selectOneMember(user);
 		return member;
 	}
 	
@@ -96,4 +103,16 @@ public class MemberService {
 	public int deleteMember(String memberNo) {
 		return dao.deleteMemer(memberNo);
 	}
+
+	//친구 조회
+	public Friends selectFriend(Friends f) {
+		return dao.selectFriend(f);
+	}
+
+	//친구 추가
+	@Transactional
+	public int insertFriend(Friends f) {
+		return dao.insertFriend(f);
+	}
+
 }

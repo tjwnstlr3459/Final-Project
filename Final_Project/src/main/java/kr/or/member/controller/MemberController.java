@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.google.gson.Gson;
 
 import kr.or.category.model.vo.Category;
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
 import kr.or.member.model.service.MemberService;
+import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
 import kr.or.member.model.vo.NaverLogin;
@@ -86,7 +88,7 @@ public class MemberController {
 	//이메일 중복 체크	
 	@ResponseBody
 	@RequestMapping(value="/user/chkEmail.do")
-	public String chkEmail(Member m, Model model) {
+	public String chkEmail(Member m) {
 		System.out.println(m.getEmail());
 		Member member = service.selectOneMember(m);
 		if(member != null && member.getJoinMethod() == 1) {
@@ -101,12 +103,47 @@ public class MemberController {
 	//이름 중복 체크
 	@ResponseBody
 	@RequestMapping(value="/user/chkName.do")
-	public String chkName(Member m, Model model) {
+	public String chkName(Member m) {
 		Member member = service.selectOneMember(m);
 		if(member != null) {
 			return "1";
 		}else {		
 			return "0";
+		}
+	}
+	
+	//회원 검색
+	@ResponseBody
+	@RequestMapping(value="/user/findUser.do", produces="application/json;charset=utf-8")
+	public String chkName(String user) {
+		Member member = service.selectOneMember(user);
+		if(member != null) {
+			return new Gson().toJson(member);			
+		}else {
+			return "1";
+		}
+	}
+
+	//친구 추가
+	@ResponseBody
+	@RequestMapping(value="/user/addFriend.do")
+	public String addFriend(@SessionAttribute(required = false) Member m, Friends f) {
+		Friends friend = service.selectFriend(f);
+		
+		if(friend != null) { //친구 테이블에 존재
+			if(friend.getAccept().equals("Y")) { //이미 친구인 경우
+				return "0";
+			} else if((m.getMemberNick() == friend.getSender()) && friend.getAccept().equals("N")) { //요청이 나이고 상대가 아직 수락하지 않았을 때 
+				return "1";
+			} else if((m.getMemberNick() == friend.getReceiver()) && friend.getAccept().equals("N")) { //상대가 요청했고 내가 아직 수락하지 않았을 때
+				return "2";
+			} else {
+				return "10";
+			}
+		} else { //친구 테이블에 없음
+			int result = service.insertFriend(f);
+			System.out.println(result);
+			return "3";
 		}
 	}
 	

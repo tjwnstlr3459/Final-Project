@@ -62,4 +62,38 @@
 	<update id="updateEndRestMember">
 		update member set grade=2 where email in ((select rest_email from restriction where end_date &lt; to_char(sysdate,'yyyy-mm-dd')))
 	</update>
+	<!-- 아이디나 이메일로  회원 조회-->
+	<select id="selectUser" parameterType="string" resultType="m">
+		select member_no as memberNo,
+			   email,
+			   member_pw as memberPw,
+			   member_nick as memberNick,
+			   gender,
+			   address,
+			   intro,
+			   hobby1,
+			   hobby2,
+			   hobby3,
+			   filename,
+			   filepath,
+			   warning_count as warningCount,
+			   grade,
+			   enroll_date as enrollDate,
+			   last_date as lastDate,
+			   age,
+			   join_method as joinMethod
+		from member where email=#{user} or member_nick=#{user}
+	</select>
+	<select id="selectFriend" parameterType="f" resultType="f">
+		select 
+			friend_no as friendNo,
+			sender,
+			receiver,
+			accept,
+			acc_date as accDate
+		from friend where (sender=#{sender} and receiver=#{receiver}) or (sender=#{receiver} and receiver=#{sender})
+	</select>
+	<insert id="insertFriend" parameterType="f">
+		insert into friend values (friend_seq.nextval, #{sender}, #{receiver}, 'N', to_char(sysdate, 'YYYY-MM-DD'))
+	</insert>
 </mapper>
