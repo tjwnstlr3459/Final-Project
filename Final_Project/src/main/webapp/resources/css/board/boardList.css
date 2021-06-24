@@ -1,95 +1,159 @@
+div {
+  border: 0px solid black;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+.wrap {
+  width: 1000px;
+  height: 1000px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+}
+.topContent {
+  height: 300px;
+}
+.topContent > div {
+  float: left;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.topConImg img {
+  width: 100%;
+  padding: 10px;
+}
+.topConMent {
+  height: 80%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 13px;
+}
+.nunaMent {
+  line-height: 25px;
+}
+.checkBtn {
+  width: 100px;
+  height: 30px;
+  background-color: rgba(82, 193, 252, 0.844);
+  border: 0px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  font-size: 13px;
+}
+.checkBtn:hover {
+  background-color: rgba(89, 195, 252, 0.741);
+  cursor: pointer;
+  transform: scale(1.05);
+}
 
-    div {
-      border: 0px solid black;
-    }
-    body{
-        margin: 0px;
-        padding: 0px;
-    }
-    .wrap {
-      width: 1000px;
-      height: 1000px;
-      margin: 0 auto;
-      /* background-color: #f5f5f5; */
-    }
-    .topContent {
-      width: 90%;
-    height: 300px;
-    margin: 0 auto;
-    }
-    .topContent > div {
-      float: left;
-      width: 50%;
-      height: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-    .topConImg img {
-      width: 100%;
-      padding: 10px;
-    }
-    .topConMent {
-      height: 80%;
-      font-weight: bold;
-      text-align: center;
-      font-size: 13px;
-    }
-    .nunaMent{
-        line-height: 28px;
-        border: 0px;
-       
-    }
-    .checkBtn {
-      width: 100px;
-      height: 30px;
-      background-color: rgba(82, 193, 252, 0.844);
-      border: 0px;
-      border-radius: 5px;
-      font-weight: bold;
-      color: white;
-      font-size: 13px;
-    }
-    .checkBtn:hover {
-      background-color: rgba(89, 195, 252, 0.741);
-      cursor: pointer;
-    }
+.bottomContent {
+  height: 600px;
+}
+.bottomMent {
+  height: 50px;
+}
+.bottomList {
+  width: 900px;
+  margin: 0 auto;
+}
+.listBar {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+}
+.modalLogo img{
+  margin-left: 220px;
+}
+.adminMent{
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+}
+.selectMun{
+  width: 100%;
+  padding-left: 25px;
+  margin-bottom: 5px;
+}
+.selectMun>select{
+  background-color: rgb(255, 244, 244);
+}
+.fileDay{
+  border: 1px solid grey;
+  width: 90%;
+  height: 35px;
+  background-color: rgb(255, 244, 244);
+  margin: 0 auto;
+  padding-top: 3px;
+  border-radius: 5px;
+}
+.fileDay > div{
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  height: 30px;
+  font-size: 12px;
+}
+.fileDay>div:nth-child(1){
+  line-height: 30px;
+  padding-left: 20px;
+}
 
-    .bottomContent {
-      /* height: 600px; */
-      /* overflow: hidden; */
-    }
-    .bottomMent {
-      height: 50px;
-	padding-left:50px;
-    }
-    .bottomList{
-      width: 900px; 
-      margin: 0 auto;
-    }
-    .listBar{
-        background-color: rgba(0, 0, 0, 0.85);
-        color: white;
-    }
-    .adminWriteBtn{
-      width: 80px;
-      height: 30px;
-      background-color: rgba(82, 193, 252, 0.844);
-      border: 0px;
-      border-radius: 5px;
-      font-weight: bold;
-      color: white;
-      font-size: 13px;
-      line-height: 30px;
-    }
-    .adminWriteBtn a{
-      color: white;
-      text-decoration:none;
-      font-size: 13px;
-      margin: 0 atuo;
-      text-align: center;
-      margin-left: 20px;
-      margin-top:20px;
-    }
-    
-    
-    
+.fileDay>div:nth-child(2){
+  text-align: right;
+  line-height: 30px;
+  padding-right: 35px;
+}
+.textA{
+  width: 450px;
+  height: 170px;
+  margin-left: 24px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: rgb(255, 244, 244);
+  outline: none;
+}
+.boardModalPan{
+  width: 100%;
+  position: absolute;
+  top: 180px;
+}
+.boardModal{
+  width: 500px;
+  height: 450px;
+  /* border: 1px solid gainsboro; */
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #ddddddf5;
+}
+.closeModal{
+  float: right;
+  margin: 10px;
+  margin-right: 20px;
+}
+.closeModal:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.boardModalPan{
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modalback{
+  background-color: white;
+  padding: 30px 50px;
+  border-radius: 10px;
+  width: 500px;
+  min-width: 350px
+}
