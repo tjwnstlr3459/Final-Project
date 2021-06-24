@@ -177,7 +177,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-3" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-3" onclick="location.href='/viewClubList.do?cgNo=4';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-glass"></i>
                             </div> <!-- /.service-icon -->
@@ -190,7 +190,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-4" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-4" onclick="location.href='/viewClubList.do?cgNo=10';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-asterisk"></i>
                             </div> <!-- /.service-icon -->
@@ -203,7 +203,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-5" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-5" onclick="location.href='/viewClubList.do?cgNo=8';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-headphones"></i>
                             </div> <!-- /.service-icon -->
@@ -216,7 +216,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-6" onclick="location.href=''" style="cursor:pointer; background-color:firebrick;">
+                        <div class="service-item" id="service-6" onclick="location.href='/viewClubList.do?cgNo=5';" style="cursor:pointer; background-color:firebrick;">
                             <div class="service-icon">
                                 <i class="fa fa-globe"></i>
                             </div> <!-- /.service-icon -->
@@ -229,33 +229,33 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-7" onclick="location.href=''" style="cursor:pointer; background-color:coral;">
+                        <div class="service-item" id="service-7" onclick="location.href='/viewClubList.do?cgNo=6';" style="cursor:pointer; background-color:coral;">
                             <div class="service-icon">
                                 <i class="fa fa-shopping-cart"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>쇼핑</h3>
-                                   <p>좋아하는 물품들을 공유하고, 함께 쇼핑도 해요!</p> 
+                                   <h3>영화</h3>
+                                   <p>좋아하는 영화들을 공유하고, 함께 관람도 해요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-8" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-8" onclick="location.href='/viewClubList.do?cgNo=9';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-leaf"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>환경</h3>
+                                   <h3>자연</h3>
                                    <p>함께 환경을 보호하는 활동을 해보아요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                 </div> <!-- /.row -->
-        <button onclick="location.href='#'" id="feed_info" disabled>MORE</button>
+        <button onclick="location.href='/viewClubList.do?cgNo=7';" id="feed_info" disabled>MORE</button>
             </div> <!-- /.container -->
         </div> <!-- /#services -->
 
@@ -346,8 +346,8 @@
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p17.png" alt="">
                             <div class="portfolio-overlay" style="cursor:auto;">
-                                <h3>'내일의쇼핑왕'</h3>
-                                <p>옷잘알 친구들과 쇼핑을 했어요!</p>
+                                <h3>'무조건 정글잘못'</h3>
+                                <p>다이아정글러 준식님이 갱승을 당했어요!</p>
                                 <a href="/resources/main/images/gallery/p17.png" data-rel="lightbox" class="expand">
                                     <i class="fa fa-search"></i>
                                 </a>

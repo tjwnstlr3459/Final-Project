@@ -58,6 +58,16 @@ public class ClubService {
 		}
 		return result;
 	}
-	
+
 	//영범이구역 뿌잉뿌잉
+	public ArrayList<Club> viewClubList(int cgNo) {
+		List<Club> ybClubList = dao.viewClubList(cgNo);
+		return (ArrayList<Club>)ybClubList;
+	}
+
+	public String selectCategoryName(int cgNo) {
+		String cgName = dao.selectCategoryName(cgNo);
+		return cgName;
+	}
+	
 }

@@ -58,6 +58,16 @@ public class ClubDao {
 	public int insertFile(ClubBoard f) {
 		return session.update("club.insertFile",f);
 	}
+
+	public List<Club> viewClubList(int cgNo) {
+		List ybClubList = session.selectList("club.viewClubList",cgNo);
+		return ybClubList;
+	}
+
+	public String selectCategoryName(int cgNo) {
+		String cgName = session.selectOne("category.selectCategoryName",cgNo);
+		return cgName;
+	}
 	
 	
 	
