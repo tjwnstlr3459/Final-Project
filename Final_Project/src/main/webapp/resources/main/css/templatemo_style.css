@@ -373,7 +373,7 @@ hr {
 .logo-wrapper a {
   display: inline-block;
   overflow: hidden;
-  padding-left: 80px;
+  padding-left: 20px;
   line-height: 100px;
   text-transform: uppercase;
   color: #ec523f;
@@ -737,7 +737,6 @@ hr {
 .portfolio-item .portfolio-thumb:hover .portfolio-overlay {
   opacity: 1;
   visibility: visible;
-  cursor:pointer;
 }
 
 #go-top {
