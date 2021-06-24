@@ -95,6 +95,7 @@ body {
 
 .viewClubList>div {
 	margin: 50px;
+
 }
 
 .viewClubList>.card border-white-primary mb-3 {
@@ -138,6 +139,10 @@ position:fixed;
 .categoryNavi>ul>li :hover{
 	background-color: transparent;
 	font-weight: bolder;
+}
+.cardTitle>a :hover{
+	font-weight: bolder;
+	color:black;
 }
 </style>
 </head>
