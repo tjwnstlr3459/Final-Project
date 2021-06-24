@@ -33,6 +33,31 @@
                             <ul class="social-icons">
                                 <li><a href="https://www.facebook.com/%EB%84%88%EB%82%98%EB%93%A4%EC%9D%B4-102411682096038" class="fa fa-facebook" target='_blank'></a></li>
                                 <li><a href="https://www.instagram.com/nunadri_/" class="fa fa-instagram" target='_blank'></a></li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <c:choose>
+								<c:when test="${!empty sessionScope.m }">
+                                <c:choose>
+                                	<c:when test="${sessionScope.m.grade lt 2 }">
+                                <li><a href="/adminMain.do" class="fa fa-user"></a></li>
+                                <li><a href="/logout.do" class="fa fa-sign-out"></a></li>
+                                	</c:when>
+                                	<c:otherwise>
+                                <li><a href="/mypage.do" class="fa fa-user"></a></li>
+                                <li><a href="/logout.do" class="fa fa-sign-out"></a></li>
+                                	</c:otherwise>
+								</c:choose>
+								</c:when>
+								<c:otherwise>
+                                <li><a href="javascript:void(0)" id="needLoginAlert" class="fa fa-user"></a></li>
+                                <script>
+                                $("#needLoginAlert").click(function(){
+                					alert("Login please.");
+                					location.href="/loginFrm.do";
+                					});
+								</script>
+                                <li><a href="/loginFrm.do" class="fa fa-sign-in"></a></li>
+								</c:otherwise>  
+								</c:choose>                              	
                             </ul>
                         </div> <!-- /.col-md-12 -->
                     </div> <!-- /.row -->
@@ -59,17 +84,13 @@
                                         <c:choose>
                                         	<c:when test="${sessionScope.m.grade lt 2 }">
 											<li><a onclick="location.href='/adminMain.do';" style="cursor: pointer;">ADMIN</a></li>
-                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">LOGOUT</a></li>
 											</c:when>
 											<c:otherwise>
                                         	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">MY CLUB</a></li>
-                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">LOGOUT</a></li>
-                                        	<li><a onclick="location.href='#';" style="cursor: pointer;">CREATE CLUB</a></li>
                                         	</c:otherwise>
                                         </c:choose>
                                         </c:when>
                                         <c:otherwise>
-                                        <li><a onclick="location.href='/loginFrm.do';" style="cursor: pointer;">LOGIN</a></li>
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
                                         </c:otherwise>
                                         </c:choose> 
