@@ -43,10 +43,10 @@ public class AdminController {
 		return "admin/adminMain";
 	}
 	//관리자 문의/신고 이동
-	@RequestMapping(value="/adminInquiryList.do")
-	public String adminInquityList() {
-		return "admin/adminInquiryList";
-	}
+//	@RequestMapping(value="/adminInquiryList.do")
+//	public String adminInquityList() {
+//		return "admin/adminInquiryList";
+//	}
 	//관리자 회원목록 이동
 //	@RequestMapping(value="/adminMemberList.do")
 //	public String adminUserList() {

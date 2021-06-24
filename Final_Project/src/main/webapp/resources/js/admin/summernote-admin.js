@@ -130,6 +130,14 @@ $(document).ready(function() {
 		 	deleteMember(memberNo);	 	
 	 	}
 	 });
+	 //이용제한 해제 버튼 클릭 이벤트 함슈
+	 $('.restOffBtn').click(function(){
+	 	if(confirm('제한을 해제하시겠습니까?')){
+		 	var restMail = $(this).parent().parent().children().eq(1).html();
+		 	deleteRestMember(restMail);
+	 	}
+	 });
+	 
 });
 //==========================================================================================
 function sendFile(file, el) {
@@ -196,6 +204,32 @@ function deleteMember(memberNo){
 				alert('삭제 오류! 다시 시도해주세요');
 			}
 			window.location.reload();
+		}
+	});
+}
+function deleteRestMember(restEmail){
+	$.ajax({
+		url : "/deleteRestMember.do",
+		data : {restEmail : restEmail},
+		type : "post",
+		success : function(data){
+			if(data == 1){
+				alert('처리되었습니다.');
+			}else{
+				alert('처리 오류! 다시 시도해주세요');
+			}
+			window.location.reload();
+		}
+	});
+}
+//문의/신고 제목 클릭 시 abNo를 ajax로 요청해 selectOne 해오기...
+function selectOneBoard(abNo){
+	$.ajax({
+		url : "/selectOneBoard.do",
+		type : "post",
+		data : {abNo : abNo},
+		success : function(data){
+			console.log(data);
 		}
 	});
 }

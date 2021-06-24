@@ -77,4 +77,8 @@ public class RestrictionService {
 		RestrictionPageData rpd = new RestrictionPageData(navigation, (ArrayList<Restriction>)list);
 		return rpd;
 	}
+	@Transactional
+	public int deleteRestMember(String restEmail) {
+		return dao.deleteRestMember(restEmail);
+	}
 }

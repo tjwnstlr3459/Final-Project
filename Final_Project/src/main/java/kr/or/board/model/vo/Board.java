@@ -12,4 +12,7 @@ public class Board {
 	private String fileName;
 	private String filePath;
 	private String enrollDate;
+	private String status;
+	//셀렉트 절에서 서브쿼리로 ab_cg = cg_no 인 cg_name 을 가져와 사용하는 변수
+	private String cgName;
 }

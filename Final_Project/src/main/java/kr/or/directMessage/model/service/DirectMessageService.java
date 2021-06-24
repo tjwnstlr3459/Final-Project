@@ -2,6 +2,7 @@ package kr.or.directMessage.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,12 @@ public class DirectMessageService {
 		return dao.updateWarningCount(dm);
 	}
 
-	public int insertMultiDm(DirectMessage dm, String[] memberNo) {
-		
+	public int insertMultiDm(DirectMessage dm, String[] memberNo) {		
 		return dao.insertMultiDm(dm,memberNo);
+	}
+
+	public ArrayList<DirectMessage> selectDmByName(String memberNick) {
+		return (ArrayList<DirectMessage>)dao.selectDmByName(memberNick);
 	}
 
 }

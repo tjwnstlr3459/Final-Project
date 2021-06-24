@@ -33,6 +33,31 @@
                             <ul class="social-icons">
                                 <li><a href="https://www.facebook.com/%EB%84%88%EB%82%98%EB%93%A4%EC%9D%B4-102411682096038" class="fa fa-facebook" target='_blank'></a></li>
                                 <li><a href="https://www.instagram.com/nunadri_/" class="fa fa-instagram" target='_blank'></a></li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <c:choose>
+								<c:when test="${!empty sessionScope.m }">
+                                <c:choose>
+                                	<c:when test="${sessionScope.m.grade lt 2 }">
+                                <li><a href="/adminMain.do" class="fa fa-user"></a></li>
+                                <li><a href="/logout.do" class="fa fa-sign-out"></a></li>
+                                	</c:when>
+                                	<c:otherwise>
+                                <li><a href="/mypage.do" class="fa fa-user"></a></li>
+                                <li><a href="/logout.do" class="fa fa-sign-out"></a></li>
+                                	</c:otherwise>
+								</c:choose>
+								</c:when>
+								<c:otherwise>
+                                <li><a href="javascript:void(0)" id="needLoginAlert" class="fa fa-user"></a></li>
+                                <script>
+                                $("#needLoginAlert").click(function(){
+                					alert("Login please.");
+                					location.href="/loginFrm.do";
+                					});
+								</script>
+                                <li><a href="/loginFrm.do" class="fa fa-sign-in"></a></li>
+								</c:otherwise>  
+								</c:choose>                              	
                             </ul>
                         </div> <!-- /.col-md-12 -->
                     </div> <!-- /.row -->
@@ -46,37 +71,29 @@
                                         <a href="/">NUNADRI</a>
                                     </h1>
                                 </div> <!-- /.logo-wrapper -->
-                                <div class="col-md-10 col-sm-10 main-menu text-right">
+                                <div class="col-md-10 col-sm-10 main-menu text-right" style="width:850px;">
                                     <div class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></div>
                                     <ul class="menu-first">
                                         <li class="active"><a href="#">Home</a></li>
                                         <li><a href="#clubCategory">Club category</a></li>
                                         <li><a href="#clubFeed">club Feed</a></li>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div class="toggle-menu visible-sm visible-xs"></div>
                                         <c:choose>
-                                        <c:when test="${!empty sessionScope.m }">
-                                        <c:choose>
-                                        	<c:when test="${sessionScope.m.grade lt 2 }">
-											<li><a onclick="location.href='/adminMain.do';" style="cursor: pointer;">ADMIN</a></li>
-                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">LOGOUT</a></li>
-											</c:when>
-											<c:otherwise>
-                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">MY CLUB</a></li>
-                                        	<li><a onclick="location.href='/logout.do';" style="cursor: pointer;">LOGOUT</a></li>
-                                        	<li><a onclick="location.href='#';" style="cursor: pointer;">CREATE CLUB</a></li>
-                                        	</c:otherwise>
+                                        	<c:when test="${!empty sessionScope.m }">
+                                        	<c:choose>
+                                        		<c:when test="${sessionScope.m.grade gt 1 }">
+	                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">${sessionScope.m.memberNick }'s CLUB</a></li>
+	                                        	</c:when>
+                                        	</c:choose>
+                                        	</c:when>
                                         </c:choose>
-                                        </c:when>
-                                        <c:otherwise>
-                                        <li><a onclick="location.href='/loginFrm.do';" style="cursor: pointer;">LOGIN</a></li>
+                                        <li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">CLUB VIEW</a></li> 
+                                        <li><a onclick="location.href='/boardList.do?reqPage=1&type=1';" style="cursor: pointer;">FEEDBACK</a></li>
+                                        <c:if test="${empty sessionScope.m }">
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
-                                        </c:otherwise>
-                                        </c:choose> 
-										<li><a onclick="location.href='/newClub.do';" style="cursor: pointer;">CLUB VIEW</a></li> 
-                                        <li><a onclick="location.href='/boardList.do?reqPage=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
-										<li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">create club</a></li> 
-                                        <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li>                                                                         
+                                        </c:if>
+                                        <!-- <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li> -->                                                                         
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
@@ -160,7 +177,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-3" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-3" onclick="location.href='/viewClubList.do?cgNo=4';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-glass"></i>
                             </div> <!-- /.service-icon -->
@@ -173,7 +190,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-4" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-4" onclick="location.href='/viewClubList.do?cgNo=10';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-asterisk"></i>
                             </div> <!-- /.service-icon -->
@@ -186,7 +203,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-5" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-5" onclick="location.href='/viewClubList.do?cgNo=8';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-headphones"></i>
                             </div> <!-- /.service-icon -->
@@ -199,7 +216,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-6" onclick="location.href=''" style="cursor:pointer; background-color:firebrick;">
+                        <div class="service-item" id="service-6" onclick="location.href='/viewClubList.do?cgNo=5';" style="cursor:pointer; background-color:firebrick;">
                             <div class="service-icon">
                                 <i class="fa fa-globe"></i>
                             </div> <!-- /.service-icon -->
@@ -212,33 +229,33 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-7" onclick="location.href=''" style="cursor:pointer; background-color:coral;">
+                        <div class="service-item" id="service-7" onclick="location.href='/viewClubList.do?cgNo=6';" style="cursor:pointer; background-color:coral;">
                             <div class="service-icon">
                                 <i class="fa fa-shopping-cart"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>쇼핑</h3>
-                                   <p>좋아하는 물품들을 공유하고, 함께 쇼핑도 해요!</p> 
+                                   <h3>영화</h3>
+                                   <p>좋아하는 영화들을 공유하고, 함께 관람도 해요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="service-item" id="service-8" onclick="location.href=''" style="cursor:pointer">
+                        <div class="service-item" id="service-8" onclick="location.href='/viewClubList.do?cgNo=9';" style="cursor:pointer">
                             <div class="service-icon">
                                 <i class="fa fa-leaf"></i>
                             </div> <!-- /.service-icon -->
                             <div class="service-content">
                                 <div class="inner-service">
-                                   <h3>환경</h3>
+                                   <h3>자연</h3>
                                    <p>함께 환경을 보호하는 활동을 해보아요!</p> 
                                 </div>
                             </div> <!-- /.service-content -->
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                 </div> <!-- /.row -->
-        <button onclick="location.href='#'" id="feed_info">MORE</button>
+        <button onclick="location.href='/viewClubList.do?cgNo=7';" id="feed_info" disabled>MORE</button>
             </div> <!-- /.container -->
         </div> <!-- /#services -->
 
@@ -256,7 +273,7 @@
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p11.png" alt="">
-                            <div class="portfolio-overlay">
+                            <div class="portfolio-overlay" style="cursor:auto;">
                                 <h3>'네발자전거'</h3>
                                 <p>자전거 라이딩으로 회원님덜과 파주 평화공원을 다녀왔숨당</p>
                                 <a href="/resources/main/images/gallery/p11.png" data-rel="lightbox" class="expand">
@@ -268,7 +285,7 @@
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p12.png" alt="">
-                            <div class="portfolio-overlay">
+                            <div class="portfolio-overlay" style="cursor:auto;">
                                 <h3>'무비메이트'</h3>
                                 <p>채팅으로 알게된 회원님과 둘이 킬러의 보디가드 관람! 배꼽 찾아 삼만리</p>
                                 <a href="/resources/main/images/gallery/p12.png" data-rel="lightbox" class="expand">
@@ -292,7 +309,7 @@
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p14.png" alt="">
-                            <div class="portfolio-overlay">
+                            <div class="portfolio-overlay" style="cursor:auto;">
                                 <h3>'니가사는거라면 나도 끼지'</h3>
                                 <p>그라가스같은 회원님이 와인에 대해 알려주셨어요!</p>
                                 <a href="/resources/main/images/gallery/p14.png" data-rel="lightbox" class="expand">
@@ -304,7 +321,7 @@
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p15.png" alt="">
-                            <div class="portfolio-overlay">
+                            <div class="portfolio-overlay" style="cursor:auto;">
                                 <h3>'아미회장'</h3>
                                 <p>방탄소년단 콘서트에 같이 다녀왔어요!</p>
                                 <a href="/resources/main/images/gallery/p15.png" data-rel="lightbox" class="expand">
@@ -316,7 +333,7 @@
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p16.png" alt="">
-                            <div class="portfolio-overlay">
+                            <div class="portfolio-overlay" style="cursor:auto;">
                                 <h3>'6군 스트라이커'</h3>
                                 <p>상암 풋살장을 빌려서 3:3 밀어내기를 했어요!</p>
                                 <a href="/resources/main/images/gallery/p16.png" data-rel="lightbox" class="expand">
@@ -328,22 +345,22 @@
                     <div class="portfolio-item col-md-3 col-sm-6">
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p17.png" alt="">
-                            <div class="portfolio-overlay">
-                                <h3>'내일의쇼핑왕'</h3>
-                                <p>옷잘알 친구들과 쇼핑을 했어요!</p>
+                            <div class="portfolio-overlay" style="cursor:auto;">
+                                <h3>'무조건 정글잘못'</h3>
+                                <p>다이아정글러 준식님이 갱승을 당했어요!</p>
                                 <a href="/resources/main/images/gallery/p17.png" data-rel="lightbox" class="expand">
                                     <i class="fa fa-search"></i>
                                 </a>
                             </div> <!-- /.portfolio-overlay -->
                         </div> <!-- /.portfolio-thumb -->
                     </div> <!-- /.portfolio-item -->
-                    <div class="portfolio-item col-md-3 col-sm-6">
+                    <div class="portfolio-item col-md-3 col-sm-6" >
                         <div class="portfolio-thumb">
                             <img src="/resources/main/images/gallery/p18.png" alt="">
-                            <div class="portfolio-overlay">
+                            <div class="portfolio-overlay" style="cursor:auto;">
                                 <h3>'나무나무'</h3>
                                 <p>식목일이 아니어도 나무를 심고 왔어요.</p>
-                                <a href="/resources/main/images/gallery/p18.png" data-rel="lightbox" class="expand">
+                                <a href="/resources/main/images/gallery/p18.png" data-rel="lightbox" class="expand" >
                                     <i class="fa fa-search"></i>
                                 </a>
                             </div> <!-- /.portfolio-overlay -->
@@ -353,7 +370,7 @@
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
         </div> <!-- /#portfolio -->
-            
+
 <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

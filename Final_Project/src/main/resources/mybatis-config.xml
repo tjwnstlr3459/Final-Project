@@ -15,7 +15,7 @@
 		<typeAlias type="kr.or.club.model.vo.Club" alias="c"/>
 		<!-- 모임게시물 -->
 		<typeAlias type="kr.or.club.model.vo.ClubBoard" alias="b"/>
-		<!-- 게시판 -->
+		<!-- 게시판(공지,문의/신고) -->
 		<typeAlias type="kr.or.board.model.vo.Board" alias="bl"/>
 		<!-- 게시판네비 -->
 		<typeAlias type="kr.or.board.model.vo.BoardPageData" alias="bpd"/>
@@ -27,6 +27,8 @@
 		<typeAlias type="kr.or.restriction.model.vo.Restriction" alias="rest"/>
 		<!-- 프리보드 별명 -->
 		<typeAlias type="kr.or.freeBoard.model.vo.FreeBoard" alias="fb"/>
+		<!-- 문의/신고 답변 -->
+		<typeAlias type="kr.or.answer.model.vo.Answer" alias="an"/>
 		
 		
 

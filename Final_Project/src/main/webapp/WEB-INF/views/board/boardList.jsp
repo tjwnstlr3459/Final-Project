@@ -28,6 +28,7 @@
   </head>
   
   <body>
+   <div class="modalback">
   <%@include file="/WEB-INF/views/common/header.jsp"%>
     <!-- 헤더 -->
     <div>
@@ -51,7 +52,7 @@
         <!--topContent-->
         <div class="bottomContent">
           <div class="bottomMent">
-            <h2 style="width:200px;">공지사항</h2>
+            <h2 style="width:200px;margin-left: 50px;">공지사항</h2>
           </div>
 
           <div class="bottomList">
@@ -96,14 +97,49 @@
           </div><!--bottomList end-->
           </div>
         </div><!--bottomContent-->
+        
+     
+        
+        
       </div><!--wrap-->
-      
-      <div class="boardModal">
-      	
-      </div>
     <!-- 푸터 -->
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
+       <!-- 모달 -->
+    <div class="boardModalPan" style="display: none;">
+      <div class="boardModal">
+        <div class="closeModal">X</div>
+        <div class="modalLogo"><img src="/resources/image/icons/man3.png"></div>
+        
+        <div class="adminMent">저희 Nunadri는 회원님들의 의견에<br>귀를 기울이겠습니다.</div>
+        <hr style="border: 1px solid gray; width: 90%;margin-bottom: 5px; margin-top: 5px;">
+        <div class="selectMun">
+          <select>
+            <option>문의</option>
+            <option>신고</option>
+          </select>
+        </div>
+        
+        <div class="fileDay">
+          <div><input type="file" value="파일첨부"></div>
+          <div>작성일 : 2020-05-22</div>
+        </div>
+        <textarea class="textA"></textarea>
+        <input class="checkBtn" style="margin-top:15px; margin-left: 200px; text-align: center;" stype="submit" value="Submit">
+      </div>
+    </div>
+   </div> 
   </body>
+  <script>
+    $(".checkBtn").click(function(){
+      $(".boardModalPan").css("display","block");
+      
+      $(".boardModalPan").css("display","flex");
+    });
+
+    $(".closeModal").click(function(){
+      $(".boardModalPan").css("display","none");
+    });
+  </script>
 </html>
 
 

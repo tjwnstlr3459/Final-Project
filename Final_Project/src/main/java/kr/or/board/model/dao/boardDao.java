@@ -4,6 +4,7 @@ package kr.or.board.model.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,22 @@ public class boardDao {
 		List<Board> list = session.selectList("board.selectBoardList");
 		return list;
 	}
-	public List<Board> selectBoardList(int start, int end) {
+	public List<Board> selectBoardList(int start, int end, int type) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("type",type);
 		
 		List<Board> list = session.selectList("board.selectBoardListBetween",map);
 		return list;
 	}
-	public int totalCount() {
-		return session.selectOne("board.totalCount");
+	public int totalCount(int type) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("type",type);
+		return session.selectOne("board.totalCount", map);
+	}
+	public Board selectBoard(int abNo) {
+		return session.selectOne("board.selectBaord",abNo);
 	}
 
 }
