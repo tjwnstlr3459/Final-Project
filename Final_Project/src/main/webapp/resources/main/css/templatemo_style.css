@@ -373,7 +373,7 @@ hr {
 .logo-wrapper a {
   display: inline-block;
   overflow: hidden;
-  padding-left: 80px;
+  padding-left: 50px;
   line-height: 100px;
   text-transform: uppercase;
   color: #ec523f;
@@ -757,7 +757,10 @@ hr {
 #footer {
   margin-top: 200px;
 }
-
+.menu-first > li{
+	margin: 0;
+	padding: 0;
+}
 /*
 body, p, div, h1, h2, h3, h4, h5, h6 {
 	font-family: "Open Sans", Arial, Verdana, Geneva, sans-serif;
