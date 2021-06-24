@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+   .chatting{
+   width:300px;
+   display: none;
+   }
+   .messageArea{
+   overflow-y : auto;
+   border: 1px solid black;
+   height: 500px;
+   display: flex;
+   flex-direction: column;
+   background-color: #f0c948;
+   }
+   .messageArea>p{
+   text-align: center;
+   width: 100%;
+   }
+   #sendMsg{
+   width: 70%;
+   }
+   #sendBtn{
+   width: 20%;
+   }
+   .chat{
+   	  
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 3px;
+   }
+   .right{
+   background-color: #4ac51a;
+   align-self: flex-end;
+   font-weight: bold;
+   }
+   .leftchat{
+   background-color: #a1a59f;
+   align-self: flex-start;
+   font-weight: bold;
+   }

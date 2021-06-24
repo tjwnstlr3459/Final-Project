@@ -11,13 +11,13 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class AllMemberChat extends TextWebSocketHandler {
+public class allMemberChat extends TextWebSocketHandler {
 	 private ArrayList<WebSocketSession> sessionList;   //접속한 회원의 세션을 저장하는 리스트
 	   private HashMap<WebSocketSession, String> memberList;   //각 세션별로 접속한 회원의 아이디를 저장하는 map
 	   
 	   
 	   
-	   public AllMemberChat() {
+	   public allMemberChat() {
 	      super();
 	      sessionList = new ArrayList<WebSocketSession>();
 	      memberList = new HashMap<WebSocketSession, String>();
@@ -57,7 +57,7 @@ public class AllMemberChat extends TextWebSocketHandler {
 	               }
 	            }
 	         }else if(type.equals("chat")) {
-	            String sendMsg = "<div class='chat left'><span class='chatId>'"+memberList.get(session)+" : </span>"+msg+"</div>";
+	            String sendMsg = "<div class='chat leftchat'><span class='chatId>'"+memberList.get(session)+" : </span>"+msg+"</div>";
 	            for(WebSocketSession s : sessionList) {
 	               if(!session.equals(s)) {
 	                  TextMessage tm = new TextMessage(sendMsg);

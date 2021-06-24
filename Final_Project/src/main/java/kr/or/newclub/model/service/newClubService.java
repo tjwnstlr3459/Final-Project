@@ -27,7 +27,8 @@ public int totalCount(int clubNo) {
  }
 
 public ArrayList<Board> clubBoardMore(int start, int clubNo) {
-	int length = 5;
+	//3개씩가져올거다
+	int length = 3;
 	int end = start + length - 1;
 	HashMap<Object, Object> map = new HashMap<Object, Object>();
 	map.put("start", start);
