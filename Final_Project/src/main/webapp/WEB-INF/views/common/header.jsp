@@ -104,7 +104,6 @@ body {
 				<c:otherwise>
 			<li><a href="/myClub.do">MY CLUB</a></li>
 			<li><a href="/logout.do">LOGOUT</a></li>
-			<li><a href="#">CREATE CLUB</a></li>
 				</c:otherwise>
 			</c:choose>
 			</c:when>
@@ -113,7 +112,7 @@ body {
 			<li><a href="/join.do">JOIN</a></li>
 			</c:otherwise>
 			</c:choose>
-			<li><a href="/newClub.do">CLUB VIEW</a></li>
+			<li><a href="/newClub.do?clubNo=6">CLUB VIEW</a></li>
 			<li><a href="/boardList.do?reqPage=1">BOARD LIST</a></li>
 
 		</ul>
