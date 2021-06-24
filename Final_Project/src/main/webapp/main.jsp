@@ -71,32 +71,29 @@
                                         <a href="/">NUNADRI</a>
                                     </h1>
                                 </div> <!-- /.logo-wrapper -->
-                                <div class="col-md-10 col-sm-10 main-menu text-right">
+                                <div class="col-md-10 col-sm-10 main-menu text-right" style="width:850px;">
                                     <div class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></div>
                                     <ul class="menu-first">
                                         <li class="active"><a href="#">Home</a></li>
                                         <li><a href="#clubCategory">Club category</a></li>
                                         <li><a href="#clubFeed">club Feed</a></li>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div class="toggle-menu visible-sm visible-xs"></div>
                                         <c:choose>
-                                        <c:when test="${!empty sessionScope.m }">
-                                        <c:choose>
-                                        	<c:when test="${sessionScope.m.grade lt 2 }">
-											<li><a onclick="location.href='/adminMain.do';" style="cursor: pointer;">ADMIN</a></li>
-											</c:when>
-											<c:otherwise>
-                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">MY CLUB</a></li>
-                                        	</c:otherwise>
+                                        	<c:when test="${!empty sessionScope.m }">
+                                        	<c:choose>
+                                        		<c:when test="${sessionScope.m.grade gt 1 }">
+	                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">${sessionScope.m.memberNick }'s CLUB</a></li>
+	                                        	</c:when>
+                                        	</c:choose>
+                                        	</c:when>
                                         </c:choose>
-                                        </c:when>
-                                        <c:otherwise>
+                                        <li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">CLUB VIEW</a></li> 
+                                        <li><a onclick="location.href='/boardList.do?reqPage=1&type=1';" style="cursor: pointer;">FEEDBACK</a></li>
+                                        <c:if test="${empty sessionScope.m }">
                                         <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
-                                        </c:otherwise>
-                                        </c:choose> 
-                                        <li><a onclick="location.href='/boardList.do?reqPage=1&type=1';" style="cursor: pointer;">BOARD LIST</a></li>                                                                         
-										<li><a onclick="location.href='/newClub.do?clubNo=6';" style="cursor: pointer;">club view</a></li> 
-                                        <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li>                                                                         
+                                        </c:if>
+                                        <!-- <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li> -->                                                                         
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->

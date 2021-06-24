@@ -102,20 +102,19 @@ body {
 			<li><a href="/logout.do">LOGOUT</a></li>
 				</c:when>
 				<c:otherwise>
-			<li><a href="/myClub.do">MY CLUB</a></li>
-			<li><a href="/logout.do">LOGOUT</a></li>
 			<li><a href="/#">CREATE CLUB</a></li>
+			<li><a href="/myClub.do">${sessionScope.m.memberNick }'s CLUB</a></li>
+			<li><a href="/logout.do">LOGOUT</a></li>
 				</c:otherwise>
 			</c:choose>
 			</c:when>
-			<c:otherwise>
-			<li><a href="/loginFrm.do">LOGIN</a></li>
-			<li><a href="/join.do">JOIN</a></li>
-			</c:otherwise>
 			</c:choose>
 			<li><a href="/newClub.do?clubNo=6">CLUB VIEW</a></li>
-			<li><a href="/boardList.do?reqPage=1&type=1">BOARD LIST</a></li>
-			<li><a href="/badReport.do">BAD REPORT</a></li>
+			<li><a href="/boardList.do?reqPage=1&type=1">FEEDBACK</a></li>
+			<c:if test="${empty sessionScope.m }">
+			<li><a href="/loginFrm.do">LOGIN</a></li>
+			<li><a href="/join.do">JOIN</a></li>
+			</c:if>
 
 		</ul>
 		<ul class="navbar_icons">

@@ -108,10 +108,10 @@
 	<task:annotation-driven/>
 	
 	 <!-- 웹소켓 전체채팅용 설정 -->
-	<!-- <beans:bean id="allMemberChat" class="kr.or.newclub.model.service.AllMemberChat"/>
+	<beans:bean id="allMemberChat" class="kr.or.newclub.model.service.AllMemberChat"/>
 	<websocket:handlers>
 		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
-	</websocket:handlers>   -->
+	</websocket:handlers>  
 	
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.club" /><!-- 마이클럽 -->
@@ -126,6 +126,8 @@
 	<context:component-scan base-package="kr.or.directMessage" /><!-- 쪽지 -->
 	<context:component-scan base-package="kr.or.newclub" /><!-- 모임개설 -->
 	<context:component-scan base-package="kr.or.freeBoard" /><!-- 프리보드쪽 -->
+	<context:component-scan base-package="kr.or.adminBaord" /><!-- 공지,문의/신고 -->
+	<context:component-scan base-package="kr.or.answer" /><!-- 공지,문의/신고 답변 -->
 	
 </beans:beans>
 
