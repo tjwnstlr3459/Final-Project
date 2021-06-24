@@ -47,10 +47,23 @@
                             <tbody>
                             	<c:forEach items="${list }" var="bl">
                             	<tr>
-                            		<td><input type="checkbox" class="checkInquiry"></td><td>${bl.abCg }</td><td>${bl.abWriter }</td><td><a href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td><td>답변 완료</td>
+                            		<td><input type="checkbox" class="checkInquiry"></td><td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
+                            		<c:choose>
+                            			<c:when test="${bl.status.equals('N') }">
+		                            		<td>확인 중</td>                            			
+                            			</c:when>
+                            			<c:otherwise>
+		                            		<td>답변 완료</td>
+                            			</c:otherwise>
+                            		</c:choose>
                             	</tr>
                             	</c:forEach>
                             </tbody>
+                            <tfoot>
+                            	<tr>
+                            		<th colspan="6">${navigation }</th>
+                            	</tr>
+                            </tfoot>
 						</table>
 					</div>
 				</div>

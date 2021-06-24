@@ -51,14 +51,13 @@ public class boardService {
 		//11~15페이지 요청하면 페이지 네비 시작  : 11
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
 		//페이지네비 시작
-		String pageNavi = "<ul class='pagination pagination-lg'>";
+		String pageNavi = type==1?"<ul class='pagination pagination-lg'>":"<div>";
 		//페이지 네비 시작번호가 1이 아닌경우는 이전버튼 생성
 		if(pageNo != 1) {
 			if(type == 1) {
 				pageNavi += "<li class='page-item'>";
 				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+(pageNo-1)+"&type="+type+"'>&lt;</a></li>";				
 			}else {
-				pageNavi += "<li class=''>";
 				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+(pageNo-1)+"&type="+type+"'>&lt;</a></li>";								
 			}
 		}
@@ -69,7 +68,7 @@ public class boardService {
 				pageNavi += "<li class='page-item active'>";	//눌러진페이지 엑티브 ex)3페이지 누르면 3이 엑티브되게
 				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";				
 			}else {
-				pageNavi += "<li class=''>";	//눌러진페이지 엑티브 ex)3페이지 누르면 3이 엑티브되게
+				//눌러진페이지 엑티브 ex)3페이지 누르면 3이 엑티브되게
 				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";
 			}
 		}else {												//reqPage는 누른페이지 지정
@@ -77,7 +76,7 @@ public class boardService {
 				pageNavi += "<li class='page-item'>";//누르지 않는 페이지들
 				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";				
 			}else {
-				pageNavi += "<li class=''>";//누르지 않는 페이지들
+				//누르지 않는 페이지들
 				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";
 			}
 		}
@@ -92,11 +91,10 @@ public class boardService {
 				pageNavi += "<li class='page-item'>";
 				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+(pageNo)+"&type="+type+"'>&gt;</a></li>";
 			}else {
-				pageNavi += "<li class=''>";
 				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+(pageNo)+"&type="+type+"'>&gt;</a></li>";
 			}
 		}
-		pageNavi += "</ul>";
+		pageNavi += type==1?"</ul>":"</div>";
 		
 		BoardPageData npd = new BoardPageData(list,pageNavi);	//보내는 순서 중요!!
 		return npd;

@@ -24,7 +24,9 @@ FROM BOARD
 		ab_content as abContent,
 		fileName,
 		filePath,
-		enroll_date as enrollDate
+		enroll_date as enrollDate,
+		status,
+		(select cg_name from category where cg_no = ab_cg) as cgName
 	FROM
 	(SELECT rOWNUM AS RNUM, N.*FROM
 	(SELECT * FROM BOARD where 
