@@ -109,7 +109,52 @@ public class BoardController {
 		return a;
 	}
 	
+	
+	//공지사항 댓글작성
+	@RequestMapping(value = "/insertComent.do")
+	public String insertComent() {
+		
+		
+		return null;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

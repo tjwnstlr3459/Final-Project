@@ -68,26 +68,33 @@
 
             <div class="content"><h3 style="text-align: center">${board.abContent }</h3>${board.filePath }</div><!--게시물 컨텐츠-->
 
-            <div class="coment">
-              <!--댓글-->
-              <div class="comentLine" style="width: 10%;">
-                <img
-                  class="userImg"
-                  src="/resources/image/icons/happy2.jpg"
-                />
-              </div>
 
-              <div class="nameTime" style="width: 10%;">
-                <div>바람돌이</div>
-                <div>${board.abWriter }</div>
-              </div>
+			<c:if test="${not empty sessionScope.m }">
+	           <div class="coment">
+	             <!--댓글-->
+	             	<form action="/insertComent.do" method="post">
+	              <div class="comentLine" style="width: 10%;">
+	                <img
+	                  class="userImg"
+	                  src="/resources/image/icons/happy2.jpg"
+	                />
+	              </div>
+	              
+	              <div class="nameTime" style="width: 10%;">
+	                <div>바람돌이</div>
+	                <div>${board.abWriter }</div>
+	              </div>
+	
+	              <div class="mentWriteBox" style="width: 70%;">
+	                <input class="mentWrite" type="text" value="댓글내용" />
+	              </div>
+		      	</form>
+	             <div style="width: 10%;background-color: #edeef4;"><input class="momentBtn" type="submit" value="확인"></div>
+	           </div>
+			</c:if>
 
-              <div class="mentWriteBox" style="width: 70%;">
-                <input class="mentWrite" type="text" value="댓글내용" />
-              </div>
 
-              <div style="width: 10%;background-color: #edeef4;"><input class="momentBtn" type="button" value="확인"></div>
-            </div>
+
 
             <div>
               <input class="boardListBtn" type="button" value="목록으로" />
