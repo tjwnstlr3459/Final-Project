@@ -1,28 +1,25 @@
 package kr.or.newclub.model.service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 public class allMemberChat extends TextWebSocketHandler {
 	 private ArrayList<WebSocketSession> sessionList;   //접속한 회원의 세션을 저장하는 리스트
 	   private HashMap<WebSocketSession, String> memberList;   //각 세션별로 접속한 회원의 아이디를 저장하는 map
-	   
-	   
-	   
+
+
+
 	   public allMemberChat() {
 	      super();
 	      sessionList = new ArrayList<WebSocketSession>();
 	      memberList = new HashMap<WebSocketSession, String>();
+  
 	   }
-
 	   //클라이언트가 최초로 웹소켓 서버에 접속했을 때 수행되는 메소드
 	   @Override
 	   public void afterConnectionEstablished(WebSocketSession session)throws Exception{
@@ -61,6 +58,16 @@ public class allMemberChat extends TextWebSocketHandler {
 	            for(WebSocketSession s : sessionList) {
 	               if(!session.equals(s)) {
 	                  TextMessage tm = new TextMessage(sendMsg);
+
+    
+          
+            
+    
+
+          
+    
+    
+  
 	                  s.sendMessage(tm);
 	               }
 	            }
