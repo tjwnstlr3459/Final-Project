@@ -29,7 +29,8 @@
 		<typeAlias type="kr.or.freeBoard.model.vo.FreeBoard" alias="fb"/>
 		<!-- 문의/신고 답변 -->
 		<typeAlias type="kr.or.answer.model.vo.Answer" alias="an"/>
-		
+		<!-- 친구 -->
+		<typeAlias type="kr.or.member.model.vo.Friends" alias="f"/>
 		
 
 	</typeAliases>

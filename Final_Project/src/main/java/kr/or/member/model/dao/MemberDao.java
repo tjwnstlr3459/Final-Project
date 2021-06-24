@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.Member;
 
 @Repository
@@ -53,6 +54,18 @@ public class MemberDao {
 
 	public int deleteMemer(String memberNo) {
 		return sqlSession.delete("member.deleteMember",memberNo);
+	}
+
+	public Member selectOneMember(String user) {
+		return sqlSession.selectOne("member.selectUser", user);
+	}
+
+	public Friends selectFriend(Friends f) {
+		return sqlSession.selectOne("member.selectFriend", f);
+	}
+
+	public int insertFriend(Friends f) {
+		return sqlSession.insert("member.insertFriend", f);
 	}
 
 }

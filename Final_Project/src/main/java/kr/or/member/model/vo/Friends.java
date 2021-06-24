@@ -1,5 +1,8 @@
 package kr.or.member.model.vo;
 
+import lombok.Data;
+
+@Data
 public class Friends {
 	private int friendNo;
 	private String sender;
