@@ -41,16 +41,16 @@
 						<table class="list inquiryList">
 							<thead>
                                 <tr>
-                                    <th><input type="checkbox" id="allCheck"></th><th>카테고리</th><th>문의자</th><th>제목</th><th>작성일</th><th>답변</th>
+                                    <th>카테고리</th><th>문의자</th><th>제목</th><th>작성일</th><th>답변</th>
                                 </tr>
                             </thead>
                             <tbody>
                             	<c:forEach items="${list }" var="bl">
                             	<tr>
-                            		<td><input type="checkbox" class="checks"></td><td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo});" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
+                            		<td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo});" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
                             		<c:choose>
                             			<c:when test="${bl.status.equals('N') }">
-		                            		<td>확인 중</td>                            			
+		                            		<td>접수 중</td>                            			
                             			</c:when>
                             			<c:otherwise>
 		                            		<td>답변 완료</td>
@@ -71,7 +71,22 @@
 			<!-- 모달 -->
 			<div class="modal">
 				<div class="modal-box">
-					
+				<h2 class="titleHead">테스트</h2>
+					<table border="1">
+						<thead>
+							<tr>
+								<th colspan="4" class="abTitle">제목 들어갈 자리</th>
+							</tr>
+							<tr>
+								<th>작성자</th><td class="abWriter">회원닉</td><th>작성일</th><td class="enrollDate">yyyy-mm-dd</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="4" class="abContent"></td>
+							</tr>
+						</tbody>
+					</table>
 					<button id="closeBtn" class="btns cancelBtn">X</button>
 				</div>
 			</div>

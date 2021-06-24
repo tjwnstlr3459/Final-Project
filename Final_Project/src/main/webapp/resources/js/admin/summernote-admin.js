@@ -230,6 +230,11 @@ function selectOneBoard(abNo){
 		data : {abNo : abNo},
 		success : function(data){
 			console.log(data);
+			$('.abTitle').html(data.abTitle);
+			$('.abWriter').html(data.abWriter);
+			$('.enrollDate').html(data.enrollDate);
+			$('.abContent').html(data.abContent);
+			$('.modal').css('display','flex');
 		}
 	});
 }
