@@ -121,8 +121,7 @@
 									</c:forEach> --%>
 								<div class="photoWrapper"></div>
 								<button class="btn btn-outline-info btn-block" currentCount="0"
-									value="" totalCount="${totalCount }" id="more-btn"
-									">더보기</button>
+									value="" totalCount="${totalCount }" id="more-btn" style="display:none;"></button>
 							</div>
 							<div>사진첩</div>
 
@@ -131,7 +130,7 @@
 						</div>
 					</div>
 					 
-		<%-- 			<div class="right">
+		 			<div class="right">
 						<div class="chatlist">
 							<div class="chatcontent">
 								<button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
@@ -145,7 +144,7 @@
 								</div>
 							</div>
 						</div>
-					</div> --%>
+					</div> 
 				</div>
 			</div>
 		</div>
@@ -183,13 +182,31 @@
 			tabCont.css("display", "none");
 			tabCont.eq(index).css("display", "block");
 		});
+		
 		/*더보기 기능*/
-		$(function() {
-			more(1); //처음에 more함수에 1을주면서 실행할거다 온로드함수기 때문에
-			$("#more-btn").click(function() {
-				more($(this).val()); //더보기를 버튼 누르면 자기자신의 val값을 전달해주면서 함수 실행
-			});
+	$(function() {
+		more(1);
+		$("#more-btn").click(function() {
+			more($(this).val());
 		});
+	});
+	
+	//스크롤
+	$(window).scroll(function() {
+	    var scrolltop = $(document).scrollTop();	//스크롤할때의 값 지정
+	    console.log(scrolltop);
+	    
+	    var height = $(document).height();		//문서의 총길이
+	    console.log(height);
+	    
+	    var height_win = $(window).height();	//화면에 보여지는 길이
+	    console.log(height_win);
+	    
+	 if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {	//스크롤이 바닥에 닿았을시 more메소드 실행
+	    more($("#more-btn").val());	//#('more-btn').val()만큼 추가시켜준다
+	    							//$("#more-btn").val(Number(start) + 5);
+	 }
+	});
 		function more(start) {
 			var clubNo = '${clubNo}';
 			$.ajax({
@@ -199,46 +216,36 @@
 					clubNo : clubNo
 				},
 				type : "post",
-				success : function(data) { //data에 포토객체가 여러개 들어있는거죠 gson to list 그거한거
+				success : function(data) { //data에 포토객체가  gson to list 그거한거
 					console.log(data);
-					/* for (var i = 0; i < data.length; i++) {
+					   for (var i = 0; i < data.length; i++) {
 						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = ""; //html초기화
-						html += "<div class='board-wrap'>";
-						html += "<div class='userinfo' style='height:30%;'>";
-						html += "<div class='userImg'></div>";
-						html += "<div class='userName'>" + p.boardWriter
-								+ "</div>";
-						html += "<div class='enrollDate'>" + p.enrollDate
-								+ "</div>";
-						html += "</div>";
-						html += "<div class='boardcontain'style='height:40%;'>"
-								+ p.boardContent + "</div>";
-						html += "<div class='userview' style='height:40%;'>";
-						html += "<div class='usernum'>" + 조회수3명
-						읽음 + "</div>";
-						html += "<div class='btn trigger'><a href='#'>" + 상세보기
-								+ "</a></div>";
-						html += "</div>";
-						html += "</div>";
-
-						html += "<div class='photo'>"; //여기다가 div클ㄹ스
-						html += "<img src='/upload/photo/"+p.filepath+"'>"; //포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
-						html += "<p class='caption'>" + p.photoContent
-								+ "</p></div>";
-
+						html += '<div class="board-wrap">';
+						html += 	'<div class="userinfo" style="height:30%;">';
+						html += 		'<div class="userImg">'+'</div>';
+						html += 		'<div class="userName">' + p.boardWriter+ '</div>';
+						html += 		'<div class="enrollDate">' + p.enrollDate+ '</div>';
+						html += 	'</div>';
+						html += 	'<div class="boardcontain" style="height:40%;">'
+										+ p.boardContent + '</div>';
+						html += 	'<div class="userview" style="height:30%;">';
+						html += 		'<div class="usernum">' + '조회수3명읽음' + '</div>';
+						html += 		'<div class="btn trigger">'+'<a href="#">' + '상세보기'+ '</a>'+'</div>';
+						html += 	'</div>';
+						html += '</div>';
 						$(".photoWrapper").append(html); 
-					}
+					}//버튼 이 없는듯?
 					//이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
-					$("#more-btn").val(Number(start) + 5); //얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
+					$("#more-btn").val(Number(start) + 3); //얘는 반면 시작값이라 datalength가 아니라 3를 더하는거임
 					var curr = Number($("#more-btn").attr("currentCount"));
-					$("#more-btn").attr("currentCount", curr + data.length); //이게 5단위가 아닐 수 있기 때문에 21개면 마지막 for문 도는 횟수는 한번일 테니깐 그래서 data.length를 더하는중
+					$("#more-btn").attr("currentCount", curr + data.length); //이게 3단위가 아닐 수 있기 때문에 21개면 마지막 for문 도는 횟수는 한번일 테니깐 그래서 data.length를 더하는중
 					var totalCount = $("#more-btn").attr("totalCount");
 					var currCount = $("#more-btn").attr("currentCount");
 					if (currCount == totalCount) { //최근불러온 currcount와 total카운트 전체 카운트가 같아지면 더 불러올 게 없기때문에 더보기 버튼은 사라져야한다
 						$("#more-btn").attr("disabled", true);
 					}
-					*/
+					
 				}
 					
 			});
