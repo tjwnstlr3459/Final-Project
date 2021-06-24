@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.category.model.dao.CategoryDao;
 import kr.or.club.model.service.ClubService;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.Club;
@@ -149,9 +150,15 @@ public class ClubController {
 	
 	//영범이구역 뿌잉 뿌잉
 	@RequestMapping(value="/viewClubList.do")
-	public String viewClubList(int cgNo) {
-		System.out.println(cgNo);
-		return "redirect:/";
+	public String viewClubList(int cgNo, Model model) {
+		ArrayList<Club> ybClubList = service.viewClubList(cgNo);
+		for(int i = 0; i<ybClubList.size(); i++) {			
+			System.out.println(ybClubList.get(i).toString());
+		}
+		String cgName = service.selectCategoryName(cgNo);
+		model.addAttribute("list",ybClubList);
+		model.addAttribute("cgName", cgName);
+		return "club/viewClubList";
 	}
 	
 }

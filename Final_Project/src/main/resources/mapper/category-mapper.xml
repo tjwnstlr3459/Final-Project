@@ -8,4 +8,7 @@
 	<select id="selectCategory" resultType="cg">
 		select cg_no as cgNo, cg_name as cgName, cg_kinds as cgKinds from category where cg_kinds=1		
 	</select>
+	<select id="selectCategoryName" parameterType="int" resultType="String">
+		select cg_name as cgName from category where cg_no= #{cgNo}
+	</select>
 </mapper>
