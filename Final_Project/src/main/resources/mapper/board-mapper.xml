@@ -12,7 +12,7 @@ SELECT
 	fileName,
 	filePath,
 	enroll_date as enrollDate
-FROM ADMIN_BOARD
+FROM BOARD
 </select>
 
 <select id="selectBoardListBetween" parameterType="map" resultType="bl">
@@ -27,11 +27,11 @@ SELECT
 	enroll_date as enrollDate
 FROM
 (SELECT rOWNUM AS RNUM, N.*FROM
-(SELECT * FROM ADMIN_BOARD ORDER BY AB_NO DESC)N) WHERE RNUM BETWEEN #{start} AND #{end}
+(SELECT * FROM BOARD ORDER BY AB_NO DESC)N) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
 <select id="totalCount" resultType="int">
-SELECT count(*) FROM ADMIN_BOARD
+SELECT count(*) FROM BOARD
 </select>
 </mapper>
 
