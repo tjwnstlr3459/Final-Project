@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.answer.model.vo.Answer;
 import kr.or.board.model.dao.boardDao;
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardPageData;
@@ -104,6 +105,14 @@ public class boardService {
 	public Board selectBoard(int abNo) {
 		return dao.selectBoard(abNo);
 
+	}
+	//댓글 등록
+	public int insertComent(Answer an) {
+		return dao.insertComent(an);
+	}
+	//댓글찾기
+	public ArrayList<Answer> selectMoment(int abNo) {
+		return dao.selectMoment(abNo);
 	}
 }
 

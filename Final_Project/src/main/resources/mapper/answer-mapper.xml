@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="answer">
-	
+	<!-- 공지 댓글 입력 -->
+<insert id="insertComent" parameterType="an">
+	INSERT INTO ANSWER VALUES(
+		ANSWER_SEQ.NEXTVAL,
+		#{abNo},
+		#{anWriter}
+		#{anContent},
+		#{fileName},
+		#{filePath},
+		to_char(sysdate,'yyyy-mm-dd'),
+		'n')
+</insert>
+
+<!-- 공지 댓글 찾기 -->
+<select id="selectMoment" parameterType="string" resultType="an">
+SELECT
+    AN_NO AS anNo,
+    ab_no as abNo,
+    an_writer as anWriter,
+    an_Content as anContent,
+    filename as fileName,
+    filepath as filePath,
+    enroll_date as enrollDate,
+    an_status as anStatus
+FROM ANSWER WHERE AB_NO=#{abNo}	
+</select>
+
 </mapper>

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kr.or.answer.model.vo.Answer;
 import kr.or.board.model.service.boardService;
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardPageData;
@@ -63,7 +64,10 @@ public class BoardController {
 	@RequestMapping(value = "/boardOne.do")
 	public String boardOne(Model model,int abNo) {
 		Board board = service.selectBoard(abNo);
+		ArrayList<Answer> an = service.selectMoment(abNo);
 		model.addAttribute("board", board);
+		model.addAttribute("abNo", abNo);
+		model.addAttribute("answer", an);
 		return "board/boardOne";
 		}
 	
@@ -120,9 +124,33 @@ public class BoardController {
 	
 	//공지사항 댓글작성
 	@RequestMapping(value = "/insertComent.do")
-	public String insertComent() {
-		
-		
-		return null;
+	public String insertComent(Answer an,Model model,int abNo) {
+		an.setAbNo(abNo);
+		int result = service.insertComent(an);
+		if(result>0) {
+			model.addAttribute("msg", "등록되었습니다.");
+		}else {
+			model.addAttribute("msg", "등록실패.");
+		}
+		model.addAttribute("loc", "boardList");
+		return "common/msg";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
