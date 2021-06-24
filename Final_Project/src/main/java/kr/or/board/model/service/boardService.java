@@ -99,16 +99,6 @@ public class boardService {
 		BoardPageData npd = new BoardPageData(list,pageNavi);	//보내는 순서 중요!!
 		return npd;
 	}
-
-
-	public Board selectOneBoard(Board bl) {
-		ArrayList<Board> list = (ArrayList<Board>)dao.selectOneBoard(bl);
-		Board b = null;
-		if(!list.isEmpty()) {
-			b = list.get(0);
-		}
-		return b;
-	}
 	
 	//게시물 상세보기
 	public Board selectBoard(int abNo) {

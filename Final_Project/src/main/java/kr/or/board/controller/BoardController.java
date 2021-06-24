@@ -55,8 +55,8 @@ public class BoardController {
 	//번호로 공지,문의/신고 selectOne > ajax 
 	@RequestMapping(value="/selectOneBoard.do", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String selectOneBoard(Board bl) {		
-		Board b = service.selectOneBoard(bl);
+	public String selectOneBoard(int abNo) {		
+		Board b = service.selectBoard(abNo);
 		return new Gson().toJson(b);
 	}
 	//공지상세보기

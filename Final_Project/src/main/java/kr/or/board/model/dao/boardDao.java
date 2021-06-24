@@ -35,9 +35,6 @@ public class boardDao {
 		map.put("type",type);
 		return session.selectOne("board.totalCount");
 	}
-	public List selectOneBoard(Board bl) {
-		return session.selectList("board.selectOneBoard",bl);
-	}	
 	public Board selectBoard(int abNo) {
 		return session.selectOne("board.selectBaord",abNo);
 	}
