@@ -110,6 +110,8 @@ body {
 	text-align: center;
 	height: 40px;
 	line-height: 40px;
+	font-size: 17px;
+	font-weight:bold;
 }
 .categoryNavi{
 position:fixed;
@@ -123,12 +125,11 @@ position:fixed;
 	margin-left: 40px;
 }
 .categoryNavi ul{
-	border: 1px solid #fff;
-	border-radius: 8%;
+	border: 1px solid black;
+	border-radius: 7%;
 }
 .categoryNavi ul>li>a {
 	display: block;
-	border: 1px solid #fff;
 	width: 200px;
 	height: 50px;
 	text-align: center;
@@ -138,7 +139,8 @@ position:fixed;
 /*rgba(236,82,63,0.5)*/
 .categoryNavi>ul>li>a {
 	background-color: transparent;
-	color: #fff;
+	color: black;
+	font-size: 23px;
 }
 .categoryNavi>ul>li :hover{
 	background-color: transparent;
@@ -166,7 +168,6 @@ position:fixed;
 							<li><a href="/logout.do">LOGOUT</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="/#">CREATE CLUB</a></li>
 							<li><a href="/myClub.do">${sessionScope.m.memberNick }'s
 									CLUB</a></li>
 							<li><a href="/logout.do">LOGOUT</a></li>
@@ -174,6 +175,7 @@ position:fixed;
 					</c:choose>
 				</c:when>
 			</c:choose>
+			<li><a href="/createClubFrm.do">CREATE CLUB</a></li>
 			<li><a href="/newClub.do?clubNo=6">CLUB VIEW</a></li>
 			<li><a href="/boardList.do?reqPage=1&type=1">FEEDBACK</a></li>
 			<c:if test="${empty sessionScope.m }">
