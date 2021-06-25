@@ -68,6 +68,10 @@ public class ClubDao {
 		String cgName = session.selectOne("category.selectCategoryName",cgNo);
 		return cgName;
 	}
+
+	public int createClub(Club c) {
+		return session.insert("club.createClub",c);
+	}
 	
 	
 	

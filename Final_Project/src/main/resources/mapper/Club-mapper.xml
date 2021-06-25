@@ -119,6 +119,22 @@ insert into club_board values(
 		WARNING_COUNT as warningCount
 	FROM CLUB WHERE club_cg = #{cgNo}
 </select>
+<insert id="createClub" parameterType="c">
+	insert into club values(
+				club_seq.nextval,
+				#{clubCg},
+				#{clubName},
+				#{clubIntro},
+				#{clubOpener},
+				#{fileName},
+				#{filePath},
+				0,
+				#{ispublic},
+				to_char(sysdate,'yyyy-mm-dd'),
+				null,
+				0
+	)
+</insert>
 </mapper>
 
 

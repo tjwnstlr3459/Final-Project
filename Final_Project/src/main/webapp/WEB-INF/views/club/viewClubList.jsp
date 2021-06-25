@@ -7,10 +7,39 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/freeBoardFrm/bootstrap.css">
 <title>${cgName}에해당하는클럽들</title>
+<style>
+html{
+  background-image:url("/resources/main/images/intro_4.jpg");
+}
+	body{
+		width: 100%;
+  height: 100%;
+  background-color:#fff;
+  position: relative;
+  z-index: 1;
+  color:black;
+	}
+	body::after{
+	width: 100%;
+  height: 100%;
+  content: "";
+  background-image:url("/resources/main/images/intro_4.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.7;
+	}
+	.all-wrap *, .viewClubList *{
+	color: black;
+	}
+	.categoryNavi >ul > li a{		
+	color: black;
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	<hr>
 	<h1 style="font-size: 40px; text-align: center;">${cgName}</h1>
 	<br>
 	<c:choose>
@@ -44,10 +73,10 @@
 					<div class="card-header">${club.clubOpener} 님의 클럽입니다.</div>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#" style="text-decoration: none;">${club.clubName}</a>
+							${club.clubName}</a>
 						</h4>
-						<img class="card-text" src="/resources/main/images/intro_1.jpg"
-							style="width: 100%; height: 100%;" alt="이미지들어갈곳"></img>
+						<a href="#" style="text-decoration: none;" id="imgScale"><img class="card-text" src="/resources/clubImgUpload/${club.filePath }"
+							style="width: 250px; height: 200px;" alt="이미지들어갈곳"></img></a>
 					</div>
 					<p class="card-text" style="border-top:1px solid #ccc; line-height:50px;">개설일 : ${club.enrollDate}</p>
 					<p class="card-text" style="border-top:1px solid #ccc; ">제제횟수 : ${club.warningCount}</p>
