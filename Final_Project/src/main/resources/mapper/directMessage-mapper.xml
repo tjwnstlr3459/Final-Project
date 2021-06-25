@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="directMessage">
 	<insert id="insertDm" parameterType="dm">
-		insert into direct_message values(dm_seq.nextval,#{sender},#{receiver},#{dmContent},to_char(sysdate,'yyyy-mm-dd'))
+		insert into direct_message values(dm_seq.nextval,#{sender},#{receiver},#{dmContent},to_char(sysdate,'yyyy-mm-dd'),'N')
 	</insert>
 	<select id="selectAllDm" resultType="dm">
 		select
@@ -20,7 +20,7 @@
 	</update>
 	<insert id="insertMultiDm" parameterType="map">
 		insert into direct_message values(dm_seq.nextval,#{dm.sender},
-		(select member_nick from member where member_no=#{memberNo}),#{dm.dmContent},to_char(sysdate,'yyyy-mm-dd'))
+		(select member_nick from member where member_no=#{memberNo}),#{dm.dmContent},to_char(sysdate,'yyyy-mm-dd'),'N')
 	</insert>
 	<!-- 일반회원용 DM 조회 -->
 	<select id="selectDmByName" parameterType="string" resultType="dm">
