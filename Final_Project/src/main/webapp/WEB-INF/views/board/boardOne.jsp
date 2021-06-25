@@ -62,14 +62,18 @@
 							<div class="infoLine">
 								<div>첨부파일</div>
 								<div style="border: 0px">
-								<a class="btn" href="/resources/fileupload/postImg/Koala.jpg" download>다운로드</a>
-									<input type="file" value="파일첨부">
+								<a class="btn" href="/resources/fileupload/postImg/${board.fileName }" download>${board.fileName }</a>
 								</div>
 							</div>
 						</div>
 
 						<div class="content">
-							<h3 style="text-align: center">${board.abContent }</h3>${board.filePath }
+							<h3 style="text-align: center">${board.abContent }</h3>
+							<c:if test="${board.filePath != null }">
+								<div style="display: flex; justify-content: center;">
+									<img src="/resources/fileupload/board/${board.filePath }"style="width: 50%;height: 50%;">
+								</div>
+							</c:if>
 						</div>
 						<!--게시물 컨텐츠-->
 
@@ -89,7 +93,7 @@
 								</div>
 
 								<div class="mentWriteBox" style="width: 80%;">
-									<div name="anContent" class="mentWrite">${c.anContent }</div>
+									<div name="anContent" class="mentWrite" style="">${c.anContent }</div>
 								</div>
 							</div>
 						</c:forEach>

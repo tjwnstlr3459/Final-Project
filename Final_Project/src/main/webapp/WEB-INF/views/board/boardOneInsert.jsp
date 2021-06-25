@@ -33,6 +33,7 @@
 									<input name="abTitle"  type="text" placeholder="제목입력" style="width: 100%;height:100%;border:0px; outline: none">
 								</div>
 							</div>
+							<input type="text" name="abWriter" value="${sessionScope.m.memberNick }" style="display: none;">
 							<div class="infoLine">
 							<div>첨부파일</div>
 								<div style="width: 15%; border: 0">
