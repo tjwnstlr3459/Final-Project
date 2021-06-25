@@ -51,6 +51,18 @@ public class boardDao {
 		List<Answer> list =session.selectList("answer.selectMoment",abNo);
 		return (ArrayList<Answer>)list;
 	}
+	//공지글 등록
+	public int insertBoard(Board bl) {
+		return session.insert("board.insertBoard",bl);
+	}
+	//최신 게시물 번호 출력
+	public int selectBoardNo() {
+		return session.selectOne("board.selectLastBoard");
+	}
+	//최신게시물에 첨부파일 등록
+	public int insertFile(Board bl) {
+		return session.update("board.insertBoardFile",bl);
+	}
 
 }
 

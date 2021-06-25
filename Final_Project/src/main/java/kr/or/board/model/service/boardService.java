@@ -11,6 +11,7 @@ import kr.or.answer.model.vo.Answer;
 import kr.or.board.model.dao.boardDao;
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardPageData;
+import kr.or.club.model.vo.ClubBoard;
 
 @Service
 public class boardService {
@@ -113,6 +114,24 @@ public class boardService {
 	//댓글찾기
 	public ArrayList<Answer> selectMoment(int abNo) {
 		return dao.selectMoment(abNo);
+	}
+	
+	//공지등록
+	public int insertBoard(Board bl, ArrayList<Board> fileList) {
+		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
+		int result1 = dao.insertBoard(bl);
+		int result = 0;
+		if(result1>0) {
+			//파일 insert하기 전에 board_no가 필요함
+			int abNo = dao.selectBoardNo();
+			for(Board f : fileList) {
+				f.setAbNo(abNo);
+				result += dao.insertFile(f);
+			}
+		}else {
+			return -1;
+		}
+		return result;
 	}
 }
 

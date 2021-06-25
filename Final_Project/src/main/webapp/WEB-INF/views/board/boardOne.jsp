@@ -62,6 +62,7 @@
 							<div class="infoLine">
 								<div>첨부파일</div>
 								<div style="border: 0px">
+								<a class="btn" href="/resources/fileupload/postImg/Koala.jpg" download>다운로드</a>
 									<input type="file" value="파일첨부">
 								</div>
 							</div>

@@ -1,4 +1,5 @@
   <style>
+
     div {
       border: 0px solid black;
     }
@@ -76,8 +77,8 @@
     }
     .infoLine > div {
       float: left;
+      width:90%;
       height: 100%;
-      border-right: 1px solid #80808059;
       text-align: center;
       line-height: 28px;
     }

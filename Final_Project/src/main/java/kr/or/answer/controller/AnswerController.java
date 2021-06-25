@@ -9,4 +9,7 @@ import kr.or.answer.model.service.AnswerService;
 public class AnswerController {
 	@Autowired
 	private AnswerService service;
+	
+	//관리자에게 문의/쪽지 보내기
+	
 }
