@@ -10,6 +10,9 @@ public class Answer {
 	private String anContent;
 	private String fileName;
 	private String filePath;
-	private String enrrolDate;
+	private String enrollDate;
 	private String anStatus;
+	
+	//프로필 사진출력
+	private String pic;
 }
