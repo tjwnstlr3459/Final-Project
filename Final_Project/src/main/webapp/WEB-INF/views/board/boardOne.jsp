@@ -16,7 +16,7 @@
 		<%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div>
 			<div class="wrap">
-				<div class="topContent">
+				<div class="topContent" style="margin-left:70px;">
 					<div class="topConImg">
 						<img src="/resources/image/icons/happy3.jpg" />
 					</div>
@@ -25,7 +25,7 @@
 							<h1 style="text-align: center">저희 Nunadri는</h1>
 						</div>
 						<div class="topConMent">
-							<pre class="nunaMent" style="background-color: transparent">
+							<pre class="nunaMent" style="background-color: transparent; padding: 0px" >
 보다 좋은 활동을 추구하기에,
 회원님들과의 만남에 좋은영향을 줄수있도록
 매번 노력에 임하겠습니다.
@@ -62,6 +62,7 @@
 							<div class="infoLine">
 								<div>첨부파일</div>
 								<div style="border: 0px">
+								<a class="btn" href="/resources/fileupload/postImg/Koala.jpg" download>다운로드</a>
 									<input type="file" value="파일첨부">
 								</div>
 							</div>

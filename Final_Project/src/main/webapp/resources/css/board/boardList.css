@@ -4,7 +4,10 @@ div {
 body {
   margin: 0px;
   padding: 0px;
+  -ms-overflow-style: none;
 }
+::-webkit-scrollbar { display: none; }
+
 .wrap {
   width: 1000px;
   margin: 0 auto;
@@ -31,7 +34,7 @@ body {
   font-size: 13px;
 }
 .nunaMent {
-  line-height: 31px;
+  line-height: 28px;
   border: 0px;
 }
 .checkBtn {
