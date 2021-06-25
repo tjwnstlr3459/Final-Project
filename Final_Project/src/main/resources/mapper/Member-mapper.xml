@@ -84,6 +84,7 @@
 			   join_method as joinMethod
 		from member where email=#{user} or member_nick=#{user}
 	</select>
+	<!-- 친구 여부 조회 -->
 	<select id="selectFriend" parameterType="f" resultType="f">
 		select 
 			friend_no as friendNo,
@@ -93,7 +94,48 @@
 			acc_date as accDate
 		from friend where (sender=#{sender} and receiver=#{receiver}) or (sender=#{receiver} and receiver=#{sender})
 	</select>
+	<!-- 친구 리스트 -->
+	<select id="selectFriendList" parameterType="string" resultType="m">		
+		select 
+			member_nick as memberNick,
+			filepath,
+			intro
+		from member where member_nick in (select receiver from friend where sender=#{value} and accept='Y')
+		union
+		select 
+			member_nick as memberNick,
+			filepath,
+			intro
+		from member where member_nick in (select receiver from friend where receiver=#{value} and accept='Y')
+	</select>
+	<!-- 요청 수락 대기중인 친구 리스트 -->
+	<select id="selectPendingList" parameterType="string" resultType="m">
+		select 
+			member_nick as memberNick,
+			filepath,
+			intro
+		from member where member_nick in (select receiver from friend where sender='유저3' and accept='N')
+	</select>
+	<!-- 요청이 온 친구 리스트 -->
+	<select id="selectFriendRequest" parameterType="string" resultType="m">
+		select 
+			member_nick as memberNick,
+			filepath,
+			intro
+		from member where member_nick in (select sender from friend where receiver='유저3' and accept='N')
+	</select>
+	<!-- 친구 요청 갯수 -->
+	<select id="friendRequestCount" parameterType="string" resultType="int">
+		select 
+			count(*)
+		from friend where accept='N' and receiver=#{memberNick}
+	</select>
+	<!-- 친구 등록 -->
 	<insert id="insertFriend" parameterType="f">
 		insert into friend values (friend_seq.nextval, #{sender}, #{receiver}, 'N', to_char(sysdate, 'YYYY-MM-DD'))
 	</insert>
+	<!-- 친구 수락 -->
+	<update id="updateFriend" parameterType="f">
+		update friend set accept='Y', acc_date=to_char(sysdate, 'YYYY-MM-DD') where sender=#{sender} and receiver=#{receiver}
+	</update>
 </mapper>

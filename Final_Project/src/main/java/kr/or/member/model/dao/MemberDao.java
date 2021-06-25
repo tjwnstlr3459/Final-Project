@@ -1,5 +1,6 @@
 package kr.or.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,5 +68,26 @@ public class MemberDao {
 	public int insertFriend(Friends f) {
 		return sqlSession.insert("member.insertFriend", f);
 	}
+
+	public int updateFriend(Friends f) {
+		return sqlSession.update("member.updateFriend", f);
+	}
+
+	public List selectFriend(String memberNick) {
+		return sqlSession.selectList("member.selectFriendList", memberNick);
+	}
+
+	public List selectFriendPending(String memberNick) {
+		return sqlSession.selectList("member.selectPendingList", memberNick);
+	}
+
+	public List selectFriendRequest(String memberNick) {
+		return sqlSession.selectList("member.selectFriendRequest", memberNick);
+	}
+
+	public int friendRequestCount(String memberNick) {
+		return sqlSession.selectOne("member.friendRequestCount", memberNick);
+	}
+
 
 }

@@ -69,5 +69,10 @@ public class ClubService {
 		String cgName = dao.selectCategoryName(cgNo);
 		return cgName;
 	}
+	@Transactional
+	public int createClub(Club c) {
+		int result = dao.createClub(c);
+		return result;
+	}
 	
 }
