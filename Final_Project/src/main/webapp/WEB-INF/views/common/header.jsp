@@ -36,7 +36,9 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	background-color: #ec523f;
-	padding: 8px 50px;
+	height: 85px;
+	font-size: 16px;
+	font-weight: bold
 }
 
 .navbar_logo {
@@ -57,6 +59,8 @@ body {
 
 .navbar_menu li {
 	padding: 8px 30px;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .navbar_menu :hover {
@@ -147,7 +151,7 @@ position:fixed;
 </style>
 </head>
 <body>
-	<nav class="navbar">
+	<nav class="navbar" style="margin: 0px">
 		<div class="navbar_logo">
 			<i class="fas fa-people-arrows"></i> <a href="/main.jsp">NUNADRI</a>
 		</div>
