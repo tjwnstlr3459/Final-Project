@@ -176,7 +176,7 @@ position:fixed;
 				</c:when>
 			</c:choose>
 			<li><a href="/createClubFrm.do">CREATE CLUB</a></li>
-			<li><a href="/newClub.do?clubNo=6">CLUB VIEW</a></li>
+			<li><a href="/newClub.do?clubNo=38">CLUB VIEW</a></li>
 			<li><a href="/boardList.do?reqPage=1&type=1">FEEDBACK</a></li>
 			<c:if test="${empty sessionScope.m }">
 				<li><a href="/loginFrm.do">LOGIN</a></li>
