@@ -14,7 +14,7 @@
 		BOARD_VIEWS as boardViews,
 		BOARD_GOOD as boardGood,
 		ENROLL_DATE as enrollDate
-		from CLUB_BOARD
+		from CLUB_BOARD 
 </select>
 <!-- 전체 게시물 확인 -->
 <select id="totalCount" resultType="int"  parameterType="int">
@@ -39,6 +39,23 @@ FROM
 (SELECT ROWNUM AS RNUM, N.*FROM
 (SELECT * FROM club_board ORDER BY CLUB_NO DESC)N) WHERE CLUB_NO=#{clubNo} AND RNUM BETWEEN #{start} AND #{end}
 </select>
+
+<!--글쓰기 등록 -->
+<insert id="insertBoard" parameterType="n">
+insert into club_board values(
+    CB_SEQ.NEXTVAL,
+    #{clubNo},
+    5,
+    #{boardWriter},
+    '제목',
+    #{boardContent},
+    null,
+    null,
+    0,
+    0,
+    to_char(sysdate,'yyyy-mm-dd'))
+</insert>
+
 		
 		
 </mapper>

@@ -95,17 +95,19 @@
 						</div>
 					</div>
 					<div class="middle">
-						<div class="boardWritebox">
-							<form action="/" method="post">
-								작성자: <input type="text" name="boardWriter">
-								<hr>
-								내용:<br>
-								<textarea rows="11" cols="95" name="boardContent"></textarea>
-								<br> <input type="submit" value="작성">
-							</form>
-						</div>
+						
 						<div class="tab-cont">
 							<div>
+								<div class="boardWritebox">
+									<form action="/boardWrite.do" method="post">
+										<input type="hidden" name="clubNo" value="${clubNo} ">
+										작성자: <input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><br>
+										<hr>
+										내용:<br>
+										<textarea rows="11" cols="95" name="boardContent"></textarea>
+										<br> <input type="submit" value="작성">
+									</form>
+								</div>
 								<%-- <c:forEach items="${list }" var="board">
 										<div class="board-wrap">
 											<div class="userinfo" style="height: 30%;">											
@@ -126,8 +128,22 @@
 								<button class="btn btn-outline-info btn-block" currentCount="0"
 									value="" totalCount="${totalCount }" id="more-btn" style="display:none;"></button>
 							</div>
-							<div>사진첩</div>
-
+							<div>
+								<div class="photo-wrap">
+									<div class="userinfo" style="height: 30%;">											
+										<div class="userImg"></div>
+										<div class="userName">${board.boardWriter }</div>
+										<div class="enrollDate">${board.enrollDate }</div>
+									</div>	
+									<div class="boardcontain" style="height: 40%;">
+										${board.boardContent}
+									</div>
+									<div class="userview" style="height: 30%;">
+											<div class="usernum">조회수 3명 읽음</div>
+											<div class="btn trigger"><a href="#">상세보기</a></div>
+									</div>
+								</div>
+							</div>
 							<div>일정</div>
 							<div>멤버</div>
 						</div>
@@ -136,6 +152,7 @@
 		 			<div class="right1">
 							<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
 							<hr> --%>
+							<div class="commentbox" style="width:250px; height:30px;">클럽 멤버와 채팅하기</div>
 							<div class="chatting">
 								<div class="messageArea"></div>
 								<div class="sendBox">
@@ -260,7 +277,7 @@
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws://192.168.35.71/chat.do")
+      ws = new WebSocket("ws://192.168.10.6//chat.do")
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수
