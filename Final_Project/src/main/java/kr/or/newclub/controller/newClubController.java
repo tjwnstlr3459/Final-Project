@@ -1,14 +1,23 @@
 package kr.or.newclub.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
@@ -16,6 +25,7 @@ import kr.or.board.model.vo.Board;
 
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
+import kr.or.newclub.model.vo.clubBoard;
 
 @Controller
 public class newClubController {
@@ -49,4 +59,19 @@ public class newClubController {
 		return new Gson().toJson(list);
 	}
 	*/
+	@Transactional
+	@RequestMapping(value="/boardWrite.do")
+	public String boardWrite(clubBoard n, Model model) {
+		//jsp이름이랑 같아야함//3개받아오고(제목,내용,작성자등)/파일경로가지고오기)
+
+		int result = service.insertBoard(n);
+		if(result>0) {
+			model.addAttribute("msg","등록성공");
+		}else {
+			model.addAttribute("msg","등록실패");
+		}
+		model.addAttribute("loc","/newClub.do?clubNo=38");
+		return "common/msg";
+	}
+
 }

@@ -54,8 +54,64 @@
 									</c:choose>
 								</c:when>
 								<c:otherwise>
+<<<<<<< HEAD
 									<li><a href="javascript:void(0)" id="needLoginAlert"
 										class="fa fa-user"></a></li>
+=======
+                                <li><a href="javascript:void(0)" id="needLoginAlert" class="fa fa-user"></a></li>
+                                <script>
+                                $("#needLoginAlert").click(function(){
+                					alert("Login please.");
+                					location.href="/loginFrm.do";
+                					});
+								</script>
+                                <li><a href="/loginFrm.do" class="fa fa-sign-in"></a></li>
+								</c:otherwise>  
+								</c:choose>                              	
+                            </ul>
+                        </div> <!-- /.col-md-12 -->
+                    </div> <!-- /.row -->
+                </div> <!-- /.container -->
+                <div class="main-header">
+                    <div class="container">
+                        <div id="menu-wrapper">
+                            <div class="row">
+                                <div class="logo-wrapper col-md-2 col-sm-2">
+                                    <h1>
+                                        <a href="/">NUNADRI</a>
+                                    </h1>
+                                </div> <!-- /.logo-wrapper -->
+                                <div class="col-md-10 col-sm-10 main-menu text-right" style="width:850px;">
+                                    <div class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></div>
+                                    <ul class="menu-first">
+                                        <li class="active"><a href="#">Home</a></li>
+                                        <li><a href="#clubCategory">Club category</a></li>
+                                        <li><a href="#clubFeed">club Feed</a></li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="toggle-menu visible-sm visible-xs"></div>
+                                        <c:choose>
+                                        	<c:when test="${!empty sessionScope.m }">
+                                        	<c:choose>
+                                        		<c:when test="${sessionScope.m.grade gt 1 }">
+	                                        	<li><a onclick="location.href='/myClub.do';" style="cursor: pointer;">${sessionScope.m.memberNick }'s CLUB</a></li>
+	                                        	</c:when>
+                                        	</c:choose>
+                                        	</c:when>
+                                        </c:choose>
+                                        <li><a onclick="location.href='/newClub.do?clubNo=38';" style="cursor: pointer;">CLUB VIEW</a></li> 
+                                        <li><a onclick="location.href='/boardList.do?reqPage=1&type=1';" style="cursor: pointer;">FEEDBACK</a></li>
+                                        <c:if test="${empty sessionScope.m }">
+                                        <li><a onclick="location.href='/join.do';" style="cursor: pointer;">JOIN</a></li>
+                                        </c:if>
+                                        <!-- <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li> -->                                                                         
+                                    </ul>                                    
+                                </div> <!-- /.main-menu -->
+                            </div> <!-- /.row -->
+                        </div> <!-- /#menu-wrapper -->                        
+                    </div> <!-- /.container -->
+                </div> <!-- /.main-header -->
+            </div> <!-- /.site-header -->
+>>>>>>> refs/heads/final
 
 									<li><a href="/loginFrm.do" class="fa fa-sign-in"></a></li>
 								</c:otherwise>
