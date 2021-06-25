@@ -73,86 +73,104 @@
 						<!--게시물 컨텐츠-->
 
 						<!-- 댓글출력 -->
-						<div>
 						<c:forEach items="${answer}" var="c">
-							<div>${c.anWriter }</div>
-							<div>${c.anContent }</div>
-							<div>${c.enrrolDate }</div>
+							<div class="coment"
+								style="border-bottom: 1px solid #cac8c8; height: 50px">
+								<!--댓글-->
+								<div class="comentLine" style="width: 10%;">
+									<img class="userImg" src="/resources/image/userPic/${c.pic}"
+										style="width: 40px; height: 40px;" />
+								</div>
+
+								<div class="nameTime" style="width: 10%;">
+									<div>${c.anWriter }</div>
+									<div>${c.enrollDate }</div>
+								</div>
+
+								<div class="mentWriteBox" style="width: 80%;">
+									<div name="anContent" class="mentWrite">${c.anContent }</div>
+								</div>
+							</div>
 						</c:forEach>
-						</div>
-						
-						<!-- 댓글작성창 -->
-						<c:if test="${not empty sessionScope.m }">
-							<form action="/insertComent.do" method="post">
-								<div class="coment">
-									<!--댓글-->
-									<input type="text" name="abNo" value="${abNo}" style="display: none">
-									<div class="comentLine" style="width: 10%;">
-										<img class="userImg" src="/resources/image/icons/happy2.jpg" />
-									</div>
+					</div>
 
-									<div class="nameTime" style="width: 10%;">
-										<div><input type="text" name="anWriter" value="${m.memberNick}"></div>
-										<div><input type="text" name="enrrolDate" value="${m.lastDate }"></div>
-									</div>
+					<!-- 댓글작성창 -->
+					<c:if test="${not empty sessionScope.m }">
+						<form action="/insertComent.do" method="post">
+							<div class="coment">
+								<!--댓글-->
+								<input type="text" name="abNo" value="${abNo}"
+									style="display: none">
+								<div class="comentLine" style="width: 10%;">
+									<img class="userImg" src="/resources/image/userPic/${m.filepath }" style="margin-top: 13px" />
+									
+								</div>
 
-									<div class="mentWriteBox" style="width: 70%;">
-										<input name="anContent" class="mentWrite" type="text" value="댓글내용" />
+								<div class="nameTime" style="width: 10%;">
+									<div style="line-height: 50px">
+										${m.memberNick}
+										<input type="text" name="anWriter" value="${m.memberNick}"style="display: none">
 									</div>
-
-									<div style="width: 10%; background-color: #edeef4;">
-										<input class="momentBtn" type="submit" value="확인">
+									<div>
+										${m.lastDate }
+										<input type="text" name="enrrolDate" value="${m.lastDate }"style="display: none">
 									</div>
 								</div>
-							</form>
-						</c:if>
 
+								<div class="mentWriteBox" style="width: 70%;">
+									<input name="anContent" class="mentWrite" type="text"
+										value="" />
+								</div>
 
+								<div style="width: 10%; background-color: #edeef4;">
+									<input class="momentBtn" type="submit" value="확인">
+								</div>
+							</div>
+						</form>
+					</c:if>
 
-
-						<div>
-							<input class="boardListBtn" type="button" value="목록으로" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--bottomContent-->
-		</div>
-		<!--wrap-->
-		<!-- 푸터 -->
-		<%@include file="/WEB-INF/views/common/footer.jsp"%>
-
-		<!-- 모달 -->
-		<div class="boardModalPan" style="display: none;">
-			<div class="boardModal">
-				<div class="closeModal">X</div>
-				<div class="modalLogo">
-					<img src="/resources/image/icons/man3.png">
-				</div>
-
-				<div class="adminMent">
-					저희 Nunadri는 회원님들의 의견에<br>귀를 기울이겠습니다.
-				</div>
-				<hr
-					style="border: 1px solid gray; width: 90%; margin-bottom: 5px; margin-top: 5px;">
-				<div class="selectMun">
-					<select>
-						<option>문의</option>
-						<option>신고</option>
-					</select>
-				</div>
-
-				<div class="fileDay">
 					<div>
-						<input type="file" value="파일첨부">
+						<input class="boardListBtn" type="button" onclick="window.history.back();" value="목록으로" />
 					</div>
-					<div>작성일 : 2020-05-22</div>
 				</div>
-				<textarea class="textA"></textarea>
-				<input class="checkBtn"
-					style="margin-top: 15px; margin-left: 200px; text-align: center;"
-					stype="submit" value="Submit">
 			</div>
+		</div>
+		<!--bottomContent-->
+	</div>
+	<!--wrap-->
+	<!-- 푸터 -->
+	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<!-- 모달 -->
+	<div class="boardModalPan" style="display: none;">
+		<div class="boardModal">
+			<div class="closeModal">X</div>
+			<div class="modalLogo">
+				<img src="/resources/image/icons/man3.png">
+			</div>
+
+			<div class="adminMent">
+				저희 Nunadri는 회원님들의 의견에<br>귀를 기울이겠습니다.
+			</div>
+			<hr
+				style="border: 1px solid gray; width: 90%; margin-bottom: 5px; margin-top: 5px;">
+			<div class="selectMun">
+				<select>
+					<option>문의</option>
+					<option>신고</option>
+				</select>
+			</div>
+
+			<div class="fileDay">
+				<div>
+					<input type="file" value="파일첨부">
+				</div>
+				<div>작성일 : 2020-05-22</div>
+			</div>
+			<textarea class="textA"></textarea>
+			<input class="checkBtn"
+				style="margin-top: 15px; margin-left: 200px; text-align: center;"
+				stype="submit" value="Submit">
 		</div>
 	</div>
 </body>

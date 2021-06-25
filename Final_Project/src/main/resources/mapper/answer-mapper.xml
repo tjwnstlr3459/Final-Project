@@ -3,29 +3,31 @@
 <mapper namespace="answer">
 	<!-- 공지 댓글 입력 -->
 <insert id="insertComent" parameterType="an">
-	INSERT INTO ANSWER VALUES(
-		ANSWER_SEQ.NEXTVAL,
-		#{abNo},
-		#{anWriter}
-		#{anContent},
-		#{fileName},
-		#{filePath},
-		to_char(sysdate,'yyyy-mm-dd'),
-		'n')
+INSERT INTO ANSWER VALUES(
+    ANSWER_SEQ.NEXTVAL,
+    #{abNo},
+    #{anWriter},
+    #{anContent},
+    #{fileName},
+    #{filePath},
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'),
+	'N')
 </insert>
 
 <!-- 공지 댓글 찾기 -->
-<select id="selectMoment" parameterType="string" resultType="an">
+<select id="selectMoment" parameterType="int" resultType="an">
 SELECT
-    AN_NO AS anNo,
-    ab_no as abNo,
-    an_writer as anWriter,
-    an_Content as anContent,
-    filename as fileName,
-    filepath as filePath,
-    enroll_date as enrollDate,
-    an_status as anStatus
-FROM ANSWER WHERE AB_NO=#{abNo}	
+    a.AN_NO AS anNo,
+    a.ab_no as abNo,
+    a.an_writer as anWriter,
+    a.an_Content as anContent,
+    a.filename as fileName,
+    a.filepath as filePath,
+    a.enroll_date as enrollDate,
+    a.an_status as anStatus,
+    b.member_nick as memberNick,
+    b.filepath as pic
+FROM ANSWER a,member b WHERE a.an_writer = b.member_nick and a.AB_NO=#{abNo}
 </select>
 
 </mapper>
