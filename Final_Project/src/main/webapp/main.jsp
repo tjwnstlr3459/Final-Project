@@ -99,7 +99,7 @@
 											</c:choose>
 										</c:when>
 									</c:choose>
-									<li><a onclick="location.href='/newClub.do?clubNo=6';"
+									<li><a onclick="location.href='/newClub.do?clubNo=38';"
 										style="cursor: pointer;">CLUB VIEW</a></li>
 									<li><a
 										onclick="location.href='/boardList.do?reqPage=1&type=1';"
