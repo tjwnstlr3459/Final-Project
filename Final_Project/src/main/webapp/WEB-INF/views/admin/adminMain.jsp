@@ -21,7 +21,9 @@
 		<!-- header-nav -->
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
 		<!-- content -->
-		<canvas id="myChart" width="400" height="400"></canvas>		
+		<div class="chart1-box">
+	        <canvas id="chart1" width="400" height="400"></canvas>
+	    </div>	
 		
 		
 		
@@ -48,7 +50,29 @@
 		</section>
 		-->
 	</div>
-	
+	<script>
+            var myChart = new Chart(document.getElementById('chart1'), {
+                type: "bar",
+                data: {
+                    labels: ['Sports', 'Music', 'Travel', 'Movie', 'Game'],
+                    datasets: [{
+                        label: '2021-06',
+                        data: [65, 56, 23, 44, 98],
+                        backgroundColor:
+                            'rgba(76, 216, 153, 0.5)'
+
+                        ,
+                        borderColor: [
+                            '#eeeeee'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false
+                }
+            });
+    </script>
 ]
 </body>
 </html>

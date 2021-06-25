@@ -31,6 +31,8 @@
 		<typeAlias type="kr.or.answer.model.vo.Answer" alias="an"/>
 		<!-- 친구 -->
 		<typeAlias type="kr.or.member.model.vo.Friends" alias="f"/>
+		<!-- 관리자 카운트 클래스 -->
+		<typeAlias type="kr.or.admin.model.vo.AdminCount" alias="ac"/>
 		
 
 	</typeAliases>

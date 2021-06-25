@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 
+import kr.or.admin.model.service.AdminService;
+import kr.or.admin.model.vo.AdminCount;
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
 import kr.or.member.model.service.MemberService;
@@ -32,16 +34,10 @@ import kr.or.member.model.service.MemberService;
 @Controller
 public class AdminController {
 	@Autowired
+	private AdminService service;
 	private DirectMessageService dmService;
 	
-	//관리자 페이지 이동
-	@RequestMapping(value="/adminMain.do")
-	public String adminMain(Model model) {
-		//spspsp
-		ArrayList<DirectMessage> list = dmService.selectAllDm();
-		model.addAttribute("list",list);
-		return "admin/adminMain";
-	}
+
 	//관리자 문의/신고 이동
 //	@RequestMapping(value="/adminInquiryList.do")
 //	public String adminInquityList() {
@@ -95,7 +91,13 @@ public class AdminController {
 		String a = jsonObject.toString();
 		return a;
 	}
-	
+	//관리자 페이지의 차트/통계에 필요한 값 가져오기
+	@RequestMapping(value="/adminMain.do")
+	public String adminMain(Model model) {
+		AdminCount ac = service.selectAdminCount();
+		model.addAttribute("ac",ac);
+		return "admin/adminMain";
+	}
 	
 	
 	

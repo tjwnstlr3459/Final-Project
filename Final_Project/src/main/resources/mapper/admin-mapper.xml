@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+	<select id="selectAdminCount" resultType="ac">
+		select 
+		    distinct
+		    (select count(*) from member) memberCount,
+		    (select count(*) from club) clubCountm,
+		    (select count(*) from member where hobby1=4 or hobby2=4 or hobby3=4) memberSports,
+		    (select count(*) from member where hobby1=5 or hobby2=5 or hobby3=5) memberMusic,
+		    (select count(*) from member where hobby1=6 or hobby2=6 or hobby3=6) memberTravel,
+		    (select count(*) from member where hobby1=7 or hobby2=7 or hobby3=7) memberNature,
+		    (select count(*) from member where hobby1=8 or hobby2=8 or hobby3=8) memberGame,
+		    (select count(*) from member where hobby1=9 or hobby2=9 or hobby3=9) memberMovie,
+		    (select count(*) from member where hobby1=10 or hobby2=10 or hobby3=10) memberBear,
+		    (select count(*) from member where hobby1=11 or hobby2=11 or hobby3=11) memberEat,
+		    (select count(*) from member where age=10) teenager,
+		    (select count(*) from member where age=20) twenty,
+		    (select count(*) from member where age=30) thirty,
+		    (select count(*) from member where age=40) fourty,
+		    (select count(*) from club where club_no=4) clubSports,
+		    (select count(*) from club where club_no=5) clubMusic,
+		    (select count(*) from club where club_no=6) clubTravel,
+		    (select count(*) from club where club_no=7) clubNature,
+		    (select count(*) from club where club_no=8) clubGame,
+		    (select count(*) from club where club_no=9) clubMovie,
+		    (select count(*) from club where club_no=10) clubBear,
+		    (select count(*) from club where club_no=11) clubEat    
+		from dual
+	</select>
+</mapper>
