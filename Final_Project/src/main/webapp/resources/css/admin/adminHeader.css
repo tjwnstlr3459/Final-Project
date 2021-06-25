@@ -270,6 +270,7 @@ section::-webkit-scrollbar-track {
     background-color:rgba(0,0,0,0.8);
 }
 .modal-box{
+	max-height:800px;
     background-color:#ffffff;
     border-radius:10px;
     display:flex;
@@ -277,6 +278,7 @@ section::-webkit-scrollbar-track {
     align-items:center;
     padding:20px;
     position:relative;
+    overflow-y:scroll;
 }
 .titleHead{
     margin:0;
@@ -296,5 +298,26 @@ section::-webkit-scrollbar-track {
 }
 #cgNo{
 	margin-bottom:10px;
+	display:none;
+}
+.modal-table{
+	border-collapse: collapse;	
+}
+.abContent{
+	display:block;
+	width:800px;
+	height:600px;
+	padding-top:5px;
+}
+.modal-table th{
+	width:100px;
+	border:1px solid #dddddd;
+	background:var(--background);
+}
+.modal-table td{
+	border:1px solid #dddddd;
+	padding-left:5px;
+}
+.answer-box{
 	display:none;
 }

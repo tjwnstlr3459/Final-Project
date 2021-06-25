@@ -137,7 +137,10 @@ $(document).ready(function() {
 		 	deleteRestMember(restMail);
 	 	}
 	 });
-	 
+	 $('.slideAnswerBtn').click(function(){
+	 	$('.answer-box').slideToggle();
+	 	$('#summernote').attr('autofocus',true);
+	 });
 });
 //==========================================================================================
 function sendFile(file, el) {
@@ -223,13 +226,14 @@ function deleteRestMember(restEmail){
 	});
 }
 //문의/신고 제목 클릭 시 abNo를 ajax로 요청해 selectOne 해오기...
-function selectOneBoard(abNo){
+function selectOneBoard(abNo,cgName){
 	$.ajax({
 		url : "/selectOneBoard.do",
 		type : "post",
 		data : {abNo : abNo},
 		success : function(data){
 			console.log(data);
+			$('.titleHead').html(cgName);
 			$('.abTitle').html(data.abTitle);
 			$('.abWriter').html(data.abWriter);
 			$('.enrollDate').html(data.enrollDate);

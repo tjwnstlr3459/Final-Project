@@ -47,7 +47,7 @@
                             <tbody>
                             	<c:forEach items="${list }" var="bl">
                             	<tr>
-                            		<td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo});" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
+                            		<td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo},'${bl.cgName }');" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
                             		<c:choose>
                             			<c:when test="${bl.status.equals('N') }">
 		                            		<td>접수 중</td>                            			
@@ -71,11 +71,11 @@
 			<!-- 모달 -->
 			<div class="modal">
 				<div class="modal-box">
-				<h2 class="titleHead">테스트</h2>
-					<table border="1">
+					<h2 class="titleHead">테스트</h2>
+					<table class="modal-table">
 						<thead>
 							<tr>
-								<th colspan="4" class="abTitle">제목 들어갈 자리</th>
+								<th>제 목</th><td colspan="3" class="abTitle">제목 들어갈 자리</td>
 							</tr>
 							<tr>
 								<th>작성자</th><td class="abWriter">회원닉</td><th>작성일</th><td class="enrollDate">yyyy-mm-dd</td>
@@ -83,11 +83,16 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="4" class="abContent"></td>
+								<th>내 용</th><td colspan="3"><span class="abContent"></span></td>
 							</tr>
 						</tbody>
 					</table>
 					<button id="closeBtn" class="btns cancelBtn">X</button>
+					<div class="btn-box"><button class="btns slideAnswerBtn">답변하기</button></div>
+					<div class="answer-box">
+						<textarea class="summernote" id="summernote"></textarea>
+						<button class="btns answerBtn">확인</button>
+					</div>
 				</div>
 			</div>
 		</section>
