@@ -157,5 +157,9 @@ public class ClubController {
 		model.addAttribute("cgName", cgName);
 		return "club/viewClubList";
 	}
+	@RequestMapping(value="/createClubFrm.do")
+	public String createClubFrm() {
+		return "club/createClubFrm";
+	}
 	
 }
