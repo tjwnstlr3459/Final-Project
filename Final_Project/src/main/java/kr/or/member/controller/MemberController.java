@@ -30,6 +30,7 @@ import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Friends;
+import kr.or.member.model.vo.FriendsData;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
 import kr.or.member.model.vo.NaverLogin;
@@ -129,23 +130,36 @@ public class MemberController {
 	@RequestMapping(value="/user/addFriend.do")
 	public String addFriend(@SessionAttribute(required = false) Member m, Friends f) {
 		Friends friend = service.selectFriend(f);
-		
+		System.out.println(m.getMemberNick());
 		if(friend != null) { //친구 테이블에 존재
 			if(friend.getAccept().equals("Y")) { //이미 친구인 경우
 				return "0";
-			} else if((m.getMemberNick() == friend.getSender()) && friend.getAccept().equals("N")) { //요청이 나이고 상대가 아직 수락하지 않았을 때 
+			} else if(m.getMemberNick().equals(friend.getSender()) && friend.getAccept().equals("N")) { //요청이 나이고 상대가 아직 수락하지 않았을 때 
 				return "1";
-			} else if((m.getMemberNick() == friend.getReceiver()) && friend.getAccept().equals("N")) { //상대가 요청했고 내가 아직 수락하지 않았을 때
+			} else if(m.getMemberNick().equals(friend.getReceiver()) && friend.getAccept().equals("N")) { //상대가 요청했고 내가 아직 수락하지 않았을 때
 				return "2";
 			} else {
 				return "10";
 			}
 		} else { //친구 테이블에 없음
 			int result = service.insertFriend(f);
-			System.out.println(result);
 			return "3";
 		}
 	}
+
+	//친구 요청 수락
+	@ResponseBody
+	@RequestMapping(value="/user/accFriend.do")
+	public String accFriend(@SessionAttribute(required = false) Member m, Friends f) {
+		int result = service.updateFriend(f);
+		
+		if(result > 0) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}
+	
 	
 	//회원가입 insert
 	@RequestMapping(value="/joinProcessing.do")
@@ -256,10 +270,15 @@ public class MemberController {
 	@RequestMapping(value="/mypage.do")
 	public String myPage(@SessionAttribute(required = false) Member m, Model model) {
 		Member member = service.selectOneMember(m);
+		FriendsData friendsData = service.selectFriendData(m.getMemberNick());
 		ArrayList<DirectMessage> dmList = dmService.selectDmByName(m.getMemberNick());
 		if(member != null) {
 			model.addAttribute("m", member);
 			model.addAttribute("dmList", dmList);
+			model.addAttribute("friends", friendsData.getFList());
+			model.addAttribute("pfriends", friendsData.getFpendingList());
+			model.addAttribute("rfriends", friendsData.getFReqList());
+			model.addAttribute("req", friendsData.getFReq());
 			return "user/mypage";
 		}else {		
 			return "common/noAuth";

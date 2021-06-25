@@ -13,6 +13,7 @@ import kr.or.category.model.dao.CategoryDao;
 import kr.or.category.model.vo.Category;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Friends;
+import kr.or.member.model.vo.FriendsData;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
 
@@ -113,6 +114,26 @@ public class MemberService {
 	@Transactional
 	public int insertFriend(Friends f) {
 		return dao.insertFriend(f);
+	}
+
+	//친구요청 수락
+	@Transactional
+	public int updateFriend(Friends f) {
+		return dao.updateFriend(f);
+	}
+
+	//친구 리스트
+	public FriendsData selectFriendData(String memberNick) {
+		FriendsData fData = new FriendsData();
+		List fList = dao.selectFriend(memberNick);
+		fData.setFList((ArrayList<Member>)fList);
+		List fPendingList = dao.selectFriendPending(memberNick);
+		fData.setFpendingList((ArrayList<Member>)fPendingList);
+		List fReqList = dao.selectFriendRequest(memberNick);
+		fData.setFReqList((ArrayList<Member>)fReqList);
+		fData.setFReq(dao.friendRequestCount(memberNick));
+		System.out.println(fData.getFReq());
+		return fData;
 	}
 
 }

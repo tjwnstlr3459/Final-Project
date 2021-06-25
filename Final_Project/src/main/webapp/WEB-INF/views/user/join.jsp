@@ -85,7 +85,7 @@
                     <div class="elementChk">
                         <span class="legend">관심분야(3개 선택)</span>
                         <c:forEach items="${category }" var="c">
-			            	<label><input type="checkbox" name="hobby" value="${c.cgName }">${c.cgName }</label>
+			            	<label><input type="checkbox" name="hobby" value="${c.cgNo }">${c.cgName }</label>
 			            </c:forEach>
                         <span class="chkMsg"></span>
                     </div>
