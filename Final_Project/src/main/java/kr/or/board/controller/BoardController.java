@@ -133,7 +133,7 @@ public class BoardController {
 		}else {
 			model.addAttribute("msg", "등록실패.");
 		}
-		model.addAttribute("loc", "boardList");
+		model.addAttribute("loc", "boardOne.do?abNo="+abNo);
 		return "common/msg";
 	}
 	
