@@ -31,3 +31,19 @@ FROM ANSWER a,member b WHERE a.an_writer = b.member_nick and a.AB_NO=#{abNo}
 </select>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

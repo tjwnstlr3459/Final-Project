@@ -139,11 +139,12 @@
 
 				<div class="fileDay">
 					<div>
-						<input type="file" value="파일첨부">
+						<input type="file" name="files" value="파일첨부">
 					</div>
 					<div>작성일 : 2020-05-22</div>
 				</div>
-				<textarea class="textA"></textarea>
+				<input type="text" name="anWriter">
+				<textarea class="textA" name="anContent"></textarea>
 				<input class="checkBtn"
 					style="margin-top: 15px; margin-left: 200px; text-align: center;"
 					stype="submit" value="Submit">

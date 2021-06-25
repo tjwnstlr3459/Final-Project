@@ -68,6 +68,33 @@ FROM BOARD
 	FROM BOARD WHERE AB_NO=#{abNo}
 </select>
 
+<!-- 공지글 등록 -->
+<insert id="insertBoard" parameterType="bl">
+	INSERT INTO BOARD VALUES(
+		AB_SEQ.NEXTVAL,
+		14,
+		#{abWriter},
+		#{abTitle},
+		#{abContent},
+		#{fileName},
+		#{filePath},
+		to_char(sysdate,'yyyy-mm-dd'),
+		'N')
+</insert>
+
+<!-- 최신공지게시물 출력 -->
+<select id="selectLastBoard" resultType="int">
+	SELECT MAX(AB_NO) FROM BOARD
+</select>
+
+<!-- 첨부파일 등록 -->
+<update id="insertBoardFile" parameterType="bl">
+	UPDATE BOARD SET
+		filename  = #{fileName},
+		filepath  = #{filePath}
+	WHERE AB_NO = #{abNo}
+</update>
+
 </mapper>
 
 
