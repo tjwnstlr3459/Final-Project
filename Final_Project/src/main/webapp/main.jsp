@@ -116,7 +116,7 @@
                                     <br>
                                     <br>
                                     <br>
-                                    <a href="#" class="slider-btn" style="font-size: 25px;">클럽 만들기</a>
+                                    <a onclick="location.href='/createClubFrm.do';" class="slider-btn" style="font-size: 25px; cursor:pointer;">클럽 만들기</a>
                                 </div>
                             </li>
                             <li>
@@ -255,7 +255,7 @@
                         </div> <!-- /#service-1 -->
                     </div> <!-- /.col-md-3 -->
                 </div> <!-- /.row -->
-        <button onclick="location.href='/viewClubList.do?cgNo=7';" id="feed_info" disabled>MORE</button>
+        <button onclick="location.href='/createClubFrm.do';" id="feed_info" >CREATE CLUB</button>
             </div> <!-- /.container -->
         </div> <!-- /#services -->
 
