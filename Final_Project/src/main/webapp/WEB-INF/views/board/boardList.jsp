@@ -78,7 +78,7 @@
 								<tbody>
 									<c:forEach items="${boardList }" var="l" varStatus="i">
 										<tr>
-											<td>${l.abNo }</td>
+											<td>${i.count }</td>
 											<td><a href="/boardOne.do?abNo=${l.abNo}">${l.abTitle }</a></td>
 											<td>${l.abWriter }</td>
 											<td style="text-align: center">${l.enrollDate }</td>
@@ -109,10 +109,6 @@
 				</div>
 			</div>
 			<!--bottomContent-->
-
-
-
-
 		</div>
 		<!--wrap-->
 		<!-- 푸터 -->
@@ -120,34 +116,36 @@
 		<!-- 모달 -->
 		<div class="boardModalPan" style="display: none;">
 			<div class="boardModal">
-				<div class="closeModal">X</div>
-				<div class="modalLogo">
+				<div class="closeModal"><img src="/resources/image/icons/x.png" style="width: 40px;padding-left: 10px;"></div>
+				<div class="modalLogo" style="margin-top: 10px;">
 					<img src="/resources/image/icons/man3.png">
 				</div>
 
 				<div class="adminMent">
-					저희 Nunadri는 회원님들의 의견에<br>귀를 기울이겠습니다.
+						저희 Nunadri는 회원님들의 의견에<br>귀를 기울이겠습니다.
 				</div>
-				<hr
-					style="border: 1px solid gray; width: 90%; margin-bottom: 5px; margin-top: 5px;">
+				<hr style="border: 1px solid gray; width: 90%; margin-bottom: 5px; margin-top: 5px;">
+				<form action="/boardInsert.do" method="post" enctype="multipart/form-data">
 				<div class="selectMun">
-					<select>
-						<option>문의</option>
-						<option>신고</option>
+					<select class="selectDiv" name="abCg">
+						<option value="2">문의</option>
+						<option value="3">신고</option>
 					</select>
 				</div>
-
+				<div class="fileDay" style="margin-bottom:10px"><input type="text" name="abTitle" placeholder="제목"></div>
+				
 				<div class="fileDay">
 					<div>
-						<input type="file" name="files" value="파일첨부">
+						<input type="file" name="files1" value="파일첨부">
 					</div>
-					<div>작성일 : 2020-05-22</div>
+					<div>작성일 : ${sessionScope.m.lastDate }</div>
 				</div>
-				<input type="text" name="anWriter">
-				<textarea class="textA" name="anContent"></textarea>
+				<input type="text" name="abWriter" value="${sessionScope.m.memberNick }" style="display: none">
+				<textarea class="textA" name="abContent" placeholder="회원님의 소중한 의견을 적어주세요"></textarea>
 				<input class="checkBtn"
 					style="margin-top: 15px; margin-left: 200px; text-align: center;"
-					stype="submit" value="Submit">
+					type="submit" value="Submit">
+				</form>
 			</div>
 		</div>
 	</div>

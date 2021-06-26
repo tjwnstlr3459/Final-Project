@@ -68,11 +68,11 @@ FROM BOARD
 	FROM BOARD WHERE AB_NO=#{abNo}
 </select>
 
-<!-- 공지글 등록 -->
+<!-- 공지/문의/쪽지 등록 -->
 <insert id="insertBoard" parameterType="bl">
 	INSERT INTO BOARD VALUES(
 		AB_SEQ.NEXTVAL,
-		14,
+		#{abCg},
 		#{abWriter},
 		#{abTitle},
 		#{abContent},
@@ -94,6 +94,7 @@ FROM BOARD
 		filepath  = #{filePath}
 	WHERE AB_NO = #{abNo}
 </update>
+
 
 </mapper>
 

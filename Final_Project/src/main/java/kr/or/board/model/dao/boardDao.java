@@ -51,7 +51,7 @@ public class boardDao {
 		List<Answer> list =session.selectList("answer.selectMoment",abNo);
 		return (ArrayList<Answer>)list;
 	}
-	//공지글 등록
+	//공지/문의/신고 글 등록
 	public int insertBoard(Board bl) {
 		return session.insert("board.insertBoard",bl);
 	}
@@ -63,6 +63,10 @@ public class boardDao {
 	public int insertFile(Board bl) {
 		return session.update("board.insertBoardFile",bl);
 	}
+//	//쪽지 등록
+//	public int insertReport(Board bl) {
+//		return session.insert("board.insertReport",bl);
+//	}
 
 }
 

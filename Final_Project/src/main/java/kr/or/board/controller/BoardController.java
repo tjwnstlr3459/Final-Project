@@ -137,7 +137,7 @@ public class BoardController {
 		return "common/msg";
 	}
 	
-	//공지글 등록
+	//공지/문의/신고 등록
 	@RequestMapping(value = "/boardInsert.do")
 	public String boardInsert(Board bl, Model model, MultipartFile files1[], HttpServletRequest request) {
 
@@ -218,14 +218,14 @@ public class BoardController {
 		  System.out.println(fileList.size());
 	      //DB에 넣기
 	      if(result != -1 && result == fileList.size()) {
-	    	  model.addAttribute("msg","공지가 등록되었습니다.");
+	    	  model.addAttribute("msg","등록되었습니다.");
 	      }else {
 	    	  model.addAttribute("msg","등록실패");
 	      }
-	      model.addAttribute("loc","/");
-	      
+	      model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1);
 	      return "common/msg";
 	}
+	
 }
 
 

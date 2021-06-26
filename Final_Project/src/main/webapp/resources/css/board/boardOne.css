@@ -5,7 +5,9 @@
     body {
       margin: 0px;
       padding: 0px;
-    }
+ -ms-overflow-style: none;
+}
+::-webkit-scrollbar { display: none; }
     .wrap {
       width: 1000px;
       margin: 0 auto;
@@ -189,7 +191,7 @@
     
     
     
-    .checkBtn {
+.checkBtn {
   width: 100px;
   height: 30px;
   background-color: rgba(82, 193, 252, 0.844);
@@ -234,16 +236,18 @@
   margin-bottom: 5px;
 }
 .selectMun>select{
-  background-color: rgb(255, 244, 244);
+  background-color:rgb(245 245 245);
+  border: 0px solid grey;
 }
 .fileDay{
-  border: 1px solid grey;
+  border: 0px solid grey;
   width: 90%;
   height: 35px;
-  background-color: rgb(255, 244, 244);
+  background-color:rgb(245 245 245);
   margin: 0 auto;
   padding-top: 3px;
   border-radius: 5px;
+  overflow: hidden;
 }
 .fileDay > div{
   float: left;
@@ -262,23 +266,31 @@
   line-height: 30px;
   padding-right: 35px;
 }
+.fileDay input{
+	border: 0px;
+	width: 100%;
+	font-size: 12px;
+	height: 100%;
+	background-color: rgb(245 245 245);
+	border-radius: 5px;
+	outline: none;
+}
 .textA{
   width: 450px;
   height: 170px;
   margin-left: 24px;
   margin-top: 10px;
   border-radius: 5px;
-  background-color: rgb(255, 244, 244);
+  background-color: rgb(245 245 245);
   outline: none;
+  border: 0px solid grey;
+  font-size: 12px;
+  resize: none;
 }
-.boardModalPan{
-  width: 100%;
-  position: absolute;
-  top: 180px;
-}
+
 .boardModal{
   width: 500px;
-  height: 450px;
+  height: 500px;
   /* border: 1px solid gainsboro; */
   border-radius: 10px;
   margin: 0 auto;
@@ -310,5 +322,11 @@
   background-color: white;
   border-radius: 10px;
   min-width: 350px
+}
+.selectDiv{
+	width: 50px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 12px
 }
     
