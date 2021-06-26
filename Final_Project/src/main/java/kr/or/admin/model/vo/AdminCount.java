@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class AdminCount {
+	//sysdate 해서 오늘 날짜 가져오는 변수
+	private String toDay;
 	//전체 회원 수
 	private int memberCount;
 	//전체 클럽 수
@@ -17,10 +19,10 @@ public class AdminCount {
 	private int memberBear;
 	private int memberEat;
 	//연령대 별 회원 수
-	private int teenager;
-	private int twenty;
-	private int thirty;
-	private int fourty;
+	private int teenagers;
+	private int twenties;
+	private int thirties;
+	private int forties;
 	//개설된 클럽의 카테고리 수
 	private int clubSports;
 	private int clubMusic;

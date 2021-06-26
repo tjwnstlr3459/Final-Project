@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kr.or.admin.model.service.AdminService;
@@ -91,14 +91,20 @@ public class AdminController {
 		String a = jsonObject.toString();
 		return a;
 	}
-	//관리자 페이지의 차트/통계에 필요한 값 가져오기
+	//관리자 페이지 메인 이동 시 차트/통계에 필요한 값 가져오기 > 사이트 서비스 시작 시점부터 현재
 	@RequestMapping(value="/adminMain.do")
 	public String adminMain(Model model) {
 		AdminCount ac = service.selectAdminCount();
 		model.addAttribute("ac",ac);
 		return "admin/adminMain";
 	}
-	
+	//관리자 페이지 로드 시 AdminCount 가져오기
+	@RequestMapping(value="/selectAdminCount.do", produces = "appication/json;charset=utf-8")
+	@ResponseBody
+	public String selectAdminCount() {
+		AdminCount ac = service.selectAdminCount();
+		return new Gson().toJson(ac);
+	}
 	
 	
 	

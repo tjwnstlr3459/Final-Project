@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    //여기 아래 부분
+$(function(){
+//여기 아래 부분
 	 $('.summernote').summernote({		//모든 textarea에 클래스로 서머노트 적용
 	 	   width: 500,
 	 	   minWidth:500,
@@ -141,7 +141,10 @@ $(document).ready(function() {
 	 	$('.answer-box').slideToggle();
 	 	$('#summernote').attr('autofocus',true);
 	 });
+	 selectAdminCount();
+
 });
+
 //==========================================================================================
 function sendFile(file, el) {
 	data = new FormData();
@@ -239,6 +242,64 @@ function selectOneBoard(abNo,cgName){
 			$('.enrollDate').html(data.enrollDate);
 			$('.abContent').html(data.abContent);
 			$('.modal').css('display','flex');
+		}
+	});
+}
+//페이지 로드 시 ADminCount(서비스 시작 후 현재까지 기록 data) 가져오기
+function selectAdminCount(){
+	$.ajax({
+		url : "/selectAdminCount.do",
+		type : "post",
+		success : function(data){
+			console.log(data);
+			memberHobbys(data);
+			memberAges(data);
+		}
+	});
+}
+//회원 취미 선택 통계
+function memberHobbys(data){
+	var myChart = new Chart(document.getElementById('chart1'), {
+        type: "bar",
+        data: {
+            labels: ['Sports', 'Music', 'Travel', 'Movie', 'Game'],
+            datasets: [{
+                label: 'All',
+                data: [data.memberSports, data.memberMusic, data.memberTravel, data.memberMovie, data.memberGame],
+                backgroundColor:[
+                	'rgba(0, 0, 255, 0.3)',
+                	'rgba(255, 0, 255, 0.3)',
+                    'rgba(76, 216, 153, 0.5)',
+                    'rgba(0, 255, 255, 0.3)',
+                    'rgba(255, 0, 0, 0.3)'
+				],
+                borderColor: [
+                    '#eeeeee'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false
+        }
+    });
+}
+//회원 연령대 별 가입자 수
+function memberAges(data){
+	var memberAgeChart = new Chart(document.getElementById('memberAge'),{
+		type:"doughnut",
+		data:{
+			labels:['teenagers','twenties','thirties','forties'],
+			datasets:[{
+				label:'All',
+				data:[data.teenagers,data.twenties,data.thirties,data.forties],
+				backgroundColor:[
+					'rgba(255,255,0,0.4)',
+					'rgba(51,51,255,0.4)',
+					'rgba(51,255,255,0.4)',
+					'rgba(153,102,51,0.4)'
+				]
+			}]
 		}
 	});
 }
