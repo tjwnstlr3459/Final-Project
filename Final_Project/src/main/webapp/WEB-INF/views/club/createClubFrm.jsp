@@ -38,7 +38,7 @@
             CLUB NAME<br>
             <input type="text" name="clubName"><br>
             CLUB INTRO<br>
-            <textarea rows="10" cols="50" name="clubIntro"></textarea rows><br>
+            <textarea rows="10" cols="50" name="clubIntro"></textarea><br>
                 CLUB IMG<br>
             <input type="file" name="file"><br>
                 <input type="radio" name="ispublic" value="Y">PUBLIC

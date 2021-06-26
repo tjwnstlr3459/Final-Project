@@ -32,5 +32,9 @@ public class FreeBoardDao {
 	public int addHeart(int fbNo) {
 		int result = sqlSession.update("freeBoard.addHeart",fbNo);
 		return result;
+	}
+
+	public FreeBoard selectFreeBoardByFbNo(int fbNo) {
+		return sqlSession.selectOne("freeBoard.selectFreeBoardByFbNo",fbNo);
 	} 
 }
