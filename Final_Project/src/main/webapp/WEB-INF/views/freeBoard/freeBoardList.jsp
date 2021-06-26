@@ -26,8 +26,8 @@ container {
 	
   }
 .posting>img {
-	width: 700px;
-	height: 600px;
+	width: 500px;
+	height: 400px;
 	text-align: center;
 	margin: 30px;
 }
@@ -41,7 +41,7 @@ container {
 	text-align: center;
 	margin: 0 auto 40px;
 	border:3px solid #ccc;
-	width:800px;
+	width:600px;
 }
 .fbContent{
 	background-color: rgba(240,136,76,0.4);
@@ -79,6 +79,45 @@ button:hover{
 	width:100%;
 	border: 1px solid #ccc;
 }
+
+/*모달창*/
+      .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */                          
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+
 </style>
 
 
@@ -93,8 +132,22 @@ button:hover{
 	</c:choose>
 	<div class="container">
 			<%-- <button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button> --%>
-	</div>
+	  <button id="myBtn">Open Modal</button> 
+ 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>                                                               
+        <p>Some text in the Modal..</p>
+      </div>
+ 
+    </div>
+</div>
+	    
 	<script>
+	
  	 $(function(){
 		more(1);		//처음에 more함수에 1을주면서 실행할거다 온로드함수기 때문에
 		$("#more-btn").click(function(){
@@ -117,9 +170,11 @@ button:hover{
 						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
 						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
 						html +="</button><button><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
-						html += "Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
+						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
 						html += "<span class='comments'></span></div>";
-						$(".container").append(html);								
+						html += "<a href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a>";
+						$(".container").append(html);
+						
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
@@ -148,7 +203,34 @@ button:hover{
 				}
 		});
 		}
+		
+		//모달쪽
+		 var modal = document.getElementById('myModal');
+		 
+		        // Get the button that opens the modal
+		        var btn = document.getElementById("myBtn");
+		 
+		        // Get the <span> element that closes the modal
+		        var span = document.getElementsByClassName("close")[0];                                          
+		 
+		        // When the user clicks on the button, open the modal 
+		        btn.onclick = function() {
+		            modal.style.display = "block";
+		        }
+		 
+		        // When the user clicks on <span> (x), close the modal
+		        span.onclick = function() {
+		            modal.style.display = "none";
+		        }
+		 
+		        // When the user clicks anywhere outside of the modal, close it
+		        window.onclick = function(event) {
+		            if (event.target == modal) {
+		                modal.style.display = "none";
+		            }
+		        }
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
+
 </html>

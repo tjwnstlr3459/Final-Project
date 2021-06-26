@@ -43,4 +43,16 @@
   <update id="addHeart" parameterType="int">
   		update free_board set fb_good = fb_good + 1 where fb_no = #{fbNo}   
   </update>
+  <select id="selectFreeBoardByFbNo" parameterType="int" resultType="fb">
+  		select fb_no as fbNo,
+  		   fb_writer as fbWriter,
+  		   fb_content as fbContent,
+  		   filename,
+  		   filepath,
+  		   fb_views as fbViews,
+  		   fb_good as fbGood,
+  		   type,
+  		   fb_date as fbDate
+  		 from free_board where fb_no = #{fbNo} 
+  </select>
 </mapper>

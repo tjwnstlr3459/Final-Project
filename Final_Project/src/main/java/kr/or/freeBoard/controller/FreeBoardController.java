@@ -119,4 +119,10 @@ public class FreeBoardController {
 			return 0;
 		}
 	}
+	@RequestMapping(value="/updateFreeBoardFrm.do")
+	public String updateFreeBoardFrm(int fbNo, Model model) {
+		FreeBoard fb = service.selectFreeBoardByFbNo(fbNo);
+		model.addAttribute("fb", fb);
+		return "freeBoard/updateFreeBoardFrm";
+	}
 }

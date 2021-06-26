@@ -35,4 +35,8 @@ public class FreeBoardService {
 		int result = dao.addHeart(fbNo);
 		return result;
 	}
+	public FreeBoard selectFreeBoardByFbNo(int fbNo) {
+		FreeBoard fb = dao.selectFreeBoardByFbNo(fbNo);
+		return fb;
+	}
 }
