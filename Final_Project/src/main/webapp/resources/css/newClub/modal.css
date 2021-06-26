@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/* 전체를 감싸고 있고 배경설정 ,클릭전까지는 display:none 상태 */
+  .allModal{
+     position: absolute;
+     width: 100vw;
+     height: 100vh;
+     top: 0;
+     left: 0;
+     background-color: rgba(0, 0, 0, 0.5);
+     display: none;
+     justify-content: center;
+     align-items: center;
+  }
+  /* 모달설정 */
+  .modalWrap{
+     background-color: white;
+     padding: 30px 50px;
+     border-radius: 10px;
+     width: 500px;
+     min-width: 350px
+  }
+  #closeBtn{
+	 margin: 0 auto;
+     width: 200px;
+      
+
+  }
