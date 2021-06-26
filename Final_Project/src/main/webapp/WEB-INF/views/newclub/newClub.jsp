@@ -49,8 +49,10 @@
 	href="/resources/css/newClub/newClub.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/newClub2.css" />
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/chat.css" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/newClub/modal.css" />
 <!--script-->
 <script src="/resources/js/newClub/modal.js"></script>
 <script src="/resources/js/newClub/chat.js"></script>
@@ -120,7 +122,7 @@
 											</div>
 											<div class="userview" style="height: 30%;">
 													<div class="usernum">조회수 3명 읽음</div>
-													<div class="btn trigger"><a href="#">상세보기</a></div>
+													<button id="openModal">상세보기</button>
 											</div>
 										</div>
 									</c:forEach> --%>
@@ -140,7 +142,7 @@
 									</div>
 									<div class="userview" style="height: 30%;">
 											<div class="usernum">조회수 3명 읽음</div>
-											<div class="btn trigger"><a href="#">상세보기</a></div>
+											
 									</div>
 								</div>
 							</div>
@@ -168,26 +170,17 @@
 	</div>
 </div>
 	<!-- Modal -->
-	<div class="modal-wrapper">
-		<div class="modal">
-			<div class="head">
-				<a class="btn-close trigger" href="#"> <i class="fa fa-times"
-					aria-hidden="true"></i>
-				</a>
-			</div>
-			<div class="content2">
-				<div class="good-job">
-					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-					<h1>Good Job!</h1>
-				</div>
-				<div class="close-wrapper">
-					<button id="close">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
+        <div class="modalWrap"> <!--숨어있는 모달-->
+            <h2>게시물 상세보기</h2>
+            <hr>
+            <p>여기를 다시</p>
+            <p>꾸며 봅시다</p>
+            <button id="closeBtn">닫기</button>
+        </div>
+    </div>
 	<script>
-
+	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
 
@@ -202,7 +195,7 @@
 			tabCont.eq(index).css("display", "block");
 		});
 		
-		/*더보기 기능*/
+	/*더보기 기능*/
 	$(function() {
 		more(1);
 		$("#more-btn").click(function() {
@@ -210,7 +203,7 @@
 		});
 	});
 	
-	//스크롤
+	/*스크롤*/
 	$(window).scroll(function() {
 	    var scrolltop = $(document).scrollTop();	//스크롤할때의 값 지정
 	    console.log(scrolltop);
@@ -250,11 +243,13 @@
 										+ p.boardContent + '</div>';
 						html += 	'<div class="userview" style="height:30%;">';
 						html += 		'<div class="usernum">' + '조회수3명읽음' + '</div>';
-						html += 		'<div class="btn trigger">'+'<a href="#">' + '상세보기'+ '</a>'+'</div>';
+						html += 		'<button id="openModal">'+'상세보기'+'</button>';
 						html += 	'</div>';
 						html += '</div>';
 						$(".photoWrapper").append(html); 
-					}//버튼 이 없는듯?
+						
+						
+					}
 					//이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 					$("#more-btn").val(Number(start) + 3); //얘는 반면 시작값이라 datalength가 아니라 3를 더하는거임
 					var curr = Number($("#more-btn").attr("currentCount"));
@@ -272,12 +267,13 @@
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 
 	});
+	/*웹소켓*/		
    var ws;
    var memberId;
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws://192.168.10.47//chat.do")
+      ws = new WebSocket("ws://192.168.35.71//chat.do")
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수
@@ -302,7 +298,7 @@
       $(".messageArea").append(msg);// 메시지 내용 추가
       $(".messageArea").scrollTop($(".messageArea")[0].scrollHeight);// 스크롤용
    }
-   // 채팅 보내기
+   /* 채팅 보내기*/
    function sendMsg(){
       var msg = $("#sendMsg").val();// 메시지 입력창 내용 가져오기
       
@@ -325,6 +321,7 @@
          }
       })
    });
+   
 	</script>
 </body>
 
