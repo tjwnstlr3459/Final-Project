@@ -2,7 +2,7 @@
 
 /* 전체를 감싸고 있고 배경설정 ,클릭전까지는 display:none 상태 */
   .allModal{
-     position: absolute;
+     position: fixed;
      width: 100vw;
      height: 100vh;
      top: 0;

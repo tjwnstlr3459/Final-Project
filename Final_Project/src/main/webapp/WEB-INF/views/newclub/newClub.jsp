@@ -243,7 +243,7 @@
 										+ p.boardContent + '</div>';
 						html += 	'<div class="userview" style="height:30%;">';
 						html += 		'<div class="usernum">' + '조회수3명읽음' + '</div>';
-						html += 		'<button id="openModal">'+'상세보기'+'</button>';
+						html += 		'<button class="openModal" onclick="modalClick();">'+'상세보기'+'</button>';
 						html += 	'</div>';
 						html += '</div>';
 						$(".photoWrapper").append(html); 
@@ -263,6 +263,9 @@
 				}
 					
 			});
+		}
+		function modalClick(){
+		     $(".allModal").css("display","flex");
 		}
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 
