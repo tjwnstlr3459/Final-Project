@@ -89,5 +89,9 @@ public class MemberDao {
 		return sqlSession.selectOne("member.friendRequestCount", memberNick);
 	}
 
+	public int updatePw(Member m) {
+		return sqlSession.update("member.updatePw", m);
+	}
+
 
 }
