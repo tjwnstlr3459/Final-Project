@@ -1,5 +1,5 @@
  $(function(){
-    $("#openModal").click(function(){
+    $(".openModal").click(function(){
         $(".allModal").css("display","flex");
     });
 
