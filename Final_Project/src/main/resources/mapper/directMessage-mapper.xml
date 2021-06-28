@@ -31,6 +31,12 @@
 			dm_content as dmContent,
 			dm_date as dmDate,
 			read_status as readStatus
-		from direct_message where sender=#{memberNick} or receiver=#{memberNick}
+		from direct_message where sender=#{memberNick} or receiver=#{memberNick} order by dm_date desc
+	</select>
+	<!-- 일반회원용 읽지 않은 DM 수 조회 -->
+	<select id="selectUnreadDm" parameterType="string" resultType="int">
+		select 
+			count(*)
+		from direct_message where receiver=#{memberNick} and read_status='N'
 	</select>
 </mapper>

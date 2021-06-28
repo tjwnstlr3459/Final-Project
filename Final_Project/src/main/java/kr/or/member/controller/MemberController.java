@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import kr.or.category.model.vo.Category;
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
+import kr.or.directMessage.model.vo.DirectMessageData;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.FriendsData;
@@ -257,7 +258,7 @@ public class MemberController {
 	//소셜로그인 시 가입여부 확인
 	@ResponseBody
 	@RequestMapping(value="/nLogin.do")
-	public String nLogin(Member m, Model model) {
+	public String nLogin(Member m) {
 		Member member = service.selectOneMember(m);
 		if(member != null) {
 			return "1";
@@ -265,16 +266,38 @@ public class MemberController {
 			return "0";
 		}
 	}	
+
+	//임시 비밀번호 메일 보내기
+	@ResponseBody
+	@RequestMapping(value="/pwMail.do")
+	public String pwMail(Member m) {
+		try {
+			int result = service.pwMail(m);
+			if(result > 0) {
+				return "1";
+			}else {		
+				return "0";
+			}	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "0";		
+	}	
+	
 	
 	//마이페이지
 	@RequestMapping(value="/mypage.do")
 	public String myPage(@SessionAttribute(required = false) Member m, Model model) {
 		Member member = service.selectOneMember(m);
 		FriendsData friendsData = service.selectFriendData(m.getMemberNick());
-		ArrayList<DirectMessage> dmList = dmService.selectDmByName(m.getMemberNick());
+		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick());
+		ArrayList<Category> category = service.getCategory();
 		if(member != null) {
 			model.addAttribute("m", member);
-			model.addAttribute("dmList", dmList);
+			model.addAttribute("category", category);
+			model.addAttribute("dmList", dmData.getDmList());
+			model.addAttribute("unreadDm", dmData.getUnread());
 			model.addAttribute("friends", friendsData.getFList());
 			model.addAttribute("pfriends", friendsData.getFpendingList());
 			model.addAttribute("rfriends", friendsData.getFReqList());

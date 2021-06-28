@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.directMessage.model.dao.DirectMessageDao;
 import kr.or.directMessage.model.vo.DirectMessage;
+import kr.or.directMessage.model.vo.DirectMessageData;
 
 @Service
 public class DirectMessageService {
@@ -34,8 +35,12 @@ public class DirectMessageService {
 		return dao.insertMultiDm(dm,memberNo);
 	}
 
-	public ArrayList<DirectMessage> selectDmByName(String memberNick) {
-		return (ArrayList<DirectMessage>)dao.selectDmByName(memberNick);
+	public DirectMessageData selectDmByName(String memberNick) {
+		DirectMessageData dmData = new DirectMessageData();
+		dmData.setDmList((ArrayList<DirectMessage>)dao.selectDmByName(memberNick));
+		dmData.setUnread(dao.selectUnreadDm(memberNick));
+		return dmData;
+		
 	}
 
 }
