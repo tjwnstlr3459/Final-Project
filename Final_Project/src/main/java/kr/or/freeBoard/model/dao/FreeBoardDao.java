@@ -36,5 +36,17 @@ public class FreeBoardDao {
 
 	public FreeBoard selectFreeBoardByFbNo(int fbNo) {
 		return sqlSession.selectOne("freeBoard.selectFreeBoardByFbNo",fbNo);
+	}
+
+	public int updateFreeBoard(FreeBoard fb) {
+		return sqlSession.update("freeBoard.updateFreeBoard",fb);
+	}
+
+	public int deleteFreeBoard(int fbNo) {
+		return sqlSession.delete("freeBoard.deleteFreeBoard",fbNo);
+	}
+
+	public String selectFilepath(int fbNo) {
+		return sqlSession.selectOne("freeBoard.selectFilepath",fbNo);
 	} 
 }

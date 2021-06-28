@@ -8,9 +8,7 @@
 <link rel="stylesheet" href="/resources/css/freeBoardFrm/bootstrap.css">
 <title>${cgName}에해당하는클럽들</title>
 <style>
-html{
-  background-image:url("/resources/main/images/intro_4.jpg");
-}
+
 	body{
 		width: 100%;
   height: 100%;
@@ -52,7 +50,9 @@ html{
 	</c:choose>
 	<hr>
 	<h3 style="text-align: center;">CLUB LIST</h3>
+	<c:if test="${!empty sessionScope.m }">
 	<button type="button" onclick="location.href='/createClubFrm.do';" style="float:right; margin-right:300px; width:150px; height:70px; background-color:#ec5674; font-size:18px; font-weight:bold;">MAKE CLUB</button>
+	</c:if>
 	<div class="all-wrap">
 		<div class="categoryNavi">
 				 <b style="text-align:center; font-size:27px; margin-left: 70px;">Category</b><br><br> 

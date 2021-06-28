@@ -36,7 +36,6 @@ public class FreeBoardController {
 	public String freeBoardList(Model model) {
 		int FreeBoardtotalCount = service.FreeBoardtotalCount();
 		model.addAttribute("totalCount", FreeBoardtotalCount);
-		System.out.println(FreeBoardtotalCount);
 		return "freeBoard/freeBoardList";
 	}
 
@@ -105,7 +104,6 @@ public class FreeBoardController {
 				model.addAttribute("msg", "피드등록실패!");
 			}
 			model.addAttribute("loc", "/freeBoardList.do");
-			System.out.println(fb.toString());
 		}
 		return "common/msg";
 	}
@@ -124,5 +122,74 @@ public class FreeBoardController {
 		FreeBoard fb = service.selectFreeBoardByFbNo(fbNo);
 		model.addAttribute("fb", fb);
 		return "freeBoard/updateFreeBoardFrm";
+	}
+	@RequestMapping(value="/updateFreeBoard.do")
+	public String updateFreeBoard(MultipartFile files, HttpServletRequest request,FreeBoard fb, Model model, String status, String oldFilename, String oldFilepath) {
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/");
+		String filename = files.getOriginalFilename();
+		String filepath = null;
+		  if(!status.equals("delete")) { 
+			filename = oldFilename;
+			filepath = oldFilepath;
+		  }else {			  
+			  File delFile = new File(savePath+"/"+oldFilepath);
+			  delFile.delete();
+			  String onlyFilename = filename.substring(0, filename.indexOf(".")); 
+			  String extention = filename.substring(filename.indexOf("."));
+			  int count = 0;
+			  while (true) { 
+				  if (count == 0) {
+					  filepath = onlyFilename + extention;
+				  } else {
+					  filepath = onlyFilename + "_" + count + extention; 
+				  }
+				  File checkFile = new File(savePath + filepath);
+				  if (!checkFile.exists()) { 
+					  break;
+				  }
+				  count++;
+			  }
+			  
+			  try {
+				  FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+				  BufferedOutputStream bos = new BufferedOutputStream(fos);
+				  byte[] bytes = files.getBytes(); 
+				  bos.write(bytes);		
+				  bos.close();		
+			  } catch (FileNotFoundException e) {
+				  // TODO Auto-generated catch block
+				  e.printStackTrace();
+			  } catch (IOException e) {
+				  // TODO Auto-generated catch block
+				  e.printStackTrace();
+			  }
+		  }
+		  fb.setFilename(filename);
+		  fb.setFilepath(filepath);
+			int result = service.updateFreeBoard(fb);
+			if (result > 0) {
+				model.addAttribute("msg", "피드업데이트성공!");
+			} else {
+				model.addAttribute("msg", "피드업데이트실패!");
+			}
+			model.addAttribute("loc", "/freeBoardList.do");
+			System.out.println(fb.toString());
+		
+		return "common/msg";
+	}
+	@RequestMapping(value="/deleteFreeBoard.do")
+	public String deleteFreeBoard(int fbNo, Model model, HttpServletRequest request) {
+		String filepath = service.selectFilepath(fbNo);
+		int result = service.deleteFreeBoard(fbNo);
+		if(result > 0) {			
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/freeBoardUpload/");
+		File delFile = new File(savePath+"/"+filepath);
+		  delFile.delete();
+			model.addAttribute("msg", "삭제성공");
+		}else {			
+			model.addAttribute("msg", "삭제실패");
+		}
+		model.addAttribute("loc", "/freeBoardList.do");
+		return "common/msg";
 	}
 }

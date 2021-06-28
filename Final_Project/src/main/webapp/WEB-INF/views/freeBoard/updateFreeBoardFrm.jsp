@@ -20,19 +20,29 @@
 			<i class="fas fa-camera"
 				style="font-size: 50px; margin-top: 20px; margin-bottom: 50px;"></i>
 			<div id="img-viewer">
-				<img id="img-view" width="600px;" height="400px;" margin-top="50px;"
-					alt="">
+				<img id="img-view" width="600px;" height="400px;" margin-top="50px;" src="/resources/freeBoardUpload/${fb.filepath }">
 			</div>
 		</fieldset>
 	</div>
 	<form action="/updateFreeBoard.do" method="post" enctype="multipart/form-data">
 		<div class="form-group">
-			<label for="formFile" class="form-label mt-4"></label> <input
+			<input type="text" name = "fbNo" value="${fb.fbNo }" hidden>
+								<input type="hidden" name="status" value="stay">
+                                <img src="/resources/image/file.png" width="16px" class="delFile">
+                                <span class="delFile">${fb.filepath }</span>
+                                <button type="button" id="delBtn" class="btn btn-primary btn-sm delFile">삭제</button>
+                                
+                                <input type="file" name="files" id="file" style="display:none;" onchange="loadImg(this);">
+                                <input type="hidden" name="oldFilename" value="${fb.filename }">
+                                <input type="hidden" name="oldFilepath" value="${fb.filepath }">
+                                
+			<!--  <label for="formFile" class="form-label mt-4"></label> <input
 				class="form-control" type="file" id="formFile" name="files"
-				onchange="loadImg(this)">
+				onchange="loadImg(this)" style="display:none;">  -->
 		</div>
 		<div class="form-group">
 			<label for="typeSelect" class="form-label mt-4">CLUB CATEGORY</label> <select class="form-select" name="type" id="typeSelect" style="color:white;">
+				<option value="${fb.type }" fixed>현재 카테고리 : ${fb.typeString }</option>
 				<option value="4">스포츠</option>
 				<option value="5">음악</option>
 				<option value="6">여행</option>
@@ -44,11 +54,11 @@
 			</select>
 		</div>
 		<div class="card-footer text-muted">
-			<input type="text" name="fbWriter" value="${sessionScope.m.memberNick }" readonly>
+			<input type="text" name="fbWriter" value="${sessionScope.m.memberNick }" hidden>
 		</div>
 		<div class="form-group">
 			<label for="exampleTextarea" class="form-label mt-4">CONTENT</label>
-			<textarea class="form-control" id="exampleTextarea" rows="3" name="fbContent" placeholder="${fb.fbContent }"></textarea>
+			<textarea class="form-control" id="exampleTextarea" rows="3" name="fbContent">${fb.fbContent }</textarea>
 		</div>
 		<p style="margin-top: -12px"></p>
 		<div class="making_feed_wrap">
@@ -60,6 +70,14 @@
 	</form>
 </body>
 <script>
+$("#delBtn").click(function(){
+	if(confirm("원래 이미지를 삭제하시겠습니까?")){
+		$(".delFile").hide();
+		$("#file").show();
+		$("[name=status]").val("delete");
+		$("#img-view").attr("src","");
+	}
+});
     function loadImg(f){	
 			if(f.files.length != 0){		
 				var reader = new FileReader();

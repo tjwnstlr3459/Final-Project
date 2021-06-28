@@ -138,16 +138,10 @@
 								이곳에서 클럽을 만들고<br>사람들과 건전한 모임을 이어가세요
 							</p>
 							<br> <br> <br>
-							<c:if test="${!empty sessionScope.m }">
-								<a onclick="location.href='/createClubFrm.do';"
+							<!-- onclick="loginCheck();"-->
+								<a onclick="loginCheck();"
 									class="slider-btn" style="font-size: 25px; cursor: pointer;">클럽
 									만들기</a>
-							</c:if>
-							<c:if test="${empty sessionScope.m }">
-							<a onclick="location.href='/createClubFrm.do';"
-								 class="slider-btn"
-								style="font-size: 25px; cursor: pointer;">클럽 만들기</a>
-							</c:if>
 						</div>
 					</li>
 					<li>
@@ -342,12 +336,7 @@
 				<!-- /.col-md-3 -->
 			</div>
 			<!-- /.row -->
-			<c:if test="${!empty sessionScope.m }">
-			<button onclick="location.href='/createClubFrm.do';" id="feed_info">CREATE CLUB</button>
-			</c:if>
-			<c:if test="${empty sessionScope.m }">
-			<button onclick="location.href='/createClubFrm.do';" id="feed_info">CREATE CLUB</a>
-			</c:if>
+			<button onclick="loginCheck();" id="feed_info">CREATE CLUB</button>
 				
 		</div>
 		<!-- /.container -->
@@ -499,6 +488,14 @@
 			alert("로그인 후 가능한 서비스입니다.");
 			location.href = "/loginFrm.do";
 		});
+		function loginCheck() {
+			if(${empty sessionScope.m}){
+			alert("로그인 후 가능한 서비스입니다.");
+			location.href = "/loginFrm.do";				
+			}else{
+				location.href="/createClubFrm.do";
+			}
+		}
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
