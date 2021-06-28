@@ -134,22 +134,29 @@ public class boardService {
 		return result;
 	}
 
-//	public int insertReport(Board bl, ArrayList<Board> fileList) {
-//		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
-//		int result1 = dao.insertReport(bl);
-//		int result = 0;
-//		if(result1>0) {
-//			//파일 insert하기 전에 board_no가 필요함
-//			int abNo = dao.selectBoardNo();
-//			for(Board f : fileList) {
-//				f.setAbNo(abNo);
-//				result += dao.insertFile(f);
-//			}
-//		}else {
-//			return -1;
-//		}
-//		return result;
-//	}
+	public int deleteBoard(int abNo) {
+		return dao.deleteBoard(abNo);
+	}
+
+	public int boardUpdate(Board bl, ArrayList<Board> fileList) {
+		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
+		int result1 = dao.boardUpdate(bl);
+		System.out.println(result1);
+		int result = 0;
+		if(result1>0) {
+			//파일 insert하기 전에 board_no가 필요함
+			int abNo = dao.selectBoardNo();
+			for(Board f : fileList) {
+				f.setAbNo(abNo);
+				result += dao.insertFile(f);
+			}
+		}else {
+			return -1;
+		}
+		return result;
+	}
+
+
 }
 
 

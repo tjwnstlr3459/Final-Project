@@ -91,7 +91,11 @@
 						<div id="pagination" style="margin-left: 350px; float: left;">${pageNavi }</div>
 						<c:if test="${sessionScope.m.grade lt 2 }">
 							<div class="adminWriteBtn" style="float: right">
-								<a href="/boardOneInsert.do">글쓰기</a>
+								<div class="checkBtn" style="width: 70px;
+														    height: 30px;
+														    text-align: center;
+														    line-height: 30px;">
+								<a style="color: white;text-decoration: none;" href="/boardOneInsert.do">글쓰기</a></div>
 							</div>
 						</c:if>
 						<!-- <ul class="pagination">
@@ -132,7 +136,7 @@
 						<option value="3">신고</option>
 					</select>
 				</div>
-				<div class="fileDay" style="margin-bottom:10px"><input type="text" name="abTitle" placeholder="제목"></div>
+				<div class="fileDay" style="margin-bottom:10px;padding-left: 10px;"><input type="text" name="abTitle" placeholder="제목"></div>
 				
 				<div class="fileDay">
 					<div>
@@ -142,9 +146,10 @@
 				</div>
 				<input type="text" name="abWriter" value="${sessionScope.m.memberNick }" style="display: none">
 				<textarea class="textA" name="abContent" placeholder="회원님의 소중한 의견을 적어주세요"></textarea>
+				<div style="text-align: center">
 				<input class="checkBtn"
-					style="margin-top: 15px; margin-left: 200px; text-align: center;"
-					type="submit" value="Submit">
+					style="margin-top: 15px; margin-left: 0px; text-align: center;"
+					type="submit" value="Submit"></div>
 				</form>
 			</div>
 		</div>

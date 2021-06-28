@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,13 +25,15 @@
 				</div>
 
 				<div>
-					<!--공지 상세보기-->
+					<!--공지 등록하기-->
+					<c:choose>
+					<c:when test="${board == null }">
 					<form action="/boardInsert.do" method="post" enctype="multipart/form-data">
 						<div class="boardInfo">
 							<div class="infoLine">
 								<div>제목</div>
 								<div>
-									<input name="abTitle"  type="text" placeholder="제목입력" style="width: 100%;height:100%;border:0px; outline: none">
+									<input name="abTitle" type="text" placeholder="제목입력" style="width: 100%;height:100%;border:0px; outline: none">
 								</div>
 							</div>
 							<input type="text" name="abCg" value="14" style="display: none">
@@ -39,19 +42,50 @@
 							<div>첨부파일</div>
 								<div style="width: 15%; border: 0">
 									<input type="file" name="files1" style="margin-top: 3px; color: gray;" multiple="multiple">
+									<input class="sendFile" onclick="window.history.back();" style="background-color: #ec523f" type="button" value="취소" />
 								</div>
 							</div>
 						</div>
 						
-						<!--서머노트-->
-						<div class="content">
+						
+						<div class="content"><!--서머노트-->
 							<textarea id="summernote" name="abContent"></textarea>
 						</div>
-						<!--게시물 컨텐츠-->
-						<div>
+						
+						<div style="text-align: center; border: 0px; margin-top: 10px"><!--게시물 컨텐츠-->
 							<input class="sendFile" type="submit" value="등록하기" />
 						</div>
 					</form>
+					</c:when>
+					
+					
+					<c:otherwise><!-- board값이 들어있다면 수정모드로 -->
+					<form action="/boardUpdate.do" method="post" enctype="multipart/form-data">
+						<div class="boardInfo">
+							<div class="infoLine">
+								<div>제목</div>
+								<div>
+									<input name="abTitle" type="text" value="${boardOne.abTitle}" style="width: 100%;height:100%;border:0px; outline: none">
+								</div>
+							</div>
+							<input type="text" name="abCg" value="14" style="display: none">
+							<input type="text" name="abWriter" value="${sessionScope.m.memberNick }" style="display: none;">
+							<div class="infoLine">
+							<div>첨부파일</div>
+								<div style="width: 15%; border: 0">
+									<input type="file" name="files2" style="margin-top: 3px; color: gray;" multiple="multiple">
+								</div>
+							</div>
+						</div>						
+						<div class="content"><textarea id="summernote" name="abContent">${boardOne.abContent}</textarea></div>
+						
+						<div style="text-align: center;border: 0px; margin-top: 10px"><!--게시물 컨텐츠-->
+							<input class="sendFile" type="submit" value="등록하기" />
+							<input class="sendFile" onclick="window.history.back();" style="background-color: #ec523f" type="button" value="취소" />
+						</div>
+					</form>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>
@@ -69,6 +103,7 @@
 	href="/resources/css/summernote/summernote-lite.css">
 <link rel="stylesheet" href="/resources/css/board/boardOneInsert.css">
 <script>
+
 	$('#summernote').summernote(
 			{
 				height : 500, // 에디터 높이
@@ -91,10 +126,16 @@
 								e.preventDefault();
 							}
 						}
+					},
+					onload:function(){
+						alert("!");
 					}
-				}
+				},
+				
+			
 			});
-
+	
+	
 	//이미지 파일 업로드
 	function uploadSummernoteImageFile(file, editor) {
 		data = new FormData();
@@ -112,26 +153,8 @@
 			}
 		});
 	}
-	/* 	//이미지 업로드 아작스
-	 function sendFile(file, el) {
-	 console.log("ddd");
-	 data = new FormData();
-	 data.append("file", file);
-	 $.ajax({
-	 data : data,
-	 type : "POST",
-	 url : "/adminImageUpload.do",
-	 contentType : false,
-	 enctype : 'multipart/form-data',
-	 processData : false,
-	 success : function(data) {
-	 $(el).summernote('editor.insertImage', data.url);
-	 }
-	 });
-	 }     */
-
 	// 서머노트에 text 쓰기
-	$('#summernote').summernote('insertText', "써머노트에 쓸 텍스트");
+/* 	$('#summernote').summernote('insertText', "써머노트에 쓸 텍스트");
 
 	// 서머노트 쓰기 비활성화
 	$('#summernote').summernote('disable');
@@ -145,6 +168,19 @@
 	// 마지막으로 한 행동 취소 ( 뒤로가기 )
 	$('#summernote').summernote('undo');
 	// 앞으로가기
-	$('#summernote').summernote('redo');
+	$('#summernote').summernote('redo'); */
 </script>
+<style>
+.sendFile{
+	background-color: rgb(53 176 241 / 84%);
+    border-radius: 5px;
+    width: 80px;
+    color: white;
+    height: 35px;
+    border: 0px;
+}
+.sendFile:hover{
+cursor: pointer;
+}
+</style>
 </html>
