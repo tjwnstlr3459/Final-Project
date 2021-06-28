@@ -95,7 +95,18 @@ FROM BOARD
 	WHERE AB_NO = #{abNo}
 </update>
 
+<delete id="deleteBoard" parameterType="int">
+	delete from board where ab_no=#{abNo}
+</delete>
 
+<update id="boardUpdate" parameterType="bl">
+	UPDATE BOARD SET 
+		ab_Title=#{abTitle},
+		ab_content=#{abContent}, 
+		filename=#{fileName},
+		filepath=#{filePath}
+	where ab_no=#{abNo}
+</update>
 </mapper>
 
 

@@ -38,7 +38,7 @@ body {
   border: 0px;
 }
 .checkBtn {
-  width: 100px;
+  width: 200px;
   height: 30px;
   background-color: rgba(82, 193, 252, 0.844);
   border: 0px;
@@ -93,6 +93,7 @@ body {
   margin: 0 auto;
   padding-top: 3px;
   border-radius: 5px;
+  padding-left: 10px;
 }
 .fileDay > div{
   float: left;
@@ -103,7 +104,6 @@ body {
 }
 .fileDay>div:nth-child(1){
   line-height: 30px;
-  padding-left: 20px;
 }
 
 .fileDay>div:nth-child(2){
@@ -131,6 +131,7 @@ body {
   border: 0px solid grey;
   font-size: 12px;
   resize: none;
+  padding: 10px;
 }
 .boardModalPan{
   width: 100%;

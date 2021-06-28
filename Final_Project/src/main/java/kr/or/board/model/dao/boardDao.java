@@ -67,6 +67,14 @@ public class boardDao {
 //	public int insertReport(Board bl) {
 //		return session.insert("board.insertReport",bl);
 //	}
+	//공지글 삭제
+	public int deleteBoard(int abNo) {
+		return session.delete("board.deleteBoard",abNo);
+	}
+	//공지글 수정
+	public int boardUpdate(Board bl) {
+		return session.update("board.boardUpdate",bl);
+	}
 
 }
 
