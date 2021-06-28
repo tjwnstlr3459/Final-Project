@@ -1,14 +1,10 @@
 package kr.or.member.model.service;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -138,70 +134,6 @@ public class MemberService {
 		fData.setFReq(dao.friendRequestCount(memberNick));
 		System.out.println(fData.getFReq());
 		return fData;
-	}
-	
-	//이메일발송 메소드
-	public void sendEmail(Member m, String div) throws Exception {
-		// Mail Server 설정
-		String charSet = "utf-8";
-		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
-		String hostSMTPid = "palcimer@gmail.com";
-		String hostSMTPpwd = "akqlshrl";
-
-		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "admin@nunadri.com";
-		String fromName = "너나들이";
-		String subject = "";
-		String msg = "";
-
-		if(div.equals("findpw")) {
-			subject = "너나들이 임시 비밀번호 입니다.";
-			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-			msg += "<h3 style='color: blue;'>";
-			msg += m.getMemberNick() + "님의 임시 비밀번호 입니다.</h3>";
-			msg += "<p>임시 비밀번호 : ";
-			msg += m.getMemberPw() + "</p></div>";
-		}
-
-		// 받는 사람 E-Mail 주소
-		String mail = m.getEmail();
-		try {
-			HtmlEmail email = new HtmlEmail();
-			email.setDebug(true);
-			email.setCharset(charSet);
-			email.setSSL(true);
-			email.setHostName(hostSMTP);
-			email.setSmtpPort(465); //네이버 이용시 587
-
-			email.setAuthentication(hostSMTPid, hostSMTPpwd);
-			email.setTLS(true);
-			email.addTo(mail, charSet);
-			email.setFrom(fromEmail, fromName, charSet);
-			email.setSubject(subject);
-			email.setHtmlMsg(msg);
-			email.send();
-		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
-		}
-	}
-	
-	//비밀번호찾기
-	@Transactional
-	public int pwMail(Member m) throws Exception {
-		String pw = "";
-		for (int i = 0; i < 12; i++) {
-			pw += (char) ((Math.random() * 26) + 97);
-		}
-		System.out.println(pw);
-		m.setMemberPw(pw); //랜덤 문자를 멤버 객체의 비밀번호로 설정
-		int result = dao.updatePw(m); //비밀번호 변경
-		if(result > 0) {
-			sendEmail(m, "findpw"); //메일 발송
-		} else {
-			System.out.println("에러");
-		}
-		return result;
-		
 	}
 
 }

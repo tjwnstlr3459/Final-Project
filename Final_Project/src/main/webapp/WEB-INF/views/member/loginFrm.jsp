@@ -75,32 +75,21 @@
 	         	return false;
 	     	}
 		})
-		$("#closeModal").click(function() {			
+		$("#closeModal").click(function() {
 			$(".modal").fadeOut();
-			$(".findResult").html("");
 		})
 	 	$("#findID").click(function() {
 	 		var email = $("#findEmail").val();
-	 		$(".findResult").append("<img src='resources/image/ajax-loader.gif'>");
+	 		console.log(email)
 	 		$.ajax({
 	 			url: "/user/chkEmail.do",
                 type: "post",
                 data: {email:email},
                 success: function(data) {
+                	console.log(data)
 					if(data == "1") {
 						$(".findResult").html("");
-						$.ajax({
-							url: "pwMail.do",
-							type: "post",
-							data: {email:email},
-							success: function(data) {
-								console.log(data)
-							},
-							error: function() {
-			                    console.log("error")
-			                }
-						})
-						$(".findResult").html("임시 비밀번호를 메일로 전송했습니다.");
+						$(".findResult").html("일반 가입된 이메일입니다.");
 					}
 					else if(data == "2") {
 						$(".findResult").html("");

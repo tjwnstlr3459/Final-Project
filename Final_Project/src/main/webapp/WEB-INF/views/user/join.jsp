@@ -356,7 +356,7 @@
             var namechk = $("#namechk");
             var age = $("[name=age]").val();
             var gender = $("[name=gender]:checked").val();
-            var address = $("#postcode").val() + "/" + $("#roadAddress").val() + "/" + $("#detailAddress").val();
+            var address = $("#postcode").val() + " " + $("#roadAddress").val() + " " + $("#detailAddress").val();
             var hobby = [];
             $("[name=hobby]:checked").each(function() { 
                 hobby.push($(this).val());

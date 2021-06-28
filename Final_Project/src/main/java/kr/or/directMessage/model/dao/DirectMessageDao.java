@@ -45,8 +45,4 @@ public class DirectMessageDao {
 		return session.selectList("directMessage.selectDmByName", memberNick);
 	}
 
-	public int selectUnreadDm(String memberNick) {
-		return session.selectOne("directMessage.selectUnreadDm", memberNick);
-	}
-
 }
