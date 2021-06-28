@@ -139,15 +139,17 @@ button:hover{
 	</c:choose>
 	<div class="container">
 			<%-- <button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button> --%>
-	  <button id="myBtn">Open Modal</button> 
+	  <!-- <button id="myBtn">Open Modal</button>  -->
  
     <!-- The Modal -->
     <div id="myModal" class="modal">
  
       <!-- Modal content -->
       <div class="modal-content">
-        <span class="close">&times;</span>                                                               
-        <p>Some text in the Modal..</p>
+        <span class="close" onclick="closeView();">&times;</span>         
+        <%-- <p><img src='/resources/freeBoardUpload/"</p>
+        <p>${fb.fbContent }</p>
+        <p>${fb.fbWriter }</p> --%>
       </div>
  
     </div>
@@ -170,9 +172,10 @@ button:hover{
 					for(var i = 0; i<data.length; i++){
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
+						var html2 ="";
 						html += "<div class='posting'>";			//여기다가 div클ㄹ스 */
 						html += "<img src='/resources/freeBoardUpload/"+fb.filepath+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
-						html += "<span class='fbContent'>"+fb.fbContent+"</span>";
+						/* html += "<span class='fbContent'>"+fb.fbContent+"</span>"; */
 						/* html += "<input type='text' value='fbNo' hidden>"; */
 						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
 						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
@@ -183,6 +186,13 @@ button:hover{
 						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/deleteFreeBoard.do?fbNo="+fb.fbNo+"'"+">DELETE FEED</a></button>";
 						}
 						html += "<span class='comments'></span></div>";
+						html += "<button onclick='detailView();'>상세view</button>";
+						/* html2 += "<p><img src='/resources/freeBoardUpload/"+fb.filepath;
+				        html2 += "</p><p>"+fb.fbContent;
+				        html2 += "</p><p>"+fb.fbWriter+"</p>";*/
+				        html2 += "<p>"+fb.fbContent+"</p>";
+				        html2 += "<p>"+fb.fbWriter+"</p>";
+				        $(".modal-content").append(html2); 
 						$(".container").append(html);
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
@@ -214,31 +224,33 @@ button:hover{
 		}
 		
 		//모달쪽
-		 var modal = document.getElementById('myModal');
-		 
+		/*  var modal = document.getElementById('myModal');
 		        // Get the button that opens the modal
 		        var btn = document.getElementById("myBtn");
-		 
 		        // Get the <span> element that closes the modal
-		        var span = document.getElementsByClassName("close")[0];                                          
-		 
+		        var span = document.getElementsByClassName("close")[0];                                           
 		        // When the user clicks on the button, open the modal 
-		        btn.onclick = function() {
+		         btn.onclick = function() {
 		            modal.style.display = "block";
 		        }
-		 
 		        // When the user clicks on <span> (x), close the modal
 		        span.onclick = function() {
 		            modal.style.display = "none";
 		        }
-		 
 		        // When the user clicks anywhere outside of the modal, close it
 		        window.onclick = function(event) {
 		            if (event.target == modal) {
 		                modal.style.display = "none";
 		            }
-		        }
-		        
+		        } */
+		        	var modal = document.getElementById('myModal');
+		        	var span = document.getElementsByClassName("close")[0];
+		        function detailView() {
+		        	modal.style.display = "block";
+				}
+		        function closeView() {
+		        	modal.style.display="none";
+				}
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
