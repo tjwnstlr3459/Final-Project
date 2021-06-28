@@ -55,4 +55,13 @@
   		   fb_date as fbDate
   		 from free_board where fb_no = #{fbNo} 
   </select>
+  <update id="updateFreeBoard" parameterType="fb"> 
+  	update free_board set fb_content = #{fbContent}, filename=#{filename}, filepath=#{filepath}, type=#{type} where fb_no=#{fbNo}
+  </update>
+  <delete id="deleteFreeBoard" parameterType="int">
+  delete from free_board where fb_no = #{fbNo}
+  </delete>
+  <select id="selectFilepath" parameterType="int" resultType="String">
+  	select filepath from free_board where fb_no = #{fbNo}
+  </select>
 </mapper>

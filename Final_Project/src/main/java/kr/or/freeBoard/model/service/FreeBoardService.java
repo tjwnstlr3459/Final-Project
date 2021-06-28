@@ -39,4 +39,15 @@ public class FreeBoardService {
 		FreeBoard fb = dao.selectFreeBoardByFbNo(fbNo);
 		return fb;
 	}
+	@Transactional
+	public int updateFreeBoard(FreeBoard fb) {
+		return dao.updateFreeBoard(fb);
+	}
+	@Transactional
+	public int deleteFreeBoard(int fbNo) {
+		return dao.deleteFreeBoard(fbNo);
+	}
+	public String selectFilepath(int fbNo) {
+		return dao.selectFilepath(fbNo);
+	}
 }

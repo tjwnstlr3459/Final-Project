@@ -79,6 +79,13 @@ button:hover{
 	width:100%;
 	border: 1px solid #ccc;
 }
+.comments{
+	width:400px;
+	height: 300px;
+}
+#temporary :hover{
+	background-color: black;
+}
 
 /*모달창*/
       .modal {
@@ -171,10 +178,12 @@ button:hover{
 						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
 						html +="</button><button><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
 						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
+						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
+						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a><br></button>&nbsp;&nbsp;&nbsp;";
+						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/deleteFreeBoard.do?fbNo="+fb.fbNo+"'"+">DELETE FEED</a></button>";
+						}
 						html += "<span class='comments'></span></div>";
-						html += "<a href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a>";
 						$(".container").append(html);
-						
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
@@ -229,6 +238,7 @@ button:hover{
 		                modal.style.display = "none";
 		            }
 		        }
+		        
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
