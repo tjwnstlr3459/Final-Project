@@ -206,17 +206,20 @@
 	/*스크롤*/
 	$(window).scroll(function() {
 	    var scrolltop = $(document).scrollTop();	//스크롤할때의 값 지정
-	    console.log(scrolltop);
+	    console.log("11:"+scrolltop);
 	    
 	    var height = $(document).height();		//문서의 총길이
-	    console.log(height);
+	    console.log("22:"+height);
 	    
 	    var height_win = $(window).height();	//화면에 보여지는 길이
-	    console.log(height_win);
+	    console.log("33:"+height_win);
 	    
-	 if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {	//스크롤이 바닥에 닿았을시 more메소드 실행
+	 if (Math.floor($(window).scrollTop()) == $(document).height() - $(window).height()) {	//스크롤이 바닥에 닿았을시 more메소드 실행
 	    more($("#more-btn").val());	//#('more-btn').val()만큼 추가시켜준다
 	    							//$("#more-btn").val(Number(start) + 5);
+	    console.log(1);
+	 }else{
+		 console.log(2);
 	 }
 	});
 		function more(start) {
@@ -264,9 +267,9 @@
 					
 			});
 		}
-		function modalClick(){
+		 function modalClick(){
 		     $(".allModal").css("display","flex");
-		}
+		} 
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 
 	});
