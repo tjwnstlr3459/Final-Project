@@ -44,6 +44,11 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		return dao.inserBoard(n);
 }
 
+	public int insertPhoto(clubBoard b, ArrayList<clubBoard> fileList) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }
 
