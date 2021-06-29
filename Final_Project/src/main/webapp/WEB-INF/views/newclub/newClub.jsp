@@ -140,8 +140,8 @@
 								<div class="photohead">
 									<div class=allphoto><h3>전체사진</h3><em></em></div>
 									<div class="photoadd">
-						            	<a href="/photoWriteFrm">사진등록</a>
-										<a href="/photoDelete">삭제하기</a>
+						            	<a href="/photoWriteFrm.do">사진등록</a>
+										<a href="/photoDelete.do">삭제하기</a>
 						            </div>
 						         </div>
 						         <c:forEach items="${list }" var="board">   
