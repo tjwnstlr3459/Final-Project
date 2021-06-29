@@ -16,38 +16,12 @@
 		<%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div>
 			<div class="wrap">
-				<div class="topContent" style="margin-left: 70px;">
-					<div>
-						<div>
-							<h1 style="text-align: center">함께이기에</h1>
-						</div>
-						<div class="topConMent">
-							<pre class="nunaMent"
-								style="background-color: transparent; padding: 0px">
-보다 좋은 활동을 추구하기에,
-회원님들과의 만남에 좋은영향을 줄수있도록
-매번 노력에 임하겠습니다.
-저희 Nunadri를 아껴주시는 회원님들의
-의견을 적극적으로 수용하겠습니다.
-저희 Nunadri를 아껴주시는 회원님들의
-의견을 적극적으로 수용하겠습니다.
-                			</pre>
-							<!-- <input class="checkBtn" type="button" value="문의 / 신고" /> -->
-						</div>
-					</div>				
-					<div class="topConImg">
-						<img src="/resources/image/icons/happy3.jpg" />
-					</div>
-
-				</div>
-				<!--topContent-->
+				
 				<div class="bottomContent">
 					<div class="bottomMent">
-						<h2 style="font-size: 30px; font-weight: 500;">공지사항</h2>
-					</div>
-					<div class="sendFile">
-						<div class="sendFile" ><a href="/modify.do?abNo=${board.abNo }">수정</a></div>
-						<div class="sendFile"><a href="/delete.do?abNo=${board.abNo}">삭제</a></div>
+						<a style="font-size: 30px; font-weight: 500;">공지사항</a>
+						<div class="sendBtnChek"><a  href="/modify.do?abNo=${board.abNo }">수정</a></div>
+						<div style="background-color: rgb(252 82 82 / 84%);margin-right: 10px" class="sendBtnChek"><a href="/delete.do?abNo=${board.abNo}">삭제</a></div>
 					</div>
 					<div class="bottomContentFont">
 						<!--공지 상세보기-->
@@ -64,7 +38,7 @@
 								<div>이메일</div>
 								<div class="email" style="width: 27.7%">${board.abWriter }</div>
 								<div>조회수</div>
-								<div>${board.abWriter }</div>
+								<div>${board.selCount }</div>
 							</div>
 							<div class="infoLine">
 								<div>첨부파일</div>
@@ -143,12 +117,39 @@
 						</form>
 					</c:if>
 
-					<div>
+					<div style="text-align: center;">
 						<input class="boardListBtn" type="button"
 							onclick="window.history.back();" value="목록으로" />
 					</div>
 				</div>
+				
+				<div class="topContent" style="margin-left: 70px;">
+					<div>
+						<div>
+							<h1 style="text-align: center">함께이기에</h1>
+						</div>
+						<div class="topConMent">
+							<pre class="nunaMent"
+								style="background-color: transparent; padding: 0px">
+보다 좋은 활동을 추구하기에,
+회원님들과의 만남에 좋은영향을 줄수있도록
+매번 노력에 임하겠습니다.
+저희 Nunadri를 아껴주시는 회원님들의
+의견을 적극적으로 수용하겠습니다.
+저희 Nunadri를 아껴주시는 회원님들의
+의견을 적극적으로 수용하겠습니다.
+                			</pre>
+							<!-- <input class="checkBtn" type="button" value="문의 / 신고" /> -->
+						</div>
+					</div>				
+					<div class="topConImg">
+						<img src="/resources/image/icons/happy3.jpg" />
+					</div>
+
+				</div>
+				<!--topContent-->
 			</div>
+			
 		</div>
 		<%@include file="/WEB-INF/views/common/footer.jsp"%>
 		<!--bottomContent-->
@@ -206,21 +207,25 @@
 	});
 </script>
 <style>
-.sendFile>div{
-	background-color: rgb(53 176 241 / 84%);
-    border-radius: 5px;
-    width: 80px;
-    color: white;
-    height: 35px;
-    border: 0px;
+.sendBtnChek{
+	background-color:rgba(82, 193, 252, 0.844);
+	width:60px;
+	border-radius: 5px;
+	color : white;
+	text-decoration: none;
+	float: right;
+	text-align: center;
+	margin-top: 20px;
+	line-height: 10px;
+	line-height: 25px;
 }
-.sendFile:hover{
-cursor: pointer;
-}
-.sencFile a{
-color : white;
+.sendBtnChek>a{
+color: white;
 text-decoration: none;
+font-size: 12px;
+font-weight: bold;
 }
+
 </style>
 </html>
 

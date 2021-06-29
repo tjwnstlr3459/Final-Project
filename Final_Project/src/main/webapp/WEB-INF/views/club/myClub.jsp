@@ -59,7 +59,7 @@
 				<!-- 클러리스트 -->
 				<div class="myInfo">
 					<div class="myInfoImg">
-						<img src="/resources/image/user04.jpg" />
+						<img src="/resources/image/userPic/${sessionScope.m.filename }" />
 					</div>
 					<div class="userName">${sessionScope.m.memberNick}</div>
 					<hr width="95%" style="margin: 0 auto" />
@@ -136,7 +136,7 @@
 				<!--아이디 정보-->
 				<hr />
 				<div class="postImg">
-					<img src="/resources/image/user04.jpg" />
+					<img src="/resources/image/userPic/${sessionScope.m.filename }" />
 				</div>
 				<!--이미지-->
 				<div class="postContent"></div>

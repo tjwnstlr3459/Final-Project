@@ -27,9 +27,10 @@ FROM BOARD
 		filePath,
 		enroll_date as enrollDate,
 		status,
+		selCount,
 		(select cg_name from category where cg_no = ab_cg) as cgName
 	FROM
-	(SELECT rOWNUM AS RNUM, N.*FROM
+	(SELECT ROWNUM AS RNUM, N.*FROM
 	(SELECT * FROM BOARD where 
 	<choose>
 	<when test="type eq 1">
@@ -64,7 +65,8 @@ FROM BOARD
 		ab_content as abContent,
 		fileName,
 		filePath,
-		enroll_Date as enrollDate
+		enroll_Date as enrollDate,
+		selCount
 	FROM BOARD WHERE AB_NO=#{abNo}
 </select>
 
@@ -79,6 +81,7 @@ FROM BOARD
 		#{fileName},
 		#{filePath},
 		to_char(sysdate,'yyyy-mm-dd'),
+		selCount,
 		'N')
 </insert>
 
@@ -95,10 +98,12 @@ FROM BOARD
 	WHERE AB_NO = #{abNo}
 </update>
 
+<!-- 공지사항 삭제 -->
 <delete id="deleteBoard" parameterType="int">
 	delete from board where ab_no=#{abNo}
 </delete>
 
+<!-- 공지사항 수정 -->
 <update id="boardUpdate" parameterType="bl">
 	UPDATE BOARD SET 
 		ab_Title=#{abTitle},
@@ -106,6 +111,11 @@ FROM BOARD
 		filename=#{fileName},
 		filepath=#{filePath}
 	where ab_no=#{abNo}
+</update>
+
+<!-- 조회수 업데이트 -->
+<update id="updateCount" parameterType="int">
+	update board set selCount= selCount+1 where ab_no=#{abNo}
 </update>
 </mapper>
 

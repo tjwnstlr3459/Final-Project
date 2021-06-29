@@ -82,7 +82,7 @@
 											<td><a href="/boardOne.do?abNo=${l.abNo}">${l.abTitle }</a></td>
 											<td>${l.abWriter }</td>
 											<td style="text-align: center">${l.enrollDate }</td>
-											<td style="text-align: center">${i.count }</td>
+											<td style="text-align: center">${l.selCount }</td>
 										</tr>
 									</c:forEach>
 								</tbody>

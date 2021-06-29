@@ -156,6 +156,10 @@ public class boardService {
 		return result;
 	}
 
+	public void updateCount(int abNo) {
+		dao.updateCount(abNo);
+	}
+
 
 }
 

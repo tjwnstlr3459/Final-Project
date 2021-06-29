@@ -17,6 +17,9 @@
       width: 85%;
       height: 300px;
       margin: 0 auto;
+          border-top: 1px solid #80808059;
+    margin-left: 70px;
+    margin-top: 20px;
     }
     .topContent > div {
       float: left;
@@ -55,12 +58,12 @@
     }
 
     .bottomContent {
-      /* margin-top: 20px; */
       border: 0px solid #80808059;
       /* height: 600px; */
       overflow: hidden;
       width: 850px;
       margin: 0 auto;
+      margin-top: 30px;
     }
     .bottomMent {
       height: 50px;
@@ -125,7 +128,6 @@
       font-weight: bold;
       color: white;
       font-size: 13px;
-      margin-left: 400px;
       margin-top: 20px;
     }
 

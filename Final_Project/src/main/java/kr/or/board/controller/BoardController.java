@@ -66,6 +66,7 @@ public class BoardController {
 	public String boardOne(Model model,int abNo) {
 		Board board = service.selectBoard(abNo);
 		ArrayList<Answer> an = service.selectMoment(abNo);
+		service.updateCount(abNo);
 		model.addAttribute("board", board);
 		model.addAttribute("abNo", abNo);
 		model.addAttribute("answer", an);

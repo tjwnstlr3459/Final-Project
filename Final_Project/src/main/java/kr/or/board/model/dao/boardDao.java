@@ -75,6 +75,10 @@ public class boardDao {
 	public int boardUpdate(Board bl) {
 		return session.update("board.boardUpdate",bl);
 	}
+	//공지상세보기시 조회수 업데이트
+	public void updateCount(int abNo) {
+		session.update("board.updateCount",abNo);
+	}
 
 }
 
