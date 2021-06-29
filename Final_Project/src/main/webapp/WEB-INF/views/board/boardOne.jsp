@@ -21,7 +21,7 @@
 					<div class="bottomMent">
 						<a style="font-size: 30px; font-weight: 500;">공지사항</a>
 						<div class="sendBtnChek"><a  href="/modify.do?abNo=${board.abNo }">수정</a></div>
-						<div style="background-color: rgb(252 82 82 / 84%);margin-right: 10px" class="sendBtnChek"><a href="/delete.do?abNo=${board.abNo}">삭제</a></div>
+						<div style="background-color: rgb(252 82 82 / 84%);margin-right: 10px" class="sendBtnChek"><a href="#" class="delete">삭제</a></div>
 					</div>
 					<div class="bottomContentFont">
 						<!--공지 상세보기-->
@@ -227,6 +227,13 @@ font-weight: bold;
 }
 
 </style>
+<script>
+	$(".delete").click(function(){
+		if(confirm("정말 삭제하시겠습니까?")){
+			location.href="/delete.do?abNo=${board.abNo}";
+		}
+	});
+</script>
 </html>
 
 

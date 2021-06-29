@@ -157,9 +157,12 @@
 </body>
 <script>
 	$(".checkBtn").click(function() {
-		$(".boardModalPan").css("display", "block");
-
-		$(".boardModalPan").css("display", "flex");
+		if(${sessionScope.m != null}){
+			$(".boardModalPan").css("display", "block");
+			$(".boardModalPan").css("display", "flex");
+		}else{
+			alert("로그인 후 문의가 가능합니다.");
+		}
 	});
 
 	$(".closeModal").click(function() {
