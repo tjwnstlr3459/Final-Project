@@ -31,6 +31,7 @@ import kr.or.newclub.model.vo.clubBoard;
 public class newClubController {
 	@Autowired
 	private newClubService service;
+	
 	@RequestMapping(value = "/newClub.do")
 	public String newClub(@SessionAttribute(required = false) Member m,int clubNo,Model model){
 		int totalCount = service.totalCount(clubNo);
