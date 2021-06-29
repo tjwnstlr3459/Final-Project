@@ -53,6 +53,8 @@
 	href="/resources/css/newClub/chat.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/modal.css" />
+	<link rel="stylesheet" type="text/css"
+	href="/resources/css/newClub/photo.css" />
 <!--script-->
 <script src="/resources/js/newClub/modal.js"></script>
 <script src="/resources/js/newClub/chat.js"></script>
@@ -100,6 +102,9 @@
 						
 						<div class="tab-cont">
 							<div>
+								<div class="deletebox">
+				                  <a class="deletebtn" href="/boardDelete">삭제하기</a>
+				                </div>
 								<div class="boardWritebox">
 									<form action="/boardWrite.do" method="post">
 										<input type="hidden" name="clubNo" value="${clubNo} ">
@@ -131,20 +136,22 @@
 									value="" totalCount="${totalCount }" id="more-btn" style="display:none;"></button>
 							</div>
 							<div>
-								<div class="photo-wrap">
-									<div class="userinfo" style="height: 30%;">											
-										<div class="userImg"></div>
-										<div class="userName">${board.boardWriter }</div>
-										<div class="enrollDate">${board.enrollDate }</div>
-									</div>	
-									<div class="boardcontain" style="height: 40%;">
-										${board.boardContent}
-									</div>
-									<div class="userview" style="height: 30%;">
-											<div class="usernum">조회수 3명 읽음</div>
-											
-									</div>
+								<!-- 사진첩 -->
+								<div class="photohead">
+									<div class=allphoto><h3>전체사진</h3><em></em></div>
+									<div class="photoadd">
+						            	<a href="/photoWriteFrm">사진등록</a>
+										<a href="/photoDelete">삭제하기</a>
+						            </div>
+						         </div>
+						         <c:forEach items="${list }" var="board">   
+								 <div class="photo-wrap">
+                                    <div class="userName2">${board.boardWriter }</div>
+                                    <div class="album"><img src="/resources/fileupload/postImg/${board.filepath}"></div>
+                                    <div class="albumcontent">${board.boardContent}</div>
+                                    <div class="albumdate">${board.enrollDate }</div>
 								</div>
+								</c:forEach>
 							</div>
 							<div>일정</div>
 							<div>멤버</div>
@@ -152,17 +159,17 @@
 					</div>
 					 
 		 			<div class="right1">
-							<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
-							<hr> --%>
-							<div class="commentbox" style="width:250px; height:30px;">클럽 멤버와 채팅하기</div>
-							<div class="chatting">
-								<div class="messageArea"></div>
-								<div class="sendBox">
-									<input type="text" id="sendMsg">
-									<button id="sendBtn" onclick="sendMsg();">전송</button>
-								</div>
+						<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
+						<hr> --%>
+						<div class="commentbox" style="width:250px; height:30px;">클럽 멤버와 채팅하기</div>
+						<div class="chatting">
+							<div class="messageArea"></div>
+							<div class="sendBox">
+								<input type="text" id="sendMsg">
+								<button id="sendBtn" onclick="sendMsg();">전송</button>
 							</div>
 						</div>
+					</div>
 					</div>
 				</div> 
 			</div>

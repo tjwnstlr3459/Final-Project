@@ -323,5 +323,23 @@
     .good-job h1 {
     font-size: 45px;
     }
+    .deletebox{
+        width: 700px;
+        height: 30px;
+        margin: 0px;
+        
+        
+    
+    }
+    .deletebtn{
+        width: 100px;
+        display: block;
+        color: white;
+        background-color: #ea9310;
+        text-decoration: none;
+        text-align: center;
+        line-height: 26px;
+        border: 1px solid gray;
 
+    }
     
