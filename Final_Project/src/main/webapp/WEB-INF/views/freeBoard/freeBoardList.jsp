@@ -32,10 +32,6 @@ container {
 	margin: 30px;
 }
 
-.posting>img:hover {
-	cursor: pointer;
-}
-
 .posting {
 	background-color: rgba(240,136,76,0.8);
 	text-align: center;
@@ -145,11 +141,9 @@ button:hover{
     <div id="myModal" class="modal">
  
       <!-- Modal content -->
-      <div class="modal-content">
+	<div class="modal-content">
         <span class="close" onclick="closeView();">&times;</span>         
-        <%-- <p><img src='/resources/freeBoardUpload/"</p>
-        <p>${fb.fbContent }</p>
-        <p>${fb.fbWriter }</p> --%>
+         <%-- <p><img src='/resources/freeBoardUpload/"</p> --%>
       </div>
  
     </div>
@@ -175,24 +169,16 @@ button:hover{
 						var html2 ="";
 						html += "<div class='posting'>";			//여기다가 div클ㄹ스 */
 						html += "<img src='/resources/freeBoardUpload/"+fb.filepath+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
-						/* html += "<span class='fbContent'>"+fb.fbContent+"</span>"; */
-						/* html += "<input type='text' value='fbNo' hidden>"; */
+						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
 						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
 						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
-						html +="</button><button><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
+						html +="</button><button onclick='detailView(this);'><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
 						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
 						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
 						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a><br></button>&nbsp;&nbsp;&nbsp;";
-						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/deleteFreeBoard.do?fbNo="+fb.fbNo+"'"+">DELETE FEED</a></button>";
+						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' onclick='deleteCheck(this);'>DELETE FEED</a></button>";						
 						}
 						html += "<span class='comments'></span></div>";
-						html += "<button onclick='detailView();'>상세view</button>";
-						/* html2 += "<p><img src='/resources/freeBoardUpload/"+fb.filepath;
-				        html2 += "</p><p>"+fb.fbContent;
-				        html2 += "</p><p>"+fb.fbWriter+"</p>";*/
-				        html2 += "<p>"+fb.fbContent+"</p>";
-				        html2 += "<p>"+fb.fbWriter+"</p>";
-				        $(".modal-content").append(html2); 
 						$(".container").append(html);
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
@@ -222,6 +208,16 @@ button:hover{
 				}
 		});
 		}
+		function deleteCheck(obj) {
+			var fbNo = $(obj).parents().children().eq(2).children().eq(1).val();
+			if(confirm('피드를 정말 삭제하시겠습니까?')){				
+				location.href='/deleteFreeBoard.do?fbNo='+fbNo;
+				
+			}else{
+				location.href-"redirect:/";
+			console.log(fbNo);
+			}
+		}
 		
 		//모달쪽
 		/*  var modal = document.getElementById('myModal');
@@ -245,12 +241,28 @@ button:hover{
 		        } */
 		        	var modal = document.getElementById('myModal');
 		        	var span = document.getElementsByClassName("close")[0];
-		        function detailView() {
+		        function detailView(obj) {
+		        	var filepath = $(obj).parents().children().eq(0).attr('src');
+		        	var img = "<img src='"+filepath+"' style='width:1000px; height:600px; margin-left:20px;'>";
+		        	var fbContent = $(obj).parents().children().eq(1).html();
 		        	modal.style.display = "block";
+		        	$('.modal-content').append(img);
+		        	$('.modal-content').append("<p style='font-size: 40px; color:black; text-align:center;'>"+fbContent+"</p>");
+		        	console.log(fbContent);
 				}
 		        function closeView() {
+		        	$('.modal-content').empty();
+		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	
 		        	modal.style.display="none";
 				}
+		        window.onclick = function(event) {
+		            if (event.target == modal) {
+		        	$('.modal-content').empty();
+		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	
+		                modal.style.display = "none";
+		            }
+		        }
+		        
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
