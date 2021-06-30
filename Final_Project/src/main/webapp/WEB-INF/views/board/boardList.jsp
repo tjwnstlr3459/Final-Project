@@ -78,7 +78,7 @@
 								<tbody>
 									<c:forEach items="${boardList }" var="l" varStatus="i">
 										<tr>
-											<td>${i.count }</td>
+											<td>${i.count+((reqPage-1)*10) }</td>
 											<td><a href="/boardOne.do?abNo=${l.abNo}">${l.abTitle }</a></td>
 											<td>${l.abWriter }</td>
 											<td style="text-align: center">${l.enrollDate }</td>

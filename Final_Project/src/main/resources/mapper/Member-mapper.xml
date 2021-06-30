@@ -114,7 +114,7 @@
 			member_nick as memberNick,
 			filepath,
 			intro
-		from member where member_nick in (select receiver from friend where sender='유저3' and accept='N')
+		from member where member_nick in (select receiver from friend where sender=#{value} and accept='N')
 	</select>
 	<!-- 요청이 온 친구 리스트 -->
 	<select id="selectFriendRequest" parameterType="string" resultType="m">
@@ -122,7 +122,7 @@
 			member_nick as memberNick,
 			filepath,
 			intro
-		from member where member_nick in (select sender from friend where receiver='유저3' and accept='N')
+		from member where member_nick in (select sender from friend where receiver=#{value} and accept='N')
 	</select>
 	<!-- 친구 요청 갯수 -->
 	<select id="friendRequestCount" parameterType="string" resultType="int">

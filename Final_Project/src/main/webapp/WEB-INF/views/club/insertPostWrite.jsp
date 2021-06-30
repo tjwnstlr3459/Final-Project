@@ -34,7 +34,7 @@
 					<tr>
 						<th>클럽이름</th>
 						<td>
-							<input name="clubNo" value="6">
+							<input name="clubNo" value="38">
 						</td>
 					</tr>
 					<tr>
