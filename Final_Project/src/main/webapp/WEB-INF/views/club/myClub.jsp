@@ -48,7 +48,7 @@
 		<div class="row masonry">
 		<section id="page-header">
 		<div class="row current-cat">
-			<div class="col-full" style="width:28%">
+			<div class="col-full" style="width:28%;">
 				<h1 style="margin: 0px">Latest Posts</h1>
 				<hr>
 			</div>
@@ -86,16 +86,15 @@
 				</c:forEach>
 			</div>
 
-			<div class="rightCon">
+			<div class="rightCon" >
 				<!-- 오른쪽 컨텐츠-->
-				<div class="rightConSelect">
+				<div class="rightConSelect"> 
 					<input type="text" name="search" class="inputStryle" />
 					
 					<button class="postSearch">Search</button>
 					
-					<select>
+					<select class="selectDate" onchange="selectDateChange()">
 						<option>모든날짜</option>
-						<option>지난 1시간</option>
 						<option>지난 1일</option>
 						<option>지난 1주</option>
 						<option>지난 1개월</option>
@@ -106,8 +105,8 @@
 				<!-- brick-wrapper -->
 				<div class="bricks-wrapper" style="height: 1200px">
 					<div class="grid-sizer"></div>
-					<div class="photoWrapper">
-						
+					<div class="photoWrapper" style="width:100%;height:800px; overflow-y:scroll ">
+						<!--  style="width:100%;height:800px; overflow-x:scroll; overflow-y:scroll; -->
 					</div>
 				</div>
 				<!-- 오른쪽 컨텐츠 종료-->
@@ -206,6 +205,16 @@
 	<script src="/resources/js/myClub/plugins.js"></script>
 	<script src="/resources/js/myClub/main.js"></script>
 </body>
+<style>
+/* 메인컨텐츠 스크롤  */
+.photoWrapper{
+	-ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.photoWrapper::-webkit-scrollbar {
+     display: none; /* Chrome, Safari, Opera*/
+}
+</style>
 <script>
 	/* $(".postsCheck").click(function() {
 		$(".postModal").css("display", "block");
@@ -219,8 +228,23 @@ $(function() {
 		$("#top").css("background", "none");
 	});
 	
-	
 });
+
+function selectDateChange(){
+	var selectDate = $(".selectDate").val();
+	
+	var changeDate;
+	
+	if(selectDate =='지난 1일'){
+		changeDate = 
+	}
+	else if(selectDate =='지난 7일'){
+		
+	}
+	else if(selectDate =='지난 1개월'){
+		
+	}
+}
 	
 //모달클릭
 function func1(obj){
