@@ -26,11 +26,9 @@ FROM BOARD
 		fileName,
 		filePath,
 		enroll_date as enrollDate,
-		status,
-		selCount,
-		(select cg_name from category where cg_no = ab_cg) as cgName
+		selCount
 	FROM
-	(SELECT ROWNUM AS RNUM, N.*FROM
+	(SELECT rOWNUM AS RNUM, N.*FROM
 	(SELECT * FROM BOARD where 
 	<choose>
 	<when test="type eq 1">

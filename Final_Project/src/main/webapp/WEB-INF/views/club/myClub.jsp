@@ -70,6 +70,7 @@
 					<!-- <div>#여행 #요리 #음식</div> -->
 				</div>
 				<hr />
+				<!-- 회원이 속한 클럽들 출력 -->
 				<c:forEach items="${clubList}" var="l" varStatus="i">
 					<div class="myClubList">
 						<div class="clubListOne">

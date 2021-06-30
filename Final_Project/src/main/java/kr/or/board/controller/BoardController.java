@@ -44,6 +44,7 @@ public class BoardController {
 		BoardPageData bpd = service.selectBoardList(reqPage,type);	//공지목록,페이지네비 구해오기
 		model.addAttribute("boardList", bpd.getList());
 		model.addAttribute("pageNavi", bpd.getPageNavi());
+		model.addAttribute("reqPage", reqPage);
 		return "board/boardList";			
 	}
 	//문의/신고 출력
