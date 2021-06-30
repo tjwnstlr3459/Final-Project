@@ -170,12 +170,13 @@ button:hover{
 						html += "<div class='posting'>";			//여기다가 div클ㄹ스 */
 						html += "<img src='/resources/freeBoardUpload/"+fb.filepath+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
+						html += "<span style='display:none;'>"+fb.fbWriter+"</span>";
+						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
 						if(${empty sessionScope.m}){							
 						html += "<button onclick='addHeart(this);' disabled><i class='far fa-heart'></i>&nbsp;";
 						}else{							
 						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
 						}
-						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
 						html +="</button><button onclick='detailView(this);'><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
 						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
 						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
@@ -248,10 +249,24 @@ button:hover{
 		        	var filepath = $(obj).parents().children().eq(0).attr('src');
 		        	var img = "<img src='"+filepath+"' style='width:1000px; height:600px; margin-left:20px;'>";
 		        	var fbContent = $(obj).parents().children().eq(1).html();
+		        	var fbWriter = $(obj).parents().children().eq(2).html();
 		        	modal.style.display = "block";
 		        	$('.modal-content').append(img);
-		        	$('.modal-content').append("<p style='font-size: 40px; color:black; text-align:center;'>"+fbContent+"</p>");
-				}
+		        	$('.modal-content').append("<p style='font-size: 40px; color:black; text-align:center;'>내용 : "+fbContent+"</p>");
+		        	$('.modal-content').append("<p style='font-size: 30px; color:black; text-align:right;'>작성자 : "+fbWriter+"</p>");
+		        	 var fbNo = $(obj).parents().children().eq(3).val();
+		        	 console.log(fbNo);
+		        	 $.ajax({
+						url : "/addViews.do",
+						data : {fbNo:fbNo},
+						type : "post",
+						success : function(data){
+							if(data == 1){
+								console.log("조회수1증가");
+							}
+						}
+				}); 
+		        }
 		        function closeView() {
 		        	$('.modal-content').empty();
 		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	

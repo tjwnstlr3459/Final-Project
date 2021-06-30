@@ -48,5 +48,9 @@ public class FreeBoardDao {
 
 	public String selectFilepath(int fbNo) {
 		return sqlSession.selectOne("freeBoard.selectFilepath",fbNo);
+	}
+
+	public int addViews(int fbNo) {
+		return sqlSession.update("freeBoard.addViews",fbNo);
 	} 
 }
