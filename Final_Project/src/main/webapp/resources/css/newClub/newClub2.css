@@ -11,13 +11,13 @@ body::before {
     bottom: 0;
     top: 0;
     position: fixed;
-}
+} 
 @media (max-width: 512px)  and (-webkit-min-device-pixel-ratio: 1.5),
        (max-width: 512px)  and (min-resolution: 1.5dppx),
        (max-width: 1024px) and (-webkit-max-device-pixel-ratio: 1.5),
        (max-width: 1024px) and (max-resolution: 1.5dppx) {
   body::before {
-    background-image: url(../../image/clubimg/bg_2880.jpg);
+    /* background-image: url(../../image/clubimg/bg_2880.jpg); */
   }
 }
 @media (min-width: 513px)  and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5),

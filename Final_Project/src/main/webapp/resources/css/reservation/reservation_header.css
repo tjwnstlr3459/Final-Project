@@ -1,0 +1,15 @@
+.header {
+  border: 0px solid black;
+  height: 80px;
+}
+.logo {
+  width: 200px;
+  height: 45px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: none;
+  border-bottom: 1px solid black;
+}
