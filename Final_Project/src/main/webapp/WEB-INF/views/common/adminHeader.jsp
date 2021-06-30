@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
 	<!-- 관리자 js -->
 	<script src="/resources/js/admin/summernote-admin.js"></script>
-	<!-- 관리자 웹소켓 -->
+	<!-- 현재 접속자 파싱 웹소켓 -->
 	<script src="/resources/js/admin/adminWebSocket.js"></script>	
 <!-- header 영역 -->
     <!-- 왼쪽 관리자,메뉴 영역 -->

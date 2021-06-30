@@ -15,6 +15,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,600;1,400&display=swap"
 	rel="stylesheet">
+	<!-- 현재 접속자 파싱 웹소켓 -->
+	<script src="/resources/js/admin/adminWebSocket.js"></script>
 <style>
 body {
 	margin: 0;

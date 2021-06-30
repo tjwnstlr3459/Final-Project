@@ -23,6 +23,8 @@
 <script src="/resources/main/js/bootstrap.js"></script>
 <script src="/resources/main/js/plugins.js"></script>
 <script src="/resources/main/js/main.js"></script>
+	<!-- 현재 접속자 파싱 웹소켓 -->
+	<script src="/resources/js/admin/adminWebSocket.js"></script>
 
 <script
 	src="/resources/main/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>

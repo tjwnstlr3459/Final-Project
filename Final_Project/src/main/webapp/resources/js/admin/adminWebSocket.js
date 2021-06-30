@@ -1,8 +1,8 @@
 $(function(){
 	var ws;
 	var memberEmail;
-	function initMember(email){
-		memberEmail = email;
+	function initMember(){
+		//memberEmail = email;
 		//웹 소켓 생성 > 연결 시도
 		ws = new WebSocket("ws://192.168.10.24//inMemberCount.do");
 		//1. 웹소켓 연결 성공 시 실행 함수 지정
@@ -33,5 +33,6 @@ $(function(){
 			}
 		});
 	}
-	getSessionEmail();
+	initMember();
+	//getSessionEmail();
 });

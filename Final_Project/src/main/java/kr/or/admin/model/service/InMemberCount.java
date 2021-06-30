@@ -18,6 +18,7 @@ public class InMemberCount extends TextWebSocketHandler{ 	//상속으로 생성�
 	//클라이언트가 최초로 웹소켓 서버에 접속했을 때 수행되는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
+		System.out.println(session);
 		System.out.println("클라이언트가 접속함");
 		memberCount++;
 		System.out.println("현재 접속자 수 : "+memberCount);
