@@ -164,7 +164,7 @@ public class MemberController {
 	
 	//회원가입 insert
 	@RequestMapping(value="/joinProcessing.do")
-	public String joinProcessing(@RequestParam(value = "hobby") List<String> hobbyArr, @RequestParam(value = "propimg") MultipartFile propimg,  HttpServletRequest request, Member m, Model model) {
+	public String joinProcessing(@RequestParam(value = "hobby") List<String> hobbyArr, MultipartFile propimg[],  HttpServletRequest request, Member m, Model model) {
 		//관심 카테고리 분리 처리
 		if(hobbyArr.size() == 1) {
 			m.setHobby1(hobbyArr.get(0));
@@ -176,51 +176,51 @@ public class MemberController {
 			m.setHobby2(hobbyArr.get(1));
 			m.setHobby3(hobbyArr.get(2));
 		}
-		
-		if(m.getFilename() != null) {
-			//파일 처리 시작
-			String savePath = request.getSession().getServletContext().getRealPath("resources/image/userPic/");
-			//파일명 처리
-			String filename = propimg.getOriginalFilename();
-			String onlyFilename = filename.substring(0, filename.indexOf("."));
-			String extention = filename.substring(filename.indexOf("."));
-			String filepath = null;
-			int count = 0;
-			while(true) {			
-				if(count == 0) {
-					filepath = onlyFilename + extention;
-				} else {
-					filepath = onlyFilename + "_" + count + extention;
-				}
-				File checkFile = new File(savePath + filepath);
-				if(!checkFile.exists()) {
-					break;
-				}
-				count++;
-			}
-			//파일 저장
-			try {
-				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
-				BufferedOutputStream bos = new BufferedOutputStream(fos);
-				byte[] bytes = propimg.getBytes();
-				bos.write(bytes);
-				bos.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//파일 처리 종료
-			
-			m.setFilename(filename);
-			m.setFilepath(filepath);
-		} else {
+		//파일 처리
+		if(propimg[0].isEmpty()) {
 			m.setFilename("default.png");
-			m.setFilepath("default.png");
+			m.setFilepath("default.png");			
+		} else {
+			String savePath = request.getSession().getServletContext().getRealPath("resources/image/userPic/");
+			for(MultipartFile file : propimg) {
+				//파일명 처리
+				String filename = file.getOriginalFilename();
+				String onlyFilename = filename.substring(0, filename.indexOf(".")); 
+				String extention = filename.substring(filename.indexOf("."));
+				String filepath = null;
+				//폴더 내 같은 파일명이 있는지 확인
+				int count = 0;
+				while(true) {			
+					if(count == 0) {
+						filepath = onlyFilename + extention;
+					} else {
+						filepath = onlyFilename + "_" + count + extention;
+					}
+					File checkFile = new File(savePath + filepath);
+					if(!checkFile.exists()) {
+						break;
+					}
+					count++;
+				}
+				m.setFilename(filename);
+				m.setFilepath(filepath);
+				try {
+					FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					byte[] bytes = file.getBytes();
+					bos.write(bytes);
+					bos.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
 		}
-
+		//파일처리 종료
 		
 		int result = service.insertMember(m);
 		if(result > 0) {

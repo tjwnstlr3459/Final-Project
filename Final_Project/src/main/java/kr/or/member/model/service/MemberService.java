@@ -30,13 +30,12 @@ public class MemberService {
 		Member member = dao.selectOneMember(m);
 		return member;
 	}
-	
 
 	public Member selectOneMember(String user) {
 		Member member = dao.selectOneMember(user);
 		return member;
 	}
-	
+
 	@Transactional
 	public int insertMember(Member m) {
 		int result = dao.insertMember(m);
@@ -44,107 +43,115 @@ public class MemberService {
 	}
 
 	public MemberPageData selectAllMember(int page) {
-		int listLength = 50;														//목록(화면)에 보여줄 게시글 갯 수
+		int listLength = 50; // 목록(화면)에 보여줄 게시글 갯 수
 		int naviPages = 5;
-		int end = listLength * page;					//list 끝 값
-		int start = end - listLength + 1;				//list 시작 값
-		
+		int end = listLength * page; // list 끝 값
+		int start = end - listLength + 1; // list 시작 값
+
 		HashMap<String, Integer> se = new HashMap<String, Integer>();
 		se.put("start", start);
-		se.put("end",end);
-		
-		List list = dao.selectAllMember(se);	// 전체 회원을 가지고온다.
-		int memberCount = dao.memberCount();										//전체 게시글 갯 수
-		//페이지 네비게이션 만들기 전 페이지 설정
-		int totalNaviPage = memberCount%listLength == 0 ? memberCount/listLength : memberCount/listLength+1;		//% == 0인경우 다음페이지 네비게이션을 만들지 않기 위함
-		int navi = ((page - 1) / naviPages)*naviPages+1;					//페이지 네비게이션의 시작 값 > 1~5 : 1 / 6 ~ 10 : 6
+		se.put("end", end);
+
+		List list = dao.selectAllMember(se); // 전체 회원을 가지고온다.
+		int memberCount = dao.memberCount(); // 전체 게시글 갯 수
+		// 페이지 네비게이션 만들기 전 페이지 설정
+		int totalNaviPage = memberCount % listLength == 0 ? memberCount / listLength : memberCount / listLength + 1; // %
+																														// ==
+																														// 0인경우
+																														// 다음페이지
+																														// 네비게이션을
+																														// 만들지
+																														// 않기
+																														// 위함
+		int navi = ((page - 1) / naviPages) * naviPages + 1; // 페이지 네비게이션의 시작 값 > 1~5 : 1 / 6 ~ 10 : 6
 		String navigation = "<div>";
-		//이전버튼 생성 여부
-		if(navi!=1) {
-			navigation += "<a href='/adminMemberList.do?page="+(navi-1)+"'>이전</a>";
+		// 이전버튼 생성 여부
+		if (navi != 1) {
+			navigation += "<a href='/adminMemberList.do?page=" + (navi - 1) + "'>이전</a>";
 		}
-		//1~5단위 페이지 생성
-		for(int i=0;i<naviPages;i++) {
-			//사용자가 클릭해서 보고있는 페이지인 경우 효과
-			if(navi==page) {
-				navigation += "<a href='/adminMemberList.do?page="+navi+"' class='naviFocus'>"+navi+"</a>";
-			}else {
-				navigation += "<a href='/adminMemberList.do?page="+navi+"'>"+navi+"</a>";				
+		// 1~5단위 페이지 생성
+		for (int i = 0; i < naviPages; i++) {
+			// 사용자가 클릭해서 보고있는 페이지인 경우 효과
+			if (navi == page) {
+				navigation += "<a href='/adminMemberList.do?page=" + navi + "' class='naviFocus'>" + navi + "</a>";
+			} else {
+				navigation += "<a href='/adminMemberList.do?page=" + navi + "'>" + navi + "</a>";
 			}
-			//시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
+			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
 			navi++;
-			if(navi>totalNaviPage) {
+			if (navi > totalNaviPage) {
 				break;
 			}
 		}
-		//다음버튼 생성 여부
-		if(navi<=totalNaviPage) {
-			navigation += "<a href='/adminMemberList.do?page="+navi+"'>다음</a>";
+		// 다음버튼 생성 여부
+		if (navi <= totalNaviPage) {
+			navigation += "<a href='/adminMemberList.do?page=" + navi + "'>다음</a>";
 		}
 		navigation += "</div>";
-		
 
 		List cgList = dao.selectAllCategory();
 		MemberPageData mpd = new MemberPageData();
 		mpd.setNavigation(navigation);
-		mpd.setList((ArrayList<Member>)list);
-		mpd.setCgList((ArrayList<Category>)cgList);
+		mpd.setList((ArrayList<Member>) list);
+		mpd.setCgList((ArrayList<Category>) cgList);
 		return mpd;
 	}
-	//회원 관리자로 등록 update
+
+	// 회원 관리자로 등록 update
 	public int updateGrade(String[] memberNo) {
 		return dao.updateGrade(memberNo);
 	}
-	//카테고리 가져오기(회원가입용)
+
+	// 카테고리 가져오기(회원가입용)
 	public ArrayList<Category> getCategory() {
 		List cgList = dao.selectCategory();
-		return (ArrayList<Category>)cgList;
+		return (ArrayList<Category>) cgList;
 	}
 
 	public int changeLastDate(Member m) {
-		return dao.updateLastDate(m);		
+		return dao.updateLastDate(m);
 	}
 
 	public int deleteMember(String memberNo) {
 		return dao.deleteMemer(memberNo);
 	}
 
-	//친구 조회
+	// 친구 조회
 	public Friends selectFriend(Friends f) {
 		return dao.selectFriend(f);
 	}
 
-	//친구 추가
+	// 친구 추가
 	@Transactional
 	public int insertFriend(Friends f) {
 		return dao.insertFriend(f);
 	}
 
-	//친구요청 수락
+	// 친구요청 수락
 	@Transactional
 	public int updateFriend(Friends f) {
 		return dao.updateFriend(f);
 	}
 
-	//친구 리스트
+	// 친구 리스트
 	public FriendsData selectFriendData(String memberNick) {
 		FriendsData fData = new FriendsData();
 		List fList = dao.selectFriend(memberNick);
-		fData.setFList((ArrayList<Member>)fList);
+		fData.setFList((ArrayList<Member>) fList);
 		List fPendingList = dao.selectFriendPending(memberNick);
-		fData.setFpendingList((ArrayList<Member>)fPendingList);
+		fData.setFpendingList((ArrayList<Member>) fPendingList);
 		List fReqList = dao.selectFriendRequest(memberNick);
-		fData.setFReqList((ArrayList<Member>)fReqList);
+		fData.setFReqList((ArrayList<Member>) fReqList);
 		fData.setFReq(dao.friendRequestCount(memberNick));
 		System.out.println(fData.getFReq());
 		return fData;
 	}
-	
-	//이메일발송 메소드
+
+	// 이메일발송 메소드
 	public void sendEmail(Member m, String div) throws Exception {
 		// Mail Server 설정
 		String charSet = "utf-8";
-		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTP = "smtp.gmail.com"; // 네이버 이용시 smtp.naver.com
 		String hostSMTPid = "palcimer@gmail.com";
 		String hostSMTPpwd = "akqlshrl";
 
@@ -154,7 +161,7 @@ public class MemberService {
 		String subject = "";
 		String msg = "";
 
-		if(div.equals("findpw")) {
+		if (div.equals("findpw")) {
 			subject = "너나들이 임시 비밀번호 입니다.";
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 			msg += "<h3 style='color: blue;'>";
@@ -166,15 +173,16 @@ public class MemberService {
 		// 받는 사람 E-Mail 주소
 		String mail = m.getEmail();
 		try {
+			System.setProperty("https.protocols", "TLSv1.2");
 			HtmlEmail email = new HtmlEmail();
 			email.setDebug(true);
 			email.setCharset(charSet);
-			email.setSSL(true);
+			email.setSSL(false);
 			email.setHostName(hostSMTP);
-			email.setSmtpPort(465); //네이버 이용시 587
+			email.setSmtpPort(465); // 네이버 이용시 587
 
 			email.setAuthentication(hostSMTPid, hostSMTPpwd);
-			email.setTLS(true);
+			// email.setTLS(true);
 			email.addTo(mail, charSet);
 			email.setFrom(fromEmail, fromName, charSet);
 			email.setSubject(subject);
@@ -184,8 +192,45 @@ public class MemberService {
 			System.out.println("메일발송 실패 : " + e);
 		}
 	}
-	
-	//비밀번호찾기
+
+	// 이메일
+	public String mailTest(String mail, String content) {
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.gmail.com";
+		String hostSMTPid = "bext007@gmail.com"; // 본인의 아이디 입력
+		String hostSMTPpwd = "cjswoek123"; // 비밀번호 입력
+
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = "bext007@gmail.com"; // 보내는 사람 eamil
+		String fromName = "gggg"; // 보내는 사람 이름
+		String subject = "이메일 발송 테스트"; // 제목
+
+		// 받는 사람 E-Mail 주소
+
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(587); // SMTP 포트 번호 입력
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(content); // 본문 내용
+			email.send();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/";
+	}
+
+	// 비밀번호찾기
 	@Transactional
 	public int pwMail(Member m) throws Exception {
 		String pw = "";
@@ -193,15 +238,16 @@ public class MemberService {
 			pw += (char) ((Math.random() * 26) + 97);
 		}
 		System.out.println(pw);
-		m.setMemberPw(pw); //랜덤 문자를 멤버 객체의 비밀번호로 설정
-		int result = dao.updatePw(m); //비밀번호 변경
-		if(result > 0) {
+		m.setMemberPw(pw); // 랜덤 문자를 멤버 객체의 비밀번호로 설정
+		int result = dao.updatePw(m); // 비밀번호 변경
+		if (result > 0) {
 			sendEmail(m, "findpw"); //메일 발송
+			//mailTest(m.getEmail(), "댜댜");
 		} else {
 			System.out.println("에러");
 		}
 		return result;
-		
+
 	}
 
 }
