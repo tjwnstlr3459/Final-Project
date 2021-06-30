@@ -107,7 +107,6 @@ public class AdminController {
 	@RequestMapping(value="/getSessionEmail.do", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String getSessionEmail(@SessionAttribute Member m) {
-		System.out.println(m.getEmail());
 		return new Gson().toJson(m);
 	}
 
