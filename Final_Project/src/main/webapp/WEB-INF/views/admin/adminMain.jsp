@@ -25,6 +25,7 @@
 	<div class="wrap">
 		<!-- header-nav -->
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
+		sdfsdfsdfsdf
 		<!-- content -->
 		<div class="chart1-box box-option">
 	        <canvas id="chart1"></canvas>
