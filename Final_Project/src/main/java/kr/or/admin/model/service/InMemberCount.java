@@ -19,52 +19,17 @@ public class InMemberCount extends TextWebSocketHandler{ 	//상속으로 생성�
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
 		System.out.println("클라이언트가 접속함");
-		System.out.println(session);
-		System.out.println(session.toString());
-		sessionList.add(session);		//새로 접속한 클라이언트의 췝소켓 세션을 list에 추가(사용자가 접속할때마다)
+		memberCount++;
+		System.out.println("현재 접속자 수 : "+memberCount);
 	}
 	// 클라이언트가 서버로 전송했을 때 수행되는 메소드(실제 웹소켓 로직을 구현하는 메소드)
 	@Override
-	public void handleTextMessage(WebSocketSession session, TextMessage message)throws Exception{
-		//WebSocketSession session : 
-		//jsp에서 웹소켓을 통해 보내준 메세지 값(문자열) 확인
-		System.out.println(message.getPayload());
-		JsonParser parser = new JsonParser();						//문자열을 JSON타입으로 처리하기 위한 parser객체 생성
-		JsonElement element = parser.parse(message.getPayload());	//parser를 이용하여 JSON데이터를 분석
-		//키 > type,msg
-		String type = element.getAsJsonObject().get("type").getAsString();	//키가 "type"인 value 추출
-		String msg = element.getAsJsonObject().get("msg").getAsString();	//키가 "msg"인 value 추출
-		
-		if(type.equals("enter")) {
-			memberList.put(session, msg);	//map에 세션에 해당하는 memberId를 저장
-			String sendMsg = "<p>"+msg+"님이 입장하셨습니다.</p>";
-			for(WebSocketSession s : sessionList) {
-				if(!session.equals(s)) {						//본인에게는 전송 제외
-					TextMessage tm = new TextMessage(sendMsg);
-					s.sendMessage(tm);
-				}
-			}
-		}else if(type.equals("chat")) {
-			String sendMsg = "<div class='chat left'><span class='chatId'>"+memberList.get(session)+" : </span>"+msg+"</div>";
-			for(WebSocketSession s : sessionList) {
-				if(!session.equals(s)) {
-					TextMessage tm = new TextMessage(sendMsg);
-					s.sendMessage(tm);
-				}
-			}
-		}
-	}
+	public void handleTextMessage(WebSocketSession session, TextMessage message)throws Exception{}
 	// 클라이언트가 연결을 끊을 때 수행되는 메소드
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception{
-		sessionList.remove(session);			//접속이 끊긴 세션을 list에서 제거
-		for(WebSocketSession s : sessionList) {
-			TextMessage tm = new TextMessage("<p>"+memberList.get(session)+"님이 퇴장하셨습니다</p>");
-			s.sendMessage(tm);
-		}
-		System.out.println(memberList.get(session));
-		System.out.println(memberList.size());
-		memberList.remove(session);
-		System.out.println(memberList.size());
+		System.out.println("클라이언트 종료");
+		memberCount--;
+		System.out.println("현재 접속자 수 : "+memberCount);
 	}
 }
