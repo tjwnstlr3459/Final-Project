@@ -50,4 +50,8 @@ public class FreeBoardService {
 	public String selectFilepath(int fbNo) {
 		return dao.selectFilepath(fbNo);
 	}
+	@Transactional
+	public int addViews(int fbNo) {
+		return dao.addViews(fbNo);
+	}
 }

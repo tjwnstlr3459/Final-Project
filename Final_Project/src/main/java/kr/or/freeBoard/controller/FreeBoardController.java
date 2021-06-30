@@ -192,4 +192,14 @@ public class FreeBoardController {
 		model.addAttribute("loc", "/freeBoardList.do");
 		return "common/msg";
 	}
+	@ResponseBody
+	@RequestMapping(value="/addViews.do")
+	public int addViews(int fbNo) {
+		int result = service.addViews(fbNo);
+		if(result > 0) {			
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 }

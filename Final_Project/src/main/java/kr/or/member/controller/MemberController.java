@@ -61,12 +61,12 @@ public class MemberController {
 			if(member != null) {
 				int result = service.changeLastDate(m);
 				session.setAttribute("m", member);
-				System.out.println(member.getMemberNick()+"환영한다능");
-				model.addAttribute("msg","로그인성공!");		
+				model.addAttribute("msg","로그인되었습니다.");	
+				model.addAttribute("loc","main.jsp");
 			}else {
-				model.addAttribute("msg","아이디/비밀번호를 확인하세요");		
-			}
-			model.addAttribute("loc","main.jsp");
+				model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
+				model.addAttribute("loc","/loginFrm.do");
+			}			
 			return "common/msg";			
 		}
 	@RequestMapping(value = "/logout.do")
@@ -118,6 +118,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/user/findUser.do", produces="application/json;charset=utf-8")
 	public String chkName(String user) {
+		System.out.println(user);
 		Member member = service.selectOneMember(user);
 		if(member != null) {
 			return new Gson().toJson(member);			
@@ -305,6 +306,87 @@ public class MemberController {
 			return "user/mypage";
 		}else {		
 			return "common/noAuth";
+		}
+	}
+	
+	//회원정보수정
+	@ResponseBody
+	@RequestMapping(value="/modInfo.do")
+	public String modInfo(@RequestParam(value = "propimg") MultipartFile propimg[], HttpServletRequest request, Member m, Model model) {
+		
+		System.out.println(m.getEmail());
+		System.out.println(m.getFilename());
+		System.out.println(m.getMemberPw());
+		System.out.println(m.getAddress());
+		
+		//파일 처리
+		if(propimg[0].isEmpty()) {
+			m.setFilename("default.png");
+			m.setFilepath("default.png");			
+		} else {
+			String savePath = request.getSession().getServletContext().getRealPath("resources/image/userPic/");
+			
+			//기존 프로필사진 삭제
+			File oldfile = new File(savePath + m.getFilepath());
+			if(oldfile.exists()) {
+				if(oldfile.delete()) { 
+					System.out.println("파일삭제 성공"); 
+				} else { 
+					System.out.println("파일삭제 실패"); 
+				} 
+			} else { 
+				System.out.println("파일이 존재하지 않습니다.");
+			}
+			
+			//새 프로필사진 업로드
+			for(MultipartFile file : propimg) {
+				//파일명 처리
+				String filename = file.getOriginalFilename();
+				String onlyFilename = filename.substring(0, filename.indexOf(".")); 
+				String extention = filename.substring(filename.indexOf("."));
+				String filepath = null;
+				//폴더 내 같은 파일명이 있는지 확인
+				int count = 0;
+				while(true) {			
+					if(count == 0) {
+						filepath = onlyFilename + extention;
+					} else {
+						filepath = onlyFilename + "_" + count + extention;
+					}
+					File checkFile = new File(savePath + filepath);
+					if(!checkFile.exists()) {
+						break;
+					}
+					count++;
+				}
+				m.setFilename(filename);
+				m.setFilepath(filepath);
+				try {
+					FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					byte[] bytes = file.getBytes();
+					bos.write(bytes);
+					bos.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+		//파일처리 종료
+		System.out.println(m.getEmail());
+		System.out.println(m.getFilename());
+		System.out.println(m.getMemberPw());
+		System.out.println(m.getAddress());
+		int result = 1;
+		if(result > 0) {
+			return "1";
+		} else {
+			return "0";
 		}
 	}
 	
