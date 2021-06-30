@@ -175,7 +175,12 @@ position:fixed;
 					</c:choose>
 				</c:when>
 			</c:choose>
+			<c:if test="${empty sessionScope.m }">
+			<li><a onclick="loginCheck();" style="cursor:pointer;">CREATE CLUB</a></li>
+			</c:if>
+			<c:if test="${!empty sessionScope.m }">
 			<li><a href="/createClubFrm.do">CREATE CLUB</a></li>
+			</c:if>
 			<li><a href="/newClub.do?clubNo=38">CLUB VIEW</a></li>
 			<li><a href="/boardList.do?reqPage=1&type=1">FEEDBACK</a></li>
 			<c:if test="${empty sessionScope.m }">
@@ -192,5 +197,15 @@ position:fixed;
 				style="cursor: pointer;"><i class="fab fa-instagram"></i></li>
 		</ul>
 	</nav>
+	<script>
+	function loginCheck() {
+		if(${empty sessionScope.m}){
+		alert("로그인 후 가능한 서비스입니다.");
+		location.href = "/loginFrm.do";				
+		}else{
+			location.href="/createClubFrm.do";
+		}
+	}
+	</script>
 </body>
 </html>
