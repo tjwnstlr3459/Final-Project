@@ -33,6 +33,5 @@
 	        <canvas id="memberAge"></canvas>
 	    </div>	
 	</div>
-]
 </body>
 </html>

@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -25,9 +26,7 @@ import com.google.gson.JsonObject;
 
 import kr.or.admin.model.service.AdminService;
 import kr.or.admin.model.vo.AdminCount;
-import kr.or.directMessage.model.service.DirectMessageService;
-import kr.or.directMessage.model.vo.DirectMessage;
-import kr.or.member.model.service.MemberService;
+import kr.or.member.model.vo.Member;
 
 
 
@@ -35,7 +34,6 @@ import kr.or.member.model.service.MemberService;
 public class AdminController {
 	@Autowired
 	private AdminService service;
-	private DirectMessageService dmService;
 	
 
 	//관리자 문의/신고 이동
@@ -105,6 +103,14 @@ public class AdminController {
 		AdminCount ac = service.selectAdminCount();
 		return new Gson().toJson(ac);
 	}
+	//세션에 등록된(로그인 된) email get
+	@RequestMapping(value="/getSessionEmail.do", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String getSessionEmail(@SessionAttribute Member m) {
+		System.out.println(m.getEmail());
+		return new Gson().toJson(m);
+	}
+
 	
 	
 	

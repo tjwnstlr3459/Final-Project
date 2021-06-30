@@ -113,6 +113,12 @@
 	<websocket:handlers>
 		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
 	</websocket:handlers>   
+	
+	<!-- 웹소켓 접속자 수 설정  -->
+	<beans:bean id="inMemberCount" class="kr.or.admin.model.service.InMemberCount"/>
+	<websocket:handlers>
+		<websocket:mapping handler="inMemberCount" path="/inMemberCount.do"/>
+	</websocket:handlers>
 
 	
 	<context:component-scan base-package="kr.or.iei" />
