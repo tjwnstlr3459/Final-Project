@@ -25,24 +25,30 @@ public class ClubDao {
 	
 	//게시물 총출력
 //	public List<Board> memberClubPosts(Member m) {
-//		List list = session.selectList("club.memberClubPosts",m);
+//		List list  session.selectList("club.memberClubPosts",m);
 //		return list;
 //	}
 
 	//더보기로 5개씩 출력하기
-	public List<ClubBoard> morePhoto(int start, int end, Member m) {
+	public List<ClubBoard> morePhoto(int start, int end, Member m, int changeDate) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("m",m.getMemberNick());
+		map.put("changeDate", changeDate);
 		
 		List<ClubBoard> list = session.selectList("club.phtoMore",map);
 		return list;
 	}
 	
 	//전체게시물 수 확인
-	public int totalCount(Member m) {
-		return session.selectOne("club.totalCount",m);
+	public int totalCount(Member m, int changeDate) {
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("memberNick", m.getMemberNick());
+		map.put("changeDate", changeDate);
+		
+		return session.selectOne("club.totalCount",map);
 	}
 	
 	//게시물 등록

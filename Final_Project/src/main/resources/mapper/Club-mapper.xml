@@ -62,17 +62,27 @@ SELECT * FROM
 	FROM CLUB_BOARD A,CLUB C 
 	WHERE C.CLUB_NO = A.CLUB_NO 
 	AND 
-C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m}) ORDER BY A.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
+C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m} 
+ 
+) 
+<if test="changeDate != 0">
+and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')
+</if> 
+ORDER BY A.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
 <!-- 전체게시물 수 파악 -->
-<select id="totalCount" parameterType="m" resultType="int">
+<select id="totalCount" parameterType="map" resultType="int">
 SELECT 
     count(*)
 FROM CLUB_BOARD A,CLUB C 
 WHERE C.CLUB_NO = A.CLUB_NO 
 AND 
 C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{memberNick})
+<if test="changeDate != 0">
+AND
+a.enroll_date BETWEEN to_char(sysdate-#{changeDate},'YYYY-MM-DD') and to_char(sysdate,'YYYY-MM-DD')
+</if> 
 </select>
 
 <!-- 게시물 등록 -->
@@ -135,6 +145,7 @@ insert into club_board values(
 				0
 	)
 </insert>
+
 </mapper>
 
 

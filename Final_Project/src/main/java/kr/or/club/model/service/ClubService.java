@@ -28,17 +28,17 @@ public class ClubService {
 //		return (ArrayList<Board>)list;
 //	}
 
-	public ArrayList<ClubBoard> morePhoto(int start, Member m) {
+	public ArrayList<ClubBoard> morePhoto(int start, Member m, int changeDate) {
 		//5개씩 사진 가져올거라서
 		int length = 10;
 		int end = start+length-1;
 		
-		List<ClubBoard> list = dao.morePhoto(start,end,m);
+		List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate);
 		return (ArrayList<ClubBoard>)list;
 	}
 
-	public int totalCount(Member m) {
-		return dao.totalCount(m);
+	public int totalCount(Member m, int changeDate) {
+		return dao.totalCount(m,changeDate);
 	}
 
 	@Transactional
@@ -74,5 +74,15 @@ public class ClubService {
 		int result = dao.createClub(c);
 		return result;
 	}
+	
+	/*
+	 * //마이클럽 날짜별 게시물 조회 public ArrayList<ClubBoard> selectPostList(Member m, int
+	 * start, String changeDate) { //5개씩 사진 가져올거라서 int length = 10; int end =
+	 * start+length-1;
+	 * 
+	 * List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate); return
+	 * (ArrayList<ClubBoard>)list; }
+	 */
+
 	
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.board.model.vo.Board;
 import kr.or.category.model.dao.CategoryDao;
 import kr.or.club.model.service.ClubService;
 import kr.or.club.model.vo.ClubBoard;
@@ -35,7 +36,7 @@ public class ClubController {
 		
 		ArrayList<Club> clubList = service.memberClubList(m);
 //		ArrayList<Board> clubPosts = service.memberClubPosts(m);
-		int totalCount = service.totalCount(m);
+		int totalCount = service.totalCount(m,0);
 		
 		
 		model.addAttribute("clubList",clubList);
@@ -44,12 +45,21 @@ public class ClubController {
 		return "club/myClub";
 	}
 	
-	// 회원이 속한 모임에 클럽게시물 상세출력
+	//날짜별 조회시 totalCount를 다시 가져온다
+	@ResponseBody
+	@RequestMapping(value="/selectTotalCount.do")
+	public String selectTotalCount(@SessionAttribute(required = false) Member m, int changeDate) {
+		System.out.println(changeDate);
+		int totalCount = service.totalCount(m,changeDate);
+		return String.valueOf(totalCount);
+	}
+	//회원이 속한 모임에 클럽게시물 상세출력(더보기)
 	@ResponseBody
 	@RequestMapping(value = "/photoMore.do")
-	public ArrayList<ClubBoard> photoMore(@SessionAttribute(required = false) Member m,Model model, int start) {
-		ArrayList<ClubBoard> list = service.morePhoto(start,m);
-		model.addAttribute("listMore",list);
+	public ArrayList<ClubBoard> photoMore(@SessionAttribute(required = false) Member m,Model model, int start,int changeDate) {
+		ArrayList<ClubBoard> list = service.morePhoto(start,m,changeDate);
+		
+		model.addAttribute("listMore",list);		
 		return list;
 	}
 	
@@ -149,6 +159,17 @@ public class ClubController {
       return "common/msg";
    }
 	
+	/*
+	 * //마이클럽 날짜별 조건 게시물 불러오기
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/selectPhoto.do") public ArrayList<ClubBoard>
+	 * selectPhoto(@SessionAttribute(required = false) Member m,int start, String
+	 * changeDate,Model model){ ArrayList<ClubBoard> selectList =
+	 * service.selectPostList(m,start,changeDate); return null; }
+	 */
+	
 	//영범이구역 뿌잉 뿌잉
 	@RequestMapping(value="/viewClubList.do")
 	public String viewClubList(int cgNo, Model model) {
@@ -225,3 +246,30 @@ public class ClubController {
 			return "common/msg";
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
