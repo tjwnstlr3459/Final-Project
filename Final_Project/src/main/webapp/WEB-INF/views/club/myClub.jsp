@@ -74,7 +74,7 @@
 				<c:forEach items="${clubList}" var="l" varStatus="i">
 					<div class="myClubList">
 						<div class="clubListOne">
-							<img src="/resources/image/clubimg/${filepath }" />
+							<img src="/resources/clubImgUpload/${l.filePath }" />
 						</div>
 						<div class="clubListName">
 							<div>${l.clubName}</div>
