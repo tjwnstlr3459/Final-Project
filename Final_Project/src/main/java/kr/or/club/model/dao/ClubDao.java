@@ -23,27 +23,20 @@ public class ClubDao {
 		return list;
 	}
 	
-	//게시물 총출력
-//	public List<Board> memberClubPosts(Member m) {
-//		List list  session.selectList("club.memberClubPosts",m);
-//		return list;
-//	}
 
-	//더보기로 5개씩 출력하기
+	//더보기로 5개씩 출력하기(changeDate값별로 날짜별 조회 조건걸기)
 	public List<ClubBoard> morePhoto(int start, int end, Member m, int changeDate) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("m",m.getMemberNick());
 		map.put("changeDate", changeDate);
-		
 		List<ClubBoard> list = session.selectList("club.phtoMore",map);
 		return list;
 	}
 	
 	//전체게시물 수 확인
 	public int totalCount(Member m, int changeDate) {
-		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("memberNick", m.getMemberNick());
 		map.put("changeDate", changeDate);
@@ -60,11 +53,12 @@ public class ClubDao {
 	public int selectBoardNo() {
 		return session.selectOne("club.selectBoardNo");
 	}
-
+	
+	//최신게시물에 최신파일 값 넣기
 	public int insertFile(ClubBoard f) {
 		return session.update("club.insertFile",f);
 	}
-
+	
 	public List<Club> viewClubList(int cgNo) {
 		List ybClubList = session.selectList("club.viewClubList",cgNo);
 		return ybClubList;

@@ -53,12 +53,12 @@ public class ClubController {
 		int totalCount = service.totalCount(m,changeDate);
 		return String.valueOf(totalCount);
 	}
-	//회원이 속한 모임에 클럽게시물 상세출력(더보기)
+	
+	//회원이 속한 모임에 클럽게시물 상세출력(더보기/chagneDate로 날짜조건별 조회)
 	@ResponseBody
 	@RequestMapping(value = "/photoMore.do")
 	public ArrayList<ClubBoard> photoMore(@SessionAttribute(required = false) Member m,Model model, int start,int changeDate) {
 		ArrayList<ClubBoard> list = service.morePhoto(start,m,changeDate);
-		
 		model.addAttribute("listMore",list);		
 		return list;
 	}
@@ -85,7 +85,6 @@ public class ClubController {
       //파일이 존재하지 않더라도 배열은 무조건 길이 1을 가짐
       if(files[0].isEmpty()) { //첫번째 타입이 비어있는지 확인
     	  //첨부파일이 없는 경우
-    	  
       }else {
     	  //첨부파일이 있는경우
     	  //파일처리
@@ -93,10 +92,8 @@ public class ClubController {
           String savePath = request.getSession()
         		  					.getServletContext()
         		  					.getRealPath("/resources/fileupload/postImg/");
-          
           //파일이 1~여러개라 for문으로 묶어준다
           for(MultipartFile file : files) {
-        	  
         	//실제 유저가 올린 파일명(filename)
               String filename = file.getOriginalFilename();
               //유저가 올린 파일명을 마지막  . 기준으로 분리 test.txt -> test / .txt 로 나누고 겹치면 넘버링을 해주는 형식

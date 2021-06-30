@@ -42,7 +42,8 @@ C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{memberNick})
 ORDER BY A.ENROLL_DATE DESC
 </select> -->
 
-<!-- 회원이 작성한 클럽의 게시물 더보기형식 -->
+<!-- 회원이 작성한 클럽의 게시물 더보기형식(10개씩) -->
+<!-- changDate가 0 이면 전체출력/아니면 그 수만큼 날짜 빼서 조회 -->
 <select id="phtoMore" parameterType="map" resultType="b">
 SELECT * FROM
 (select rownum as rnum,p.*from
@@ -62,16 +63,16 @@ SELECT * FROM
 	FROM CLUB_BOARD A,CLUB C 
 	WHERE C.CLUB_NO = A.CLUB_NO 
 	AND 
-C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m} 
- 
-) 
+C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m})
 <if test="changeDate != 0">
-and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')
+and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')	
 </if> 
 ORDER BY A.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
+
 <!-- 전체게시물 수 파악 -->
+<!-- changeDate값에 따라 게시물 조회 -->
 <select id="totalCount" parameterType="map" resultType="int">
 SELECT 
     count(*)
@@ -113,6 +114,7 @@ insert into club_board values(
 		filePath=#{filePath}
 	where board_no=#{boardNo}
 </update>
+
 <select id="viewClubList" parameterType="int" resultType="c">
 	SELECT
 		CLUB_NO as clubNo,
@@ -129,20 +131,21 @@ insert into club_board values(
 		WARNING_COUNT as warningCount
 	FROM CLUB WHERE club_cg = #{cgNo}
 </select>
+
 <insert id="createClub" parameterType="c">
 	insert into club values(
-				club_seq.nextval,
-				#{clubCg},
-				#{clubName},
-				#{clubIntro},
-				#{clubOpener},
-				#{fileName},
-				#{filePath},
-				0,
-				#{ispublic},
-				to_char(sysdate,'yyyy-mm-dd'),
-				null,
-				0
+		club_seq.nextval,
+		#{clubCg},
+		#{clubName},
+		#{clubIntro},
+		#{clubOpener},
+		#{fileName},
+		#{filePath},
+		0,
+		#{ispublic},
+		to_char(sysdate,'yyyy-mm-dd'),
+		null,
+		0
 	)
 </insert>
 
