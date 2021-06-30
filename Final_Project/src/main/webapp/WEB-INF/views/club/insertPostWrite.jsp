@@ -34,13 +34,13 @@
 					<tr>
 						<th>클럽이름</th>
 						<td>
-							<input name="clubNo" value="38">
+							<input name="clubNo" value="42">
 						</td>
 					</tr>
 					<tr>
 						<th>클럽종류</th>
 						<td>
-							<input name="boardCg" value="5">
+							<input name="boardCg" value="4">
 						</td>
 					</tr>
 					<tr class="table-active">
