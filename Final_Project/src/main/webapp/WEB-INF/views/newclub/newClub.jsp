@@ -55,6 +55,23 @@
 	href="/resources/css/newClub/modal.css" />
 	<link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/photo.css" />
+	
+<!-- 메인달력 -->
+<link href="/resources/css/reservation/packages/core/main.css" rel="stylesheet" />
+<link href="/resources/css/reservation/packages/daygrid/main.css" rel="stylesheet" />
+<script src="/resources/css/reservation/packages/core/main.js"></script>
+<script src="/resources/css/reservation/packages/interaction/main.js"></script>
+<script src="/resources/css/reservation/packages/daygrid/main.js"></script>
+
+<!-- 테이블css -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
 <!--script-->
 <script src="/resources/js/newClub/modal.js"></script>
 <script src="/resources/js/newClub/chat.js"></script>
@@ -69,7 +86,37 @@
 	z-index: 900;
 }
 </style>
+<script>
+	var test;
+	document.addEventListener("DOMContentLoaded", function () {
+		
+	  var calendarEl = document.getElementById("test");			
+	  test = new FullCalendar.Calendar(calendarEl, {
+	    plugins: ["interaction", "dayGrid"],
+	    defaultDate: "2021-06-06",
+	    editable: true,
+	    eventLimit: true,
+	    
+	    dateClick: function (data) {
+	      if(stu != ""){
+	        $(".service").css("display", "block");
+	       $(".service_date").val(data.dateStr);
+	       console.log(data.dateStr);
+	       
+	      }else{
+	    	  alert("로그인 후 이용이 가능합니다.");
+	          location.href = "/";
+	      }
+	    },
+	  });
+	  test.render();
+	});
+	$(function(){	
+		test.addEvent({title:'혜영아힘내자!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2016-06-21'});
+	});	
+</script>
 </head>
+
 <body>
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -173,15 +220,63 @@
 								</div>
 								</c:forEach>
 							</div>
-							<div>일정</div>
-							<div>멤버</div>
+							
+							
+							<!-- 달력 api -->
+							<div>
+								<div id="test" style="width: 650px;"></div>
+							</div>
+                            <!-- 멤버목록(관리자) -->
+							<div>
+								<input type="button" value="회원목록" onclick="memberListAdmin()">
+                                <input type="button" value="예약목록" onclick="userListAdmin()">
+                                <div class="table-responsive" style="border: 1px solid black; height: 500px;">
+                                    <h3 style="margin-left: 10px; font-weight: bold;">회원관리</h3>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="listBar" style="background-color: #ec523f; color: white;">
+                                                <th>No.</th>
+                                                <th>멤버</th>
+                                                <th>가입날짜</th>
+                                                <th style="text-align: center">쪽지</th>
+                                                <th style="text-align: center">강퇴</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${boardList }" var="l" varStatus="i">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>바람돌이</td>
+                                                    <td>2021-07-01</td>
+                                                    <td style="text-align: center">쪽지</td>
+                                                    <td style="text-align: center">강퇴</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- 관리자 컨텐츠(관리자) -->
+                                <h3 style="margin-left: 10px; font-weight: bold;">클럽 관리</h3>
+                                <div class="bottomAdmin">
+                                    <div class="clubModify">
+                                        <div style="margin-left: 30px; padding-top: 15px;">모임명</div>
+                                        <div><textarea>모임 소개글</textarea></div>
+                                    </div>
+                                    <div class="clubModifyDelete">
+                                        <div>수정</div>
+                                        <div>모임폐쇄</div>
+                                    </div>
+                                </div>
+                            </div>
 						</div>
 					</div>
-					 
-		 			<div class="right1">
+
+					<div class="right1">
 						<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
 						<hr> --%>
-						<div class="commentbox" style="width:250px; height:30px;">클럽 멤버와 채팅하기</div>
+						<div class="commentbox" style="width: 250px; height: 30px;">클럽
+							멤버와 채팅하기</div>
 						<div class="chatting">
 							<div class="messageArea"></div>
 							<div class="sendBox">
@@ -190,12 +285,10 @@
 							</div>
 						</div>
 					</div>
-					</div>
-				</div> 
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 	<!-- Modal -->
 	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
         <div class="modalWrap"> <!--숨어있는 모달-->
@@ -207,6 +300,17 @@
         </div>
     </div>
 	<script>
+	/* 관리자 회원/예약 */
+	 $(function(){
+        function userListAdmin(){
+            $(".table table-hover1").css("display","none");
+            $(".table table-hover2").css("display","block");
+        }
+        function memberListAdmin(){
+            $(".table table-hover1").css("display","block");
+            $(".table table-hover2").css("display","none");
+        }
+        });
 	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장

@@ -208,7 +208,7 @@
 	 }
 	 .userName{
 	 	float: left;
-	 	width: 50px;
+	 	/* width: 50px; */
 	 	height: 50px;
 	 	padding: 20px;
 	 }
@@ -342,4 +342,81 @@
         border: 1px solid gray;
 
     }
+    
+    
+/* 준식@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+.bottomAdmin {
+  width: 100%;
+  border-radius: 5px;
+  background-color: gainsboro;
+}
+.clubModify {
+  width: 100%;
+  height: 180px;
+}
+.clubModify textarea {
+  text-align: center;
+  width: 90%;
+  height: 80px;
+  margin-left: 30px;
+  padding: 15px;
+  resize: none;
+  outline: none;
+  border: 0px;
+  border-radius: 5px;
+}
+.clubModify > div:nth-child(1) {
+  width: 100px;
+  margin-left: 30px;
+  padding-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid white;
+}
+.clubModify > div:nth-child(2) {
+  margin: 0 auto;
+  margin-top: 15px;
+}
+.clubModifyDelete {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.clubModifyDelete > div {
+  width: 80px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  font-size: 12px;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  margin-left: 10px;
+  background-color: rgba(0, 166, 255, 0.755);
+}
+.clubModifyDelete > div:nth-child(2) {
+  background-color: rgba(255, 25, 0, 0.761);
+  cursor: pointer;
+}
+.clubModifyDelete > div:first-child:hover {
+  background-color: rgba(61, 183, 248, 0.761);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.clubModifyDelete > div:nth-child(2):hover {
+  background-color: rgb(250, 110, 94);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.table-responsive,
+.bottomAdmin {
+  box-shadow: 0 8px 11px 0 rgb(0 0 0 / 10%), 0 1px 1px 0 rgb(0 0 0 / 1%);
+}
+#test {
+  box-shadow: 0 8px 11px 0 rgb(0 0 0 / 10%), 0 1px 1px 0 rgb(0 0 0 / 1%);
+}
+    
+    
     
