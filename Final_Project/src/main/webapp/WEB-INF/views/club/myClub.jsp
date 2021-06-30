@@ -230,7 +230,7 @@ $(function() {
 	
 });
 
-function selectDateChange(){
+/* function selectDateChange(){
 	var selectDate = $(".selectDate").val();
 	
 	var changeDate;
@@ -243,8 +243,8 @@ function selectDateChange(){
 	}
 	else if(selectDate =='지난 1개월'){
 		
-	}
-}
+	} 
+}*/
 	
 //모달클릭
 function func1(obj){
