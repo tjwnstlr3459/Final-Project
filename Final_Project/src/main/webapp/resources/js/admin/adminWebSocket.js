@@ -20,7 +20,7 @@ $(function(){
 	*/
 	}
 	function receiveMsg(param){
-		
+		document.getElementById('visitor').innerHTML = param.data;
 	}
 	function outMember(){
 	

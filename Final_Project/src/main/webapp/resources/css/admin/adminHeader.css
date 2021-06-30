@@ -2,7 +2,7 @@
 :root{
     --backColor:#2e2d31;			/* 관리자 메인 배경 색 */
 	--mainTextColor:#67dfdf;		/* 관리자 메인 글씨  */
-	--menuTextColor:#ffffff;		/* 관리자 메뉴 글씨  */
+	--whiteTextColor:#ffffff;		/* 관리자 메뉴 글씨  */
 	--underLine:#4d4d4d;			/* 구분 밑 줄 */
 	--contentBackColor:#201f22;		/* 해당 메뉴의 컨텐츠 배경 색 */
 	--fontBilbo:'Bilbo', cursive;	/* bilbo 폰트 */
@@ -100,7 +100,7 @@ nav{
 }
 .menu a{
     text-decoration: none;
-    color:var(--menuTextColor);
+    color:var(--whiteTextColor);
     display:flex;
     width:100%;
     height:100%;
@@ -327,4 +327,38 @@ section::-webkit-scrollbar-track {
 }
 .answer-box{
 	display:none;
+}
+/* 관리자 페이지 방문자,오늘,전체 설정 */
+.counts{
+	display:flex;
+	justify-content:space-evenly;
+}
+.count-wrap{
+	display:flex;
+}
+.icon-box{
+	width:50px;
+	height:50px;
+	margin:10px;
+	margin-right:0;
+}
+.count-box{
+	display:flex;
+	flex-direction:column;
+}
+.spans{
+	color:var(--whiteTextColor);
+	display:inline-block;
+	width:150px;
+	line-height:30px;
+	text-align:center;
+}
+.count-value{
+	line-height:40px;
+	font-size:1.5rem;
+	font-weight:600;
+}
+.visitor-icon{
+	background-image:url('/resources/image/icons/visitor_icon.png');
+	background-size:100%;
 }

@@ -32,10 +32,28 @@
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
 		<!-- content -->
 		<section>
-			<div class="count-box">
-				<ul>
-					<li>접속자 
-				</ul>
+			<div class="counts">
+				<div class="box-option count-wrap"><!-- 접속자 -->
+					<div class="icon-box visitor-icon"></div>
+					<div class="count-box">
+						<span class="spans count-name">Visitor</span>
+						<span class="spans count-value" id="visitor"></span>
+					</div>
+				</div>
+				<div class="box-option count-wrap"><!-- 투데이 -->
+					<div class="icon-box today-icon"></div>
+					<div class="count-box">
+						<span class="spans count-name">Today</span>
+						<span class="spans count-value" id="today"></span>
+					</div>
+				</div>
+				<div class="box-option count-wrap"><!-- 토탈 -->
+					<div class="icon-box total-icon"></div>
+					<div class="count-box">
+						<span class="spans count-name">Total</span>
+						<span class="spans count-value" id="total"></span>
+					</div>
+				</div>
 			</div>
 			<div class="hobbys-box box-option">
 		        <canvas id="chart1"></canvas>
