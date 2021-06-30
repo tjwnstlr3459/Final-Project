@@ -102,39 +102,17 @@
 						
 						<div class="tab-cont">
 							<div>
+								<h4 style="width:200px; margin-top:0px; font-weight:bold;" >게시글 등록</h4>
 								<div class="deletebox">
 				                  <a class="deletebtn" href="/boardDelete">삭제하기</a>
-				                </div>
+				                </div>           
 								<div class="boardWritebox">
 									<form action="/boardWrite.do" method="post" enctype="multipart/form-data">
-										<fieldset>
-											<legend>게시글 목록</legend>
-											<table class="table" style="width:100%;">
-												<tr class="table-active">
-													<th>작성자</th>
-													<td>
-														<input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><br>
-													</td>
-												</tr>
-												<tr class="table-active">	
-													<th>첨부파일</th>
-													<td style="text-align:left">
-														<input type="file" name="files" onchange="loadImg(this);">	<!-- 파일을 선택하거나 이런 체인지 동작감지 -->
-													</td>
-												</tr>
-												<tr class="table-active">
-												<th>내용</th>
-													<td colspan="3">
-														<textarea name="photoContent" class="formControl"></textarea>
-													</td>
-												</tr>
-												<tr class="table-active">
-													<th colspan="4">
-														<button type="submit" class="btn-block">등록하기</button>
-													</th>
-												</tr>
-											</table>
-										</fieldset>
+										작성자 : <input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><hr>
+										제목 : <input type="text" name="boardTitle" style= "width:200px;"><br>
+										파일 : <input type="file" name="files" multiple><br>
+										내용 : <textarea rows="8" cols="99" name="boardContent" style="resize: none; "></textarea><br>
+										<input type="submit" value="등록">
 									</form>
 								</div>
 								<%-- <c:forEach items="${list }" var="board">
@@ -143,7 +121,8 @@
 												<div class="userImg"></div>
 												<div class="userName">${board.boardWriter }</div>
 												<div class="enrollDate">${board.enrollDate }</div>
-											</div>	
+											</div>
+											<img src=/resources/image/icons/+p.filePath>--이건 html기준
 											<div class="boardcontain" style="height: 40%;">
 												${board.boardContent}
 											</div>
@@ -160,7 +139,7 @@
 							<div>
 								<!-- 사진첩 -->
 								<div class="photohead">
-									<div class=allphoto><h3>전체사진</h3><em></em></div>
+									<h4 style="width:200px; margin-top:0px; font-weight:bold;" >게시글 등록</h4>
 									<div class="photoadd">
 						            </div>
 						         </div>
@@ -266,6 +245,7 @@
 						html += '<div class="board-wrap">';
 						html += 	'<div class="userinfo" style="height:30%;">';
 						html += 		'<div class="userImg">'+'</div>';
+						html += 		'<div class="boardTitle">' + p.boardTitle+ '</div>';
 						html += 		'<div class="userName">' + p.boardWriter+ '</div>';
 						html += 		'<div class="enrollDate">' + p.enrollDate+ '</div>';
 						html += 	'</div>';

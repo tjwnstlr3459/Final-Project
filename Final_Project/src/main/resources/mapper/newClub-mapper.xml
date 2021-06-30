@@ -42,63 +42,33 @@ FROM
 <!-- 클럽보드에서 38번을 순서대로찾아서 그중 최근거 1~3을 찾음 -->
 </select>
 
-<!--글쓰기 등록 -->
-<insert id="insertBoard" parameterType="n">
+
+<insert id="insertBoard" parameterType="b">
 insert into club_board values(
     CB_SEQ.NEXTVAL,
     #{clubNo},
-    5,
+    #{boardCG},
     #{boardWriter},
-    '제목',
+    #{boardTitle},
     #{boardContent},
     null,
     null,
-    0,
-    0,
+    1,
+    1,
     to_char(sysdate,'yyyy-mm-dd'))
 </insert>
 
-<!-- 게시물 등록 -->
-<insert id="insertPhoto" parameterType="b">
-insert into club_board values(
-    CB_SEQ.NEXTVAL,
-    #{clubNo},
-    5,
-    #{boardWriter},
-        제목,
-    #{boardContent},
-    null,
-    null,
-    1,
-    1,
-    to_char(sysdate,'yyyy-mm-dd'))
-</insert>
-<!-- 최신 게시글 번호 찾기-->
+<!-- 최신게시글 no를 찾아내기 위한 쿼리 -->
 <select id="selectBoardNo" resultType="int">
 	select max(board_no) from club_board
 </select>
+
 <!-- 파일추가하기위한 쿼리 -->
 <update id="insertFile" parameterType="b">
 	update club_board set 
-		fileName=#{filename},
-		filePath=#{filepath}
+		filename=#{fileName},
+		filepath=#{filePath}
 	where board_no=#{boardNo}
 </update>
-<select id="selectOne" parameterType="int" resultType="n" >
-		select
-		   BOARD_NO as boardNo,
-		   CLUB_NO as clubNo,
-		   BOARD_CG as boardCg,
-		   BOARD_WRITER as boardWriter,
-		   BOARD_TITLE as boardTitle,
-		   BOARD_CONTENT as boardContent,
-		   FILENAME,
-		   FILEPATH,
-		   BOARD_VIEWS as boardViews,
-		   BOARD_GOOD as boardGood,
-		   ENROLL_DATE as enrollDate
-		from club_board where club_no=#{clubNo}
-	</select>
-		
-		
+
 </mapper>
