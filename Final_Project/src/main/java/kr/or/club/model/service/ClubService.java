@@ -18,29 +18,27 @@ public class ClubService {
 	@Autowired
 	private ClubDao dao;
 
+	//내가 속한 클럽명들 출력
 	public ArrayList<Club> memberClubList(Member m) {
 		List<Club> list = dao.memberClubList(m);
 		return (ArrayList<Club>)list;
 	}
-
-//	public ArrayList<Board> memberClubPosts(Member m) {
-//		List<Board> list = dao.memberClubPosts(m);
-//		return (ArrayList<Board>)list;
-//	}
-
-	public ArrayList<ClubBoard> morePhoto(int start, Member m) {
+	
+	//회원이 속한 모임에 클럽게시물 상세출력(더보기/chagneDate로 날짜조건별 조회)
+	public ArrayList<ClubBoard> morePhoto(int start, Member m, int changeDate) {
 		//5개씩 사진 가져올거라서
 		int length = 10;
 		int end = start+length-1;
-		
-		List<ClubBoard> list = dao.morePhoto(start,end,m);
+		List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate);
 		return (ArrayList<ClubBoard>)list;
 	}
-
-	public int totalCount(Member m) {
-		return dao.totalCount(m);
+	
+	//changeDate값에따라 날짜별 게시물조회 의 총갯수
+	public int totalCount(Member m, int changeDate) {
+		return dao.totalCount(m,changeDate);
 	}
 
+	//임시게시물 등록
 	@Transactional
 	public int insertPost(ClubBoard b, ArrayList<ClubBoard> fileList) {
 		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
@@ -74,5 +72,15 @@ public class ClubService {
 		int result = dao.createClub(c);
 		return result;
 	}
+	
+	/*
+	 * //마이클럽 날짜별 게시물 조회 public ArrayList<ClubBoard> selectPostList(Member m, int
+	 * start, String changeDate) { //5개씩 사진 가져올거라서 int length = 10; int end =
+	 * start+length-1;
+	 * 
+	 * List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate); return
+	 * (ArrayList<ClubBoard>)list; }
+	 */
+
 	
 }
