@@ -106,13 +106,35 @@
 				                  <a class="deletebtn" href="/boardDelete">삭제하기</a>
 				                </div>
 								<div class="boardWritebox">
-									<form action="/boardWrite.do" method="post">
-										<input type="hidden" name="clubNo" value="${clubNo} ">
-										작성자: <input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><br>
-										<hr>
-										내용:<br>
-										<textarea rows="11" cols="95" name="boardContent"></textarea>
-										<br> <input type="submit" value="작성">
+									<form action="/boardWrite.do" method="post" enctype="multipart/form-data">
+										<fieldset>
+											<legend>게시글 목록</legend>
+											<table class="table" style="width:100%;">
+												<tr class="table-active">
+													<th>작성자</th>
+													<td>
+														<input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><br>
+													</td>
+												</tr>
+												<tr class="table-active">	
+													<th>첨부파일</th>
+													<td style="text-align:left">
+														<input type="file" name="files" onchange="loadImg(this);">	<!-- 파일을 선택하거나 이런 체인지 동작감지 -->
+													</td>
+												</tr>
+												<tr class="table-active">
+												<th>내용</th>
+													<td colspan="3">
+														<textarea name="photoContent" class="formControl"></textarea>
+													</td>
+												</tr>
+												<tr class="table-active">
+													<th colspan="4">
+														<button type="submit" class="btn-block">등록하기</button>
+													</th>
+												</tr>
+											</table>
+										</fieldset>
 									</form>
 								</div>
 								<%-- <c:forEach items="${list }" var="board">
@@ -140,8 +162,6 @@
 								<div class="photohead">
 									<div class=allphoto><h3>전체사진</h3><em></em></div>
 									<div class="photoadd">
-						            	<a href="/photoWriteFrm.do">사진등록</a>
-										<a href="/photoDelete.do">삭제하기</a>
 						            </div>
 						         </div>
 						         <c:forEach items="${list }" var="board">   

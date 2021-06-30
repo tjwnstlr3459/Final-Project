@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.board.model.vo.Board;
+import kr.or.club.model.vo.ClubBoard;
 import kr.or.newclub.model.vo.clubBoard;
 
 @Repository
@@ -41,6 +42,26 @@ public class newClubDao {
 		 * {b.getBoardTitle(),b.getBoardWriter(),b.getBoardContent()}; int result =
 		 * jdbcTemplate.update(query,params); return result;
 		 */
+
+	//게시물 등록
+	public int insertBoard(clubBoard b) {
+		return session.update("newclub.insertBoard",b);
+	}
+
+	public int insertBoard(Board b) {
+		return session.insert("newclub.insertBoard",b);
+	}
+
+	public int selectBoardNo() {
+		return session.selectOne("newclub.selectBoardNo");
+	}
+
+	public int insertFile(clubBoard f) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	}
 
 	
