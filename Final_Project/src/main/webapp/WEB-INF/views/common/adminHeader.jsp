@@ -16,10 +16,15 @@
 	<script src="/resources/js/summernote/summernote-lite.js"></script>
 	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
+	
 	<!-- 관리자 js -->
 	<script src="/resources/js/admin/summernote-admin.js"></script>
+	<!-- chart.js  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+	<!-- 관리자 페이지 adminCharts.js -->
+	<script src="/resources/js/admin/adminCharts.js"></script>
 	<!-- 현재 접속자 파싱 웹소켓 -->
-	<script src="/resources/js/admin/adminWebSocket.js"></script>	
+	<script src="/resources/js/admin/adminWebSocket.js"></script>
 <!-- header 영역 -->
     <!-- 왼쪽 관리자,메뉴 영역 -->
     <nav>

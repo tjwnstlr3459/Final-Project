@@ -33,6 +33,8 @@
 		<typeAlias type="kr.or.member.model.vo.Friends" alias="f"/>
 		<!-- 관리자 카운트 클래스 -->
 		<typeAlias type="kr.or.admin.model.vo.AdminCount" alias="ac"/>
+		<!-- 관리자 방문 클래스 -->
+		<typeAlias type="kr.or.admin.model.vo.Visit" alias="visit"/>
 		
 
 	</typeAliases>

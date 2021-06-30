@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -26,6 +28,7 @@ import com.google.gson.JsonObject;
 
 import kr.or.admin.model.service.AdminService;
 import kr.or.admin.model.vo.AdminCount;
+import kr.or.admin.model.vo.Visit;
 import kr.or.member.model.vo.Member;
 
 
@@ -104,10 +107,28 @@ public class AdminController {
 		return new Gson().toJson(ac);
 	}
 	//세션에 등록된(로그인 된) email get
-	@RequestMapping(value="/getSessionEmail.do", produces = "application/json;charset=utf-8")
+	@RequestMapping(value="/insertVisit.do", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String getSessionEmail(@SessionAttribute Member m) {
-		return new Gson().toJson(m);
+	public String insertVisit(HttpServletRequest request) {
+		//getRemoteAddr() : 유저의 ip를 리턴하는 메소드 HttpServletRequest를 import해서 사용
+		String visitorIp = request.getRemoteAddr();
+		Map<String, String> map = new HashMap<String, String>();
+		//루프백ip 와 로컬호스트로 접속할 경우 visit 테이블에 insert 하지않는다.
+		if(!(visitorIp.equals("127.0.0.1") || visitorIp.equals("0:0:0:0:0:0:0:1"))) {
+			if(service.insertVisit(visitorIp) >0) {
+				map.put("result","success");
+				return new Gson().toJson(map);
+			};
+		}
+		map.put("result","failed");
+		return new Gson().toJson(map);
+	}
+	//type값을 받아서 오늘 방문자와 총 방문자수 select
+	@RequestMapping(value="/selectVisit.do")
+	@ResponseBody
+	public String selectVisit(Visit selectType) {
+		int count = service.selectVisit(selectType);
+		return Integer.toString(count);
 	}
 
 	

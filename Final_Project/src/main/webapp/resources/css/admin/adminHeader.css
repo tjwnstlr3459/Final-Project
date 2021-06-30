@@ -332,6 +332,7 @@ section::-webkit-scrollbar-track {
 .counts{
 	display:flex;
 	justify-content:space-evenly;
+	padding:20px 0;
 }
 .count-wrap{
 	display:flex;
@@ -345,6 +346,8 @@ section::-webkit-scrollbar-track {
 .count-box{
 	display:flex;
 	flex-direction:column;
+	padding-right:10px;
+	box-sizing:border-box;
 }
 .spans{
 	color:var(--whiteTextColor);
@@ -359,6 +362,6 @@ section::-webkit-scrollbar-track {
 	font-weight:600;
 }
 .visitor-icon{
-	background-image:url('/resources/image/icons/visitor_icon.png');
+	background-image:url('/resources/image/icons/visit_icon.png');
 	background-size:100%;
 }
