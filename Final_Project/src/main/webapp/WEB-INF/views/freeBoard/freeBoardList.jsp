@@ -170,7 +170,11 @@ button:hover{
 						html += "<div class='posting'>";			//여기다가 div클ㄹ스 */
 						html += "<img src='/resources/freeBoardUpload/"+fb.filepath+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
+						if(${empty sessionScope.m}){							
+						html += "<button onclick='addHeart(this);' disabled><i class='far fa-heart'></i>&nbsp;";
+						}else{							
 						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
+						}
 						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
 						html +="</button><button onclick='detailView(this);'><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
 						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
@@ -215,7 +219,6 @@ button:hover{
 				
 			}else{
 				location.href-"redirect:/";
-			console.log(fbNo);
 			}
 		}
 		
@@ -248,7 +251,6 @@ button:hover{
 		        	modal.style.display = "block";
 		        	$('.modal-content').append(img);
 		        	$('.modal-content').append("<p style='font-size: 40px; color:black; text-align:center;'>"+fbContent+"</p>");
-		        	console.log(fbContent);
 				}
 		        function closeView() {
 		        	$('.modal-content').empty();

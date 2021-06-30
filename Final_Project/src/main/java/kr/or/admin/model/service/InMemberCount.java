@@ -14,7 +14,7 @@ import com.google.gson.JsonParser;
 public class InMemberCount extends TextWebSocketHandler{ 	//상속으로 생성하며 메소드는 3개(연결 시, 주고받을 시, 종료되었을 시) 존재
 	private ArrayList<WebSocketSession> sessionList;		//접속한 회원의 세션(eamil)을 저장하는 list
 	private Map<WebSocketSession, String> memberList;		//각 세션별로 접속한 회원의 아이디를 저장하는 map
-	
+	private int memberCount;
 	//클라이언트가 최초로 웹소켓 서버에 접속했을 때 수행되는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
