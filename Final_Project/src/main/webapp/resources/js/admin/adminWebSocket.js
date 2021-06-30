@@ -13,13 +13,14 @@ $(function(){
 		ws.onclose = outMember;
 	}
 	function inMember(){
+	ws.send(JSON.stringify());
 	/*
 		var data = {type:"in", msg:memberEmail};
 		ws.send(JSON.stringify(data));
 	*/
 	}
 	function receiveMsg(param){
-	
+		
 	}
 	function outMember(){
 	

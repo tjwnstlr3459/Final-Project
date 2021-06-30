@@ -14,7 +14,12 @@
 	    border-right:5px solid var(--mainTextColor);
 	    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
 	}
-	.chart1-box{
+	.hobbys-box{
+		width:300px;
+		height:300px;
+		padding:10px;	
+	}
+	.ages-box{
 		width:300px;
 		height:300px;
 		padding:10px;
@@ -25,14 +30,20 @@
 	<div class="wrap">
 		<!-- header-nav -->
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
-		sdfsdfsdfsdf
 		<!-- content -->
-		<div class="chart1-box box-option">
-	        <canvas id="chart1"></canvas>
-	    </div>	
-		<div class="chart1-box box-option">
-	        <canvas id="memberAge"></canvas>
-	    </div>	
+		<section>
+			<div class="count-box">
+				<ul>
+					<li>접속자 
+				</ul>
+			</div>
+			<div class="hobbys-box box-option">
+		        <canvas id="chart1"></canvas>
+		    </div>	
+			<div class="ages-box box-option">
+		        <canvas id="memberAge"></canvas>
+		    </div>	
+		</section>
 	</div>
 </body>
 </html>
