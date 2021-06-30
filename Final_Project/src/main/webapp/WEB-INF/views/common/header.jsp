@@ -178,7 +178,7 @@ position:fixed;
 				</c:when>
 			</c:choose>
 			<c:if test="${empty sessionScope.m }">
-			<li><a onclick="loginCheck();" style="cursor:pointer;">CREATE CLUB</a></li>
+			<li><a onclick="loginCheck();" style="cursor:pointer; color:#fff;">CREATE CLUB</a></li>
 			</c:if>
 			<c:if test="${!empty sessionScope.m }">
 			<li><a href="/createClubFrm.do">CREATE CLUB</a></li>

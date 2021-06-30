@@ -64,4 +64,7 @@
   <select id="selectFilepath" parameterType="int" resultType="String">
   	select filepath from free_board where fb_no = #{fbNo}
   </select>
+  <update id="addViews">
+  	update free_board set fb_views = (fb_views+1) where fb_no = #{fbNo}
+  </update>
 </mapper>
