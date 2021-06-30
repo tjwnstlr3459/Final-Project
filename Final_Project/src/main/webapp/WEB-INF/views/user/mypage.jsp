@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- 우편번호 찾기 -->
+    <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
     <style>
         /* div {
@@ -25,7 +27,7 @@
 			padding: 5px;
 			box-sizing: border-box;
 		}
-		#mailCfrm, input[type=submit], #closeModal {
+		#mailCfrm, input[type=submit], .modalButton {
 			width: 300px;
 			height: 35px;
 			color: white;
@@ -196,7 +198,7 @@
             margin-left: -0.6m;
             margin-top: -0.6em;
         }
-        .modal {
+        .modalFr, .modalDm {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -237,14 +239,14 @@
             align-items: center;
         }
         #findEmail {
-            width: 230px;
+            width: 200px;
         }
 
         #findID {
             background-color: white;
             border: 1px solid #ec523f;
             color: black;
-            width: 60px;
+            width: 98px;
             height: 35px;
         }
         .findResult {
@@ -252,6 +254,51 @@
             margin-bottom: 10px;
             font-size: 0.9em;
         }
+        .addUser {
+        	border: 0;
+        	border-radius: 10px;
+        	padding: 20px;
+        }
+        .addUser > .speech-bubble {
+            width: 100%;
+        }
+        .addUser .myName {
+        	height:100%;
+        	line-height:70px;
+        }
+        
+        .elementChk {
+			text-align: left;
+		}
+		
+		.elementChk>label {
+			display: inline-block;
+			width: 70px;
+			font-size: 0.9em;
+		}
+		.popupLayer {
+			box-sizing: border-box;
+			position: absolute;
+			display: none;
+			background-color: #ffffff;
+			border: solid 2px #d0d0d0;
+			width: 120px;
+			height: 80px;
+			padding: 10px;
+		}
+		.popupLayer div {
+			position: absolute;
+			top: 5px;
+			right: 5px
+		}
+		.fMenu {
+			display: block;
+			font-size: 0.9em;
+			cursor: pointer;
+		}
+		.fMenu:hover {
+			color: #19ba3f;
+		}
     </style>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -286,6 +333,7 @@
             <div class="main">
             	<!-- 친구 화면 -->
                 <div class="friendBox">
+         			<c:if test="${not empty rfriends }">
                     <div class="title">
                         	새 친구 요청
                     </div>
@@ -301,6 +349,7 @@
                         </div>  
                     </c:forEach>
                 	</div>
+                	</c:if>
                     <div class="title">
                       	  내 친구
                         <a href="javascript:void(0)" id="find"><i class="fas fa-plus"></i></a>
@@ -312,7 +361,7 @@
                                 <img class="profile-img" src="resources/image/userPic/${f.filepath }"/><br>
                             </div>
                             <div style="text-align: center;">
-                            	<a href="javascript:void(0)" onclick="fMenu('${f.memberNick }')">${f.memberNick }</a>
+                            	<a href="javascript:void(0)" class="friendName">${f.memberNick }</a>
                             </div>
                         </div>  
                     </c:forEach>
@@ -416,15 +465,73 @@
 			                    </div>
 			
 			                    <div class="element">
-			                        <span class="legend">나이--수정하기</span>
+			                        <span class="legend">나이</span>
 			                        <select name="age">
-			                            <option value="10">10대 이하</option>
-			                            <option value="20">20대</option>
-			                            <option value="30">30대</option>
-			                            <option value="40">40대</option>
-			                            <option value="50">50대</option>
-			                            <option value="60">60대 이상</option>
-			                            <option value="0">선택하지 않음</option>
+			                        	<c:choose>
+			                        		<c:when test="${m.age == 10}">
+			                        			<option value="10" selected>10대 이하</option>
+					                            <option value="20">20대</option>
+					                            <option value="30">30대</option>
+					                            <option value="40">40대</option>
+					                            <option value="50">50대</option>
+					                            <option value="60">60대 이상</option>
+					                            <option value="0">선택하지 않음</option>
+			                        		</c:when>
+			                        		<c:when test="${m.age == 20}">
+			                        			<option value="10">10대 이하</option>
+					                            <option value="20" selected>20대</option>
+					                            <option value="30">30대</option>
+					                            <option value="40">40대</option>
+					                            <option value="50">50대</option>
+					                            <option value="60">60대 이상</option>
+					                            <option value="0">선택하지 않음</option>
+			                        		</c:when>
+			                        		<c:when test="${m.age == 30}">
+			                        			<option value="10">10대 이하</option>
+					                            <option value="20">20대</option>
+					                            <option value="30" selected>30대</option>
+					                            <option value="40">40대</option>
+					                            <option value="50">50대</option>
+					                            <option value="60">60대 이상</option>
+					                            <option value="0">선택하지 않음</option>
+			                        		</c:when>
+			                        		<c:when test="${m.age == 40}">
+			                        			<option value="10">10대 이하</option>
+					                            <option value="20">20대</option>
+					                            <option value="30">30대</option>
+					                            <option value="40" selected>40대</option>
+					                            <option value="50">50대</option>
+					                            <option value="60">60대 이상</option>
+					                            <option value="0">선택하지 않음</option>
+			                        		</c:when>
+			                        		<c:when test="${m.age == 50}">
+			                        			<option value="10">10대 이하</option>
+					                            <option value="20">20대</option>
+					                            <option value="30">30대</option>
+					                            <option value="40">40대</option>
+					                            <option value="50" selected>50대</option>
+					                            <option value="60">60대 이상</option>
+					                            <option value="0">선택하지 않음</option>
+			                        		</c:when>
+			                        		<c:when test="${m.age == 60}">
+			                        			<option value="10">10대 이하</option>
+					                            <option value="20">20대</option>
+					                            <option value="30">30대</option>
+					                            <option value="40">40대</option>
+					                            <option value="50">50대</option>
+					                            <option value="60" selected>60대 이상</option>
+					                            <option value="0">선택하지 않음</option>
+			                        		</c:when>
+			                        		<c:when test="${m.age == 0}">
+			                        			<option value="10">10대 이하</option>
+					                            <option value="20">20대</option>
+					                            <option value="30">30대</option>
+					                            <option value="40">40대</option>
+					                            <option value="50">50대</option>
+					                            <option value="60">60대 이상</option>
+					                            <option value="0" selected>선택하지 않음</option>
+			                        		</c:when>
+			                        	</c:choose>			                            
 			                        </select> 
 			                    </div>         
 			                    
@@ -452,7 +559,7 @@
 			                    </div>
 			                    
 			                    <div class="element">
-			                        <span class="legend">주소--수정하기</span>
+			                        <span class="legend">주소</span>
 			                        <input type="text" id="postcode" placeholder="우편번호" readonly><input type="button" id="findCode" onclick="findPCode()" value="우편번호 찾기"><br>
 			                        <input type="text" id="roadAddress" placeholder="도로명주소" readonly>
 			                        <span id="guide" style="color:#999;display:none"></span>
@@ -463,7 +570,14 @@
 			                    <div class="elementChk">
 			                        <span class="legend">관심분야(3개 선택)--수정하기</span>
 			                        <c:forEach items="${category }" var="c">
-						            	<label><input type="checkbox" name="hobby" value="${c.cgNo }">${c.cgName }</label>
+				                        <c:choose>
+				                        	<c:when test="${c.cgNo == m.hobby1 or c.cgNo == m.hobby2 or c.cgNo == m.hobby3 }">
+				                        		<label><input type="checkbox" name="hobby" value="${c.cgNo }" checked>${c.cgName }</label>
+				                        	</c:when>
+				                        	<c:otherwise>
+				                        		<label><input type="checkbox" name="hobby" value="${c.cgNo }">${c.cgName }</label>
+				                        	</c:otherwise>
+				                        </c:choose>						            	
 						            </c:forEach>
 			                        <span class="chkMsg"></span>
 			                    </div>
@@ -476,6 +590,7 @@
 			
 			                    <div class="element">
 			                        <span class="legend">프로필 사진</span>
+			                        <img src="resources/image/userPic/${m.filepath }">
 			                        <input type="file" name="propimg">
 			                        <span class="inputMsg"></span>
 			                    </div>
@@ -487,25 +602,54 @@
             </div>
         </div>
     </div>
-    <div class="modal">
+    <!-- 친구추가용 모달 -->
+    <div class="modalFr">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h2>친구 추가</h2>
 			</div>
 			<div class="modal-body">
 				<div class="modal-input">
-					<input type="text" id="finduser" name="email" placeholder="이메일 주소 혹은 이름을 입력해주세요">
-					<button type="button" onclick="findID('${m.memberNick}')">회원 검색</button>
+					<input type="text" id="findEmail" name="email" placeholder="이메일 주소 혹은 이름을 입력해주세요">
+					<button type="button" id="findID" onclick="findID('${m.memberNick}')">회원 검색</button>
 				</div>
 				<div class="findResult"></div>
 				
-				<button type="button" id="closeModal">닫기</button>
+				<button type="button" class="modalButton" id="closeModalFr">닫기</button>
 			</div>
 		</div>	
 	</div>
+	<!-- 쪽지 모달 -->
+	<div class="modalDm">
+		<div class="modal-content">
+			<div class="modal-header dms">
+			</div>
+			<div class="modal-body">
+				<div class="modal-input">
+                	<textarea name="dmContent"></textarea>
+				</div>
+				<div class="findResult"></div>
+				
+				<button type="button" class="modalButton" id="sendDmTo">전송</button>
+				<button type="button" class="modalButton" id="closeModalDm">닫기</button>
+			</div>
+		</div>	
+	</div>
+	<!-- 팝업 레이어  -->
+	<div class="popupLayer"></div>
     
     
     <script>
+    	var sender;
+    	var receiver;
+    	
+    	$(function() {
+    		var address = "<c:out value='${m.address}'/>";
+    		var addressDetail = address.split("/");
+    		$("#postcode").val(addressDetail[0]);
+    		$("#roadAddress").val(addressDetail[1]);
+    		$("#detailAddress").val(addressDetail[2]);
+    	})
         function myFriend() {
             $(".friendBox").show();
             $(".dmBox").hide();
@@ -584,8 +728,9 @@
         	})
 		}
 		$("#find").click(function() {
-			$(".modal").fadeIn();
-			$(".modal").css("display", "flex");
+			$(".findResult").html("");
+			$(".modalFr").fadeIn();
+			$(".modalFr").css("display", "flex");
 			
 		})
 		$("#findEmail").keypress(function(event){
@@ -594,13 +739,17 @@
 	         	return false;
 	     	}
 		})
-		$("#closeModal").click(function() {
-			$(".modal").fadeOut();
+		$("#closeModalFr").click(function() {
+			$(".modalFr").fadeOut();
+		})
+		$("#closeModalDm").click(function() {
+			$(".modalDm").fadeOut();
 		})
 	 	function findID(currUser) {
-			console.log(currUser)
-	 		var user = $("#finduser").val();
 			var result = $(".findResult");
+			var user = $("#findEmail").val();			
+			result.html("");	 		
+			result.append("<img src='resources/image/ajax-loader.gif'>");
 	 		$.ajax({
 	 			url: "/user/findUser.do",
                 type: "post",
@@ -608,11 +757,15 @@
                 success: function(data) {
        				result.html("");
                 	if(typeof(data) == "object"){
-                		console.log("2" + data.memberNick);
-                		result.append("<img src='resources/image/userPic/" + data.filepath + "'>");
-                		result.append("<span>" + data.memberNick + " " + data.intro + "</span>");
+                		result.html('<div class="addUser"><div class="myInfo"><div class="myInfoImg">'
+                				+ '<img class="profile-img" src="resources/image/userPic/' + data.filepath + '"/></div>'
+                				+ '<div class="myInfoMenu"><div class="myName">' + data.memberNick + '</div></div></div>'
+                				+ '<div class="speech-bubble">' + data.intro + '</div></div>');
                 		result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
-                		
+                		//result.append("<img src='resources/image/userPic/" + data.filepath + "'>");
+                		//result.append("<span>" + data.memberNick + " " + data.intro + "</span>");
+                		//result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
+	
                 	} else{
                 		result.html("찾는 회원이 없습니다.");
                 	}
@@ -623,6 +776,111 @@
 
 	 		})
 	 	}
+		$(".friendName").click(function(e) {
+			var targetUser = $(this).text();
+			var sWidth = window.innerWidth;
+			var sHeight = window.innerHeight;
+
+			var oWidth = $('.popupLayer').width();
+			var oHeight = $('.popupLayer').height();
+
+			// 레이어가 나타날 위치를 셋팅한다.
+			var divLeft = e.clientX + 10;
+			var divTop = e.clientY + 5;
+
+			// 레이어가 화면 크기를 벗어나면 위치를 바꾸어 배치한다.
+			if( divLeft + oWidth > sWidth ) divLeft -= oWidth;
+			if( divTop + oHeight > sHeight ) divTop -= oHeight;
+
+			// 레이어 위치를 바꾸었더니 상단기준점(0,0) 밖으로 벗어난다면 상단기준점(0,0)에 배치.
+			if( divLeft < 0 ) divLeft = 0;
+			if( divTop < 0 ) divTop = 0;
+			
+			var popup = $(".popupLayer");
+			popup.empty();
+			var sendUser = "<c:out value='${m.memberNick}'/>";
+			var dm = "<span class='fMenu' onclick='sendDm(\"" + targetUser + "\", \"" + sendUser + "\")'>쪽지 보내기</span>";
+			var chat = "<span class='fMenu'>채팅 요청하기</span>";
+			var close = "<span class='fMenu' onclick='closeLayer(this)'>닫기</span>";
+			popup.append(dm);
+			popup.append(chat);
+			popup.append(close);
+			
+			$(".popupLayer").css({
+				"top": divTop,
+				"left": divLeft,
+				"position": "absolute"
+			}).show();
+		})
+		
+		function closeLayer(obj) {
+			$(obj).parent().hide();
+		}
+		
+		function sendDm(receiver, sender) {
+			$(".popupLayer").hide();
+			$(".modalDm").fadeIn();
+			$(".modalDm").css("display", "flex");
+			$(".dms").html("<h2>" + receiver + "에게 쪽지 보내기</h2>");
+		}
+		$("#sendDmTo").click(function() {
+			var dm = $("[name=dmContent]").val();
+			$.ajax({
+	 			url: "/user/sendDm.do",
+                type: "post",
+                data: {sender:sender, receiver:receiver},
+                success: function(data) {
+                	console.log(data)
+                	if(data == 1) {
+                		result.append("<span>친구 요청을 수락했습니다.</span>");
+                	} else {
+                		result.append("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
+                	}
+                },
+                error: function() {
+                    console.log("error")
+                }
+        	})
+			
+			
+		})
+		
+		function findPCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var roadAddr = data.roadAddress; // 도로명 주소 변수
+	                var extraRoadAddr = ''; // 참고 항목 변수
+	
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraRoadAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                if(extraRoadAddr !== ''){
+	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+	                }
+	
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("postcode").value = data.zonecode;
+	                document.getElementById("roadAddress").value = roadAddr;
+
+	            }
+	        }).open();
+	    }
+		
+		
+		
+		//회원정보 수정용 유효성 체크
+		
 		$("[name=memberNick]").change(function() {
             var name = $(this).val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
@@ -648,6 +906,91 @@
                 })   
             }
         })
+        
+        $("input[type=checkbox]").change(function() {
+            var checked = $("input[type=checkbox]:checked").length;
+            if(checked >= 3) {
+                $("input[type=checkbox]:not(:checked)").attr("disabled", "disabled");
+            } else {
+                $("input[type=checkbox]").removeAttr("disabled");
+            }
+        })
+        
+        $("[name=intro]").change(function() {
+            var intro = $(this).val();
+            var introByteLength = intro.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+            if(introByteLength > 2000) {
+                $(this).next().html("길이 제한을 초과했습니다");
+            } else {
+                $(this).next().html("");
+            }
+        })
+        
+        function joinCheck() {
+            var name = $("[name=memberNick]").val();
+            var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+            var namechk = $("#namechk");
+            var age = $("[name=age]").val();
+            var gender = $("[name=gender]:checked").val();
+            var address = $("#postcode").val() + "/" + $("#roadAddress").val() + "/" + $("#detailAddress").val();
+            var hobby = [];
+            $("[name=hobby]:checked").each(function() { 
+                hobby.push($(this).val());
+            });
+            var hobby1 = hobby[0];
+            var hobby2 = hobby[1];
+            var hobby3 = hobby[2];
+            var intro = $("[name=intro]").val();
+            var introByteLength = intro.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+            var checked = $("input[type=checkbox]:checked").length;
+            var filename = "<c:out value='${m.filename}'/>";
+            var filepath = "<c:out value='${m.filepath}'/>";
+            console.log(filename)
+            console.log(filepath)
+            
+            return false;
+
+            if(namechk.html() == "중복된 이름은 사용할 수 없습니다.") {
+            	$("[name=memberNick]").css("border", "1px solid red");
+            	return false;
+            } else {
+            	$("[name=memberNick]").css("border", "1px solid #999");
+            }
+            if(nameByteLength == 0) {
+                $("[name=memberNick]").css("border", "1px solid red");
+                $("[name=memberNick]").next().html("이름은 비워둘 수 없습니다");
+                return false;
+            } else {
+                $("[name=memberNick]").css("border", "1px solid #999");
+                $("[name=memberNick]").next().html("");
+            }
+            if(nameByteLength > 40) {
+                $("[name=memberNick]").css("border", "1px solid red");
+                $("[name=memberNick]").next().html("이름 길이 제한을 초과했습니다");
+                return false;
+            } else {
+                $("[name=memberNick]").css("border", "1px solid #999");
+                $("[name=memberNick]").next().html("");
+            }
+            if(introByteLength > 2000) {
+                $("[name=intro]").css("border", "1px solid red");
+                $("[name=intro]").next().html("길이 제한을 초과했습니다");
+                return false;
+            } else {
+                $("[name=intro]").css("border", "1px solid #999");
+                $("[name=intro]").next().html("");
+            }
+            if(checked < 3) {
+            	$(".chkMsg").html("관심분야를 3개 선택해주세요");
+            	return false;
+            } else {
+            	$(".chkMsg").html("");
+            }
+            $("#joinForm").prepend("<input type='hidden' name='address' value='" + address + "'>'");
+            $("#joinForm").prepend("<input type='hidden' name='filename' value='" + filename + "'>'");
+            $("#joinForm").prepend("<input type='hidden' name='filepath' value='" + filepath + "'>'");
+            
+        }
 	</script>
     
 </body>

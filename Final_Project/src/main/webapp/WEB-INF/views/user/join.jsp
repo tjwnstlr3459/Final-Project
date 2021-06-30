@@ -77,7 +77,6 @@
                         <span class="legend">주소</span>
                         <input type="text" id="postcode" placeholder="우편번호" readonly><input type="button" id="findCode" onclick="findPCode()" value="우편번호 찾기"><br>
                         <input type="text" id="roadAddress" placeholder="도로명주소" readonly>
-                        <span id="guide" style="color:#999;display:none"></span>
                         <input type="text" id="detailAddress" placeholder="상세주소">
                         <span class="inputMsg"></span>
                     </div>
@@ -220,23 +219,7 @@
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	                document.getElementById("postcode").value = data.zonecode;
 	                document.getElementById("roadAddress").value = roadAddr;
-	                
-	               
-	                var guideTextBox = document.getElementById("guide");
-	                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-	                if(data.autoRoadAddress) {
-	                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-	                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	
-	                } else if(data.autoJibunAddress) {
-	                    var expJibunAddr = data.autoJibunAddress;
-	                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	                } else {
-	                    guideTextBox.innerHTML = '';
-	                    guideTextBox.style.display = 'none';
-	                }
+
 	            }
 	        }).open();
 	    }
