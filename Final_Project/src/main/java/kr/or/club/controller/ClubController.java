@@ -37,6 +37,7 @@ public class ClubController {
 //		ArrayList<Board> clubPosts = service.memberClubPosts(m);
 		int totalCount = service.totalCount(m);
 		
+		
 		model.addAttribute("clubList",clubList);
 //		model.addAttribute("clubPosts",clubPosts);
 		model.addAttribute("totalCount",totalCount);
