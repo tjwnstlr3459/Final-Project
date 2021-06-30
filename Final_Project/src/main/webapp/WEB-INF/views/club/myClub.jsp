@@ -74,12 +74,12 @@
 				<c:forEach items="${clubList}" var="l" varStatus="i">
 					<div class="myClubList">
 						<div class="clubListOne">
-							<img src="/resources/image/6.jpg" />
+							<img src="/resources/image/clubimg/${filepath }" />
 						</div>
 						<div class="clubListName">
 							<div>${l.clubName}</div>
 							<div class="clubJang" style="float: right">
-								<img src="/resources/image/user04.jpg" />
+								<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
 							</div>
 						</div>
 					</div>
