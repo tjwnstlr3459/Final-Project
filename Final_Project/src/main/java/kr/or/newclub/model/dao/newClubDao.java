@@ -44,21 +44,16 @@ public class newClubDao {
 		 */
 
 	//게시물 등록
-	public int insertBoard(clubBoard b) {
-		return session.update("newclub.insertBoard",b);
-	}
-
 	public int insertBoard(Board b) {
 		return session.insert("newclub.insertBoard",b);
 	}
-
+	// 최신 글번호 조회
 	public int selectBoardNo() {
 		return session.selectOne("newclub.selectBoardNo");
 	}
-
+	// 파일 업로드 db 저장
 	public int insertFile(clubBoard f) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.insert("newclub.insertFile", f);
 	}
 
 	
