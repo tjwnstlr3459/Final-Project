@@ -5,7 +5,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>너나들이</title>
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="resources/css/join.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- 우편번호 찾기 -->
