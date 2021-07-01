@@ -88,14 +88,14 @@
                 <!-- 쪽지 화면 -->
                 <div class="dmBox" style="display:none;">
                     <div class="title">
-                        	새 쪽지
+                        	새로 받은 쪽지
                         <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="dmsList">
                     
                     	<div class="rcvDmsList">
                     		<div class="row column-name">
-                    			<div class="dm-sender">보낸 사람</div>
+                    			<div class="dm-sender">유저명</div>
                                 <div class="dm-content">내용</div>
                                 <div class="dm-date">날짜</div>
                                 <div class="dm-reply">답장</div>
@@ -111,7 +111,15 @@
                                 </c:if>
                             </c:forEach>
                     	</div>
-                    	
+                    </div>
+                    
+                    <div class="title">
+                        	새 쪽지
+                        <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="dmsList">
+                    
+                    	<!-- 
                         <table style="width:500px;">
                             <tr>
                                 <th>보낸 사람</th>
@@ -132,6 +140,51 @@
                                     </c:if>
                             </c:forEach>
                         </table>
+                        -->
+                        
+                        <div class="dmsList">
+                    		<div class="row column-name">
+                    			<div class="dm-sr">구분</div>
+                    			<div class="dm-sender">유저명</div>
+                                <div class="dm-content">내용</div>
+                                <div class="dm-date">날짜</div>
+                                <div class="dm-read">읽음</div>
+                                <div class="dm-reply">답장</div>
+                    		</div> 
+                    		<c:forEach items="${dmList }" var="dm">
+                            	<c:if test="${not (dm.receiver == m.memberNick and dm.readStatus == 'N')}">
+                            		<div class="row">
+                            			<c:choose>
+                                    		<c:when test="${dm.receiver == m.memberNick}">
+                                    			<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>
+                                    		</c:when>
+                                    		<c:otherwise>
+                                    			<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>
+                                    		</c:otherwise>
+                                    	</c:choose>
+                                    	<c:choose>
+                                    		<c:when test="${dm.receiver == m.memberNick}">
+                                    			<div class="dm-sender">${dm.sender }</div>
+                                    		</c:when>
+                                    		<c:otherwise>
+                                    			<div class="dm-sender">${dm.receiver }</div>
+                                    		</c:otherwise>
+                                    	</c:choose>
+		                                <div class="dm-content">${dm.dmContent }</div>
+		                                <div class="dm-date">${dm.dmDate }</div>
+		                                <div class="dm-read">${dm.readStatus }</div>
+		                                <c:choose>
+                                    		<c:when test="${dm.receiver == m.memberNick}">
+                                    			<div class="dm-reply"><i class="fas fa-share"></i></div>
+                                    		</c:when>
+                                    		<c:otherwise>
+                                    			<div class="dm-reply"></div>
+                                    		</c:otherwise>
+                                    	</c:choose>
+	                    			</div>
+                               </c:if>                                   
+                            </c:forEach>
+                    	</div>
                         
                         <table>
                             <tr>
@@ -393,6 +446,11 @@
     	var dmSender;
     	var dmReceiver;
     	
+    	function reloadP() {
+    	    sessionStorage.setItem("reloading", "true");
+    	    document.location.reload();
+    	}
+    	
     	//페이지 로딩시 처리
     	$(function() {
     		var address = "<c:out value='${m.address}'/>";
@@ -400,6 +458,13 @@
     		$("#postcode").val(addressDetail[0]);
     		$("#roadAddress").val(addressDetail[1]);
     		$("#detailAddress").val(addressDetail[2]);
+    		
+    		var reloading = sessionStorage.getItem("reloading");
+    		console.log(reloading)
+    	    if (reloading) {
+    	        sessionStorage.removeItem("reloading");
+    	        myDm();
+    	    }
     	})
     	
     	//페이지 내 메뉴 이동
@@ -566,7 +631,6 @@
 		$("#closeModalFrReq").click(function() {
 			$(".modalFrReq").fadeOut();
 			location.reload();
-			myDm();
 		})
 		
 		//DM
