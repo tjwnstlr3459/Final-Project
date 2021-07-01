@@ -71,6 +71,15 @@ public class newClubController {
 		return result;
 	}
 	
+	  //가입수락
+	  @ResponseBody
+	  @RequestMapping(value = "/memberJoinCheck.do") 
+	  public int memberJoinCheck(int no,int clubNo) { 
+		  int result2 = service.insertClubMember(no,clubNo); 
+		  int result1 = service.deleteApply(no); 
+		  return result1; }
+	 
+	
 	
 	
 	/*아작스에서 제이슨 전달 방법

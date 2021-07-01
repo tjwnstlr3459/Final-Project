@@ -122,12 +122,18 @@
 								<div class="clubnotice">가입해주셔서 감사합니다 많이 소통해요</div>
 							</div>
 							<div style="display: flex; justify-content: center;">
-								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
+								<c:choose>
+								<c:when test="${sessionScope.m != null }">
+									<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-info btn-lg" onclick="location.href='/loginFrm.do'">로그인하기</button>
+								</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
 					<div class="middle">
-						
 						<div class="tab-cont">
 							<div>
 								<div class="deletebox">
@@ -253,13 +259,13 @@
                                         <tbody>
                                             <c:forEach items="${applyList }" var="l" varStatus="i">
                                                 <tr>
-                                                	
                                                     <td>${i.count }</td>
+                                                	<td class="listNumber" style="display: none;">${l.iaNo }</td>
                                                     <td>${l.receiver }</td>
                                                     <td>${l.iaContent }</td>
                                                     <td>${l.iaDate }</td>
                                                     <td style="text-align: center">
-                                                    	<button type="button" onclick="accept(this)">수락</button>
+                                                    	<button type="button" class="noNo" onclick="accept(${l.iaNo })" value="${l.iaNo }">수락</button>
                                                     </td>
                                                     <td style="text-align: center">
                                                     	<button type="button" onclick="refusal(this)">거절</button>
@@ -340,24 +346,26 @@
 	   </div>
 	 </div>
 	<script>
-	/* //클럽 가입 신청
-	function accept(obj){
-		var accept = $(this).eq(obj);
+	//클럽 가입 수락
+	function accept(obj){	//클릭한 게시물의 번호값 가져오기
+		var clubNo = ${clubNo }
 		$.ajax({
-			url : "/memberClubJoin.do",
-			data : apply,
+			url:"/memberJoinCheck.do",
+			data : {
+				no : no,
+				clubNo : clubNo,
+			},
 			type : "post",
 			success : function(data){
 				if(data > 0){
-					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
-					$("#closeModal").click();
+					alert("수락되었습니다.");
 				}else{
-					alert("가입실패");
+					alert("수락");
 				}
 			}
 		})
-	} */
-	//클럽가입 수락 및 거절
+	}
+	//클럽가입 신청
 	function userClubJoin(){
 		var apply={
 			clubNo : $(".clubNo").val(),
