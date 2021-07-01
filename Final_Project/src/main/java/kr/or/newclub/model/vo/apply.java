@@ -9,4 +9,5 @@ public class apply {
 	private String receiver;
 	private String iaType;
 	private String iaContent;
+	private String iaDate;
 }

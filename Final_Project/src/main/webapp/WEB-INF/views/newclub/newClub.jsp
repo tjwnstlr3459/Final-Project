@@ -211,25 +211,27 @@
 							<div>
 								<input type="button" value="회원목록" onclick="memberListAdmin();">
                                 <input type="button" value="예약목록" onclick="userListAdmin();">
-                                <div class="table-responsive" style="border: 1px solid black; height: 500px;">
-                                    <h3 style="margin-left: 10px; font-weight: bold;">회원관리</h3>
+                                <div class="table-responsive" style="border: 0px solid black; height: 500px;">
+                                    <h3 style="margin-left: 10px; font-weight: bold;">관리목록</h3>
                                     <!-- 회원목록 -->
                                     <table class="table table-hover1">
                                         <thead>
-                                            <tr class="listBar" style="background-color: #ec523f; color: white;">
+                                            <tr class="listBar" style="background-color: #ec523f; color: white; width: 100%">
                                                 <th>No.</th>
                                                 <th>멤버</th>
+                                                <th>자기소개</th>
                                                 <th>가입날짜</th>
                                                 <th style="text-align: center">쪽지</th>
                                                 <th style="text-align: center">강퇴</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${boardList }" var="l" varStatus="i">
+                                            <c:forEach items="${clubMemberList }" var="l" varStatus="i">
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>바람돌이</td>
-                                                    <td>2021-07-01</td>
+                                                    <td>${i.count }</td>
+                                                    <td>${l.clubNick }</td>
+                                                    <th>자기소개</th>
+                                                    <td>${l.cmDate }</td>
                                                     <td style="text-align: center">쪽지</td>
                                                     <td style="text-align: center">강퇴</td>
                                                 </tr>
@@ -242,25 +244,28 @@
                                             <tr class="listBar" style="background-color: #ec523f; color: white;">
                                                 <th>No.</th>
                                                 <th>멤버</th>
-                                                <th>자기소개</th>
+                                                <th style="width: 360px">자기소개</th>
+                                                <th>신청날짜</th>
                                                 <th style="text-align: center">수락</th>
                                                 <th style="text-align: center">거절</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${boardList }" var="l" varStatus="i">
+                                            <c:forEach items="${applyList }" var="l" varStatus="i">
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>바람돌이</td>
-                                                    <td>2021-07-01</td>
-                                                    <td style="text-align: center">쪽지</td>
-                                                    <td style="text-align: center">강퇴</td>
+                                                    <td>${i.count }</td>
+                                                    <td>${l.receiver }</td>
+                                                    <td>${l.iaContent }</td>
+                                                    <td>${l.iaDate }</td>
+                                                    <td style="text-align: center">수락</td>
+                                                    <td style="text-align: center">거절</td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
-
+                                <br>
+								<hr>
                                 <!-- 관리자 컨텐츠(관리자) -->
                                 <h3 style="margin-left: 10px; font-weight: bold;">클럽 관리</h3>
                                 <div class="bottomAdmin">
@@ -347,8 +352,8 @@
             $(".table-hover2").show();
         }
         function memberListAdmin(){
-            $(".table-hover1").css("display","block");
-            $(".table-hover2").css("display","none");
+            $(".table-hover1").show();
+            $(".table-hover2").hide();
         }
         var test;
         

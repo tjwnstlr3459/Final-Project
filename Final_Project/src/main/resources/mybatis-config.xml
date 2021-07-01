@@ -22,7 +22,9 @@
 		<!-- 모임상세페이지 -->
 		<typeAlias type="kr.or.newclub.model.vo.clubBoard" alias="n"/>
 		<!-- 모임신청 -->
-		<typeAlias type="kr.or.newclub.model.vo.apply" alias="a"/>    
+		<typeAlias type="kr.or.newclub.model.vo.apply" alias="a"/>  
+		<!-- 모임에 속한 회원 -->
+		<typeAlias type="kr.or.newclub.model.vo.clubMember" alias="cm"/>    
 		<!-- 쪽지 -->
 		<typeAlias type="kr.or.directMessage.model.vo.DirectMessage" alias="dm"/>
 		<!-- 이용제한 -->
