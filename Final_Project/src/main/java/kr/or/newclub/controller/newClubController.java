@@ -22,12 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.or.board.model.vo.Board;
-import kr.or.club.model.vo.ClubBoard;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
 import kr.or.newclub.model.vo.Apply;
-import kr.or.newclub.model.vo.clubBoard;
 import kr.or.newclub.model.vo.ClubMember;
+import kr.or.newclub.model.vo.clubBoard;
 
 @Controller
 public class newClubController {
