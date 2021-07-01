@@ -1,5 +1,5 @@
-/* @charset "UTF-8";
- */
+@charset "UTF-8";
+
 body::before {
     background-size: cover;
     background-attachment: fixed;
@@ -33,7 +33,7 @@ body::before {
        (min-width: 2049px) and (-webkit-max-device-pixel-ratio: 1.5),
        (min-width: 2049px) and (max-resolution: 1.5dppx) {
   body::before {
-    background-image: url(../../image/bg_2880.jpg);
+    /* background-image: url(../../image/bg_2880.jpg); */
   }
 }
 body .demo-blog {
