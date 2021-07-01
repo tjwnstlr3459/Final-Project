@@ -13,6 +13,7 @@ import kr.or.board.model.vo.Board;
 import kr.or.newclub.model.dao.newClubDao;
 import kr.or.newclub.model.vo.apply;
 import kr.or.newclub.model.vo.clubBoard;
+import kr.or.newclub.model.vo.clubMember;
 
 @Service
 public class newClubService {
@@ -60,9 +61,13 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			return result;
 		}
 
-		//회원목록, 가입신청목록 출력
-		public ArrayList<apply> selectApply(int clubNumber) {
-			return null;
+		//가입신청한 회원 출력
+		public ArrayList<apply> selectApply(int clubNo) {
+			return dao.selectApply(clubNo);
+		}
+		//가입된 회원 출력
+		public ArrayList<clubMember> selectMemberList(int clubNo) {
+			return dao.selectMemberList(clubNo);
 		}
 
 

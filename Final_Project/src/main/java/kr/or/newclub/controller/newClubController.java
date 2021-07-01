@@ -27,6 +27,7 @@ import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
 import kr.or.newclub.model.vo.apply;
 import kr.or.newclub.model.vo.clubBoard;
+import kr.or.newclub.model.vo.clubMember;
 
 @Controller
 public class newClubController {
@@ -42,11 +43,13 @@ public class newClubController {
 		List list = service.boardList();
 		model.addAttribute("list",list);
 		
-		//임시 클럽번호
-		int clubNumber = 38;
-		
-		//회원목록, 가입신청목록 출력
-		ArrayList<apply> applyList = service.selectApply(clubNumber);
+
+		//가입신청한 회원 출력
+		ArrayList<apply> applyList = service.selectApply(clubNo);
+		model.addAttribute("applyList", applyList);
+		//가입된 회원 출력
+		ArrayList<clubMember> clubMemberList = service.selectMemberList(clubNo);
+		model.addAttribute("clubMemberList", clubMemberList);
 		return "newclub/newClub";
 	}
 	@RequestMapping(value = "/allMemberChat.do")
