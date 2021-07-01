@@ -352,7 +352,7 @@
 		$.ajax({
 			url:"/memberJoinCheck.do",
 			data : {
-				no : no,
+				no : obj,
 				clubNo : clubNo,
 			},
 			type : "post",
@@ -360,7 +360,7 @@
 				if(data > 0){
 					alert("수락되었습니다.");
 				}else{
-					alert("수락");
+					alert("수락 실패");
 				}
 			}
 		})
@@ -397,7 +397,7 @@
             $(".table-hover1").show();
             $(".table-hover2").hide();
         }
-        var test;
+        
         
 	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
@@ -434,9 +434,10 @@
 				      } */
 				    },
 				  });
+				  var test;
 				  test.render();
-				  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2021-07-03'});
-				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-04',end:'2021-07-04'});
+				 /*  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2021-07-03'}); */
+				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-02',end:'2021-07-02'});
 			}
 		});
 	/*더보기 기능*/

@@ -136,7 +136,11 @@ INSERT INTO INVITE_APPLY VALUES(
 
 <!-- 가입신청 수락시 클럽멤버로 넣어주기 -->
 <insert id="insertClubMemeber" parameterType="map">
-
+INSERT INTO CLUB_MEMBER VALUES(
+    CM_SEQ.NEXTVAL,
+    #{clubNo},
+    (SELECT receiver FROM INVITE_APPLY where invite_cn=#{clubNo} and invite_no=#{no}),
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 </insert>
 
 <!-- 가입신청 수락시 신청목록에서 삭제 -->

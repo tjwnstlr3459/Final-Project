@@ -75,9 +75,13 @@ public class newClubController {
 	  @ResponseBody
 	  @RequestMapping(value = "/memberJoinCheck.do") 
 	  public int memberJoinCheck(int no,int clubNo) { 
-		  int result2 = service.insertClubMember(no,clubNo); 
-		  int result1 = service.deleteApply(no); 
-		  return result1; }
+		  int result = 0;
+		  int result1 = service.insertClubMember(no,clubNo);//클럽멤버에 넣기
+		  if(result1>0) {
+			  result = service.deleteApply(no);//멤버넣으면 기존 apply테이블에서 멤버삭제
+		  }
+		  return result; 
+	}
 	 
 	
 	
