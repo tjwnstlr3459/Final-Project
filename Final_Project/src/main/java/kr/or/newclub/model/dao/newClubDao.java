@@ -63,19 +63,30 @@ public class newClubDao {
 		return 0;
 	}
 	
-	//회원목록, 가입신청목록 출력
+	//가입신청목록 출력
 	public ArrayList<Apply> selectApply(int clubNo) {
 		List<Apply> list =session.selectList("newclub.selectApply",clubNo);
 		return (ArrayList<Apply>) list;
 	}
-
+	//회원목록
 	public ArrayList<ClubMember> selectMemberList(int clubNo) {
 		List<ClubMember> list =session.selectList("newclub.selectMemberList",clubNo);
 		return (ArrayList<ClubMember>) list;
 	}
-
+	//가입신청
 	public int insertApply(Object apply) {
 		return session.insert("newclub.insertApply",apply);
+	}
+	//가입신청 수락
+	public int deleteApply(int no) {
+		return session.delete("newclub.deleteApply",no);
+	}
+	//가입신청시 클럽멤버에 넣어주기
+	public int insertClubMember(int no, int clubNo) {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("no", no);
+		map.put("clubNo", clubNo);
+		return session.insert("newclub.insertClubMemeber",map);
 	}
 
 	
