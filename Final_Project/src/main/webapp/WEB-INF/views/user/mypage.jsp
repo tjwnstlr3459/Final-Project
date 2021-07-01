@@ -6,299 +6,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>너나들이</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="resources/css/member/mypage.css">
+    <!-- JS -->
+    <script src="resources/js/member/mypage.js"></script>
     <!-- 우편번호 찾기 -->
     <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
     <style>
-        /* div {
-            border: 1px solid black;
-        } */
-        .container {
-            margin-top:30px;
-            width: 500px;
-        }
-        a {
-            text-decoration: none;
-        }
-        input, textarea {
-			width: 300px;
-			height: 35px;
-			padding: 5px;
-			box-sizing: border-box;
-		}
-		#mailCfrm, input[type=submit], .modalButton {
-			width: 300px;
-			height: 35px;
-			color: white;
-			font-weight: bold;
-			background-color: #ec523f;
-			border: 0;
-		}
-		.legend {
-			display: inline-block;
-			width: 100%;
-			text-align: left;
-			font-weight: bold;
-			padding-left: 5px;
-			font-size: 0.8em;
-		}
-		input[type=radio] {
-			display: none;
-		}
-		
-		input[type=radio]+label {
-			display: inline-block;
-			box-sizing: border-box;
-			height: 35px;
-			width: 96px;
-			border: 1px solid #aaa;
-			line-height: 35px;
-			text-align: center;
-			font-weight: bold;
-			font-size: 13px;
-		}
-		
-		input[type=radio]:checked+label {
-			background-color: #333;
-			color: #fff;
-		}
-		#postcode {
-			float: left;
-			width: 61%;
-			margin-bottom: 5px;
-		}
-		
-		#findCode {
-			float: right;
-			width: 38%;
-		}
-		
-		#roadAddress {
-			margin-bottom: 5px;
-		}
-		textarea {
-			height: 100px;
-			resize: none;
-		}
-		
-		input:focus, textarea:focus {
-			outline: none;
-		}
-		
-		input[type=checkbox] {
-			width: 15px;
-			height: 15px;
-		}
-		
-		select {
-			width: 300px;
-			height: 35px;
-			padding: 5px;
-			box-sizing: border-box;
-			margin-bottom: 20px;
-		}
-		
-		.inputMsg, .chkMsg {
-			display: inline-block;
-			width: 100%;
-			height: 20px;
-			text-align: left;
-			padding-left: 5px;
-			font-size: 0.9em;
-			color: cornflowerblue;
-		}
-		
-        .mypage {
-            display: flex;
-            align-items: flex-start;
-        }
-        .myInfo {
-            display: flex;
-            align-items: center;
-        }
-        .myInfoImg {
-            width: 70px;
-            height: 70px;
-            border-radius: 70%;
-            overflow: hidden;
-        }        
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .myInfoMenu {
-            height: 70px;
-            margin-left: 10px;
-        }
-        /* .myInfoMenu > div {
-            line-height: 35px;
-            height: 50%;
-        } */
-        .myName {
-            margin-left: 5px;
-            font-size: 1.2em;
-            font-weight: bolder;
-        }
-        .infoMenu {
-            font-size: 0.9em;
-        }
-        .infoMenu > a {
-            color: black;
-            display: block;
-            padding: 6px;
-        }
-        .infoMenu > a:hover {
-            display: block;
-            padding: 6px;
-            text-decoration: underline;
-        }
-        .main {
-            margin-left: 50px;
-        }
-        .title {
-            height: 35px;
-            line-height: 35px;
-            font-size: 1.2em;
-            font-weight: bolder;
-            margin-bottom: 20px;
-        }
-        .friends {
-            display: flex;
-            flex-wrap: wrap;
-            width: 450px;
-            justify-content: space-between;
-        }
-        .friend {
-        	margin-right: 20px;
-        	width: 70px;
-        }
-
-        .speech-bubble {
-            position: relative;
-            margin-top: 10px;
-            background: #909090;
-            border-radius: .6em;
-            padding: 15px;
-            width: 240px;
-            box-sizing: border-box;
-        }
-
-        .speech-bubble:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left:9%;
-            width: 30;
-            height: 30;
-            border: 0.6em solid transparent;
-            border-bottom-color: #909090;
-            border-top: 0;
-            margin-left: -0.6m;
-            margin-top: -0.6em;
-        }
-        .modalFr, .modalDm {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            top: 0;
-            left: 0;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            width: 400px;
-            height: auto;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: center;
-        }
-
-        .modal-header {
-            width: 100%;
-            height: 60px;
-            border-bottom: 4px solid #ffcdc7;
-            margin-bottom: 20px;
-        }
-
-        .modal-body {
-            margin-bottom:30px;
-        }
-
-        .modal-input {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #findEmail {
-            width: 200px;
-        }
-
-        #findID {
-            background-color: white;
-            border: 1px solid #ec523f;
-            color: black;
-            width: 98px;
-            height: 35px;
-        }
-        .findResult {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-size: 0.9em;
-        }
-        .addUser {
-        	border: 0;
-        	border-radius: 10px;
-        	padding: 20px;
-        }
-        .addUser > .speech-bubble {
-            width: 100%;
-        }
-        .addUser .myName {
-        	height:100%;
-        	line-height:70px;
-        }
         
-        .elementChk {
-			text-align: left;
-		}
-		
-		.elementChk>label {
-			display: inline-block;
-			width: 70px;
-			font-size: 0.9em;
-		}
-		.popupLayer {
-			box-sizing: border-box;
-			position: absolute;
-			display: none;
-			background-color: #ffffff;
-			border: solid 2px #d0d0d0;
-			width: 120px;
-			height: 80px;
-			padding: 10px;
-		}
-		.popupLayer div {
-			position: absolute;
-			top: 5px;
-			right: 5px
-		}
-		.fMenu {
-			display: block;
-			font-size: 0.9em;
-			cursor: pointer;
-		}
-		.fMenu:hover {
-			color: #19ba3f;
-		}
     </style>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -352,7 +69,7 @@
                 	</c:if>
                     <div class="title">
                       	  내 친구
-                        <a href="javascript:void(0)" id="find"><i class="fas fa-plus"></i></a>
+                        <a href="javascript:void(0)" id="findfriend"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="friends">
                     <c:forEach items="${friends }" var="f">
@@ -372,9 +89,9 @@
                 <div class="dmBox" style="display:none;">
                     <div class="title">
                         	새 쪽지
-                        <a href="#">+</a>
+                        <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
                     </div>
-                    <div class="dms">
+                    <div class="dmsList">
                         <table>
                             <tr>
                                 <th>구분</th>
@@ -437,7 +154,7 @@
                 <!-- 문의/신고 화면 -->
                 <div class="reportBox"  style="display:none;">
                     <div class="title">
-                        내 문의/신고
+                        	내 문의/신고
                         <a href="#">+</a>
                     </div>
                     <div class="reports">
@@ -625,12 +342,12 @@
 			<div class="modal-header dms">
 			</div>
 			<div class="modal-body">
-				<div class="modal-input">
+				<div>
                 	<textarea name="dmContent"></textarea>
 				</div>
-				<div class="findResult"></div>
+				<div class="findResult"></div>   
 				
-				<button type="button" class="modalButton" id="sendDmTo">전송</button>
+				<button type="button" class="modalButton" id="sendDmTo">쪽지 전송</button>
 				<button type="button" class="modalButton" id="closeModalDm">닫기</button>
 			</div>
 		</div>	
@@ -640,9 +357,10 @@
     
     
     <script>
-    	var sender;
-    	var receiver;
+    	var dmSender;
+    	var dmReceiver;
     	
+    	//페이지 로딩시 처리
     	$(function() {
     		var address = "<c:out value='${m.address}'/>";
     		var addressDetail = address.split("/");
@@ -650,6 +368,8 @@
     		$("#roadAddress").val(addressDetail[1]);
     		$("#detailAddress").val(addressDetail[2]);
     	})
+    	
+    	//페이지 내 메뉴 이동
         function myFriend() {
             $(".friendBox").show();
             $(".dmBox").hide();
@@ -674,6 +394,8 @@
             $(".reportBox").hide();
             $(".modBox").hide();
         }
+        
+        //?
         function fMenu(obj) {
         	console.log(this)
         	console.log(obj)
@@ -682,6 +404,51 @@
         	var menu = "<div style='width:100px;height:100px;position:absolute'>둥둥</div>";
         	$(this).next(menu);
         }
+        
+        //친구 추가        
+		$("#findfriend").click(function() {
+			$(".findResult").html("");
+			$(".modalFr").fadeIn();
+			$(".modalFr").css("display", "flex");
+			
+		})
+		$("#findEmail").keypress(function(event){
+	    	if ( event.which == 13 ) {
+	        	$('#findID').click();
+	         	return false;
+	     	}
+		})
+		function findID(currUser) {
+			var result = $(".findResult");
+			var user = $("#findEmail").val();			
+			result.html("");	 		
+			result.append("<img src='resources/image/ajax-loader.gif'>");
+	 		$.ajax({
+	 			url: "/user/findUser.do",
+                type: "post",
+                data: {user:user},
+                success: function(data) {
+       				result.html("");
+                	if(typeof(data) == "object"){
+                		result.html('<div class="addUser"><div class="myInfo"><div class="myInfoImg">'
+                				+ '<img class="profile-img" src="resources/image/userPic/' + data.filepath + '"/></div>'
+                				+ '<div class="myInfoMenu"><div class="myName">' + data.memberNick + '</div></div></div>'
+                				+ '<div class="speech-bubble">' + data.intro + '</div></div>');
+                		result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
+                		//result.append("<img src='resources/image/userPic/" + data.filepath + "'>");
+                		//result.append("<span>" + data.memberNick + " " + data.intro + "</span>");
+                		//result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
+	
+                	} else{
+                		result.html("찾는 회원이 없습니다.");
+                	}
+                },
+                error: function() {
+                    console.log("error")
+                }
+
+	 		})
+	 	}
 		function addFriend(sender, receiver) {
 			var result = $(".findResult");
 			$.ajax({
@@ -726,58 +493,52 @@
                     console.log("error")
                 }
         	})
-		}
-		$("#find").click(function() {
-			$(".findResult").html("");
-			$(".modalFr").fadeIn();
-			$(".modalFr").css("display", "flex");
-			
-		})
-		$("#findEmail").keypress(function(event){
-	    	if ( event.which == 13 ) {
-	        	$('#findID').click();
-	         	return false;
-	     	}
-		})
+		}		
 		$("#closeModalFr").click(function() {
 			$(".modalFr").fadeOut();
 		})
-		$("#closeModalDm").click(function() {
-			$(".modalDm").fadeOut();
-		})
-	 	function findID(currUser) {
+		
+		//DM
+		function sendDm(receiver, sender) {
+			$(".popupLayer").hide();
+			$(".modalDm").fadeIn();
+			$(".modalDm").css("display", "flex");
+			$(".dms").html("<h2>" + receiver + "에게 쪽지 보내기</h2>");
+		}
+		$("#sendDmTo").click(function() {
+			var dmContent = $("[name=dmContent]").val();
 			var result = $(".findResult");
-			var user = $("#findEmail").val();			
-			result.html("");	 		
-			result.append("<img src='resources/image/ajax-loader.gif'>");
-	 		$.ajax({
-	 			url: "/user/findUser.do",
+			$.ajax({
+	 			url: "/user/sendDm.do",
                 type: "post",
-                data: {user:user},
+                data: {sender:dmSender, receiver:dmReceiver, dmContent:dmContent},
                 success: function(data) {
-       				result.html("");
-                	if(typeof(data) == "object"){
-                		result.html('<div class="addUser"><div class="myInfo"><div class="myInfoImg">'
-                				+ '<img class="profile-img" src="resources/image/userPic/' + data.filepath + '"/></div>'
-                				+ '<div class="myInfoMenu"><div class="myName">' + data.memberNick + '</div></div></div>'
-                				+ '<div class="speech-bubble">' + data.intro + '</div></div>');
-                		result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
-                		//result.append("<img src='resources/image/userPic/" + data.filepath + "'>");
-                		//result.append("<span>" + data.memberNick + " " + data.intro + "</span>");
-                		//result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
-	
-                	} else{
-                		result.html("찾는 회원이 없습니다.");
+                	console.log(data)
+                	if(data == 1) {
+                		result.append("<span>쪽지를 보냈습니다.</span>");
+                	} else {
+                		result.append("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
                 	}
                 },
                 error: function() {
                     console.log("error")
                 }
+        	})
+			
+			
+		})
+		$("#closeModalDm").click(function() {
+			$(".modalDm").fadeOut();
+		})
 
-	 		})
-	 	}
+		
+		
+		//친구 메뉴
 		$(".friendName").click(function(e) {
 			var targetUser = $(this).text();
+			//
+			dmReceiver = $(this).text();
+			
 			var sWidth = window.innerWidth;
 			var sHeight = window.innerHeight;
 
@@ -799,7 +560,10 @@
 			var popup = $(".popupLayer");
 			popup.empty();
 			var sendUser = "<c:out value='${m.memberNick}'/>";
-			var dm = "<span class='fMenu' onclick='sendDm(\"" + targetUser + "\", \"" + sendUser + "\")'>쪽지 보내기</span>";
+			//
+			dmSender = "<c:out value='${m.memberNick}'/>";
+			
+			var dm = "<span class='fMenu' onclick='sendDm(\"" + dmReceiver + "\", \"" + dmSender + "\")'>쪽지 보내기</span>";
 			var chat = "<span class='fMenu'>채팅 요청하기</span>";
 			var close = "<span class='fMenu' onclick='closeLayer(this)'>닫기</span>";
 			popup.append(dm);
@@ -817,34 +581,8 @@
 			$(obj).parent().hide();
 		}
 		
-		function sendDm(receiver, sender) {
-			$(".popupLayer").hide();
-			$(".modalDm").fadeIn();
-			$(".modalDm").css("display", "flex");
-			$(".dms").html("<h2>" + receiver + "에게 쪽지 보내기</h2>");
-		}
-		$("#sendDmTo").click(function() {
-			var dm = $("[name=dmContent]").val();
-			$.ajax({
-	 			url: "/user/sendDm.do",
-                type: "post",
-                data: {sender:sender, receiver:receiver},
-                success: function(data) {
-                	console.log(data)
-                	if(data == 1) {
-                		result.append("<span>친구 요청을 수락했습니다.</span>");
-                	} else {
-                		result.append("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
-                	}
-                },
-                error: function() {
-                    console.log("error")
-                }
-        	})
-			
-			
-		})
 		
+		//주소 찾기
 		function findPCode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -879,8 +617,7 @@
 		
 		
 		
-		//회원정보 수정용 유효성 체크
-		
+		//회원정보 수정용 유효성 체크		
 		$("[name=memberNick]").change(function() {
             var name = $(this).val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
@@ -947,8 +684,6 @@
             var filepath = "<c:out value='${m.filepath}'/>";
             console.log(filename)
             console.log(filepath)
-            
-            return false;
 
             if(namechk.html() == "중복된 이름은 사용할 수 없습니다.") {
             	$("[name=memberNick]").css("border", "1px solid red");
