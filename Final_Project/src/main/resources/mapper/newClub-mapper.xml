@@ -121,7 +121,18 @@ select
     enroll_date as cmDate
 from club_member where club_no=#{clubNo}
 </select>
-		
+
+<!-- 클럽가입신청하기 -->
+<insert id="insertApply" parameterType="a">
+INSERT INTO INVITE_APPLY VALUES(
+    IA_SEQ.NEXTVAL,
+    #{clubNo},
+    #{receiver},
+    'N',
+    #{iaContent},
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</insert>
+
 </mapper>
 
 

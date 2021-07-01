@@ -16,3 +16,4 @@ public class clubBoard {
 	private int boardGood;
 	private String enrollDate;
 }
+
