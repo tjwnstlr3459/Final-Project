@@ -3,7 +3,7 @@ package kr.or.newclub.model.vo;
 import lombok.Data;
 
 @Data
-public class apply {
+public class Apply {
 	private int iaNo;
 	private int clubNo;
 	private String receiver;

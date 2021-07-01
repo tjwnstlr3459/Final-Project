@@ -322,11 +322,13 @@
 	         <p>클럽에 가입하기 전에 </p>
 	         <p>인사말을 적어주세요.</p>
 	       </div>
+	       <input type="text" class="receiver" name="receiver" value="${sessionScope.m.memberNick }" style="display: none">
+	       <input type="text" class="clubNo"  name="clubNo" value="${clubNo }" style="display: none">
 	       <div style="display: flex;justify-content: center;">
-	       	<textarea >안녕</textarea>
+	       	<textarea class="iaContent" placeholder="모임장에게 전해질 인사말을 적어주세요!" name="iaContent"></textarea>
 	       </div>
-	       <div class="modal-footer"style="    display: flex;justify-content: center;">
-	         <button type="button" onclick="userClubJoin()" class="btn btn-default" data-dismiss="modal">신청</button>
+	       <div class="modal-footer"style="display: flex;justify-content: center;">
+	         <button type="button" onclick="userClubJoin()" class="btn btn-default">신청</button>
 	         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 	       </div>
 	     </div>
@@ -335,13 +337,23 @@
 	<script>
 	//클럽 가입 신청
 	function userClubJoin(){
+		
+		var apply={
+			clubNo : $(".clubNo").val(),
+			receiver : $(".receiver").val(),
+			iaContent : $(".iaContent").val(),
+		}
+		console.log(apply);
 		$.ajax({
 			url : "/memberClubJoin.do",
-			data : {
-			},
+			data : apply,
 			type : "post",
 			success : function(data){
-				
+				if(data > 0){
+					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
+				}else{
+					alert("가입신청 실패");
+				}
 			}
 		})
 	}

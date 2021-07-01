@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.board.model.vo.Board;
-
+import kr.or.club.model.vo.ClubBoard;
 import kr.or.newclub.model.dao.newClubDao;
-import kr.or.newclub.model.vo.apply;
+import kr.or.newclub.model.vo.Apply;
 import kr.or.newclub.model.vo.clubBoard;
-import kr.or.newclub.model.vo.clubMember;
+import kr.or.newclub.model.vo.ClubMember;
 
 @Service
 public class newClubService {
@@ -62,12 +62,16 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		}
 
 		//가입신청한 회원 출력
-		public ArrayList<apply> selectApply(int clubNo) {
+		public ArrayList<Apply> selectApply(int clubNo) {
 			return dao.selectApply(clubNo);
 		}
 		//가입된 회원 출력
-		public ArrayList<clubMember> selectMemberList(int clubNo) {
+		public ArrayList<ClubMember> selectMemberList(int clubNo) {
 			return dao.selectMemberList(clubNo);
+		}
+		//가입신청
+		public int insertApply(Object apply) {
+			return dao.insertApply(apply);
 		}
 
 
