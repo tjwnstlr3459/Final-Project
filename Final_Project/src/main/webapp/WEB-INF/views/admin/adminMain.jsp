@@ -45,16 +45,16 @@
 				</div>
 			</div>
 			<div class="chart-wrap">
-				<div class="clubOpen-box box-option">
-			        <canvas id="chart1"></canvas>
-			    </div>	
-				<div class="ages-box box-option">
-			        <canvas id="memberAge"></canvas>
-			    </div>				
-			</div>
-			<div class="chart-wrap">
 				<div class="memberCount-box box-option">
 					<canvas id="memberCount"></canvas>
+				</div>
+				<div class="innerChart-wrap">
+					<div class="memberHobby-box box-option">
+				        <canvas id="chart1"></canvas>
+				    </div>	
+					<div class="ages-box box-option">
+				        <canvas id="memberAge"></canvas>
+				    </div>				
 				</div>
 			</div>
 		</section>

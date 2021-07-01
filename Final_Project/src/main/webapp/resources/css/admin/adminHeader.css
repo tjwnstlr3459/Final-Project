@@ -163,6 +163,7 @@ section::-webkit-scrollbar-track {
 	background-color:var(--backColor);
     box-shadow:var(--contentShadow);
     border-radius:10px;
+    box-sizing:border-box;
 }
 /* 검색창-box 디자인 */
 .searchBar-wrap{
@@ -365,6 +366,14 @@ section::-webkit-scrollbar-track {
 	font-weight:600;
 }
 .visitor-icon{
+	background-image:url('/resources/image/icons/visit-icon1.png');
+	background-size:100%;
+}
+.today-icon{
 	background-image:url('/resources/image/icons/visit_icon.png');
+	background-size:100%;
+}
+.total-icon{
+	background-image:url('/resources/image/icons/totalVisit-icon.png');
 	background-size:100%;
 }
