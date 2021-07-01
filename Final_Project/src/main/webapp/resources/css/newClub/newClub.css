@@ -439,6 +439,22 @@
     font-size: 18px;
     font-weight: bold;
 }
-   
-    
-    
+.contentMent{
+	margin-left: 10px;
+	float: left; 
+	font-weight: bold;
+}
+.adminCheckButton{
+	border: 0px;
+	border-radius:5px;
+	color:white;
+	background-color: #337ab7;
+	width: 100px;
+    height: 30px;
+    padding-top: 3px;
+    margin-left: 3px;
+}
+.adminCheckButton:hover{
+	background-color: #337ab7b8;
+	transform: scale(1.05);
+}

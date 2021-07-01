@@ -215,20 +215,20 @@
 							</div>
                             <!-- 멤버목록(관리자) -->
 							<div>
-								<input type="button" value="회원목록" onclick="memberListAdmin();">
-                                <input type="button" value="예약목록" onclick="userListAdmin();">
-                                <div class="table-responsive" style="border: 0px solid black; height: 500px;">
-                                    <h3 style="margin-left: 10px; font-weight: bold;">관리목록</h3>
+                                <div class="contentMent" style="font-weight: bold;font-size: 25px;">관리목록</div>
+								<input class="adminCheckButton" style="margin-left: 373px;" type="button" value="회원목록" onclick="memberListAdmin();">
+                                <input class="adminCheckButton" type="button" value="예약목록" onclick="userListAdmin();">
+                                <div class="table-responsive" style="height: 500px;margin-top: 10px;">
                                     <!-- 회원목록 -->
                                     <table class="table table-hover1">
                                         <thead>
                                             <tr class="listBar" style="background-color: #ec523f; color: white; width: 100%">
                                                 <th>No.</th>
                                                 <th>멤버</th>
-                                                <th>자기소개</th>
+                                                <th style="width: 330px;">자기소개</th>
                                                 <th>가입날짜</th>
                                                 <th style="text-align: center">쪽지</th>
-                                                <th style="text-align: center">강퇴</th>
+                                                <th style="text-align: center">추방</th>
                                             </tr>
                                         </thead>
                                         <tbody>
