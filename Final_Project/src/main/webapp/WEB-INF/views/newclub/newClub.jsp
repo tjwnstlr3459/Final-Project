@@ -253,12 +253,17 @@
                                         <tbody>
                                             <c:forEach items="${applyList }" var="l" varStatus="i">
                                                 <tr>
+                                                	
                                                     <td>${i.count }</td>
                                                     <td>${l.receiver }</td>
                                                     <td>${l.iaContent }</td>
                                                     <td>${l.iaDate }</td>
-                                                    <td style="text-align: center">수락</td>
-                                                    <td style="text-align: center">거절</td>
+                                                    <td style="text-align: center">
+                                                    	<button type="button" onclick="accept(this)">수락</button>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                    	<button type="button" onclick="refusal(this)">거절</button>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -329,15 +334,31 @@
 	       </div>
 	       <div class="modal-footer"style="display: flex;justify-content: center;">
 	         <button type="button" onclick="userClubJoin()" class="btn btn-default">신청</button>
-	         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	         <button type="button" id="closeModal" class="btn btn-default" data-dismiss="modal">닫기</button>
 	       </div>
 	     </div>
 	   </div>
 	 </div>
 	<script>
-	//클럽 가입 신청
+	/* //클럽 가입 신청
+	function accept(obj){
+		var accept = $(this).eq(obj);
+		$.ajax({
+			url : "/memberClubJoin.do",
+			data : apply,
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
+					$("#closeModal").click();
+				}else{
+					alert("가입실패");
+				}
+			}
+		})
+	} */
+	//클럽가입 수락 및 거절
 	function userClubJoin(){
-		
 		var apply={
 			clubNo : $(".clubNo").val(),
 			receiver : $(".receiver").val(),
@@ -351,8 +372,9 @@
 			success : function(data){
 				if(data > 0){
 					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
+					$("#closeModal").click();
 				}else{
-					alert("가입신청 실패");
+					alert("가입실패");
 				}
 			}
 		})
@@ -405,7 +427,8 @@
 				    },
 				  });
 				  test.render();
-				  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2016-06-21'});
+				  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2021-07-03'});
+				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-04',end:'2021-07-04'});
 			}
 		});
 	/*더보기 기능*/
