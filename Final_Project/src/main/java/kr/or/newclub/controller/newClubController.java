@@ -25,6 +25,7 @@ import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
+import kr.or.newclub.model.vo.apply;
 import kr.or.newclub.model.vo.clubBoard;
 
 @Controller
@@ -34,11 +35,18 @@ public class newClubController {
 	
 	@RequestMapping(value = "/newClub.do")
 	public String newClub(@SessionAttribute(required = false) Member m,int clubNo,Model model){
+		
 		int totalCount = service.totalCount(clubNo);
 		model.addAttribute("totalCount",totalCount);
 		model.addAttribute("clubNo", clubNo);
 		List list = service.boardList();
 		model.addAttribute("list",list);
+		
+		//임시 클럽번호
+		int clubNumber = 38;
+		
+		//회원목록, 가입신청목록 출력
+		ArrayList<apply> applyList = service.selectApply(clubNumber);
 		return "newclub/newClub";
 	}
 	@RequestMapping(value = "/allMemberChat.do")
@@ -238,5 +246,28 @@ public class newClubController {
       return "common/msg";
    }
   */
-
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
