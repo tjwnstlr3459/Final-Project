@@ -11,6 +11,7 @@
 		BOARD_CONTENT as boardContent,
 		FILENAME,
 		FILEPATH,
+		
 		BOARD_VIEWS as boardViews,
 		BOARD_GOOD as boardGood,
 		ENROLL_DATE as enrollDate
@@ -132,6 +133,18 @@ INSERT INTO INVITE_APPLY VALUES(
     #{iaContent},
     TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 </insert>
+
+<!-- 가입신청 수락시 클럽멤버로 넣어주기 -->
+<insert id="insertClubMemeber" parameterType="map">
+
+</insert>
+
+<!-- 가입신청 수락시 신청목록에서 삭제 -->
+<delete id="deleteApply" parameterType="int">
+DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{no}
+</delete>
+
+
 
 </mapper>
 

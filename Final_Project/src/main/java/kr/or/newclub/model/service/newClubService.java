@@ -73,6 +73,14 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int insertApply(Object apply) {
 			return dao.insertApply(apply);
 		}
+		//가입신청 수락
+		public int deleteApply(int no) {
+			return dao.deleteApply(no);
+		}
+		//가입신청시 클럽멤버로 넣기
+		public int insertClubMember(int no, int clubNo) {
+			return dao.insertClubMember(no,clubNo);
+		}
 
 
 }
