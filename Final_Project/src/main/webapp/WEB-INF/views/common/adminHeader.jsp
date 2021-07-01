@@ -16,6 +16,7 @@
 	<script src="/resources/js/summernote/summernote-lite.js"></script>
 	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
+	<link rel="stylesheet" href="/resources/css/admin/adminChart.css">
 	
 	<!-- 관리자 js -->
 	<script src="/resources/js/admin/summernote-admin.js"></script>

@@ -356,9 +356,12 @@ section::-webkit-scrollbar-track {
 	line-height:30px;
 	text-align:center;
 }
+.count-name{
+	font-size:0.7rem;
+}
 .count-value{
 	line-height:40px;
-	font-size:1.5rem;
+	font-size:2rem;
 	font-weight:600;
 }
 .visitor-icon{

@@ -13,16 +13,6 @@
 	    border-right:5px solid var(--mainTextColor);
 	    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
 	}
-	.hobbys-box{
-		width:300px;
-		height:300px;
-		padding:10px;	
-	}
-	.ages-box{
-		width:300px;
-		height:300px;
-		padding:10px;
-	}
 </style>
 </head>
 <body>
@@ -54,12 +44,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="hobbys-box box-option">
-		        <canvas id="chart1"></canvas>
-		    </div>	
-			<div class="ages-box box-option">
-		        <canvas id="memberAge"></canvas>
-		    </div>	
+			<div class="chart-wrap">
+				<div class="clubOpen-box box-option">
+			        <canvas id="chart1"></canvas>
+			    </div>	
+				<div class="ages-box box-option">
+			        <canvas id="memberAge"></canvas>
+			    </div>				
+			</div>
+			<div class="chart-wrap">
+				<div class="memberCount-box box-option">
+					<canvas id="memberCount"></canvas>
+				</div>
+			</div>
 		</section>
 	</div>
 </body>

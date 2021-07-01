@@ -1,7 +1,9 @@
 $(function(){
-	selectAdminCount();
-	selectVisitToday();
-	selectVisitTotal();
+	selectAdminCount(); 
+	selectVisitToday();			//오늘 방문자 수 get
+	selectVisitTotal();			//총 방문자 수 get
+	memberCountMonth();			//한 달 기준 회원 count get
+	
 });
 //페이지 로드 시 ADminCount(서비스 시작 후 현재까지 기록 data) 가져오기
 function selectAdminCount(){
@@ -15,21 +17,44 @@ function selectAdminCount(){
 		}
 	});
 }
+//페이지 로드 시 한달 기준으로 회원 count 가져오기
+function memberCountMonth(){
+	$.ajax({
+		url : "/memberCountMonth.do",
+		type : "post",
+		success : function(data){
+			destroyMemberCountMonth(data);	//회원 count해오고 탈퇴 회원 count 함수 호출
+		}
+	});
+}
+//페이지 로드 시 한 달 기준 탈퇴 회원 count 가져오기
+function destroyMemberCountMonth(param){
+	$.ajax({
+		url:"/destroyMemberCountMonth.do",
+		type:"post",
+		success : function(data){
+			memberCountChart(param,data);	//회원count>param, 탈퇴회원count>data를 같이 넘겨줌
+		}
+	});
+}
 //회원 취미 선택 통계
 function memberHobbys(data){
 	var myChart = new Chart(document.getElementById('chart1'), {
         type: "bar",
         data: {
-            labels: ['Sports', 'Music', 'Travel', 'Movie', 'Game'],
+            labels: ['Sports', 'Music', 'Travel', 'Movie', 'Game','Nature','Bear','Food'],
             datasets: [{
-                label: 'All',
-                data: [data.memberSports, data.memberMusic, data.memberTravel, data.memberMovie, data.memberGame],
+                label: 'All Count',
+                data: [data.memberSports, data.memberMusic, data.memberTravel, data.memberMovie, data.memberGame, data.memberNature, data.memberBear, data.memberEat],
                 backgroundColor:[
                 	'rgba(0, 0, 255, 0.3)',
                 	'rgba(255, 0, 255, 0.3)',
                     'rgba(76, 216, 153, 0.5)',
                     'rgba(0, 255, 255, 0.3)',
-                    'rgba(255, 0, 0, 0.3)'
+                    'rgba(255, 0, 0, 0.3)',
+                    'rgba(255,102,204,0.3)',
+                    'rgba(204,255,51,0.3)',
+                    'rgba(204,255,255,0.3)'
 				],
                 borderColor: [
                     '#eeeeee'
@@ -38,7 +63,18 @@ function memberHobbys(data){
             }]
         },
         options: {
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+              responsive: true,
+			    plugins: {
+			      legend: {
+			        position: 'top',
+			      },
+			      title: {
+			        display: true,
+			        text: 'Club Open Categories ',
+			        color:'#67dfdf'
+			      }
+			    }
         }
     });
 }
@@ -49,7 +85,7 @@ function memberAges(data){
 		data:{
 			labels:['teenagers','twenties','thirties','forties'],
 			datasets:[{
-				label:'All',
+				label:'age',
 				data:[data.teenagers,data.twenties,data.thirties,data.forties],
 				backgroundColor:[
 					'rgba(255,255,0,0.4)',
@@ -58,6 +94,75 @@ function memberAges(data){
 					'rgba(153,102,51,0.4)'
 				]
 			}]
+		},
+		options:{
+			maintainAspectRatio: false,
+			reponsive:true,
+			plugins:{
+				legend:{
+					position:'top'
+				},
+				title:{
+					display:true,
+					text:'Member SignUp',
+					color:'#67dfdf'
+				}
+			}
+		}
+	});
+}
+//멤버 카운트 차트
+function memberCountChart(param,data){
+	//매개변수(list)를 차트에 넣어 줄 배열 선언
+	var memberCount = new Array();
+	var destroyCount = new Array();
+	var yearMonth = new Array();
+	//list길이만큼 배열 안에 list의 value값 넣어주기
+	for(var i=0;i<data.length;i++){
+		memberCount.push(param[i].memberCount);
+		yearMonth.push(param[i].enrollMonth);
+		destroyCount.push(data[i].destroyCount);
+	}
+	//차트 구현
+	var memberAgeChart = new Chart(document.getElementById('memberCount'),{
+		type:"line",
+		data:{
+			labels:yearMonth,
+			datasets:[
+				{
+					label:'Member Sign',
+					data:memberCount,
+					pointBackgroundColor:'#ffffff',
+					borderColor:'#ffffff',
+					borderWidth:2,
+					pointBorderWidth:3,
+					hoverBorderWidth:10
+				},
+				{
+					label:'Member Destroy',
+					data:destroyCount,
+					pointBackgroundColor:'red',
+					borderColor:'red',
+					borderWidth:2,
+					pointBorderWidth:3,
+					hoverBorderWidth:10
+				}
+			
+			]
+		},
+		options:{
+			maintainAspectRatio: false,
+			reponsive:true,
+			plugins:{
+				legend:{
+					position:'top'
+				},
+				title:{
+					display:true,
+					text:'Member Ages',
+					color:'#67dfdf'
+				}
+			}
 		}
 	});
 }
