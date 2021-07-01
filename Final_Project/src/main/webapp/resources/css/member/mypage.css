@@ -1,0 +1,289 @@
+/* div {
+            border: 1px solid black;
+        } */
+        .container {
+            margin-top:30px;
+            width: 500px;
+        }
+        a {
+            text-decoration: none;
+        }
+        input, textarea {
+			width: 300px;
+			height: 35px;
+			padding: 5px;
+			box-sizing: border-box;
+		}
+		#mailCfrm, input[type=submit], .modalButton {
+			width: 300px;
+			height: 35px;
+			color: white;
+			font-weight: bold;
+			background-color: #ec523f;
+			border: 0;
+			margin-bottom: 3px;
+		}
+		.legend {
+			display: inline-block;
+			width: 100%;
+			text-align: left;
+			font-weight: bold;
+			padding-left: 5px;
+			font-size: 0.8em;
+		}
+		input[type=radio] {
+			display: none;
+		}
+		
+		input[type=radio]+label {
+			display: inline-block;
+			box-sizing: border-box;
+			height: 35px;
+			width: 96px;
+			border: 1px solid #aaa;
+			line-height: 35px;
+			text-align: center;
+			font-weight: bold;
+			font-size: 13px;
+		}
+		
+		input[type=radio]:checked+label {
+			background-color: #333;
+			color: #fff;
+		}
+		#postcode {
+			float: left;
+			width: 61%;
+			margin-bottom: 5px;
+		}
+		
+		#findCode {
+			float: right;
+			width: 38%;
+		}
+		
+		#roadAddress {
+			margin-bottom: 5px;
+		}
+		textarea {
+			height: 100px;
+			resize: none;
+		}
+		
+		input:focus, textarea:focus {
+			outline: none;
+		}
+		
+		input[type=checkbox] {
+			width: 15px;
+			height: 15px;
+		}
+		
+		select {
+			width: 300px;
+			height: 35px;
+			padding: 5px;
+			box-sizing: border-box;
+			margin-bottom: 20px;
+		}
+		
+		.inputMsg, .chkMsg {
+			display: inline-block;
+			width: 100%;
+			height: 20px;
+			text-align: left;
+			padding-left: 5px;
+			font-size: 0.9em;
+			color: cornflowerblue;
+		}
+		
+        .mypage {
+            display: flex;
+            align-items: flex-start;
+        }
+        .myInfo {
+            display: flex;
+            align-items: center;
+        }
+        .myInfoImg {
+            width: 70px;
+            height: 70px;
+            border-radius: 70%;
+            overflow: hidden;
+        }        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .myInfoMenu {
+            height: 70px;
+            margin-left: 10px;
+        }
+        /* .myInfoMenu > div {
+            line-height: 35px;
+            height: 50%;
+        } */
+        .myName {
+            margin-left: 5px;
+            font-size: 1.2em;
+            font-weight: bolder;
+        }
+        .infoMenu {
+            font-size: 0.9em;
+        }
+        .infoMenu > a {
+            color: black;
+            display: block;
+            padding: 6px;
+        }
+        .infoMenu > a:hover {
+            display: block;
+            padding: 6px;
+            text-decoration: underline;
+        }
+        .main {
+            margin-left: 50px;
+        }
+        .title {
+            height: 35px;
+            line-height: 35px;
+            font-size: 1.2em;
+            font-weight: bolder;
+            margin-bottom: 20px;
+        }
+        .friends {
+            display: flex;
+            flex-wrap: wrap;
+            width: 450px;
+            justify-content: space-between;
+        }
+        .friend {
+        	margin-right: 20px;
+        	width: 70px;
+        }
+
+        .speech-bubble {
+            position: relative;
+            margin-top: 10px;
+            background: #909090;
+            border-radius: .6em;
+            padding: 15px;
+            width: 240px;
+            box-sizing: border-box;
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:9%;
+            width: 30;
+            height: 30;
+            border: 0.6em solid transparent;
+            border-bottom-color: #909090;
+            border-top: 0;
+            margin-left: -0.6m;
+            margin-top: -0.6em;
+        }
+        .modalFr, .modalDm {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            top: 0;
+            left: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+        }
+
+        .modal-header {
+            width: 100%;
+            height: 60px;
+            border-bottom: 4px solid #ffcdc7;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            margin-bottom:30px;
+        }
+
+        .modal-input {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #findEmail {
+            width: 200px;
+        }
+
+        #findID {
+            background-color: white;
+            border: 1px solid #ec523f;
+            color: black;
+            width: 98px;
+            height: 35px;
+        }
+        .findResult {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .addUser {
+        	border: 0;
+        	border-radius: 10px;
+        	padding: 20px;
+        }
+        .addUser > .speech-bubble {
+            width: 100%;
+        }
+        .addUser .myName {
+        	height:100%;
+        	line-height:70px;
+        }
+        
+        .elementChk {
+			text-align: left;
+		}
+		
+		.elementChk>label {
+			display: inline-block;
+			width: 70px;
+			font-size: 0.9em;
+		}
+		.popupLayer {
+			box-sizing: border-box;
+			position: absolute;
+			display: none;
+			background-color: #ffffff;
+			border: solid 2px #d0d0d0;
+			width: 120px;
+			height: 80px;
+			padding: 10px;
+		}
+		.popupLayer div {
+			position: absolute;
+			top: 5px;
+			right: 5px
+		}
+		.fMenu {
+			display: block;
+			font-size: 0.9em;
+			cursor: pointer;
+		}
+		.fMenu:hover {
+			color: #19ba3f;
+		}
