@@ -157,27 +157,33 @@
 									<form action="/boardWrite.do" method="post" enctype="multipart/form-data">
 										작성자 : <input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><hr>
 										제목 : <input type="text" name="boardTitle" style= "width:200px;"><br>
-										파일 : <input type="file" name="files" multiple><br>
-										내용 : <textarea rows="8" cols="99" name="boardContent" style="resize: none; "></textarea><br>
+										파일 : <input type="file" name="files" multiple style="margin:0px;">
+										내용 : <textarea rows="6" cols="88" name="boardContent" style="resize: none; "></textarea><br>
+										<input type="hidden" name="clubNo" value="${clubNo }">
 										<input type="submit" value="등록">
 									</form>
 								</div>
+								<!-- 게시물 형태 바뀐부분 -->
 								<%-- <c:forEach items="${list }" var="board">
 										<div class="board-wrap">
-											<div class="userinfo" style="height: 30%;">											
-												<div class="userImg"></div>
-												<div class="userName">${board.boardWriter }</div>
-												<div class="enrollDate">${board.enrollDate }</div>
-											</div>
-											<img src=/resources/image/icons/+p.filePath>--이건 html기준
-											<div class="boardcontain" style="height: 40%;">
-												${board.boardContent}
-											</div>
-											<div class="userview" style="height: 30%;">
-													<div class="usernum">조회수 3명 읽음</div>
-													<button id="openModal">상세보기</button>
-											</div>
-										</div>
+								            <div class= "userDate">
+								                <div class="userImg"></div>
+								                <div class="userName">작성자</div>
+								                <div class="enrollDate">작성일</div>
+								            </div>    
+								            <div class= "boardTitle"></div>
+								            <div class= "boardContent"></div>
+								            <div class= "boardComment"></div>
+								            <div class= "boardFooter">
+								                <div class= "numView">
+								                    <div class="userNum">조회수</div>
+								                    <div class="userGood">좋아요</div>
+								                </div>    
+								                <div class= "btn-wrap">
+								                    <button id="openModal">상세보기</button>
+								                </div>
+								            </div>        
+								        </div>
 									</c:forEach> --%>
 								<div class="photoWrapper"></div>
 								<button class="btn btn-outline-info btn-block" currentCount="0"
@@ -347,19 +353,24 @@
 						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = ""; //html초기화
 						html += '<div class="board-wrap">';
-						html += 	'<div class="userinfo" style="height:30%;">';
-						html += 		'<div class="userImg">'+'</div>';
-						html += 		'<div class="boardTitle">' + p.boardTitle+ '</div>';
-						html += 		'<div class="userName">' + p.boardWriter+ '</div>';
-						html += 		'<div class="enrollDate">' + p.enrollDate+ '</div>';
-						html += 	'</div>';
-						html += 	'<div class="boardcontain" style="height:40%;">'
-										+ p.boardContent + '</div>';
-						html += 	'<div class="userview" style="height:30%;">';
-						html += 		'<div class="usernum">' + '조회수3명읽음' + '</div>';
-						html += 		'<button class="openModal" onclick="modalClick();">'+'상세보기'+'</button>';
-						html += 	'</div>';
-						html += '</div>';
+						html +=    '<div class= "userDate">';
+						html +=        '<div class="userImg">'+'</div>';
+						html +=        '<div class="userName">'+ p.boardWriter+'</div>';
+						html +=        '<div class="enrollDate">'+ p.enrollDate+'</div>';
+						html +=     '</div>';    
+						html +=   '<div class= "boardTitle">'+p.boardTitle+'</div>';
+						html +=   '<div class= "boardContent">'+'<img style="width:100%; height:100%; object-fit:contain;" src=/resources/image/clubimg/'+ p.filepath +'></div>';
+						html +=   '<div class= "boardComment">'+ p.boardContent +'</div>';
+						html +=   '<div class= "boardFooter">';
+						html +=       '<div class= "numView">';
+						html +=           '<div class="userNum">'+'조회수'+'</div>';
+						html +=           '<div class="userGood">'+'좋아요'+'</div>';
+						html +=       '</div>';    
+						html +=   '<div class= "btn-wrap">';
+						html +=       '<button id="openModal">'+'상세보기'+'</button>';
+						html +=   '</div>';
+						html +=   '</div>';        
+						html +='</div>';
 						$(".photoWrapper").append(html); 
 						
 						

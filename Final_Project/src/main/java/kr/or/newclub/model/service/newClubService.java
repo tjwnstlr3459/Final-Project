@@ -42,22 +42,12 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 }
 
 
-		public int insertBoard(clubBoard b, ArrayList<clubBoard> fileList) {
-			//파일은 board_no가 필요하기 떄문에 board테이블에 insert하는것이 먼저
-			int result1 = dao.inserBoard(b);
-			int result = 0;//최종 결과처리 변수
-			if(result1>0) {
-				int boardNo = dao.selectBoardNo();
-				for(clubBoard f : fileList) {
-					f.setBoardNo(boardNo);
-					result += dao.insertFile(f);
-				}
-			}else {
-				return -1;
-				
-			}
-			return result;
-		}
+	public int insertBoard(clubBoard b) {
+		//파일은 board_no가 필요하기 떄문에 board테이블에 insert하는것이 먼저
+		int result = dao.inserBoard(b);
+	
+		return result;
+	}
 
 
 }

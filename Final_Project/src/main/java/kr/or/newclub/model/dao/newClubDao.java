@@ -31,9 +31,9 @@ public class newClubDao {
 		List list = session.selectList("newclub.boardMore",map);
 		return (ArrayList<Board>)list;
 	}
-
-	public int inserBoard(clubBoard n) {
-		return session.insert("newclub.insertBoard",n);
+	//게시물 등록
+	public int inserBoard(clubBoard b) {
+		return session.insert("newclub.insertBoard",b);
 	}
 		/*
 		 * String query =
@@ -43,10 +43,8 @@ public class newClubDao {
 		 * jdbcTemplate.update(query,params); return result;
 		 */
 
-	//게시물 등록
-	public int insertBoard(Board b) {
-		return session.insert("newclub.insertBoard",b);
-	}
+
+/*
 	// 최신 글번호 조회
 	public int selectBoardNo() {
 		return session.selectOne("newclub.selectBoardNo");
@@ -55,7 +53,7 @@ public class newClubDao {
 	public int insertFile(clubBoard f) {
 		return session.insert("newclub.insertFile", f);
 	}
-
+*/
 	
 	}
 
