@@ -25,9 +25,9 @@ import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
-import kr.or.newclub.model.vo.apply;
+import kr.or.newclub.model.vo.Apply;
 import kr.or.newclub.model.vo.clubBoard;
-import kr.or.newclub.model.vo.clubMember;
+import kr.or.newclub.model.vo.ClubMember;
 
 @Controller
 public class newClubController {
@@ -43,26 +43,37 @@ public class newClubController {
 		List list = service.boardList();
 		model.addAttribute("list",list);
 		
-
 		//가입신청한 회원 출력
-		ArrayList<apply> applyList = service.selectApply(clubNo);
+		ArrayList<Apply> applyList = service.selectApply(clubNo);
 		model.addAttribute("applyList", applyList);
 		//가입된 회원 출력
-		ArrayList<clubMember> clubMemberList = service.selectMemberList(clubNo);
+		ArrayList<ClubMember> clubMemberList = service.selectMemberList(clubNo);
 		model.addAttribute("clubMemberList", clubMemberList);
 		return "newclub/newClub";
 	}
+	
 	@RequestMapping(value = "/allMemberChat.do")
 	public String allMemberChat(){
 		return "newclub/newClub";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/clubBoardMore.do",produces="application/json;charset=utf-8")
 	public String clubBoardMore(int start, int clubNo){
 		ArrayList<Board> list = service.clubBoardMore(start,clubNo);
 		return new Gson().toJson(list);
-
-}
+	}
+	
+	//클럽 가입신청
+	@ResponseBody
+	@RequestMapping(value = "/memberClubJoin.do")
+	public int memberClubJoin(Model model,Apply Apply) {
+		int result = service.insertApply(Apply);
+		return result;
+	}
+	
+	
+	
 	/*아작스에서 제이슨 전달 방법
 	@ResponseBody//모델은 컨트롤러에서 화면으로전달하기위한..
 	@RequestMapping(value="/allMemberAjax.do",produces="application/json;charset=utf-8")//리턴해주는 값은 제이슨이고 한글깨짐 방지 utf-8
@@ -146,7 +157,7 @@ public class newClubController {
 		          }
 		       }
 		      //DB에 넣기
-		      int result = service.insertBoard(b,fileList);
+		      int result = service.insertBoard(b, fileList);		      
 		      if(result != -1 && result == fileList.size()) {
 		    	  model.addAttribute("msg","등록성공");
 		      }else {
