@@ -321,14 +321,26 @@
 	       	<textarea >안녕</textarea>
 	       </div>
 	       <div class="modal-footer"style="    display: flex;justify-content: center;">
-	         <button type="button" class="btn btn-default" data-dismiss="modal">신청</button>
+	         <button type="button" onclick="userClubJoin()" class="btn btn-default" data-dismiss="modal">신청</button>
 	         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 	       </div>
 	     </div>
 	   </div>
 	 </div>
 	<script>
-	var test;
+	//클럽 가입 신청
+	function userClubJoin(){
+		$.ajax({
+			url : "/memberClubJoin.do",
+			data : {
+			},
+			type : "post",
+			success : function(data){
+				
+			}
+		})
+	}
+	
 	/* 관리자 회원/예약  버튼*/
         function userListAdmin(){
             $(".table-hover1").hide();
@@ -338,6 +350,7 @@
             $(".table-hover1").css("display","block");
             $(".table-hover2").css("display","none");
         }
+        var test;
         
 	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
@@ -353,6 +366,7 @@
 			tabCont.css("display", "none");
 			tabCont.eq(index).css("display", "block");
 			
+			/* 달력 초반 출력 문제 해결 */
 			if(index==2){
 				$("#test").empty();				
 				var calendarEl = document.getElementById("test");			
@@ -363,14 +377,14 @@
 				    eventLimit: true,
 				    
 				    dateClick: function (data) {
-				      if(stu != ""){
+				      /* if(stu != ""){
 				        $(".service").css("display", "block");
 				       $(".service_date").val(data.dateStr);
 				       console.log(data.dateStr);
 				      }else{
 				    	  alert("로그인 후 이용이 가능합니다.");
 				          location.href = "/";
-				      }
+				      } */
 				    },
 				  });
 				  test.render();

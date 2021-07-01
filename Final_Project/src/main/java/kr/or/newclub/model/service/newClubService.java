@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.or.board.model.vo.Board;
 
 import kr.or.newclub.model.dao.newClubDao;
+import kr.or.newclub.model.vo.apply;
 import kr.or.newclub.model.vo.clubBoard;
 
 @Service
@@ -57,6 +58,11 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 				
 			}
 			return result;
+		}
+
+		//회원목록, 가입신청목록 출력
+		public ArrayList<apply> selectApply(int clubNumber) {
+			return null;
 		}
 
 
