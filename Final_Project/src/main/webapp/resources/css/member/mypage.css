@@ -1,4 +1,4 @@
-/* div {
+ /*div {
             border: 1px solid black;
         } */
         .container {
@@ -186,7 +186,7 @@
             margin-left: -0.6m;
             margin-top: -0.6em;
         }
-        .modalFr, .modalDm {
+        .modalFr, .modalDm, .modalFrReq {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -286,4 +286,35 @@
 		}
 		.fMenu:hover {
 			color: #19ba3f;
+		}
+		td {
+			text-overflow:ellipsis;
+		}
+		.rcvDmsList {
+			box-sizing: border-box;
+			width:500px;
+		}
+		.row {
+			text-align: center;
+			overflow: hidden;
+			font-size: 0.9em;
+		}
+		.row > div {
+			display: inline-block;
+			float: left;
+		}
+		.column-name {
+			background-color: #888888;
+		}
+		.dm-sender {
+			width:20%;
+		}
+		.dm-content {
+			width:50%;
+		}
+		.dm-date {
+			width:20%;
+		}
+		.dm-replay {
+			width:10%;
 		}

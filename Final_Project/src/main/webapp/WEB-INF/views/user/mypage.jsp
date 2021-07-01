@@ -92,22 +92,42 @@
                         <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="dmsList">
-                        <table>
+                    
+                    	<div class="rcvDmsList">
+                    		<div class="row column-name">
+                    			<div class="dm-sender">보낸 사람</div>
+                                <div class="dm-content">내용</div>
+                                <div class="dm-date">날짜</div>
+                                <div class="dm-reply">답장</div>
+                    		</div> 
+                    		<c:forEach items="${dmList }" var="dm">
+                                <c:if test="${dm.receiver == m.memberNick and dm.readStatus == 'N'}">
+	                                <div class="row">
+		                    			<div class="dm-sender">${dm.sender }</div>
+		                                <div class="dm-content">${dm.dmContent }</div>
+		                                <div class="dm-date">${dm.dmDate }</div>
+		                                <div class="dm-reply"><i class="fas fa-share"></i></div>
+	                    			</div>
+                                </c:if>
+                            </c:forEach>
+                    	</div>
+                    	
+                        <table style="width:500px;">
                             <tr>
-                                <th>구분</th>
-                                <th>이름</th>
+                                <th>보낸 사람</th>
                                 <th>내용</th>
                                 <th>날짜</th>
                                 <th>읽음</th>
+                                <th>답장</th>
                             </tr>
                             <c:forEach items="${dmList }" var="dm">
                                     <c:if test="${dm.receiver == m.memberNick and dm.readStatus == 'N'}">
                                     <tr>
-		                                <td><i class="fas fa-share"></i></td>
 		                                <td>${dm.sender }</td>
 		                                <td>${dm.dmContent }</td>
 		                                <td>${dm.dmDate }</td>
 		                                <td>${dm.readStatus }</td>
+		                                <td><i class="fas fa-share"></i></td>
 		                            </tr>
                                     </c:if>
                             </c:forEach>
@@ -330,9 +350,22 @@
 					<input type="text" id="findEmail" name="email" placeholder="이메일 주소 혹은 이름을 입력해주세요">
 					<button type="button" id="findID" onclick="findID('${m.memberNick}')">회원 검색</button>
 				</div>
-				<div class="findResult"></div>
+				<div class="findResult frAdd"></div>
 				
 				<button type="button" class="modalButton" id="closeModalFr">닫기</button>
+			</div>
+		</div>	
+	</div>
+	<!-- 친구요청 수락 모달 -->
+	<div class="modalFrReq">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>친구 요청</h2>
+			</div>
+			<div class="modal-body">
+				<div class="findResult frReq"></div>
+				
+				<button type="button" class="modalButton" id="closeModalFrReq">닫기</button>
 			</div>
 		</div>	
 	</div>
@@ -451,6 +484,7 @@
 	 	}
 		function addFriend(sender, receiver) {
 			var result = $(".findResult");
+			result.html("");
 			$.ajax({
 	 			url: "/user/addFriend.do",
                 type: "post",
@@ -484,6 +518,7 @@
                 success: function(data) {
                 	console.log(data)
                 	if(data == 1) {
+                		result.children().last().remove();
                 		result.append("<span>친구 요청을 수락했습니다.</span>");
                 	} else {
                 		result.append("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
@@ -493,9 +528,45 @@
                     console.log("error")
                 }
         	})
-		}		
+		}
 		$("#closeModalFr").click(function() {
 			$(".modalFr").fadeOut();
+		})
+		
+		//새 친구 요청 수락
+		function accfMenu(inviter) {
+			$(".findResult").html("");
+			$(".modalFrReq").fadeIn();
+			$(".modalFrReq").css("display", "flex");
+			var result = $(".frReq");
+			var targetUser = "<c:out value='${m.memberNick}'/>";
+			console.log(targetUser);
+			$.ajax({
+	 			url: "/user/findUser.do",
+                type: "post",
+                data: {user:inviter},
+                success: function(data) {
+       				result.html("");
+                	if(typeof(data) == "object"){
+                		result.html('<div class="addUser"><div class="myInfo"><div class="myInfoImg">'
+                				+ '<img class="profile-img" src="resources/image/userPic/' + data.filepath + '"/></div>'
+                				+ '<div class="myInfoMenu"><div class="myName">' + data.memberNick + '</div></div></div>'
+                				+ '<div class="speech-bubble">' + data.intro + '</div></div>');
+                		result.append("<button type='button' onclick='accFriend(\"" + inviter + "\", \"" + targetUser + "\")'>요청 수락</button>");	
+                	} else{
+                		result.html("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
+                	}
+                },
+                error: function() {
+                    console.log("error")
+                }
+
+	 		})
+		}
+		$("#closeModalFrReq").click(function() {
+			$(".modalFrReq").fadeOut();
+			location.reload();
+			myDm();
 		})
 		
 		//DM
@@ -523,9 +594,7 @@
                 error: function() {
                     console.log("error")
                 }
-        	})
-			
-			
+        	})			
 		})
 		$("#closeModalDm").click(function() {
 			$(".modalDm").fadeOut();

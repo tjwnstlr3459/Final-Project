@@ -152,7 +152,7 @@ public class MemberController {
 	//친구 요청 수락
 	@ResponseBody
 	@RequestMapping(value="/user/accFriend.do")
-	public String accFriend(@SessionAttribute(required = false) Member m, Friends f) {
+	public String accFriend(Friends f) {
 		int result = service.updateFriend(f);
 		
 		if(result > 0) {
