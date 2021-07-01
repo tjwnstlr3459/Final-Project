@@ -106,7 +106,7 @@
 			member_nick as memberNick,
 			filepath,
 			intro
-		from member where member_nick in (select receiver from friend where receiver=#{value} and accept='Y')
+		from member where member_nick in (select sender from friend where receiver=#{value} and accept='Y')
 	</select>
 	<!-- 요청 수락 대기중인 친구 리스트 -->
 	<select id="selectPendingList" parameterType="string" resultType="m">

@@ -140,6 +140,7 @@
         margin-top: 10px;
 /*   background-color: rgb(248, 231, 200); */
     }
+  
 
     .right1 {
         height: 100%;
@@ -283,7 +284,7 @@
     position: relative;
     top: 50%; 
     left: 50%;
-    background: #fff;
+   
     opacity: 0;
     transition: all 0.5s ease-in-out;
     }
@@ -417,6 +418,27 @@
 #test {
   box-shadow: 0 8px 11px 0 rgb(0 0 0 / 10%), 0 1px 1px 0 rgb(0 0 0 / 1%);
 }
-    
+.modal-content textarea {
+	width: 80%;
+	height: 100px;
+	outline: none;
+	border: 0px;
+	resize: none;
+	border-radius: 5px;
+	padding: 10px;
+}
+.modal-body{
+	text-align: center;
+}
+.modal-body>p{
+	font-weight: bold;
+    font-size: 15px;
+}
+.modal-title{
+	text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+   
     
     

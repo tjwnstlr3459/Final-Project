@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.ClubBoard;
+import kr.or.newclub.model.vo.Apply;
 import kr.or.newclub.model.vo.clubBoard;
+import kr.or.newclub.model.vo.ClubMember;
 
 @Repository
 public class newClubDao {
@@ -32,8 +34,8 @@ public class newClubDao {
 		return (ArrayList<Board>)list;
 	}
 
-	public int inserBoard(clubBoard n) {
-		return session.insert("newclub.insertBoard",n);
+	public int inserBoard(clubBoard b) {
+		return session.insert("newclub.insertBoard",b);
 	}
 		/*
 		 * String query =
@@ -44,7 +46,7 @@ public class newClubDao {
 		 */
 
 	//게시물 등록
-	public int insertBoard(clubBoard b) {
+	public int insertBoard(ClubBoard b) {
 		return session.update("newclub.insertBoard",b);
 	}
 
@@ -59,6 +61,21 @@ public class newClubDao {
 	public int insertFile(clubBoard f) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	//회원목록, 가입신청목록 출력
+	public ArrayList<Apply> selectApply(int clubNo) {
+		List<Apply> list =session.selectList("newclub.selectApply",clubNo);
+		return (ArrayList<Apply>) list;
+	}
+
+	public ArrayList<ClubMember> selectMemberList(int clubNo) {
+		List<ClubMember> list =session.selectList("newclub.selectMemberList",clubNo);
+		return (ArrayList<ClubMember>) list;
+	}
+
+	public int insertApply(Object apply) {
+		return session.insert("newclub.insertApply",apply);
 	}
 
 	

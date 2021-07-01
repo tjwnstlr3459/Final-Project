@@ -12,10 +12,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>클럽 상세페이지</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+	
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- Add to homescreen for Chrome on Android -->
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" sizes="192x192" href="../../image/android-desktop.png">
@@ -72,6 +71,13 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	
+<!-- 모달 부트스트랩 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
 <!--script-->
 <script src="/resources/js/newClub/modal.js"></script>
 <script src="/resources/js/newClub/chat.js"></script>
@@ -86,35 +92,7 @@
 	z-index: 900;
 }
 </style>
-<script>
-	var test;
-	document.addEventListener("DOMContentLoaded", function () {
-		
-	  var calendarEl = document.getElementById("test");			
-	  test = new FullCalendar.Calendar(calendarEl, {
-	    plugins: ["interaction", "dayGrid"],
-	    defaultDate: "2021-06-06",
-	    editable: true,
-	    eventLimit: true,
-	    
-	    dateClick: function (data) {
-	      if(stu != ""){
-	        $(".service").css("display", "block");
-	       $(".service_date").val(data.dateStr);
-	       console.log(data.dateStr);
-	       
-	      }else{
-	    	  alert("로그인 후 이용이 가능합니다.");
-	          location.href = "/";
-	      }
-	    },
-	  });
-	  test.render();
-	});
-	$(function(){	
-		test.addEvent({title:'혜영아힘내자!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2016-06-21'});
-	});	
-</script>
+
 </head>
 
 <body>
@@ -142,6 +120,9 @@
 							</div>
 							<div class="clubinfo2">
 								<div class="clubnotice">가입해주셔서 감사합니다 많이 소통해요</div>
+							</div>
+							<div style="display: flex; justify-content: center;">
+								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
 							</div>
 						</div>
 					</div>
@@ -228,34 +209,68 @@
 							</div>
                             <!-- 멤버목록(관리자) -->
 							<div>
-								<input type="button" value="회원목록" onclick="memberListAdmin()">
-                                <input type="button" value="예약목록" onclick="userListAdmin()">
-                                <div class="table-responsive" style="border: 1px solid black; height: 500px;">
-                                    <h3 style="margin-left: 10px; font-weight: bold;">회원관리</h3>
-                                    <table class="table table-hover">
+								<input type="button" value="회원목록" onclick="memberListAdmin();">
+                                <input type="button" value="예약목록" onclick="userListAdmin();">
+                                <div class="table-responsive" style="border: 0px solid black; height: 500px;">
+                                    <h3 style="margin-left: 10px; font-weight: bold;">관리목록</h3>
+                                    <!-- 회원목록 -->
+                                    <table class="table table-hover1">
                                         <thead>
-                                            <tr class="listBar" style="background-color: #ec523f; color: white;">
+                                            <tr class="listBar" style="background-color: #ec523f; color: white; width: 100%">
                                                 <th>No.</th>
                                                 <th>멤버</th>
+                                                <th>자기소개</th>
                                                 <th>가입날짜</th>
                                                 <th style="text-align: center">쪽지</th>
                                                 <th style="text-align: center">강퇴</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${boardList }" var="l" varStatus="i">
+                                            <c:forEach items="${clubMemberList }" var="l" varStatus="i">
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>바람돌이</td>
-                                                    <td>2021-07-01</td>
+                                                    <td>${i.count }</td>
+                                                    <td>${l.clubNick }</td>
+                                                    <th>자기소개</th>
+                                                    <td>${l.cmDate }</td>
                                                     <td style="text-align: center">쪽지</td>
                                                     <td style="text-align: center">강퇴</td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>
+                                    <!-- 예약목록 -->
+                                     <table class="table table-hover2" style="display: none;">
+                                        <thead>
+                                            <tr class="listBar" style="background-color: #ec523f; color: white;">
+                                                <th>No.</th>
+                                                <th>멤버</th>
+                                                <th style="width: 360px">자기소개</th>
+                                                <th>신청날짜</th>
+                                                <th style="text-align: center">수락</th>
+                                                <th style="text-align: center">거절</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${applyList }" var="l" varStatus="i">
+                                                <tr>
+                                                	
+                                                    <td>${i.count }</td>
+                                                    <td>${l.receiver }</td>
+                                                    <td>${l.iaContent }</td>
+                                                    <td>${l.iaDate }</td>
+                                                    <td style="text-align: center">
+                                                    	<button type="button" onclick="accept(this)">수락</button>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                    	<button type="button" onclick="refusal(this)">거절</button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
-
+                                <br>
+								<hr>
                                 <!-- 관리자 컨텐츠(관리자) -->
                                 <h3 style="margin-left: 10px; font-weight: bold;">클럽 관리</h3>
                                 <div class="bottomAdmin">
@@ -299,23 +314,88 @@
             <button id="closeBtn">닫기</button>
         </div>
     </div>
+    
+    <!-- Modal2 -->
+	 <div class="modal fade" id="myModal" role="dialog" style="margin: 100px auto 0px;">
+	   <div class="modal-dialog modal-sm">
+	     <div class="modal-content" style=" height: 320px;background-color: #e6e6e6ed;">
+	       <div class="modal-header">
+	         <button type="button" class="close" data-dismiss="modal">&times;</button>
+	         <h3 class="modal-title">클럽 가입신청하기</h3>
+	       </div>
+	       <div class="modal-body">
+	         <p>클럽에 가입하기 전에 </p>
+	         <p>인사말을 적어주세요.</p>
+	       </div>
+	       <input type="text" class="receiver" name="receiver" value="${sessionScope.m.memberNick }" style="display: none">
+	       <input type="text" class="clubNo"  name="clubNo" value="${clubNo }" style="display: none">
+	       <div style="display: flex;justify-content: center;">
+	       	<textarea class="iaContent" placeholder="모임장에게 전해질 인사말을 적어주세요!" name="iaContent"></textarea>
+	       </div>
+	       <div class="modal-footer"style="display: flex;justify-content: center;">
+	         <button type="button" onclick="userClubJoin()" class="btn btn-default">신청</button>
+	         <button type="button" id="closeModal" class="btn btn-default" data-dismiss="modal">닫기</button>
+	       </div>
+	     </div>
+	   </div>
+	 </div>
 	<script>
-	/* 관리자 회원/예약 */
-	 $(function(){
+	/* //클럽 가입 신청
+	function accept(obj){
+		var accept = $(this).eq(obj);
+		$.ajax({
+			url : "/memberClubJoin.do",
+			data : apply,
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
+					$("#closeModal").click();
+				}else{
+					alert("가입실패");
+				}
+			}
+		})
+	} */
+	//클럽가입 수락 및 거절
+	function userClubJoin(){
+		var apply={
+			clubNo : $(".clubNo").val(),
+			receiver : $(".receiver").val(),
+			iaContent : $(".iaContent").val(),
+		}
+		console.log(apply);
+		$.ajax({
+			url : "/memberClubJoin.do",
+			data : apply,
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
+					$("#closeModal").click();
+				}else{
+					alert("가입실패");
+				}
+			}
+		})
+	}
+	
+	/* 관리자 회원/예약  버튼*/
         function userListAdmin(){
-            $(".table table-hover1").css("display","none");
-            $(".table table-hover2").css("display","block");
+            $(".table-hover1").hide();
+            $(".table-hover2").show();
         }
         function memberListAdmin(){
-            $(".table table-hover1").css("display","block");
-            $(".table table-hover2").css("display","none");
+            $(".table-hover1").show();
+            $(".table-hover2").hide();
         }
-        });
+        var test;
+        
 	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
-
-		tabCont.hide().eq(0).show();
+		tabCont.hide();
+		tabCont.eq(0).show();
 
 		tabBtn.click(function() {
 			var target = $(this); //버튼의 타겟(순서)을 변수에 저장
@@ -324,8 +404,33 @@
 			target.addClass("active"); //타겟의 클래스를 추가
 			tabCont.css("display", "none");
 			tabCont.eq(index).css("display", "block");
+			
+			/* 달력 초반 출력 문제 해결 */
+			if(index==2){
+				$("#test").empty();				
+				var calendarEl = document.getElementById("test");			
+				  test = new FullCalendar.Calendar(calendarEl, {
+				    plugins: ["interaction", "dayGrid"],
+				    defaultDate: "2021-06-06",
+				    editable: true,
+				    eventLimit: true,
+				    
+				    dateClick: function (data) {
+				      /* if(stu != ""){
+				        $(".service").css("display", "block");
+				       $(".service_date").val(data.dateStr);
+				       console.log(data.dateStr);
+				      }else{
+				    	  alert("로그인 후 이용이 가능합니다.");
+				          location.href = "/";
+				      } */
+				    },
+				  });
+				  test.render();
+				  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2021-07-03'});
+				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-04',end:'2021-07-04'});
+			}
 		});
-		
 	/*더보기 기능*/
 	$(function() {
 		more(1);
@@ -410,7 +515,7 @@
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws://192.168.35.71//chat.do")
+      ws = new WebSocket("ws://192.168.10.47//chat.do")
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수
@@ -458,7 +563,6 @@
          }
       })
    });
-   
 	</script>
 </body>
 

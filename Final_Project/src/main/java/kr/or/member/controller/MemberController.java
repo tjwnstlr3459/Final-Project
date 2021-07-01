@@ -152,7 +152,7 @@ public class MemberController {
 	//친구 요청 수락
 	@ResponseBody
 	@RequestMapping(value="/user/accFriend.do")
-	public String accFriend(@SessionAttribute(required = false) Member m, Friends f) {
+	public String accFriend(Friends f) {
 		int result = service.updateFriend(f);
 		
 		if(result > 0) {
@@ -389,6 +389,19 @@ public class MemberController {
 			return "0";
 		}
 	}
+	
+	//쪽지 전송
+	@ResponseBody
+	@RequestMapping(value="/user/sendDm.do")
+	public String sendDm(DirectMessage dm, Model model) {
+		int result = dmService.insertDm(dm);
+		if(result > 0) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}
+	
 	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")

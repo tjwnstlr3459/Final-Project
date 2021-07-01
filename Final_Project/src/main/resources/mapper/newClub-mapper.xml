@@ -85,20 +85,69 @@ insert into club_board values(
 	where board_no=#{boardNo}
 </update>
 <select id="selectOne" parameterType="int" resultType="n" >
-		select
-		   BOARD_NO as boardNo,
-		   CLUB_NO as clubNo,
-		   BOARD_CG as boardCg,
-		   BOARD_WRITER as boardWriter,
-		   BOARD_TITLE as boardTitle,
-		   BOARD_CONTENT as boardContent,
-		   FILENAME,
-		   FILEPATH,
-		   BOARD_VIEWS as boardViews,
-		   BOARD_GOOD as boardGood,
-		   ENROLL_DATE as enrollDate
-		from club_board where club_no=#{clubNo}
-	</select>
-		
-		
+	select
+	   BOARD_NO as boardNo,
+	   CLUB_NO as clubNo,
+	   BOARD_CG as boardCg,
+	   BOARD_WRITER as boardWriter,
+	   BOARD_TITLE as boardTitle,
+	   BOARD_CONTENT as boardContent,
+	   FILENAME,
+	   FILEPATH,
+	   BOARD_VIEWS as boardViews,
+	   BOARD_GOOD as boardGood,
+	   ENROLL_DATE as enrollDate
+	from club_board where club_no=#{clubNo}
+</select>
+
+<!-- 가입신청한 회원 목록 출력 -->
+<select id="selectApply" parameterType="int" resultType="a">
+SELECT 
+    invite_no as iaNo,
+    invite_cn as clubNo,
+    receiver as receiver,
+    type as iaType,
+    ia_content as iaContent,
+    ia_date as iaDate
+FROM INVITE_APPLY WHERE INVITE_CN=#{clubNo}
+</select>	
+	
+<!-- 회원목록 출력 -->
+<select id="selectMemberList" parameterType="int" resultType="cm">
+select 
+    cm_no as cmNo,
+    club_no as clubNo,
+    club_nick as clubNick,
+    enroll_date as cmDate
+from club_member where club_no=#{clubNo}
+</select>
+
+<!-- 클럽가입신청하기 -->
+<insert id="insertApply" parameterType="a">
+INSERT INTO INVITE_APPLY VALUES(
+    IA_SEQ.NEXTVAL,
+    #{clubNo},
+    #{receiver},
+    'N',
+    #{iaContent},
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</insert>
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
