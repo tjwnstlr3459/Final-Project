@@ -359,6 +359,8 @@
 			success : function(data){
 				if(data > 0){
 					alert("수락되었습니다.");
+					//수락하고 다시 컨트롤러로 보내서 다시 로드할때 3번페이지가 바로 보일수있게
+					location.href="/newClub.do?clubNo=38&menuNo=3";
 				}else{
 					alert("수락 실패");
 				}
@@ -403,7 +405,12 @@
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
 		tabCont.hide();
-		tabCont.eq(0).show();
+		
+		//페이지 로드할때 menuNo값 있는지 확인후 번호값대로 btn(no) 실행
+		var index = '${menuNo}';
+		$(function(){
+			tabBtn.eq(index).click();
+		});
 
 		tabBtn.click(function() {
 			var target = $(this); //버튼의 타겟(순서)을 변수에 저장
