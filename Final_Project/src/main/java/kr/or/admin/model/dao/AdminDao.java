@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.admin.model.vo.AdminCount;
+import kr.or.admin.model.vo.BestCategory;
 import kr.or.admin.model.vo.DestroyMemberCountMonth;
 import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
@@ -39,5 +40,9 @@ public class AdminDao {
 
 	public List selectDestroyMemberCountMonth() {
 		return session.selectList("admin.selectDestroyMemberCountMonth");
+	}
+
+	public List selectBestCategory() {
+		return session.selectList("admin.selectBestCategory");
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.admin.model.dao.AdminDao;
 import kr.or.admin.model.vo.AdminCount;
+import kr.or.admin.model.vo.BestCategory;
 import kr.or.admin.model.vo.DestroyMemberCountMonth;
 import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
@@ -19,7 +20,16 @@ public class AdminService {
 	private AdminDao dao;
 
 	public AdminCount selectAdminCount() {
-		return dao.selectAdminCount();
+		AdminCount ac = dao.selectAdminCount();
+		if(ac != null) {
+			ArrayList<BestCategory> bcList = (ArrayList<BestCategory>)dao.selectBestCategory();
+			for(BestCategory list : bcList) {
+				System.out.println(list.getCgName());
+			}
+			ac.setBcList(bcList);
+			
+		}
+		return ac;
 	}
 	@Transactional
 	public int insertVisit(String visitorIp) {

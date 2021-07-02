@@ -4,8 +4,10 @@
 	<select id="selectAdminCount" resultType="ac">
 		select 
 		    distinct
-		    (select count(*) from member) memberCount,
-		    (select count(*) from club) clubCountm,
+		    (select count(*) from member) allMemberCount,
+		    (select count(*) from destroy) destroyedMemberCount,
+		    (select count(*) from restriction) restrictedMemberCount,
+		    (select count(*) from club) allClubCount,
 		    (select count(*) from member where hobby1=4 or hobby2=4 or hobby3=4) memberSports,
 		    (select count(*) from member where hobby1=5 or hobby2=5 or hobby3=5) memberMusic,
 		    (select count(*) from member where hobby1=6 or hobby2=6 or hobby3=6) memberTravel,
@@ -35,5 +37,8 @@
 	<!-- 한 달 기준 탈퇴 회원 count -->
 	 <select id="selectDestroyMemberCountMonth" resultType="dmcm">
 		select count(*) as destroyCount, substr(des_date,1,7) as destroyMonth from destroy group by substr(des_date,1,7) order by 2
+	</select>
+	<select id="selectBestCategory" resultType="bc">
+		select (select cg_name from category where cg_no = club_cg) as cgName, count(club_cg) as createdCount, round(count(club_cg)/(select count(*) from club)*100) as percent from club group by club_cg order by club_cg
 	</select>
 </mapper>

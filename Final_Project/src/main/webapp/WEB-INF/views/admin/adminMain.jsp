@@ -46,18 +46,67 @@
 			</div>
 			<div class="chart-wrap">
 				<div class="memberCount-box box-option">
-					<canvas id="memberCount"></canvas>
+					<canvas id="memberCountChart"></canvas>
 				</div>
 				<div class="memberHobby-box box-option">
-			        <canvas id="memberHobby"></canvas>
+			        <canvas id="memberHobbyChart"></canvas>
 			    </div>	
 			</div>
 			<div class="chart-wrap">
 				<div class="ages-box box-option">
-			        <canvas id="memberAge"></canvas>
+			        <canvas id="memberAgeChart"></canvas>
 			    </div>
-			    <div class="info-wrap">
-			    	
+			    <div class="info-space">
+				    <div class="info-wrap box-option">
+				    	<table class="table-info">
+				    		<thead>
+					    		<tr>
+					    			<th colspan="2"><h3 class="title-info">title</h3></th>
+					    		</tr>
+				    		</thead>
+				    		<tbody>
+				    			<tr>
+				    				<td>All Members</td><td id="allMemberCount"></td>
+				    			</tr>
+				    			<tr>
+				    				<td>Destroyed Members</td><td id="destroyedMemberCount"></td>
+				    			</tr>
+				    			<tr>
+				    				<td>Restricted Members</td><td id="restrictedMemberCount"></td>
+				    			</tr>
+				    		</tbody>
+				    	</table>
+				    </div>
+				    <div class="info-wrap box-option">
+				    	<table class="table-info">
+				    		<thead>
+					    		<tr>
+					    			<th colspan="2"><h3 class="title-info">title</h3></th>
+					    		</tr>
+				    		</thead>
+				    		<tbody>
+				    			<tr>
+				    				<td>Members</td><td id="memberCount">num</td>
+				    			</tr>
+				    		</tbody>
+				    	</table>
+				    </div>
+			    </div>
+			    <div class="info-space">
+				    <div class="infoList-wrap box-option">
+				    	<table class="table-info">
+				    		<thead>
+					    		<tr>
+					    			<th colspan="3"><h3 class="title-info">title</h3></th>
+					    		</tr>
+				    		</thead>
+				    		<tbody>
+				    			<tr>
+				    				<td>활동? 순위</td><td class="graphs-wrap"><div class="graphs"></div></td><td id="memberCount">num</td>
+				    			</tr>
+				    		</tbody>
+				    	</table>
+				    </div>
 			    </div>
 			</div>
 		</section>

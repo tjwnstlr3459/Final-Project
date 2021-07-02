@@ -360,6 +360,7 @@ section::-webkit-scrollbar-track {
 }
 .count-name{
 	font-size:0.7rem;
+	color:var(--mainTextColor);
 }
 .count-value{
 	line-height:40px;
