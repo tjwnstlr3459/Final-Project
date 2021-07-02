@@ -365,3 +365,48 @@
 	background-color: #337ab7b8;
 	transform: scale(1.05);
 }
+
+
+#calModal{
+	background-color: #8000808c;
+	margin: 0 auto;
+    display: flex;
+   	margin-top: 20px;
+    width: 200px;
+    padding-left: 45px;
+}
+body.modal-open {
+    overflow: auto;
+}
+
+body.modal-open[style] {
+    padding-right: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
