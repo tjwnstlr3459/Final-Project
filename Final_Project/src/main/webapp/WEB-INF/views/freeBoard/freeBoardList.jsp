@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="/resources/css/freeBoardList/freeBoardList.css" />
+	
 <meta charset="UTF-8">
 <title>피드게시판</title>
 <style>
@@ -120,21 +121,24 @@ button:hover{
             text-decoration: none;
             cursor: pointer;
         }
+        body{
+        float:left;
+        }
 </style>
-
 
 </head>
 <body>
-	<%@include file="/WEB-INF/views/common/header.jsp"%>
+	 <%@include file="/WEB-INF/views/common/header.jsp"%> 
 	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED</h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
 	<button id="feed_info" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
-	<div class="container">
+	<div id="wrapper" style="display:flex;">
 	  <!-- <button id="myBtn">Open Modal</button>  -->
  
+	</div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
  
@@ -144,7 +148,6 @@ button:hover{
       </div>
  
     </div>
-</div>
 	    
 	<script>
 	
@@ -163,18 +166,17 @@ button:hover{
 					for(var i = 0; i<data.length; i++){
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
-						var html2 ="";
-						html += "<article class='item'><header>";			//여기다가 div클ㄹ스 */
-						html += "<a href='#'><img src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
-						//여기는 값을 위한 구역
+						html += "<article class='item' style='width:50%; height:50%;'><header>";			//여기다가 div클ㄹ스 */
+						html += "<a href='#'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
+
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
 						html += "<span style='display:none;'>"+fb.fbWriter+"</span>";
-						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
-						//
-						html += "<h3>"+fb,fbWriter+"</h3></header>";
+						html += "<input type='text' value='"+fb.fbNo+"'style='display:none;'>";
+
+						html += "<h3>"+fb.fbWriter+"님의 게시물입니다.</h3></header>";
 						html +="<p></p>";
 						html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li></ul></article>";
-						if(${empty sessionScope.m}){							
+						 if(${empty sessionScope.m}){							
 						html += "<button onclick='addHeart(this);' disabled><i class='far fa-heart'></i>&nbsp;";
 						}else{							
 						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
@@ -186,7 +188,7 @@ button:hover{
 						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' onclick='deleteCheck(this);'>DELETE FEED</a></button>";						
 						}
 						html += "<span class='comments'></span></div>";
-						$(".container").append(html);
+						$("#wrapper").append(html);
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
