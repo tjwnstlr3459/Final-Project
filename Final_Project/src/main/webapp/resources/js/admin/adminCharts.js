@@ -39,7 +39,7 @@ function destroyMemberCountMonth(param){
 }
 //회원 취미 선택 통계
 function memberHobbys(data){
-	var myChart = new Chart(document.getElementById('chart1'), {
+	var myChart = new Chart(document.getElementById('memberHobby'), {
         type: "bar",
         data: {
             labels: ['Sports', 'Music', 'Travel', 'Movie', 'Game','Nature','Bear','Food'],

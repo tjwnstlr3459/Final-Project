@@ -136,6 +136,7 @@ section{
     height:100%;
     overflow-y:scroll;
     box-sizing:border-box;
+    padding:20px;
 }
 /* 스크롤바 디자인 시작 */
 section::-webkit-scrollbar {

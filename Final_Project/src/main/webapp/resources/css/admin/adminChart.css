@@ -1,25 +1,19 @@
 .chart-wrap{
 	display:flex;
 	justify-content:space-between;
-}
-.memberHobby-box{
-	width:100%;
-	height:250px;
-	
-}
-.ages-box{
-	width:100%;
-	height:250px;
-	padding:10px;
+	margin-bottom:20px;
 }
 .memberCount-box{
-	width:55%;
-	height:500px;
-	padding:10px;
+	width:70%;
+	height:300px;
+	margin-right:20px;
 }
-.innerChart-wrap{
-	width:44%;
-	display:flex;
-	flex-direction:column;
-	
+.memberHobby-box{
+	width:30%;
+	height:300px;
+}
+.ages-box{
+	width:30%;
+	height:250px;
+	padding-bottom:10px;
 }
