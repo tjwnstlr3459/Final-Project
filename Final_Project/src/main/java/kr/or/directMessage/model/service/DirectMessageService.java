@@ -27,10 +27,12 @@ public class DirectMessageService {
 		return (ArrayList<DirectMessage>)dao.selectAllDm();
 	}
 
+	@Transactional
 	public int updateWarningCount(DirectMessage dm) {
 		return dao.updateWarningCount(dm);
 	}
-
+	
+	@Transactional
 	public int insertMultiDm(DirectMessage dm, String[] memberNo) {		
 		return dao.insertMultiDm(dm,memberNo);
 	}
@@ -39,8 +41,16 @@ public class DirectMessageService {
 		DirectMessageData dmData = new DirectMessageData();
 		dmData.setDmList((ArrayList<DirectMessage>)dao.selectDmByName(memberNick));
 		dmData.setUnread(dao.selectUnreadDm(memberNick));
-		return dmData;
-		
+		return dmData;		
+	}
+	
+	@Transactional
+	public int updateDm(DirectMessage dm) {
+		return dao.updateDm(dm);
+	}
+
+	public DirectMessage userSelectDm(DirectMessage dm) {
+		return dao.selectOneDm(dm);
 	}
 
 }

@@ -117,7 +117,7 @@ font-family: 'Noto Sans KR', sans-serif;
 	font-weight:bold;
 }
 .categoryNavi{
-position:fixed;
+ position:fixed; 
 }
 
 .categoryNavi ul {	
@@ -127,10 +127,10 @@ position:fixed;
 	padding: 0;
 	margin-left: 40px;
 }
-.categoryNavi ul{
+/* .categoryNavi ul{
 	border: 1px solid black;
 	border-radius: 7%;
-}
+} */
 .categoryNavi ul>li>a {
 	display: block;
 	width: 200px;
@@ -138,6 +138,7 @@ position:fixed;
 	text-align: center;
 	line-height: 50px;
 	text-decoration: none;
+	border-bottom: 1px solid black;
 }
 .categoryNavi>ul>li>a {
 	background-color: transparent;

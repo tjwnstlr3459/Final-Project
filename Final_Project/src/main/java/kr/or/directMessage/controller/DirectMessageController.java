@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
 
@@ -44,4 +46,38 @@ public class DirectMessageController {
 		}
 		return "0";
 	}
+	
+	//유저 쪽지 전송
+	@ResponseBody
+	@RequestMapping(value="/user/sendDm.do")
+	public String userSendDm(DirectMessage dm) {
+		int result = service.insertDm(dm);
+		if(result > 0) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}	
+	
+	//유저 쪽지 1개 select
+	@ResponseBody
+	@RequestMapping(value="/user/selectDm.do", produces="application/json;charset=utf-8")
+	public String userSelectDm(DirectMessage dm) {
+		DirectMessage oneDm = service.userSelectDm(dm);
+		return new Gson().toJson(oneDm);		
+	}
+	
+	//유저 쪽지 읽음
+	@ResponseBody
+	@RequestMapping(value="/user/updateDm.do")
+	public String updateDm(DirectMessage dm) {
+		int result = service.updateDm(dm);
+		if(result > 0) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}	
+	
+	
 }
