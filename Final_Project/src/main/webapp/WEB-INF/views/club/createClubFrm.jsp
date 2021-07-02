@@ -12,7 +12,9 @@
 <meta charset="UTF-8">
 <title>클럽생성페이지</title>
 <style>
-
+body{
+	background-color: #f5f5f5;
+}
 .clubForm {
 	text-align: center;
 	font-family: "Source Sans Pro", sans-serif;
@@ -22,7 +24,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	<hr style="color: #fff; border: 2px solid #fff;">
+	<!-- <hr style="color: #fff; border: 2px solid #fff;"> -->
 	<div class="clubForm">
 		<fieldset>
 			<h1>CREATE CLUB FORM</h1>
