@@ -20,7 +20,11 @@
 		<!-- 게시판네비 -->
 		<typeAlias type="kr.or.board.model.vo.BoardPageData" alias="bpd"/>
 		<!-- 모임상세페이지 -->
-		<typeAlias type="kr.or.newclub.model.vo.clubBoard" alias="n"/>    
+		<typeAlias type="kr.or.newclub.model.vo.clubBoard" alias="n"/>
+		<!-- 모임신청 -->
+		<typeAlias type="kr.or.newclub.model.vo.Apply" alias="a"/>  
+		<!-- 모임에 속한 회원 -->
+		<typeAlias type="kr.or.newclub.model.vo.ClubMember" alias="cm"/>    
 		<!-- 쪽지 -->
 		<typeAlias type="kr.or.directMessage.model.vo.DirectMessage" alias="dm"/>
 		<!-- 이용제한 -->
@@ -33,6 +37,9 @@
 		<typeAlias type="kr.or.member.model.vo.Friends" alias="f"/>
 		<!-- 관리자 카운트 클래스 -->
 		<typeAlias type="kr.or.admin.model.vo.AdminCount" alias="ac"/>
+		<typeAlias type="kr.or.admin.model.vo.MemberCountMonth" alias="mcm"/>
+		<typeAlias type="kr.or.admin.model.vo.DestroyMemberCountMonth" alias="dmcm"/>
+		
 		<!-- 관리자 방문 클래스 -->
 		<typeAlias type="kr.or.admin.model.vo.Visit" alias="visit"/>
 		

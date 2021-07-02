@@ -22,9 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.or.board.model.vo.Board;
-import kr.or.club.model.vo.ClubBoard;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
+import kr.or.newclub.model.vo.Apply;
+import kr.or.newclub.model.vo.ClubMember;
 import kr.or.newclub.model.vo.clubBoard;
 
 @Controller
@@ -34,24 +35,57 @@ public class newClubController {
 	
 	@RequestMapping(value = "/newClub.do")
 	public String newClub(@SessionAttribute(required = false) Member m,int clubNo,Model model){
+		
 		int totalCount = service.totalCount(clubNo);
 		model.addAttribute("totalCount",totalCount);
 		model.addAttribute("clubNo", clubNo);
 		List list = service.boardList();
 		model.addAttribute("list",list);
+		
+		//가입신청한 회원 출력
+		ArrayList<Apply> applyList = service.selectApply(clubNo);
+		model.addAttribute("applyList", applyList);
+		//가입된 회원 출력
+		ArrayList<ClubMember> clubMemberList = service.selectMemberList(clubNo);
+		model.addAttribute("clubMemberList", clubMemberList);
 		return "newclub/newClub";
 	}
+	
 	@RequestMapping(value = "/allMemberChat.do")
 	public String allMemberChat(){
 		return "newclub/newClub";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/clubBoardMore.do",produces="application/json;charset=utf-8")
 	public String clubBoardMore(int start, int clubNo){
 		ArrayList<Board> list = service.clubBoardMore(start,clubNo);
 		return new Gson().toJson(list);
-
-}
+	}
+	
+	//클럽 가입신청
+	@ResponseBody
+	@RequestMapping(value = "/memberClubJoin.do")
+	public int memberClubJoin(Model model,Apply Apply) {
+		int result = service.insertApply(Apply);
+		return result;
+	}
+	
+	  //가입수락
+	  @ResponseBody
+	  @RequestMapping(value = "/memberJoinCheck.do") 
+	  public int memberJoinCheck(int no,int clubNo) { 
+		  int result = 0;
+		  int result1 = service.insertClubMember(no,clubNo);//클럽멤버에 넣기
+		  if(result1>0) {
+			  result = service.deleteApply(no);//멤버넣으면 기존 apply테이블에서 멤버삭제
+		  }
+		  return result; 
+	}
+	 
+	
+	
+	
 	/*아작스에서 제이슨 전달 방법
 	@ResponseBody//모델은 컨트롤러에서 화면으로전달하기위한..
 	@RequestMapping(value="/allMemberAjax.do",produces="application/json;charset=utf-8")//리턴해주는 값은 제이슨이고 한글깨짐 방지 utf-8
@@ -135,7 +169,7 @@ public class newClubController {
 		          }
 		       }
 		      //DB에 넣기
-		      int result = service.insertBoard(b,fileList);
+		      int result = service.insertBoard(b, fileList);		      
 		      if(result != -1 && result == fileList.size()) {
 		    	  model.addAttribute("msg","등록성공");
 		      }else {
@@ -238,5 +272,28 @@ public class newClubController {
       return "common/msg";
    }
   */
-
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

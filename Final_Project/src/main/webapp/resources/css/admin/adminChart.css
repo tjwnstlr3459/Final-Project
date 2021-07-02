@@ -1,0 +1,19 @@
+.chart-wrap{
+	display:flex;
+	justify-content:space-between;
+	margin-bottom:20px;
+}
+.memberCount-box{
+	width:70%;
+	height:300px;
+	margin-right:20px;
+}
+.memberHobby-box{
+	width:30%;
+	height:300px;
+}
+.ages-box{
+	width:30%;
+	height:250px;
+	padding-bottom:10px;
+}

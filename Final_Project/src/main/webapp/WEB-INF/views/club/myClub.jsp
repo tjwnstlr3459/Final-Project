@@ -252,75 +252,6 @@ $(function() {
 		})
 		more(1);
 	}
-/* //조건별 게시물 불러오기
-function selectDateChange(){
-	var selectDate = $(".selectDate").val();	//select
-	var changeDate;			//적용날짜
-	if(selectDate =='지난 1일'){
-		changeDate = "-1";
-	}
-	else if(selectDate =='지난 7일'){
-		changeDate = "-7";
-	}
-	else if(selectDate =='지난 1개월'){
-		changeDate = "-31";
-	}
-	//날짜 조건별 찾아오기
-	$.ajax({
-		url : "/selectPhoto.do",
-		data : {
-			start : start,
-			changeDate : changeDate
-		}, //시작번호를 매개변수로 1-5 1-10f
-		type : "post",
-		success : function(data) {
-			for (var i = 0; i < data.length; i++) {
-				var p = data[i];
-				var html = "";
- html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
- html +=  '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;" >';
- html +=   '<a href="#" class="thumb-link">';
-	if(p.filePath != null){ 
-		html +='<img class="picPath" src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building" />';
-	}else{
-		html +='<img src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin-left: 43px;margin-top: 20px;"/>';
-	}
- html +=    '</a>';
- html +=   '</div>';
- html +=   '<div class="entry-text" style="height: 150PX;">';
- html +=    '<div class="entry-header">';
- html +=    '<div class="entry-meta">';
- html +=    '<span class="cat-links">';
- html +=	'<div class="cName" style="display:none">'+p.boardWriter+'</div>';
- html +=        '<a href="#" class="clubName">'+p.clubName+'</a>';
- html +=    '</span>';
- html +=   '</div>';
- html +=  '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 18px;text-overflow: ellipsis;white-space: nowrap;">';
- html +=     '<a href="single-standard.html"class="bTitle">'+p.boardTitle+'</a>';
- html +=  '</h1>';
- html +=  '</div>';
- html +=  '<div class="entry-excerpt" style="height: 70px;overflow: hidden;text-overflow: ellipsis;">'+p.boardContent+'</div>';
- html +=  '</div>';
- html +=   '</article>';
-				$(".photoWrapper").append(html);
-			}
-			
-			//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
-			$("#more-btn").val(Number(start) + 10
-			);
-			var curr = $("#more-btn").attr("currentCount"); //현재값
-			$("#more-btn").attr("currentCount", curr + data.length);//현재값 = 현재값+데이터길이 변경 
-
-			var totalCount = $("#more-btn").attr("totalCount");//전체게시물
-
-			var currCount = $("#more-btn").attr("currentCount");//내가 최종적으로가져온게시물
-			if (currCount == totalCount) {//가져올게없다면
-				$("#more-btn").attr("disabled", true); //최대치면 버튼 비활성화
-			}
-		}
-	});
-	
-} */
 
 //모달클릭
 function func1(obj){
@@ -330,16 +261,11 @@ function func1(obj){
 	$(".postModal").css("z-index", "10000");
 	$(".postModal").css("display","flex");
 	
-	
 	//모달창 내 해당 값 넣기
 	$(".modalMemberName").html($(".cName").eq(idx).html());		//게시글 작성자
 	$(".modalClubName").html($(".clubName").eq(idx).html());	//해당 게시글 클럽명
 	$(".postContent").html($(".entry-excerpt").eq(idx).html());	//게시글 내용
-	$(".postImg").html($(".picPath").eq(idx).clone())
-	
-	//배경어둡게
-	/* $("#top").css("background", "rgba(0,0,0,.75)");
-	$("#top").css("z-index", "10000"); */
+	$(".postImg").html($(".picPath").eq(idx).clone());
 }
 
 $(function() {
@@ -383,9 +309,9 @@ function more(start) {//더보기 클릭시
  html +=  '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;" >';
  html +=   '<a href="#" class="thumb-link">';
 	if(p.filePath != null){ 
-		html +='<img class="picPath" src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building" />';
+		html +='<img class="picPath" src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building"/>';
 	}else{
-		html +='<img src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin-left: 43px;margin-top: 20px;"/>';
+		html +='<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex;margin-top: 15px;"/>';
 	}
  html +=    '</a>';
  html +=   '</div>';

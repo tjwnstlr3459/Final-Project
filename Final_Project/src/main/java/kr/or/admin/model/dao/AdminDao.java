@@ -1,5 +1,6 @@
 package kr.or.admin.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.admin.model.vo.AdminCount;
+import kr.or.admin.model.vo.DestroyMemberCountMonth;
+import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
 
 @Repository
@@ -28,5 +31,13 @@ public class AdminDao {
 
 	public int selectVisit(Visit selectType) {
 		return session.selectOne("visit.selectVisit",selectType);
+	}
+
+	public List selectMemberCountMonth() {
+		return session.selectList("admin.selectMemberCountMonth");
+	}
+
+	public List selectDestroyMemberCountMonth() {
+		return session.selectList("admin.selectDestroyMemberCountMonth");
 	}
 }

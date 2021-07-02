@@ -28,4 +28,12 @@
 		    (select count(*) from club where club_no=11) clubEat    
 		from dual
 	</select>
+	<!-- 한 달 기준 회원 count -->
+	<select id="selectMemberCountMonth" resultType="mcm">
+		select count(*) as memberCount, substr(enroll_date,1,7) as enrollMonth from member group by substr(enroll_date,1,7) order by 2
+	</select>
+	<!-- 한 달 기준 탈퇴 회원 count -->
+	 <select id="selectDestroyMemberCountMonth" resultType="dmcm">
+		select count(*) as destroyCount, substr(des_date,1,7) as destroyMonth from destroy group by substr(des_date,1,7) order by 2
+	</select>
 </mapper>

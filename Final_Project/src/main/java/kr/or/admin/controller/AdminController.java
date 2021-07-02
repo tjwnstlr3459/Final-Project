@@ -28,6 +28,8 @@ import com.google.gson.JsonObject;
 
 import kr.or.admin.model.service.AdminService;
 import kr.or.admin.model.vo.AdminCount;
+import kr.or.admin.model.vo.DestroyMemberCountMonth;
+import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
 import kr.or.member.model.vo.Member;
 
@@ -130,7 +132,20 @@ public class AdminController {
 		int count = service.selectVisit(selectType);
 		return Integer.toString(count);
 	}
-
+	//한 달 기준 회원 count
+	@RequestMapping(value="/memberCountMonth.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String memberCountMonth() {
+		ArrayList<MemberCountMonth> list = service.selectMemberCountMonth();
+		return new Gson().toJson(list);
+	}
+	//한 달 기준 탈퇴 회원 count
+	@RequestMapping(value="/destroyMemberCountMonth.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String destroyMemberCountMonth() {
+		ArrayList<DestroyMemberCountMonth> list = service.selectDestroyCountMember();
+		return new Gson().toJson(list);
+	}
 	
 	
 	
