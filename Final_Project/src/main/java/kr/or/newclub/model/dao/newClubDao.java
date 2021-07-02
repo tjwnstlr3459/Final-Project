@@ -85,5 +85,25 @@ public class newClubDao {
 		map.put("clubNo", clubNo);
 		return session.insert("newclub.insertClubMemeber", map);
 	}
+	//가입 신청 거절
+	public int deleteRefusal(int clubNo, int listNo) {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("clubNo", clubNo);
+		map.put("listNo", listNo);
+		
+		return session.delete("newclub.deleteRefusal",map);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

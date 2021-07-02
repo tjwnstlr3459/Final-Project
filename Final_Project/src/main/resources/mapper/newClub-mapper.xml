@@ -103,11 +103,12 @@ FROM INVITE_APPLY WHERE INVITE_CN=#{clubNo}
 <!-- 회원목록 출력 -->
 <select id="selectMemberList" parameterType="int" resultType="cm">
 select 
-    cm_no as cmNo,
-    club_no as clubNo,
-    club_nick as clubNick,
-    enroll_date as cmDate
-from club_member where club_no=#{clubNo}
+    A.cm_no as cmNo,
+    A.club_no as clubNo,
+    A.club_nick as clubNick,
+    A.enroll_date as cmDate,
+    B.INTRO
+from club_member A, MEMBER B where A.CLUB_NICK = B.MEMBER_NICK AND club_no=#{clubNo}
 </select>
 
 <!-- 클럽가입신청하기 -->
@@ -135,7 +136,32 @@ INSERT INTO CLUB_MEMBER VALUES(
 DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{no}
 </delete>
 
+<!-- 가입신청 거절 -->
+<delete id="deleteRefusal" parameterType="map">
+DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{listNo} AND INVITE_CN=#{clubNo}
+</delete>
 
 
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

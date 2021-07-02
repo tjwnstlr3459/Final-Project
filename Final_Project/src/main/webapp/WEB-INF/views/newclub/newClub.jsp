@@ -221,7 +221,7 @@
                                                 <tr>
                                                     <td>${i.count }</td>
                                                     <td>${l.clubNick }</td>
-                                                    <th>자기소개</th>
+                                                    <th>${l.intro}</th>
                                                     <td>${l.cmDate }</td>
                                                     <td style="text-align: center">쪽지</td>
                                                     <td style="text-align: center">강퇴</td>
@@ -245,15 +245,16 @@
                                             <c:forEach items="${applyList }" var="l" varStatus="i">
                                                 <tr>
                                                     <td>${i.count }</td>
-                                                	<td class="listNumber" style="display: none;">${l.iaNo }</td>
+                                                	<td class="listNumber" style="display: none;" >${l.iaNo }</td>
                                                     <td>${l.receiver }</td>
                                                     <td>${l.iaContent }</td>
                                                     <td>${l.iaDate }</td>
                                                     <td style="text-align: center">
-                                                    	<button type="button" class="noNo" onclick="accept(${l.iaNo })" value="${l.iaNo }">수락</button>
+                                                    	<button type="button" class="noNo" onclick="accept(${l.iaNo })">수락</button>
                                                     </td>
                                                     <td style="text-align: center">
-                                                    	<button type="button" onclick="refusal(this)">거절</button>
+                                                    	<button type="button" onclick="refusal(${l.iaNo })">거절</button>
+                                                    	<!-- location.href='/deleteRefusal.do?listNo=${l.iaNo }&clubNo=${clubNo }&menuNo=3' -->
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -345,9 +346,30 @@
 				if(data > 0){
 					alert("수락되었습니다.");
 					//수락하고 다시 컨트롤러로 보내서 다시 로드할때 3번페이지가 바로 보일수있게
-					location.href="/newClub.do?clubNo=38&menuNo=3";
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=3";
 				}else{
 					alert("수락 실패");
+				}
+			}
+		})
+	}
+	//클럽 가입 거절
+	function refusal(obj){	//클릭한 게시물의 번호값 가져오기
+		var clubNo = ${clubNo }
+		$.ajax({
+			url:"/deleteRefusal.do",
+			data : {
+				listNo : obj,
+				clubNo : clubNo,
+			},
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("거절되었습니다.");
+					//수락하고 다시 컨트롤러로 보내서 다시 로드할때 3번페이지가 바로 보일수있게
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=3";
+				}else{
+					alert("거절 실패");
 				}
 			}
 		})
@@ -395,6 +417,7 @@
 		var index = '${menuNo}';
 		$(function(){
 			tabBtn.eq(index).click();
+			$(".adminCheckButton").click();
 		});
 
 		tabBtn.click(function() {

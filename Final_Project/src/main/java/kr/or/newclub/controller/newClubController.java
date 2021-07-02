@@ -72,19 +72,25 @@ public class newClubController {
 		return result;
 	}
 	
-	  //가입수락
-	  @ResponseBody
-	  @RequestMapping(value = "/memberJoinCheck.do") 
-	  public int memberJoinCheck(int no,int clubNo) { 
-		  int result = 0;
-		  int result1 = service.insertClubMember(no,clubNo);//클럽멤버에 넣기
-		  if(result1>0) {
-			  result = service.deleteApply(no);//멤버넣으면 기존 apply테이블에서 멤버삭제
-		  }
-		  return result; 
+	//가입신청 수락
+	@ResponseBody
+	@RequestMapping(value = "/memberJoinCheck.do") 
+	public int memberJoinCheck(int no,int clubNo) { 
+		int result = 0;
+		int result1 = service.insertClubMember(no,clubNo);//클럽멤버에 넣기
+		if(result1>0) {
+		  result = service.deleteApply(no);//멤버넣으면 기존 apply테이블에서 멤버삭제
+		}
+		return result; 
 	}
 	 
-	
+	//가입신청 거절
+	@ResponseBody
+	@RequestMapping(value = "/deleteRefusal.do")
+	public int deleteRefusal(int clubNo,int listNo,String menuNo,Model model) {	
+		int result = service.deleteRefusal(clubNo,listNo);
+		return result;
+	}
 	
 	
 	/*아작스에서 제이슨 전달 방법
