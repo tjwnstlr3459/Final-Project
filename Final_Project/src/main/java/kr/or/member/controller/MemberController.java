@@ -318,6 +318,8 @@ public class MemberController {
 		System.out.println(m.getFilename());
 		System.out.println(m.getMemberPw());
 		System.out.println(m.getAddress());
+		System.out.println(m.getAge());
+		
 		
 		//파일 처리
 		if(propimg[0].isEmpty()) {
@@ -382,13 +384,25 @@ public class MemberController {
 		System.out.println(m.getFilename());
 		System.out.println(m.getMemberPw());
 		System.out.println(m.getAddress());
-		int result = 1;
+		int result = service.updateMember(m);
 		if(result > 0) {
 			return "1";
 		} else {
 			return "0";
 		}
 	}	
+	
+	//비밀번호 변경
+	@RequestMapping(value="updatePw.do")
+	public String updatePw(@SessionAttribute(required = false) Member m, Model model) {
+		return "";
+	}	
+	
+	//회원 탈퇴
+	@RequestMapping(value="leave.do")
+	public String deleteMember(@SessionAttribute(required = false) Member m, Model model) {
+		return "user/leavePage";
+	}
 	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")

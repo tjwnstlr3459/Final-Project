@@ -98,9 +98,15 @@
 
                     <div class="element">
                         <span class="legend">프로필 사진</span>
-                        <input type="file" name="propimg">
-                        <span class="inputMsg"></span>
+                        <div class="upload">
+                        	<input class="upload-name" value="파일선택" disabled>
+	                        <label class="imgLabel" for="propimg">업로드</label>	                        
+	                        <input type="file" id="propimg" name="propimg" onchange="prevImg(this)">
+                        </div>
+                        <span class="legend">미리보기</span>
+                        <span class="inputMsg"><img id="imgPreview" width="290px"></span>
                     </div>
+                    
 					<input type="hidden" name="joinMethod" value="1">
                     <input type="submit" value="회원 가입" onclick="return joinCheck()">
                 </formgroup>
@@ -124,6 +130,7 @@
         </div>
     </div> 
     <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
+    <!-- 네이버 소셜로그인 -->
 	<script type="text/javascript">
 	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/callback.jsp");
 	  	var state = naver_id_login.getUniqState();
@@ -132,6 +139,7 @@
 	  	naver_id_login.setState(state);
 	  	naver_id_login.init_naver_id_login();
 	 </script>
+	 <!-- 카카오 소셜로그인 -->
 	 <script>
 	 	Kakao.init('b0e4792bb9bc14ffbeebc4cac841f141'); //발급받은 키 중 javascript키를 사용해준다.
 	 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
@@ -158,6 +166,7 @@
 		    })
 		  }
 	 </script>
+	 <!-- 구글 소셜로그인 -->
 	 <script>
 		function onSignIn(googleUser) {
 			  var profile = googleUser.getBasicProfile();
@@ -191,8 +200,9 @@
 		  			}
 		  		})
 		}
-	 </script>
+	</script>
     <script>
+    	//다음 주소찾기
 	    function findPCode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -224,7 +234,27 @@
 	            }
 	        }).open();
 	    }
-
+    	
+    	//이미지 미리보기
+    	function prevImg(f) {
+			if(f.files.length != 0) { 
+				var reader = new FileReader(); 
+				reader.readAsDataURL(f.files[0]);
+				reader.onload = function(e) {
+					$("#imgPreview").attr("src", e.target.result);					
+				}
+			} else {
+				$("#imgPreview").attr("src", "");
+			}
+		}
+    	
+    	//파일명 표시
+    	$("#propimg").change(function() {
+    		var filename = $("#propimg").val().split('/').pop().split('\\').pop();
+    		$(".upload-name").val(filename);
+    	})
+		
+    	//유효성 체크
         function regchk(regexp, val) {
             if(regexp.test(val)) {
                 return true;

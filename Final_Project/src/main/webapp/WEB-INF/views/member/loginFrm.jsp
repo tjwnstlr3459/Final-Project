@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>너나들이</title>
 <link rel="stylesheet" type="text/css" href="resources/css/join.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
