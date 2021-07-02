@@ -250,4 +250,9 @@ public class MemberService {
 
 	}
 
+	@Transactional
+	public int updateMember(Member m) {
+		return dao.updateMember(m);
+	}
+
 }

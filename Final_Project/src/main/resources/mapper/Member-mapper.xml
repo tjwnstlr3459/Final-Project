@@ -142,4 +142,8 @@
 	<update id="updatePw" parameterType="m">
 		update member set member_pw=#{memberPw} where email=#{email}
 	</update>
+	<!-- 회원정보 변경 -->
+	<update id="updateMember" parameterType="m">
+		update member set member_nick=#{memberNick}, gender=#{gender}, address=#{address}, intro=#{intro}, hobby1=#{hobby1}, hobby2=#{hobby2}, hobby3=#{hobby3}, age=#{age}, filename=#{filename}, filepath=#{filepath} where email=#{email}
+	</update>
 </mapper>

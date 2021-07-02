@@ -32,8 +32,8 @@
                         <div class="myName">
                       		${m.memberNick }
                         </div>
-                        <div>읽지 않은 쪽지 ${unreadDm }건</div>
-                        <div>친구 요청 ${req }건</div>
+                        <div class="alarm">읽지 않은 쪽지 ${unreadDm }건</div>
+                        <div class="alarm">친구 요청 ${req }건</div>
                     </div>
                 </div>
                 <div class="speech-bubble">
@@ -41,10 +41,11 @@
                 </div>
                 
                 <div class="infoMenu">
+                	<a href="javascript:void(0)" onclick="myFriend()">내 친구</a>
+                	<a href="javascript:void(0)" onclick="myDm()">쪽지함</a>
+                	<a href="javascript:void(0)" onclick="myReport()">내 문의·신고</a>
                     <a href="javascript:void(0)" onclick="myInfoMod()">회원정보수정</a>
-                    <a href="javascript:void(0)" onclick="myDm()">쪽지함</a>
-                    <a href="javascript:void(0)" onclick="myFriend()">내 친구</a>
-                    <a href="javascript:void(0)" onclick="myReport()">문의/신고 내역</a>
+                    <a href="javascript:void(0)" onclick="leaveN()">회원탈퇴</a>  
                 </div>
             </div>
             <div class="main">
@@ -220,7 +221,7 @@
                         	내 정보 수정
                     </div>
                     <div class="modInfo">
-                        <form action="/modInfo.do" method="post" method="post" enctype="multipart/form-data">
+                        <form action="/modInfo.do" id="joinForm" method="post" enctype="multipart/form-data">
 			                <div class="element">
 			                    <span class="legend">이메일</span>
 			                    <input type="email" name="email" value="${m.email }" readonly>
@@ -336,14 +337,14 @@
 			                    </div>
 			
 			                    <div class="elementChk">
-			                        <span class="legend">관심분야(3개 선택)--수정하기</span>
+			                        <span class="legend">관심분야(3개 선택)</span>
 			                        <c:forEach items="${category }" var="c">
 				                        <c:choose>
 				                        	<c:when test="${c.cgNo == m.hobby1 or c.cgNo == m.hobby2 or c.cgNo == m.hobby3 }">
 				                        		<label><input type="checkbox" name="hobby" value="${c.cgNo }" checked>${c.cgName }</label>
 				                        	</c:when>
 				                        	<c:otherwise>
-				                        		<label><input type="checkbox" name="hobby" value="${c.cgNo }">${c.cgName }</label>
+				                        		<label><input type="checkbox" name="hobby" value="${c.cgNo }" disabled>${c.cgName }</label>
 				                        	</c:otherwise>
 				                        </c:choose>						            	
 						            </c:forEach>
@@ -355,12 +356,16 @@
 			                        <textarea name="intro">${m.intro}</textarea>
 			                        <span class="inputMsg"></span>
 			                    </div>
-			
-			                    <div class="element">
+								
+								<div class="element">
 			                        <span class="legend">프로필 사진</span>
-			                        <img src="resources/image/userPic/${m.filepath }">
-			                        <input type="file" name="propimg">
-			                        <span class="inputMsg"></span>
+			                        <div class="upload">
+			                        	<input class="upload-name" value="${m.filename }" disabled>
+				                        <label class="imgLabel" for="propimg">업로드</label>	                        
+				                        <input type="file" id="propimg" name="propimg" onchange="prevImg(this)">
+			                        </div>
+			                        <span class="legend">미리보기</span>
+			                        <span class="inputMsg"><img id="imgPreview" src="resources/image/userPic/${m.filepath }" width="290px" width="290px"></span>
 			                    </div>
 			                    <input type="submit" value="수정" onclick="return modCheck()">
                         </form>
@@ -481,6 +486,9 @@
             $(".dmBox").show();
             $(".reportBox").hide();
             $(".modBox").hide();
+        }
+        function leaveN() {
+        	location.href="leave.do";
         }
         
         //?
@@ -784,10 +792,30 @@
 	        }).open();
 	    }
 		
+		//이미지 미리보기
+    	function prevImg(f) {
+			if(f.files.length != 0) { 
+				var reader = new FileReader(); 
+				reader.readAsDataURL(f.files[0]);
+				reader.onload = function(e) {
+					$("#imgPreview").attr("src", e.target.result);					
+				}
+			} else {
+				$("#imgPreview").attr("src", "");
+			}
 		
+		}
 		
+    	//파일명 표시
+    	$("#propimg").change(function() {
+    		var filename = $("#propimg").val().split('/').pop().split('\\').pop();
+    		$(".upload-name").val(filename);
+    	})
+    	
 		//회원정보 수정용 유효성 체크		
 		$("[name=memberNick]").change(function() {
+			var userName = "<c:out value='${m.memberNick}'/>";
+			console.log(userName);
             var name = $(this).val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
             if(name == "") {
@@ -801,7 +829,7 @@
                 type: "post",
                 data: {memberNick:name},
                 success: function(data) {
-					if(data == "1") {
+					if(data == "1" && name != userName) {
 						$("[name=memberNick]").next().html("중복된 이름은 사용할 수 없습니다.");
 					}
                 },
@@ -832,7 +860,7 @@
             }
         })
         
-        function joinCheck() {
+        function modCheck() {
             var name = $("[name=memberNick]").val();
             var nameByteLength = name.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
             var namechk = $("#namechk");
@@ -893,6 +921,7 @@
             $("#joinForm").prepend("<input type='hidden' name='address' value='" + address + "'>'");
             $("#joinForm").prepend("<input type='hidden' name='filename' value='" + filename + "'>'");
             $("#joinForm").prepend("<input type='hidden' name='filepath' value='" + filepath + "'>'");
+            
             
         }
 	</script>

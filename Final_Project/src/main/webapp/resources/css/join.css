@@ -1,210 +1,253 @@
 .container {
-	text-align: center;
-	margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .join {
-	position: relative;
-	width: 300px;
-	margin: 0 auto;
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
 }
 
-.social>a {
-	display: block;
-	margin-top: 5px;
-	margin-bottom: 5px;
+.social > a {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-#mailCfrm, input[type=submit], #closeModal {
-	width: 300px;
-	height: 35px;
-	color: white;
-	font-weight: bold;
-	background-color: #ec523f;
-	border: 0;
+#mailCfrm,
+input[type="submit"],
+#closeModal {
+  width: 300px;
+  height: 35px;
+  color: white;
+  font-weight: bold;
+  background-color: #ec523f;
+  border: 0;
 }
 
-input, textarea {
-	width: 300px;
-	height: 35px;
-	padding: 5px;
-	box-sizing: border-box;
+input,
+textarea {
+  width: 300px;
+  height: 35px;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 textarea {
-	height: 100px;
-	resize: none;
+  height: 100px;
+  resize: none;
 }
 
-input:focus, textarea:focus {
-	outline: none;
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
-input[type=checkbox] {
-	width: 15px;
-	height: 15px;
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-name {
+  width: 230px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 6px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+}
+
+.imgLabel {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 6px;
+  font-size: 13px;
+  width: 67px;
+  height: 30px;
+  line-height: normal;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.upload {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 select {
-	width: 300px;
-	height: 35px;
-	padding: 5px;
-	box-sizing: border-box;
-	margin-bottom: 20px;
+  width: 300px;
+  height: 35px;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
-.inputMsg, .chkMsg {
-	display: inline-block;
-	width: 100%;
-	height: 20px;
-	text-align: left;
-	padding-left: 5px;
-	font-size: 0.9em;
-	color: cornflowerblue;
+.inputMsg,
+.chkMsg {
+  display: inline-block;
+  width: 100%;
+  height: 20px;
+  text-align: left;
+  padding-left: 5px;
+  font-size: 0.9em;
+  color: cornflowerblue;
 }
 
 .legend {
-	display: inline-block;
-	width: 100%;
-	text-align: left;
-	font-weight: bold;
-	padding-left: 5px;
-	font-size: 0.8em;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  padding-left: 5px;
+  font-size: 0.8em;
 }
 
 formgroup {
-	display: none;
+  display: none;
 }
 
-input[type=radio] {
-	display: none;
+input[type="radio"] {
+  display: none;
 }
 
-input[type=radio]+label {
-	display: inline-block;
-	box-sizing: border-box;
-	height: 35px;
-	width: 96px;
-	border: 1px solid #aaa;
-	line-height: 35px;
-	text-align: center;
-	font-weight: bold;
-	font-size: 13px;
+input[type="radio"] + label {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 35px;
+  width: 96px;
+  border: 1px solid #aaa;
+  line-height: 35px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
 }
 
-input[type=radio]:checked+label {
-	background-color: #333;
-	color: #fff;
+input[type="radio"]:checked + label {
+  background-color: #333;
+  color: #fff;
 }
 
 #postcode {
-	float: left;
-	width: 61%;
-	margin-bottom: 5px;
+  float: left;
+  width: 61%;
+  margin-bottom: 5px;
 }
 
 #findCode {
-	float: right;
-	width: 38%;
+  float: right;
+  width: 38%;
 }
 
 #roadAddress {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .elementChk {
-	text-align: left;
+  text-align: left;
 }
 
-.elementChk>label {
-	display: inline-block;
-	width: 70px;
-	font-size: 0.9em;
+.elementChk > label {
+  display: inline-block;
+  width: 70px;
+  font-size: 0.9em;
 }
 
 .findpw {
-	margin-top: 20px;
-	width: 100%;
-	text-align: center;
-	font-weight: bold;
-	font-size: 0.9em;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9em;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .social {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 #naver_id_login_anchor {
-	display: inline-block;
-	width: 300px;
-	height: 35px;
-	line-height: 35px;
-	background-color: #00c73c;
-	color: white;
+  display: inline-block;
+  width: 300px;
+  height: 35px;
+  line-height: 35px;
+  background-color: #00c73c;
+  color: white;
 }
 
 .modal {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.4);
-	top: 0;
-	left: 0;
-	display: none;
-	justify-content: center;
-	align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-	background-color: #fff;
-	width: 400px;
-	height: auto;
-	border-radius: 10px;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	text-align: center;
+  background-color: #fff;
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
 .modal-header {
-	width: 100%;
-	height: 60px;
-	border-bottom: 4px solid #ffcdc7;
-	margin-bottom: 20px;
+  width: 100%;
+  height: 60px;
+  border-bottom: 4px solid #ffcdc7;
+  margin-bottom: 20px;
 }
 
 .modal-body {
-	margin-bottom:30px;
+  margin-bottom: 30px;
 }
 
 .modal-input {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #findEmail {
-	width: 230px;
+  width: 230px;
 }
 
 #findID {
-	background-color: white;
-	border: 1px solid #ec523f;
-	color: black;
-	width: 60px;
-	height: 35px;
+  background-color: white;
+  border: 1px solid #ec523f;
+  color: black;
+  width: 60px;
+  height: 35px;
 }
 .findResult {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font-size: 0.9em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9em;
 }

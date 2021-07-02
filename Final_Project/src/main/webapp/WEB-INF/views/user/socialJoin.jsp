@@ -81,11 +81,17 @@
                         <span class="inputMsg"></span>
                     </div>
 
-                    <div class="element">
+					<div class="element">
                         <span class="legend">프로필 사진</span>
-                        <input type="file" name="propimg">
-                        <span class="inputMsg"></span>
+                        <div class="upload">
+                        	<input class="upload-name" value="파일선택" disabled>
+	                        <label class="imgLabel" for="propimg">업로드</label>	                        
+	                        <input type="file" id="propimg" name="propimg" onchange="prevImg(this)">
+                        </div>
+                        <span class="legend">미리보기</span>
+                        <span class="inputMsg"><img id="imgPreview" width="290px"></span>
                     </div>
+                    
 					<input type="hidden" name="joinMethod" value="2">
 					
                     <input type="submit" value="회원 가입" onclick="return joinCheck()">
@@ -142,7 +148,28 @@
 	            }
 	        }).open();
 	    }
+	    
+	  	//이미지 미리보기
+    	function prevImg(f) {
+			if(f.files.length != 0) { 
+				var reader = new FileReader(); 
+				reader.readAsDataURL(f.files[0]);
+				reader.onload = function(e) {
+					$("#imgPreview").attr("src", e.target.result);					
+				}
+			} else {
+				$("#imgPreview").attr("src", "");
+			}
+		}
+    	
+    	//파일명 표시
+    	$("#propimg").change(function() {
+    		var filename = $("#propimg").val().split('/').pop().split('\\').pop();
+    		$(".upload-name").val(filename);
+    	})
 
+    	
+    	//유효성 체크
         function regchk(regexp, val) {
             if(regexp.test(val)) {
                 return true;

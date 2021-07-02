@@ -93,5 +93,9 @@ public class MemberDao {
 		return sqlSession.update("member.updatePw", m);
 	}
 
+	public int updateMember(Member m) {
+		return sqlSession.update("member.updateMember", m);
+	}
+
 
 }
