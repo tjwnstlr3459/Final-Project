@@ -86,4 +86,8 @@ public class newClubDao {
 		return session.insert("newclub.insertClubMemeber", map);
 	}
 
+	public int viewUpdate(int boardNo) {
+		return session.update("newclub.viewUpdate", boardNo);
+	}
+
 }

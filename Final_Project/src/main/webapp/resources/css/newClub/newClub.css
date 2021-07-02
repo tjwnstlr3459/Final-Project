@@ -169,21 +169,21 @@
    .board-wrap{
 	   margin: 0 auto;
 	   width: 500px;
-	   height: 600px;
+	   overflow: hidden;
 	   border: 5px solid gray;
 	   margin-top: 10px;
 	   margin-bottom: 10px;
    }
    .userDate{
-       height: 15%;
+       height: 90px;
        width: 100%;
        border-bottom: 1px solid gray;
    }
    .userImg {
        float: left;
        border: 1px solid gray;
-       width: 11%;
-       height: 60%;
+       width: 60px;
+       height: 60px;
        border-radius: 100px;
        margin: 8px 3px 0px 8px;
        overflow: hidden;
@@ -207,17 +207,16 @@
        padding-top: 32px
    }
    .boardTitle{
-       height: 10%;
+       height: 50px;
        width: 100%;
        border-bottom: 1px solid gray;
    }
    .boardContent{
-       height: 35%;
-       width: 100%;
        border-bottom: 1px solid gray;
+       padding: 15px;
    }
      .boardComment{
-       height: 15%;
+       height: 80px;
        width: 100%;
        border-bottom: 1px solid gray;
    }
@@ -228,27 +227,33 @@
    }
    .numView{
        width: 100%;
-       height: 50%;
        border-bottom: 1px solid gray;
+       overflow: hidden;
 
  }
    .btn-wrap{
-       height: 48%;
+       height: 60px;
        width: 100%;
        padding: 30px 0px 0px 30px;
    }
    .userNum{
-       width: 200px;
-       height: 100%;
-       text-align: center;
-       float: left;
+   		float: left;
+        width: 190px;
+    	height: 55px;
+    	font-size: 15px;
+    	text-align: center;
+    	font-weight: bold;
    }
    .userGood{
        width: 200px;
-       height: 100%;
+       height: 60px;
        float: left;
        text-align: center;
    }
+   #ctView{
+    	
+    	
+    }
 
  
     

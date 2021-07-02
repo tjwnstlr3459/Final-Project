@@ -71,6 +71,12 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int insertClubMember(int no, int clubNo) {
 			return dao.insertClubMember(no,clubNo);
 		}
+		
+		
+		//조회수 업데이트
+		public int viewUpdate(int boardNo) {
+			return dao.viewUpdate(boardNo);
+		}
 
 
 }

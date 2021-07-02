@@ -135,6 +135,15 @@ INSERT INTO CLUB_MEMBER VALUES(
 DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{no}
 </delete>
 
+<!-- 조회수 업데이트 -->
+
+<update id="viewUpdate" parameterType="int">
+UPDATE CLUB_BOARD SET BOARD_VIEWS=BOARD_VIEWS+1 WHERE BOARD_NO= #{boardNo}
+
+
+</update>
+
+
 
 
 
