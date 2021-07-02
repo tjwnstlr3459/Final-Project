@@ -11,14 +11,15 @@
 	href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
 	integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
 	crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,600;1,400&display=swap"
-	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
 	<!-- 현재 접속자 파싱 웹소켓 -->
 	<script src="/resources/js/admin/adminWebSocket.js"></script>
 <style>
 body {
+font-family: 'Noto Sans KR', sans-serif;
 	margin: 0;
 }
 
@@ -30,7 +31,7 @@ body {
 .navbar_menu>li>a {
 	text-decoration: none;
 	color: #fff;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .navbar {
@@ -40,13 +41,13 @@ body {
 	background-color: #ec523f;
 	height: 85px;
 	font-size: 16px;
-	font-weight: bold
+	font-weight: bold;
 }
 
 .navbar_logo {
 	font-size: 24px;
 	color: #fff;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .navbar_logo {
@@ -116,7 +117,7 @@ body {
 	font-weight:bold;
 }
 .categoryNavi{
-position:fixed;
+ position:fixed; 
 }
 
 .categoryNavi ul {	
@@ -126,10 +127,10 @@ position:fixed;
 	padding: 0;
 	margin-left: 40px;
 }
-.categoryNavi ul{
+/* .categoryNavi ul{
 	border: 1px solid black;
 	border-radius: 7%;
-}
+} */
 .categoryNavi ul>li>a {
 	display: block;
 	width: 200px;
@@ -137,8 +138,8 @@ position:fixed;
 	text-align: center;
 	line-height: 50px;
 	text-decoration: none;
+	border-bottom: 1px solid black;
 }
-/*rgba(236,82,63,0.5)*/
 .categoryNavi>ul>li>a {
 	background-color: transparent;
 	color: black;
@@ -156,7 +157,7 @@ position:fixed;
 </head>
 <body>
 	<nav class="navbar" style="margin: 0px">
-		<div class="navbar_logo">
+		<div class="navbar_logo" style="margin-left:100px;">
 			<i class="fas fa-people-arrows"></i> <a href="/main.jsp">NUNADRI</a>
 		</div>
 		<ul class="navbar_menu">
@@ -191,7 +192,7 @@ position:fixed;
 			</c:if>
 
 		</ul>
-		<ul class="navbar_icons">
+		<ul class="navbar_icons" style="margin-right: 150px;">
 			<li
 				onclick="window.open('https://www.facebook.com/%EB%84%88%EB%82%98%EB%93%A4%EC%9D%B4-102411682096038')"
 				style="cursor: pointer;"><i class="fab fa-facebook-f"></i></li>

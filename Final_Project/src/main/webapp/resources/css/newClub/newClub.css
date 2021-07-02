@@ -121,7 +121,7 @@
     }
 	.boardWritebox{
 		width: 700px;
-		height: 300px;
+		height: 400px;
 		margin-bottom: 10px;
 		padding: 5px;
         box-sizing: border-box;
@@ -164,186 +164,98 @@
         height: 80%;
       	background-color: #f1eeebee;
     }
-	.board-wrap{
-		margin: 0 auto;
-		width: 580px;
-        height: 280px;
-     	margin-top: 10px;
-     	margin-bottom: 10px;
-        background-color: white;
-        border-radius: 10px;
-        padding: 10px;
-        border: 5px solid rgb(248, 231, 200);
-	}
-
-
-    .boardcontain {
-        width: 100%;
-        height: 30%;
-
-
-    }
-    .content{
-    	width: 100%;
-        height: 40%;
-        border: 1px solid white;
-        background-color: white;
-    }
- 
-    .userinfo{
-    	width: 530px;
-    	height: 30%;
-    	border-bottm: 1px solid rgb(248, 231, 200);
-    }
-
-	 .userImg {
-	   float: left;
-	   border: 1px solid gray;
-	   width: 60px;
-	   height: 60px;
-	   border-radius: 50px;
-	   margin: 10px;
+    
+ /*게시물 전체 형태 css!*/
+   .board-wrap{
+	   margin: 0 auto;
+	   width: 500px;
 	   overflow: hidden;
-	   background-size: contain;
-	   background-image: url(../../image/userimg.png);
-	 }
-	 .userName{
-	 	float: left;
-	 	/* width: 50px; */
-	 	height: 50px;
-	 	padding: 20px;
-	 }
-	 .enrollDate{
-	 	float: left;
-	 	width: 350px;
-	 	height: 50px;
-	 	padding-top: 20px;
-	 	text-align: right;
-	 }
-	 .usernum{
-	 	width: 100px;
-	 	padding: 10px;
-	 }
-	 .btn-trigger > a{
-	 	padding: 10px;
-	 }
+	   border: 5px solid gray;
+	   margin-top: 10px;
+	   margin-bottom: 10px;
+   }
+   .userDate{
+       height: 90px;
+       width: 100%;
+       border-bottom: 1px solid gray;
+   }
+   .userImg {
+       float: left;
+       border: 1px solid gray;
+       width: 60px;
+       height: 60px;
+       border-radius: 100px;
+       margin: 8px 3px 0px 8px;
+       overflow: hidden;
+       background-size: contain;
+       background-image: url(../../image/userimg.png);
+   }
+   .userName{
+       float: left;
+       /* width: 50px; */
+       width: 30%;
+       height: 60px;
+       padding: 30px 0px 0px 20px;
 
-     /*modal*/
-     @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-    html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    }
+   }
+   .enrollDate{
+       float: left;
+       width: 40%;
+       height: 80px;
+       text-align: center;
+       padding-top: 32px
+   }
+   .boardTitle{
+       height: 50px;
+       width: 100%;
+       border-bottom: 1px solid gray;
+   }
+   .boardContent{
+       border-bottom: 1px solid gray;
+       padding: 15px;
+   }
+     .boardComment{
+       height: 80px;
+       width: 100%;
+       border-bottom: 1px solid gray;
+   }
+   .boardFooter{
+       height: 15%;
+       width: 100%;
+       
+   }
+   .numView{
+       width: 100%;
+       border-bottom: 1px solid gray;
+       overflow: hidden;
 
-    .blur-it {
-    filter: blur(4px);
-    }
-
-    .btn trigger {
-    text-align: right;
-    width: 100px;
-    padding: 18px 0;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #fff;
-    border-radius: 0;
-    background: #e2525c;
-    float: left;
-    }
-
-    .modal-wrapper {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0; 
-    left: 0;
-    background: rgba(41, 171, 164, 0.8);
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.25s ease-in-out;
-    }
-
-    .modal-wrapper.open {
-    opacity: 1;
-    visibility: visible;
-    }
-
-    .modal {
-    width: 600px;
-    height: 400px;
-    display: block;
-    margin: 50% 0 0 -300px;
-    position: relative;
-    top: 50%; 
-    left: 50%;
-   
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    }
-
-    .modal-wrapper.open .modal {
-    margin-top: -200px;
-    opacity: 1;
+ }
+   .btn-wrap{
+       height: 60px;
+       width: 100%;
+       padding: 30px 0px 0px 30px;
+   }
+   .userNum{
+   		float: left;
+        width: 190px;
+    	height: 55px;
+    	font-size: 15px;
+    	text-align: center;
+    	font-weight: bold;
+   }
+   .userGood{
+       width: 200px;
+       height: 60px;
+       float: left;
+       text-align: center;
+   }
+   #ctView{
+    	
+    	
     }
 
-    .head { 
-    width: 90%;
-    height: 32px;
-    padding: 12px 30px;
-    overflow: hidden;
-    background: #e2525c;
-    }
-
-    .btn-close {
-    font-size: 28px;
-    display: block;
-    float: right;
-    color: #fff;
-    }
-
-    .content2 {
-    padding: 10%;
-    }
-
-    .good-job {
-    text-align: center;
-    font-family: 'Montserrat', Arial,Helvetica, sans-serif;
-    color: #e2525c;
-    }
-    .good-job .fa-thumbs-o-up {
-    font-size: 60px;
-    }
-    .good-job h1 {
-    font-size: 45px;
-    }
-    .deletebox{
-        width: 700px;
-        height: 30px;
-        margin: 0px;
-        
-        
-    
-    }
-    .deletebtn{
-        width: 100px;
-        display: block;
-        color: white;
-        background-color: #ea9310;
-        text-decoration: none;
-        text-align: center;
-        line-height: 26px;
-        border: 1px solid gray;
-
-    }
-    
+ 
     
 /* 준식@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 .bottomAdmin {
@@ -439,6 +351,67 @@
     font-size: 18px;
     font-weight: bold;
 }
-   
-    
-    
+.contentMent{
+	margin-left: 10px;
+	float: left; 
+	font-weight: bold;
+}
+.adminCheckButton{
+	border: 0px;
+	border-radius:5px;
+	color:white;
+	background-color: #337ab7;
+	width: 100px;
+    height: 30px;
+    padding-top: 3px;
+    margin-left: 3px;
+}
+.adminCheckButton:hover{
+	background-color: #337ab7b8;
+	transform: scale(1.05);
+}
+
+
+#calModal{
+	background-color: #8000808c;
+	margin: 0 auto;
+    display: flex;
+   	margin-top: 20px;
+    width: 200px;
+    padding-left: 45px;
+}
+body.modal-open {
+    overflow: auto;
+}
+
+body.modal-open[style] {
+    padding-right: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,7 +14,8 @@
 		BOARD_VIEWS as boardViews,
 		BOARD_GOOD as boardGood,
 		ENROLL_DATE as enrollDate
-		from CLUB_BOARD 
+		from CLUB_BOARD
+		order by 1 desc
 </select>
 <!-- 전체 게시물 확인 -->
 <select id="totalCount" resultType="int"  parameterType="int">
@@ -22,7 +23,7 @@
 		count(*)
 		from CLUB_BOARD WHERE CLUB_NO=#{clubNo}
 </select>
-<select id="boardMore" parameterType="map" resultType="b">
+<select id="boardMore" parameterType="map" resultType="n">
 	SELECT 
 rnum,
    BOARD_NO as boardNo,
@@ -38,52 +39,39 @@ rnum,
    ENROLL_DATE as enrollDate
 FROM
 (SELECT ROWNUM AS RNUM, N.* FROM
-(SELECT * FROM club_board WHERE CLUB_NO=38 ORDER BY CLUB_NO DESC)N) where RNUM BETWEEN 1 AND 3
+(SELECT * FROM club_board WHERE CLUB_NO=38 ORDER BY BOARD_NO DESC)N) where RNUM BETWEEN #{start} AND #{end}
 <!-- 클럽보드에서 38번을 순서대로찾아서 그중 최근거 1~3을 찾음 -->
 </select>
 
-<!--글쓰기 등록 -->
-<insert id="insertBoard" parameterType="n">
+
+<insert id="insertBoard" parameterType="b">
 insert into club_board values(
     CB_SEQ.NEXTVAL,
     #{clubNo},
     5,
     #{boardWriter},
-    '제목',
+    #{boardTitle},
     #{boardContent},
-    null,
-    null,
-    0,
-    0,
+    #{filename},
+    #{filepath},
+    1,
+    1,
     to_char(sysdate,'yyyy-mm-dd'))
 </insert>
 
-<!-- 게시물 등록 -->
-<insert id="insertPhoto" parameterType="b">
-insert into club_board values(
-    CB_SEQ.NEXTVAL,
-    #{clubNo},
-    5,
-    #{boardWriter},
-        제목,
-    #{boardContent},
-    null,
-    null,
-    1,
-    1,
-    to_char(sysdate,'yyyy-mm-dd'))
-</insert>
-<!-- 최신 게시글 번호 찾기-->
+<!-- 최신게시글 no를 찾아내기 위한 쿼리  
 <select id="selectBoardNo" resultType="int">
 	select max(board_no) from club_board
 </select>
-<!-- 파일추가하기위한 쿼리 -->
+
+파일추가하기위한 쿼리
 <update id="insertFile" parameterType="b">
 	update club_board set 
-		fileName=#{filename},
-		filePath=#{filepath}
+		filename=#{fileName},
+		filepath=#{filePath}
 	where board_no=#{boardNo}
-</update>
+</update> -->
+
 <select id="selectOne" parameterType="int" resultType="n" >
 	select
 	   BOARD_NO as boardNo,
@@ -115,11 +103,12 @@ FROM INVITE_APPLY WHERE INVITE_CN=#{clubNo}
 <!-- 회원목록 출력 -->
 <select id="selectMemberList" parameterType="int" resultType="cm">
 select 
-    cm_no as cmNo,
-    club_no as clubNo,
-    club_nick as clubNick,
-    enroll_date as cmDate
-from club_member where club_no=#{clubNo}
+    A.cm_no as cmNo,
+    A.club_no as clubNo,
+    A.club_nick as clubNick,
+    A.enroll_date as cmDate,
+    B.INTRO
+from club_member A, MEMBER B where A.CLUB_NICK = B.MEMBER_NICK AND club_no=#{clubNo}
 </select>
 
 <!-- 클럽가입신청하기 -->
@@ -133,7 +122,41 @@ INSERT INTO INVITE_APPLY VALUES(
     TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 </insert>
 
+<!-- 가입신청 수락시 클럽멤버로 넣어주기 -->
+<insert id="insertClubMemeber" parameterType="map">
+INSERT INTO CLUB_MEMBER VALUES(
+    CM_SEQ.NEXTVAL,
+    #{clubNo},
+    (SELECT receiver FROM INVITE_APPLY where invite_cn=#{clubNo} and invite_no=#{no}),
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</insert>
+
+<!-- 가입신청 수락시 신청목록에서 삭제 -->
+<delete id="deleteApply" parameterType="int">
+DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{no}
+</delete>
+
+<!-- 가입신청 거절 -->
+<delete id="deleteRefusal" parameterType="map">
+DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{listNo} AND INVITE_CN=#{clubNo}
+</delete>
+
+<!-- 조회수 업데이트 -->
+
+<update id="viewUpdate" parameterType="int">
+UPDATE CLUB_BOARD SET BOARD_VIEWS=BOARD_VIEWS+1 WHERE BOARD_NO= #{boardNo}
+
+
+</update>
+
+
+
+
 </mapper>
+
+
+
+
 
 
 

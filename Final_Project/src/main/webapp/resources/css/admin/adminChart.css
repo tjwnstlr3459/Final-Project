@@ -1,0 +1,71 @@
+.chart-wrap{
+	display:flex;
+	justify-content:space-between;
+	margin-bottom:20px;
+}
+.memberCount-box{
+	width:70%;
+	height:300px;
+	margin-right:20px;
+}
+.memberHobby-box{
+	width:30%;
+	height:300px;
+}
+.ages-box{
+	width:36%;
+	height:250px;
+	padding-bottom:10px;
+	padding-right:10px;
+}
+.info-space *{
+	color:rgba(255,255,255,0.5);
+}
+.title-info{
+	width:100%;
+	font-size:0.8rem;
+	font-weight:900;
+	color:var(--mainTextColor);
+	margin:5px auto;
+	border-bottom:1px solid rgba(255,255,255,0.2);
+}
+.info-space{
+	width:30%;
+	height:250px;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	box-sizing:border-box;
+}
+.info-wrap{
+	width:100%;
+	height:115px;
+	box-sizing:border-box;
+}
+.infoList-wrap{
+	width:100%;
+	height:100%;
+	box-sizing:border-box;
+}
+.table-info{
+	width:90%;
+	margin:auto;
+	height:100%;
+	border-collapse: collapse;
+}
+.table-info td:first-child{
+	font-size:0.8rem;
+}
+.table-info td:last-child{
+	text-align:center;
+	width:15%;
+	color:#dddddd;
+}
+.graphs-wrap{
+	width:150px;
+		
+}
+.graphs:first-child{
+	background-color:red;	
+	height:10px;
+}

@@ -1,15 +1,20 @@
 package kr.or.admin.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.Data;
 
 @Data
 public class AdminCount {
-	//sysdate 해서 오늘 날짜 가져오는 변수
-	private String toDay;
 	//전체 회원 수
-	private int memberCount;
+	private int allMemberCount;
+	private int destroyedMemberCount;
+	private int restrictedMemberCount;
 	//전체 클럽 수
-	private int clubCount;
+	private int allClubCount;
+	private int destroyedClubCount;
+	//private int RestrictedClubCount;
+	private ArrayList<BestCategory> bcList;
 	//회원 취미 수
 	private int memberSports;
 	private int memberTravel;

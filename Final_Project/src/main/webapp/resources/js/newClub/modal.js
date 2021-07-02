@@ -5,5 +5,6 @@
 
     $("#closeBtn").click(function(){
         $(".allModal").hide();
+
     });
 });

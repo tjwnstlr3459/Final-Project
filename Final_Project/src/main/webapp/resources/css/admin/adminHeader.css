@@ -136,6 +136,7 @@ section{
     height:100%;
     overflow-y:scroll;
     box-sizing:border-box;
+    padding:20px;
 }
 /* 스크롤바 디자인 시작 */
 section::-webkit-scrollbar {
@@ -163,6 +164,7 @@ section::-webkit-scrollbar-track {
 	background-color:var(--backColor);
     box-shadow:var(--contentShadow);
     border-radius:10px;
+    box-sizing:border-box;
 }
 /* 검색창-box 디자인 */
 .searchBar-wrap{
@@ -356,12 +358,24 @@ section::-webkit-scrollbar-track {
 	line-height:30px;
 	text-align:center;
 }
+.count-name{
+	font-size:0.7rem;
+	color:var(--mainTextColor);
+}
 .count-value{
 	line-height:40px;
-	font-size:1.5rem;
+	font-size:2rem;
 	font-weight:600;
 }
 .visitor-icon{
+	background-image:url('/resources/image/icons/visit-icon1.png');
+	background-size:100%;
+}
+.today-icon{
 	background-image:url('/resources/image/icons/visit_icon.png');
+	background-size:100%;
+}
+.total-icon{
+	background-image:url('/resources/image/icons/totalVisit-icon.png');
 	background-size:100%;
 }
