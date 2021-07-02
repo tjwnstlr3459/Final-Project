@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/freeBoardList/freeBoardList.css" />
 <meta charset="UTF-8">
 <title>피드게시판</title>
 <style>
+/* 피드리스트
 container {
 	padding-top: 100px;
 	margin: 0 auto;
@@ -81,7 +83,7 @@ button:hover{
 }
 #temporary :hover{
 	background-color: black;
-}
+} */
 
 /*모달창*/
       .modal {
@@ -118,9 +120,6 @@ button:hover{
             text-decoration: none;
             cursor: pointer;
         }
-
-
-
 </style>
 
 
@@ -134,7 +133,6 @@ button:hover{
 	</c:when>
 	</c:choose>
 	<div class="container">
-			<%-- <button class="btn btn-outline-info btn-block" currentCount="0" value="" totalcount=${totalCount } id="more-btn">더보기</button> --%>
 	  <!-- <button id="myBtn">Open Modal</button>  -->
  
     <!-- The Modal -->
@@ -143,7 +141,6 @@ button:hover{
       <!-- Modal content -->
 	<div class="modal-content">
         <span class="close" onclick="closeView();">&times;</span>         
-         <%-- <p><img src='/resources/freeBoardUpload/"</p> --%>
       </div>
  
     </div>
@@ -167,11 +164,16 @@ button:hover{
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
 						var html2 ="";
-						html += "<div class='posting'>";			//여기다가 div클ㄹ스 */
-						html += "<img src='/resources/freeBoardUpload/"+fb.filepath+"'>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
+						html += "<article class='item'><header>";			//여기다가 div클ㄹ스 */
+						html += "<a href='#'><img src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
+						//여기는 값을 위한 구역
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
 						html += "<span style='display:none;'>"+fb.fbWriter+"</span>";
 						html += "<input type='text' value='"+fb.fbNo+"' hidden>";
+						//
+						html += "<h3>"+fb,fbWriter+"</h3></header>";
+						html +="<p></p>";
+						html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li></ul></article>";
 						if(${empty sessionScope.m}){							
 						html += "<button onclick='addHeart(this);' disabled><i class='far fa-heart'></i>&nbsp;";
 						}else{							
@@ -214,7 +216,7 @@ button:hover{
 		});
 		}
 		function deleteCheck(obj) {
-			var fbNo = $(obj).parents().children().eq(2).children().eq(1).val();
+			var fbNo = $(obj).parents().eq(1).children().eq(3).val()
 			if(confirm('피드를 정말 삭제하시겠습니까?')){				
 				location.href='/deleteFreeBoard.do?fbNo='+fbNo;
 				
