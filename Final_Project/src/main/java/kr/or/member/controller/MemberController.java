@@ -320,25 +320,30 @@ public class MemberController {
 		System.out.println(m.getAddress());
 		System.out.println(m.getAge());
 		
+
+		System.out.println(m.getHobby1());
+		System.out.println(m.getHobby2());
+		System.out.println(m.getHobby3());
 		
 		//파일 처리
 		if(propimg[0].isEmpty()) {
-			m.setFilename("default.png");
-			m.setFilepath("default.png");			
+			
 		} else {
 			String savePath = request.getSession().getServletContext().getRealPath("resources/image/userPic/");
 			
 			//기존 프로필사진 삭제
-			File oldfile = new File(savePath + m.getFilepath());
-			if(oldfile.exists()) {
-				if(oldfile.delete()) { 
-					System.out.println("파일삭제 성공"); 
+			if(!m.getFilepath().equals("default.png")) {
+				File oldfile = new File(savePath + m.getFilepath());
+				if(oldfile.exists()) {
+					if(oldfile.delete()) { 
+						System.out.println("파일삭제 성공"); 
+					} else { 
+						System.out.println("파일삭제 실패"); 
+					} 
 				} else { 
-					System.out.println("파일삭제 실패"); 
-				} 
-			} else { 
-				System.out.println("파일이 존재하지 않습니다.");
-			}
+					System.out.println("파일이 존재하지 않습니다.");
+				}
+			}			
 			
 			//새 프로필사진 업로드
 			for(MultipartFile file : propimg) {
@@ -382,8 +387,6 @@ public class MemberController {
 		//파일처리 종료
 		System.out.println(m.getEmail());
 		System.out.println(m.getFilename());
-		System.out.println(m.getMemberPw());
-		System.out.println(m.getAddress());
 		int result = service.updateMember(m);
 		if(result > 0) {
 			return "1";

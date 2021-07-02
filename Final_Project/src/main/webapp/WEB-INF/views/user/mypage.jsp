@@ -216,7 +216,7 @@
                 </div>
                 
                 <!-- 회원정보수정 화면 -->
-                <div class="modBox"  style="display:none;">
+                <div class="modBox" style="display:none;">
                     <div class="title">
                         	내 정보 수정
                     </div>
@@ -456,9 +456,12 @@
     		
     		var reloading = sessionStorage.getItem("dm");
     		console.log(reloading)
-    	    if (reloading) {
+    	    if (sessionStorage.getItem("dm")) {
     	        sessionStorage.removeItem("dm");
     	        myDm();
+    	    } else if (sessionStorage.getItem("info")) {
+    	    	sessionStorage.removeItem("info");
+    	        myInfoMod();
     	    }
     	})
     	
@@ -879,8 +882,6 @@
             var checked = $("input[type=checkbox]:checked").length;
             var filename = "<c:out value='${m.filename}'/>";
             var filepath = "<c:out value='${m.filepath}'/>";
-            console.log(filename)
-            console.log(filepath)
 
             if(namechk.html() == "중복된 이름은 사용할 수 없습니다.") {
             	$("[name=memberNick]").css("border", "1px solid red");
@@ -918,6 +919,33 @@
             } else {
             	$(".chkMsg").html("");
             }
+            
+            event.preventDefault();
+            var form = $('#joinForm');
+            console.log(form)
+            form.prepend("<input type='hidden' name='address' value='" + address + "'>");
+            form.prepend("<input type='hidden' name='filename' value='" + filename + "'>");
+            form.prepend("<input type='hidden' name='filepath' value='" + filepath + "'>");
+            form.prepend("<input type='hidden' name='hobby1' value='" + hobby1 + "'>");
+            form.prepend("<input type='hidden' name='hobby2' value='" + hobby2 + "'>");
+            form.prepend("<input type='hidden' name='hobby3' value='" + hobby3 + "'>");
+            var data = new FormData(form[0]);
+            
+            $.ajax({
+            	url: "/modInfo.do",
+            	enctype: "multipart/form-data",
+            	type: "post",
+            	data: data,
+            	contentType: false,
+            	processData: false,
+            	success: function(data) {
+            		if(data == 1) {
+            			sessionStorage.setItem("info", "true");
+            			location.reload();
+            		}
+            	}           
+            })
+            
             $("#joinForm").prepend("<input type='hidden' name='address' value='" + address + "'>'");
             $("#joinForm").prepend("<input type='hidden' name='filename' value='" + filename + "'>'");
             $("#joinForm").prepend("<input type='hidden' name='filepath' value='" + filepath + "'>'");
