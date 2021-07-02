@@ -247,7 +247,7 @@ button:hover{
 		        	var span = document.getElementsByClassName("close")[0];
 		        function detailView(obj) {
 		        	var filepath = $(obj).parents().children().eq(0).attr('src');
-		        	var img = "<img src='"+filepath+"' style='width:1000px; height:600px; margin-left:20px;'>";
+		        	var img = "<img src='"+filepath+"' style='width:100%; height:100%;'>";
 		        	var fbContent = $(obj).parents().children().eq(1).html();
 		        	var fbWriter = $(obj).parents().children().eq(2).html();
 		        	modal.style.display = "block";
