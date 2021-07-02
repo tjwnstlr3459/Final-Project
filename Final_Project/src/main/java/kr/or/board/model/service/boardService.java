@@ -108,6 +108,7 @@ public class boardService {
 
 	}
 	//댓글 등록
+	@Transactional
 	public int insertComent(Answer an) {
 		return dao.insertComent(an);
 	}
@@ -117,6 +118,7 @@ public class boardService {
 	}
 	
 	//공지/문의/신고 등록
+	@Transactional
 	public int insertBoard(Board bl, ArrayList<Board> fileList) {
 		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
 		int result1 = dao.insertBoard(bl);
@@ -133,11 +135,13 @@ public class boardService {
 		}
 		return result;
 	}
-
+	//공지사항 삭제
+	@Transactional
 	public int deleteBoard(int abNo) {
 		return dao.deleteBoard(abNo);
 	}
-
+	//공지사항 수정
+	@Transactional
 	public int boardUpdate(Board bl, ArrayList<Board> fileList) {
 		//파일은 board_no가 필요하기 때문에 board테이블의 insert가 먼저
 		int result1 = dao.boardUpdate(bl);
@@ -155,7 +159,8 @@ public class boardService {
 		}
 		return result;
 	}
-
+	//조회수 변경
+	@Transactional
 	public void updateCount(int abNo) {
 		dao.updateCount(abNo);
 	}

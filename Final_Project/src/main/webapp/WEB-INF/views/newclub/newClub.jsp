@@ -12,9 +12,11 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>클럽 상세페이지</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
-	
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- Add to homescreen for Chrome on Android -->
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" sizes="192x192" href="../../image/android-desktop.png">
@@ -52,12 +54,14 @@
 	href="/resources/css/newClub/chat.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/modal.css" />
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/photo.css" />
-	
+
 <!-- 메인달력 -->
-<link href="/resources/css/reservation/packages/core/main.css" rel="stylesheet" />
-<link href="/resources/css/reservation/packages/daygrid/main.css" rel="stylesheet" />
+<link href="/resources/css/reservation/packages/core/main.css"
+	rel="stylesheet" />
+<link href="/resources/css/reservation/packages/daygrid/main.css"
+	rel="stylesheet" />
 <script src="/resources/css/reservation/packages/core/main.js"></script>
 <script src="/resources/css/reservation/packages/interaction/main.js"></script>
 <script src="/resources/css/reservation/packages/daygrid/main.js"></script>
@@ -70,14 +74,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
+
 <!-- 모달 부트스트랩 -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 <!--script-->
 <script src="/resources/js/newClub/modal.js"></script>
 <script src="/resources/js/newClub/chat.js"></script>
@@ -96,9 +104,7 @@
 </head>
 
 <body>
-
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
 	<div class="wrapper">
 		<div class="container">
 			<div class="wrap">
@@ -123,12 +129,14 @@
 							</div>
 							<div style="display: flex; justify-content: center;">
 								<c:choose>
-								<c:when test="${sessionScope.m != null }">
-									<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
-								</c:when>
-								<c:otherwise>
-									<button type="button" class="btn btn-info btn-lg" onclick="location.href='/loginFrm.do'">로그인하기</button>
-								</c:otherwise>
+									<c:when test="${sessionScope.m != null }">
+										<button type="button" class="btn btn-info btn-lg"
+											data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="btn btn-info btn-lg"
+											onclick="location.href='/loginFrm.do'">로그인하기</button>
+									</c:otherwise>
 								</c:choose>
 							</div>
 						</div>
@@ -136,160 +144,183 @@
 					<div class="middle">
 						<div class="tab-cont">
 							<div>
+								<h4 style="width: 200px; margin-top: 0px; font-weight: bold;">게시글
+									등록</h4>
 								<div class="deletebox">
-				                  <a class="deletebtn" href="/boardDelete">삭제하기</a>
-				                </div>
+									<a class="deletebtn" href="/boardDelete">삭제하기</a>
+								</div>
 								<div class="boardWritebox">
-									<form action="/boardWrite.do" method="post" enctype="multipart/form-data">
-										<fieldset>
-											<legend>게시글 목록</legend>
-											<table class="table" style="width:100%;">
-												<tr class="table-active">
-													<th>작성자</th>
-													<td>
-														<input type="text" name="boardWriter" value="${sessionScope.m.memberNick }" readonly><br>
-													</td>
-												</tr>
-												<tr class="table-active">	
-													<th>첨부파일</th>
-													<td style="text-align:left">
-														<input type="file" name="files" onchange="loadImg(this);">	<!-- 파일을 선택하거나 이런 체인지 동작감지 -->
-													</td>
-												</tr>
-												<tr class="table-active">
-												<th>내용</th>
-													<td colspan="3">
-														<textarea name="photoContent" class="formControl"></textarea>
-													</td>
-												</tr>
-												<tr class="table-active">
-													<th colspan="4">
-														<button type="submit" class="btn-block">등록하기</button>
-													</th>
-												</tr>
-											</table>
-										</fieldset>
+									<form action="/boardWrite.do" method="post"
+										enctype="multipart/form-data">
+										작성자 : <input type="text" name="boardWriter"
+											value="${sessionScope.m.memberNick }" readonly>
+										<hr>
+										제목 : <input type="text" name="boardTitle"
+											style="width: 200px;"><br> 파일 : <input
+											type="file" name="files" multiple style="margin: 0px;">
+										내용 :
+										<textarea rows="6" cols="88" name="boardContent"
+											style="resize: none;"></textarea>
+										<br> <input type="hidden" name="clubNo"
+											value="${clubNo }"> <input type="submit" value="등록">
 									</form>
 								</div>
+								<!-- 게시물 형태 바뀐부분 -->
 								<%-- <c:forEach items="${list }" var="board">
 										<div class="board-wrap">
-											<div class="userinfo" style="height: 30%;">											
-												<div class="userImg"></div>
-												<div class="userName">${board.boardWriter }</div>
-												<div class="enrollDate">${board.enrollDate }</div>
-											</div>	
-											<div class="boardcontain" style="height: 40%;">
-												${board.boardContent}
-											</div>
-											<div class="userview" style="height: 30%;">
-													<div class="usernum">조회수 3명 읽음</div>
-													<button id="openModal">상세보기</button>
-											</div>
-										</div>
+								            <div class= "userDate">
+								                <div class="userImg"></div>
+								                <div class="userName">작성자</div>
+								                <div class="enrollDate">작성일</div>
+								            </div>    
+								            <div class= "boardTitle"></div>
+								            <div class= "boardContent"></div>
+								            <div class= "boardComment"></div>
+								            <div class= "boardFooter">
+								                <div class= "numView">
+								                    <div class="userNum">조회수</div>
+								                    <div class="userGood">좋아요</div>
+								                </div>    
+								                <div class= "btn-wrap">
+								                    <button id="openModal">상세보기</button>
+								                </div>
+								            </div>        
+								        </div>
 									</c:forEach> --%>
 								<div class="photoWrapper"></div>
 								<button class="btn btn-outline-info btn-block" currentCount="0"
-									value="" totalCount="${totalCount }" id="more-btn" style="display:none;"></button>
+									value="" totalCount="${totalCount }" id="more-btn"
+									style="display: none;"></button>
 							</div>
 							<div>
 								<!-- 사진첩 -->
 								<div class="photohead">
-									<div class=allphoto><h3>전체사진</h3><em></em></div>
-									<div class="photoadd">
-						            </div>
-						         </div>
-						         <c:forEach items="${list }" var="board">   
-								 <div class="photo-wrap">
-                                    <div class="userName2">${board.boardWriter }</div>
-                                    <div class="album"><img src="/resources/fileupload/postImg/${board.filepath}"></div>
-                                    <div class="albumcontent">${board.boardContent}</div>
-                                    <div class="albumdate">${board.enrollDate }</div>
+									<h4 style="width: 200px; margin-top: 0px; font-weight: bold;">게시글
+										등록</h4>
+									<div class="photoadd"></div>
 								</div>
+								<c:forEach items="${list }" var="board">
+									<div class="photo-wrap">
+										<div class="userName2">${board.boardWriter }</div>
+										<div class="album">
+											<img src="/resources/fileupload/postImg/${board.filepath}">
+										</div>
+										<div class="albumcontent">${board.boardContent}</div>
+										<div class="albumdate">${board.enrollDate }</div>
+									</div>
 								</c:forEach>
 							</div>
-							
 							
 							<!-- 달력 api -->
 							<div>
 								<div id="test" style="width: 650px;"></div>
+								<button type="button" class="btn btn-info btn-lg" id="calModal" data-toggle="modal" data-target="#myModal3">일정 추가하기</button>
 							</div>
-                            <!-- 멤버목록(관리자) -->
+							
+							<!-- 멤버목록(관리자) -->
 							<div>
-                                <div class="contentMent" style="font-weight: bold;font-size: 25px;">관리목록</div>
-								<input class="adminCheckButton" style="margin-left: 373px;" type="button" value="회원목록" onclick="memberListAdmin();">
-                                <input class="adminCheckButton" type="button" value="예약목록" onclick="userListAdmin();">
-                                <div class="table-responsive" style="height: 500px;margin-top: 10px;">
-                                    <!-- 회원목록 -->
-                                    <table class="table table-hover1">
-                                        <thead>
-                                            <tr class="listBar" style="background-color: #ec523f; color: white; width: 100%">
-                                                <th>No.</th>
-                                                <th>멤버</th>
-                                                <th style="width: 330px;">자기소개</th>
-                                                <th>가입날짜</th>
-                                                <th style="text-align: center">쪽지</th>
-                                                <th style="text-align: center">추방</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${clubMemberList }" var="l" varStatus="i">
-                                                <tr>
-                                                    <td>${i.count }</td>
-                                                    <td>${l.clubNick }</td>
-                                                    <th>자기소개</th>
-                                                    <td>${l.cmDate }</td>
-                                                    <td style="text-align: center">쪽지</td>
-                                                    <td style="text-align: center">강퇴</td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                    <!-- 예약목록 -->
-                                     <table class="table table-hover2" style="display: none;">
-                                        <thead>
-                                            <tr class="listBar" style="background-color: #ec523f; color: white;">
-                                                <th>No.</th>
-                                                <th>멤버</th>
-                                                <th style="width: 360px">자기소개</th>
-                                                <th>신청날짜</th>
-                                                <th style="text-align: center">수락</th>
-                                                <th style="text-align: center">거절</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${applyList }" var="l" varStatus="i">
-                                                <tr>
-                                                    <td>${i.count }</td>
-                                                	<td class="listNumber" style="display: none;">${l.iaNo }</td>
-                                                    <td>${l.receiver }</td>
-                                                    <td>${l.iaContent }</td>
-                                                    <td>${l.iaDate }</td>
-                                                    <td style="text-align: center">
-                                                    	<button type="button" class="noNo" onclick="accept(${l.iaNo })" value="${l.iaNo }">수락</button>
-                                                    </td>
-                                                    <td style="text-align: center">
-                                                    	<button type="button" onclick="refusal(this)">거절</button>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br>
+								<div class="contentMent"
+									style="font-weight: bold; font-size: 25px;">관리목록</div>
+								<input class="adminCheckButton" style="margin-left: 373px;"
+									type="button" value="회원목록" onclick="memberListAdmin();">
+								<input class="adminCheckButton" type="button" value="예약목록"
+									onclick="userListAdmin();">
+								<div class="table-responsive"
+									style="height: 500px; margin-top: 10px;">
+									<!-- 회원목록 -->
+									<table class="table table-hover1">
+										<thead>
+											<tr class="listBar"
+												style="background-color: #ec523f; color: white; width: 100%">
+												<th>No.</th>
+												<th>멤버</th>
+												<th style="width: 330px;">자기소개</th>
+												<th>가입날짜</th>
+												<th style="text-align: center">쪽지</th>
+												<th style="text-align: center">추방</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${clubMemberList }" var="l" varStatus="i">
+												<tr>
+													<td>${i.count }</td>
+													<td>${l.clubNick }</td>
+													<th>${l.intro}</th>
+													<td>${l.cmDate }</td>
+													<td style="text-align: center">쪽지</td>
+													<td style="text-align: center">강퇴</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- 예약목록 -->
+									<table class="table table-hover2" style="display: none;">
+										<thead>
+											<tr class="listBar"
+												style="background-color: #ec523f; color: white;">
+												<th>No.</th>
+												<th>멤버</th>
+												<th style="width: 360px">자기소개</th>
+												<th>신청날짜</th>
+												<th style="text-align: center">수락</th>
+												<th style="text-align: center">거절</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${applyList }" var="l" varStatus="i">
+												<tr>
+													<td>${i.count }</td>
+													<td class="listNumber" style="display: none;">${l.iaNo }</td>
+													<td>${l.receiver }</td>
+													<td>${l.iaContent }</td>
+													<td>${l.iaDate }</td>
+													<td style="text-align: center">
+														<button type="button" class="noNo"
+															onclick="accept(${l.iaNo })">수락</button>
+													</td>
+													<td style="text-align: center">
+														<button type="button" onclick="refusal(${l.iaNo })">거절</button>
+														<!-- location.href='/deleteRefusal.do?listNo=${l.iaNo }&clubNo=${clubNo }&menuNo=3' -->
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<br>
+
+
 								<hr>
-                                <!-- 관리자 컨텐츠(관리자) -->
-                                <h3 style="margin-left: 10px; font-weight: bold;">클럽 관리</h3>
-                                <div class="bottomAdmin">
-                                    <div class="clubModify">
-                                        <div style="margin-left: 30px; padding-top: 15px;">모임명</div>
-                                        <div><textarea>모임 소개글</textarea></div>
-                                    </div>
-                                    <div class="clubModifyDelete">
-                                        <div>수정</div>
-                                        <div>모임폐쇄</div>
-                                    </div>
-                                </div>
-                            </div>
+								<!-- 관리자 컨텐츠(관리자) -->
+								<h3 style="margin-left: 10px; font-weight: bold;">클럽 관리</h3>
+								<div class="bottomAdmin">
+									<!-- 모임글 수정 -->
+									<div class="clubModify">
+										<div style="margin-left: 30px; padding-top: 15px;">모임명</div>
+										<div>
+											<textarea>모임 소개글</textarea>
+										</div>
+									</div>
+									<div class="clubModifyDelete">
+										<div>수정</div>
+										<div>모임폐쇄</div>
+									</div>
+
+									<!-- 달력일정 추가 -->
+									<div class="clubModify">
+										<div style="margin-left: 30px; padding-top: 15px;">일정 추가</div>
+										<div>
+											타이틀 : <input type="text">
+										</div>
+									</div>
+									<div class="clubModifyDelete">
+										<div>등록</div>
+									</div>
+								</div>
+
+
+
+							</div>
 						</div>
 					</div>
 
@@ -311,41 +342,107 @@
 		</div>
 	</div>
 	<!-- Modal -->
-	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
-        <div class="modalWrap"> <!--숨어있는 모달-->
-            <h2>게시물 상세보기</h2>
-            <hr>
-            <p>여기를 다시</p>
-            <p>꾸며 봅시다</p>
-            <button id="closeBtn">닫기</button>
-        </div>
-    </div>
-    
-    <!-- Modal2 -->
-	 <div class="modal fade" id="myModal" role="dialog" style="margin: 100px auto 0px;">
-	   <div class="modal-dialog modal-sm">
-	     <div class="modal-content" style=" height: 320px;background-color: #e6e6e6ed;">
-	       <div class="modal-header">
-	         <button type="button" class="close" data-dismiss="modal">&times;</button>
-	         <h3 class="modal-title">클럽 가입신청하기</h3>
-	       </div>
-	       <div class="modal-body">
-	         <p>클럽에 가입하기 전에 </p>
-	         <p>인사말을 적어주세요.</p>
-	       </div>
-	       <input type="text" class="receiver" name="receiver" value="${sessionScope.m.memberNick }" style="display: none">
-	       <input type="text" class="clubNo"  name="clubNo" value="${clubNo }" style="display: none">
-	       <div style="display: flex;justify-content: center;">
-	       	<textarea class="iaContent" placeholder="모임장에게 전해질 인사말을 적어주세요!" name="iaContent"></textarea>
-	       </div>
-	       <div class="modal-footer"style="display: flex;justify-content: center;">
-	         <button type="button" onclick="userClubJoin()" class="btn btn-default">신청</button>
-	         <button type="button" id="closeModal" class="btn btn-default" data-dismiss="modal">닫기</button>
-	       </div>
-	     </div>
-	   </div>
-	 </div>
+	<div class="allModal">
+		<!--바디처럼 전체를 감싸고있는 div-->
+		<div class="modalWrap">
+			<!--숨어있는 모달-->
+			<h2>게시물 상세보기</h2>
+			<hr>
+			<p>여기를 다시</p>
+			<p>꾸며 봅시다</p>
+			<button id="closeBtn">닫기</button>
+		</div>
+	</div>
+
+	<!-- Modal2 -->
+	<div class="modal fade" id="myModal" role="dialog"
+		style="margin: 100px auto 0px;">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content"
+				style="height: 320px; background-color: #e6e6e6ed;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title" style="margin-left: 20px;">클럽 가입신청하기</h3>
+				</div>
+				<div class="modal-body">
+					<p>클럽에 가입하기 전에</p>
+					<p>인사말을 적어주세요.</p>
+				</div>
+				<input type="text" class="receiver" name="receiver"
+					value="${sessionScope.m.memberNick }" style="display: none">
+				<input type="text" class="clubNo" name="clubNo" value="${clubNo }"
+					style="display: none">
+				<div style="display: flex; justify-content: center;">
+					<textarea class="iaContent" placeholder="모임장에게 전해질 인사말을 적어주세요!"
+						name="iaContent"></textarea>
+				</div>
+				<div class="modal-footer"
+					style="display: flex; justify-content: center;">
+					<button type="button" onclick="userClubJoin()"
+						class="btn btn-default" style="background: #5bc0de;color: wheat;">신청</button>
+					<button type="button" id="closeModal" class="btn btn-default"
+						data-dismiss="modal" style="background-color: #e84c4ca8;color: wheat;">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 모달3 -->
+	<div class="modal fade" id="myModal3" role="dialog"
+		style="margin: 100px auto 0px;">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content"
+				style="height: 320px; background-color: #e6e6e6ed;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title" style="margin-left: 20px;">달력 일정 추가하기</h3>
+				</div>
+				<div class="modal-body">
+					<p>클럽에 가입하기 전에</p>
+					<p>인사말을 적어주세요.</p>
+				</div>
+				<input type="text" class="receiver" name="receiver"
+					value="${sessionScope.m.memberNick }" style="display: none">
+				<input type="text" class="clubNo" name="clubNo" value="${clubNo }"
+					style="display: none">
+				<div style="display: flex; justify-content: center;">
+					<textarea class="iaContent" placeholder="모임장에게 전해질 인사말을 적어주세요!"
+						name="iaContent"></textarea>
+				</div>
+				<div class="modal-footer"
+					style="display: flex; justify-content: center;">
+					<button type="button" onclick="calendarModal()"
+						class="btn btn-default" style="background: #5bc0de;color: wheat;">신청</button>
+					<button type="button" id="closeModal" class="btn btn-default"
+						data-dismiss="modal" style="background-color: #e84c4ca8;color: wheat;">닫기</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
 	<script>
+	//달력 클릭시 모달
+	//클럽가입 신청
+	function calendarModal(){
+		var apply={
+			clubNo : $(".clubNo").val(),
+			receiver : $(".receiver").val(),
+			iaContent : $(".iaContent").val(),
+		}
+		console.log(apply);
+		$.ajax({
+			url : "/memberClubJoin.do",
+			data : apply,
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
+					$("#closeModal").click();
+				}else{
+					alert("가입실패");
+				}
+			}
+		})
+	}
 	//클럽 가입 수락
 	function accept(obj){	//클릭한 게시물의 번호값 가져오기
 		var clubNo = ${clubNo }
@@ -359,8 +456,31 @@
 			success : function(data){
 				if(data > 0){
 					alert("수락되었습니다.");
+					//수락하고 다시 컨트롤러로 보내서 다시 로드할때 3번페이지가 바로 보일수있게
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=3";
 				}else{
 					alert("수락 실패");
+				}
+			}
+		})
+	}
+	//클럽 가입 거절
+	function refusal(obj){	//클릭한 게시물의 번호값 가져오기
+		var clubNo = ${clubNo }
+		$.ajax({
+			url:"/deleteRefusal.do",
+			data : {
+				listNo : obj,
+				clubNo : clubNo,
+			},
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("거절되었습니다.");
+					//수락하고 다시 컨트롤러로 보내서 다시 로드할때 3번페이지가 바로 보일수있게
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=3";
+				}else{
+					alert("거절 실패");
 				}
 			}
 		})
@@ -388,6 +508,7 @@
 		})
 	}
 	
+	
 	/* 관리자 회원/예약  버튼*/
         function userListAdmin(){
             $(".table-hover1").hide();
@@ -403,7 +524,13 @@
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
 		tabCont.hide();
-		tabCont.eq(0).show();
+		
+		//페이지 로드할때 menuNo값 있는지 확인후 번호값대로 btn(no) 실행
+		var index = '${menuNo}';
+		$(function(){
+			tabBtn.eq(index).click();
+			$(".adminCheckButton").click();
+		});
 
 		tabBtn.click(function() {
 			var target = $(this); //버튼의 타겟(순서)을 변수에 저장
@@ -423,20 +550,19 @@
 				    editable: true,
 				    eventLimit: true,
 				    
+				    //날짜 클릭시 모달 활성화
 				    dateClick: function (data) {
-				      /* if(stu != ""){
-				        $(".service").css("display", "block");
-				       $(".service_date").val(data.dateStr);
+				       /* $("#myModal3").css("display","block");
+				       $("#myModal3").addClass("in"); */
+				       $("#myModal3").click();
+				       onload="calModal()";
 				       console.log(data.dateStr);
-				      }else{
-				    	  alert("로그인 후 이용이 가능합니다.");
-				          location.href = "/";
-				      } */
 				    },
 				  });
 				  var test;
 				  test.render();
 				 /*  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2021-07-03'}); */
+				 
 				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-02',end:'2021-07-02'});
 			}
 		});
@@ -482,18 +608,24 @@
 						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = ""; //html초기화
 						html += '<div class="board-wrap">';
-						html += 	'<div class="userinfo" style="height:30%;">';
-						html += 		'<div class="userImg">'+'</div>';
-						html += 		'<div class="userName">' + p.boardWriter+ '</div>';
-						html += 		'<div class="enrollDate">' + p.enrollDate+ '</div>';
-						html += 	'</div>';
-						html += 	'<div class="boardcontain" style="height:40%;">'
-										+ p.boardContent + '</div>';
-						html += 	'<div class="userview" style="height:30%;">';
-						html += 		'<div class="usernum">' + '조회수3명읽음' + '</div>';
-						html += 		'<button class="openModal" onclick="modalClick();">'+'상세보기'+'</button>';
-						html += 	'</div>';
-						html += '</div>';
+						html +=    '<div class= "userDate">';
+						html +=        '<div class="userImg">'+'</div>';
+						html +=        '<div class="userName">'+ p.boardWriter+'</div>';
+						html +=        '<div class="enrollDate">'+ p.enrollDate+'</div>';
+						html +=     '</div>';    
+						html +=   '<div class= "boardTitle">'+p.boardTitle+'</div>';
+						html +=   '<div class= "boardContent">'+'<img style="width:100%; height:100%; object-fit:contain;" src=/resources/image/clubimg/'+ p.filepath +'></div>';
+						html +=   '<div class= "boardComment">'+ p.boardContent +'</div>';
+						html +=   '<div class= "boardFooter">';
+						html +=       '<div class= "numView">';
+						html +=           '<div class="userNum">'+'조회수'+'</div>';
+						html +=           '<div class="userGood">'+'좋아요'+'</div>';
+						html +=       '</div>';    
+						html +=   '<div class= "btn-wrap">';
+						html +=       '<button id="openModal">'+'상세보기'+'</button>';
+						html +=   '</div>';
+						html +=   '</div>';        
+						html +='</div>';
 						$(".photoWrapper").append(html); 
 						
 						
@@ -572,7 +704,9 @@
          }
       })
    });
-	</script>
+</script>
+
+
 </body>
 
 </html>

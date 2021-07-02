@@ -64,7 +64,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #fff;
-  background-color: #686dc3;
+  /* background-color: #686dc3; */	
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -11914,18 +11914,21 @@ fieldset:disabled .btn {
 }
 
 .modal-content a {
-  color: #fff;
+  color: #f5f5f5;
 }
 
 .modal-content .text-muted {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 body {
-  background-color: rgb(236, 82, 63);
+  background-color: #f5f5f5;
 }
 .making_feed_wrap {
   text-align: center;
 }
 #typeSelect option {
+	color:black;
+}
+.making_feed_wrap *{
 	color:black;
 }

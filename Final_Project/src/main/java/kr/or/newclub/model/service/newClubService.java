@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.ClubBoard;
@@ -43,23 +44,13 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 	return dao.clubBoardMore(map);
 }
 
-
-		public int insertBoard(clubBoard b, ArrayList<clubBoard> fileList) {
-			//파일은 board_no가 필요하기 떄문에 board테이블에 insert하는것이 먼저
-			int result1 = dao.inserBoard(b);
-			int result = 0;//최종 결과처리 변수
-			if(result1>0) {
-				int boardNo = dao.selectBoardNo();
-				for(clubBoard f : fileList) {
-					f.setBoardNo(boardNo);
-					result += dao.insertFile(f);
-				}
-			}else {
-				return -1;
-				
-			}
-			return result;
-		}
+		//해당 클럽에 게시물 등록
+		@Transactional
+		public int insertBoard(clubBoard b) {
+		//파일은 board_no가 필요하기 떄문에 board테이블에 insert하는것이 먼저
+		int result = dao.inserBoard(b);
+		return result;
+	}
 
 		//가입신청한 회원 출력
 		public ArrayList<Apply> selectApply(int clubNo) {
@@ -70,16 +61,24 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			return dao.selectMemberList(clubNo);
 		}
 		//가입신청
+		@Transactional
 		public int insertApply(Object apply) {
 			return dao.insertApply(apply);
 		}
 		//가입신청 수락
+		@Transactional
 		public int deleteApply(int no) {
 			return dao.deleteApply(no);
 		}
 		//가입신청시 클럽멤버로 넣기
+		@Transactional
 		public int insertClubMember(int no, int clubNo) {
 			return dao.insertClubMember(no,clubNo);
+		}
+		//가입신청 거절
+		@Transactional
+		public int deleteRefusal(int clubNo, int listNo) {
+			return dao.deleteRefusal(clubNo,listNo);
 		}
 
 
