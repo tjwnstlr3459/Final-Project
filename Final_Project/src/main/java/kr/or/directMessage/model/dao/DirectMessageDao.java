@@ -49,4 +49,12 @@ public class DirectMessageDao {
 		return session.selectOne("directMessage.selectUnreadDm", memberNick);
 	}
 
+	public int updateDm(DirectMessage dm) {
+		return session.update("directMessage.updateReadStatus", dm);
+	}
+
+	public DirectMessage selectOneDm(DirectMessage dm) {
+		return session.selectOne("directMessage.selectOneDm", dm);
+	}
+
 }

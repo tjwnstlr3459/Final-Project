@@ -102,11 +102,11 @@
                     		</div> 
                     		<c:forEach items="${dmList }" var="dm">
                                 <c:if test="${dm.receiver == m.memberNick and dm.readStatus == 'N'}">
-	                                <div class="row">
+	                                <div class="row listRow">
 		                    			<div class="dm-sender">${dm.sender }</div>
-		                                <div class="dm-content">${dm.dmContent }</div>
+		                                <div class="dm-content"><span onclick="dmShow(1, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
 		                                <div class="dm-date">${dm.dmDate }</div>
-		                                <div class="dm-reply"><i class="fas fa-share"></i></div>
+		                                <div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm('${dm.sender}', '${m.memberNick }')"></i></div>
 	                    			</div>
                                 </c:if>
                             </c:forEach>
@@ -114,46 +114,23 @@
                     </div>
                     
                     <div class="title">
-                        	새 쪽지
+                        	내 쪽지
                         <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="dmsList">
-                    
-                    	<!-- 
-                        <table style="width:500px;">
-                            <tr>
-                                <th>보낸 사람</th>
-                                <th>내용</th>
-                                <th>날짜</th>
-                                <th>읽음</th>
-                                <th>답장</th>
-                            </tr>
-                            <c:forEach items="${dmList }" var="dm">
-                                    <c:if test="${dm.receiver == m.memberNick and dm.readStatus == 'N'}">
-                                    <tr>
-		                                <td>${dm.sender }</td>
-		                                <td>${dm.dmContent }</td>
-		                                <td>${dm.dmDate }</td>
-		                                <td>${dm.readStatus }</td>
-		                                <td><i class="fas fa-share"></i></td>
-		                            </tr>
-                                    </c:if>
-                            </c:forEach>
-                        </table>
-                        -->
                         
-                        <div class="dmsList">
+                        <div class="inoutDmsList">
                     		<div class="row column-name">
                     			<div class="dm-sr">구분</div>
                     			<div class="dm-sender">유저명</div>
-                                <div class="dm-content">내용</div>
+                                <div class="dm-content-inout">내용</div>
                                 <div class="dm-date">날짜</div>
                                 <div class="dm-read">읽음</div>
                                 <div class="dm-reply">답장</div>
                     		</div> 
                     		<c:forEach items="${dmList }" var="dm">
                             	<c:if test="${not (dm.receiver == m.memberNick and dm.readStatus == 'N')}">
-                            		<div class="row">
+                            		<div class="row listRow">
                             			<c:choose>
                                     		<c:when test="${dm.receiver == m.memberNick}">
                                     			<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>
@@ -165,17 +142,18 @@
                                     	<c:choose>
                                     		<c:when test="${dm.receiver == m.memberNick}">
                                     			<div class="dm-sender">${dm.sender }</div>
+                                    			<div class="dm-content-inout"><span onclick="dmShow(2, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
                                     		</c:when>
                                     		<c:otherwise>
                                     			<div class="dm-sender">${dm.receiver }</div>
+                                    			<div class="dm-content-inout"><span onclick="dmShow(3, ${dm.dmNo}, '${dm.receiver}', '${dm.dmContent }')">${dm.dmContent }</span></div>
                                     		</c:otherwise>
-                                    	</c:choose>
-		                                <div class="dm-content">${dm.dmContent }</div>
+                                    	</c:choose>		                                
 		                                <div class="dm-date">${dm.dmDate }</div>
 		                                <div class="dm-read">${dm.readStatus }</div>
 		                                <c:choose>
                                     		<c:when test="${dm.receiver == m.memberNick}">
-                                    			<div class="dm-reply"><i class="fas fa-share"></i></div>
+                                    			<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm('${dm.sender}', '${m.memberNick }')"></i></div>
                                     		</c:when>
                                     		<c:otherwise>
                                     			<div class="dm-reply"></div>
@@ -422,7 +400,7 @@
 			</div>
 		</div>	
 	</div>
-	<!-- 쪽지 모달 -->
+	<!-- 쪽지 보내기 모달 -->
 	<div class="modalDm">
 		<div class="modal-content">
 			<div class="modal-header dms">
@@ -435,6 +413,18 @@
 				
 				<button type="button" class="modalButton" id="sendDmTo">쪽지 전송</button>
 				<button type="button" class="modalButton" id="closeModalDm">닫기</button>
+			</div>
+		</div>	
+	</div>
+	<!-- 쪽지 읽기 모달 -->
+	<div class="modalDmCont">
+		<div class="modal-content">
+			<div class="modal-header dmCont">
+			</div>
+			<div class="modal-body">
+				<div class="findResult showDmCont"></div>
+				
+				<button type="button" class="modalButton" id="closeModalDmCont">닫기</button>
 			</div>
 		</div>	
 	</div>
@@ -459,10 +449,10 @@
     		$("#roadAddress").val(addressDetail[1]);
     		$("#detailAddress").val(addressDetail[2]);
     		
-    		var reloading = sessionStorage.getItem("reloading");
+    		var reloading = sessionStorage.getItem("dm");
     		console.log(reloading)
     	    if (reloading) {
-    	        sessionStorage.removeItem("reloading");
+    	        sessionStorage.removeItem("dm");
     	        myDm();
     	    }
     	})
@@ -639,6 +629,8 @@
 			$(".modalDm").fadeIn();
 			$(".modalDm").css("display", "flex");
 			$(".dms").html("<h2>" + receiver + "에게 쪽지 보내기</h2>");
+			dmReceiver = receiver;
+			dmSender = sender;
 		}
 		$("#sendDmTo").click(function() {
 			var dmContent = $("[name=dmContent]").val();
@@ -651,6 +643,8 @@
                 	console.log(data)
                 	if(data == 1) {
                 		result.append("<span>쪽지를 보냈습니다.</span>");
+            			sessionStorage.setItem("dm", "true");
+            			location.reload();
                 	} else {
                 		result.append("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
                 	}
@@ -663,6 +657,48 @@
 		$("#closeModalDm").click(function() {
 			$(".modalDm").fadeOut();
 		})
+		function dmShow(flag, dmNo, user) {
+			$(".modalDmCont").fadeIn();
+			$(".modalDmCont").css("display", "flex");
+			$(".showDmCont").css("margin-bottom", "30px")
+			$.ajax({
+				url: "/user/selectDm.do",
+				type: "post",
+				data: {dmNo:dmNo},
+				success: function(data) {
+					$(".showDmCont").html(data.dmContent);				
+				},
+				error: function() {
+					console.log("first ajax: error");
+				}
+			})
+			if(flag == 1 || flag == 2) {
+				$(".dmCont").html("<h2>" + user + "의 쪽지</h2>");
+				if(flag == 1) {
+					$.ajax({
+						url: "/user/updateDm.do",
+						type: "post",
+						data: {dmNo:dmNo},
+						success: function(data) {
+							$("#closeModalDmCont").attr("onclick", "reloadDm()");
+						},
+						error: function() {
+							console.log("error");
+						}
+					})
+				}				
+			} else { 
+				$(".dmCont").html("<h2>" + user + "에게 보낸 쪽지</h2>");
+			}
+			
+		}
+		$("#closeModalDmCont").click(function() {
+			$(".modalDmCont").fadeOut();
+		})
+		function reloadDm() {
+			sessionStorage.setItem("dm", "true");
+			location.reload();
+		}	
 
 		
 		
