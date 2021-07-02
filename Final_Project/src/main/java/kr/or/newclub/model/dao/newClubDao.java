@@ -31,7 +31,7 @@ public class newClubDao {
 		List list = session.selectList("newclub.boardMore", map);
 		return (ArrayList<Board>) list;
 	}
-
+	//게시물 등록
 	public int inserBoard(clubBoard b) {
 		return session.insert("newclub.insertBoard", b);
 	}

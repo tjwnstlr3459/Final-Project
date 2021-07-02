@@ -14,7 +14,8 @@
 		BOARD_VIEWS as boardViews,
 		BOARD_GOOD as boardGood,
 		ENROLL_DATE as enrollDate
-		from CLUB_BOARD 
+		from CLUB_BOARD
+		order by 1 desc
 </select>
 <!-- 전체 게시물 확인 -->
 <select id="totalCount" resultType="int"  parameterType="int">
@@ -22,7 +23,7 @@
 		count(*)
 		from CLUB_BOARD WHERE CLUB_NO=#{clubNo}
 </select>
-<select id="boardMore" parameterType="map" resultType="b">
+<select id="boardMore" parameterType="map" resultType="n">
 	SELECT 
 rnum,
    BOARD_NO as boardNo,
@@ -38,7 +39,7 @@ rnum,
    ENROLL_DATE as enrollDate
 FROM
 (SELECT ROWNUM AS RNUM, N.* FROM
-(SELECT * FROM club_board WHERE CLUB_NO=38 ORDER BY CLUB_NO DESC)N) where RNUM BETWEEN 1 AND 3
+(SELECT * FROM club_board WHERE CLUB_NO=38 ORDER BY BOARD_NO DESC)N) where RNUM BETWEEN #{start} AND #{end}
 <!-- 클럽보드에서 38번을 순서대로찾아서 그중 최근거 1~3을 찾음 -->
 </select>
 
@@ -47,29 +48,29 @@ FROM
 insert into club_board values(
     CB_SEQ.NEXTVAL,
     #{clubNo},
-    #{boardCG},
+    5,
     #{boardWriter},
     #{boardTitle},
     #{boardContent},
-    null,
-    null,
+    #{filename},
+    #{filepath},
     1,
     1,
     to_char(sysdate,'yyyy-mm-dd'))
 </insert>
 
-<!-- 최신게시글 no를 찾아내기 위한 쿼리 -->
+<!-- 최신게시글 no를 찾아내기 위한 쿼리  
 <select id="selectBoardNo" resultType="int">
 	select max(board_no) from club_board
 </select>
 
-<!-- 파일추가하기위한 쿼리 -->
+파일추가하기위한 쿼리
 <update id="insertFile" parameterType="b">
 	update club_board set 
 		filename=#{fileName},
 		filepath=#{filePath}
 	where board_no=#{boardNo}
-</update>
+</update> -->
 
 <select id="selectOne" parameterType="int" resultType="n" >
 	select
