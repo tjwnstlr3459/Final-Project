@@ -94,6 +94,10 @@ public class newClubDao {
 		return session.delete("newclub.deleteRefusal",map);
 	}
 
+	public int viewUpdate(int boardNo) {
+		return session.update("newclub.viewUpdate", boardNo);
+	}
+
 }
 
 

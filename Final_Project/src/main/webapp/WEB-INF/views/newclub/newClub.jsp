@@ -178,7 +178,7 @@
 								            <div class= "boardComment"></div>
 								            <div class= "boardFooter">
 								                <div class= "numView">
-								                    <div class="userNum">조회수</div>
+								                    <div class="userNum">조회수<span id="ctView"></span>명</div>
 								                    <div class="userGood">좋아요</div>
 								                </div>    
 								                <div class= "btn-wrap">
@@ -342,17 +342,20 @@
 		</div>
 	</div>
 	<!-- Modal -->
-	<div class="allModal">
-		<!--바디처럼 전체를 감싸고있는 div-->
-		<div class="modalWrap">
-			<!--숨어있는 모달-->
-			<h2>게시물 상세보기</h2>
-			<hr>
-			<p>여기를 다시</p>
-			<p>꾸며 봅시다</p>
-			<button id="closeBtn">닫기</button>
-		</div>
-	</div>
+	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
+        <div class="modalWrap"> <!--숨어있는 모달-->
+            <h2>게시물 상세보기</h2>
+            <hr>
+            <div class="userDate">
+            <div class="userImg"></div>
+			<div class="userName"></div>
+			<div class="enrollDate"></div>
+			</div>
+            <div class= "boardTitle"></div>
+			<div class= "boardComment"></div>
+            <button id="closeBtn">닫기</button>
+        </div>
+    </div>
 
 	<!-- Modal2 -->
 	<div class="modal fade" id="myModal" role="dialog"
@@ -605,24 +608,27 @@
 				success : function(data) { //data에 포토객체가  gson to list 그거한거
 					console.log(data);
 					   for (var i = 0; i < data.length; i++) {
-						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
+						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고 style="display:none"
 						var html = ""; //html초기화
 						html += '<div class="board-wrap">';
-						html +=    '<div class= "userDate">';
+						html +=   '<div class="boardNoTest">'+p.boardNo+'</div>';
+						html +=   '<div class= "userDate">';
 						html +=        '<div class="userImg">'+'</div>';
 						html +=        '<div class="userName">'+ p.boardWriter+'</div>';
 						html +=        '<div class="enrollDate">'+ p.enrollDate+'</div>';
 						html +=     '</div>';    
 						html +=   '<div class= "boardTitle">'+p.boardTitle+'</div>';
-						html +=   '<div class= "boardContent">'+'<img style="width:100%; height:100%; object-fit:contain;" src=/resources/image/clubimg/'+ p.filepath +'></div>';
+						if(p.filepath != undefined){	
+						html +=   '<div class= "boardContent">'+'<img style="width:460px; height:270px; object-fit:contain;" src=/resources/image/clubimg/'+ p.filepath +'></div>';
+						}
 						html +=   '<div class= "boardComment">'+ p.boardContent +'</div>';
 						html +=   '<div class= "boardFooter">';
 						html +=       '<div class= "numView">';
-						html +=           '<div class="userNum">'+'조회수'+'</div>';
+						html +=           '<div class="userNum">'+'조회수'+'<span ="ctView">'+p.boardViews+'</span>명</div>';
 						html +=           '<div class="userGood">'+'좋아요'+'</div>';
 						html +=       '</div>';    
 						html +=   '<div class= "btn-wrap">';
-						html +=       '<button id="openModal">'+'상세보기'+'</button>';
+						html +=      '<button id="openModal" onclick="modalClick(this);">' + '상세보기'+'</button>';
 						html +=   '</div>';
 						html +=   '</div>';        
 						html +='</div>';
@@ -644,8 +650,42 @@
 					
 			});
 		}
-		 function modalClick(){
+		 // 작업중
+		 function modalClick(openbtn){
+			 var btnWrap = $(openbtn).parents(); // 현재 눌린 게시물의 값 추출용
+			 var target = $(".modalWrap"); // 넣을 위치 지정
+			 var boardNo = btnWrap.siblings(".boardNoTest").text();
+			
+			/*  <div class="modalWrap"> <!--숨어있는 모달-->
+	            <h2>게시물 상세보기</h2>
+	            <hr>
+	            <div class="userDate">
+		            <div class="userImg"></div>
+					<div class="userName"></div>
+					<div class="enrollDate"></div>
+	            </div>
+	            <div class= "boardTitle"></div>
+				<div class= "boardComment"></div>
+	            <button id="closeBtn">닫기</button>
+	        </div> */
+	        //console.log(value.siblings(".userDate").children("userName").text());
+	        
+	         target.children("div").eq(0).children().eq(1).text(btnWrap.siblings(".userDate").children(".userName").text()); // 내용 적을 곳
+	         target.children("div").eq(0).children().eq(2).text(btnWrap.siblings(".userDate").children(".enrollDate").text());
+			 target.children("div").eq(1).text(btnWrap.siblings(".boardTitle").text());
+			 target.children("div").eq(2).text(btnWrap.siblings(".boardComment").text());
 		     $(".allModal").css("display","flex");
+		     
+	     $.ajax({
+				url : "/viewUpdate.do",// boardNo에 해당하는 게시물의 조회수를 업데이트
+				data : {boardNo:boardNo},
+				type : "post",
+				success : function(data){
+				
+					}
+				
+				});
+		     
 		} 
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 

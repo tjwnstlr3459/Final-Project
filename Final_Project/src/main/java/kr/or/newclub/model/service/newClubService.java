@@ -80,7 +80,12 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int deleteRefusal(int clubNo, int listNo) {
 			return dao.deleteRefusal(clubNo,listNo);
 		}
-
+		
+		
+		//조회수 업데이트
+		public int viewUpdate(int boardNo) {
+			return dao.viewUpdate(boardNo);
+		}
 
 }
 
