@@ -8,25 +8,8 @@
 <link rel="stylesheet" href="/resources/css/freeBoardFrm/bootstrap.css">
 <title>${cgName}에해당하는클럽들</title>
 <style>
-
 	body{
-		width: 100%;
-  height: 100%;
-  /* background-color:#fff; */
-  position: relative;
-  z-index: 1;
   color:black;
-	}
-	body::after{
-	width: 100%;
-  height: 100%;
-  content: "";
-   /* background-image:url("/resources/main/images/intro_4.jpg"); */ 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.7;
 	}
 	.all-wrap *, .viewClubList *{
 	color: black;
@@ -38,7 +21,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	<h1 style="font-size: 40px; text-align: center;">${cgName}</h1>
+	<h1 style="font-size: 40px; text-align: center; margin-top:20px;">${cgName}</h1>
 	<br>
 	<c:choose>
 	 <c:when test="${cgName eq '영화' }">
@@ -51,7 +34,10 @@
 	<hr>
 	<h3 style="text-align: center;">CLUB LIST</h3>
 	<c:if test="${!empty sessionScope.m }">
-	<button type="button" onclick="location.href='/createClubFrm.do';" style="float:right; margin-right:300px; width:150px; height:70px; background-color:#ec5674; font-size:18px; font-weight:bold;">MAKE CLUB</button>
+	<!-- <button type="button" onclick="location.href='/createClubFrm.do';" style="float:right; margin-right:100px; width:150px; height:70px; background-color:#ec5674; font-size:18px; font-weight:bold; border:none;">MAKE CLUB</button> -->
+	<div>
+		<a href="/createClubFrm.do" style="float:right; margin-right:100px; font-size:18px; color:black; font-weight:bold; text-decoration:none;">MAKE CLUB</a>
+	</div>
 	</c:if>
 	<div class="all-wrap">
 		<div class="categoryNavi">

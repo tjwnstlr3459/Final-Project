@@ -8,14 +8,26 @@
 	href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
 	integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/resources/css/freeBoardFrm/bootstrap.css">
+ <link rel="stylesheet" href="/resources/css/freeBoardFrm/bootstrap.css"> 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <title>프리보드생성페이지</title>
+<style>
+*{
+	color: black;
+}
+#typeSelect *{
+	color: black;
+}
+.making_feed_wrap{
+margin: 50px 600px 0px 600px;
+}
+</style>
 </head>
 <body>
+<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="making_feed_wrap">
-		<h3 class="card-header">MAKING FEED!</h3>
+		<h3 class="card-header" style="color:black;">MAKING FEED!</h3>
 		<fieldset>
 			<i class="fas fa-camera"
 				style="font-size: 50px; margin-top: 20px; margin-bottom: 50px;"></i>
@@ -24,7 +36,7 @@
 					alt="">
 			</div>
 		</fieldset>
-	</div>
+	
 	<form action="/insertFreeBoard.do" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="formFile" class="form-label mt-4"></label> <input
@@ -32,7 +44,7 @@
 				onchange="loadImg(this)">
 		</div>
 		<div class="form-group">
-			<label for="typeSelect" class="form-label mt-4">CLUB CATEGORY</label> <select class="form-select" name="type" id="typeSelect" style="color:white;">
+			<label for="typeSelect" class="form-label mt-4" style="color:black;">CLUB CATEGORY</label> <select class="form-select" name="type" id="typeSelect" style="color:white;">
 				<option value="4">스포츠</option>
 				<option value="5">음악</option>
 				<option value="6">여행</option>
@@ -44,10 +56,10 @@
 			</select>
 		</div>
 		<div class="card-footer text-muted">
-			<input type="text" name="fbWriter" value="${sessionScope.m.memberNick }" hidden>
+			<input type="text" name="fbWriter" value="${sessionScope.m.memberNick }" hidden style="color:black;">
 		</div>
 		<div class="form-group">
-			<label for="exampleTextarea" class="form-label mt-4">CONTENT</label>
+			<label for="exampleTextarea" class="form-label mt-4" style="color:black;">CONTENT</label>
 			<textarea class="form-control" id="exampleTextarea" rows="3" name="fbContent"></textarea>
 		</div>
 		<p style="margin-top: -12px"></p>
@@ -58,6 +70,7 @@
 				style="margin-top: 30px;" onclick="window.location.reload();">RESET</button>
 		</div>
 	</form>
+	</div>
 	<!--    <script type="text/javascript" src="dapi.kakao.com/v2/maps/sdk.js?appkey=29f578c657765b5ccc3a6c44ab486de0&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
