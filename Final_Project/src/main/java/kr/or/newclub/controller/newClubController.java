@@ -34,7 +34,7 @@ public class newClubController {
 	private newClubService service;
 	
 	@RequestMapping(value = "/newClub.do")
-	public String newClub(@SessionAttribute(required = false) Member m,int clubNo,Model model){
+	public String newClub(@SessionAttribute(required = false) Member m,int clubNo,String menuNo,Model model){
 		
 		int totalCount = service.totalCount(clubNo);
 		model.addAttribute("totalCount",totalCount);
@@ -45,6 +45,7 @@ public class newClubController {
 		//가입신청한 회원 출력
 		ArrayList<Apply> applyList = service.selectApply(clubNo);
 		model.addAttribute("applyList", applyList);
+		model.addAttribute("menuNo", menuNo);
 		//가입된 회원 출력
 		ArrayList<ClubMember> clubMemberList = service.selectMemberList(clubNo);
 		model.addAttribute("clubMemberList", clubMemberList);
