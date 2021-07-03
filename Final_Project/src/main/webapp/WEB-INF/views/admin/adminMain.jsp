@@ -86,7 +86,10 @@
 				    		</thead>
 				    		<tbody>
 				    			<tr>
-				    				<td>Members</td><td id="memberCount">num</td>
+				    				<td>All Clubs</td><td id="allClubCount"></td>
+				    			</tr>
+				    			<tr>
+				    				<td>Destroyed Clubs</td><td id="destroyedClubCount"></td>
 				    			</tr>
 				    		</tbody>
 				    	</table>
@@ -94,16 +97,14 @@
 			    </div>
 			    <div class="info-space">
 				    <div class="infoList-wrap box-option">
-				    	<table class="table-info">
+				    	<table class="table-info cgLank">
 				    		<thead>
 					    		<tr>
 					    			<th colspan="3"><h3 class="title-info">title</h3></th>
 					    		</tr>
 				    		</thead>
 				    		<tbody>
-				    			<tr>
-				    				<td>활동? 순위</td><td class="graphs-wrap"><div class="graphs"></div></td><td id="memberCount">num</td>
-				    			</tr>
+				    			<!-- javascript에서 만들어 생성됨 -->
 				    		</tbody>
 				    	</table>
 				    </div>

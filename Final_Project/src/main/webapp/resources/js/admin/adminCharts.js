@@ -15,6 +15,7 @@ function selectAdminCount(){
 			memberHobbys(data);				//회원들이 선택한 취미 차트
 			memberAges(data);				//회원들이 연령대별 취미 차트 
 			defaultCount(data);				//페이지 로드 되면서 값을 넣어주는 함수
+			categoryRank(data);				//카테고리 랭크
 		}
 	});
 }
@@ -71,7 +72,7 @@ function memberHobbys(data){
 			      },
 			      title: {
 			        display: true,
-			        text: 'Club Open Categories ',
+			        text: 'Member Choice Hobby',
 			        color:'#67dfdf'
 			      }
 			    }
@@ -194,4 +195,14 @@ function defaultCount(data){
 	document.getElementById('allMemberCount').innerHTML = data.allMemberCount;
 	document.getElementById('destroyedMemberCount').innerHTML = data.destroyedMemberCount;
 	document.getElementById('restrictedMemberCount').innerHTML = data.restrictedMemberCount;
+	document.getElementById('allClubCount').innerHTML = data.allClubCount;
+	document.getElementById('destroyedClubCount').innerHTML = data.destroyedClubCount;
+}
+//카테고리 순위 html태그 만들면서 넣어주기
+function categoryRank(data){
+	var row;
+	for(val  of data.bcList){
+		row += `<tr><td>${val.cgName}</td><td class="graphs-wrap"><div class="graphs" style="width:${val.percent}%;"></div></td><td>${val.percent}%</td></tr>`;
+	}
+	$('.cgLank>tbody').html(row);
 }

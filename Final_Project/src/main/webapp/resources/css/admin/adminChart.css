@@ -66,6 +66,6 @@
 		
 }
 .graphs:first-child{
-	background-color:red;	
+	background-color:var(--mainTextColor);	
 	height:10px;
 }
