@@ -153,7 +153,7 @@ INSERT INTO CALENDAR VALUES(
     #{clubNo},
     #{calTitle},
     #{calBack},
-    #{claFont},
+    #{calFont},
     #{calStart},
     #{calEnd})
 </insert>

@@ -8,7 +8,7 @@ public class Calendar {
 	private int clubNo;
 	private String calTitle;
 	private String calBack;
-	private String claFont;
+	private String calFont;
 	private String calStart;
 	private String calEnd;
 }

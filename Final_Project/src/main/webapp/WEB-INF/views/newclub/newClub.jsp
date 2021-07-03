@@ -424,7 +424,7 @@
 					<div>
 						<div>폰트컬러 :</div>
 						<div>
-							<input type="color" name="calFont" value="black">
+							<input type="color" name="calFont" value="#252525">
 						</div>
 					</div>
 				</div>
@@ -453,7 +453,7 @@
 		}
 		$.ajax({
 			url : "/calendarAdd.do",
-			data : Calendar,
+			data :  Calendar,
 			type : "post",
 			success : function(data){
 				if(data > 0){
@@ -601,12 +601,14 @@
 								var textColor = data[i].calFont;
 								var start = data[i].calStart;
 								var end = data[i].calEnd;
+								console.log(end);
 								//값넣기
 								test.addEvent({title : title,
 												color : color,
 												textColor : textColor,
 												start : start,
-												end : end});
+												end : end
+								});
 							}
 						}
 					})
