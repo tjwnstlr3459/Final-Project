@@ -35,9 +35,9 @@ public class newClubController {
 	@Autowired
 	private newClubService service;
 
+	//클럽상세페이지
 	@RequestMapping(value = "/newClub.do")
 	public String newClub(@SessionAttribute(required = false) Member m, int clubNo, String menuNo, Model model) {
-
 		int totalCount = service.totalCount(clubNo);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("clubNo", clubNo);
@@ -64,20 +64,27 @@ public class newClubController {
 		ArrayList<Calendar> calList = service.selectCalList(clubNo);
 		return new Gson().toJson(calList);
 	}
+	//클럽 소개글 수정
+	@ResponseBody
+	@RequestMapping(value = "/clubInfoModify.do", produces = "application/json;charset=utf-8")
+	public int clubInfoModify(int clubNo,String clubIntro) {
+		int result = service.clubIntroModify(clubNo,clubIntro);
+		return result;
+	}
 	
-	
+	//채팅
 	@RequestMapping(value = "/allMemberChat.do")
 	public String allMemberChat() {
 		return "newclub/newClub";
 	}
-
+	
+	//달력일정 불러오기
 	@ResponseBody
 	@RequestMapping(value = "/clubBoardMore.do", produces = "application/json;charset=utf-8")
 	public String clubBoardMore(int start, int clubNo) {
 		ArrayList<Board> list = service.clubBoardMore(start, clubNo);
 		return new Gson().toJson(list);
 	}
-
 	// 클럽 가입신청
 	@ResponseBody
 	@RequestMapping(value = "/memberClubJoin.do")
@@ -85,7 +92,6 @@ public class newClubController {
 		int result = service.insertApply(Apply);
 		return result;
 	}
-
 	// 가입신청 수락
 	@ResponseBody
 	@RequestMapping(value = "/memberJoinCheck.do")
@@ -97,7 +103,6 @@ public class newClubController {
 		}
 		return result;
 	}
-
 	// 가입신청 거절
 	@ResponseBody
 	@RequestMapping(value = "/deleteRefusal.do")

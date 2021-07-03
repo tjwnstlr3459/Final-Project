@@ -82,8 +82,6 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int deleteRefusal(int clubNo, int listNo) {
 			return dao.deleteRefusal(clubNo,listNo);
 		}
-		
-		
 		//조회수 업데이트
 		public int viewUpdate(int boardNo) {
 			return dao.viewUpdate(boardNo);
@@ -100,6 +98,13 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		//클럽정보 출력
 		public Club selectClub(int clubNo) {
 			return dao.selectClub(clubNo);
+		}
+		//클럽소개글 수정
+		public int clubIntroModify(int clubNo, String clubIntro) {
+			HashMap<Object, Object> map = new HashMap<Object, Object>();
+			map.put("clubNo", clubNo);
+			map.put("clubIntro", clubIntro);
+			return dao.clubIntroModify(map);
 		}
 
 }

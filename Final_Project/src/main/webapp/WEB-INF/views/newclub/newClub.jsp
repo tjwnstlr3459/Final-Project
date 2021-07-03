@@ -301,14 +301,15 @@
 								<div class="bottomAdmin">
 									<!-- 모임글 수정 -->
 									<div class="clubModify">
-										<div style="margin-left: 30px; padding-top: 15px;">모임명</div>
+										<div style="margin-left: 30px; padding-top: 15px;">${club.clubName }</div>
 										<div>
-											<textarea>모임 소개글</textarea>
+											<%-- <input type="text" name="clubNo" value="${clubNo }" style="display: none"> --%>
+											<textarea name="clubIntro">${club.clubIntro }</textarea>
 										</div>
 									</div>
 									<div class="clubModifyDelete">
-										<div>수정</div>
-										<div>모임폐쇄</div>
+										<div type="button" onclick="clubInfoModify()">수정</div>
+										<div type="button" onclick="location.href=''">모임폐쇄</div>
 									</div>
 								</div>
 
@@ -443,6 +444,27 @@
 		</div>
 	</div>
 	<script>
+	//클럽 소개글 수정
+	function clubInfoModify(){
+		var clubNo = ${clubNo }
+		var clubIntro = $("textarea[name=clubIntro]").val();
+		$.ajax({
+			url : "/clubInfoModify.do",
+			data : {
+				clubNo : clubNo,
+				clubIntro : clubIntro,
+			},
+			type : "post",
+			success : function(data){
+				if(data>0){
+					alert("클럽 소개가 수정되었습니다.");
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=3";
+				}else{
+					alert("클럽 소개 수정 실패");
+				}
+			}
+		})
+	}
 	//일정추가
 	function calendarModal(){
 		var Calendar={

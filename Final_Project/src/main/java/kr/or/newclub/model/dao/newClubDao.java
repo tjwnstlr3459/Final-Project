@@ -109,9 +109,13 @@ public class newClubDao {
 		List<Calendar> list = session.selectList("newclub.selectCalList",clubNo);
 		return (ArrayList<Calendar>)list;
 	}
-
+	//클럽정보 알아보기
 	public Club selectClub(int clubNo) {
 		return session.selectOne("newclub.selectClub",clubNo);
+	}
+	//클럽 소개글 수정
+	public int clubIntroModify(HashMap<Object, Object> map) {
+		return session.update("newclub.clubIntroModify",map);
 	}
 
 }

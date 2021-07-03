@@ -188,6 +188,13 @@ SELECT
     WARNING_COUNT AS warningCount 
 FROM CLUB WHERE CLUB_NO=#{clubNo}
 </select>
+
+<!-- 클럽인트로 수정 -->
+<update id="clubIntroModify" parameterType="map">
+UPDATE CLUB SET 
+	CLUB_INTRO=#{clubIntro} 
+WHERE CLUB_NO=#{clubNo}
+</update>
 </mapper>
 
 
