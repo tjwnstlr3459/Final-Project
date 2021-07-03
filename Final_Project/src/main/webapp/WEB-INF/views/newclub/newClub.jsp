@@ -406,7 +406,7 @@
 					<div>
 						<div>시작날 :</div>
 						<div>
-							<input type="date" name="calStart" value="">
+							<input type="date" name="calStart" onchange="changeStart()" value="">
 						</div>
 					</div>
 					<div>
@@ -424,7 +424,7 @@
 					<div>
 						<div>폰트컬러 :</div>
 						<div>
-							<input type="color" name="calFont" value="#252525">
+							<input type="color" name="calFont" value="#ffffff">
 						</div>
 					</div>
 				</div>
@@ -440,7 +440,6 @@
 		</div>
 	</div>
 	<script>
-	
 	//일정추가
 	function calendarModal(){
 		var Calendar={
@@ -459,6 +458,7 @@
 				if(data > 0){
 					alert("일정이 추가되었습니다.");
 					$("#closeModal2").click();
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=2";
 				}else{
 					alert("일정 추가 실패");
 				}
@@ -529,8 +529,6 @@
 			}
 		})
 	}
-	
-	
 	/* 관리자 회원/예약  버튼*/
         function userListAdmin(){
             $(".table-hover1").hide();
@@ -540,8 +538,6 @@
             $(".table-hover1").show();
             $(".table-hover2").hide();
         }
-        
-        
 	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
@@ -601,7 +597,6 @@
 								var textColor = data[i].calFont;
 								var start = data[i].calStart;
 								var end = data[i].calEnd;
-								console.log(end);
 								//값넣기
 								test.addEvent({title : title,
 												color : color,
@@ -614,6 +609,11 @@
 					})
 			}
 		});
+	//시작날과 종료날 동일하게하기
+	function changeStart(){
+		var start = $("input[name=calStart]").val();
+		$("input[name=calEnd]").val(start);
+	}
 	/*더보기 기능*/
 	$(function() {
 		more(1);
