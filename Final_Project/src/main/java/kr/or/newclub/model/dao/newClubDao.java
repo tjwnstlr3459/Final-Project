@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.board.model.vo.Board;
 import kr.or.newclub.model.vo.Apply;
+import kr.or.newclub.model.vo.Calendar;
 import kr.or.newclub.model.vo.ClubMember;
 import kr.or.newclub.model.vo.clubBoard;
 
@@ -96,6 +97,16 @@ public class newClubDao {
 
 	public int viewUpdate(int boardNo) {
 		return session.update("newclub.viewUpdate", boardNo);
+	}
+
+	//달력일정추가
+	public int calendarAdd(Calendar calendar) {
+		return session.insert("newclub.calendarAdd",calendar);
+	}
+	//달력일정 불러오기
+	public ArrayList<Calendar> selectCalList(int clubNo) {
+		List<Calendar> list = session.selectList("newclub.selectCalList",clubNo);
+		return (ArrayList<Calendar>)list;
 	}
 
 }

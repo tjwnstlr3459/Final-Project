@@ -210,13 +210,15 @@
 									</div>
 								</c:forEach>
 							</div>
-							
+
 							<!-- 달력 api -->
 							<div>
 								<div id="test" style="width: 650px;"></div>
-								<button type="button" class="btn btn-info btn-lg" id="calModal" data-toggle="modal" data-target="#myModal3">일정 추가하기</button>
+								<button type="button" class="btn btn-info btn-lg" id="calModal"
+									data-toggle="modal" data-target="#myModal3">일정 추가하기</button>
+								<input class="calList" style="display: none" value="${calList }">
 							</div>
-							
+
 							<!-- 멤버목록(관리자) -->
 							<div>
 								<div class="contentMent"
@@ -305,17 +307,6 @@
 										<div>수정</div>
 										<div>모임폐쇄</div>
 									</div>
-
-									<!-- 달력일정 추가 -->
-									<div class="clubModify">
-										<div style="margin-left: 30px; padding-top: 15px;">일정 추가</div>
-										<div>
-											타이틀 : <input type="text">
-										</div>
-									</div>
-									<div class="clubModifyDelete">
-										<div>등록</div>
-									</div>
 								</div>
 
 
@@ -342,20 +333,22 @@
 		</div>
 	</div>
 	<!-- Modal -->
-	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
-        <div class="modalWrap"> <!--숨어있는 모달-->
-            <h2>게시물 상세보기</h2>
-            <hr>
-            <div class="userDate">
-            <div class="userImg"></div>
-			<div class="userName"></div>
-			<div class="enrollDate"></div>
+	<div class="allModal">
+		<!--바디처럼 전체를 감싸고있는 div-->
+		<div class="modalWrap">
+			<!--숨어있는 모달-->
+			<h2>게시물 상세보기</h2>
+			<hr>
+			<div class="userDate">
+				<div class="userImg"></div>
+				<div class="userName"></div>
+				<div class="enrollDate"></div>
 			</div>
-            <div class= "boardTitle"></div>
-			<div class= "boardComment"></div>
-            <button id="closeBtn">닫기</button>
-        </div>
-    </div>
+			<div class="boardTitle"></div>
+			<div class="boardComment"></div>
+			<button id="closeBtn">닫기</button>
+		</div>
+	</div>
 
 	<!-- Modal2 -->
 	<div class="modal fade" id="myModal" role="dialog"
@@ -382,9 +375,10 @@
 				<div class="modal-footer"
 					style="display: flex; justify-content: center;">
 					<button type="button" onclick="userClubJoin()"
-						class="btn btn-default" style="background: #5bc0de;color: wheat;">신청</button>
+						class="btn btn-default" style="background: #5bc0de; color: wheat;">신청</button>
 					<button type="button" id="closeModal" class="btn btn-default"
-						data-dismiss="modal" style="background-color: #e84c4ca8;color: wheat;">닫기</button>
+						data-dismiss="modal"
+						style="background-color: #e84c4ca8; color: wheat;">닫기</button>
 				</div>
 			</div>
 		</div>
@@ -399,49 +393,74 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3 class="modal-title" style="margin-left: 20px;">달력 일정 추가하기</h3>
 				</div>
+
 				<div class="modal-body">
-					<p>클럽에 가입하기 전에</p>
-					<p>인사말을 적어주세요.</p>
-				</div>
-				<input type="text" class="receiver" name="receiver"
-					value="${sessionScope.m.memberNick }" style="display: none">
-				<input type="text" class="clubNo" name="clubNo" value="${clubNo }"
-					style="display: none">
-				<div style="display: flex; justify-content: center;">
-					<textarea class="iaContent" placeholder="모임장에게 전해질 인사말을 적어주세요!"
-						name="iaContent"></textarea>
+					<input type="text" name="clubNo" value="${clubNo }"
+						style="display: none">
+					<div>
+						<div>일정명 :</div>
+						<div>
+							<input type="text" name="calTitle">
+						</div>
+					</div>
+					<div>
+						<div>시작날 :</div>
+						<div>
+							<input type="date" name="calStart" value="">
+						</div>
+					</div>
+					<div>
+						<div>종료날 :</div>
+						<div>
+							<input type="date" name="calEnd" value="">
+						</div>
+					</div>
+					<div>
+						<div>배경컬러 :</div>
+						<div>
+							<input type="color" name="calBack" value="#e66465">
+						</div>
+					</div>
+					<div>
+						<div>폰트컬러 :</div>
+						<div>
+							<input type="color" name="calFont" value="black">
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer"
 					style="display: flex; justify-content: center;">
 					<button type="button" onclick="calendarModal()"
-						class="btn btn-default" style="background: #5bc0de;color: wheat;">신청</button>
-					<button type="button" id="closeModal" class="btn btn-default"
-						data-dismiss="modal" style="background-color: #e84c4ca8;color: wheat;">닫기</button>
+						class="btn btn-default" style="background: #5bc0de; color: wheat;">추가</button>
+					<button type="button" id="closeModal2" class="btn btn-default"
+						data-dismiss="modal"
+						style="background-color: #e84c4ca8; color: wheat;">닫기</button>
 				</div>
 			</div>
 		</div>
-		
 	</div>
 	<script>
-	//달력 클릭시 모달
-	//클럽가입 신청
+	
+	//일정추가
 	function calendarModal(){
-		var apply={
-			clubNo : $(".clubNo").val(),
-			receiver : $(".receiver").val(),
-			iaContent : $(".iaContent").val(),
+		var Calendar={
+			clubNo : $("input[name=clubNo]").val(),
+			calTitle : $("input[name=calTitle]").val(),
+			calStart : $("input[name=calStart]").val(),
+			calEnd : $("input[name=calEnd]").val(),
+			calBack : $("input[name=calBack]").val(),
+			calFont : $("input[name=calFont]").val(),
 		}
-		console.log(apply);
 		$.ajax({
-			url : "/memberClubJoin.do",
-			data : apply,
+			url : "/calendarAdd.do",
+			data : Calendar,
 			type : "post",
 			success : function(data){
 				if(data > 0){
-					alert("가입신청이 완료되었습니다. 모임장의 수락을 기다리세요");
-					$("#closeModal").click();
+					alert("일정이 추가되었습니다.");
+					$("#closeModal2").click();
 				}else{
-					alert("가입실패");
+					alert("일정 추가 실패");
 				}
 			}
 		})
@@ -495,7 +514,7 @@
 			receiver : $(".receiver").val(),
 			iaContent : $(".iaContent").val(),
 		}
-		console.log(apply);
+		/* console.log(apply); */
 		$.ajax({
 			url : "/memberClubJoin.do",
 			data : apply,
@@ -559,14 +578,38 @@
 				       $("#myModal3").addClass("in"); */
 				       $("#myModal3").click();
 				       onload="calModal()";
-				       console.log(data.dateStr);
+				      /*  console.log(data.dateStr); */
 				    },
 				  });
 				  var test;
 				  test.render();
-				 /*  test.addEvent({title:'혜영아힘내라!ㅋ',color:'#ff0000',textColor:'#FFFFFF',start:'2021-07-03',end:'2021-07-03'}); */
-				 
+				  //달력값 불러와서 적용
+				  var calendarList = $(".calList").val();
 				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-02',end:'2021-07-02'});
+				  //해당클럽의 번호를 넘겨주어 클럽의 달력게시물을 가져오기
+				  var clubNo = ${clubNo};
+					$.ajax({
+						url : "/calListCome.do",
+						data : {clubNo : clubNo,},
+						/* dataType : "json", */
+						type : "post",
+						success : function(data){
+							/* console.log(data) */
+							for (var i = 0; i < data.length; i++) {
+								var title = data[i].calTitle;
+								var color = data[i].calBack;
+								var textColor = data[i].calFont;
+								var start = data[i].calStart;
+								var end = data[i].calEnd;
+								//값넣기
+								test.addEvent({title : title,
+												color : color,
+												textColor : textColor,
+												start : start,
+												end : end});
+							}
+						}
+					})
 			}
 		});
 	/*더보기 기능*/
@@ -580,20 +623,20 @@
 	/*스크롤*/
 	$(window).scroll(function() {
 	    var scrolltop = $(document).scrollTop();	//스크롤할때의 값 지정
-	    console.log("11:"+scrolltop);
+	    /* console.log("11:"+scrolltop); */
 	    
 	    var height = $(document).height();		//문서의 총길이
-	    console.log("22:"+height);
+	    /* console.log("22:"+height); */
 	    
 	    var height_win = $(window).height();	//화면에 보여지는 길이
-	    console.log("33:"+height_win);
+	    /* console.log("33:"+height_win); */
 	    
 	 if (Math.floor($(window).scrollTop()) == $(document).height() - $(window).height()) {	//스크롤이 바닥에 닿았을시 more메소드 실행
 	    more($("#more-btn").val());	//#('more-btn').val()만큼 추가시켜준다
 	    							//$("#more-btn").val(Number(start) + 5);
-	    console.log(1);
+	    /* console.log(1); */
 	 }else{
-		 console.log(2);
+		/*  console.log(2); */
 	 }
 	});
 		function more(start) {
@@ -681,11 +724,8 @@
 				data : {boardNo:boardNo},
 				type : "post",
 				success : function(data){
-				
 					}
-				
 				});
-		     
 		} 
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 

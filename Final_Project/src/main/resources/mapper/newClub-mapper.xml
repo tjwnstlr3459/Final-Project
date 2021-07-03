@@ -142,15 +142,34 @@ DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{listNo} AND INVITE_CN=#{clubNo}
 </delete>
 
 <!-- 조회수 업데이트 -->
-
 <update id="viewUpdate" parameterType="int">
 UPDATE CLUB_BOARD SET BOARD_VIEWS=BOARD_VIEWS+1 WHERE BOARD_NO= #{boardNo}
-
-
 </update>
 
+<!-- 달력 일정추가 -->
+<insert id="calendarAdd" parameterType="cal">
+INSERT INTO CALENDAR VALUES(
+    CAL_SEQ.NEXTVAL,
+    #{clubNo},
+    #{calTitle},
+    #{calBack},
+    #{claFont},
+    #{calStart},
+    #{calEnd})
+</insert>
 
-
+<!-- 달력 일정 불러오기 -->
+<select id="selectCalList" parameterType="int" resultType="cal">
+SELECT
+    CAL_NO AS calNo,
+    CLUB_NO AS clubNo,
+    CAL_TITLE AS calTitle,
+    CAL_BACK AS calBack,  
+    CAL_FONT AS calFont,   
+    CAL_START AS calStart,
+    CAL_END AS calEnd     
+FROM CALENDAR WHERE CLUB_NO=#{clubNo}
+</select>
 
 </mapper>
 

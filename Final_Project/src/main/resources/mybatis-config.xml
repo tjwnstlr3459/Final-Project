@@ -24,7 +24,9 @@
 		<!-- 모임신청 -->
 		<typeAlias type="kr.or.newclub.model.vo.Apply" alias="a"/>  
 		<!-- 모임에 속한 회원 -->
-		<typeAlias type="kr.or.newclub.model.vo.ClubMember" alias="cm"/>    
+		<typeAlias type="kr.or.newclub.model.vo.ClubMember" alias="cm"/>   
+		<!-- 캘린더날짜 -->
+		<typeAlias type="kr.or.newclub.model.vo.Calendar" alias="cal"/>  
 		<!-- 쪽지 -->
 		<typeAlias type="kr.or.directMessage.model.vo.DirectMessage" alias="dm"/>
 		<!-- 이용제한 -->

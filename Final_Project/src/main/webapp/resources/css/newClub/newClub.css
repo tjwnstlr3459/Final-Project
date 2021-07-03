@@ -387,10 +387,25 @@ body.modal-open {
 body.modal-open[style] {
     padding-right: 0px !important;
 }
-
-
-
-
+.modal-body>div>div{
+	float: left;
+}
+.modal-body>div>div:nth-child(1){
+	width: 40%
+}
+.modal-body>div>div:nth-child(2){
+	width: 60%
+}
+.modal-body>div>div>input{
+	width: 80%;
+	outline: none;
+	border: grey;
+	border-radius: 3px;
+}
+.modal-body>div{
+	height:28px;
+	margin-bottom: 5px;
+}
 
 
 

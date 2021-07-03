@@ -25,6 +25,7 @@ import kr.or.board.model.vo.Board;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
 import kr.or.newclub.model.vo.Apply;
+import kr.or.newclub.model.vo.Calendar;
 import kr.or.newclub.model.vo.ClubMember;
 import kr.or.newclub.model.vo.clubBoard;
 
@@ -32,75 +33,98 @@ import kr.or.newclub.model.vo.clubBoard;
 public class newClubController {
 	@Autowired
 	private newClubService service;
-	
+
 	@RequestMapping(value = "/newClub.do")
-	public String newClub(@SessionAttribute(required = false) Member m,int clubNo,String menuNo,Model model){
-		
+	public String newClub(@SessionAttribute(required = false) Member m, int clubNo, String menuNo, Model model) {
+
 		int totalCount = service.totalCount(clubNo);
-		model.addAttribute("totalCount",totalCount);
+		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("clubNo", clubNo);
 		List list = service.boardList();
-		model.addAttribute("list",list);
-		
-		//가입신청한 회원 출력
+		model.addAttribute("list", list);
+
+		// 가입신청한 회원 출력
 		ArrayList<Apply> applyList = service.selectApply(clubNo);
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("menuNo", menuNo);
-		//가입된 회원 출력
+		// 가입된 회원 출력
 		ArrayList<ClubMember> clubMemberList = service.selectMemberList(clubNo);
 		model.addAttribute("clubMemberList", clubMemberList);
+		/*
+		 * //달력일정 출력 ArrayList<Calendar> calList = service.selectCalList(clubNo);
+		 * model.addAttribute("calList", calList);
+		 */
 		return "newclub/newClub";
 	}
+	//달력리스트 가져오기
+	@ResponseBody
+	@RequestMapping(value =  "/calListCome.do", produces = "application/json;charset=utf-8")
+	public String calListCome(int clubNo,Model model){
+		System.out.println(clubNo);
+		ArrayList<Calendar> calList = service.selectCalList(clubNo);
+		return new Gson().toJson(calList);
+	}
+	
 	
 	@RequestMapping(value = "/allMemberChat.do")
-	public String allMemberChat(){
+	public String allMemberChat() {
 		return "newclub/newClub";
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/clubBoardMore.do",produces="application/json;charset=utf-8")
-	public String clubBoardMore(int start, int clubNo){
-		ArrayList<Board> list = service.clubBoardMore(start,clubNo);
+	@RequestMapping(value = "/clubBoardMore.do", produces = "application/json;charset=utf-8")
+	public String clubBoardMore(int start, int clubNo) {
+		ArrayList<Board> list = service.clubBoardMore(start, clubNo);
 		return new Gson().toJson(list);
 	}
-	
-	//클럽 가입신청
+
+	// 클럽 가입신청
 	@ResponseBody
 	@RequestMapping(value = "/memberClubJoin.do")
-	public int memberClubJoin(Model model,Apply Apply) {
+	public int memberClubJoin(Model model, Apply Apply) {
 		int result = service.insertApply(Apply);
 		return result;
 	}
-	
-	//가입신청 수락
+
+	// 가입신청 수락
 	@ResponseBody
-	@RequestMapping(value = "/memberJoinCheck.do") 
-	public int memberJoinCheck(int no,int clubNo) { 
+	@RequestMapping(value = "/memberJoinCheck.do")
+	public int memberJoinCheck(int no, int clubNo) {
 		int result = 0;
-		int result1 = service.insertClubMember(no,clubNo);//클럽멤버에 넣기
-		if(result1>0) {
-		  result = service.deleteApply(no);//멤버넣으면 기존 apply테이블에서 멤버삭제
+		int result1 = service.insertClubMember(no, clubNo);// 클럽멤버에 넣기
+		if (result1 > 0) {
+			result = service.deleteApply(no);// 멤버넣으면 기존 apply테이블에서 멤버삭제
 		}
-		return result; 
+		return result;
 	}
-	 
-	//가입신청 거절
+
+	// 가입신청 거절
 	@ResponseBody
 	@RequestMapping(value = "/deleteRefusal.do")
-	public int deleteRefusal(int clubNo,int listNo,String menuNo,Model model) {	
-		int result = service.deleteRefusal(clubNo,listNo);
+	public int deleteRefusal(int clubNo, int listNo, String menuNo, Model model) {
+		int result = service.deleteRefusal(clubNo, listNo);
 		return result;
 	}
 	
-	
-	/*아작스에서 제이슨 전달 방법
-	@ResponseBody//모델은 컨트롤러에서 화면으로전달하기위한..
-	@RequestMapping(value="/allMemberAjax.do",produces="application/json;charset=utf-8")//리턴해주는 값은 제이슨이고 한글깨짐 방지 utf-8
-	public String allMembAjax() {
-		ArrayList<Member> list = service.selectAllMember();
-		return new Gson().toJson(list);
+	//달력 일정 추가
+	@ResponseBody
+	@RequestMapping(value = "/calendarAdd.do")
+	public int calendarAdd(Calendar Calendar) {
+		int result = service.calendarAdd(Calendar);
+		return result;
+		
 	}
-	*/
+
+	/*
+	 * 아작스에서 제이슨 전달 방법
+	 * 
+	 * @ResponseBody//모델은 컨트롤러에서 화면으로전달하기위한..
+	 * 
+	 * @RequestMapping(value="/allMemberAjax.do",produces=
+	 * "application/json;charset=utf-8")//리턴해주는 값은 제이슨이고 한글깨짐 방지 utf-8 public String
+	 * allMembAjax() { ArrayList<Member> list = service.selectAllMember(); return
+	 * new Gson().toJson(list); }
+	 */
 	@Transactional
 	@RequestMapping(value = "/boardWrite.do")
 	// jsp이름이랑 같아야함//3개받아오고(제목,내용,작성자등)/파일경로가지고오기)
@@ -188,36 +212,14 @@ public class newClubController {
 
 		return "common/msg";
 	}
-	
-	/*조회수 업데이트*/
+
+	/* 조회수 업데이트 */
 	@Transactional
-	 @ResponseBody
-	  @RequestMapping(value = "/viewUpdate.do") 
-	  public int viewUpdate(int boardNo) { 
-		  int result = service.viewUpdate(boardNo);//클럽멤버에 넣기
-		  
-		  return result;
+	@ResponseBody
+	@RequestMapping(value = "/viewUpdate.do")
+	public int viewUpdate(int boardNo) {
+		int result = service.viewUpdate(boardNo);// 클럽멤버에 넣기
+
+		return result;
+	}
 }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

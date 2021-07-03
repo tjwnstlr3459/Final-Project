@@ -13,6 +13,7 @@ import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.newclub.model.dao.newClubDao;
 import kr.or.newclub.model.vo.Apply;
+import kr.or.newclub.model.vo.Calendar;
 import kr.or.newclub.model.vo.clubBoard;
 import kr.or.newclub.model.vo.ClubMember;
 
@@ -85,6 +86,15 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		//조회수 업데이트
 		public int viewUpdate(int boardNo) {
 			return dao.viewUpdate(boardNo);
+		}
+		//달력일정추가
+		@Transactional
+		public int calendarAdd(Calendar calendar) {
+			return dao.calendarAdd(calendar);
+		}
+		//달력 일정 불러오기
+		public ArrayList<Calendar> selectCalList(int clubNo) {
+			return dao.selectCalList(clubNo);
 		}
 
 }
