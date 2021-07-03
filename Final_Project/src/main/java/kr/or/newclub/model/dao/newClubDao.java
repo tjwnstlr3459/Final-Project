@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.board.model.vo.Board;
+import kr.or.club.model.vo.Club;
 import kr.or.newclub.model.vo.Apply;
 import kr.or.newclub.model.vo.Calendar;
 import kr.or.newclub.model.vo.ClubMember;
@@ -107,6 +108,10 @@ public class newClubDao {
 	public ArrayList<Calendar> selectCalList(int clubNo) {
 		List<Calendar> list = session.selectList("newclub.selectCalList",clubNo);
 		return (ArrayList<Calendar>)list;
+	}
+
+	public Club selectClub(int clubNo) {
+		return session.selectOne("newclub.selectClub",clubNo);
 	}
 
 }

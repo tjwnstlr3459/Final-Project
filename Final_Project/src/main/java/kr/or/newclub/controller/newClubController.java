@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.or.board.model.vo.Board;
+import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
 import kr.or.newclub.model.vo.Apply;
@@ -50,10 +51,9 @@ public class newClubController {
 		// 가입된 회원 출력
 		ArrayList<ClubMember> clubMemberList = service.selectMemberList(clubNo);
 		model.addAttribute("clubMemberList", clubMemberList);
-		/*
-		 * //달력일정 출력 ArrayList<Calendar> calList = service.selectCalList(clubNo);
-		 * model.addAttribute("calList", calList);
-		 */
+		//클럽정보 출력
+		Club clubInfo = service.selectClub(clubNo);
+		model.addAttribute("club", clubInfo);
 		return "newclub/newClub";
 	}
 	//달력리스트 가져오기

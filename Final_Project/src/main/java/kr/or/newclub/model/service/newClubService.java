@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.board.model.vo.Board;
+import kr.or.club.model.vo.Club;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.newclub.model.dao.newClubDao;
 import kr.or.newclub.model.vo.Apply;
@@ -95,6 +96,10 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		//달력 일정 불러오기
 		public ArrayList<Calendar> selectCalList(int clubNo) {
 			return dao.selectCalList(clubNo);
+		}
+		//클럽정보 출력
+		public Club selectClub(int clubNo) {
+			return dao.selectClub(clubNo);
 		}
 
 }

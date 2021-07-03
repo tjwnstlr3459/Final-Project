@@ -119,22 +119,25 @@
 				<div class=contain>
 					<div class="left1">
 						<div class="profile">
-							<div class="clubimg"></div>
+							<div class="clubimg"><img style="height: 100%" src="/resources/clubImgUpload/${club.filePath }"></div>
+							<div class="clubTitleMent">클럽소개</div>
+							<div class="clubinfo2">
+								<div class="clubnotice">${club.clubIntro}</div>
+							</div>
+							<hr style="margin: 0">
 							<div class="clubinfo1">
 								<div class="memberNum">멤버 수</div>
-								<div class="inviteMember">초대하기</div>
+								<div class="memberNum">초대하기</div>
 							</div>
-							<div class="clubinfo2">
-								<div class="clubnotice">가입해주셔서 감사합니다 많이 소통해요</div>
-							</div>
+							
 							<div style="display: flex; justify-content: center;">
 								<c:choose>
 									<c:when test="${sessionScope.m != null }">
-										<button type="button" class="btn btn-info btn-lg"
+										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 											data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
 									</c:when>
 									<c:otherwise>
-										<button type="button" class="btn btn-info btn-lg"
+										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 											onclick="location.href='/loginFrm.do'">로그인하기</button>
 									</c:otherwise>
 								</c:choose>

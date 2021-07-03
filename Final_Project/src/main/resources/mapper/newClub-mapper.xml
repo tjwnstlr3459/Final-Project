@@ -171,6 +171,23 @@ SELECT
 FROM CALENDAR WHERE CLUB_NO=#{clubNo}
 </select>
 
+<!-- 클럽정보 출력 -->
+<select id="selectClub" resultType="c">
+SELECT 
+    CLUB_NO AS clubNo,      
+    CLUB_CG AS clubCg,         
+    CLUB_NAME AS clubName,      
+    CLUB_INTRO AS clubIntro,    
+    CLUB_OPENER AS clubOpener,            
+    FILENAME AS fileName,           
+    FILEPATH AS filePath,               
+    CLUB_RATING AS clubRating,                   
+    ISPUBLIC as ispublic,       
+    ENROLL_DATE AS enrollDate,         
+    LAST_DATE AS lastDate,          
+    WARNING_COUNT AS warningCount 
+FROM CLUB WHERE CLUB_NO=#{clubNo}
+</select>
 </mapper>
 
 

@@ -78,39 +78,36 @@
 
     .profile {
         width: 250px;
-        height: 400px;
+        height: 500px;
         border: 1px solid #d3d2d1ee;
         margin: 0 auto;
         box-shadow: 1px 1px 2px 2px #d3d2d1ee;
     }
     
-    .clubimg{
+     .clubimg{
         overflow: hidden;
 	    background-size: cover;
-        background-image: url(../../image/img1.png);
-        width: 100%;
+        /* background-image: url(../../image/img1.png);
+        width: 100%; */
         height: 60%;
         border-bottom: 1px solid #d3d2d1ee;
-    }
+    } 
     .clubinfo1{
         width: 100%;
         height: 15%;
     }
     .memberNum{
-        float:left;
-        height: 50px;
         width: 60px;
-        padding: 2px;
+	    padding: 2px;
+	    font-size: 16px;
+	    font-weight: bold;
+	    margin: 5px;
+	    padding: 0px;
     }
-    .inviteMember{
-        float:left;
-        height: 50px;
-        width: 60px;
-        padding: 2px;
-    }
+    
     .clubinfo2{
         width: 100%;
-        height: 15%;
+        height: 40px;
     }
 
     .middle {
@@ -406,8 +403,14 @@ body.modal-open[style] {
 	height:28px;
 	margin-bottom: 5px;
 }
-
-
+.clubTitleMent{
+	font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
+}
+.clubnotice{
+	margin: 5px;
+}
 
 
 
