@@ -41,4 +41,16 @@
 	<delete id="deleteRestMember" parameterType="string">
 		delete from restriction where rest_email=#{restEmail}
 	</delete>
+	<!-- 로그인 시 제재내역 조회 -->
+	<select id="selectOneRestriction" parameterType="string" resultType="rest">
+		select 
+			rest_no as restNo,
+		    rest_email as restEmail,
+		    rest_cg as restCg,
+		    rest_content as restContent,
+		    start_date as startDate,
+		    end_date as endDate,
+		    cg_name as cgName
+		from restriction r join category on (rest_cg = cg_no) where rest_email=#{email}
+	</select>
 </mapper>

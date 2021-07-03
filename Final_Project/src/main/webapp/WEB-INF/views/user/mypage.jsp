@@ -220,6 +220,29 @@
                     <div class="title">
                         	내 정보 수정
                     </div>
+                    <span>>>비밀번호 변경 / 회원 탈퇴 시 회원 정보는 모두 삭제되며, 이후 복구가 불가능합니다</span>
+                    <div class="pwChange">
+                    	<form id="pwChangeFrm" method="post">
+                    		<div class="element">
+                    			<input type="hidden" name="email" value="${m.email }">
+			                    <span class="legend">현재 비밀번호</span>
+			                    <input type="password" name="pw">
+			                    <span class="inputMsg"></span>
+			            	</div>
+			            	<div class="element">
+			                    <span class="legend">새 비밀번호</span>
+			                    <input type="password" name="newPw">
+			                    <span class="inputMsg"></span>
+			            	</div>
+			            	<div class="element">
+			                    <span class="legend">새 비밀번호 확인</span>
+			                    <input type="password" name="newPw2">
+			                    <span class="inputMsg"></span>
+			            	</div>
+			            	<input type="submit" value="수정" onclick="return pwChangeChk()">
+                    	</form>                    	
+                    </div>
+                    
                     <div class="modInfo">
                         <form action="/modInfo.do" id="joinForm" method="post" enctype="multipart/form-data">
 			                <div class="element">
@@ -944,11 +967,7 @@
             			location.reload();
             		}
             	}           
-            })
-            
-            $("#joinForm").prepend("<input type='hidden' name='address' value='" + address + "'>'");
-            $("#joinForm").prepend("<input type='hidden' name='filename' value='" + filename + "'>'");
-            $("#joinForm").prepend("<input type='hidden' name='filepath' value='" + filepath + "'>'");
+            })       
             
             
         }
