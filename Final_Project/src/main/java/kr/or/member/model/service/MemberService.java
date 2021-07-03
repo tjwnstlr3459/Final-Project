@@ -20,6 +20,7 @@ import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.FriendsData;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
+import kr.or.restriction.model.vo.Restriction;
 
 @Service
 public class MemberService {
@@ -253,6 +254,11 @@ public class MemberService {
 	@Transactional
 	public int updateMember(Member m) {
 		return dao.updateMember(m);
+	}
+
+	//로그인 시 제재내역 조회
+	public Restriction selectOneRestriction(String email) {
+		return dao.selectOneRestriction(email);
 	}
 
 }

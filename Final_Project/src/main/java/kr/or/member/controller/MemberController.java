@@ -35,6 +35,7 @@ import kr.or.member.model.vo.FriendsData;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
 import kr.or.member.model.vo.NaverLogin;
+import kr.or.restriction.model.vo.Restriction;
 
 @Controller
 public class MemberController {
@@ -51,23 +52,34 @@ public class MemberController {
 		this.naverLogin = naverLogin;
 	}
 	
+	//로그인 페이지로 이동
 	@RequestMapping(value="/loginFrm.do")
 	public String loginFrm() {
 		return "member/loginFrm";
 	}
+	
+	//로그인
 	@RequestMapping(value="/login.do")
 		public String login(Member m, HttpSession session, Model model) {		
 			Member member = service.selectOneMember(m);
-			if(member != null) {
+			Restriction rest = service.selectOneRestriction(m.getEmail());
+			if(member != null && rest == null) {
 				int result = service.changeLastDate(m);
 				session.setAttribute("m", member);
 				model.addAttribute("msg","로그인되었습니다.");	
 				model.addAttribute("loc","main.jsp");
-			}else {
+				return "common/msg";
+			} else if(member != null && rest != null) {
+				model.addAttribute("name", member.getMemberNick());	
+				model.addAttribute("email", member.getEmail());	
+				model.addAttribute("rest", rest);
+				return "user/restricted";
+			} else {
 				model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
 				model.addAttribute("loc","/loginFrm.do");
+				return "common/msg";
 			}			
-			return "common/msg";			
+						
 		}
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
@@ -87,15 +99,15 @@ public class MemberController {
 		return "user/join";
 	}
 	
-	//이메일 중복 체크	
+	//이메일 체크(비밀번호 찾기, 가입 시 중복 체크	)
 	@ResponseBody
 	@RequestMapping(value="/user/chkEmail.do")
 	public String chkEmail(Member m) {
 		System.out.println(m.getEmail());
 		Member member = service.selectOneMember(m);
-		if(member != null && member.getJoinMethod() == 1) {
+		if(member != null && member.getJoinMethod() == 1) { //일반 가입
 			return "1";
-		} else if(member != null && member.getJoinMethod() == 2) {
+		} else if(member != null && member.getJoinMethod() == 2) { //소셜 가입
 			return "2";
 		} else {		
 			return "0";
@@ -114,11 +126,10 @@ public class MemberController {
 		}
 	}
 	
-	//회원 검색
+	//회원 검색(친구 추가용)
 	@ResponseBody
 	@RequestMapping(value="/user/findUser.do", produces="application/json;charset=utf-8")
 	public String chkName(String user) {
-		System.out.println(user);
 		Member member = service.selectOneMember(user);
 		if(member != null) {
 			return new Gson().toJson(member);			
@@ -153,8 +164,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/user/accFriend.do")
 	public String accFriend(Friends f) {
-		int result = service.updateFriend(f);
-		
+		int result = service.updateFriend(f);		
 		if(result > 0) {
 			return "1";
 		} else {
@@ -280,7 +290,6 @@ public class MemberController {
 				return "0";
 			}	
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "0";		
@@ -396,13 +405,13 @@ public class MemberController {
 	}	
 	
 	//비밀번호 변경
-	@RequestMapping(value="updatePw.do")
+	@RequestMapping(value="/updatePw.do")
 	public String updatePw(@SessionAttribute(required = false) Member m, Model model) {
 		return "";
 	}	
 	
 	//회원 탈퇴
-	@RequestMapping(value="leave.do")
+	@RequestMapping(value="/leave.do")
 	public String deleteMember(@SessionAttribute(required = false) Member m, Model model) {
 		return "user/leavePage";
 	}

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.Member;
+import kr.or.restriction.model.vo.Restriction;
 
 @Repository
 public class MemberDao {
@@ -95,6 +96,10 @@ public class MemberDao {
 
 	public int updateMember(Member m) {
 		return sqlSession.update("member.updateMember", m);
+	}
+
+	public Restriction selectOneRestriction(String email) {
+		return sqlSession.selectOne("restriction.selectOneRestriction", email);
 	}
 
 
