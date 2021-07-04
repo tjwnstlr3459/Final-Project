@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>NUNADRI - admin</title>
+<!-- jquery 라이브러리 -->
+	<script type="text/javascript" src="/resources/js/jquery-3.3.1.js"></script>
+	<!-- chart.js  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+	<!-- 관리자 페이지 adminCharts.js -->
+	<script src="/resources/js/admin/adminCharts.js"></script>
 <style>
 	.menu>li:first-child>a{
 	    padding-left:25px;

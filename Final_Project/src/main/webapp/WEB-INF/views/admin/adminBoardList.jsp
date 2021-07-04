@@ -28,7 +28,6 @@
 				<div class="list-wrap box-option">
 					<div class="list-header">
 						<div class="option-wrap">
-							<button class="btns" id="deleteInquiryBtn">선택 삭제</button>
 							<select name="sort" id="sort">
 								<option value="date" selected>최신순</option>
 								<option value="answer" >답변 미완료</option>
@@ -50,7 +49,7 @@
                             		<td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo},'${bl.cgName }');" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
                             		<c:choose>
                             			<c:when test="${bl.status.equals('N') }">
-		                            		<td>접수 중</td>                            			
+		                            		<td>접수 중</td>
                             			</c:when>
                             			<c:otherwise>
 		                            		<td>답변 완료</td>

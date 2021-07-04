@@ -65,7 +65,7 @@ public class MemberService {
 																														// 않기
 																														// 위함
 		int navi = ((page - 1) / naviPages) * naviPages + 1; // 페이지 네비게이션의 시작 값 > 1~5 : 1 / 6 ~ 10 : 6
-		String navigation = "<div>";
+		String navigation = "<div class='naviPage-wrap'>";
 		// 이전버튼 생성 여부
 		if (navi != 1) {
 			navigation += "<a href='/adminMemberList.do?page=" + (navi - 1) + "'>이전</a>";
@@ -74,7 +74,7 @@ public class MemberService {
 		for (int i = 0; i < naviPages; i++) {
 			// 사용자가 클릭해서 보고있는 페이지인 경우 효과
 			if (navi == page) {
-				navigation += "<a href='/adminMemberList.do?page=" + navi + "' class='naviFocus'>" + navi + "</a>";
+				navigation += "<a href='/adminMemberList.do?page=" + navi + "' class='naviFocus' id='naviFocus'>" + navi + "</a>";
 			} else {
 				navigation += "<a href='/adminMemberList.do?page=" + navi + "'>" + navi + "</a>";
 			}

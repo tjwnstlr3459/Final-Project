@@ -379,3 +379,18 @@ section::-webkit-scrollbar-track {
 	background-image:url('/resources/image/icons/totalVisit-icon.png');
 	background-size:100%;
 }
+.naviPage-wrap{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.naviPage-wrap>*{
+	display:block;
+	width:20px;
+	height:20px;
+	line-height:20px;
+}
+#naviFocus{
+	color:#67dfdf;
+	font-size:1.2rem;
+}

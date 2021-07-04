@@ -23,9 +23,6 @@ public class AdminService {
 		AdminCount ac = dao.selectAdminCount();
 		if(ac != null) {
 			ArrayList<BestCategory> bcList = (ArrayList<BestCategory>)dao.selectBestCategory();
-			for(BestCategory list : bcList) {
-				System.out.println(list.getCgName());
-			}
 			ac.setBcList(bcList);
 			
 		}
