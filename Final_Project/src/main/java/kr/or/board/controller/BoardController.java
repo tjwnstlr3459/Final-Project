@@ -73,6 +73,23 @@ public class BoardController {
 		model.addAttribute("answer", an);
 		return "board/boardOne";
 		}
+	//공지사항 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value = "/mentDelete.do")
+	public int mentDelete(int anNo) {
+		System.out.println(anNo);
+		int result = service.mentDelete(anNo);
+		return result;
+	}
+	//공지사항 댓글 수정
+		@ResponseBody
+		@RequestMapping(value = "/mentModify.do")
+		public int mentDelete(int anNo,String mentUpdate) {
+			System.out.println(anNo+"댓글수정글 : "+mentUpdate);
+			int result = service.mentModify(anNo,mentUpdate);
+			return result;
+		}
+	
 	
 	//공지글 작성페이지
 	@RequestMapping(value = "/boardOneInsert.do")

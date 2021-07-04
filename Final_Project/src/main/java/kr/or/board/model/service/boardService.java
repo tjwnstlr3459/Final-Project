@@ -1,6 +1,7 @@
 package kr.or.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,6 +164,17 @@ public class boardService {
 	@Transactional
 	public void updateCount(int abNo) {
 		dao.updateCount(abNo);
+	}
+	//공지 댓글 삭제
+	public int mentDelete(int anNo) {
+		return dao.mentDelete(anNo);
+	}
+	//댓글수정
+	public int mentModify(int anNo, String mentUpdate) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("anNo", anNo);
+		map.put("mentUpdate",mentUpdate);
+		return dao.mentModify(map);
 	}
 
 
