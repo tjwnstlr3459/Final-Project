@@ -24,4 +24,5 @@ public class Member {
 	private int joinMethod;
 	//db에서 정렬 되어오는 rnum
 	private int sort;
+
 }

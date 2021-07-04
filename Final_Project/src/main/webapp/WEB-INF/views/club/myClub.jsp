@@ -31,12 +31,16 @@
 <script src="/resources/js/myClub/pace.min.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
-<!-- favicons
-	================================================== -->
+<!-- 차트 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+<!-- favicons==================== -->
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
+<script type="text/javascript">
 
+
+</script>
 <body id="top">
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 	<!-- page header
@@ -74,18 +78,19 @@
 				<c:forEach items="${clubList}" var="l" varStatus="i">
 					<div class="myClubList">
 						<div class="clubListOne">
-							<img src="/resources/clubImgUpload/${l.filePath }" />
+							<a href="/newClub.do?clubNo=${l.clubNo }"><img src="/resources/clubImgUpload/${l.filePath }" /></a>
 						</div>
 						<div class="clubListName">
 							<div>${l.clubName}</div>
 							<div class="clubJang" style="float: right">
-								<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
+								<a href="/newClub.do?clubNo=${l.clubNo }"><img src="/resources/image/userPic/${sessionScope.m.filepath }"/></a>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
+				 <canvas id="myChart" width="400" height="400"></canvas>
 			</div>
-
+			
 			<div class="rightCon" >
 				<!-- 오른쪽 컨텐츠-->
 				<div class="rightConSelect"> 
@@ -142,8 +147,8 @@
 				<div class="postContent"></div>
 				<!--내용-->
 				<div class="postLike">
-					<div>
-						<img src="/resources/image/icons/home.png" />
+					<div class="child">
+						<a href="/newClub.do?clubNo=38"><img src="/resources/image/icons/home.png"/></a>
 					</div>
 					<div>
 						<img src="/resources/image/icons/loveBean.png" />
@@ -204,6 +209,8 @@
 	<script src="/resources/js/myClub/jquery-2.1.3.min.js"></script>
 	<script src="/resources/js/myClub/plugins.js"></script>
 	<script src="/resources/js/myClub/main.js"></script>
+	
+
 </body>
 <style>
 /* 메인컨텐츠 스크롤  */
@@ -216,13 +223,13 @@
 }
 </style>
 <script>
-	var changeDate = 0;
-	/* $(".postsCheck").click(function() {
-		$(".postModal").css("display", "block");
-		$(".postModal").css("z-index", "10000");
-		$("#top").css("background", "rgba(0,0,0,.75)");
-		$("#top").css("z-index", "10000");
-	}); */
+var changeDate = 0;
+/* $(".postsCheck").click(function() {
+	$(".postModal").css("display", "block");
+	$(".postModal").css("z-index", "10000");
+	$("#top").css("background", "rgba(0,0,0,.75)");
+	$("#top").css("z-index", "10000");
+}); */
 $(function() {
 	$(".modalClose").click(function() {
 		$(".postModal").css("display", "none");
@@ -278,13 +285,13 @@ $(function() {
 //스크롤
 $(window).scroll(function() {
     var scrolltop = $(document).scrollTop();	//스크롤할때의 값 지정
-    console.log(scrolltop);
+    /* console.log(scrolltop); */
     
     var height = $(document).height();		//문서의 총길이
-    console.log(height);
+    /* console.log(height); */
     
     var height_win = $(window).height();	//화면에 보여지는 길이
-    console.log(height_win);
+    /* console.log(height_win); */
     
  if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {	//스크롤이 바닥에 닿았을시 more메소드 실행
     more($("#more-btn").val());	//#('more-btn').val()만큼 추가시켜준다
@@ -319,6 +326,7 @@ function more(start) {//더보기 클릭시
  html +=    '<div class="entry-header">';
  html +=    '<div class="entry-meta">';
  html +=    '<span class="cat-links">';
+ html +=	'<div class="clubNo" style="display:none">'+p.clubNo+'</div>';
  html +=	'<div class="cName" style="display:none">'+p.boardWriter+'</div>';
  html +=        '<a href="#" class="clubName">'+p.clubName+'</a>';
  html +=    '</span>';
@@ -348,6 +356,44 @@ function more(start) {//더보기 클릭시
 		}
 	});
 }
+//회원 취미 선택 통계
+function myChart(data){
+	var myChart = new Chart(document.getElementById('myChart'), {
+        type: "pie",
+        data: {
+        	labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        	  datasets: [
+        	    {
+        	      label: 'Dataset 1',
+        	      data: [1,2,3,4,5],
+        	      backgroundColor:[
+                	'rgba(0, 0, 255, 0.3)',
+                	'rgba(255, 0, 255, 0.3)',
+                    'rgba(76, 216, 153, 0.5)',
+                    'rgba(0, 255, 255, 0.3)',
+                    'rgba(255, 0, 0, 0.3)',
+                    'rgba(255,102,204,0.3)',
+                    'rgba(204,255,51,0.3)',
+                    'rgba(204,255,255,0.3)'
+				],
+        	    }
+        	  ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right',
+              },
+              title: {
+                display: true,
+                text: 'Chart.js Pie Chart'
+              }
+            }
+        }
+    });
+}
+myChart();
 </script>
 
 </html>
