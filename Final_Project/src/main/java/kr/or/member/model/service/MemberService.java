@@ -43,7 +43,7 @@ public class MemberService {
 		return result;
 	}
 
-	public MemberPageData selectAllMember(int page) {
+	public MemberPageData selectAllMember(int page, int sort) {
 		int listLength = 50; // 목록(화면)에 보여줄 게시글 갯 수
 		int naviPages = 5;
 		int end = listLength * page; // list 끝 값
@@ -52,6 +52,7 @@ public class MemberService {
 		HashMap<String, Integer> se = new HashMap<String, Integer>();
 		se.put("start", start);
 		se.put("end", end);
+		se.put("sort",sort);
 
 		List list = dao.selectAllMember(se); // 전체 회원을 가지고온다.
 		int memberCount = dao.memberCount(); // 전체 게시글 갯 수
@@ -68,15 +69,15 @@ public class MemberService {
 		String navigation = "<div class='naviPage-wrap'>";
 		// 이전버튼 생성 여부
 		if (navi != 1) {
-			navigation += "<a href='/adminMemberList.do?page=" + (navi - 1) + "'>이전</a>";
+			navigation += "<a href='/adminMemberList.do?page=" + (navi - 1) + "&sort="+sort+"'>이전</a>";
 		}
 		// 1~5단위 페이지 생성
 		for (int i = 0; i < naviPages; i++) {
 			// 사용자가 클릭해서 보고있는 페이지인 경우 효과
 			if (navi == page) {
-				navigation += "<a href='/adminMemberList.do?page=" + navi + "' class='naviFocus' id='naviFocus'>" + navi + "</a>";
+				navigation += "<a href='/adminMemberList.do?page=" + navi + "&sort="+sort+"' class='naviFocus' id='naviFocus'>" + navi + "</a>";
 			} else {
-				navigation += "<a href='/adminMemberList.do?page=" + navi + "'>" + navi + "</a>";
+				navigation += "<a href='/adminMemberList.do?page=" + navi + "&sort="+sort+"'>" + navi + "</a>";
 			}
 			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
 			navi++;
@@ -86,7 +87,7 @@ public class MemberService {
 		}
 		// 다음버튼 생성 여부
 		if (navi <= totalNaviPage) {
-			navigation += "<a href='/adminMemberList.do?page=" + navi + "'>다음</a>";
+			navigation += "<a href='/adminMemberList.do?page=" + navi + "&sort="+sort+"'>다음</a>";
 		}
 		navigation += "</div>";
 

@@ -20,6 +20,8 @@
 	
 	<!-- 관리자 js -->
 	<script src="/resources/js/admin/summernote-admin.js"></script>
+	<!-- 관리자 관련 js -->
+	<script src="/resources/js/admin/adminDefault.js"></script>	
 	<!-- 현재 접속자 파싱 웹소켓 -->
 	<script src="/resources/js/admin/adminWebSocket.js"></script>
 <!-- header 영역 -->
@@ -41,7 +43,7 @@
             <ul class="menu">
                 <li><a href="/adminMain.do"><img src="/resources/image/icons/analytics_white.png" alt=""><span>차트 / 통계</span></a></li>
                 <li><a href="/adminBoardList.do?reqPage=1&type=2"><img src="/resources/image/icons/supportAgent_white.png" alt=""><span>문의 / 신고</span></a></li>
-                <li><a href="/adminMemberList.do?page=1"><img src="/resources/image/icons/person_white.png" alt=""><span>회원 목록</span></a></li>
+                <li><a href="/adminMemberList.do?page=1&sort=1" id="mlClick"><img src="/resources/image/icons/person_white.png" alt=""><span>회원 목록</span></a></li>
                 <li><a href="/adminClubList.do?page=1"><img src="/resources/image/icons/groups_white.png" alt=""><span>클럽 목록</span></a></li>
                 <li><a href="/adminRestrictionList.do?page=1"><img src="/resources/image/icons/gavel_white.png" alt=""><span>제재 목록</span></a></li>
                 <div class="divLine"></div>

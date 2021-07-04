@@ -418,14 +418,12 @@ public class MemberController {
 	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
-	public String allMemberList(int page, Model model) {
-		MemberPageData mpd = service.selectAllMember(page);
-		for(Category cg : mpd.getCgList()) {
-			System.out.println(cg.getCgName());
-		}
-		model.addAttribute("list",mpd.getList());
-		model.addAttribute("cgList",mpd.getCgList());
-		model.addAttribute("navigation",mpd.getNavigation());
+	public String allMemberList(int page, int sort, Model model) {
+		MemberPageData mpd = service.selectAllMember(page, sort);
+		model.addAttribute("list",mpd.getList());				//1~50개의 row(db)
+		model.addAttribute("cgList",mpd.getCgList());			//catefory list
+		model.addAttribute("navigation",mpd.getNavigation());	//페이지 navi
+		model.addAttribute("sort",sort);
 		return "admin/adminMemberList";
 	}
 	//관리자로 등급 업그레이드~

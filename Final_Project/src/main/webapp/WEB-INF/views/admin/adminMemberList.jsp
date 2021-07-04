@@ -30,13 +30,16 @@
                 <div class="list-wrap box-option">
                 	<!-- 검색 div -->
 	               <div class="searchBar-wrap">
-	                   <select class="" name="category" id="keywords">
-	                       <option value="email" selected>이메일</option>
-	                       <option value="name">닉네임</option>
-	                       <option value="hobby">취미</option>
-	                   </select>
-	                   <input type="search" class="searchBar" name="user">
+	               	   <form action="/adminmemberList.do">
+	               	       <input type="hidden" name="page" value="1">
+		                   <select class="" name="category" id="keywords">
+		                       <option value="email" selected>이메일</option>
+		                       <option value="name">닉네임</option>
+		                       <option value="hobby">취미</option>
+		                   </select>
+		                   <input type="search" class="searchBar" name="keyword">
 	                   <button class="btns" id="searchBtn"><img src="/resources/image/icons/search_black.png"></button>
+	               	   </form>
 	               </div>
                    	<div class="list-header">
                         <div class="option-wrap">
@@ -46,19 +49,44 @@
                             <c:if test="${sessionScope.m.grade eq 0 }">
                             <button class="btns" id="upgradeBtn">관리자 등록</button>
                             </c:if>
-                            <select name="sort" id="sort">
-                                <option value="enrollDesc" selected>최근 가입순</option>
-                                <option value="enroll">이전 가입순</option>
-                                <option value="warning">경고(제재)</option>
-                                <option value="lastDate">최종접속일</option>
-                            </select>
+                            <form action="/adminMemberList.do" id="sortForm">
+                            	<input type="hidden" name="page" value="1">
+	                            <select name="sort" id="sort">
+	                                <c:choose>
+	                                	<c:when test="${sort eq 1 }">
+	                                		<option value="1" selected>최근 가입순</option>
+			                                <option value="2">이전 가입순</option>
+			                                <option value="3">경고(제재)</option>
+			                                <option value="4">최종접속일</option>
+	                                	</c:when>
+	                                	<c:when test="${sort eq 2 }">
+	                                		<option value="1">최근 가입순</option>
+			                                <option value="2" selected>이전 가입순</option>
+			                                <option value="3">경고(제재)</option>
+			                                <option value="4">최종접속일</option>
+	                                	</c:when>
+	                                	<c:when test="${sort eq 3 }">
+	                                		<option value="1">최근 가입순</option>
+			                                <option value="2">이전 가입순</option>
+			                                <option value="3" selected>경고(제재)</option>
+			                                <option value="4">최종접속일</option>
+	                                	</c:when>
+	                                	<c:otherwise>
+	                                		<option value="1">최근 가입순</option>
+			                                <option value="2">이전 가입순</option>
+			                                <option value="3">경고(제재)</option>
+			                                <option value="4" selected>최종접속일</option>
+	                                	</c:otherwise>
+	                                </c:choose>
+	                            </select>
+                            </form>
                         </div>
                     </div>
                     <div class="list-table">
                         <table class="list memberList">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" id="allCheck"></th><th>no</th><th>이메일</th><th>닉네임</th><th>취미1</th><th>취미2</th><th>취미3</th><th>등급</th><th>경고/제재</th><th>최종접속일</th><th>가입일</th>
+                                    <th><input type="checkbox" id="allCheck"></th><th>no</th><th>이메일</th><th>닉네임</th><th>취미1</th><th>취미2</th><th>취미3</th><th>등급</th><th>경고/제재</th><th>가입일</th><th>최종 접속일</th>
                                 </tr>
                             </thead>
                             <tbody>
