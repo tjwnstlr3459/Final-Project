@@ -89,11 +89,14 @@
 										value="${c.anContent }">
 								</div>
 								<div class="mentPrint">
-									<div><a href="#" class="mentModifyCheck" style="margin-top: 7px">수정</a></div> 
-									<div><a href="#" class="mentDelete" onclick="mentDelete(${c.anNo })" style="margin-top: 7px">삭제</a></div> 
-									<!-- 수정클릭시 -->
-									<div><a href="#" class="modifyBtn"style="display: none;" onclick="mentModify(${c.anNo },this)">적용</a></div> 
-									<div><a href="#" class="modifyCancle"style="display: none;">취소</a></div> 
+									<!-- 자신의 댓글이면 수정삭제 가능 -->
+									<c:if test="${sessionScope.m.memberNick eq c.anWriter}">
+										<div><a href="#" class="mentModifyCheck" style="margin-top: 7px">수정</a></div> 
+										<div><a href="#" class="mentDelete" onclick="mentDelete(${c.anNo })" style="margin-top: 7px">삭제</a></div> 
+										<!-- 수정클릭시 -->
+										<div><a href="#" class="modifyBtn"style="display: none;" onclick="mentModify(${c.anNo },this)">적용</a></div> 
+										<div><a href="#" class="modifyCancle"style="display: none;">취소</a></div> 
+									</c:if>
 								</div>
 							</div>
 						</c:forEach>
