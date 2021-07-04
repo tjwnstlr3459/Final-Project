@@ -296,7 +296,7 @@ public class MemberController {
 	}	
 	
 	
-	//마이페이지
+	//마이페이지 이동
 	@RequestMapping(value="/mypage.do")
 	public String myPage(@SessionAttribute(required = false) Member m, Model model) {
 		Member member = service.selectOneMember(m);
@@ -405,9 +405,22 @@ public class MemberController {
 	}	
 	
 	//비밀번호 변경
+	@ResponseBody
 	@RequestMapping(value="/updatePw.do")
-	public String updatePw(@SessionAttribute(required = false) Member m, Model model) {
-		return "";
+	public String updatePw(Member m, String newPw, HttpSession session) {
+		Member member = service.selectOneMember(m);
+		if(member != null) {
+			m.setMemberPw(newPw);
+			int result = service.updatePwMember(m);
+			if(result > 0) {
+				session.invalidate();
+				return "1";
+			} else {
+				return "2";
+			}
+		} else {
+			return "0";
+		}		
 	}	
 	
 	//회원 탈퇴

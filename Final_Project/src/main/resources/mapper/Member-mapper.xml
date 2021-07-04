@@ -138,7 +138,7 @@
 	<update id="updateFriend" parameterType="f">
 		update friend set accept='Y', acc_date=to_char(sysdate, 'YYYY-MM-DD') where sender=#{sender} and receiver=#{receiver}
 	</update>
-	<!-- 비밀번호 찾기용 비밀번호 변경 -->
+	<!-- 비밀번호 변경 -->
 	<update id="updatePw" parameterType="m">
 		update member set member_pw=#{memberPw} where email=#{email}
 	</update>
