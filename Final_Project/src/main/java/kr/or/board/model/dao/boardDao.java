@@ -79,6 +79,14 @@ public class boardDao {
 	public void updateCount(int abNo) {
 		session.update("board.updateCount",abNo);
 	}
+	//공지 댓글 삭제
+	public int mentDelete(int anNo) {
+		return session.delete("board.mentDelete",anNo);
+	}
+	//공지 댓글 수정
+	public int mentModify(HashMap<String, Object> map) {
+		return session.update("board.mentModify",map);
+	}
 
 }
 

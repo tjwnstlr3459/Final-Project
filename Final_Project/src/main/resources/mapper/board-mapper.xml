@@ -117,6 +117,18 @@ FROM BOARD
 <update id="updateCount" parameterType="int">
 	update board set selCount= selCount+1 where ab_no=#{abNo}
 </update>
+
+<!-- 공지댓글 삭제 -->
+<delete id="mentDelete" parameterType="int">
+DELETE FROM ANSWER WHERE AN_NO=#{anNo}
+</delete>
+
+<!-- 공지 댓글 수정 -->
+<update id="mentModify" parameterType="map">
+UPDATE ANSWER SET 
+	AN_CONTENT = #{mentUpdate} 
+WHERE AN_NO = #{anNo}
+</update>
 </mapper>
 
 
