@@ -47,10 +47,10 @@
                             <button class="btns" id="upgradeBtn">관리자 등록</button>
                             </c:if>
                             <select name="sort" id="sort">
-                                <option value="date" selected>최근 가입순</option>
-                                <option value="dateDesc">이전 가입순</option>
-                                <option value="restriction">경고(제재)</option>
-                                <option value="dateLast">최종접속일</option>
+                                <option value="enrollDesc" selected>최근 가입순</option>
+                                <option value="enroll">이전 가입순</option>
+                                <option value="warning">경고(제재)</option>
+                                <option value="lastDate">최종접속일</option>
                             </select>
                         </div>
                     </div>
