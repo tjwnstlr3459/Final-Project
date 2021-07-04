@@ -44,7 +44,10 @@
                 	<a href="javascript:void(0)" onclick="myFriend()">내 친구</a>
                 	<a href="javascript:void(0)" onclick="myDm()">쪽지함</a>
                 	<a href="javascript:void(0)" onclick="myReport()">내 문의·신고</a>
-                    <a href="javascript:void(0)" onclick="myInfoMod()">회원정보수정</a>
+                    <a href="javascript:void(0)" onclick="myInfoMod()">회원정보 수정</a>
+                    <c:if test="${m.joinMethod == 1 }">
+                    <a href="javascript:void(0)" onclick="myPwChange()">비밀번호 변경</a>
+                    </c:if>
                     <a href="javascript:void(0)" onclick="leaveN()">회원탈퇴</a>  
                 </div>
             </div>
@@ -215,18 +218,17 @@
                     
                 </div>
                 
-                <!-- 회원정보수정 화면 -->
-                <div class="modBox" style="display:none;">
+                <!-- 비밀번호 변경 화면 -->
+                <div class="changeBox" style="display:none;">
                     <div class="title">
-                        	내 정보 수정
+                      	 비밀번호 변경 
                     </div>
-                    <span>>>비밀번호 변경 / 회원 탈퇴 시 회원 정보는 모두 삭제되며, 이후 복구가 불가능합니다</span>
                     <div class="pwChange">
                     	<form id="pwChangeFrm" method="post">
                     		<div class="element">
-                    			<input type="hidden" name="email" value="${m.email }">
+                    			<input type="hidden" name="mEmail" value="${m.email }">
 			                    <span class="legend">현재 비밀번호</span>
-			                    <input type="password" name="pw">
+			                    <input type="password" name="currPw">
 			                    <span class="inputMsg"></span>
 			            	</div>
 			            	<div class="element">
@@ -242,7 +244,13 @@
 			            	<input type="submit" value="수정" onclick="return pwChangeChk()">
                     	</form>                    	
                     </div>
-                    
+                </div>
+                
+                <!-- 회원정보수정 화면 -->
+                <div class="modBox" style="display:none;">
+                    <div class="title">
+                        	내 정보 수정
+                    </div>                    
                     <div class="modInfo">
                         <form action="/modInfo.do" id="joinForm" method="post" enctype="multipart/form-data">
 			                <div class="element">
@@ -494,27 +502,38 @@
             $(".dmBox").hide();
             $(".reportBox").hide();
             $(".modBox").hide();
+            $(".changeBox").hide();
         }
         function myReport() {
             $(".friendBox").hide();
             $(".dmBox").hide();
             $(".reportBox").show();
             $(".modBox").hide();
+            $(".changeBox").hide();
         }
         function myInfoMod() {
             $(".friendBox").hide();
             $(".dmBox").hide();
             $(".reportBox").hide();
             $(".modBox").show();
+            $(".changeBox").hide();
         }
         function myDm() {
             $(".friendBox").hide();
             $(".dmBox").show();
             $(".reportBox").hide();
             $(".modBox").hide();
+            $(".changeBox").hide();
+        }
+        function myPwChange() {
+        	$(".friendBox").hide();
+            $(".dmBox").hide();
+            $(".reportBox").hide();
+            $(".modBox").hide();
+            $(".changeBox").show();
         }
         function leaveN() {
-        	location.href="leave.do";
+        	location.href="/leave.do";
         }
         
         //?
@@ -784,6 +803,8 @@
 			$(obj).parent().hide();
 		}
 		
+		//비밀번호 변경
+		
 		
 		//주소 찾기
 		function findPCode() {
@@ -971,6 +992,69 @@
             
             
         }
+    	
+    	//비밀번호 변경 로직
+    	//새 비밀번호 유효성 검사
+    	$("[name=newPw]").change(function() {
+    		var newPw = $("[name=newPw]").val();
+    		var newPwReg = /(?=.*\d)(?=.*[a-zA-Z]).{8,30}/;
+    		if(!newPwReg.test(newPw)) {
+    			$("[name=newPw]").next().html("영문과 숫자 조합으로 8자 이상");
+    			return false;
+    		} else {
+    			$("[name=newPw]").next().html("");
+    		}
+    	})
+    	//비밀번호 확인과 일치 여부
+    	$("[name=newPw2]").change(function() {
+    		var newPw = $("[name=newPw]").val();
+    		var newPw2 = $("[name=newPw2]").val();
+    		if(newPw == newPw2) {
+                $("[name=newPw2]").next().html("");
+            } else {
+                $("[name=newPw2]").next().html("비밀번호가 일치하지 않습니다.");
+            }
+    	})
+    	
+    	function pwChangeChk() {
+    		var email = $("[name=mEmail]").val();
+    		var pw = $("[name=currPw]").val();
+    		var newPw = $("[name=newPw]").val();
+    		var newPw2 = $("[name=newPw2]").val();
+    		var newPwReg = /(?=.*\d)(?=.*[a-zA-Z]).{8,30}/;
+    		if(!newPwReg.test(newPw)) {
+    			$("[name=newPw]").next().html("영문과 숫자 조합으로 8자 이상");
+    			return false;
+    		} else {
+    			$("[name=newPw]").next().html("");
+    		}
+    		if(newPw == newPw2) {
+                $("[name=newPw2]").next().html("");
+            } else {
+                $("[name=newPw2]").next().html("비밀번호가 일치하지 않습니다.");
+                return false;
+            }
+    		$.ajax({
+    			url: "/updatePw.do", 
+    			type: "post",
+    			data: {email:email, memberPw:pw, newPw:newPw},
+    			success: function(data) {
+    				if(data == "1") {
+    					alert("비밀번호가 성공적으로 변경되었습니다. 다시 로그인해주세요.");
+    					location.href = "/loginFrm.do";
+    				} else if(data == "2") {
+    					alert("에러가 발생했습니다. 다시 시도해주세요.");
+    					location.reload();
+    				} else {
+    					alert("현재 비밀번호가 잘못되었습니다.");
+    				}
+    			},
+    			error: function() {
+    				console.log("error");
+    			}
+    		})
+    		return false;
+    	}
 	</script>
     
 </body>

@@ -100,6 +100,7 @@ public class MemberService {
 	}
 
 	// 회원 관리자로 등록 update
+	@Transactional
 	public int updateGrade(String[] memberNo) {
 		return dao.updateGrade(memberNo);
 	}
@@ -110,10 +111,14 @@ public class MemberService {
 		return (ArrayList<Category>) cgList;
 	}
 
+	//최종접속일시 업데이트
+	@Transactional
 	public int changeLastDate(Member m) {
 		return dao.updateLastDate(m);
 	}
-
+	
+	//회원 탈퇴
+	@Transactional
 	public int deleteMember(String memberNo) {
 		return dao.deleteMemer(memberNo);
 	}
@@ -196,18 +201,23 @@ public class MemberService {
 	}
 
 	// 이메일
-	public String mailTest(String mail, String content) {
+	public String mailTest(String mail, String pw) {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com";
-		String hostSMTPid = "bext007@gmail.com"; // 본인의 아이디 입력
-		String hostSMTPpwd = "cjswoek123"; // 비밀번호 입력
+		String hostSMTPid = "palcimer@gmail.com"; // 본인의 아이디 입력
+		String hostSMTPpwd = "akqlshrl"; // 비밀번호 입력
 
 		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "bext007@gmail.com"; // 보내는 사람 eamil
-		String fromName = "gggg"; // 보내는 사람 이름
-		String subject = "이메일 발송 테스트"; // 제목
-
+		String fromEmail = "admin@nunadri.com"; // 보내는 사람 eamil
+		String fromName = "너나들이"; // 보내는 사람 이름
+		String subject = "너나들이 임시 비밀번호입니다"; // 제목
+		String content = "<div align='center' style='border:1px solid black; font-family:verdana'>";
+		content += "<h3 style='color: blue;'>";
+		content += mail + "님의 임시 비밀번호 입니다.</h3>";
+		content += "<p>임시 비밀번호 : ";
+		content += pw + "</p></div>";
+		
 		// 받는 사람 E-Mail 주소
 
 		try {
@@ -243,15 +253,15 @@ public class MemberService {
 		m.setMemberPw(pw); // 랜덤 문자를 멤버 객체의 비밀번호로 설정
 		int result = dao.updatePw(m); // 비밀번호 변경
 		if (result > 0) {
-			sendEmail(m, "findpw"); //메일 발송
-			//mailTest(m.getEmail(), "댜댜");
+			//sendEmail(m, "findpw"); //메일 발송
+			mailTest(m.getEmail(), pw);
 		} else {
 			System.out.println("에러");
 		}
 		return result;
-
 	}
-
+	
+	//회원정보 수정
 	@Transactional
 	public int updateMember(Member m) {
 		return dao.updateMember(m);
@@ -260,6 +270,12 @@ public class MemberService {
 	//로그인 시 제재내역 조회
 	public Restriction selectOneRestriction(String email) {
 		return dao.selectOneRestriction(email);
+	}
+
+	//비밀번호 변경
+	@Transactional
+	public int updatePwMember(Member m) {
+		return dao.updatePw(m);
 	}
 
 }
