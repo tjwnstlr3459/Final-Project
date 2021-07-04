@@ -312,9 +312,6 @@
 										<div type="button" onclick="location.href=''">모임폐쇄</div>
 									</div>
 								</div>
-
-
-
 							</div>
 						</div>
 					</div>
@@ -605,13 +602,14 @@
 				  var test;
 				  test.render();
 				  //달력값 불러와서 적용
+				  
 				  var calendarList = $(".calList").val();
 				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-02',end:'2021-07-02'});
 				  //해당클럽의 번호를 넘겨주어 클럽의 달력게시물을 가져오기
 				  var clubNo = ${clubNo};
 					$.ajax({
 						url : "/calListCome.do",
-						data : {clubNo : clubNo,},
+						data : {clubNo : clubNo},
 						/* dataType : "json", */
 						type : "post",
 						success : function(data){
@@ -623,6 +621,7 @@
 								var start = data[i].calStart;
 								var end = data[i].calEnd;
 								//값넣기
+								
 								test.addEvent({title : title,
 												color : color,
 												textColor : textColor,
