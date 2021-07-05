@@ -423,10 +423,26 @@ public class MemberController {
 		}		
 	}	
 	
-	//회원 탈퇴
+	//회원 탈퇴 이동
 	@RequestMapping(value="/leave.do")
-	public String deleteMember(@SessionAttribute(required = false) Member m, Model model) {
+	public String leave(@SessionAttribute(required = false) Member m, Model model) {
+		model.addAttribute("m", m);
 		return "user/leavePage";
+	}
+	
+	//회원 탈퇴
+	@RequestMapping(value="/goodbye.do")
+	public String deleteMember(Member m, HttpSession session, Model model) {
+		int result = service.deleteMember(m);
+		if(result > 0) {
+			session.invalidate();
+			return "user/left";
+		} else {
+			model.addAttribute("msg","비밀번호가 맞지 않습니다. 다시 시도해주세요.");
+			model.addAttribute("loc", "/leave.do");
+			return "common/msg";
+		}
+		
 	}
 	
 	//전체회원list get

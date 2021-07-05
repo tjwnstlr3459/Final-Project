@@ -102,5 +102,13 @@ public class MemberDao {
 		return sqlSession.selectOne("restriction.selectOneRestriction", email);
 	}
 
+	public int deleteMemer(Member m) {
+		return sqlSession.delete("member.deleteMemberByUser", m);
+	}
+
+	public int insertDestroy() {
+		return sqlSession.insert("member.insertDestroy");
+	}
+
 
 }
