@@ -28,29 +28,27 @@
                		<h2>회원 목록</h2>
                	</div>
                 <div class="list-wrap box-option">
-                	<!-- 검색 div -->
-	               <div class="searchBar-wrap">
-	               	   <form action="/adminmemberList.do">
-	               	       <input type="hidden" name="page" value="1">
+               	   <form action="/adminMemberList.do" id="ssForm">
+           	           <input type="hidden" name="page" value="1">
+	                	<!-- 검색 div -->
+		               <div class="searchBar-wrap">
 		                   <select class="" name="category" id="keywords">
-		                       <option value="email" selected>이메일</option>
+		                       <option value="default" selected>분류</option>
+		                       <option value="email">이메일</option>
 		                       <option value="name">닉네임</option>
 		                       <option value="hobby">취미</option>
 		                   </select>
 		                   <input type="search" class="searchBar" name="keyword">
-	                   <button class="btns" id="searchBtn"><img src="/resources/image/icons/search_black.png"></button>
-	               	   </form>
-	               </div>
-                   	<div class="list-header">
-                        <div class="option-wrap">
-                            <!-- ajax>배열[]사용>controller 에서 String[] 을 매개변수로 받아서 사용 -->
-                            <button class="btns" id="selectMessageBtn">선택 쪽지발송</button>
-                            <button class="btns" id="selectMailBtn">선택 메일발송</button>
-                            <c:if test="${sessionScope.m.grade eq 0 }">
-                            <button class="btns" id="upgradeBtn">관리자 등록</button>
-                            </c:if>
-                            <form action="/adminMemberList.do" id="sortForm">
-                            	<input type="hidden" name="page" value="1">
+		                   <button class="btns" id="searchBtn"><img src="/resources/image/icons/search_black.png"></button>
+		               </div>
+	                   	<div class="list-header">
+	                        <div class="option-wrap">
+	                            <!-- ajax>배열[]사용>controller 에서 String[] 을 매개변수로 받아서 사용 -->
+	                            <button class="btns" id="selectMessageBtn">선택 쪽지발송</button>
+	                            <button class="btns" id="selectMailBtn">선택 메일발송</button>
+	                            <c:if test="${sessionScope.m.grade eq 0 }">
+	                            <button class="btns" id="upgradeBtn">관리자 등록</button>
+	                            </c:if>
 	                            <select name="sort" id="sort">
 	                                <c:choose>
 	                                	<c:when test="${sort eq 1 }">
@@ -78,10 +76,10 @@
 			                                <option value="4" selected>최종접속일</option>
 	                                	</c:otherwise>
 	                                </c:choose>
-	                            </select>
-                            </form>
-                        </div>
-                    </div>
+	                            </select>                            
+	                        </div>
+	                    </div>
+                    </form>
                     <div class="list-table">
                         <table class="list memberList">
                             <thead>

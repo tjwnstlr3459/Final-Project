@@ -1,5 +1,6 @@
 $(function(){
 	$('#sort').change(function(){
-		$('#sortForm').submit();
+		console.log('test!!!');
+		$('#ssForm').submit();
 	});
 });

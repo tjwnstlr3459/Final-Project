@@ -431,13 +431,25 @@ public class MemberController {
 	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
-	public String allMemberList(int page, int sort, Model model) {
+	public String allMemberList(int page, int sort, String category, String keyword, Model model) {
+		System.out.println("page : "+page);
+		System.out.println("sort : "+sort);
+		System.out.println("category : "+category);
+		if(keyword == null) {
+			System.out.println("keyword : null");
+		}else {
+			System.out.println("keyword : "+keyword);			
+		}
+		model.addAttribute("sort",sort);
+		return "admin/adminMemberList";
+		/*
 		MemberPageData mpd = service.selectAllMember(page, sort);
 		model.addAttribute("list",mpd.getList());				//1~50개의 row(db)
 		model.addAttribute("cgList",mpd.getCgList());			//catefory list
 		model.addAttribute("navigation",mpd.getNavigation());	//페이지 navi
 		model.addAttribute("sort",sort);
 		return "admin/adminMemberList";
+		*/
 	}
 	//관리자로 등급 업그레이드~
 	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)
