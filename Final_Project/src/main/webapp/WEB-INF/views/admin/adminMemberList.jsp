@@ -32,10 +32,10 @@
            	           <input type="hidden" name="page" value="1">
 	                	<!-- 검색 div -->
 		               <div class="searchBar-wrap">
-		                   <select class="" name="category" id="keywords">
+		                   <select class="" name="category" id="keyword">
 		                       <option value="default" selected>분류</option>
 		                       <option value="email">이메일</option>
-		                       <option value="name">닉네임</option>
+		                       <option value="nick">닉네임</option>
 		                       <option value="hobby">취미</option>
 		                   </select>
 		                   <input type="search" class="searchBar" name="keyword">
@@ -44,10 +44,10 @@
 	                   	<div class="list-header">
 	                        <div class="option-wrap">
 	                            <!-- ajax>배열[]사용>controller 에서 String[] 을 매개변수로 받아서 사용 -->
-	                            <button class="btns" id="selectMessageBtn">선택 쪽지발송</button>
-	                            <button class="btns" id="selectMailBtn">선택 메일발송</button>
+	                            <button type="button" class="btns" id="selectMessageBtn">선택 쪽지발송</button>
+	                            <button type="button" class="btns" id="selectMailBtn">선택 메일발송</button>
 	                            <c:if test="${sessionScope.m.grade eq 0 }">
-	                            <button class="btns" id="upgradeBtn">관리자 등록</button>
+	                            <button type="button" class="btns" id="upgradeBtn">관리자 등록</button>
 	                            </c:if>
 	                            <select name="sort" id="sort">
 	                                <c:choose>

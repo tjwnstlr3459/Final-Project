@@ -43,16 +43,18 @@ public class MemberService {
 		return result;
 	}
 
-	public MemberPageData selectAllMember(int page, int sort) {
+	public MemberPageData selectAllMember(int page, int sort, String category, String keyword) {
 		int listLength = 50; // 목록(화면)에 보여줄 게시글 갯 수
 		int naviPages = 5;
 		int end = listLength * page; // list 끝 값
 		int start = end - listLength + 1; // list 시작 값
 
-		HashMap<String, Integer> se = new HashMap<String, Integer>();
+		HashMap<String, Object> se = new HashMap<String, Object>();
 		se.put("start", start);
 		se.put("end", end);
 		se.put("sort",sort);
+		se.put("keyword", keyword);
+		se.put("category",category);
 
 		List list = dao.selectAllMember(se); // 전체 회원을 가지고온다.
 		int memberCount = dao.memberCount(); // 전체 게시글 갯 수

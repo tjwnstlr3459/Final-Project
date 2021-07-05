@@ -28,7 +28,7 @@ public class MemberDao {
 		return result;
 	}
 
-	public List selectAllMember(HashMap<String, Integer> se) {
+	public List selectAllMember(HashMap<String, Object> se) {
 		return sqlSession.selectList("member.selectAllMember",se);
 	}
 

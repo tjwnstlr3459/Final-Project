@@ -451,21 +451,14 @@ public class MemberController {
 		System.out.println("page : "+page);
 		System.out.println("sort : "+sort);
 		System.out.println("category : "+category);
-		if(keyword == null) {
-			System.out.println("keyword : null");
-		}else {
-			System.out.println("keyword : "+keyword);			
-		}
-		model.addAttribute("sort",sort);
-		return "admin/adminMemberList";
-		/*
-		MemberPageData mpd = service.selectAllMember(page, sort);
+		System.out.println("keyword : "+keyword);
+		MemberPageData mpd = service.selectAllMember(page, sort, category, keyword);
 		model.addAttribute("list",mpd.getList());				//1~50개의 row(db)
 		model.addAttribute("cgList",mpd.getCgList());			//catefory list
 		model.addAttribute("navigation",mpd.getNavigation());	//페이지 navi
 		model.addAttribute("sort",sort);
+		model.addAttribute("category",category);
 		return "admin/adminMemberList";
-		*/
 	}
 	//관리자로 등급 업그레이드~
 	@RequestMapping(value="/updateGrade.do", method=RequestMethod.POST)

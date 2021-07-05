@@ -38,7 +38,22 @@
 	</insert>
 	<!-- 전체회원 select -->
 	<select id="selectAllMember" parameterType="map" resultType="m">
-		select * from (select rownum as sort, m.* from (select member_no as memberNo, email,member_pw as memberPw,member_nick as memberNick,gender,address,intro,hobby1,hobby2,hobby3,grade,warning_count as warningCount, filename,filepath,enroll_date as enrollDate,last_date as lastDate, age from member where grade=2 order by
+		select * from (select rownum as sort, m.* from (select member_no as memberNo, email,member_pw as memberPw,member_nick as memberNick,gender,address,intro,hobby1,hobby2,hobby3,grade,warning_count as warningCount, filename,filepath,enroll_date as enrollDate,last_date as lastDate, age, join_method as joinMethod from member where grade=2
+		<if test="keyword != '' and category eq 'email'">
+			and email like '%'||#{keyword}||'%'
+		</if>
+		<if test="keyword != '' and category eq 'nick'">
+			and member_nick like '%'||#{keyword}||'%'
+		</if>
+		<if test="keyword != '' and category eq 'hobby'">
+			and
+				hobby1 = (select cg_no from category where cg_name like '%'||#{keyword}||'%')
+				or
+				hobby2 = (select cg_no from category where cg_name like '%'||#{keyword}||'%')
+				or
+				hobby3 = (select cg_no from category where cg_name like '%'||#{keyword}||'%')
+		</if>
+		 order by
 		<choose>
 			<when test="sort eq 1">enroll_date desc</when>
 			<when test="sort eq 2">enroll_date</when>

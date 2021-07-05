@@ -117,6 +117,8 @@ function memberAges(data){
 }
 //멤버 카운트 차트
 function memberCountChart(param,data){
+	console.log(param);
+	console.log(data);
 	//매개변수(list)를 차트에 넣어 줄 배열 선언
 	var memberCount = new Array();
 	var destroyCount = new Array();
