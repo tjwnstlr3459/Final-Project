@@ -81,8 +81,8 @@ FROM BOARD
 		#{fileName},
 		#{filePath},
 		to_char(sysdate,'yyyy-mm-dd'),
-		selCount,
-		'N')
+		'N',
+		#{selCount})
 </insert>
 
 <!-- 최신공지게시물 출력 -->

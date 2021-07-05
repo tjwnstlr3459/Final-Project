@@ -67,8 +67,8 @@
 					</div>
 					<div class="userName">${sessionScope.m.memberNick}</div>
 					<hr width="95%" style="margin: 0 auto" />
-					<div>읽지 않은 메세지 1 건</div>
-					<img src="/resources/image/icons/tag.png">
+					<div>읽지 않은 메세지 ${myMessage } 건</div>
+					<div>나의 관심 태그</div>
 					<span>#${m.ho1 }</span> <span>#${m.ho2 }</span> <span>#${m.ho3}</span>
 						
 					<!-- <div>#여행 #요리 #음식</div> -->

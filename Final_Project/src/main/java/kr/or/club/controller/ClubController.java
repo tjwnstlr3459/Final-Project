@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -21,8 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
-import kr.or.board.model.vo.Board;
-import kr.or.category.model.dao.CategoryDao;
+
 import kr.or.club.model.service.ClubService;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.ClubChart;
@@ -33,20 +30,37 @@ import kr.or.member.model.vo.Member;
 public class ClubController {
 	@Autowired
 	private ClubService service;
+
 	
 	// 회원이 속한 모임에 클럽게시물 추출
 	@RequestMapping(value = "/myClub.do")
 	public String myClub(@SessionAttribute(required = false) Member m,Model model){
 		
+		//클럽게시물 출력
 		ArrayList<Club> clubList = service.memberClubList(m);
-//		ArrayList<Board> clubPosts = service.memberClubPosts(m);
-		int totalCount = service.totalCount(m,0);
-		
-		
 		model.addAttribute("clubList",clubList);
-//		model.addAttribute("clubPosts",clubPosts);
+		//클럽게시물 총갯수 출력
+		int totalCount = service.totalCount(m,0);
 		model.addAttribute("totalCount",totalCount);
+		//나의 쪽지 확인
+		int myMessage = service.myMessage(m);
+		model.addAttribute("myMessage", myMessage);
+		
+		/*
+		 * FriendsData friendsData = service.selectFriendData(m); DirectMessageData
+		 * dmData = dmService.selectDmByName(m);
+		 * 
+		 * 
+		 * model.addAttribute("dmList", dmData.getDmList());
+		 * model.addAttribute("unreadDm", dmData.getUnread());
+		 * model.addAttribute("friends", friendsData.getFList());
+		 * model.addAttribute("pfriends", friendsData.getFpendingList());
+		 * model.addAttribute("rfriends", friendsData.getFReqList());
+		 * model.addAttribute("req", friendsData.getFReq());
+		 */
+		
 		return "club/myClub";
+		
 	}
 	
 	//날짜별 조회시 totalCount를 다시 가져온다

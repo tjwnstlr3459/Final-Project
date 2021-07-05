@@ -1,6 +1,6 @@
 package kr.or.club.model.dao;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -87,6 +87,11 @@ public class ClubDao {
 
 	public List selectAllClub(HashMap<String, Object> se) {
 		return session.selectList("club.selectAllClub",se);
+	}
+
+	//나의 읽지 않은 메세지
+	public int myMessage(Member m) {
+		return session.selectOne("club.myMessage",m);
 	}
 
 
