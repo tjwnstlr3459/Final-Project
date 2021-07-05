@@ -5,86 +5,11 @@
 <html>
 <head>
 <link rel="stylesheet" href="/resources/css/freeBoardList/freeBoardList.css" />
-	
+<!-- 	<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.3.1.js"></script> -->
 <meta charset="UTF-8">
 <title>피드게시판</title>
 <style>
-/* 피드리스트
-container {
-	padding-top: 100px;
-	margin: 0 auto;
-	text-align: center;
-}
-#feed_info {
-  background-color: #ec523f;
-  color: white;
-  padding: 15px 40px;
-  text-transform: uppercase;
-  font-weight: 700;
-  float:right;
-  margin-right:200px;
-  }
-#feed_info:hover{
-	cursor:pointer;
-	
-  }
-.posting>img {
-	width: 500px;
-	height: 400px;
-	text-align: center;
-	margin: 30px;
-}
-
-.posting {
-	background-color: rgba(240,136,76,0.8);
-	text-align: center;
-	margin: 0 auto 40px;
-	border:3px solid #ccc;
-	width:600px;
-}
-.fbContent{
-	background-color: rgba(240,136,76,0.4);
-	display:block;
-	text-align: center;
-	margin-right:200px;
-	width:100%;
-	border: 1px solid #ccc;
-	border-bottom: none;
-	font-size: 30px;
-}
-.etc{
-	background-color: rgba(240,136,76,0.4);
-	display:block;
-	text-align: center;
-	margin-right:200px;
-	width:100%;
-	border: 1px solid #ccc;
-	font-size: 25px;
-}
-
-button {
-	background-color: transparent;
-	border: none;
-	font-size: 25px;
-	
-}
-button:hover{
-	cursor:pointer;
-}
-.comment{
-	display:block;
-	text-align: center;
-	margin-right:200px;
-	width:100%;
-	border: 1px solid #ccc;
-}
-.comments{
-	width:400px;
-	height: 300px;
-}
-#temporary :hover{
-	background-color: black;
-} */
 
 /*모달창*/
       .modal {
@@ -121,23 +46,21 @@ button:hover{
             text-decoration: none;
             cursor: pointer;
         }
-        body{
-        float:left;
-        }
 </style>
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/views/common/header.jsp"%> 
+	 <%@include file="/WEB-INF/views/common/header.jsp"%>  
 	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED</h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
 	<button id="feed_info" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
-	<div id="wrapper" style="display:flex;">
-	  <!-- <button id="myBtn">Open Modal</button>  -->
+	<div id="wrapper">
+	<section class="main items">
  
+	</section>
 	</div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -166,8 +89,8 @@ button:hover{
 					for(var i = 0; i<data.length; i++){
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
-						html += "<article class='item' style='width:50%; height:50%;'><header>";			//여기다가 div클ㄹ스 */
-						html += "<a href='#'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 		//포토가 저장되는 경로에 파일패스 이 html을 넣어줘야 사진이ㅣ 보이겠죠
+						html += "<article class='item'><header style='display:flex;'>";			
+						html += "<a href='#'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 
 
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
 						html += "<span style='display:none;'>"+fb.fbWriter+"</span>";
@@ -175,7 +98,17 @@ button:hover{
 
 						html += "<h3>"+fb.fbWriter+"님의 게시물입니다.</h3></header>";
 						html +="<p></p>";
-						html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li></ul></article>";
+						html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li>";
+						if(${empty sessionScope.m}){							
+						html += "<li><a href='#' class='button' onclick='addHeart(this);' disabled><i class='far fa-heart'></i></a></li>";
+						}else{
+						html += "<li><a href='#' class='button' onclick='addHeart(this);'><i class='far fa-heart'></i></a></li>";
+						}
+						html += "</ul></article>";
+						
+						//html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li></ul></article>";
+						
+						 /*좋아요 조회수 부분
 						 if(${empty sessionScope.m}){							
 						html += "<button onclick='addHeart(this);' disabled><i class='far fa-heart'></i>&nbsp;";
 						}else{							
@@ -187,8 +120,8 @@ button:hover{
 						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a><br></button>&nbsp;&nbsp;&nbsp;";
 						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' onclick='deleteCheck(this);'>DELETE FEED</a></button>";						
 						}
-						html += "<span class='comments'></span></div>";
-						$("#wrapper").append(html);
+						html += "<span class='comments'></span></div>"; */
+						$(".main").append(html);
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
