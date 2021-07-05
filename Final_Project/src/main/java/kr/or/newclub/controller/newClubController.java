@@ -126,7 +126,14 @@ public class newClubController {
 	public int calendarAdd(Calendar Calendar) {
 		int result = service.calendarAdd(Calendar);
 		return result;
-		
+	}
+	//클럽 인원 추방
+	@ResponseBody
+	@RequestMapping(value = "/MemberBlack.do")
+	public int deleteMember(int cmNo) {
+		System.out.println(cmNo);
+		int result = service.deleteMember(cmNo);
+		return result;
 	}
 
 	/*

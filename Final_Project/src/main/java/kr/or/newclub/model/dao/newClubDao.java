@@ -128,6 +128,10 @@ public class newClubDao {
 		List<Club> list = session.selectList("newclub.selectMemberClubNo",m);
 		return (ArrayList<Club>)list;
 	}
+	//클럽 추방
+	public int deleteMember(int cmNo) {
+		return session.delete("newclub.deleteMember",cmNo);
+	}
 
 }
 
