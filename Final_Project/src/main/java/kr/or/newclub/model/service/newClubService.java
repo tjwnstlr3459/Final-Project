@@ -110,6 +110,11 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public ArrayList<Club> selectMemberClubNo(Member m) {
 			return dao.selectMemberClubNo(m);
 		}
-
+		
+		//게시글 삭제
+		@Transactional
+		public int boardDelete(int boardNo) {
+			return dao.boardDelete(boardNo);
+		}
 }
 

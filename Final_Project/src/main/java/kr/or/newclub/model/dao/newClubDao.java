@@ -97,9 +97,13 @@ public class newClubDao {
 		
 		return session.delete("newclub.deleteRefusal",map);
 	}
-
+	//조회수
 	public int viewUpdate(int boardNo) {
 		return session.update("newclub.viewUpdate", boardNo);
+	}
+	//게시글삭제
+	public int boardDelete(int boardNo) {
+		return session.delete("newclub.boardDelete",boardNo);
 	}
 
 	//달력일정추가

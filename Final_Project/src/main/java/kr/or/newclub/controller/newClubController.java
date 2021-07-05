@@ -87,7 +87,7 @@ public class newClubController {
 		return "newclub/newClub";
 	}
 	
-	//달력일정 불러오기
+	//게시물 페이지 처리
 	@ResponseBody
 	@RequestMapping(value = "/clubBoardMore.do", produces = "application/json;charset=utf-8")
 	public String clubBoardMore(int start, int clubNo) {
@@ -236,4 +236,13 @@ public class newClubController {
 
 		return result;
 	}
-}
+	//게시물 삭제
+		@Transactional
+		 @ResponseBody
+		  @RequestMapping(value = "/boardDelete.do") 
+			public int boardDelete(int boardNo, Model model) {
+			int result = service.boardDelete(boardNo);
+
+			return result;
+		}
+	}

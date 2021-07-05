@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="clubcomment">
+
+<!-- 댓글리스트 불러오기 -->
+ <select id="commentList" resultType="ccm" parameterType="int">
+	SELECT		
+		CC_NO as ccNo,
+		CC_WRITER as ccWriter,
+		CC_CONTENT as ccContent
+	FROM
+		CLUB_COMMENT
+	where board_no=#{boardNo}
+	ORDER BY 1 desc 
+
+</select>
+
+<!-- 댓글쓰기 -->
+<insert id="insertComment" parameterType="ccm">
+	INSERT INTO CLUB_COMMENT VALUES(CC_SEQ.NEXTVAL,#{boardNo},#{ccWriter},#{ccContent},0,NULL,0)
+</insert>
+
+</mapper>
