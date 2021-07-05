@@ -132,28 +132,26 @@
 							
 							<div style="display: flex; justify-content: center;">
 								<c:choose>
-								
-								
+									
 									<c:when test="${sessionScope.m == null }">
 									<!-- 로그인 안되어있다면 -->
 										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 											onclick="location.href='/loginFrm.do'">로그인하기</button>
 									</c:when>
 									
-									
 									<c:otherwise>
-										<c:forEach items="${memberClubNo}" var="l">
-										
-											<c:if test="${l.clubNo == clubNo }">
-												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
-													onclick="#">어서오세요</button>
+										<c:set var="num" value="1"/><!-- num 변수선언해서, 회원의 clubNo와 현재 페이지 clubNo를 비교해서 foreach조건문을 위한 변수 -->
+										<c:forEach items="${memberClubNo}" var="l"> <!-- 회원이 속한 클럽넘버들을 list에 담아서 비교 -->
+											<c:if test="${l.clubNo eq clubNo && num eq 1 }"><!-- 회원이 속한 clubNo와 현재페이지clubNo가 같으면서 변수가 1이라면 -->
+												<button type="button" class="btn btn-info btn-lg" style="padding: 5px">어서오세요</button>
+													<c:set var="num" value="2"/><!-- if문을 탄다면 num을 2로 선언해서 다음 if문 안타게하기 -->
 											</c:if>
 											
-											<c:if test="${l.clubNo != clubNo }">
+											<c:if test="${l.clubNo ne clubNo && num eq 1}"><!-- 클럽이 속한 clubNo가 없으면서 num가 1이라면 -->
 												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 													data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
+													<c:set var="num" value="2"/>
 											</c:if>
-											
 										</c:forEach>
 									</c:otherwise>
 									
@@ -171,7 +169,9 @@
 									<a class="deletebtn" href="/boardDelete">삭제하기</a>
 								</div>
 								<div class="boardWritebox">
-									<form action="/boardWrite.do" method="post"
+									<!-- 게시물 등록시 현재있는 페이지의 clubNo를 같이 넘겨준다 -->
+									<!-- clubNo는 카테고리에서 이곳 페이지 넘어올때 컨트롤로에서 담아주고 넘어오는 값이당 -->
+									<form action="/boardWrite.do?clubNo=${clubNo }" method="post"
 										enctype="multipart/form-data">
 										작성자 : <input type="text" name="boardWriter"
 											value="${sessionScope.m.memberNick }" readonly>
@@ -182,8 +182,9 @@
 										내용 :
 										<textarea rows="6" cols="88" name="boardContent"
 											style="resize: none;"></textarea>
-										<br> <input type="hidden" name="clubNo"
-											value="${clubNo }"> <input type="submit" value="등록">
+										<input type="text" name="boardCG" value="${club.clubCg }" style="display: none;">
+										<br>
+										<input type="submit" value="등록">
 									</form>
 								</div>
 								<!-- 게시물 형태 바뀐부분 -->
