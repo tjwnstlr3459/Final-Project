@@ -31,7 +31,7 @@
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
-            width: 50%; /* Could be more or less, depending on screen size */                          
+            width: 30%; /* Could be more or less, depending on screen size */                          
         }
         /* The Close Button */
         .close {
@@ -54,7 +54,7 @@
 	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED</h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
-	<button id="feed_info" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
+	<button id="feed_info" style="float:right; margin-right: 60px;" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
 	<div id="wrapper">
@@ -90,38 +90,41 @@
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
 						html += "<article class='item'><header style='display:flex;'>";			
-						html += "<a href='#'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 
-
+						html += "<a href='#' onclick='detailView(this);'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
 						html += "<span style='display:none;'>"+fb.fbWriter+"</span>";
 						html += "<input type='text' value='"+fb.fbNo+"'style='display:none;'>";
-
+						html += "<input type='text' value='"+fb.fbGood+"'style='display:none;'>";
+						html += "<input type='text' value='"+fb.fbViews+"'style='display:none;'>";
+						html += "<input type='text' value='"+fb.typeString+"'style='display:none;'>";
+						/* html += "<h3>"+fb.typeString+"카테고리의</h3><br>"; */
 						html += "<h3>"+fb.fbWriter+"님의 게시물입니다.</h3></header>";
-						html +="<p></p>";
-						html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li>";
+						/* html +="<p></p>"; */
+						html += "<ul class='actions'>";
 						if(${empty sessionScope.m}){							
-						html += "<li><a href='#' class='button' onclick='addHeart(this);' disabled><i class='far fa-heart'></i></a></li>";
+						html += "<li><a href='#' class='button' onclick='addHeart(this);' disabled><i class='far fa-heart'></i></a></li><br>";
 						}else{
-						html += "<li><a href='#' class='button' onclick='addHeart(this);'><i class='far fa-heart'></i></a></li>";
+						html += "<li><a href='#' class='button' onclick='addHeart(this);'><i class='far fa-heart'></i></a></li><br>";
+						}
+						html += "<span>Likes : "+fb.fbGood+"&nbsp;개</span><br>";
+						html += "<span>Views : "+fb.fbViews+"&nbsp;개</span>";
+						html += "<br>";
+						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
+						html += "<li ><a style='text-decoration:none;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a></li>";
+						html += "<li ><a onclick='deleteCheck(this);' style='text-decoration:none; cursor:pointer;'>DELETE FEED</a></li>";						
+							}
+						if(${sessionScope.m.grade < 2}){
+						html += "<li id='temporary'><a onclick='deleteCheck(this);'>DELETE FEED</a></li>";													
 						}
 						html += "</ul></article>";
 						
-						//html += "<ul class='actions'> <li><a href='#' class='button'>More</a></li></ul></article>";
+						$(".main").append(html);
 						
 						 /*좋아요 조회수 부분
-						 if(${empty sessionScope.m}){							
-						html += "<button onclick='addHeart(this);' disabled><i class='far fa-heart'></i>&nbsp;";
-						}else{							
-						html += "<button onclick='addHeart(this);'><i class='far fa-heart'></i>&nbsp;";
-						}
 						html +="</button><button onclick='detailView(this);'><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
 						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
 						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
-						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a><br></button>&nbsp;&nbsp;&nbsp;";
-						html += "<button id='temporary'><a style = 'line-height: 30px; text-decoration:none; color:#fff; font-size:20px;' onclick='deleteCheck(this);'>DELETE FEED</a></button>";						
-						}
-						html += "<span class='comments'></span></div>"; */
-						$(".main").append(html);
+						}*/
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
@@ -136,8 +139,9 @@
 			});
 		} 
 		function addHeart(obj){		//this 를 obj로 주고 받아서 this를 찍어야 해당하는 속성값이 찍힘
-			var fbNo = $(obj).children().last().val();
-			$.ajax({
+			/* var fbNo = $(obj).parents().parents().first(); */
+			var fbNo = $(obj).parents().eq(1).parents().eq(0).children().eq(0).children().eq(3).val();
+			 $.ajax({
 				url : "/addHeart.do",
 				data : {fbNo:fbNo},
 				type : "post",
@@ -146,9 +150,8 @@
 						$(obj).children().first().removeClass("far fa-heart");
 						$(obj).children().first().addClass("fas fa-heart");
 					}
-					location.reload();
 				}
-		});
+		}); 
 		}
 		function deleteCheck(obj) {
 			var fbNo = $(obj).parents().eq(1).children().eq(3).val()
@@ -183,23 +186,29 @@
 		        	var modal = document.getElementById('myModal');
 		        	var span = document.getElementsByClassName("close")[0];
 		        function detailView(obj) {
-		        	var filepath = $(obj).parents().children().eq(0).attr('src');
+		        	var filepath = $(obj).children().eq(0).attr('src');
 		        	var img = "<img src='"+filepath+"' style='width:100%; height:100%;'>";
 		        	var fbContent = $(obj).parents().children().eq(1).html();
 		        	var fbWriter = $(obj).parents().children().eq(2).html();
+		        	var fbGood = $(obj).parents().children().eq(4).val();
+		        	var fbViews = $(obj).parents().children().eq(5).val();
+		        	var fbTypeString = $(obj).parents().children().eq(6).val();
 		        	modal.style.display = "block";
 		        	$('.modal-content').append(img);
-		        	$('.modal-content').append("<p style='font-size: 40px; color:black; text-align:center;'>내용 : "+fbContent+"</p>");
-		        	$('.modal-content').append("<p style='font-size: 30px; color:black; text-align:right;'>작성자 : "+fbWriter+"</p>");
+		        	$('.modal-content').append("<hr><p style='text-align:center;'>"+fbContent+"</p>");
+		        	$('.modal-content').append("<hr>");		        	
+		        	$('.modal-content').append("<span style='text-align:right;'>"+fbTypeString+" 관련클럽</span><br>");
+		        	$('.modal-content').append("<span style='text-align:left;'>좋아요 : "+fbGood+"개</span>&nbsp;&nbsp;&nbsp;");
+		        	$('.modal-content').append("<span style='text-align:left;'>조회수 : "+fbViews+"회</span><br>");
+		        	$('.modal-content').append("<span style='text-align:right;'>작성자 : "+fbWriter+"</span>");
 		        	 var fbNo = $(obj).parents().children().eq(3).val();
-		        	 console.log(fbNo);
 		        	 $.ajax({
 						url : "/addViews.do",
 						data : {fbNo:fbNo},
 						type : "post",
 						success : function(data){
 							if(data == 1){
-								console.log("조회수1증가");
+								 console.log("조회수1증가"); 
 							}
 						}
 				}); 
@@ -208,12 +217,14 @@
 		        	$('.modal-content').empty();
 		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	
 		        	modal.style.display="none";
+		        	location.reload();
 				}
 		        window.onclick = function(event) {
 		            if (event.target == modal) {
 		        	$('.modal-content').empty();
 		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	
 		                modal.style.display = "none";
+		        	location.reload();
 		            }
 		        }
 		        

@@ -18,6 +18,7 @@
 
 .making_feed_wrap {
 	margin: 50px 600px 0px 600px;
+	width : 900px;
 }
 
 input[type=text], select {
@@ -101,9 +102,9 @@ div.formTag {
 					<input type="hidden" name="oldFilename" value="${fb.filename }"> 
 					
 					<input type="hidden" name="oldFilepath" value="${fb.filepath }">
-									<br><br><br>
-					<label for="type">CATEGORY</label> 
-					<select id="type" name="type">
+									<br><br>
+					<label for="type">CATEGORY</label><br> 
+					<select id="type" name="type" style='width:150px;'>
 					<option value="${fb.type }" fixed>현재 카테고리 : ${fb.typeString }</option>
 					<option value="4">스포츠</option>
 					<option value="5">음악</option>
@@ -113,11 +114,11 @@ div.formTag {
 					<option value="9">영화</option>
 					<option value="10">술</option>
 					<option value="11">음식</option>
-				</select>
-				<label for="fbWriter">WRITER</label>
-					<input type="text" name="fbWriter" id="fbWriter" value="${sessionScope.m.memberNick }" readonly>
+				</select><br>
+				<label for="fbWriter">WRITER</label><br>
+					<input type="text" name="fbWriter" id="fbWriter" value="${sessionScope.m.memberNick }" readonly style='width:100px;'><br>
 
-				<label for="fbContent">CONTENT</label>
+				<label for="fbContent">CONTENT</label><br>
 					<textarea id="fbContent" name="fbContent" cols='85' rows='10' style="text-align:left; resize:none; outline:none; border:none;">${fb.fbContent }</textarea>
 				<p style="margin-top: -12px"></p>
 					<input type="submit" value="UPDATE"></input>
