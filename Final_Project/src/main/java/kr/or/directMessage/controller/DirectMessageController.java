@@ -19,16 +19,30 @@ public class DirectMessageController {
 	private DirectMessageService service;
 	
 	@RequestMapping(value="/insertDm.do")
-	public String insertDm(DirectMessage dm, Model model) {
+	public String insertDm(DirectMessage dm, String kind,int clubNo, Model model) {
 		int result = service.insertDm(dm);
 		if(result >0) {
-			int result1 = service.updateWarningCount(dm);
-			model.addAttribute("msg","작성 완료!");
-			
+			if(kind.equals("member")) {
+				int result1 = service.updateWarningCount(dm);
+				if(result1>0) {
+					model.addAttribute("msg","작성 완료!");
+				}else {
+					model.addAttribute("msg","작성 실패");
+				}
+				model.addAttribute("loc","/adminMemberList.do?page=1&sort=1");
+			}else if(kind.equals("club")) {
+				int result1 = service.updateWarningCountClub(clubNo);
+				if(result1>0) {
+					model.addAttribute("msg","작성 완료!");
+				}else {
+					model.addAttribute("msg","작성 실패");
+				}
+				model.addAttribute("loc","/adminClubList.do?page=1&sort=1");
+			}
 		}else {
 			model.addAttribute("msg","작성 실패");			
 		}
-		model.addAttribute("loc","/adminMain.do");
+		model.addAttribute("loc","/adminClubList.do?page=1&sort=1");
 		return "common/msg";
 	}
 	@RequestMapping(value="/insertMultiDm",method=RequestMethod.POST)

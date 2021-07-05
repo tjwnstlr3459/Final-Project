@@ -27,6 +27,9 @@ public class DirectMessageDao {
 	public int updateWarningCount(DirectMessage dm) {
 		return session.update("directMessage.updateWarningCount",dm);
 	}
+	public int updateWarningCountClub(int clubNo) {
+		return session.update("directMessage.updateWarningCountClub",clubNo);
+	}
 
 	public int insertMultiDm(DirectMessage dm, String[] memberNo) {
 		int count = 0;
@@ -64,5 +67,6 @@ public class DirectMessageDao {
 	public int selectAllDmCount(String memberNick) {
 		return session.selectOne("directMessage.selectAllDmCount", memberNick);
 	}
+
 
 }

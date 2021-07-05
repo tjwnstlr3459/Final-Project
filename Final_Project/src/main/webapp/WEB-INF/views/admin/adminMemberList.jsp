@@ -140,6 +140,7 @@
 	                   	<input type="hidden" name="receiver"><!-- 쪽지 받는이 : 선택된 회원 nick  js로 넣어줄 것 -->    
 	                   	<input type="hidden" name="restEmail"><!-- 이용제한 대상자 : 선택된 회원 이메일 js로 넣어준다. -->
 	                   	<input type="hidden" name="type"><!-- 전체 쪽지 발송 : 1  /  개인 경고/제재 : 2 -->
+	                   	<input type="hidden" name="kind" value="member">
 	                   	<div class="btns-box">
 	                        <button type="button" class="btns enterBtn">확인</button>
 	                   	</div>                	

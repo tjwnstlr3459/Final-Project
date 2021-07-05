@@ -187,6 +187,10 @@ from direct_message where receiver=#{memberNick} and read_status='N'
 <select id="clubCount" resultType="int">
 	select count(*) from club
 </select>
+<!-- 관리자 클럽 폐지 -->
+<delete id="deleteClub" parameterType="int">
+	delete from club where club_no=#{clubNo}
+</delete>
 </mapper>
 
 

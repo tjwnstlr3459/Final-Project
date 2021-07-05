@@ -269,6 +269,18 @@ public class ClubController {
 		}
 	
 	
+	@RequestMapping(value="/deleteClub.do")
+	@ResponseBody
+	public String deleteClub(int clubNo) {
+		System.out.println("clubNo : "+clubNo);
+		int result = service.deleteClub(clubNo);
+		System.out.println(result);
+		if(result>0) {
+			return "1";
+		}
+		return "0";
+	}
+	
 	
 	}
 

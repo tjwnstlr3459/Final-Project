@@ -138,6 +138,10 @@ public class ClubService {
 		return dao.myMessage(m);
 	}
 
+	public int deleteClub(int clubNo) {
+		return dao.deleteClub(clubNo);
+	}
+
 	
 	
 	/*

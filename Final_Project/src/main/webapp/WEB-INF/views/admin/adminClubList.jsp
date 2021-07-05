@@ -81,7 +81,7 @@
                         <table class="list userList">
                             <thead>
                                 <tr>
-                                    <th>번호</th><th>카테고리</th><th>클럽명</th><th>개설자</th><th>제재</th><th>개설일</th><th>최종활동일</th>
+                                    <th>번호</th><th>카테고리</th><th>클럽명</th><th>개설자</th><th>경고</th><th>개설일</th><th>최종활동일</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,9 +89,9 @@
 	                                <tr>
 	                                    <td>${c.sort }</td><td>${c.cgName }</td><td>${c.clubName }</td><td>${c.clubOpener }</td><td>${c.warningCount }</td><td>${c.enrollDate }</td><td>${c.lastDate }</td>
 	                                    <td>
-	                                    	<button>경고</button>
+	                                    	<button class="btns warningBtn" value="${c.clubNo }">경고</button>
 	                                    	<c:if test="${sessionScope.m.grade eq 0 }">
-	                                    	<button>삭제</button>
+	                                    	<button class="btns deleteBtn" value="${c.clubNo }">삭제</button>
 	                                    	</c:if>
 	                                    </td>
 	                                </tr>                            		
@@ -107,6 +107,25 @@
                     <div class="list-footer">
 
                     </div>
+                </div>
+            </div>
+            <!-- 모달영역 -->
+            <div class="modal">
+                <div class="modal-box">
+					<form id="modalForm" class="frms" action="">
+                    <h2 class="titleHead"></h2>
+                    <textarea name="" id="summernote" class="summernote" cols="20" rows="10" style="resize:none;"></textarea>
+                    <div class="btn-box">
+                    	<input type="hidden" name="clubNo">
+	                   	<input type="hidden" name="sender" value="${sessionScope.m.memberNick }"><!-- 쪽지 보낸 이 : 로그인 된 관리자 닉네임 -->
+	                   	<input type="hidden" name="receiver"><!-- 쪽지 받는이 : 선택된 회원 nick  js로 넣어줄 것 -->
+	                   	<input type="hidden" name="kind" value="club">    
+	                   	<div class="btns-box">
+	                        <button type="button" class="btns clubEnterBtn">확인</button>
+	                   	</div>                	
+                    </div>
+                   	</form>
+                    <button id="closeBtn" class="btns cancelBtn">X</button>
                 </div>
             </div>
 		</section>

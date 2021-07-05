@@ -44,6 +44,8 @@ $(function(){
 	 	$('.titleHead').html('경고 사유');							//모달 타이틀 설정
 	 	$('#summernote').attr('name','dmContent');			//요소 name을 설정
 	 	$('[name=receiver]').val(memberNick);				//받는사람 설정
+	 	
+	 	$('[name=clubNo]').val($(this).val());
 	 	modalOpen();
 	 });
 	 //제재 버튼 클릭 시
@@ -110,11 +112,10 @@ $(function(){
 	 	$('[name=receiver]').val(memberNick);					//받는사람 설정
 	 	modalOpen();
 	 });
-	 //확인 버튼 클릭 시 값에 따라 다르게 동작할 이벤트
+	 //회원 목록에서 확인 버튼 클릭 시 값에 따라 다르게 동작할 이벤트
 	 $('.enterBtn').click(function(){
-	 	if($('#summernote').summernote('code') == ''){
-	 		return alert('내용을 적어주세요');
-	 	}
+	 	if($('#summernote').summernote('code') == '') return alert('내용을 적어주세요');
+	 	
 	 	var checkType = $('[name=type]').val();
 	 	if(checkType == 'one'){
 		 	$('#modalForm').submit();
@@ -123,11 +124,22 @@ $(function(){
 	 		insertMultiDm();
 	 	}
 	 });
+	 //클럽 목록에서 확인 버튼 클릭 시 함수
+	 $('.clubEnterBtn').click(function(){
+	 	if($('#summernote').summernote('code') == '') return alert('내용을 적어주세요');
+	 	document.getElementById('modalForm').submit();
+	 	
+	 });
 	 //삭제 버튼 클릭 이벤트 함수
 	 $('.deleteBtn').click(function(){
 	 	if(confirm('정말 삭제하시겠습니까?')){
-		 	var memberNo = $(this).parent().parent().find('input').val();
-		 	deleteMember(memberNo);	 	
+	 		if($('[name=kind]').val() == "member"){
+	 			var memberNo = $(this).parent().parent().find('input').val();
+		 		deleteMember(memberNo);
+	 		}else if($('[name=kind]').val() == "club"){
+	 		console.log('club Test');
+	 			deleteClub($(this).val());
+	 		}
 	 	}
 	 });
 	 //이용제한 해제 버튼 클릭 이벤트 함슈
@@ -137,6 +149,7 @@ $(function(){
 		 	deleteRestMember(restMail);
 	 	}
 	 });
+	 //답변 슬라이드토글
 	 $('.slideAnswerBtn').click(function(){
 	 	$('.answer-box').slideToggle();
 	 	$('#summernote').attr('autofocus',true);
@@ -223,6 +236,23 @@ function deleteRestMember(restEmail){
 				alert('처리되었습니다.');
 			}else{
 				alert('처리 오류! 다시 시도해주세요');
+			}
+			window.location.reload();
+		}
+	});
+}
+//클럽 삭제
+function deleteClub(clubNo){
+console.log('test...');
+	$.ajax({
+		url : "/deleteClub.do",
+		data : {clubNo : clubNo},
+		type : "post",
+		success : function(data){
+			if(data == 1){
+				alert('폐지되었습니다.');
+			}else{
+				alert('삭제 오류! 다시 시도해주세요');
 			}
 			window.location.reload();
 		}

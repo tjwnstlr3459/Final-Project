@@ -18,6 +18,10 @@
 	<update id="updateWarningCount" parameterType="dm">
 		update member set warning_count=warning_count+1 where member_nick=#{receiver}
 	</update>
+	<!-- 클럽 경고 업데이트 -->
+	<update id="updateWarningCountClub" parameterType="int">
+		update club set warning_count=warning_count+1 where club_no = #{clubNo}
+	</update>
 	<insert id="insertMultiDm" parameterType="map">
 		insert into direct_message values(dm_seq.nextval,#{dm.sender},
 		(select member_nick from member where member_no=#{memberNo}),#{dm.dmContent},to_char(sysdate,'yyyy-mm-dd'),'N')

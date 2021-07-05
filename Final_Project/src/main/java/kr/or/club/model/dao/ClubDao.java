@@ -95,6 +95,11 @@ public class ClubDao {
 	}
 
 
+	public int deleteClub(int clubNo) {
+		return session.delete("club.deleteClub",clubNo);
+	}
+
+
 	
 	
 	

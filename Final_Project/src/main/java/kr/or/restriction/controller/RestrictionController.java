@@ -34,7 +34,7 @@ public class RestrictionController {
 			}else {
 				model.addAttribute("msg","작성 오류!");
 			}
-			model.addAttribute("loc","/adminMemberList.do?page=1");
+			model.addAttribute("loc","/adminMemberList.do?page=1&sort=1");
 		}else {
 			model.addAttribute("msg","작성 오류!");
 		}

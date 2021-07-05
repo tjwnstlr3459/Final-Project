@@ -22,7 +22,6 @@ public class DirectMessageService {
 	public int insertDm(DirectMessage dm) {
 		return dao.insertDm(dm);
 	}
-
 	public ArrayList<DirectMessage> selectAllDm() {
 		return (ArrayList<DirectMessage>)dao.selectAllDm();
 	}
@@ -30,6 +29,10 @@ public class DirectMessageService {
 	@Transactional
 	public int updateWarningCount(DirectMessage dm) {
 		return dao.updateWarningCount(dm);
+	}
+	@Transactional
+	public int updateWarningCountClub(int clubNo) {
+		return dao.updateWarningCountClub(clubNo);
 	}
 	
 	@Transactional
