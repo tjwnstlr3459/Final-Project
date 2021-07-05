@@ -316,7 +316,7 @@ function more(start) {//더보기 클릭시
 				var p = data[i];
 				var html = "";
  html +='<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
- html +=  '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;" >';
+ html +=  '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;border-radius: 10px;" >';
  html +=   '<a href="#" class="thumb-link">';
 	if(p.filePath != null){ 
 		html +='<img class="picPath" src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building"/>';
@@ -341,7 +341,8 @@ function more(start) {//더보기 클릭시
  html +=  '<div class="entry-excerpt" style="height: 70px;overflow: hidden;text-overflow: ellipsis;">'+p.boardContent+'</div>';
  html +=  '</div>';
  html +=   '</article>';
-				$(".photoWrapper").append(html);
+ 
+			$(".photoWrapper").append(html);
 			}
 			
 			//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
@@ -390,7 +391,7 @@ function myChart(data){
         	  datasets: [
         	    {
         	      label: 'Dataset 1',
-        	      data: [50,70],
+        	      data: post,
         	      backgroundColor:[
                 	'rgba(0, 0, 255, 0.3)',
                 	'rgba(255, 0, 255, 0.3)',
@@ -404,8 +405,8 @@ function myChart(data){
         options: {
             responsive: true,
             plugins: {
-              legend: {
-                position: 'top',
+              	legend: {
+                position: 'top'
               },
               title: {
                 display: true,

@@ -132,14 +132,32 @@
 							
 							<div style="display: flex; justify-content: center;">
 								<c:choose>
-									<c:when test="${sessionScope.m != null }">
-										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
-											data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
-									</c:when>
-									<c:otherwise>
+								
+								
+									<c:when test="${sessionScope.m == null }">
+									<!-- 로그인 안되어있다면 -->
 										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 											onclick="location.href='/loginFrm.do'">로그인하기</button>
+									</c:when>
+									
+									
+									<c:otherwise>
+										<c:forEach items="${memberClubNo}" var="l">
+										
+											<c:if test="${l.clubNo == clubNo }">
+												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
+													onclick="#">어서오세요</button>
+											</c:if>
+											
+											<c:if test="${l.clubNo != clubNo }">
+												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
+													data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
+											</c:if>
+											
+										</c:forEach>
 									</c:otherwise>
+									
+									
 								</c:choose>
 							</div>
 						</div>

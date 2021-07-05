@@ -203,4 +203,20 @@
 	<insert id="insertDestroy">
 		insert into destroy values (des_seq.nextval, to_char(sysdate, 'YYYY-MM-DD'), 'M')
 	</insert>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

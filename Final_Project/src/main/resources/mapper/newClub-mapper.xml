@@ -195,6 +195,11 @@ UPDATE CLUB SET
 	CLUB_INTRO=#{clubIntro} 
 WHERE CLUB_NO=#{clubNo}
 </update>
+
+<!-- 로그인한 회원의 클럽넘버 알아내기 -->
+<select id="selectMemberClubNo" parameterType="m" resultType="c">
+	select club_NO as clubNo from club_member where club_nick=#{memberNick}
+</select>
 </mapper>
 
 

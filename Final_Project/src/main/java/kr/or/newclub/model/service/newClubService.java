@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.Club;
 import kr.or.club.model.vo.ClubBoard;
+import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.dao.newClubDao;
 import kr.or.newclub.model.vo.Apply;
 import kr.or.newclub.model.vo.Calendar;
@@ -105,6 +106,9 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			map.put("clubNo", clubNo);
 			map.put("clubIntro", clubIntro);
 			return dao.clubIntroModify(map);
+		}
+		public ArrayList<Club> selectMemberClubNo(Member m) {
+			return dao.selectMemberClubNo(m);
 		}
 
 }
