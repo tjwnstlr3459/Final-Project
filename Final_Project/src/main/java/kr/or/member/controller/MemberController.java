@@ -304,13 +304,15 @@ public class MemberController {
 	public String myPage(@SessionAttribute(required = false) Member m, Model model) {
 		Member member = service.selectOneMember(m);
 		FriendsData friendsData = service.selectFriendData(m.getMemberNick());
-		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick());
+		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick(), 1);
 		ArrayList<Category> category = service.getCategory();
 		if(member != null) {
 			model.addAttribute("m", member);
 			model.addAttribute("category", category);
 			model.addAttribute("dmList", dmData.getDmList());
+			model.addAttribute("unreadDmList", dmData.getUnreadDmList());
 			model.addAttribute("unreadDm", dmData.getUnread());
+			model.addAttribute("dmNavigation", dmData.getAllPaging());
 			model.addAttribute("friends", friendsData.getFList());
 			model.addAttribute("pfriends", friendsData.getFpendingList());
 			model.addAttribute("rfriends", friendsData.getFReqList());
@@ -446,6 +448,17 @@ public class MemberController {
 			return "common/msg";
 		}
 		
+	}
+	
+	//쪽지 더보기
+	@ResponseBody
+	@RequestMapping(value="/moreReadDm.do", produces="application/json;charset=utf-8")
+	public String moreReadDm(@SessionAttribute(required = false) Member m, String page) {
+		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick(), Integer.parseInt(page));
+		if(dmData != null) {
+			return new Gson().toJson(dmData);
+		}
+		return "0";
 	}
 	
 	//전체회원list get

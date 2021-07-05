@@ -41,8 +41,12 @@ public class DirectMessageDao {
 		return count;
 	}
 
-	public List selectDmByName(String memberNick) {
-		return session.selectList("directMessage.selectDmByName", memberNick);
+	public List selectDmByName(HashMap<String, String> param) {
+		return session.selectList("directMessage.selectDmByName", param);
+	}
+	
+	public List selectUnreadDmByName(HashMap<String, String> param) {
+		return session.selectList("directMessage.selectUnreadDmByName", param);
 	}
 
 	public int selectUnreadDm(String memberNick) {
@@ -55,6 +59,10 @@ public class DirectMessageDao {
 
 	public DirectMessage selectOneDm(DirectMessage dm) {
 		return session.selectOne("directMessage.selectOneDm", dm);
+	}
+
+	public int selectAllDmCount(String memberNick) {
+		return session.selectOne("directMessage.selectAllDmCount", memberNick);
 	}
 
 }

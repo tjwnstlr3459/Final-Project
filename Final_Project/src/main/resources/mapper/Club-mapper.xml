@@ -123,8 +123,16 @@ SELECT
     (SELECT CLUB_NAME FROM CLUB C WHERE C.CLUB_NO = CB.CLUB_NO) AS CLUBNAME  
 FROM CLUB_BOARD CB 
 WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{memberNick}) GROUP BY CLUB_NO
-
 </select>
+
+
+<!-- 나에게 온 읽지않은 쪽지갯수 확인 -->
+<select id="myMessage" parameterType="m" resultType="int">
+select 
+	count(*) 
+from direct_message where receiver=#{memberNick} and read_status='N'
+</select>
+
 <select id="viewClubList" parameterType="int" resultType="c">
 	SELECT
 		CLUB_NO as clubNo,

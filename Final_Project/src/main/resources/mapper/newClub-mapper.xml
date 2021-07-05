@@ -24,8 +24,8 @@
 		from CLUB_BOARD WHERE CLUB_NO=#{clubNo}
 </select>
 <select id="boardMore" parameterType="map" resultType="n">
-	SELECT 
-rnum,
+SELECT 
+   rnum,
    BOARD_NO as boardNo,
    CLUB_NO as clubNo,
    BOARD_CG as boardCg,
@@ -39,7 +39,7 @@ rnum,
    ENROLL_DATE as enrollDate
 FROM
 (SELECT ROWNUM AS RNUM, N.* FROM
-(SELECT * FROM club_board WHERE CLUB_NO=38 ORDER BY BOARD_NO DESC)N) where RNUM BETWEEN #{start} AND #{end}
+(SELECT * FROM club_board WHERE CLUB_NO=#{clubNo} ORDER BY BOARD_NO DESC)N) where RNUM BETWEEN #{start} AND #{end}
 <!-- 클럽보드에서 38번을 순서대로찾아서 그중 최근거 1~3을 찾음 -->
 </select>
 
@@ -48,7 +48,7 @@ FROM
 insert into club_board values(
     CB_SEQ.NEXTVAL,
     #{clubNo},
-    5,
+    #{boardCG},
     #{boardWriter},
     #{boardTitle},
     #{boardContent},
@@ -145,6 +145,11 @@ DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{listNo} AND INVITE_CN=#{clubNo}
 <update id="viewUpdate" parameterType="int">
 UPDATE CLUB_BOARD SET BOARD_VIEWS=BOARD_VIEWS+1 WHERE BOARD_NO= #{boardNo}
 </update>
+<!-- 게시글 삭제 -->
+<delete id="boardDelete" parameterType="int">
+	delete from club_board where board_no=#{boardNo}
+	
+</delete>
 
 <!-- 달력 일정추가 -->
 <insert id="calendarAdd" parameterType="cal">

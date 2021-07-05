@@ -49,8 +49,6 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/newClub.css" />
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/newClub/newClub2.css" />
-<link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/chat.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/modal.css" />
@@ -132,28 +130,26 @@
 							
 							<div style="display: flex; justify-content: center;">
 								<c:choose>
-								
-								
+									
 									<c:when test="${sessionScope.m == null }">
 									<!-- 로그인 안되어있다면 -->
 										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 											onclick="location.href='/loginFrm.do'">로그인하기</button>
 									</c:when>
 									
-									
 									<c:otherwise>
-										<c:forEach items="${memberClubNo}" var="l">
-										
-											<c:if test="${l.clubNo == clubNo }">
-												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
-													onclick="#">어서오세요</button>
+										<c:set var="num" value="1"/><!-- num 변수선언해서, 회원의 clubNo와 현재 페이지 clubNo를 비교해서 foreach조건문을 위한 변수 -->
+										<c:forEach items="${memberClubNo}" var="l"> <!-- 회원이 속한 클럽넘버들을 list에 담아서 비교 -->
+											<c:if test="${l.clubNo eq clubNo && num eq 1 }"><!-- 회원이 속한 clubNo와 현재페이지clubNo가 같으면서 변수가 1이라면 -->
+												<button type="button" class="btn btn-info btn-lg" style="padding: 5px">어서오세요</button>
+													<c:set var="num" value="2"/><!-- if문을 탄다면 num을 2로 선언해서 다음 if문 안타게하기 -->
 											</c:if>
 											
-											<c:if test="${l.clubNo != clubNo }">
+											<c:if test="${l.clubNo ne clubNo && num eq 1}"><!-- 클럽이 속한 clubNo가 없으면서 num가 1이라면 -->
 												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
 													data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
+													<c:set var="num" value="2"/>
 											</c:if>
-											
 										</c:forEach>
 									</c:otherwise>
 									
@@ -167,11 +163,10 @@
 							<div>
 								<h4 style="width: 200px; margin-top: 0px; font-weight: bold;">게시글
 									등록</h4>
-								<div class="deletebox">
-									<a class="deletebtn" href="/boardDelete">삭제하기</a>
-								</div>
 								<div class="boardWritebox">
-									<form action="/boardWrite.do" method="post"
+									<!-- 게시물 등록시 현재있는 페이지의 clubNo를 같이 넘겨준다 -->
+									<!-- clubNo는 카테고리에서 이곳 페이지 넘어올때 컨트롤로에서 담아주고 넘어오는 값이당 -->
+									<form action="/boardWrite.do?clubNo=${clubNo }" method="post"
 										enctype="multipart/form-data">
 										작성자 : <input type="text" name="boardWriter"
 											value="${sessionScope.m.memberNick }" readonly>
@@ -182,8 +177,9 @@
 										내용 :
 										<textarea rows="6" cols="88" name="boardContent"
 											style="resize: none;"></textarea>
-										<br> <input type="hidden" name="clubNo"
-											value="${clubNo }"> <input type="submit" value="등록">
+										<input type="text" name="boardCG" value="${club.clubCg }" style="display: none;">
+										<br>
+										<input type="submit" value="등록">
 									</form>
 								</div>
 								<!-- 게시물 형태 바뀐부분 -->
@@ -214,22 +210,20 @@
 									style="display: none;"></button>
 							</div>
 							<div>
-								<!-- 사진첩 -->
-								<div class="photohead">
-									<h4 style="width: 200px; margin-top: 0px; font-weight: bold;">게시글
-										등록</h4>
-									<div class="photoadd"></div>
-								</div>
-								<c:forEach items="${list }" var="board">
+								<!-- 사진첩   -->
+								<h4 style="width: 200px; margin-top: 0px; font-weight: bold;">
+										사진 게시판</h4>
 									<div class="photo-wrap">
-										<div class="userName2">${board.boardWriter }</div>
+									<c:forEach items="${list }" var="board">
+									<c:choose>
+									<c:when test="${board.filepath != null }">
 										<div class="album">
-											<img src="/resources/fileupload/postImg/${board.filepath}">
+											<img style="width: 215px; height: 194px; object-fit:contain;"src="/resources/image/clubimg/${board.filepath}">
 										</div>
-										<div class="albumcontent">${board.boardContent}</div>
-										<div class="albumdate">${board.enrollDate }</div>
+									</c:when>
+									</c:choose>
+									</c:forEach>
 									</div>
-								</c:forEach>
 							</div>
 
 							<!-- 달력 api -->
@@ -337,7 +331,7 @@
 					<div class="right1">
 						<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
 						<hr> --%>
-						<div class="commentbox" style="width: 250px; height: 30px;">클럽
+						<div class="commentbox" style="width: 280px; height: 30px;">클럽
 							멤버와 채팅하기</div>
 						<div class="chatting">
 							<div class="messageArea"></div>
@@ -351,23 +345,54 @@
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
-	<div class="allModal">
-		<!--바디처럼 전체를 감싸고있는 div-->
-		<div class="modalWrap">
-			<!--숨어있는 모달-->
-			<h2>게시물 상세보기</h2>
-			<hr>
-			<div class="userDate">
-				<div class="userImg"></div>
-				<div class="userName"></div>
-				<div class="enrollDate"></div>
+	<!-- 오늘 작업Modal -->
+	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
+        <div class="modalWrap"> <!--숨어있는 모달-->
+            <h2>게시물 상세보기</h2>
+            <hr>
+            <div class="userDate">
+            <div class="userImg"></div>
+			<div class="userName"></div>
+			<div class="enrollDate"></div>
 			</div>
-			<div class="boardTitle"></div>
-			<div class="boardComment"></div>
-			<button id="closeBtn">닫기</button>
-		</div>
-	</div>
+            <div class= "boardTitle"></div>
+			<div class= "boardComment"></div>
+			<div class="boardNo1"></div>
+			
+			<!-- 댓글달기 -->
+			<div class="commentBox" style="width: 500px; height:120px;">
+				<!-- <form action="/insertComment.do" method="post"> -->
+					<ul style="list-style: none; margin: 0; padding: 0;">
+						<li style="float:left;">
+							<img class="userImg" src="/resources/image/userPic/default.png" style="margin:30px 10px 30px 0px;" >
+						</li>
+						<li style="float:left; margin-top: 30px;">
+							
+							<textarea class="ccContent" name="ccContent" placeholder="댓글을 입력해주세요" style="width: 330px;"></textarea>
+						</li>
+						<li style="float:left; margin-top:30px">
+							<input type="hidden" name="boardNo">
+							<input type="hidden" name="ccWriter" value="${sessionScope.m.memberNick}">
+							<button onclick="insertComment();" style="margin:10px 0px 0px 10px;">등록</button>
+							<!-- <button type="submit">등록</button> -->
+							
+						</li>
+					</ul>
+				<!-- </form>	 -->
+			</div>
+ 			<%-- <c:forEach items="${list1 }" var="cmt">
+				<div class="listComment" style="width: 500px; height:100px;">
+					<div class="nameUser">${cmt.ccWriter}</div>
+					<div class="contentComment">${cmt.ccContent}</div>
+				</div>
+			</c:forEach>  --%>
+			<div class="commentView"></div>
+			<button id="closeBtn" style="display:line;">닫기</button>
+			<button onclick="boardDelete();">게시글 삭제</button><!--m.nickname==boardWriter?  -->
+			</div>
+            
+        </div>
+
 
 	<!-- Modal2 -->
 	<div class="modal fade" id="myModal" role="dialog"
@@ -737,11 +762,16 @@
 					
 			});
 		}
-		 // 작업중
+		 // 작업중 모달 상세보기 내용
 		 function modalClick(openbtn){
 			 var btnWrap = $(openbtn).parents(); // 현재 눌린 게시물의 값 추출용
 			 var target = $(".modalWrap"); // 넣을 위치 지정
-			 var boardNo = btnWrap.siblings(".boardNoTest").text();
+			 
+			 var sendBoardNo = $(".modalWrap").find("input[name=boardNo]"); // 댓글의 히든 boardNo
+			 //alert(sendBoardNo.length);
+			 var boardNo = btnWrap.siblings(".boardNoTest").text(); // boardNo1 의 값
+			 sendBoardNo.val(boardNo); // 댓글 용 보드 넘버 넣기
+			 console.log(sendBoardNo.val()); // 정상적으로 넣어진 boardNo의 값 확인 ex) 129
 			
 			/*  <div class="modalWrap"> <!--숨어있는 모달-->
 	            <h2>게시물 상세보기</h2>
@@ -761,16 +791,98 @@
 	         target.children("div").eq(0).children().eq(2).text(btnWrap.siblings(".userDate").children(".enrollDate").text());
 			 target.children("div").eq(1).text(btnWrap.siblings(".boardTitle").text());
 			 target.children("div").eq(2).text(btnWrap.siblings(".boardComment").text());
-		     $(".allModal").css("display","flex");
-		     
+			 target.children("div").eq(3).text(boardNo);
+			 
+			 //여기에 AJAX구현 (댓글 LIST 불러오기)
+			 $.ajax({
+				url : "/commentList.do",// 
+				data : {boardNo:boardNo},
+				type : "post",
+				success : function(data){ // data = 컨트롤러 리턴값 == 0 , 1
+					 console.log("댓글 수 : "+data.length);
+					   for (var i = 0; i < data.length; i++) {
+						var p = data[i]; 
+						var html = ""; //html초기화
+						
+						html += '<div class="listComment" style="width: 500px; height:80px;">';
+						html += '<div class="nameUser">'+ p.ccWriter+'</div>';
+						html +=	'<div class="contentComment">'+ p.ccContent+'</div>';
+						html +=	'</div>';
+						$(".commentView").append(html); 
+						
+						
+					}
+					   $(".allModal").css("display","flex");//위치문제?
+				}
+			});
+			 
+			
+		     //조회수 업데이트
 	     $.ajax({
 				url : "/viewUpdate.do",// boardNo에 해당하는 게시물의 조회수를 업데이트
 				data : {boardNo:boardNo},
 				type : "post",
 				success : function(data){
+				
 					}
+				
 				});
-		} 
+		}
+		 
+		 //댓글 작성 기능(댓글쓰기 기능!)--질문하기 글쓰기가 먹히질 않음
+		 function insertComment(){
+			 var target = $(".modalWrap"); // 넣을 위치 지정
+			 var ccContent = $(".modalWrap").find("textarea[name=ccContent]").val(); // 댓글의 히든 내용
+			 var ccWriter = $(".modalWrap").find("input[name=ccWriter]").val(); // 댓글의 히든 작성자
+			 var boardNo = $(".modalWrap").find("input[name=boardNo]").val(); // 댓글의 히든 boardNo
+
+			 $.ajax({
+					url : "/insertComment.do",
+					data : {ccContent:ccContent,ccWriter:ccWriter,boardNo:boardNo},
+					type : "post",
+					success : function(data){
+							if(data == 1){
+								alert("등록 성공");
+								var html = ""; //html초기화
+								
+								html += '<div class="listComment" style="width: 500px; height:100px;">';
+								html += '<div class="nameUser">'+ ccWriter+'</div>';
+								html +=	'<div class="contentComment">'+ ccContent+'</div>';
+								html +=	'</div>';
+								$(".commentView").append(html);  
+								$("cc")
+								
+							}else if(data == 0){
+								alert("등록 실패!");
+							}
+							$(".modalWrap").find("textarea[name=ccContent]").val("");
+						}
+			 });
+		 }
+		 
+		//삭제기능
+		function boardDelete(){
+			 var target = $(".modalWrap"); // 넣을 위치 지정
+			 var boardNo = target.children("div").eq(3).text();
+			 
+		 $.ajax({
+				url : "/boardDelete.do",
+				data : {boardNo:boardNo},
+				type : "post",
+				success : function(data){
+						alert("삭제성공!");
+						$(".allModal").hide();
+						location.reload();
+						
+					}
+				
+				
+				
+				
+				});
+		 }
+		 
+		 
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 
 	});

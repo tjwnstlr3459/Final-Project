@@ -348,28 +348,24 @@ select {
 .dmsList {
   margin-bottom: 30px;
 }
-.rcvDmsList, .inoutDmsList {
+.rcvDmsList {
   box-sizing: border-box;
   width: 600px;
 }
 .row {
+  border: 1px solid #cccccc;
   text-align: center;
-  border-radius: 3px;
   overflow: hidden;
   font-size: 0.9em;
   height: 28px;
   line-height: 28px;
   width: 600px;
-  padding: 8px;
-  margin-bottom: 10px;
 }
 .row > div {
   display: inline-block;
   float: left;
 }
-
 .column-name {
-  font-weight: bold;
   background-color: #cccccc;
 }
 .column-name > .dm-sender {
@@ -384,10 +380,12 @@ select {
 .dm-sender {
   width: 100px;
   padding-left: 5px;
+  border-right: 1px solid #cccccc;
 }
 .dm-content-inout {
   width: 49%;
   padding-left: 5px;
+  border-right: 1px solid #cccccc;
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -396,6 +394,7 @@ select {
 .dm-content {
   width: 59%;
   padding-left: 5px;
+  border-right: 1px solid #cccccc;
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -403,6 +402,7 @@ select {
 }
 .dm-date {
   width: 90px;
+  border-right: 1px solid #cccccc;
 }
 .dm-reply {
   width: 40px;
@@ -410,55 +410,8 @@ select {
 .dm-read,
 .dm-sr {
   width: 30px;
-}
-.listRow {	
-  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-}
-.listRow:hover {
-  background-color: #cccccc;
-  cursor:pointer
+  border-right: 1px solid #cccccc;
 }
 .listRow > .dm-reply {
   color: #19ba3f;
 }
-  .paging {
-  	margin: 0 auto;
-    display:flex;
-    justify-content: space-between;
-    width: 200px;
-    font-size: 12px;
-  }
-  .paging > a {
-    display:block;
-    color: #666;
-    box-sizing:border-box;
-    width: 20px;
-    height: 20px;
-    line-height:20px;
-    text-align: center;
-    margin: 2px;
-    border-radius: 1px;
-    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1);
-    text-decoration: none;
-  }
-  .paging > a:hover {
-    color: white;
-    background-color: #666;
-  }
-  .page, .pageDisabled, .pageThis {
-    color: #666;
-    box-sizing:border-box;
-    width: 20px;
-    height: 20px;
-    line-height:20px;
-    text-align: center;
-    margin: 2px;
-    border-radius: 1px;
-    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1);
-  }  
-  .pageDisabled {
-    color: #bbb;
-  }
-  .pageThis {
-    font-weight:bold;
-  }

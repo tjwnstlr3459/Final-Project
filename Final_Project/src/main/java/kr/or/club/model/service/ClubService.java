@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.or.category.model.vo.Category;
+
 import kr.or.club.model.dao.ClubDao;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.ClubPageData;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
-import kr.or.member.model.vo.MemberPageData;
 
 @Service
 public class ClubService {
@@ -134,6 +133,11 @@ public class ClubService {
 		cpd.setList((ArrayList<Club>) list);
 		return cpd;
 	}
+	//읽지않은 쪽지 확인
+	public int myMessage(Member m) {
+		return dao.myMessage(m);
+	}
+
 	
 	
 	/*

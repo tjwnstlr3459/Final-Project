@@ -46,5 +46,7 @@
 		<typeAlias type="kr.or.admin.model.vo.Visit" alias="visit"/>
 		<!-- 마이클럽 차트 -->
 		<typeAlias type="kr.or.club.model.vo.ClubChart" alias="cc"/>
+		<!-- 클럽 댓글 클래스 -->
+		<typeAlias type="kr.or.newclub.model.vo.ClubComment" alias="ccm"/> 
 	</typeAliases>
 </configuration>
