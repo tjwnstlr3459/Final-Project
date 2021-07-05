@@ -166,42 +166,8 @@
 	                    			</div>
                                </c:if>                                   
                             </c:forEach>
+                            ${dmNavigation }
                     	</div>
-                        
-                        <table>
-                            <tr>
-                                <th>구분</th>
-                                <th>이름</th>
-                                <th>내용</th>
-                                <th>날짜</th>
-                                <th>읽음</th>
-                            </tr>
-                            <c:forEach items="${dmList }" var="dm">
-                            	<c:if test="${not (dm.receiver == m.memberNick and dm.readStatus == 'N')}">
-                                    <tr>
-                                    	<c:choose>
-                                    		<c:when test="${dm.receiver == m.memberNick}">
-                                    			<td><i class="fas fa-reply"></i></td>
-                                    		</c:when>
-                                    		<c:otherwise>
-                                    			<td><i class="fas fa-share"></i></td>
-                                    		</c:otherwise>
-                                    	</c:choose>
-                                    	<c:choose>
-                                    		<c:when test="${dm.receiver == m.memberNick}">
-                                    			<td>${dm.sender }</td>
-                                    		</c:when>
-                                    		<c:otherwise>
-                                    			<td>${dm.receiver }</td>
-                                    		</c:otherwise>
-                                    	</c:choose>
-                                    	<td>${dm.dmContent }</td>
-		                                <td>${dm.dmDate }</td>
-		                                <td>${dm.readStatus }</td>
-		                            </tr>
-                               </c:if>                                   
-                            </c:forEach>
-                        </table>
                     </div>
                     
                 </div>
@@ -753,6 +719,52 @@
 			location.reload();
 		}	
 
+		//페이징용 함수
+		function readPaging(obj) {
+			var page = obj.innerText;
+			var user = "<c:out value='${m.memberNick}'/>";
+			$.ajax({
+				url: "/moreReadDm.do",
+				data: {page:page},
+				type: "post",
+				success: function(data) {
+					console.log(data);
+					console.log(data.dmList[0].dmNo);
+					var dmsTable = "";
+					var dmsList = $(".inoutDmsList");
+					dmsList.last().empty();
+					dmsTable += '<div class="row column-name"><div class="dm-sr">구분</div><div class="dm-sender">유저명</div>'
+						+ '<div class="dm-content-inout">내용</div><div class="dm-date">날짜</div><div class="dm-read">읽음</div>'
+						+ '<div class="dm-reply">답장</div></div>';
+					for(var i=0; i<10; i++) {						
+						dmsTable += '<div class="row listRow">';
+						if(data.dmList[i].receiver == user) {
+							dmsTable += '<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>';
+							dmsTable += '<div class="dm-sender">' + data.dmList[i].sender +'</div>';
+							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(2, ' + data.dmList[i].dmNo + ', "' + data.dmList[i].sender + '", "' + data.dmList[i].dmContent + '")">' + data.dmList[i].dmContent + '</span></div>';
+							dmsTable += '<div class="dm-date">' + data.dmList[i].dmDate + '</div>';
+							dmsTable += '<div class="dm-read">' + data.dmList[i].readStatus + '</div>';
+							dmsTable += '<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm("' + data.dmList[i].sender + '", "' + user + '")"></i></div>';
+						} else {
+							dmsTable += '<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>';
+							dmsTable += '<div class="dm-sender">' + data.dmList[i].receiver +'</div>';
+							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(3, ' + data.dmList[i].dmNo + ', "' + data.dmList[i].receiver + '", "' + data.dmList[i].dmContent + '")">' + data.dmList[i].dmContent + '</span></div>';
+							dmsTable += '<div class="dm-date">' + data.dmList[i].dmDate + '</div>';
+							dmsTable += '<div class="dm-read">' + data.dmList[i].readStatus + '</div>';
+							dmsTable += '<div class="dm-reply"></div>'
+						}
+						dmsTable += '</div>';
+						dmsList.html(dmsTable);
+					}
+					dmsList.next().html(data.allPaging);
+					
+				},
+				error: function() {
+					console.log("error");
+				}
+				
+			})
+		}
 		
 		
 		//친구 메뉴
