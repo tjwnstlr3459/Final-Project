@@ -116,5 +116,9 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int boardDelete(int boardNo) {
 			return dao.boardDelete(boardNo);
 		}
+		//클럽 추방
+		public int deleteMember(int cmNo) {
+			return dao.deleteMember(cmNo);
+		}
 }
 

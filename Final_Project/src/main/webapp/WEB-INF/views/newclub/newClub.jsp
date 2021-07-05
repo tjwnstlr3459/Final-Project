@@ -117,7 +117,10 @@
 				<div class=contain>
 					<div class="left1">
 						<div class="profile">
-							<div class="clubimg"><img style="height: 100%" src="/resources/clubImgUpload/${club.filePath }"></div>
+							<div class="clubimg">
+								<img style="height: 100%"
+									src="/resources/clubImgUpload/${club.filePath }">
+							</div>
 							<div class="clubTitleMent">클럽소개</div>
 							<div class="clubinfo2">
 								<div class="clubnotice">${club.clubIntro}</div>
@@ -127,33 +130,40 @@
 								<div class="memberNum">멤버 수</div>
 								<div class="memberNum">초대하기</div>
 							</div>
-							
+
 							<div style="display: flex; justify-content: center;">
 								<c:choose>
-									
+
 									<c:when test="${sessionScope.m == null }">
-									<!-- 로그인 안되어있다면 -->
-										<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
-											onclick="location.href='/loginFrm.do'">로그인하기</button>
+										<!-- 로그인 안되어있다면 -->
+										<button type="button" class="btn btn-info btn-lg"
+											style="padding: 5px" onclick="location.href='/loginFrm.do'">로그인하기</button>
 									</c:when>
-									
+
 									<c:otherwise>
-										<c:set var="num" value="1"/><!-- num 변수선언해서, 회원의 clubNo와 현재 페이지 clubNo를 비교해서 foreach조건문을 위한 변수 -->
-										<c:forEach items="${memberClubNo}" var="l"> <!-- 회원이 속한 클럽넘버들을 list에 담아서 비교 -->
-											<c:if test="${l.clubNo eq clubNo && num eq 1 }"><!-- 회원이 속한 clubNo와 현재페이지clubNo가 같으면서 변수가 1이라면 -->
-												<button type="button" class="btn btn-info btn-lg" style="padding: 5px">어서오세요</button>
-													<c:set var="num" value="2"/><!-- if문을 탄다면 num을 2로 선언해서 다음 if문 안타게하기 -->
+										<c:set var="num" value="1" />
+										<!-- num 변수선언해서, 회원의 clubNo와 현재 페이지 clubNo를 비교해서 foreach조건문을 위한 변수 -->
+										<c:forEach items="${memberClubNo}" var="l">
+											<!-- 회원이 속한 클럽넘버들을 list에 담아서 비교 -->
+											<c:if test="${l.clubNo eq clubNo && num eq 1 }">
+												<!-- 회원이 속한 clubNo와 현재페이지clubNo가 같으면서 변수가 1이라면 -->
+												<button type="button" class="btn btn-info btn-lg"
+													style="padding: 5px">어서오세요</button>
+												<c:set var="num" value="2" />
+												<!-- if문을 탄다면 num을 2로 선언해서 다음 if문 안타게하기 -->
 											</c:if>
-											
-											<c:if test="${l.clubNo ne clubNo && num eq 1}"><!-- 클럽이 속한 clubNo가 없으면서 num가 1이라면 -->
-												<button type="button" class="btn btn-info btn-lg" style="padding: 5px"
-													data-toggle="modal" data-target="#myModal">클럽 가입하기</button>
-													<c:set var="num" value="2"/>
+
+											<c:if test="${l.clubNo ne clubNo && num eq 1}">
+												<!-- 클럽이 속한 clubNo가 없으면서 num가 1이라면 -->
+												<button type="button" class="btn btn-info btn-lg"
+													style="padding: 5px" data-toggle="modal"
+													data-target="#myModal">클럽 가입하기</button>
+												<c:set var="num" value="2" />
 											</c:if>
 										</c:forEach>
 									</c:otherwise>
-									
-									
+
+
 								</c:choose>
 							</div>
 						</div>
@@ -177,9 +187,9 @@
 										내용 :
 										<textarea rows="6" cols="88" name="boardContent"
 											style="resize: none;"></textarea>
-										<input type="text" name="boardCG" value="${club.clubCg }" style="display: none;">
-										<br>
-										<input type="submit" value="등록">
+										<input type="text" name="boardCG" value="${club.clubCg }"
+											style="display: none;"> <br> <input
+											type="submit" value="등록">
 									</form>
 								</div>
 								<!-- 게시물 형태 바뀐부분 -->
@@ -212,18 +222,20 @@
 							<div>
 								<!-- 사진첩   -->
 								<h4 style="width: 200px; margin-top: 0px; font-weight: bold;">
-										사진 게시판</h4>
-									<div class="photo-wrap">
+									사진 게시판</h4>
+								<div class="photo-wrap">
 									<c:forEach items="${list }" var="board">
-									<c:choose>
-									<c:when test="${board.filepath != null }">
-										<div class="album">
-											<img style="width: 215px; height: 194px; object-fit:contain;"src="/resources/image/clubimg/${board.filepath}">
-										</div>
-									</c:when>
-									</c:choose>
+										<c:choose>
+											<c:when test="${board.filepath != null }">
+												<div class="album">
+													<img
+														style="width: 215px; height: 194px; object-fit: contain;"
+														src="/resources/image/clubimg/${board.filepath}">
+												</div>
+											</c:when>
+										</c:choose>
 									</c:forEach>
-									</div>
+								</div>
 							</div>
 
 							<!-- 달력 api -->
@@ -265,7 +277,9 @@
 													<th>${l.intro}</th>
 													<td>${l.cmDate }</td>
 													<td style="text-align: center">쪽지</td>
-													<td style="text-align: center">강퇴</td>
+													<td>
+														<button type="button" onclick="blackMember(${l.cmNo })">추방</button>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -320,8 +334,8 @@
 										</div>
 									</div>
 									<div class="clubModifyDelete">
-										<div type="button" onclick="clubInfoModify()">수정</div>
-										<div type="button" onclick="location.href=''">모임폐쇄</div>
+										<div onclick="clubInfoModify()">수정</div>
+										<div onclick="location.href=''">모임폐쇄</div>
 									</div>
 								</div>
 							</div>
@@ -346,52 +360,54 @@
 		</div>
 	</div>
 	<!-- 오늘 작업Modal -->
-	<div class="allModal"> <!--바디처럼 전체를 감싸고있는 div-->
-        <div class="modalWrap"> <!--숨어있는 모달-->
-            <h2>게시물 상세보기</h2>
-            <hr>
-            <div class="userDate">
-            <div class="userImg"></div>
-			<div class="userName"></div>
-			<div class="enrollDate"></div>
+	<div class="allModal">
+		<!--바디처럼 전체를 감싸고있는 div-->
+		<div class="modalWrap">
+			<!--숨어있는 모달-->
+			<h2>게시물 상세보기</h2>
+			<hr>
+			<div class="userDate">
+				<div class="userImg"></div>
+				<div class="userName"></div>
+				<div class="enrollDate"></div>
 			</div>
-            <div class= "boardTitle"></div>
-			<div class= "boardComment"></div>
+			<div class="boardTitle"></div>
+			<div class="boardComment"></div>
 			<div class="boardNo1"></div>
-			
+
 			<!-- 댓글달기 -->
-			<div class="commentBox" style="width: 500px; height:120px;">
+			<div class="commentBox" style="width: 500px; height: 120px;">
 				<!-- <form action="/insertComment.do" method="post"> -->
-					<ul style="list-style: none; margin: 0; padding: 0;">
-						<li style="float:left;">
-							<img class="userImg" src="/resources/image/userPic/default.png" style="margin:30px 10px 30px 0px;" >
-						</li>
-						<li style="float:left; margin-top: 30px;">
-							
-							<textarea class="ccContent" name="ccContent" placeholder="댓글을 입력해주세요" style="width: 330px;"></textarea>
-						</li>
-						<li style="float:left; margin-top:30px">
-							<input type="hidden" name="boardNo">
-							<input type="hidden" name="ccWriter" value="${sessionScope.m.memberNick}">
-							<button onclick="insertComment();" style="margin:10px 0px 0px 10px;">등록</button>
-							<!-- <button type="submit">등록</button> -->
-							
-						</li>
-					</ul>
+				<ul style="list-style: none; margin: 0; padding: 0;">
+					<li style="float: left;"><img class="userImg"
+						src="/resources/image/userPic/default.png"
+						style="margin: 30px 10px 30px 0px;"></li>
+					<li style="float: left; margin-top: 30px;"><textarea
+							class="ccContent" name="ccContent" placeholder="댓글을 입력해주세요"
+							style="width: 330px;"></textarea></li>
+					<li style="float: left; margin-top: 30px"><input type="hidden"
+						name="boardNo"> <input type="hidden" name="ccWriter"
+						value="${sessionScope.m.memberNick}">
+						<button onclick="insertComment();"
+							style="margin: 10px 0px 0px 10px;">등록</button> <!-- <button type="submit">등록</button> -->
+
+					</li>
+				</ul>
 				<!-- </form>	 -->
 			</div>
- 			<%-- <c:forEach items="${list1 }" var="cmt">
+			<%-- <c:forEach items="${list1 }" var="cmt">
 				<div class="listComment" style="width: 500px; height:100px;">
 					<div class="nameUser">${cmt.ccWriter}</div>
 					<div class="contentComment">${cmt.ccContent}</div>
 				</div>
 			</c:forEach>  --%>
 			<div class="commentView"></div>
-			<button id="closeBtn" style="display:line;">닫기</button>
-			<button onclick="boardDelete();">게시글 삭제</button><!--m.nickname==boardWriter?  -->
-			</div>
-            
-        </div>
+			<button id="closeBtn" style="display: line;">닫기</button>
+			<button onclick="boardDelete();">게시글 삭제</button>
+			<!--m.nickname==boardWriter?  -->
+		</div>
+
+	</div>
 
 
 	<!-- Modal2 -->
@@ -450,7 +466,8 @@
 					<div>
 						<div>시작날 :</div>
 						<div>
-							<input type="date" name="calStart" onchange="changeStart()" value="">
+							<input type="date" name="calStart" onchange="changeStart()"
+								value="">
 						</div>
 					</div>
 					<div>
@@ -484,6 +501,25 @@
 		</div>
 	</div>
 	<script>
+	//클럽 추방
+	function blackMember(obj){	
+		$.ajax({
+			url:"/MemberBlack.do",
+			data : {
+				cmNo : obj
+			},
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("추방되었습니다.");
+					//수락하고 다시 컨트롤러로 보내서 다시 로드할때 3번페이지가 바로 보일수있게
+					location.href="/newClub.do?clubNo=${clubNo}&menuNo=3";
+				}else{
+					alert("추방 실패");
+				}
+			}
+		})
+	}
 	//클럽 소개글 수정
 	function clubInfoModify(){
 		var clubNo = ${clubNo }
@@ -509,7 +545,7 @@
 	function calendarModal(){
 		var Calendar={
 			clubNo : $("input[name=clubNo]").val(),
-			calTitle : $("input[name=calTitle]").val(),
+			calTitle : f$("input[name=calTitle]").val(),
 			calStart : $("input[name=calStart]").val(),
 			calEnd : $("input[name=calEnd]").val(),
 			calBack : $("input[name=calBack]").val(),
@@ -551,6 +587,7 @@
 			}
 		})
 	}
+	
 	//클럽 가입 거절
 	function refusal(obj){	//클릭한 게시물의 번호값 가져오기
 		var clubNo = ${clubNo }
@@ -875,14 +912,8 @@
 						location.reload();
 						
 					}
-				
-				
-				
-				
 				});
 		 }
-		 
-		 
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 
 	});

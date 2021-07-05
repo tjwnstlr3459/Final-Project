@@ -205,6 +205,12 @@ WHERE CLUB_NO=#{clubNo}
 <select id="selectMemberClubNo" parameterType="m" resultType="c">
 	select club_NO as clubNo from club_member where club_nick=#{memberNick}
 </select>
+
+ <!-- 클럽인원 추방 -->
+<delete id="deleteMember" parameterType="int">
+DELETE FROM CLUB_MEMBER WHERE CM_NO= #{cmNo}
+</delete>
+
 </mapper>
 
 
