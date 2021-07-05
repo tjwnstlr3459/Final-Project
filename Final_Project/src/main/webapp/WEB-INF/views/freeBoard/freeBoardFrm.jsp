@@ -19,6 +19,7 @@
 
 .making_feed_wrap {
 	margin: 50px 600px 0px 600px;
+	width: 900px;
 }
 
 input[type=text], select {
@@ -92,12 +93,12 @@ div.formTag {
 					class="form-control" type="file" id="formFile" name="files"
 					onchange="loadImg(this)"><br>
 				<br>
-				<label for="fbWriter">WRITER</label>
+				<label for="fbWriter">WRITER</label><br>
 				<input type="text" id="fbWriter" name="fbWriter"
-					value="${sessionScope.m.memberNick }" readonly> <label
-					for="fbContent">CONTENT</label>
-				<textarea id="fbContent" name="fbContent" cols='85' rows='10' style="text-align:left; resize:none; outline:none; border:none;"></textarea>
-				<label for="type">CATEGORY</label> <select id="type" name="type">
+					value="${sessionScope.m.memberNick }" readonly style='width:100px;'><br> 
+					<label for="fbContent">CONTENT</label>
+				<br><textarea id="fbContent" name="fbContent" cols='85' rows='10' style="text-align:left; resize:none; outline:none; border:none;"></textarea><br>
+				<label for="type">CATEGORY</label><br> <select id="type" name="type" style='width:150px;'>
 					<option value="4">스포츠</option>
 					<option value="5">음악</option>
 					<option value="6">여행</option>
@@ -106,7 +107,7 @@ div.formTag {
 					<option value="9">영화</option>
 					<option value="10">술</option>
 					<option value="11">음식</option>
-				</select> 
+				</select> <br>
 				<input type="submit" value="MAKE FEED">
 				<input type="reset" value="RESET">
 			</form>

@@ -13,15 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
 import kr.or.board.model.vo.Board;
 import kr.or.category.model.dao.CategoryDao;
 import kr.or.club.model.service.ClubService;
 import kr.or.club.model.vo.ClubBoard;
+import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -155,6 +159,13 @@ public class ClubController {
       
       return "common/msg";
    }
+	//마이클럽 차트(회원이 속한 클럽별 게시물갯수)
+	@ResponseBody
+	@RequestMapping(value = "/clubPostCount.do", produces="application/json;charset=utf-8")
+	public String clubPostCount(@SessionAttribute(required = false) Member m){
+		ArrayList<ClubChart> list = service.selectClubPostCount(m);
+		return new Gson().toJson(list);
+		}
 	
 	/*
 	 * //마이클럽 날짜별 조건 게시물 불러오기
@@ -242,6 +253,8 @@ public class ClubController {
 			System.out.println(c.toString());
 			return "common/msg";
 		}
+	
+	
 	}
 
 

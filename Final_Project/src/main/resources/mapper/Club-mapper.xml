@@ -115,6 +115,16 @@ insert into club_board values(
 	where board_no=#{boardNo}
 </update>
 
+<!-- 마이클럽 차트(회원이 속한 클럽별 게시물갯수) -->
+<select id="selectClubPostCount" parameterType="m" resultType="cc">
+SELECT 
+    CLUB_NO,
+    COUNT(*)as clubPostCount,
+    (SELECT CLUB_NAME FROM CLUB C WHERE C.CLUB_NO = CB.CLUB_NO) AS CLUBNAME  
+FROM CLUB_BOARD CB 
+WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{memberNick}) GROUP BY CLUB_NO
+
+</select>
 <select id="viewClubList" parameterType="int" resultType="c">
 	SELECT
 		CLUB_NO as clubNo,

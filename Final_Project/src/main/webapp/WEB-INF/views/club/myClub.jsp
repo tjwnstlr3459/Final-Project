@@ -69,7 +69,7 @@
 					<hr width="95%" style="margin: 0 auto" />
 					<div>읽지 않은 메세지 1 건</div>
 					<img src="/resources/image/icons/tag.png">
-					<span>#${m.hobby1 }</span> <span>#${m.hobby2 }</span> <span>#${m.hobby3}</span>
+					<span>#${m.ho1 }</span> <span>#${m.ho2 }</span> <span>#${m.ho3}</span>
 						
 					<!-- <div>#여행 #요리 #음식</div> -->
 				</div>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 				</c:forEach>
-				 <canvas id="myChart" width="400" height="400"></canvas>
+				 <canvas id="myChart" width="400px" height="600px" style="margin-top:20px"></canvas>
 			</div>
 			
 			<div class="rightCon" >
@@ -223,6 +223,9 @@
 }
 </style>
 <script>
+$(function(){
+	myClubChart();	//유저가 속한 클럽들 게시물 차트 실행문
+})
 var changeDate = 0;
 /* $(".postsCheck").click(function() {
 	$(".postModal").css("display", "block");
@@ -356,25 +359,44 @@ function more(start) {//더보기 클릭시
 		}
 	});
 }
+function myClubChart(){
+	$.ajax({
+		url : "/clubPostCount.do",
+		type : "post",
+		success : function(data){
+			console.log(data);
+			myChart(data);				//회원들이 선택한 취미 차트
+			
+		}
+	});
+}
+
 //회원 취미 선택 통계
 function myChart(data){
+	console.log(data);
+    var list = new Array();
+    var post = new Array();
+    
+    for (var i = 0; i < data.length; i++) {
+		list.push(data[i].clubName);
+		post.push(data[i].clubPostCount)
+		console.log(list);
+	}
+    
 	var myChart = new Chart(document.getElementById('myChart'), {
         type: "pie",
         data: {
-        	labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        	labels: list,
         	  datasets: [
         	    {
         	      label: 'Dataset 1',
-        	      data: [1,2,3,4,5],
+        	      data: [50,70],
         	      backgroundColor:[
                 	'rgba(0, 0, 255, 0.3)',
                 	'rgba(255, 0, 255, 0.3)',
                     'rgba(76, 216, 153, 0.5)',
                     'rgba(0, 255, 255, 0.3)',
                     'rgba(255, 0, 0, 0.3)',
-                    'rgba(255,102,204,0.3)',
-                    'rgba(204,255,51,0.3)',
-                    'rgba(204,255,255,0.3)'
 				],
         	    }
         	  ]
@@ -383,17 +405,37 @@ function myChart(data){
             responsive: true,
             plugins: {
               legend: {
-                position: 'right',
+                position: 'top',
               },
               title: {
                 display: true,
-                text: 'Chart.js Pie Chart'
+                text: '회원님의 모임게시물 통계'
               }
             }
         }
     });
 }
-myChart();
+
+
+
 </script>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
