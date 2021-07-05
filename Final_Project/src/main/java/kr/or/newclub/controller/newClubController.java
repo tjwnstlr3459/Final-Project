@@ -54,6 +54,9 @@ public class newClubController {
 		//클럽정보 출력
 		Club clubInfo = service.selectClub(clubNo);
 		model.addAttribute("club", clubInfo);
+		//로그인한 회원이 속한 클럽 넘버 알아내기
+		ArrayList<Club> memberClubNo = service.selectMemberClubNo(m);
+		model.addAttribute("memberClubNo", memberClubNo);
 		return "newclub/newClub";
 	}
 	//달력리스트 가져오기

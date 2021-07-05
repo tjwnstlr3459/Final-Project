@@ -26,6 +26,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 
 import kr.or.category.model.vo.Category;
+import kr.or.club.model.vo.Club;
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
 import kr.or.directMessage.model.vo.DirectMessageData;
@@ -62,6 +63,7 @@ public class MemberController {
 	@RequestMapping(value="/login.do")
 		public String login(Member m, HttpSession session, Model model) {		
 			Member member = service.selectOneMember(m);
+			
 			Restriction rest = service.selectOneRestriction(m.getEmail());
 			if(member != null && rest == null) {
 				int result = service.changeLastDate(m);
@@ -77,6 +79,7 @@ public class MemberController {
 			} else {
 				model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
 				model.addAttribute("loc","/loginFrm.do");
+				
 				return "common/msg";
 			}			
 						

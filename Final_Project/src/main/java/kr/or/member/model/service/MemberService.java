@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.category.model.dao.CategoryDao;
 import kr.or.category.model.vo.Category;
+import kr.or.club.model.vo.Club;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.FriendsData;
@@ -289,5 +290,4 @@ public class MemberService {
 			return 0;
 		}
 	}
-
 }

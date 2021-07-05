@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.Club;
+import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.vo.Apply;
 import kr.or.newclub.model.vo.Calendar;
 import kr.or.newclub.model.vo.ClubMember;
@@ -116,6 +117,11 @@ public class newClubDao {
 	//클럽 소개글 수정
 	public int clubIntroModify(HashMap<Object, Object> map) {
 		return session.update("newclub.clubIntroModify",map);
+	}
+
+	public ArrayList<Club> selectMemberClubNo(Member m) {
+		List<Club> list = session.selectList("newclub.selectMemberClubNo",m);
+		return (ArrayList<Club>)list;
 	}
 
 }

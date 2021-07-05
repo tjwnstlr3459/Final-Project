@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Friends;
 import kr.or.member.model.vo.Member;
 import kr.or.restriction.model.vo.Restriction;
@@ -109,6 +110,7 @@ public class MemberDao {
 	public int insertDestroy() {
 		return sqlSession.insert("member.insertDestroy");
 	}
+
 
 
 }
