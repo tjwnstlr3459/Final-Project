@@ -146,4 +146,12 @@
 	<update id="updateMember" parameterType="m">
 		update member set member_nick=#{memberNick}, gender=#{gender}, address=#{address}, intro=#{intro}, hobby1=#{hobby1}, hobby2=#{hobby2}, hobby3=#{hobby3}, age=#{age}, filename=#{filename}, filepath=#{filepath} where email=#{email}
 	</update>
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMemberByUser" parameterType="m">
+		delete from member where email=#{email} and member_pw=#{memberPw}
+	</delete>
+	<!-- 탈퇴 테이블 insert -->
+	<insert id="insertDestroy">
+		insert into destroy values (des_seq.nextval, to_char(sysdate, 'YYYY-MM-DD'), 'M')
+	</insert>
 </mapper>

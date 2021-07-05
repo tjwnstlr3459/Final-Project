@@ -276,5 +276,17 @@ public class MemberService {
 	public int updatePwMember(Member m) {
 		return dao.updatePw(m);
 	}
+	
+	//회원 탈퇴
+	@Transactional
+	public int deleteMember(Member m) {
+		int deleteResult = dao.deleteMemer(m);
+		int insertResult = dao.insertDestroy();
+		if(deleteResult > 0 && insertResult > 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 
 }
