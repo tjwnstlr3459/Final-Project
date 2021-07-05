@@ -145,11 +145,13 @@ DELETE FROM INVITE_APPLY WHERE INVITE_NO=#{listNo} AND INVITE_CN=#{clubNo}
 
 <update id="viewUpdate" parameterType="int">
 UPDATE CLUB_BOARD SET BOARD_VIEWS=BOARD_VIEWS+1 WHERE BOARD_NO= #{boardNo}
-
-
 </update>
 
-
+<!-- 게시글 삭제 -->
+<delete id="boardDelete" parameterType="int">
+	delete from club_board where board_no=#{boardNo}
+	
+</delete>
 
 
 </mapper>

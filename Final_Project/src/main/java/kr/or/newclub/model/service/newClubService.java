@@ -86,6 +86,11 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int viewUpdate(int boardNo) {
 			return dao.viewUpdate(boardNo);
 		}
+		//게시글 삭제
+		@Transactional
+		public int boardDelete(int boardNo) {
+			return dao.boardDelete(boardNo);
+		}
 
 }
 
