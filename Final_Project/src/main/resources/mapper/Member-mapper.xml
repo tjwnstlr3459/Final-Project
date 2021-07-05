@@ -20,7 +20,34 @@
 			   enroll_date as enrollDate,
 			   last_date as lastDate,
 			   age,
-			   join_method as joinMethod
+			   join_method as joinMethod,
+			   CASE HOBBY1 
+			        WHEN 4 THEN '스포츠'
+			        WHEN 5 THEN '음악'
+			        WHEN 6 THEN '여행'
+			        WHEN 7 THEN '자연'
+			        WHEN 8 THEN '게임'
+			        WHEN 9 THEN '영화'
+			        WHEN 10 THEN '술'
+			        WHEN 11 THEN '음식' END AS ho1,
+			    CASE HOBBY2 
+			        WHEN 4 THEN '스포츠'
+			        WHEN 5 THEN '음악'
+			        WHEN 6 THEN '여행'
+			        WHEN 7 THEN '자연'
+			        WHEN 8 THEN '게임'
+			        WHEN 9 THEN '영화'
+			        WHEN 10 THEN '술'
+			        WHEN 11 THEN '음식' END AS ho2,
+			    CASE HOBBY3 
+			        WHEN 4 THEN '스포츠'
+			        WHEN 5 THEN '음악'
+			        WHEN 6 THEN '여행'
+			        WHEN 7 THEN '자연'
+			        WHEN 8 THEN '게임'
+			        WHEN 9 THEN '영화'
+			        WHEN 10 THEN '술'
+			        WHEN 11 THEN '음식' END AS ho3
 		from member 
 		<if test="email != null">
 			where email = #{email} 

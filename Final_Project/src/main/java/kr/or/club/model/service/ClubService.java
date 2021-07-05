@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.club.model.dao.ClubDao;
 import kr.or.club.model.vo.ClubBoard;
+import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -56,8 +57,16 @@ public class ClubService {
 		}
 		return result;
 	}
+	//마이클럽 차트(회원이 속한 클럽별 게시물갯수)
+	public ArrayList<ClubChart> selectClubPostCount(Member m) {
+		List<ClubChart> list =dao.selectClubPostCount(m);
+		return (ArrayList<ClubChart>)list;
+	}
 
-	//영범이구역 뿌잉뿌잉
+	
+		
+		
+		//영범이구역 뿌잉뿌잉
 	public ArrayList<Club> viewClubList(int cgNo) {
 		List<Club> ybClubList = dao.viewClubList(cgNo);
 		return (ArrayList<Club>)ybClubList;
@@ -72,6 +81,7 @@ public class ClubService {
 		int result = dao.createClub(c);
 		return result;
 	}
+	
 	
 	/*
 	 * //마이클럽 날짜별 게시물 조회 public ArrayList<ClubBoard> selectPostList(Member m, int

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.club.model.vo.ClubBoard;
+import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
@@ -58,6 +59,11 @@ public class ClubDao {
 	public int insertFile(ClubBoard f) {
 		return session.update("club.insertFile",f);
 	}
+	//마이클럽 차트(회원이 속한 클럽별 게시물갯수)
+	public List<ClubChart> selectClubPostCount(Member m) {
+		return session.selectList("club.selectClubPostCount",m);
+	}
+	
 	
 	public List<Club> viewClubList(int cgNo) {
 		List ybClubList = session.selectList("club.viewClubList",cgNo);
@@ -72,6 +78,9 @@ public class ClubDao {
 	public int createClub(Club c) {
 		return session.insert("club.createClub",c);
 	}
+
+
+	
 	
 	
 	
