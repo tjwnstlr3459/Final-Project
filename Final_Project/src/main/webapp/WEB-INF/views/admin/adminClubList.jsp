@@ -81,13 +81,13 @@
                         <table class="list userList">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" id="allCheck"></th><th>번호</th><th>카테고리</th><th>클럽명</th><th>개설자</th><th>제재</th><th>개설일</th><th>최종활동일</th>
+                                    <th>번호</th><th>카테고리</th><th>클럽명</th><th>개설자</th><th>제재</th><th>개설일</th><th>최종활동일</th>
                                 </tr>
                             </thead>
                             <tbody>
                             	<c:forEach items="${list }" var="c">
 	                                <tr>
-	                                    <td><input type="checkbox" class="checkClub"></td><td>${c.sort }</td><td>${c.cgName }</td><td>${c.clubName }</td><td>${c.clubOpener }</td><td>${c.warningCount }</td><td>${c.enrollDate }</td><td>${c.lastDate }</td>
+	                                    <td>${c.sort }</td><td>${c.cgName }</td><td>${c.clubName }</td><td>${c.clubOpener }</td><td>${c.warningCount }</td><td>${c.enrollDate }</td><td>${c.lastDate }</td>
 	                                    <td>
 	                                    	<button>경고</button>
 	                                    	<c:if test="${sessionScope.m.grade eq 0 }">

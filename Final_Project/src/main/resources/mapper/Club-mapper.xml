@@ -165,7 +165,7 @@ WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{memberNick}) 
 		where club_name like '%'||#{keyword}||'%'
 	</if>
 	<if test="keyword != '' and category eq 'hobby'">
-		where club_cg in (seelect cg_no from category where cg_name like '%'||#{keyword}||'%') 
+		where club_cg in (select cg_no from category where cg_name like '%'||#{keyword}||'%') 
 	</if>
 	 order by
 	<choose>
