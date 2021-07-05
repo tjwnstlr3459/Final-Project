@@ -1,6 +1,28 @@
 p {
   margin:0;
 }
+input,
+textarea {
+  width: 300px;
+  height: 35px;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-bottom: 3px;
+}
+input[type="submit"], a {
+  display: inline-block;
+  width: 300px;
+  height: 35px;
+  line-height: 35px;
+  color: white;
+  font-weight: bold;
+  background-color: #ec523f;
+  border: 0;
+  margin-bottom: 3px;
+}
+a {
+  text-decoration: none;
+}
 .container {
   text-align: center;
   margin-top: 50px;
@@ -9,7 +31,6 @@ p {
 .message {
   width: 700px;
   margin: 0 auto;
-  text-align: left;
   margin-top:20px;
   margin-bottom:30px;
 }
@@ -23,7 +44,6 @@ p {
 }
 .rest-table {
 	width: 700px;
-	text-align:left;
 	margin: 0 auto;
 }
 .title {
