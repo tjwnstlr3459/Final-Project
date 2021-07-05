@@ -22,7 +22,11 @@ public class Member {
 	private String lastDate;
 	private int age;
 	private int joinMethod;
-	//db에서 정렬 되어오는 rnum
+	//DB에서 정렬 되어오는 rnum
 	private int sort;
+	//HOBBY를 숫자에서 문자로
+	private String ho1;
+	private String ho2;
+	private String ho3;
 
 }
