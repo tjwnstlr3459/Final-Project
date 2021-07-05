@@ -56,6 +56,12 @@ public class newClubController {
 		model.addAttribute("club", clubInfo);
 		//로그인한 회원이 속한 클럽 넘버 알아내기
 		ArrayList<Club> memberClubNo = service.selectMemberClubNo(m);
+		
+		if(memberClubNo.size() == 0) {
+			Club clubNull = new Club();
+			clubNull.setClubNo(-1);
+			memberClubNo.add(clubNull);
+		}
 		model.addAttribute("memberClubNo", memberClubNo);
 		return "newclub/newClub";
 	}
@@ -136,7 +142,7 @@ public class newClubController {
 	@Transactional
 	@RequestMapping(value = "/boardWrite.do")
 	// jsp이름이랑 같아야함//3개받아오고(제목,내용,작성자등)/파일경로가지고오기)
-	public String boardWrite(clubBoard b, MultipartFile files[], HttpServletRequest request, Model model) {
+	public String boardWrite(int boardCG,int clubNo,clubBoard b, MultipartFile files[], HttpServletRequest request, Model model) {
 		// files이름 주의! input에 name과 달라야함
 		// 파일 목록을 저장할 리스트 생성
 		// 같은 클래스명이라 밑에 처럼 길게 나옴
@@ -216,7 +222,7 @@ public class newClubController {
 		} else {
 			model.addAttribute("msg", "등록실패");
 		}
-		model.addAttribute("loc", "/newClub.do?clubNo=38");
+		model.addAttribute("loc", "/newClub.do?clubNo="+clubNo);
 
 		return "common/msg";
 	}

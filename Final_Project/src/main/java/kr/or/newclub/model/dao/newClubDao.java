@@ -36,7 +36,8 @@ public class newClubDao {
 	}
 	//게시물 등록
 	public int inserBoard(clubBoard b) {
-		return session.insert("newclub.insertBoard", b);
+		
+		return session.insert("newclub.insertBoard",b);
 	}
 	/*
 	 * String query =

@@ -24,8 +24,8 @@
 		from CLUB_BOARD WHERE CLUB_NO=#{clubNo}
 </select>
 <select id="boardMore" parameterType="map" resultType="n">
-	SELECT 
-rnum,
+SELECT 
+   rnum,
    BOARD_NO as boardNo,
    CLUB_NO as clubNo,
    BOARD_CG as boardCg,
@@ -39,7 +39,7 @@ rnum,
    ENROLL_DATE as enrollDate
 FROM
 (SELECT ROWNUM AS RNUM, N.* FROM
-(SELECT * FROM club_board WHERE CLUB_NO=38 ORDER BY BOARD_NO DESC)N) where RNUM BETWEEN #{start} AND #{end}
+(SELECT * FROM club_board WHERE CLUB_NO=#{clubNo} ORDER BY BOARD_NO DESC)N) where RNUM BETWEEN #{start} AND #{end}
 <!-- 클럽보드에서 38번을 순서대로찾아서 그중 최근거 1~3을 찾음 -->
 </select>
 
@@ -48,7 +48,7 @@ FROM
 insert into club_board values(
     CB_SEQ.NEXTVAL,
     #{clubNo},
-    5,
+    #{boardCG},
     #{boardWriter},
     #{boardTitle},
     #{boardContent},
