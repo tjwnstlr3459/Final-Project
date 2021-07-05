@@ -16,4 +16,7 @@ public class Club {
 	private String enrollDate;
 	private String lastDate;
 	private int warningCount;
+	//관리자 list 뽑을 때 쓰는 변수
+	private int sort;
+	private String cgName;
 }

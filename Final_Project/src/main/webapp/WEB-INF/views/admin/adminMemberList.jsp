@@ -91,7 +91,7 @@
                             	<c:forEach items="${list }" var="m" varStatus="i">
                             	<c:if test="${m.grade eq 2 && m.grade != 3}">
 	                                <tr>
-	                                    <td><input type="checkbox" class="checks" name="memberNo" value="${m.memberNo }"></td><td>${m.sort }</td><td>${m.email }</td><td>${m.memberNick }</td><td>${m.hobby1 }</td><td>${m.hobby2 }</td><td>${m.hobby3 }</td>
+	                                    <td><input type="checkbox" class="checks" name="memberNo" value="${m.memberNo }"></td><td>${m.sort }</td><td>${m.email }</td><td>${m.memberNick }</td><td>${m.ho1 }</td><td>${m.ho2 }</td><td>${m.ho3 }</td>
 	                                    <td>
                                     	<c:choose>
                                     		<c:when test="${m.grade == 0 }">쵝오 관리자</c:when>
@@ -112,7 +112,7 @@
                             </tbody>
                             <tfoot>
                             	<tr>
-                            	<th colspan="12" style="height:30px;">${navigation }</th>
+                            		<th colspan="12" style="height:30px;">${navigation }</th>
                             	</tr>
                             </tfoot>
                         </table>

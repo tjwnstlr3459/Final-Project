@@ -80,6 +80,16 @@ public class ClubDao {
 	}
 
 
+	public int clubCount() {
+		return session.selectOne("club.clubCount");
+	}
+
+
+	public List selectAllClub(HashMap<String, Object> se) {
+		return session.selectList("club.selectAllClub",se);
+	}
+
+
 	
 	
 	

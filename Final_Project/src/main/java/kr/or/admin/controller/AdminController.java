@@ -31,6 +31,8 @@ import kr.or.admin.model.vo.AdminCount;
 import kr.or.admin.model.vo.DestroyMemberCountMonth;
 import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
+import kr.or.club.model.service.ClubService;
+import kr.or.club.model.vo.ClubPageData;
 import kr.or.member.model.vo.Member;
 
 
@@ -39,6 +41,8 @@ import kr.or.member.model.vo.Member;
 public class AdminController {
 	@Autowired
 	private AdminService service;
+	@Autowired
+	private ClubService cService;
 	
 
 	//관리자 문의/신고 이동
@@ -53,7 +57,12 @@ public class AdminController {
 //	}
 	//관리자 모임목록 이동
 	@RequestMapping(value="/adminClubList.do")
-	public String adminClubList() {
+	public String adminClubList(int page, int sort, String category, String keyword, Model model) {
+		ClubPageData cpd = cService.selectAllClub(page, sort, category, keyword);
+		model.addAttribute("navigation", cpd.getNavigation());
+		model.addAttribute("list",cpd.getList());
+		model.addAttribute("sort",sort);
+		model.addAttribute("category",category);
 		return "admin/adminClubList";
 	}
 	//관리자 제재목록 이동

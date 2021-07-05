@@ -158,7 +158,27 @@ WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{memberNick}) 
 		0
 	)
 </insert>
-
+<!-- 전체클럽 select -->
+<select id="selectAllClub" parameterType="map" resultType="c">
+	select * from (select rownum as sort, c.* from (select club_no as clubNo, club_cg as clubCg, club_name as clubName, club_intro as clubIntro, club_opener as clubOpener, fileName, filePath, club_rating as clubRating, ispublic, enroll_date as enrollDate, last_date as lastDate, warning_count as warningCount,(select cg_name from category where cg_no = club_cg) as cgName from club
+	<if test="keyword != '' and category eq 'name'">
+		where club_name like '%'||#{keyword}||'%'
+	</if>
+	<if test="keyword != '' and category eq 'hobby'">
+		where club_cg in (seelect cg_no from category where cg_name like '%'||#{keyword}||'%') 
+	</if>
+	 order by
+	<choose>
+		<when test="sort eq 1">enroll_date desc</when>
+		<when test="sort eq 2">enroll_date</when>
+		<when test="sort eq 3">warning_count desc</when>
+		<otherwise>last_date</otherwise>
+	</choose>
+	 )c)where sort between #{start} and #{end}
+</select>
+<select id="clubCount" resultType="int">
+	select count(*) from club
+</select>
 </mapper>
 
 

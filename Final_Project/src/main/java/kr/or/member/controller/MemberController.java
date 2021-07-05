@@ -448,10 +448,6 @@ public class MemberController {
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
 	public String allMemberList(int page, int sort, String category, String keyword, Model model) {
-		System.out.println("page : "+page);
-		System.out.println("sort : "+sort);
-		System.out.println("category : "+category);
-		System.out.println("keyword : "+keyword);
 		MemberPageData mpd = service.selectAllMember(page, sort, category, keyword);
 		model.addAttribute("list",mpd.getList());				//1~50개의 row(db)
 		model.addAttribute("cgList",mpd.getCgList());			//catefory list
