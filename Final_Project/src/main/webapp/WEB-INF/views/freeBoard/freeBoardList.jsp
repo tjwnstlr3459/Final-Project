@@ -115,7 +115,11 @@
 							html += "<li><a onclick='loginCheck();' class='button' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
 							</c:when>
 							<c:otherwise>
-							html += "<li><a class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
+							if(fb.flag == 0){
+							html += "<li><a class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";								
+							}else{
+							html += "<li><a class='button' onclick='minusHeart(this);' style='font-size:10px;'><i class='fas fa-heart' style='font-size:5px;'></i></a></li><br>";																
+							}
 							</c:otherwise>
 						</c:choose>
 						
@@ -132,12 +136,6 @@
 						html += "</ul></article>";
 						
 						$(".main").append(html);
-						
-						 /*좋아요 조회수 부분
-						html +="</button><button onclick='detailView(this);'><i class='far fa-circle'></i></button>&nbsp;&nbsp;<span class='etc'>Likes : "+fb.fbGood+"&nbsp;&nbsp;";
-						html += "</button>Views : "+fb.fbViews+"&nbsp;&nbsp;<br>BY: "+fb.fbWriter+"&nbsp;&nbsp;Sub : "+fb.typeString+"</span>";
-						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
-						}*/
 							}
 				/* //이미지 추가가 끝나고 나면 더보기 버튼의 currentValue,totlacount 값 조정
 				$("#more-btn").val(Number(start)+5);		//얘는 반면 시작값이라 datalength가 아니라 5를 더하는거임
@@ -151,7 +149,6 @@
 				}
 			});
 		} 
-			/* var memberNo = ${sessionScope.m.memberNo}; */
 		function addHeart(obj){		//this 를 obj로 주고 받아서 this를 찍어야 해당하는 속성값이 찍힘
 			var fbNo = $(obj).parents().eq(1).parents().eq(0).children().eq(0).children().eq(3).val();
 			var userNo = $(obj).parents().eq(3).parents().eq(0).children().eq(0).val();
@@ -203,27 +200,6 @@
 					}
 			});  
 		}
-		
-		//모달쪽
-		/*  var modal = document.getElementById('myModal');
-		        // Get the button that opens the modal
-		        var btn = document.getElementById("myBtn");
-		        // Get the <span> element that closes the modal
-		        var span = document.getElementsByClassName("close")[0];                                           
-		        // When the user clicks on the button, open the modal 
-		         btn.onclick = function() {
-		            modal.style.display = "block";
-		        }
-		        // When the user clicks on <span> (x), close the modal
-		        span.onclick = function() {
-		            modal.style.display = "none";
-		        }
-		        // When the user clicks anywhere outside of the modal, close it
-		        window.onclick = function(event) {
-		            if (event.target == modal) {
-		                modal.style.display = "none";
-		            }
-		        } */
 		        	var modal = document.getElementById('myModal');
 		        	var span = document.getElementsByClassName("close")[0];
 		        function detailView(obj) {
