@@ -89,6 +89,12 @@ public class boardDao {
 	}
 	public int updateBoardStatus(Answer an) {
 		return session.update("board.updateBoardStatus",an);
+}
+	public List seletMyBoard(HashMap<String, String> param) {
+		return session.selectList("board.selectMyBoard", param);
+	}
+	public int selectMyBoardCount(HashMap<String, String> param) {
+		return session.selectOne("board.selectMyBoardCount", param);
 	}
 
 }

@@ -40,11 +40,12 @@ public class DirectMessageService {
 		return dao.insertMultiDm(dm,memberNo);
 	}
 
+	//마이페이지용 쪽지
 	public DirectMessageData selectDmByName(String memberNick, int index) {
 		DirectMessageData dmData = new DirectMessageData();
 		
-		int paging = 5;
-		int dataPerPage = 10;
+		int paging = 5; //내비게이션에 표시할 최대 페이지수
+		int dataPerPage = 10; //페이지당 보여줄 게시물수 
 		int end = index * dataPerPage;
 		int start = end - dataPerPage + 1;
 		
@@ -60,9 +61,8 @@ public class DirectMessageService {
 		int unreadDm = dao.selectUnreadDm(memberNick);
 		dmData.setUnread(unreadDm);
 		int allDm = dao.selectAllDmCount(memberNick);
-		System.out.println(allDm);		
 		
-		//전체 DM 페이지 내비게이션
+		//전체 쪽지 페이지 내비게이션
 		int allTotalNaviPage = allDm % dataPerPage == 0 ? allDm / dataPerPage : allDm / dataPerPage + 1;
 		
 		int allNavi = ((index - 1) / paging) * paging + 1;
@@ -96,6 +96,42 @@ public class DirectMessageService {
 		allDmNavigation += "</div>";
 		
 		dmData.setAllPaging(allDmNavigation);
+		
+		//읽지 않은 쪽지 페이지 내비게이션
+		int unreadNaviPage= unreadDm % dataPerPage == 0 ? unreadDm / dataPerPage : unreadDm / dataPerPage + 1;
+		
+		int unreadNavi = ((index - 1) / paging) * paging + 1;
+		String unreadDmNavigation  = "<div class='paging'>";
+		// 이전버튼 생성 여부
+		if (unreadNavi != 1) {
+			unreadDmNavigation  += "<a href='javascript:void(0)' onclick='readPaging(" + (index - paging) + ")'>&#60;</a>";
+		} else {
+			unreadDmNavigation  += "<div class='pageDisabled'>&#60;</div>";
+		}
+		// 1~5단위 페이지 생성
+		for (int i = 0; i < paging; i++) {
+			// 사용자가 클릭해서 보고있는 페이지인 경우 효과
+			if (unreadNavi == index) {
+				unreadDmNavigation  += "<div class='pageThis'>" + unreadNavi + "</div>";
+			} else {
+				unreadDmNavigation  += "<a href='javascript:void(0)' onclick='readPaging(this)'>" + unreadNavi + "</a>";
+			}
+			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
+			unreadNavi++;
+			if (unreadNavi > unreadNaviPage) {
+				break;
+			}
+		}
+		// 다음버튼 생성 여부
+		if (unreadNavi <= unreadNaviPage) {
+			unreadDmNavigation  += "<a href='javascript:void(0)' onclick='readPaging(" + (index + paging) + ")'>&#62;</a>";
+		} else {
+			unreadDmNavigation  += "<div class='pageDisabled'>&#62;</div>";
+		}
+		unreadDmNavigation  += "</div>";
+		
+		dmData.setUnreadPaging(unreadDmNavigation);
+		
 		return dmData;		
 	}
 	

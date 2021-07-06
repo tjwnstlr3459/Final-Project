@@ -70,7 +70,9 @@
 					<div>읽지 않은 메세지 ${myMessage } 건</div>
 					<div>나의 관심 태그</div>
 					<span>#${m.ho1 }</span> <span>#${m.ho2 }</span> <span>#${m.ho3}</span>
-						
+					<div style="margin: 10px;">
+						<div class="mypageBtn"><a href="mypage.do">마이페이지</a></div>
+					</div>
 					<!-- <div>#여행 #요리 #음식</div> -->
 				</div>
 				<hr />
