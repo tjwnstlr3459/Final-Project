@@ -24,11 +24,12 @@ public class boardDao {
 		return list;
 	}
 	//공지게시물 네비 10개단위
-	public List<Board> selectBoardList(int start, int end, int type) {
+	public List<Board> selectBoardList(int start, int end, int type, int sort) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("type",type);
+		map.put("sort", sort);
 		List<Board> list = session.selectList("board.selectBoardListBetween",map);
 		return list;
 	}

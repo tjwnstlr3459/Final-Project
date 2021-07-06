@@ -38,10 +38,10 @@ public class BoardController {
 	
 	//공지사항 출력
 	@RequestMapping(value = "/boardList.do")
-	public String boardList(Model model,int reqPage, int type) {	//페이지네비reqPage
+	public String boardList(Model model,int reqPage, int type,int sort) {	//페이지네비reqPage
 //		ArrayList<Board> boardList = service.boardList();//공지사항목록
 //		model.addAttribute("boardList",boardList);		//공지사항목록
-		BoardPageData bpd = service.selectBoardList(reqPage,type);	//공지목록,페이지네비 구해오기
+		BoardPageData bpd = service.selectBoardList(reqPage,type,sort);	//공지목록,페이지네비 구해오기
 		model.addAttribute("boardList", bpd.getList());
 		model.addAttribute("pageNavi", bpd.getPageNavi());
 		model.addAttribute("reqPage", reqPage);
@@ -49,10 +49,11 @@ public class BoardController {
 	}
 	//문의/신고 출력
 	@RequestMapping(value="/adminBoardList.do")
-	public String adminBoardList(Model model, int reqPage, int type) {
-		BoardPageData bpd = service.selectBoardList(reqPage,type);	//공지목록,페이지네비 구해오기
+	public String adminBoardList(Model model, int reqPage, int type,int sort) {
+		BoardPageData bpd = service.selectBoardList(reqPage,type,sort);	//공지목록,페이지네비 구해오기
 		model.addAttribute("list", bpd.getList());
 		model.addAttribute("navigation", bpd.getPageNavi());
+		model.addAttribute("sort",sort);
 		return "admin/adminBoardList";
 	}
 	//번호로 공지,문의/신고 selectOne > ajax 

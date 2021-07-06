@@ -27,7 +27,7 @@ public class boardService {
 		return (ArrayList<Board>)list;
 	}
 
-	public BoardPageData selectBoardList(int reqPage,int type) {
+	public BoardPageData selectBoardList(int reqPage,int type,int sort) {
 		int numberPage = type==1?10:50;	//한 페이지에 몇개를 보여줄건지
 		//reqPage를 통해서 게시물 시작 rnum 끝 rnum 계산
 		//1. -> start : 1, end : 10; 2 -> start : 11, end :20, 3-> start : 21, end : 30
@@ -35,7 +35,7 @@ public class boardService {
 		int start = end-numberPage + 1;
 		
 		//공지게시물 조회
-		List<Board> listList = dao.selectBoardList(start,end,type);
+		List<Board> listList = dao.selectBoardList(start,end,type,sort);
 		ArrayList<Board> list = (ArrayList<Board>)listList;
 		
 		//페이지 네비게이션 
@@ -60,9 +60,9 @@ public class boardService {
 		if(pageNo != 1) {
 			if(type == 1) {
 				pageNavi += "<li class='page-item'>";
-				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+(pageNo-1)+"&type="+type+"'>&lt;</a></li>";				
+				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+(pageNo-1)+"&type="+type+"&sort="+sort+"'>&lt;</a></li>";				
 			}else {
-				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+(pageNo-1)+"&type="+type+"'>&lt;</a></li>";								
+				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+(pageNo-1)+"&type="+type+"&sort="+sort+"'>&lt;</a></li>";								
 			}
 		}
 		//페이지 숫자 생성
@@ -70,18 +70,18 @@ public class boardService {
 		if(pageNo == reqPage) {
 			if(type == 1) {
 				pageNavi += "<li class='page-item active'>";	//눌러진페이지 엑티브 ex)3페이지 누르면 3이 엑티브되게
-				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";				
+				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"'>"+pageNo+"</a></li>";				
 			}else {
 				//눌러진페이지 엑티브 ex)3페이지 누르면 3이 엑티브되게
-				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";
+				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"&sort="+sort+"'>"+pageNo+"</a></li>";
 			}
 		}else {												//reqPage는 누른페이지 지정
 			if(type == 1) {
 				pageNavi += "<li class='page-item'>";//누르지 않는 페이지들
-				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";				
+				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"'>"+pageNo+"</a></li>";				
 			}else {
 				//누르지 않는 페이지들
-				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"'>"+pageNo+"</a></li>";
+				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"'>"+pageNo+"</a></li>";
 			}
 		}
 		pageNo++;	
@@ -93,9 +93,9 @@ public class boardService {
 		if(pageNo <=totalPage) {
 			if(type==1) {
 				pageNavi += "<li class='page-item'>";
-				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+(pageNo)+"&type="+type+"'>&gt;</a></li>";
+				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+(pageNo)+"&type="+type+"&sort="+sort+"'>&gt;</a></li>";
 			}else {
-				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+(pageNo)+"&type="+type+"'>&gt;</a></li>";
+				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+(pageNo)+"&type="+type+"&sort="+sort+"'>&gt;</a></li>";
 			}
 		}
 		pageNavi += type==1?"</ul>":"</div>";

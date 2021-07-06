@@ -40,7 +40,12 @@ FROM BOARD
 		not ab_cg = 14
 	</otherwise>
 	</choose>
-	ORDER BY AB_NO DESC)N) WHERE RNUM BETWEEN #{start} AND #{end}
+	ORDER BY
+	<if test="sort eq 1">AB_NO DESC</if>
+	<if test="sort eq 2">status</if>
+	<if test="sort eq 3">ab_cg</if>
+	<if test="sort eq 4">ab_cg desc</if>
+	 )N) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
 <!-- 공지게시물의 총갯수 -->

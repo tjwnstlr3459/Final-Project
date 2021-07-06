@@ -173,7 +173,7 @@ font-family: 'Noto Sans KR', sans-serif;
 			<li><a href="/createClubFrm.do">CREATE CLUB</a></li>
 			</c:if>
 			<li><a href="/newClub.do?clubNo=38">CLUB VIEW</a></li>
-			<li><a href="/boardList.do?reqPage=1&type=1">FEEDBACK</a></li>
+			<li><a href="/boardList.do?reqPage=1&type=1&sort=1">FEEDBACK</a></li>
 			<c:if test="${empty sessionScope.m }">
 				<li><a href="/loginFrm.do">LOGIN</a></li>
 				<li><a href="/join.do">JOIN</a></li>

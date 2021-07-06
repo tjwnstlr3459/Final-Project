@@ -31,12 +31,38 @@
 				<div class="list-wrap box-option">
 					<div class="list-header">
 						<div class="option-wrap">
-							<select name="sort" id="sort">
-								<option value="date" selected>최신순</option>
-								<option value="answer" >답변 미완료</option>
-								<option value="inquiry" >문의</option>
-								<option value="report" >신고</option>							
-							</select>
+							<form action="/adminBoardList.do" id="ssForm">
+								<input type="hidden" name="reqPage" value="1">
+								<input type="hidden" name="type" value="2">
+								<select name="sort" id="sort">
+								<c:choose>
+									<c:when test="${sort eq 1 }">
+										<option value="1" selected>최신순</option>
+										<option value="2">답변 미완료</option>
+										<option value="3">문의</option>
+										<option value="4">신고</option>
+									</c:when>
+									<c:when test="${sort eq 2 }">
+										<option value="1">최신순</option>
+										<option value="2" selected>답변 미완료</option>
+										<option value="3">문의</option>
+										<option value="4">신고</option>									
+									</c:when>
+									<c:when test="${sort eq 3 }">
+										<option value="1">최신순</option>
+										<option value="2">답변 미완료</option>
+										<option value="3" selected>문의</option>
+										<option value="4">신고</option>									
+									</c:when>
+									<c:otherwise>
+										<option value="1">최신순</option>
+										<option value="2">답변 미완료</option>
+										<option value="3">문의</option>
+										<option value="4" selected>신고</option>									
+									</c:otherwise>
+								</c:choose>		
+								</select>
+							</form>
 						</div>
 					</div>
 					<div class="list-table">

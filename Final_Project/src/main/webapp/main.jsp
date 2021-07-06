@@ -104,7 +104,7 @@
 									<li><a onclick="location.href='/newClub.do?clubNo=38';"
 										style="cursor: pointer;">CLUB VIEW</a></li>
 									<li><a
-										onclick="location.href='/boardList.do?reqPage=1&type=1';"
+										onclick="location.href='/boardList.do?reqPage=1&type=1&sort=1';"
 										style="cursor: pointer;">FEEDBACK</a></li>
 									<c:if test="${empty sessionScope.m }">
 										<li><a onclick="location.href='/join.do';"
