@@ -42,6 +42,7 @@ font-family: 'Noto Sans KR', sans-serif;
 	height: 85px;
 	font-size: 16px;
 	font-weight: bold;
+	width: 1920px;
 }
 
 .navbar_logo {
@@ -65,7 +66,9 @@ font-family: 'Noto Sans KR', sans-serif;
 	font-size: 16px;
 	font-weight: bold;
 }
-
+.navbar_menu {
+        	margin-bottom: 0px;
+        	        }
 .navbar_menu :hover {
 	background-color: #152447;
 	border-radius: 10px;
