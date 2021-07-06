@@ -31,7 +31,8 @@
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
-            width: 30%; /* Could be more or less, depending on screen size */                          
+            width: 30%; /* Could be more or less, depending on screen size */     
+            font-size: 13px;                     
         }
         /* The Close Button */
         .close {
@@ -61,7 +62,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/views/common/header.jsp"%>  
-	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED<sub style='font-size:15px;'>당신의 클럽을 자랑해봐요.</sub></h1>
+	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED<sub style='font-size:15px;'>당신의 클럽을 자랑해봐요</sub></h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
 	<button id="feed_info" style="float:right; margin-right: 60px; font-size: 14px;" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
@@ -205,7 +206,7 @@
 		        	var fbTypeString = $(obj).parents().children().eq(6).val();
 		        	modal.style.display = "block";
 		        	$('.modal-content').append(img);
-		        	$('.modal-content').append("<hr><p style='text-align:center;'>"+fbContent+"</p>");
+		        	$('.modal-content').append("<hr><p style='text-align:center; font-size:17px;'>"+fbContent+"</p>");
 		        	$('.modal-content').append("<hr>");		        	
 		        	$('.modal-content').append("<span style='text-align:right;'>"+fbTypeString+" 관련클럽</span><br>");
 		        	$('.modal-content').append("<span style='text-align:left;'>좋아요 : "+fbGood+"개</span>&nbsp;&nbsp;&nbsp;");
