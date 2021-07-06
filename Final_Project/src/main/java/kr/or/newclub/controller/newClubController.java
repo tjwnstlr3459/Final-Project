@@ -135,6 +135,16 @@ public class newClubController {
 		int result = service.deleteMember(cmNo);
 		return result;
 	}
+	//회원에게 메일 전송
+	@ResponseBody
+	@RequestMapping(value = "/sendMail.do")
+	public int sendMail(String sender,String messageText,String receiver) {
+		System.out.println(sender);
+		System.out.println(messageText);
+		System.out.println(receiver);
+		int result = service.sendMail(sender,messageText,receiver);
+		return result;
+	}
 
 	/*
 	 * 아작스에서 제이슨 전달 방법
@@ -244,12 +254,12 @@ public class newClubController {
 		return result;
 	}
 	//게시물 삭제
-		@Transactional
-		 @ResponseBody
-		  @RequestMapping(value = "/boardDelete.do") 
-			public int boardDelete(int boardNo, Model model) {
-			int result = service.boardDelete(boardNo);
+	@Transactional
+	 @ResponseBody
+	  @RequestMapping(value = "/boardDelete.do") 
+		public int boardDelete(int boardNo, Model model) {
+		int result = service.boardDelete(boardNo);
 
-			return result;
-		}
+		return result;
+	}
 	}

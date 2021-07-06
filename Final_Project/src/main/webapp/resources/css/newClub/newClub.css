@@ -412,13 +412,39 @@ body.modal-open[style] {
 .clubnotice{
 	margin: 5px;
 }
+#userMailBtn{
+	width: 50px;
+    height: 25px;
+    font-size: 14px;
+    margin: 0 auto;
+    line-height: 3px;
+    display: flex;
+    justify-content: center;
+	
+}
+#blackBtn{
+	width: 50px;
+    height: 25px;
+    font-size: 14px;
+    margin: 0 auto;
+    line-height: 3px;
+    display: flex;
+    justify-content: center;
+	
+}
+.sendMessage{
+	width: 80%;
+    margin: 0 auto;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    text-align: center;
+}
 
 
 
-
-
-
-
+    
 
 
 

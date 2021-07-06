@@ -120,5 +120,29 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int deleteMember(int cmNo) {
 			return dao.deleteMember(cmNo);
 		}
+		//쪽지 보내기
+		public int sendMail(String sender, String messageText, String receiver) {
+			HashMap<Object, Object> map = new HashMap<Object, Object>();
+			map.put("sender", sender);
+			map.put("messageText", messageText);
+			map.put("receiver", receiver);
+			return dao.sendMail(map);
+		}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
