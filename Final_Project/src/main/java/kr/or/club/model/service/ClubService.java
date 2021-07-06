@@ -15,6 +15,7 @@ import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.ClubPageData;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
+import kr.or.newclub.model.vo.ClubComment;
 
 @Service
 public class ClubService {
@@ -137,9 +138,17 @@ public class ClubService {
 	public int myMessage(Member m) {
 		return dao.myMessage(m);
 	}
-
+	//나의 클럽 넘버들 가져오기
 	public int deleteClub(int clubNo) {
 		return dao.deleteClub(clubNo);
+	}
+//	//댓글 가져오기
+//	public ArrayList<ClubComment> selectComent() {
+//		return dao.selectComent();
+//	}
+	//클릭한 게시물 댓글 조회
+	public ArrayList<ClubComment> postMoment(int boardNo) {
+		return dao.postMoment(boardNo);
 	}
 
 	
