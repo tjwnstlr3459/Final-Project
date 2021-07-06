@@ -136,6 +136,7 @@
 	<context:component-scan base-package="kr.or.freeBoard" /><!-- 프리보드쪽 -->
 	<context:component-scan base-package="kr.or.adminBaord" /><!-- 공지,문의/신고 -->
 	<context:component-scan base-package="kr.or.answer" /><!-- 공지,문의/신고 답변 -->
+	<context:component-scan base-package="kr.or.likes" /><!-- 좋아요 -->
 	
 </beans:beans>
 
