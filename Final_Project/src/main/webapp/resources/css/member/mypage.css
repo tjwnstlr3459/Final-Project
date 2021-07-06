@@ -217,7 +217,7 @@ select {
 .speech-bubble {
   position: relative;
   margin-top: 10px;
-  background: #909090;
+  background: #bbb;
   border-radius: 0.6em;
   padding: 15px;
   width: 240px;
@@ -232,7 +232,7 @@ select {
   width: 30;
   height: 30;
   border: 0.6em solid transparent;
-  border-bottom-color: #909090;
+  border-bottom-color: #bbb;
   border-top: 0;
   margin-left: -0.6m;
   margin-top: -0.6em;

@@ -36,18 +36,11 @@
 	</select>
 	<!-- 일반회원용 읽지 않은 DM 조회 -->
 	<select id="selectUnreadDmByName" parameterType="map" resultType="dm">
-		select 
-			rownum as sort, 
-			dm.* from 
-				(select 
-					dm_no as dmNo,
-					sender,
-					receiver,
-					dm_content as dmContent,
-					dm_date as dmDate,
-					read_status as readStatus
-				from direct_message where receiver=#{memberNick} and read_status='N' order by dm_no desc) dm 
-		where rownum between #{start} and #{end}
+		select rownum, dms. * from 
+		(select rownum as dm_no_desc, dm.* from 
+		 	(select dm_no as dmNo, sender, receiver, dm_content as dmContent, dm_date as dmDate, read_status as readStatus from direct_message where receiver=#{memberNick} and read_status='N' order by dm_no desc) dm 
+ 			) dms 
+ 		where dm_no_desc between #{start} and #{end}
 	</select>
 	<!-- 일반회원용 전체 DM 수 조회 -->
 	<select id="selectAllDmCount" parameterType="string" resultType="int">
