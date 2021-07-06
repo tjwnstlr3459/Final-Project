@@ -18,7 +18,7 @@ body{
 .clubForm {
 	text-align: center;
 	font-family: "Source Sans Pro", sans-serif;
-	margin: 50px 700px 0px 700px;
+	margin: 0 auto;
 	width: 700px;
 	
 }

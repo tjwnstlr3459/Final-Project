@@ -18,7 +18,7 @@
 }
 
 .making_feed_wrap {
-	margin: 50px 600px 0px 600px;
+	margin: 0 auto;
 	width: 900px;
 }
 
