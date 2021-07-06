@@ -206,7 +206,16 @@
 	                                <div class="dm-date">${query.enrollDate }</div>
 	                            </div>
 	                            <div class="reportContent">
-	                            	
+	                            	<div>${query.abContent }</div>
+	                            	<div>${query.fileName }</div>
+	                            	<div>${query.filePath }</div>
+	                            	<div>${query.status }</div>
+	                            	<c:if test="${query.status eq 'Y' }">
+	                            	<div>${query.anContent }</div>
+	                            	<div>${query.anFilename }</div>
+	                            	<div>${query.anFilepath }</div>
+	                            	<div>${query.anDate}</div>
+	                            	</c:if>
 	                            </div>
 						</c:forEach>
 						${queryNavigation}
@@ -228,7 +237,7 @@
 	                                <div class="dm-date">${report.enrollDate }</div>
 	                            </div>
 	                            <div class="reportContent">
-	                            	
+	                            	<div class="reportContent-main">${report.abContent }</div>
 	                            </div>
 						</c:forEach>
 						${reportNavigation}
@@ -820,11 +829,18 @@
 		}
 		
 		//문의 신고 상세 페이지
+		var content = "";
 		function reportDetail(obj) {
-			var content = obj.nextElementSibling;
-			console.log(content)
-			content.innerText = "dsjfkljds";
-			content.style.display = "bloack";
+			if(content != "") {
+				content.style.display = "none";
+			}
+			content = obj.nextElementSibling;
+			if(content.style.display == "none") {
+				content.style.display = "block";
+			} else {
+				content.style.display = "none";
+			}
+			
 			
 		}
 		
@@ -859,7 +875,7 @@
 			dmSender = "<c:out value='${m.memberNick}'/>";
 			
 			var dm = "<span class='fMenu' onclick='sendDm(\"" + dmReceiver + "\", \"" + dmSender + "\")'>쪽지 보내기</span>";
-			var chat = "<span class='fMenu'>채팅 요청하기</span>";
+			var chat = "<span class='fMenu'> onclick='sendChatReq()'>채팅 요청하기</span>";
 			var close = "<span class='fMenu' onclick='closeLayer(this)'>닫기</span>";
 			popup.append(dm);
 			popup.append(chat);
@@ -876,7 +892,12 @@
 			$(obj).parent().hide();
 		}
 		
-		//비밀번호 변경
+		//채팅 요청
+		function sendChatReq() {
+			var user = "<c:out value='${m.memberNick }'/>";
+			var chatReq = {type:"chatReq", msg:user};
+			ws.send(JSON.stringify(data));
+		}
 		
 		
 		//주소 찾기

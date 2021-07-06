@@ -12,6 +12,8 @@ import kr.or.answer.model.vo.Answer;
 import kr.or.board.model.dao.boardDao;
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardPageData;
+import kr.or.board.model.vo.MyBoard;
+import kr.or.board.model.vo.MyBoardData;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.directMessage.model.vo.DirectMessage;
 
@@ -178,8 +180,11 @@ public class boardService {
 		return dao.mentModify(map);
 	}
 
-	public BoardPageData selectMyBoard(String memberNick, int index, int category) {
-		BoardPageData bData = new BoardPageData();
+	public int updateBoardStatus(Answer an) {
+		return dao.updateBoardStatus(an);
+	}
+	public MyBoardData selectMyBoard(String memberNick, int index, int category) {
+		MyBoardData bData = new MyBoardData();
 		
 		int paging = 5;
 		int dataPerPage = 10;
@@ -192,7 +197,7 @@ public class boardService {
 		param.put("category", Integer.toString(category));
 		param.put("memberNick", memberNick);		
 		
-		bData.setList((ArrayList<Board>)dao.seletMyBoard(param));
+		bData.setList((ArrayList<MyBoard>)dao.seletMyBoard(param));
 		int count = dao.selectMyBoardCount(param);
 		
 		//보드 페이지 내비게이션

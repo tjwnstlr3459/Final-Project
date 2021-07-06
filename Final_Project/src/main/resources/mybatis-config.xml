@@ -19,6 +19,10 @@
 		<typeAlias type="kr.or.board.model.vo.Board" alias="bl"/>
 		<!-- 게시판네비 -->
 		<typeAlias type="kr.or.board.model.vo.BoardPageData" alias="bpd"/>
+		<!-- 마이페이지용 게시판 데이터 클래스 -->
+		<typeAlias type="kr.or.board.model.vo.MyBoard" alias="myb"/>
+		<!-- 마이페이지용 게시판 데이터 클래스(내비 포함) -->
+		<typeAlias type="kr.or.board.model.vo.MyBoardData" alias="mybd"/>
 		<!-- 모임상세페이지 -->
 		<typeAlias type="kr.or.newclub.model.vo.clubBoard" alias="n"/>
 		<!-- 모임신청 -->
