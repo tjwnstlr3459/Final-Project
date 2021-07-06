@@ -15,21 +15,37 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.freeBoard.model.service.FreeBoardService;
 import kr.or.freeBoard.model.vo.FreeBoard;
+import kr.or.member.model.vo.Member;
 
 @Controller
 public class FreeBoardController {
 	@Autowired
 	private FreeBoardService service;
 
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/selectFreeBoards.do") public ArrayList<FreeBoard>
+	 * selectFreeBoards(HttpServletRequest request, int
+	 * start,@SessionAttribute(required = false) Member m, Model model) {
+	 * ArrayList<FreeBoard> list = service.selectFreeBoards(start); return list; }
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/selectFreeBoards.do")
-	public ArrayList<FreeBoard> selectFreeBoards(HttpServletRequest request, int start, Model model) {
-		ArrayList<FreeBoard> list = service.selectFreeBoards(start);
-		return list;
+	public ArrayList<FreeBoard> selectFreeBoards(HttpServletRequest request, int start,@SessionAttribute(required = false) Member m, Model model) {
+		if(m!= null) {			
+			int userNo = m.getMemberNo();
+			ArrayList<FreeBoard> list = service.selectFreeBoards(start,userNo);
+			return list;
+		}else {			
+			ArrayList<FreeBoard> list = service.selectFreeBoardsNoUser(start);
+			return list;
+		}
 	}
 
 	@RequestMapping(value = "/freeBoardList.do")
