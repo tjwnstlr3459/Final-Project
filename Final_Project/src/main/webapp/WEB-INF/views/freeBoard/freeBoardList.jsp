@@ -228,14 +228,12 @@
 		        	$('.modal-content').empty();
 		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	
 		        	modal.style.display="none";
-		        	location.reload();
 				}
 		        window.onclick = function(event) {
 		            if (event.target == modal) {
 		        	$('.modal-content').empty();
 		        	$('.modal-content').append('<span class="close" onclick="closeView();">&times;</span>');		        	
 		                modal.style.display = "none";
-		        	location.reload();
 		            }
 		        }
 		        
