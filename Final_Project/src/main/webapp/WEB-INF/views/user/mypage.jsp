@@ -685,6 +685,7 @@
 				type: "post",
 				data: {dmNo:dmNo},
 				success: function(data) {
+					console.log(data.dmNo + " " + data.sender + " " + data.dmContent);
 					$(".showDmCont").html(data.dmContent);				
 				},
 				error: function() {
@@ -741,10 +742,10 @@
 						if(data.dmList[i].receiver == user) {
 							dmsTable += '<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>';
 							dmsTable += '<div class="dm-sender">' + data.dmList[i].sender +'</div>';
-							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(2, ' + data.dmList[i].dmNo + ', "' + data.dmList[i].sender + '", "' + data.dmList[i].dmContent + '")">' + data.dmList[i].dmContent + '</span></div>';
+							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(2, ' + data.dmList[i].dmNo + ', \'' + data.dmList[i].sender + '\', \'' + data.dmList[i].dmContent + '\')">' + data.dmList[i].dmContent + '</span></div>';
 							dmsTable += '<div class="dm-date">' + data.dmList[i].dmDate + '</div>';
 							dmsTable += '<div class="dm-read">' + data.dmList[i].readStatus + '</div>';
-							dmsTable += '<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm("' + data.dmList[i].sender + '", "' + user + '")"></i></div>';
+							dmsTable += '<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm(\'' + data.dmList[i].sender + '\', \'' + user + '\')"></i></div>';
 						} else {
 							dmsTable += '<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>';
 							dmsTable += '<div class="dm-sender">' + data.dmList[i].receiver +'</div>';
@@ -756,7 +757,7 @@
 						dmsTable += '</div>';
 						dmsList.html(dmsTable);
 					}
-					dmsList.next().html(data.allPaging);
+					dmsList.append(data.allPaging);
 					
 				},
 				error: function() {

@@ -132,6 +132,10 @@ public class newClubDao {
 	public int deleteMember(int cmNo) {
 		return session.delete("newclub.deleteMember",cmNo);
 	}
+	//쪽지 보내기
+	public int sendMail(HashMap<Object, Object> map) {
+		return session.insert("newclub.sendMail",map);
+	}
 
 }
 

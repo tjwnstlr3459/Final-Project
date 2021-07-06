@@ -42,6 +42,7 @@ font-family: 'Noto Sans KR', sans-serif;
 	height: 85px;
 	font-size: 16px;
 	font-weight: bold;
+	width: 1920px;
 }
 
 .navbar_logo {
@@ -65,7 +66,9 @@ font-family: 'Noto Sans KR', sans-serif;
 	font-size: 16px;
 	font-weight: bold;
 }
-
+.navbar_menu {
+        	margin-bottom: 0px;
+        	        }
 .navbar_menu :hover {
 	background-color: #152447;
 	border-radius: 10px;
@@ -163,21 +166,6 @@ font-family: 'Noto Sans KR', sans-serif;
 		<ul class="navbar_menu">
 			<li><a href="/main.jsp#clubCategory">CLUB CATEGORY</a></li>
 			<li><a href="/freeBoardList.do">CLUB FEED</a></li>
-			<c:choose>
-				<c:when test="${!empty sessionScope.m }">
-					<c:choose>
-						<c:when test="${sessionScope.m.grade lt 2 }">
-							<li><a href="/adminMain.do">ADMIN</a></li>
-							<li><a href="/logout.do">LOGOUT</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="/myClub.do">${sessionScope.m.memberNick }'s
-									CLUB</a></li>
-							<li><a href="/logout.do">LOGOUT</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:when>
-			</c:choose>
 			<c:if test="${empty sessionScope.m }">
 			<li><a onclick="loginCheck();" style="cursor:pointer; color:#fff;">CREATE CLUB</a></li>
 			</c:if>
@@ -189,6 +177,14 @@ font-family: 'Noto Sans KR', sans-serif;
 			<c:if test="${empty sessionScope.m }">
 				<li><a href="/loginFrm.do">LOGIN</a></li>
 				<li><a href="/join.do">JOIN</a></li>
+			</c:if>
+			<c:if test="${sessionScope.m.grade lt 2 }">
+			<li><a href="/adminMain.do">ADMIN</a></li>
+			<li><a href="/logout.do">LOGOUT</a></li>
+			</c:if>
+			<c:if test="${sessionScope.m.grade ge 2 }">
+			<li><a href="/myClub.do">${sessionScope.m.memberNick }'s CLUB</a></li>
+			<li><a href="/logout.do">LOGOUT</a></li>
 			</c:if>
 
 		</ul>

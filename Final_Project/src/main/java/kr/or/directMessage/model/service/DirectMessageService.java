@@ -42,7 +42,6 @@ public class DirectMessageService {
 
 	public DirectMessageData selectDmByName(String memberNick, int index) {
 		DirectMessageData dmData = new DirectMessageData();
-		System.out.println(index);
 		
 		int paging = 5;
 		int dataPerPage = 10;
@@ -52,10 +51,7 @@ public class DirectMessageService {
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("start", Integer.toString(start));
 		param.put("end", Integer.toString(end));
-		param.put("memberNick", memberNick);
-		System.out.println(param.get("start"));
-		System.out.println(param.get("end"));
-		
+		param.put("memberNick", memberNick);		
 		
 		
 		dmData.setUnreadDmList((ArrayList<DirectMessage>)dao.selectUnreadDmByName(param));
@@ -73,7 +69,7 @@ public class DirectMessageService {
 		String allDmNavigation = "<div class='paging'>";
 		// 이전버튼 생성 여부
 		if (allNavi != 1) {
-			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index - paging) + ")'>" + "&#60;</a>";
+			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index - paging) + ")'>&#60;</a>";
 		} else {
 			allDmNavigation += "<div class='pageDisabled'>&#60;</div>";
 		}
@@ -93,9 +89,9 @@ public class DirectMessageService {
 		}
 		// 다음버튼 생성 여부
 		if (allNavi <= allTotalNaviPage) {
-			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index + paging) + ")'>" + "&#60;</a>";
+			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index + paging) + ")'>&#62;</a>";
 		} else {
-			allDmNavigation += "<div class='pageDisabled'>&#60;</div>";
+			allDmNavigation += "<div class='pageDisabled'>&#62;</div>";
 		}
 		allDmNavigation += "</div>";
 		
