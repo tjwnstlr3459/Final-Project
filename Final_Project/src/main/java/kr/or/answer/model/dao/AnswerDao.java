@@ -15,4 +15,8 @@ public class AnswerDao {
 	public int insertAnswer(Answer an) {
 		return session.insert("answer.insertAnswer",an);
 	}
+
+	public Answer selectAnswer(int abNo) {
+		return session.selectOne("answer.selectOneAnswer",abNo);
+	}
 }

@@ -116,7 +116,7 @@
 						</tbody>
 					</table>
 					<button id="closeBtn" class="btns cancelBtn">X</button>
-					<div class="btn-box"><button class="btns slideAnswerBtn">답변하기</button></div>
+					<div class="btn-box"></div>
 					<div class="answer-box">
 						<form action="/insertAnswer.do" id="answerForm">
 							<input type="hidden" name="abNo"><!-- 문의/답변 게시물 번호 -->
@@ -125,15 +125,40 @@
 							<button type="button" class="btns answerBtn">확인</button>
 						</form>
 					</div>
+					<div class="answer-wrap">
+						<h2 class="title-head">답변</h2>
+						<table class="modal-table answer-table">
+						<tbody>
+							<tr>
+								<th>답변 내용</th>
+								<td colspan="3">
+									<span class="answerContent"></span>
+									<div class="modifyAnswer-box">
+										<textarea class="summernote" id="anSummernote" name="anContent"></textarea>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="2">
+									<button class="btns modifyBtn">수정하기</button>
+									<button class="btns comBtn">수정완료</button>
+									<button class="btns canBtn">수정취소</button>
+								</th>
+							</tr>
+						</tfoot>
+						</table>
+					</div>
 				</div>
 			</div>
 			<script>
-				$('#summernote').summernote({
-				 	   width: 911,
-				 	   minWidth:911,
-				 	   maxWidth:911,
-				 	   height:600
-				})
+				$('.summernote').summernote({
+				 	   width: 800,
+				 	   minWidth:800,
+				 	   maxWidth:800,
+				 	   height:400
+				});
 			</script>
 		</section>
 	</div>

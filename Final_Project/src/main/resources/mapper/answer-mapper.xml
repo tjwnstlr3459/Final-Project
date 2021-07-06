@@ -30,7 +30,18 @@ FROM ANSWER a,member b WHERE a.an_writer = b.member_nick and a.AB_NO=#{abNo}
 <insert id="insertAnswer" parameterType="an">
 	insert into answer values(answer_seq.nextval,#{abNo},#{anWriter},#{anContent},null,null,to_char(sysdate,'yyyy-mm-dd'))
 </insert>
-
+<!-- 관리자용 answer 가져오기 -->
+<select id="selectOneAnswer" parameterType="int" resultType="an">
+	SELECT
+	    AN_NO AS anNo,
+	    ab_no as abNo,
+	    an_writer as anWriter,
+	    an_Content as anContent,
+	    filename as fileName,
+	    filepath as filePath,
+	    enroll_date as enrollDate
+	FROM ANSWER where ab_no=#{abNo}
+</select>
 </mapper>
 
 

@@ -297,6 +297,13 @@ section::-webkit-scrollbar-track {
     text-align:center;
     border-bottom:2px solid #a1a1a1;
 }
+.title-head{
+	padding-bottom:10px;
+    margin:10px 0;
+    width:100%;
+    text-align:center;
+    border-bottom:2px solid #a1a1a1;
+}
 .textarea{
     margin:20px 0;
 }
@@ -320,12 +327,16 @@ section::-webkit-scrollbar-track {
 }
 .modal-table th{
 	width:100px;
-	border:1px solid #dddddd;
-	background:var(--background);
+	border:1px solid var(--contentBackColor);
+	background-color:var(--underLine);
+	color:var(--mainTextColor);
 }
 .modal-table td{
-	border:1px solid #dddddd;
+	border:1px solid var(--contentBackColor);
 	padding-left:5px;
+	color:#ffffff;
+	background-color:var(--backColor);
+	font-size:0.8rem;
 }
 .answer-box{
 	display:none;
@@ -393,4 +404,28 @@ section::-webkit-scrollbar-track {
 #naviFocus{
 	color:#67dfdf;
 	font-size:1.2rem;
+}
+.answer-wrap{
+	width:100%;
+	display:none;
+}
+.answer-table{
+	width:100%;
+}
+.answer-table td{
+	padding:5px;
+	width:800px;
+	height:400px;
+}
+.answer-table>tfoot th{
+	background-color:transparent;
+	border:none;
+}
+.modifyAnswer-box{
+	display:none;
+}
+.answerContent{
+	display:block;
+	width:100%;
+	height:100%;
 }

@@ -17,4 +17,8 @@ public class AnswerService {
 	public int insertAnswer(Answer an) {
 		return dao.insertAnswer(an);
 	}
+
+	public Answer selectAnswer(int abNo) {
+		return dao.selectAnswer(abNo);
+	}
 }

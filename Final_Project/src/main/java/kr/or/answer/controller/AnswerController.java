@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import kr.or.answer.model.service.AnswerService;
 import kr.or.answer.model.vo.Answer;
@@ -28,5 +31,13 @@ public class AnswerController {
 		}
 		model.addAttribute("loc","/adminBoardList.do?reqPage=1&type=2&sort=1");
 		return"common/msg";
+	}
+	
+	@RequestMapping(value="/selectAnswer.do",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String selectAnswer(int abNo) {
+		Answer an = service.selectAnswer(abNo);
+		return new Gson().toJson(an);
+		
 	}
 }

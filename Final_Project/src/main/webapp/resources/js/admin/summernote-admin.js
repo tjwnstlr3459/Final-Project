@@ -149,17 +149,26 @@ $(function(){
 		 	deleteRestMember(restMail);
 	 	}
 	 });
-	 //답변 슬라이드토글
-	 $('.slideAnswerBtn').click(function(){
-	 	$('.answer-box').slideToggle();
-	 	$(this).attr('disabled',true);
-	 });
 	 //답변 확인 버튼 클릭 시
 	 $('.answerBtn').click(function(){
 	 	console.log($('[name=abNo]').val());
 	 	console.log($('[name=anWriter]').val());
 	 	if($('#summernote').summernote('code') == '') return alert('내용을 입력해주세요.');
 	 	$('#answerForm').submit();
+	 });
+	 //답변 수정 클릭 시
+	 $('.modifyBtn').click(function(){
+	 	$('.summernote').summernote('code',$('.answerContent').html());
+	 	$('.answer-table>tbody td').css('background-color','transparent');
+	 	$('.answerContent').hide();
+	 	$('.modifyAnswer-box').show();
+	 });
+	 //답변 수정 취소 클릭 시
+	 $('.canBtn').click(function(){
+	 $('.answer-table>tbody td').css('background-color','#2e2d31');
+	 	$('.summernote').summernote('code','');
+	 	$('.answerContent').show();
+	 	$('.modifyAnswer-box').hide();
 	 });
 
 });
@@ -192,6 +201,7 @@ function modalClose(){
 	$('.summernote').summernote('code','');
 	$('.answer-box').hide();
 	$('.slideAnswerBtn').attr('disabled',false);
+	$('.answer-wrap').hide();
 }
 //다중 선택된 회원 쪽지 보내기
 function insertMultiDm(){
@@ -273,6 +283,7 @@ function selectOneBoard(abNo,cgName){
 		type : "post",
 		data : {abNo : abNo},
 		success : function(data){
+			selectAnswer(data.abNo);
 			console.log(data);
 			$('[name=abNo]').val(data.abNo);
 			$('.titleHead').html(cgName);
@@ -284,4 +295,25 @@ function selectOneBoard(abNo,cgName){
 		}
 	});
 }
-
+//답변 슬라이드토글
+function answerToggle(){
+	$('.answer-box').slideToggle();
+	$(this).attr('disabled',true);
+}
+//abNo 로 게시물의 답변 가져오기
+function selectAnswer(abNo){
+	$.ajax({
+		url:"/selectAnswer.do",
+		data:{abNo:abNo},
+		success:function(data){
+			console.log(data);
+			if(data == null){
+				$('.btn-box').html(`<button class="btns slideAnswerBtn" onclick="answerToggle();">답변하기</button>`);
+			}else{
+				$('.btn-box').html('');
+				$('.answerContent').html(data.anContent);
+				$('.answer-wrap').show();
+			}
+		}
+	});
+}
