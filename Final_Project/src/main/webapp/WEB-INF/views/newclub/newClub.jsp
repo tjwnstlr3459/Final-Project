@@ -146,6 +146,14 @@
 										<c:set var="num" value="1" />
 										<!-- num 변수선언해서, 회원의 clubNo와 현재 페이지 clubNo를 비교해서 foreach조건문을 위한 변수 -->
 										<c:forEach items="${memberClubNo}" var="l">
+											
+											<c:if test="${club.clubOpener eq sessionScope.m.memberNick && num eq 1 }">
+												<button type="button" class="btn btn-info btn-lg"
+													style="padding: 5px">어서오세요 관리자님</button>
+												<c:set var="num" value="2" />
+											</c:if>
+											
+										
 											<!-- 회원이 속한 클럽넘버들을 list에 담아서 비교 -->
 											<c:if test="${l.clubNo eq clubNo && num eq 1 }">
 												<!-- 회원이 속한 clubNo와 현재페이지clubNo가 같으면서 변수가 1이라면 -->
