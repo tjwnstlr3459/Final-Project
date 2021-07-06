@@ -13,6 +13,7 @@ import kr.or.board.model.dao.boardDao;
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardPageData;
 import kr.or.club.model.vo.ClubBoard;
+import kr.or.directMessage.model.vo.DirectMessage;
 
 @Service
 public class boardService {
@@ -175,6 +176,60 @@ public class boardService {
 		map.put("anNo", anNo);
 		map.put("mentUpdate",mentUpdate);
 		return dao.mentModify(map);
+	}
+
+	public BoardPageData selectMyBoard(String memberNick, int index, int category) {
+		BoardPageData bData = new BoardPageData();
+		
+		int paging = 5;
+		int dataPerPage = 10;
+		int end = index * dataPerPage;
+		int start = end - dataPerPage + 1;
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("start", Integer.toString(start));
+		param.put("end", Integer.toString(end));
+		param.put("category", Integer.toString(category));
+		param.put("memberNick", memberNick);		
+		
+		bData.setList((ArrayList<Board>)dao.seletMyBoard(param));
+		int count = dao.selectMyBoardCount(param);
+		
+		//보드 페이지 내비게이션
+		int allTotalNaviPage = count % dataPerPage == 0 ? count / dataPerPage : count / dataPerPage + 1;
+		
+		int allNavi = ((index - 1) / paging) * paging + 1;
+		String allDmNavigation = "<div class='paging'>";
+		// 이전버튼 생성 여부
+		if (allNavi != 1) {
+			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index - paging) + ")'>&#60;</a>";
+		} else {
+			allDmNavigation += "<div class='pageDisabled'>&#60;</div>";
+		}
+		// 1~5단위 페이지 생성
+		for (int i = 0; i < paging; i++) {
+			// 사용자가 클릭해서 보고있는 페이지인 경우 효과
+			if (allNavi == index) {
+				allDmNavigation += "<div class='pageThis'>" + allNavi + "</div>";
+			} else {
+				allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(this)'>" + allNavi + "</a>";
+			}
+			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
+			allNavi++;
+			if (allNavi > allTotalNaviPage) {
+				break;
+			}
+		}
+		// 다음버튼 생성 여부
+		if (allNavi <= allTotalNaviPage) {
+			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index + paging) + ")'>&#62;</a>";
+		} else {
+			allDmNavigation += "<div class='pageDisabled'>&#62;</div>";
+		}
+		allDmNavigation += "</div>";
+		
+		bData.setPageNavi(allDmNavigation);
+		return bData;
 	}
 
 

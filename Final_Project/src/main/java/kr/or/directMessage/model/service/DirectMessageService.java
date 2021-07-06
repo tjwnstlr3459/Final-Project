@@ -37,11 +37,12 @@ public class DirectMessageService {
 		return dao.insertMultiDm(dm,memberNo);
 	}
 
+	//마이페이지용 쪽지
 	public DirectMessageData selectDmByName(String memberNick, int index) {
 		DirectMessageData dmData = new DirectMessageData();
 		
-		int paging = 5;
-		int dataPerPage = 10;
+		int paging = 5; //내비게이션에 표시할 최대 페이지수
+		int dataPerPage = 10; //페이지당 보여줄 게시물수 
 		int end = index * dataPerPage;
 		int start = end - dataPerPage + 1;
 		

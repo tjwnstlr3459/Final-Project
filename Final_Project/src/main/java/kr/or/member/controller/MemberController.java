@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 
+import kr.or.board.model.service.boardService;
+import kr.or.board.model.vo.BoardPageData;
 import kr.or.category.model.vo.Category;
 import kr.or.directMessage.model.service.DirectMessageService;
 import kr.or.directMessage.model.vo.DirectMessage;
@@ -45,6 +47,9 @@ public class MemberController {
 	
 	@Autowired
 	private DirectMessageService dmService;
+	
+	@Autowired
+	private boardService bService;
 	
 	private NaverLogin naverLogin;
 	@Autowired
@@ -302,6 +307,8 @@ public class MemberController {
 		Member member = service.selectOneMember(m);
 		FriendsData friendsData = service.selectFriendData(m.getMemberNick());
 		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick(), 1);
+		BoardPageData queryData = bService.selectMyBoard(m.getMemberNick(), 1, 2);
+		BoardPageData reportData = bService.selectMyBoard(m.getMemberNick(), 1, 3);
 		ArrayList<Category> category = service.getCategory();
 		if(member != null) {
 			model.addAttribute("m", member);
@@ -311,6 +318,10 @@ public class MemberController {
 			model.addAttribute("unreadDm", dmData.getUnread());
 			model.addAttribute("dmNavigation", dmData.getAllPaging());
 			model.addAttribute("unreadNavigation", dmData.getUnreadPaging());
+			model.addAttribute("queryList", queryData.getList());
+			model.addAttribute("queryNavigation", queryData.getPageNavi());
+			model.addAttribute("reportList", reportData.getList());
+			model.addAttribute("reportNavigation", reportData.getPageNavi());
 			model.addAttribute("friends", friendsData.getFList());
 			model.addAttribute("pfriends", friendsData.getFpendingList());
 			model.addAttribute("rfriends", friendsData.getFReqList());

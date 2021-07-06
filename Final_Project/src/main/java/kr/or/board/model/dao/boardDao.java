@@ -87,6 +87,12 @@ public class boardDao {
 	public int mentModify(HashMap<String, Object> map) {
 		return session.update("board.mentModify",map);
 	}
+	public List seletMyBoard(HashMap<String, String> param) {
+		return session.selectList("board.selectMyBoard", param);
+	}
+	public int selectMyBoardCount(HashMap<String, String> param) {
+		return session.selectOne("board.selectMyBoardCount", param);
+	}
 
 }
 
