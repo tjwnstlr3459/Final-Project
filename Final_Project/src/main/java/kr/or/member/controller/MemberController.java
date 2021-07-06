@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 
 import kr.or.board.model.service.boardService;
 import kr.or.board.model.vo.BoardPageData;
+import kr.or.board.model.vo.MyBoardData;
 import kr.or.category.model.vo.Category;
 import kr.or.club.model.vo.Club;
 import kr.or.directMessage.model.service.DirectMessageService;
@@ -310,8 +311,8 @@ public class MemberController {
 		Member member = service.selectOneMember(m);
 		FriendsData friendsData = service.selectFriendData(m.getMemberNick());
 		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick(), 1);
-		BoardPageData queryData = bService.selectMyBoard(m.getMemberNick(), 1, 2);
-		BoardPageData reportData = bService.selectMyBoard(m.getMemberNick(), 1, 3);
+		MyBoardData queryData = bService.selectMyBoard(m.getMemberNick(), 1, 2);
+		MyBoardData reportData = bService.selectMyBoard(m.getMemberNick(), 1, 3);
 		ArrayList<Category> category = service.getCategory();
 		if(member != null) {
 			model.addAttribute("m", member);

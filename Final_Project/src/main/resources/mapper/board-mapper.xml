@@ -140,27 +140,36 @@ WHERE AN_NO = #{anNo}
 </update>
 
 <!-- 마이페이지용 문의/신고 게시글 조회 -->
-<select id="selectMyBoard" parameterType="map" resultType="bl">
-select rownum, bs.* from 
-	(select rownum as b_no_desc, b.* from 
-		(select 
-			AB_NO AS abNo,
-			ab_cg as abCg,
-			ab_writer as abWriter,
-			ab_Title as abTitle,
-			ab_content as abContent,
-			fileName,
-			filePath,
-			enroll_date as enrollDate 
-		from board where ab_cg=#{category} and ab_writer=#{memberNick} order by ab_no desc) b
- 	) bs
-where b_no_desc between #{start} and #{end}
+<select id="selectMyBoard" parameterType="map" resultType="myb">
+select 
+	AB_NO AS abNo,
+	ab_cg as abCg,
+	ab_writer as abWriter,
+	ab_Title as abTitle,
+	ab_content as abContent,
+	filename0 as fileName,
+	filepath0 as filePath,
+	date1 as enrollDate,
+	status,
+	an_no as anNo,
+	an_writer as anWriter,
+	an_content as anContent,
+	filename as anFilename, 
+	filepath as anFilepath,
+	enroll_date as anDate
+from 
+(select rownum, bs.* from 
+(select rownum as b_no_desc, b.* from 
+ (select ab_no, ab_cg, ab_writer, ab_title, ab_content, filename as filename0, filepath as filepath0, enroll_date as date1, status from board where ab_cg=#{category} and ab_writer=#{memberNick} order by ab_no desc) b
+ ) bs  where b_no_desc between #{start} and #{end}) b1
+ left join answer using (ab_no) order by 2
 </select>
 
 <!-- 마이페이지용 문의/신고 게시글 수 -->
 <select id="selectMyBoardCount" parameterType="map" resultType="int">
 	select count(*) from (select * from board where ab_cg=#{category} and ab_writer=#{memberNick})
 </select>
+
 </mapper>
 
 
