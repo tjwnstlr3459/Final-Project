@@ -87,6 +87,9 @@ public class boardDao {
 	public int mentModify(HashMap<String, Object> map) {
 		return session.update("board.mentModify",map);
 	}
+	public int updateBoardStatus(Answer an) {
+		return session.update("board.updateBoardStatus",an);
+	}
 
 }
 

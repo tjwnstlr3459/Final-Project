@@ -13,6 +13,9 @@
 	    border-right:5px solid var(--mainTextColor);
 	    background:linear-gradient(to bottom, rgba(1, 225, 255, 0.5),rgba(33, 229, 255, 0.3),rgba(95, 235, 248, 0.1));
 	}
+	#summernote{
+		width:100%;
+	}
 </style>
 </head>
 <body>
@@ -74,10 +77,10 @@
 					<table class="modal-table">
 						<thead>
 							<tr>
-								<th>제 목</th><td colspan="3" class="abTitle">제목 들어갈 자리</td>
+								<th>제 목</th><td colspan="3" class="abTitle"></td>
 							</tr>
 							<tr>
-								<th>작성자</th><td class="abWriter">회원닉</td><th>작성일</th><td class="enrollDate">yyyy-mm-dd</td>
+								<th>작성자</th><td class="abWriter"></td><th>작성일</th><td class="enrollDate"></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -89,11 +92,23 @@
 					<button id="closeBtn" class="btns cancelBtn">X</button>
 					<div class="btn-box"><button class="btns slideAnswerBtn">답변하기</button></div>
 					<div class="answer-box">
-						<textarea class="summernote" id="summernote"></textarea>
-						<button class="btns answerBtn">확인</button>
+						<form action="/insertAnswer.do" id="answerForm">
+							<input type="hidden" name="abNo"><!-- 문의/답변 게시물 번호 -->
+							<input type="hidden" name="anWriter" value="${sessionScope.m.memberNick }"><!-- 작성자(관리자) -->
+							<textarea class="summernote" id="summernote" name="anContent"></textarea>
+							<button type="button" class="btns answerBtn">확인</button>
+						</form>
 					</div>
 				</div>
 			</div>
+			<script>
+				$('#summernote').summernote({
+				 	   width: 911,
+				 	   minWidth:911,
+				 	   maxWidth:911,
+				 	   height:600
+				})
+			</script>
 		</section>
 	</div>
 </body>

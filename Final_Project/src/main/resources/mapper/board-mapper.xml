@@ -129,6 +129,10 @@ UPDATE ANSWER SET
 	AN_CONTENT = #{mentUpdate} 
 WHERE AN_NO = #{anNo}
 </update>
+<!-- 문의/신고 답변상태 변경 -->
+<update id="updateBoardStatus" parameterType="an">
+	update board set status='Y' where ab_no = #{abNo}
+</update>
 </mapper>
 
 

@@ -10,8 +10,7 @@ INSERT INTO ANSWER VALUES(
     #{anContent},
     #{fileName},
     #{filePath},
-    TO_CHAR(SYSDATE,'YYYY-MM-DD'),
-	'N')
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 </insert>
 
 <!-- 공지 댓글 찾기 -->
@@ -24,12 +23,13 @@ SELECT
     a.filename as fileName,
     a.filepath as filePath,
     a.enroll_date as enrollDate,
-    a.an_status as anStatus,
     b.member_nick as memberNick,
     b.filepath as pic
 FROM ANSWER a,member b WHERE a.an_writer = b.member_nick and a.AB_NO=#{abNo}
 </select>
-
+<insert id="insertAnswer" parameterType="an">
+	insert into answer values(answer_seq.nextval,#{abNo},#{anWriter},#{anContent},null,null,to_char(sysdate,'yyyy-mm-dd'))
+</insert>
 
 </mapper>
 

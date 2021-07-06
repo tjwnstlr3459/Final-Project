@@ -152,9 +152,15 @@ $(function(){
 	 //답변 슬라이드토글
 	 $('.slideAnswerBtn').click(function(){
 	 	$('.answer-box').slideToggle();
-	 	$('#summernote').attr('autofocus',true);
+	 	$(this).attr('disabled',true);
 	 });
-	 
+	 //답변 확인 버튼 클릭 시
+	 $('.answerBtn').click(function(){
+	 	console.log($('[name=abNo]').val());
+	 	console.log($('[name=anWriter]').val());
+	 	if($('#summernote').summernote('code') == '') return alert('내용을 입력해주세요.');
+	 	$('#answerForm').submit();
+	 });
 
 });
 
@@ -184,6 +190,8 @@ function modalClose(){
 	$('.modal').css('display','none');
 	$('#cgNo').css('display','none');
 	$('.summernote').summernote('code','');
+	$('.answer-box').hide();
+	$('.slideAnswerBtn').attr('disabled',false);
 }
 //다중 선택된 회원 쪽지 보내기
 function insertMultiDm(){
@@ -266,6 +274,7 @@ function selectOneBoard(abNo,cgName){
 		data : {abNo : abNo},
 		success : function(data){
 			console.log(data);
+			$('[name=abNo]').val(data.abNo);
 			$('.titleHead').html(cgName);
 			$('.abTitle').html(data.abTitle);
 			$('.abWriter').html(data.abWriter);

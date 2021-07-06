@@ -177,6 +177,10 @@ public class boardService {
 		return dao.mentModify(map);
 	}
 
+	public int updateBoardStatus(Answer an) {
+		return dao.updateBoardStatus(an);
+	}
+
 
 }
 
