@@ -278,7 +278,7 @@
 	}
 
 		a:hover {
-			color: #EF6480 !important;
+			color: #EF6480;
 		}
 
 	strong, b {
@@ -1173,7 +1173,8 @@
 
 		.items .item {
 			margin: 2em 0 0 2em;
-			/* width: calc(50% - 2em); */
+			 width: calc(30% - 2em);
+			 border-radius: 7%; 
 		}
 
 	@media screen and (max-width: 980px) {

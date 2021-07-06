@@ -195,7 +195,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>음식</h3>
-								<p>나만이 아는 맛집을 공유하고 같이 가잨</p>
+								<p>각자가 아는 맛집을 공유하고 함께 맛집투어를 다녀요! 집에서 만들어 먹을 수 있는 홈 메이킹 레시피도 함께 공유해봐요!</p>
 							</div>
 						</div>
 						<!-- /.service-content -->
@@ -214,7 +214,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>스포츠</h3>
-								<p>여러가지 스포츠 동호회를 만들어 같이 즐겨요!</p>
+								<p>여러가지 스포츠 클럽을 만들어 함께 즐겨요! 같은 취미를 가진 사람들과 함께라면 즐거운 놀이가 되겠죠?</p>
 							</div>
 						</div>
 						<!-- /.service-content -->
@@ -233,7 +233,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>술</h3>
-								<p>도수높은 위스키, 향이 좋은 와인을 함께즐겨요</p>
+								<p>도수 높은 위스키, 향이 좋은 와인. 너나들이와 함께라면 당신도 소믈리에가 될 수 있습니다. 함께 신나는 금요일밤을 만들어봐요!</p>
 							</div>
 						</div>
 						<!-- /.service-content -->
@@ -252,7 +252,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>게임</h3>
-								<p>롤, 에이펙스 등 게임같이하자!</p>
+								<p>나른한 주말, 밖에 나가긴 싫고 집에서 뒹굴뒹굴 거리며 함께 게임을 할 회원들을 찾아봐요!</p>
 							</div>
 						</div>
 						<!-- /.service-content -->
@@ -272,7 +272,7 @@
 							<div class="inner-service">
 								<h3>음악</h3>
 							</div>
-							<p>좋아하는 음악을 공유하고, 함께 콘서트도 즐겨요!</p>
+							<p>나의 취향이 담긴 노래를 공유하고 회원들과 함께 즐겨요! 나의 플레이리스트가 채워지는 행복.</p>
 						</div>
 						<!-- /.service-content -->
 					</div>
@@ -290,7 +290,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>여행</h3>
-								<p>사람들과 함께 어우러져 이곳저곳 여행명소로 떠나봅시다!</p>
+								<p>코로나로 인해 답답한 요즘, 어디론가 떠나고 싶다면 너나들이 회원님들과 함께 방역수칙을 지키며 여행을 떠나보는것도 나쁘지 않겠죠?</p>
 							</div>
 						</div>
 						<!-- /.service-content -->
@@ -309,7 +309,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>영화</h3>
-								<p>좋아하는 영화들을 공유하고, 함께 관람도 해요!</p>
+								<p>영화 관련 클럽을 개설하여 당신의 취향에 맞는 영화를 공유하고, 함께 관람도 해보러 갈까요?</p>
 							</div>
 						</div>
 						<!-- /.service-content -->
@@ -328,7 +328,7 @@
 						<div class="service-content">
 							<div class="inner-service">
 								<h3>자연</h3>
-								<p>함께 환경을 보호하는 활동을 해보아요!</p>
+								<p>자연을 보호하는 일은 그 어떤 일보다 값진 일이죠. 너나들이 회원님들과 함께 자연을 지키러 가봅시다 !</p>
 							</div>
 						</div>
 						<!-- /.service-content -->

@@ -46,15 +46,24 @@
             text-decoration: none;
             cursor: pointer;
         }
+         a{
+            border-bottom: none;
+        }
+        .navbar_menu > li :hover > a {
+        	color : #fff !important;
+        }
+        #wrapper span {
+        	font-size: 15px;
+        }
 </style>
 
 </head>
 <body>
 	 <%@include file="/WEB-INF/views/common/header.jsp"%>  
-	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED</h1>
+	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED<sub style='font-size:15px;'>당신의 클럽을 자랑해봐요.</sub></h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
-	<button id="feed_info" style="float:right; margin-right: 60px;" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
+	<button id="feed_info" style="float:right; margin-right: 60px; font-size: 14px;" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
 	<div id="wrapper">
@@ -98,20 +107,20 @@
 						html += "<input type='text' value='"+fb.fbViews+"'style='display:none;'>";
 						html += "<input type='text' value='"+fb.typeString+"'style='display:none;'>";
 						/* html += "<h3>"+fb.typeString+"카테고리의</h3><br>"; */
-						html += "<h3>"+fb.fbWriter+"님의 게시물입니다.</h3></header>";
+						html += "<h3 style='font-size:18px;'>"+fb.fbWriter+"님의 게시물입니다.</h3></header>";
 						/* html +="<p></p>"; */
 						html += "<ul class='actions'>";
 						if(${empty sessionScope.m}){							
-						html += "<li><a href='#' class='button' onclick='addHeart(this);' disabled><i class='far fa-heart'></i></a></li><br>";
+						html += "<li><a href='#' class='button' onclick='addHeart(this);' style='font-size:10px;' disabled><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
 						}else{
-						html += "<li><a href='#' class='button' onclick='addHeart(this);'><i class='far fa-heart'></i></a></li><br>";
+						html += "<li><a href='#' class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
 						}
 						html += "<span>Likes : "+fb.fbGood+"&nbsp;개</span><br>";
 						html += "<span>Views : "+fb.fbViews+"&nbsp;개</span>";
 						html += "<br>";
 						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
-						html += "<li ><a style='text-decoration:none;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a></li>";
-						html += "<li ><a onclick='deleteCheck(this);' style='text-decoration:none; cursor:pointer;'>DELETE FEED</a></li>";						
+						html += "<li ><a style='text-decoration:none; font-size:15px;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a></li>";
+						html += "<li ><a onclick='deleteCheck(this);' style='text-decoration:none; cursor:pointer; font-size:15px;'>DELETE FEED</a></li>";						
 							}
 						if(${sessionScope.m.grade < 2}){
 						html += "<li id='temporary'><a onclick='deleteCheck(this);'>DELETE FEED</a></li>";													
