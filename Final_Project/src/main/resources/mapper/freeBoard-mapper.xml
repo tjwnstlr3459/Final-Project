@@ -18,8 +18,31 @@
   	select count(fb_no) from free_board
   </select>
   <select id="selectFreeBoards" parameterType="map" resultType="fb">
-  	<!-- select 
-  		   fb_no as fbNo,
+  select 
+    fb_no as fbNo
+    ,b.FB_CONTENT as fbContent
+    ,b.fb_writer as fbWriter
+    ,b.filename
+    ,b.filepath
+    ,b.fb_views as fbViews
+    ,(select count(*) from likes l where l.fb_no = b.fb_no) as fbGood
+    ,b.type
+    ,decode((select count(*) from likes where user_no=#{userNo} and fb_no=b.fb_no),1,1,0) flag    
+	from free_board b
+	
+  <!-- select 
+    fb_no as fbNo
+    ,b.FB_CONTENT as fbContent
+    ,b.fb_writer as fbWriter
+    ,b.filename
+    ,b.filepath
+    ,b.fb_views as fbViews
+    ,(select count(*) from likes l where l.fb_no = b.fb_no) as fbGood
+    ,b.type
+    ,decode((select count(*) from likes where user_no=#{userNo} and fb_no=b.fb_no),1,1,0) flag    
+	from(select rownum as rnum, fb.* from (select * from free_board order by fb_no desc) fb ) where rnum between #{start} and #{end}
+ -->
+  	<!-- select fb_no as fbNo,
   		   fb_writer as fbWriter,
   		   fb_content as fbContent,
   		   filename,
@@ -28,17 +51,7 @@
   		   fb_good as fbGood,
   		   type,
   		   fb_date as fbDate
-  	from free_board	 -->
-  	select fb_no as fbNo,
-  		   fb_writer as fbWriter,
-  		   fb_content as fbContent,
-  		   filename,
-  		   filepath,
-  		   fb_views as fbViews,
-  		   fb_good as fbGood,
-  		   type,
-  		   fb_date as fbDate
-  	 from(select rownum as rnum, fb.* from (select * from free_board order by fb_no desc) fb ) where rnum between #{start} and #{end}
+  	 from(select rownum as rnum, fb.* from (select * from free_board order by fb_no desc) fb ) where rnum between #{start} and #{end} -->
   </select>
   <update id="addHeart" parameterType="int">
   		update free_board set fb_good = fb_good + 1 where fb_no = #{fbNo}   

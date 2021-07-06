@@ -14,6 +14,7 @@ public class FreeBoard {
 	private int type;
 	private String fbDate;
 	private String typeString;
+	private int flag;		//좋아요 눌렀는지 안눌렀는지 판단하기위한 변수
 	
 	
 	public void setType(int type) {
