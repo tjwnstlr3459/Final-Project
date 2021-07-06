@@ -192,11 +192,46 @@
                 <!-- 문의/신고 화면 -->
                 <div class="reportBox"  style="display:none;">
                     <div class="title">
-                        	내 문의/신고
-                        <a href="#">+</a>
+                        	내 문의 내역
+                        <a href="/boardList.do?reqPage=1&type=1"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="reports">
-
+						<div class="row column-name">
+	                                <div class="dm-content-inout">제목</div>
+	                                <div class="dm-date">날짜</div>
+	                    		</div> 
+						<c:forEach items="${queryList}" var="query">
+								<div class="row listRow" onclick="reportDetail(this)">
+									<div class="dm-content-inout">${query.abTitle }</div>
+	                                <div class="dm-date">${query.enrollDate }</div>
+	                            </div>
+	                            <div class="reportContent">
+	                            	
+	                            </div>
+						</c:forEach>
+						${queryNavigation}
+                    </div>
+                    
+                    
+                    <div class="title">
+                        	내 신고 내역
+                        <a href="/boardList.do?reqPage=1&type=1"><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="reports">
+                    			<div class="row column-name">
+	                                <div class="dm-content-inout">제목</div>
+	                                <div class="dm-date">날짜</div>
+	                    		</div> 
+						<c:forEach items="${reportList}" var="report">
+								<div class="row listRow" onclick="reportDetail(this)">
+									<div class="dm-content-inout">${report.abTitle }</div>
+	                                <div class="dm-date">${report.enrollDate }</div>
+	                            </div>
+	                            <div class="reportContent">
+	                            	
+	                            </div>
+						</c:forEach>
+						${reportNavigation}
                     </div>
                     
                 </div>
@@ -447,7 +482,7 @@
 			</div>
 		</div>	
 	</div>
-	<!-- 팝업 레이어  -->
+	<!-- 친구 메뉴용 팝업 레이어  -->
 	<div class="popupLayer"></div>
     
     
@@ -737,7 +772,7 @@
 			location.reload();
 		}	
 
-		//페이징용 함수
+		//전체 쪽지 페이징용 함수
 		function readPaging(obj) {
 			var page = obj.innerText;
 			var user = "<c:out value='${m.memberNick}'/>";
@@ -784,6 +819,14 @@
 			})
 		}
 		
+		//문의 신고 상세 페이지
+		function reportDetail(obj) {
+			var content = obj.nextElementSibling;
+			console.log(content)
+			content.innerText = "dsjfkljds";
+			content.style.display = "bloack";
+			
+		}
 		
 		//친구 메뉴
 		$(".friendName").click(function(e) {

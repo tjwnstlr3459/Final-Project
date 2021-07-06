@@ -14,4 +14,8 @@ public class BoardPageData {
 		this.list = list;
 		this.pageNavi = pageNavi;
 	}
+
+	public BoardPageData() {
+		super();
+	}
 }
