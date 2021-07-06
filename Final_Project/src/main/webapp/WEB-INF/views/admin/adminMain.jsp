@@ -67,7 +67,7 @@
 				    	<table class="table-info">
 				    		<thead>
 					    		<tr>
-					    			<th colspan="2"><h3 class="title-info">title</h3></th>
+					    			<th colspan="2"><h3 class="title-info">Member</h3></th>
 					    		</tr>
 				    		</thead>
 				    		<tbody>
@@ -87,7 +87,7 @@
 				    	<table class="table-info">
 				    		<thead>
 					    		<tr>
-					    			<th colspan="2"><h3 class="title-info">title</h3></th>
+					    			<th colspan="2"><h3 class="title-info">Club</h3></th>
 					    		</tr>
 				    		</thead>
 				    		<tbody>
@@ -106,16 +106,32 @@
 				    	<table class="table-info cgLank">
 				    		<thead>
 					    		<tr>
-					    			<th colspan="3"><h3 class="title-info">title</h3></th>
+					    			<th colspan="3"><h3 class="title-info">Opened Club Categories</h3></th>
 					    		</tr>
 				    		</thead>
 				    		<tbody>
 				    			<!-- javascript에서 만들어 생성됨 -->
 				    		</tbody>
 				    	</table>
-				    </div>
+				    </div> 
 			    </div>
 			</div>
+	    	<div class="chart-wrap">
+	    		<div class="info-space">
+	    			<div class="infoList-wrap box-option hiddenScroll">
+	    				<table class="table-info adminList">
+				    		<thead>
+					    		<tr>
+					    			<th colspan="3"><h3 class="title-info">Administrators</h3></th>
+					    		</tr>
+				    		</thead>
+				    		<tbody>
+				    			<!-- javascript에서 만들어 생성됨 -->
+				    		</tbody>
+				    	</table>
+	    			</div>
+	    		</div>
+	    	</div>
 		</section>
 	</div>
 </body>

@@ -93,8 +93,22 @@
 		update member set last_date=to_char(sysdate, 'YYYY-MM-DD') where email=#{email}
 	</update>
 	<!-- 전체회원 수 -->
-	<select id="memberCount" resultType="int">
+	<select id="memberCount" parameterType="map" resultType="int">
 		select count(*) from member
+		<if test="keyword != '' and category eq 'email'">
+			where email like '%'||#{keyword}||'%'
+		</if>
+		<if test="keyword != '' and category eq 'nick'">
+			where member_nick like '%'||#{keyword}||'%'
+		</if>
+		<if test="keyword != '' and category eq 'hobby'">
+			where
+				hobby1 in (select cg_no from category where cg_name like '%'||#{keyword}||'%')
+				or
+				hobby2 in (select cg_no from category where cg_name like '%'||#{keyword}||'%')
+				or
+				hobby3 in (select cg_no from category where cg_name like '%'||#{keyword}||'%')
+		</if>
 	</select>
 	<!-- 회원에서 관리자로 업그레이드 -->  
 	<update id="updateGrade" parameterType="map">

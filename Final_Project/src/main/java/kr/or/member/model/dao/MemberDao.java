@@ -33,8 +33,8 @@ public class MemberDao {
 		return sqlSession.selectList("member.selectAllMember",se);
 	}
 
-	public int memberCount() {
-		return sqlSession.selectOne("member.memberCount");
+	public int memberCount(HashMap<String, Object> se) {
+		return sqlSession.selectOne("member.memberCount",se);
 	}
 
 	public int updateGrade(String[] memberNo) {

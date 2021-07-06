@@ -12,6 +12,7 @@ import kr.or.admin.model.vo.BestCategory;
 import kr.or.admin.model.vo.DestroyMemberCountMonth;
 import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
+import kr.or.member.model.vo.Member;
 
 @Repository
 public class AdminDao {
@@ -44,5 +45,9 @@ public class AdminDao {
 
 	public List selectBestCategory() {
 		return session.selectList("admin.selectBestCategory");
+	}
+
+	public List selectAllAdmin() {
+		return session.selectList("admin.selectAllAdmin");
 	}
 }

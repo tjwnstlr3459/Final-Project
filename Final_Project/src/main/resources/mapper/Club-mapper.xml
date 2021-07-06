@@ -186,6 +186,12 @@ from direct_message where receiver=#{memberNick} and read_status='N'
 </select>
 <select id="clubCount" resultType="int">
 	select count(*) from club
+	<if test="keyword != '' and category eq 'name'">
+		where club_name like '%'||#{keyword}||'%'
+	</if>
+	<if test="keyword != '' and category eq 'hobby'">
+		where club_cg in (select cg_no from category where cg_name like '%'||#{keyword}||'%') 
+	</if>
 </select>
 <!-- 관리자 클럽 폐지 -->
 <delete id="deleteClub" parameterType="int">

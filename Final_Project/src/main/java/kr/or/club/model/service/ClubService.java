@@ -99,22 +99,22 @@ public class ClubService {
 		se.put("category",category);
 
 		List list = dao.selectAllClub(se); // 전체 클럽을 가지고온다.
-		int clubCount = dao.clubCount(); // 전체 클럽 갯 수
+		int clubCount = dao.clubCount(se); // 전체 클럽 갯 수
 		// 페이지 네비게이션 만들기 전 페이지 설정
 		int totalNaviPage = clubCount % listLength == 0 ? clubCount / listLength : clubCount / listLength + 1; 
 		int navi = ((page - 1) / naviPages) * naviPages + 1; // 페이지 네비게이션의 시작 값 > 1~5 : 1 / 6 ~ 10 : 6
 		String navigation = "<div class='naviPage-wrap'>";
 		// 이전버튼 생성 여부
 		if (navi != 1) {
-			navigation += "<a href='/adminClubList.do?page=" + (navi - 1) + "&sort="+sort+"'>이전</a>";
+			navigation += "<a href='/adminClubList.do?page=" + (navi - 1) + "&sort="+sort+"&category="+category+"&keyword="+keyword+"'>&lt;</a>";
 		}
 		// 1~5단위 페이지 생성
 		for (int i = 0; i < naviPages; i++) {
 			// 사용자가 클릭해서 보고있는 페이지인 경우 효과
 			if (navi == page) {
-				navigation += "<a href='/adminClubList.do?page=" + navi + "&sort="+sort+"' class='naviFocus' id='naviFocus'>" + navi + "</a>";
+				navigation += "<a href='/adminClubList.do?page=" + navi + "&sort="+sort+"&category="+category+"&keyword="+keyword+"' class='naviFocus' id='naviFocus'>" + navi + "</a>";
 			} else {
-				navigation += "<a href='/adminClubList.do?page=" + navi + "&sort="+sort+"'>" + navi + "</a>";
+				navigation += "<a href='/adminClubList.do?page=" + navi + "&sort="+sort+"&category="+category+"&keyword="+keyword+"'>" + navi + "</a>";
 			}
 			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
 			navi++;
@@ -124,7 +124,7 @@ public class ClubService {
 		}
 		// 다음버튼 생성 여부
 		if (navi <= totalNaviPage) {
-			navigation += "<a href='/adminClubList.do?page=" + navi + "&sort="+sort+"'>다음</a>";
+			navigation += "<a href='/adminClubList.do?page=" + navi + "&sort="+sort+"&category="+category+"&keyword="+keyword+"'>&gt;</a>";
 		}
 		navigation += "</div>";
 

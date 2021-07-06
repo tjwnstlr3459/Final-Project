@@ -155,6 +155,13 @@ public class AdminController {
 		ArrayList<DestroyMemberCountMonth> list = service.selectDestroyCountMember();
 		return new Gson().toJson(list);
 	}
+	//관리자들만 selectAll
+	@RequestMapping(value="/selectAllAdmin.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String selectAllAdmin() {
+		ArrayList<Member> adminList = service.selectAllAdmin();
+		return new Gson().toJson(adminList);
+	}
 	
 	
 	

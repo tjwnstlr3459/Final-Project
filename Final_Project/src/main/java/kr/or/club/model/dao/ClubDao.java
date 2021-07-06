@@ -80,8 +80,8 @@ public class ClubDao {
 	}
 
 
-	public int clubCount() {
-		return session.selectOne("club.clubCount");
+	public int clubCount(HashMap<String, Object> se) {
+		return session.selectOne("club.clubCount",se);
 	}
 
 

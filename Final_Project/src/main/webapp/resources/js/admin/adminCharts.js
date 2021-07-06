@@ -3,6 +3,7 @@ $(function(){
 	selectVisitToday();			//오늘 방문자 수 get
 	selectVisitTotal();			//총 방문자 수 get
 	memberCountMonth();			//한 달 기준 회원 count get
+	selectAllAdmin();			//관리자 등급의 계정만 get
 	
 });
 //페이지 로드 시 ADminCount(서비스 시작 후 현재까지 기록 data) 가져오기
@@ -207,4 +208,23 @@ function categoryRank(data){
 		row += `<tr><td>${val.cgName}</td><td class="graphs-wrap"><div class="graphs" style="width:${val.percent}%;"></div></td><td>${val.percent}%</td></tr>`;
 	}
 	$('.cgLank>tbody').html(row);
+}
+//관리자들 가져오기
+function selectAllAdmin(){
+	$.ajax({
+		url:"/selectAllAdmin.do",
+		success:function(data){
+			console.log(data);
+			adminList(data);
+		}
+	});
+}
+//관리자 list에 data 넣어주기
+function adminList(data){
+	var row;
+	for(val of data){
+		var grade = val.grade==0?"MainAdmin":"SubAdmin";
+		row += `<tr><td><div class="adminPic"><img src="/resources/image/userPic/${val.filepath}"></div></td><td>${val.memberNick}</td><td>${grade}</td></tr>`;
+	}
+	$('.adminList>tbody').html(row);
 }

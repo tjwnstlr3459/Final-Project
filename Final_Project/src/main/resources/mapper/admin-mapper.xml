@@ -38,7 +38,12 @@
 	 <select id="selectDestroyMemberCountMonth" resultType="dmcm">
 		select count(*) as destroyCount, substr(des_date,1,7) as destroyMonth from destroy group by substr(des_date,1,7) order by 2
 	</select>
+	<!-- 개설된 클럽의 카테고리 순 랭크 뽑아오기 -->
 	<select id="selectBestCategory" resultType="bc">
 		select (select cg_name from category where cg_no = club_cg) as cgName, count(club_cg) as createdCount, round(count(club_cg)/(select count(*) from club)*100) as percent from club group by club_cg order by club_cg
+	</select>
+	<!-- 관리자 등급의 계정만 가져오기 -->
+	<select id="selectAllAdmin" resultType="m">
+		select * from (select rownum as sort,m.* from (select member_no as memberNo, email, member_pw as memberPw, member_nick as memberNick, gender, age, address, intro, filename, filepath, grade, enroll_date as enrollDate, last_date as lastDate from member where grade &lt; 2 order by grade)m)
 	</select>
 </mapper>
