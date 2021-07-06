@@ -3282,7 +3282,7 @@ footer ul li {
 .myInfo {
   border: 0px solid black;
   width: 100%;
-  height: 200px;
+  height: 220px;
   font-size: 12px;
   padding-left: 10px;
 }
@@ -3562,8 +3562,11 @@ div {
     border-radius: 5px;
     /* color: white; */
     font-size: 13px;
+    
 }
 .mypageBtn a{
+	width : 100%;
+	height : 100%;
 	text-decoration: none;
     color: white;
 }
