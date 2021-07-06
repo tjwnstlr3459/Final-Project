@@ -457,6 +457,8 @@ public class MemberController {
 		}
 		return "0";
 	}
+
+		
 	
 	//전체회원list get
 	@RequestMapping(value="/adminMemberList.do")
