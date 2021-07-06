@@ -52,6 +52,7 @@
                 </div>
             </div>
             <div class="main">
+            
             	<!-- 친구 화면 -->
                 <div class="friendBox">
          			<c:if test="${not empty rfriends }">
@@ -71,11 +72,14 @@
                     </c:forEach>
                 	</div>
                 	</c:if>
+                	
                     <div class="title">
                       	  내 친구
                         <a href="javascript:void(0)" id="findfriend"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="friends">
+                    <c:choose>
+                    <c:when test="${not empty friends }">
                     <c:forEach items="${friends }" var="f">
                     	<div class="friend">
                             <div class="myInfoImg">
@@ -86,14 +90,20 @@
                             </div>
                         </div>  
                     </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                    	친구가 없습니다.
+                    </c:otherwise>
+                    </c:choose>
                 	</div>
                 </div>
                 
                 <!-- 쪽지 화면 -->
                 <div class="dmBox" style="display:none;">
+                
+                	<c:if test="${not empty unreadDmList }">
                     <div class="title">
                         	새로 받은 쪽지
-                        <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="dmsList">
                     
@@ -104,18 +114,18 @@
                                 <div class="dm-date">날짜</div>
                                 <div class="dm-reply">답장</div>
                     		</div> 
-                    		<c:forEach items="${dmList }" var="dm">
-                                <c:if test="${dm.receiver == m.memberNick and dm.readStatus == 'N'}">
+                    		<c:forEach items="${unreadDmList }" var="dm">
 	                                <div class="row listRow">
 		                    			<div class="dm-sender">${dm.sender }</div>
 		                                <div class="dm-content"><span onclick="dmShow(1, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
 		                                <div class="dm-date">${dm.dmDate }</div>
 		                                <div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm('${dm.sender}', '${m.memberNick }')"></i></div>
 	                    			</div>
-                                </c:if>
                             </c:forEach>
+                            ${unreadNavigation}
                     	</div>
                     </div>
+                    </c:if>
                     
                     <div class="title">
                         	내 쪽지
@@ -123,51 +133,58 @@
                     </div>
                     <div class="dmsList">
                         
-                        <div class="inoutDmsList">
-                    		<div class="row column-name">
-                    			<div class="dm-sr">구분</div>
-                    			<div class="dm-sender">유저명</div>
-                                <div class="dm-content-inout">내용</div>
-                                <div class="dm-date">날짜</div>
-                                <div class="dm-read">읽음</div>
-                                <div class="dm-reply">답장</div>
-                    		</div> 
-                    		<c:forEach items="${dmList }" var="dm">
-                            	<c:if test="${not (dm.receiver == m.memberNick and dm.readStatus == 'N')}">
-                            		<div class="row listRow">
-                            			<c:choose>
-                                    		<c:when test="${dm.receiver == m.memberNick}">
-                                    			<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>
-                                    		</c:when>
-                                    		<c:otherwise>
-                                    			<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>
-                                    		</c:otherwise>
-                                    	</c:choose>
-                                    	<c:choose>
-                                    		<c:when test="${dm.receiver == m.memberNick}">
-                                    			<div class="dm-sender">${dm.sender }</div>
-                                    			<div class="dm-content-inout"><span onclick="dmShow(2, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
-                                    		</c:when>
-                                    		<c:otherwise>
-                                    			<div class="dm-sender">${dm.receiver }</div>
-                                    			<div class="dm-content-inout"><span onclick="dmShow(3, ${dm.dmNo}, '${dm.receiver}', '${dm.dmContent }')">${dm.dmContent }</span></div>
-                                    		</c:otherwise>
-                                    	</c:choose>		                                
-		                                <div class="dm-date">${dm.dmDate }</div>
-		                                <div class="dm-read">${dm.readStatus }</div>
-		                                <c:choose>
-                                    		<c:when test="${dm.receiver == m.memberNick}">
-                                    			<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm('${dm.sender}', '${m.memberNick }')"></i></div>
-                                    		</c:when>
-                                    		<c:otherwise>
-                                    			<div class="dm-reply"></div>
-                                    		</c:otherwise>
-                                    	</c:choose>
-	                    			</div>
-                               </c:if>                                   
-                            </c:forEach>
-                            ${dmNavigation }
-                    	</div>
+                        <c:choose>
+                        <c:when test="${not empty dmList }">
+                        	<div class="inoutDmsList">
+	                    		<div class="row column-name">
+	                    			<div class="dm-sr">구분</div>
+	                    			<div class="dm-sender">유저명</div>
+	                                <div class="dm-content-inout">내용</div>
+	                                <div class="dm-date">날짜</div>
+	                                <div class="dm-read">읽음</div>
+	                                <div class="dm-reply">답장</div>
+	                    		</div> 
+	                    		<c:forEach items="${dmList }" var="dm">
+	                            	<c:if test="${not (dm.receiver == m.memberNick and dm.readStatus == 'N')}">
+	                            		<div class="row listRow">
+	                            			<c:choose>
+	                                    		<c:when test="${dm.receiver == m.memberNick}">
+	                                    			<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    			<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>
+	                                    		</c:otherwise>
+	                                    	</c:choose>
+	                                    	<c:choose>
+	                                    		<c:when test="${dm.receiver == m.memberNick}">
+	                                    			<div class="dm-sender">${dm.sender }</div>
+	                                    			<div class="dm-content-inout"><span onclick="dmShow(2, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    			<div class="dm-sender">${dm.receiver }</div>
+	                                    			<div class="dm-content-inout"><span onclick="dmShow(3, ${dm.dmNo}, '${dm.receiver}', '${dm.dmContent }')">${dm.dmContent }</span></div>
+	                                    		</c:otherwise>
+	                                    	</c:choose>		                                
+			                                <div class="dm-date">${dm.dmDate }</div>
+			                                <div class="dm-read">${dm.readStatus }</div>
+			                                <c:choose>
+	                                    		<c:when test="${dm.receiver == m.memberNick}">
+	                                    			<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm('${dm.sender}', '${m.memberNick }')"></i></div>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    			<div class="dm-reply"></div>
+	                                    		</c:otherwise>
+	                                    	</c:choose>
+		                    			</div>
+	                                </c:if>                                   
+	                             </c:forEach>
+	                             ${dmNavigation }
+                    		</div>
+                        </c:when>
+                        <c:otherwise>
+                        	쪽지가 없습니다.
+                        </c:otherwise>
+                        </c:choose>                        
                     </div>
                     
                 </div>

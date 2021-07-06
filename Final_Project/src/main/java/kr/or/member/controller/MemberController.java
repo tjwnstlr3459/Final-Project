@@ -310,6 +310,7 @@ public class MemberController {
 			model.addAttribute("unreadDmList", dmData.getUnreadDmList());
 			model.addAttribute("unreadDm", dmData.getUnread());
 			model.addAttribute("dmNavigation", dmData.getAllPaging());
+			model.addAttribute("unreadNavigation", dmData.getUnreadPaging());
 			model.addAttribute("friends", friendsData.getFList());
 			model.addAttribute("pfriends", friendsData.getFpendingList());
 			model.addAttribute("rfriends", friendsData.getFReqList());
