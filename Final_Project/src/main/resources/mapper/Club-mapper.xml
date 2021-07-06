@@ -197,6 +197,19 @@ from direct_message where receiver=#{memberNick} and read_status='N'
 <delete id="deleteClub" parameterType="int">
 	delete from club where club_no=#{clubNo}
 </delete>
+
+<!-- 댓글 가져오기 -->
+<select id="postMoment" parameterType="int" resultType="ccm">
+select
+	CC_NO AS ccNo,
+	board_no as boardNo,
+	cc_writer as ccWriter,
+	cc_content as ccContent,
+	cc_cg as ccCG,
+	cc_ref as ccREF,
+	cc_good as ccGOOD
+from CLUB_COMMENT WHERE BOARD_NO=#{boardNo}
+</select>
 </mapper>
 
 

@@ -1,6 +1,7 @@
 package kr.or.club.model.dao;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
+import kr.or.newclub.model.vo.ClubComment;
 
 @Repository
 public class ClubDao {
@@ -94,12 +96,26 @@ public class ClubDao {
 		return session.selectOne("club.myMessage",m);
 	}
 
-
+	//나의 클럽넘버들 가져오기
 	public int deleteClub(int clubNo) {
 		return session.delete("club.deleteClub",clubNo);
 	}
 
+//	//댓글 가져오기
+//	public ArrayList<ClubComment> selectComent() {
+//		List<ClubComment> list = session.selectList("club.selectComent");
+//		return (ArrayList<ClubComment>)list;
+//	}
 
+	//클릭 게시물 댓글 조회
+	public ArrayList<ClubComment> postMoment(int boardNo) {
+		List<ClubComment> list = session.selectList("club.postMoment",boardNo);
+		return (ArrayList<ClubComment>)list;
+	}
+
+
+	
+	
 	
 	
 	
