@@ -29,10 +29,6 @@ public class FreeBoardDao {
 		return (ArrayList<FreeBoard>)list;
 	}
 
-	public int addHeart(int fbNo) {
-		int result = sqlSession.update("freeBoard.addHeart",fbNo);
-		return result;
-	}
 
 	public FreeBoard selectFreeBoardByFbNo(int fbNo) {
 		return sqlSession.selectOne("freeBoard.selectFreeBoardByFbNo",fbNo);
@@ -52,5 +48,14 @@ public class FreeBoardDao {
 
 	public int addViews(int fbNo) {
 		return sqlSession.update("freeBoard.addViews",fbNo);
+	}
+
+	public int addHeart(HashMap<String,Integer> map) {
+		int result = sqlSession.insert("likes.addHeart",map);
+		return result;
+	}
+	public int minusHeart(HashMap<String, Integer> map) {
+		int result = sqlSession.delete("likes.minusHeart",map);
+		return result;
 	} 
 }

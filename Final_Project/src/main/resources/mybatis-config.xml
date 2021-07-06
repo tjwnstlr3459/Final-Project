@@ -47,6 +47,8 @@
 		<!-- 마이클럽 차트 -->
 		<typeAlias type="kr.or.club.model.vo.ClubChart" alias="cc"/>
 		<!-- 클럽 댓글 클래스 -->
-		<typeAlias type="kr.or.newclub.model.vo.ClubComment" alias="ccm"/> 
+		<typeAlias type="kr.or.newclub.model.vo.ClubComment" alias="ccm"/>
+		<!-- 좋아요 클래스 -->
+		<typeAlias type="kr.or.likes.model.vo.Likes" alias="lk"/>  
 	</typeAliases>
 </configuration>

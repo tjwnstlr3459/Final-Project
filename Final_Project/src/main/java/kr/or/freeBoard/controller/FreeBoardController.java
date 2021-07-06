@@ -109,14 +109,25 @@ public class FreeBoardController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/addHeart.do")
-	public int addHeart(int fbNo) {
-		int result = service.addHeart(fbNo);
+	public int addHeart(int fbNo, int userNo) {
+		int result = service.addHeart(fbNo,userNo);
 		if(result > 0) {			
 			return 1;
 		}else {
 			return 0;
 		}
 	}
+	@ResponseBody
+	@RequestMapping(value="/minusHeart.do")
+	public int minusHeart(int fbNo, int userNo) {
+		int result = service.minusHeart(fbNo,userNo);
+		if(result > 0) {			
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
 	@RequestMapping(value="/updateFreeBoardFrm.do")
 	public String updateFreeBoardFrm(int fbNo, Model model) {
 		FreeBoard fb = service.selectFreeBoardByFbNo(fbNo);
