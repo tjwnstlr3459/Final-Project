@@ -65,6 +65,13 @@
 	</update>
 	<!-- DM 1개 조회 -->
 	<select id="selectOneDm" parameterType="dm" resultType="dm">
-		select count(*) from direct_message where dm_no=#{dmNo}
+		select
+			dm_no as dmNo,
+			sender,
+			receiver,
+			dm_content as dmContent,
+			dm_date as dmDate,
+			read_status as readStatus
+		from direct_message where dm_no=#{dmNo}
 	</select>
 </mapper>
