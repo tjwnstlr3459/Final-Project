@@ -17,6 +17,43 @@
 	.categoryNavi >ul > li a{		
 	color: black;
 	}
+	button{
+  background: rgb(236,82,63);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:rgb(236,82,63);
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(236,82,63);
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+	
 </style>
 </head>
 <body>
@@ -34,9 +71,9 @@
 	<hr>
 	<h3 style="text-align: center;">CLUB LIST</h3>
 	<c:if test="${!empty sessionScope.m }">
-	<!-- <button type="button" onclick="location.href='/createClubFrm.do';" style="float:right; margin-right:100px; width:150px; height:70px; background-color:#ec5674; font-size:18px; font-weight:bold; border:none;">MAKE CLUB</button> -->
 	<div>
-		<a href="/createClubFrm.do" style="float:right; margin-right:100px; font-size:18px; color:black; font-weight:bold; text-decoration:none;">MAKE CLUB</a>
+		<!-- <a href="/createClubFrm.do" style="float:right; margin-right:100px; font-size:18px; color:black; font-weight:bold; text-decoration:none;">MAKE CLUB</a> -->
+		<button onclick="location.href='/createClubFrm.do';" style='float:right; margin-right:100px; font-size:13px;' >MAKE CLUB</button>
 	</div>
 	</c:if>
 	<div class="all-wrap">
