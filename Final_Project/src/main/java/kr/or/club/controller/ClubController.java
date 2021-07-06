@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -57,6 +58,20 @@ public class ClubController {
 	public String postMoment(int boardNo) {
 		ArrayList<ClubComment> list = service.postMoment(boardNo);
 		return new Gson().toJson(list);		
+	}
+	//마이클럽 댓글 입력
+	@ResponseBody
+	@RequestMapping(value ="/comentSend.do")
+	public int comentSend(@SessionAttribute(required = false) Member m,int comentBoardNo,String comentCon) {
+		int result = service.insertComent(m,comentBoardNo,comentCon);
+		return result;
+	}
+	//댓글 삭제
+	@ResponseBody
+	@RequestMapping(value = "/mentOut.do")
+	public int mentDelete(int mentNo) {
+		int result = service.deleteMent(mentNo);
+		return result;
 	}
 	
 	//날짜별 조회시 totalCount를 다시 가져온다

@@ -142,13 +142,21 @@ public class ClubService {
 	public int deleteClub(int clubNo) {
 		return dao.deleteClub(clubNo);
 	}
-//	//댓글 가져오기
-//	public ArrayList<ClubComment> selectComent() {
-//		return dao.selectComent();
-//	}
 	//클릭한 게시물 댓글 조회
 	public ArrayList<ClubComment> postMoment(int boardNo) {
 		return dao.postMoment(boardNo);
+	}
+	//댓글등록
+	public int insertComent(Member m, int boardNo, String comentCon) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("m", m);
+		map.put("boardNo", boardNo);
+		map.put("comentCon", comentCon);
+		return dao.insertComent(map);
+	}
+	//댓글 삭제
+	public int deleteMent(int mentNo) {
+		return dao.deleteMent(mentNo);
 	}
 
 	

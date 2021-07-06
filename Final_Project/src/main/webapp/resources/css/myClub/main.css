@@ -2331,12 +2331,11 @@ header .logo a {
   *  12. bricks masonry - (_layout.scss)
   *
   * ------------------------------------------------------------------- */
-#bricks {
-  padding-top: 2.2rem;
-}
+
 
 #bricks .masonry {
   max-width: 1440px;
+  margin-top: 20px;
 }
 
 #bricks .pagination {
@@ -3595,7 +3594,18 @@ div {
 }
 
 
-
+.mentScroll {
+    overflow: auto;
+  }
+  .mentScroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .mentScroll::-webkit-scrollbar-thumb {
+    background-color: #dcdcdc;
+  }
+  .mentScroll::-webkit-scrollbar-track {
+    background-color: #bbb9b9;
+  }
 
 
 

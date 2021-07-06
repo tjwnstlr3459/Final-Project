@@ -113,6 +113,16 @@ public class ClubDao {
 		return (ArrayList<ClubComment>)list;
 	}
 
+	//마이클럽 댓글 등록
+	public int insertComent(HashMap<String, Object> map) {
+		return session.insert("club.insertComent",map);
+	}
+
+	//댓글 삭제
+	public int deleteMent(int mentNo) {
+		return session.delete("club.deleteMent",mentNo);
+	}
+
 
 	
 	

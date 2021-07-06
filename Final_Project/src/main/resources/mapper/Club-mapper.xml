@@ -210,6 +210,22 @@ select
 	cc_good as ccGOOD
 from CLUB_COMMENT WHERE BOARD_NO=#{boardNo}
 </select>
+<!-- 댓글등록 -->
+<insert id="insertComent" parameterType="map">
+INSERT INTO CLUB_COMMENT VALUES(
+    CC_SEQ.NEXTVAL,
+    #{boardNo},
+    #{m.memberNick},
+   	#{comentCon},
+    0,
+    NULL,
+    0)
+</insert>
+
+<!-- 댓글삭제 -->
+<delete id="deleteMent" parameterType="int">
+DELETE FROM CLUB_COMMENT WHERE CC_NO=#{mentNo}
+</delete>
 </mapper>
 
 

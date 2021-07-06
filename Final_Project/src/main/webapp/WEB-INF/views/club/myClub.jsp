@@ -43,13 +43,13 @@
 </script>
 <body id="top"
 	style="background-image: url('/resources/css/myClub/micons/3.jpg'); background-size: cover;">
-	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<!-- page header
    ================================================== -->
 
 	<!-- masonry
    ================================================== -->
 	<section id="bricks" class="with-top-sep">
+		<%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div class="row masonry">
 			<section id="page-header">
 				<div class="row current-cat">
@@ -145,7 +145,7 @@
 		<!-- 게시물 모달창 -->
 		<div class="postModal" style="display: none">
 			<div class="postModalPan"
-				style="padding-bottom: 20px; padding-top: 20px">
+				style="padding-bottom: 5px; padding-top: 20px">
 				<div class="postUser">
 					<div class="modalUserImg">
 						<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
@@ -180,8 +180,10 @@
 				</div>
 				<!--좋아요-->
 				<hr />
-				<div class="modalComent">
-					<%-- <!--댓글-->
+				<div class="mentScroll"
+					style="max-height: 150px; overflow: scroll; overflow-x: hidden;">
+					<div class="modalComent">
+						<%-- <!--댓글-->
 					<div>
 						<div class="imgimg">
 							<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
@@ -207,13 +209,8 @@
 						</div>
 						<div style="float: left"></div>
 					</div> --%>
+					</div>
 				</div>
-				
-				
-				
-				
-				
-				
 				<hr />
 				<div class="modalComentWrite">
 					<div style="float: left;">
@@ -224,7 +221,9 @@
 					<div style="margin-bottom: 20px; float: left;">
 						<input type="text" name="coment" class="comentWrite" />
 					</div>
-					<div style="float: left;">
+					<input type="text" class="comentSendNo" value=""
+						style="display: none">
+					<div style="float: left;" onclick="comentSend()">
 						<img src="/resources/image/icons/check.png"
 							style="width: 30px; margin-left: 10px; margin-top: 10px;" />
 					</div>
@@ -304,7 +303,31 @@
 		})
 		more(1);
 	}
-
+	//댓글 삭제
+	function delMent(obj){
+		//선택한 게시물의 인덱스값알아내기
+		var idx = $(".mentNoChek").index(obj); 
+		console.log(idx);
+		//각 버튼의 댓글 넘버 가져오기
+		var mentNo =$(".mentNoNo").eq(idx).html();
+		console.log(mentNo);
+		
+		$.ajax({
+			url : "/mentOut.do",
+			data : {
+				mentNo : mentNo
+			},
+			type : "post",
+			success : function(data) {
+				if(data>0){
+					alert("댓글이 삭제되었습니다.");
+				}else{
+					alert("댓글이 삭제 실패");
+				}
+			}
+		});
+	}
+		
 	//모달클릭
 	function func1(obj) {
 		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
@@ -318,6 +341,7 @@
 		$(".modalClubName").html($(".clubName").eq(idx).html()); //해당 게시글 클럽명
 		$(".postContent").html($(".entry-excerpt").eq(idx).html()); //게시글 내용
 		$(".postImg").html($(".picPath").eq(idx).clone());
+		$(".comentSendNo").val($(".boardNo").eq(idx).html());
 
 		console.log($(".boardNo").eq(idx).html());
 
@@ -335,14 +359,52 @@
 				$(".modalComent").empty();
 				for (var i = 0; i < data.length; i++) {					
 					var html = "";
-					html += '<div class="modalComentImg"><div class="imgimg"><img src="/resources/image/userPic/${sessionScope.m.filepath }" /></div></div><div class="modalComentMoment"><div class="lastFinal" style="width: 70%; float: left"><div class="testesttestest"><div class="postWrite"style="font-weight: bold; font-size: 12px; float: left;margin-top: 3px;">'+data[i].ccWriter+'</div></div> <div class="lightlight" style="width: 85%; float: left;"><p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left; margin-top: 10px;margin-left: 5px;">'+data[i].ccContent+'</p></div></div><div style="width: 30px; float: left; height: 100%; display: flex; align-items: center;"><img src="/resources/image/icons/down.png" style="width: 30px;" /></div><div style="float: left"></div></div>';	
+					html += '<div class="modalComentImg">';
+					html += '<div class="imgimg">';
+					html += '<img src="/resources/image/userPic/${sessionScope.m.filepath }" />';
+					html += '</div></div><div class="modalComentMoment">';
+					html += '<div class="lastFinal" style="width: 70%; float: left">';
+					html += '<div class="testesttestest">';
+					html += '<div class="mentNoNo" type="text" style="display:none;">'+data[i].ccNo+'</div>';
+					html += '<div class="postWrite"style="line-height: 15px;font-weight: bold; font-size: 12px;margin-left:5px;margin-top: 3px;">'+data[i].ccWriter+'</div></div>';
+					html += '<div class="lightlight" style="width: 85%; float: left;">';
+					html += '<p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 5px;">'+data[i].ccContent+'</p></div></div>';
+					html += '<div style="width: 30px; float: left; height: 100%; display: flex; align-items: center;">'
+					html += '<img class="mentNoChek" onclick="delMent(this)"; style="width: 20px;" src="/resources/image/clubimg/del.png"/></div>';
+					html += '<div style="float: left"></div></div>'	;
 					$(".modalComent").append(html);
 				}
 			}
 		});
+		}
+		//댓글 입력
+		function comentSend(){
+		//해당 게시물 번호
+		var comentCon = $('input[name=coment]').val();
+		//해당게시물 댓글 내용
+		var comentBoardNo = $(".comentSendNo").val();
+		console.log(comentBoardNo);
+		console.log(comentCon);
 		
+		$.ajax({
+			url : "/comentSend.do",
+			data : {
+				comentBoardNo : comentBoardNo,
+				comentCon : comentCon
+			},
+			type : "get",
+			success : function(data){
+				if(data>0){
+					alert("등록되었습니다.");
+				}else{
+					alert("등록실패");
+				}
+			}
+		});
 	}
-
+	
+		
+	//더보기
 	$(function() {
 		more(1);
 		$("#more-btn").click(function() {
