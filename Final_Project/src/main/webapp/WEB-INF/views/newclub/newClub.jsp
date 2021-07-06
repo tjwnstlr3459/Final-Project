@@ -331,7 +331,7 @@
 					<div class="right1">
 						<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
 						<hr> --%>
-						<div class="commentbox" style="width: 280px; height: 30px;">클럽
+						<div class="commentbox1" style="width: 300px; height: 50px;">클럽
 							멤버와 채팅하기</div>
 						<div class="chatting">
 							<div class="messageArea"></div>
@@ -892,7 +892,7 @@
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws://192.168.10.47//chat.do")
+      ws = new WebSocket("ws://192.168.35.71///chat.do")
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수

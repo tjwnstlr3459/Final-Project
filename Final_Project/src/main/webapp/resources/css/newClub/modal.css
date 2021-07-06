@@ -15,14 +15,11 @@
   }
   /* 모달설정 */
   .modalWrap{
-     background-color: white;
+     background-color: rgb(255, 129, 71);
      padding: 30px 50px;
      border-radius: 10px;
      width: 600px;
-     min-width: 350px
-     overflow-y : auto;
-     display: flex;
-     flex-direction: column;
+     min-width: 350px;
   }
   #closeBtn{
 	 margin: 0 auto;
