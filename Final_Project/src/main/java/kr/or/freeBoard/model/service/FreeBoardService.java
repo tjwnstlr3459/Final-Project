@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.freeBoard.model.dao.FreeBoardDao;
 import kr.or.freeBoard.model.vo.FreeBoard;
+import kr.or.likes.model.dao.LikesDao;
 
 @Service
 public class FreeBoardService {
@@ -30,11 +31,6 @@ public class FreeBoardService {
 		ArrayList<FreeBoard> list = dao.selectFreeBoards(map);
 		return list;
 	}
-	@Transactional
-	public int addHeart(int fbNo) {
-		int result = dao.addHeart(fbNo);
-		return result;
-	}
 	public FreeBoard selectFreeBoardByFbNo(int fbNo) {
 		FreeBoard fb = dao.selectFreeBoardByFbNo(fbNo);
 		return fb;
@@ -53,5 +49,21 @@ public class FreeBoardService {
 	@Transactional
 	public int addViews(int fbNo) {
 		return dao.addViews(fbNo);
+	}
+	@Transactional
+	public int addHeart(int fbNo, int userNo) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("fbNo", fbNo);
+		map.put("userNo", userNo);
+		int result = dao.addHeart(map);
+		return result;
+	}
+	@Transactional
+	public int minusHeart(int fbNo, int userNo) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("fbNo", fbNo);
+		map.put("userNo", userNo);
+		int result = dao.minusHeart(map);
+		return result;
 	}
 }

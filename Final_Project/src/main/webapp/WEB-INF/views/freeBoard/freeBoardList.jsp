@@ -69,8 +69,8 @@
 	</c:when>
 	</c:choose>
 	<div id="wrapper">
+		<input type='text' name='userNo' value="${sessionScope.m.memberNo }" style='display:none;'>
 	<section class="main items">
- 
 	</section>
 	</div>
     <!-- The Modal -->
@@ -101,24 +101,26 @@
 						var fb = data[i];		//p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고
 						var html = "";				//html초기화
 						html += "<article class='item'><header style='display:flex;'>";			
-						html += "<a href='#' onclick='detailView(this);'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 
+						html += "<a onclick='detailView(this);' style='cursor:pointer;'><img style='width:100%; height:100%;' src='/resources/freeBoardUpload/"+fb.filepath+"'></a>"; 
 						html += "<span style='display:none;'>"+fb.fbContent+"</span>";
 						html += "<span style='display:none;'>"+fb.fbWriter+"</span>";
-						html += "<input type='text' value='"+fb.fbNo+"'style='display:none;'>";
+						html += "<input type='text' name='fbNo' value='"+fb.fbNo+"'style='display:none;'>";
 						html += "<input type='text' value='"+fb.fbGood+"'style='display:none;'>";
 						html += "<input type='text' value='"+fb.fbViews+"'style='display:none;'>";
 						html += "<input type='text' value='"+fb.typeString+"'style='display:none;'>";
-						/* html += "<h3>"+fb.typeString+"카테고리의</h3><br>"; */
 						html += "<h3 style='font-size:18px;'>"+fb.fbWriter+"님의 게시물입니다.</h3></header>";
-						/* html +="<p></p>"; */
 						html += "<ul class='actions'>";
-						if(${empty sessionScope.m}){							
-						html += "<li><a href='#' class='button' onclick='addHeart(this);' style='font-size:10px;' disabled><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
-						}else{
-						html += "<li><a href='#' class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
-						}
-						html += "<span>Likes : "+fb.fbGood+"&nbsp;개</span><br>";
-						html += "<span>Views : "+fb.fbViews+"&nbsp;개</span>";
+						<c:choose>
+							<c:when test="${empty sessionScope.m}">
+							html += "<li><a onclick='loginCheck();' class='button' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
+							</c:when>
+							<c:otherwise>
+							html += "<li><a class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
+							</c:otherwise>
+						</c:choose>
+						
+						html += "<span>"+fb.fbGood+"</span><span> likes</span><br>";
+						html += "<span>"+fb.fbViews+"&nbsp;views</span>";
 						html += "<br>";
 						if(fb.fbWriter == "${sessionScope.m.memberNick}"){							
 						html += "<li ><a style='text-decoration:none; font-size:15px;' href='/updateFreeBoardFrm.do?fbNo="+fb.fbNo+"'"+">UPDATE FEED</a></li>";
@@ -149,20 +151,27 @@
 				}
 			});
 		} 
+			/* var memberNo = ${sessionScope.m.memberNo}; */
 		function addHeart(obj){		//this 를 obj로 주고 받아서 this를 찍어야 해당하는 속성값이 찍힘
-			/* var fbNo = $(obj).parents().parents().first(); */
 			var fbNo = $(obj).parents().eq(1).parents().eq(0).children().eq(0).children().eq(3).val();
-			 $.ajax({
+			var userNo = $(obj).parents().eq(3).parents().eq(0).children().eq(0).val();
+			   $.ajax({
 				url : "/addHeart.do",
-				data : {fbNo:fbNo},
+				data : {fbNo:fbNo,userNo:userNo},
 				type : "post",
 				success : function(data){
 					if(data == 1){
 						$(obj).children().first().removeClass("far fa-heart");
 						$(obj).children().first().addClass("fas fa-heart");
+						var likes = parseInt($(obj).parents().eq(0).next().next().html())+1;
+						$(obj).parents().eq(0).next().next().html(likes);
+						
+						if($(obj).children().first().attr('class') == 'fas fa-heart'){
+						$(obj).parents().children().eq(0).attr("onclick","minusHeart(this);");							
+						}
 					}
 				}
-		}); 
+		});  
 		}
 		function deleteCheck(obj) {
 			var fbNo = $(obj).parents().eq(1).children().eq(3).val()
@@ -172,6 +181,27 @@
 			}else{
 				location.href-"redirect:/";
 			}
+		}
+		function minusHeart(obj){
+			var fbNo = $(obj).parents().eq(1).parents().eq(0).children().eq(0).children().eq(3).val();
+			var userNo = $(obj).parents().eq(3).parents().eq(0).children().eq(0).val();
+			  $.ajax({
+					url : "/minusHeart.do",
+					data : {fbNo:fbNo,userNo:userNo},
+					type : "post",
+					success : function(data){
+						if(data == 1){
+							$(obj).children().first().removeClass("fas fa-heart");
+							$(obj).children().first().addClass("far fa-heart");
+							var likes = parseInt($(obj).parents().eq(0).next().next().html())-1;
+							$(obj).parents().eq(0).next().next().html(likes);
+							
+							if($(obj).children().first().attr('class') == 'far fa-heart'){
+							$(obj).parents().children().eq(0).attr("onclick","addHeart(this);");							
+							}
+						}
+					}
+			});  
 		}
 		
 		//모달쪽
@@ -237,6 +267,12 @@
 		            }
 		        }
 		        
+		        function loginCheck() {
+					if(${empty sessionScope.m}){
+					alert("로그인 후 좋아요 가능합니다.");
+					location.href = "/loginFrm.do";				
+					}
+		        }
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
