@@ -25,6 +25,7 @@ import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
+import kr.or.newclub.model.vo.ClubComment;
 
 @Controller
 public class ClubController {
@@ -45,22 +46,17 @@ public class ClubController {
 		//나의 쪽지 확인
 		int myMessage = service.myMessage(m);
 		model.addAttribute("myMessage", myMessage);
-		
-		/*
-		 * FriendsData friendsData = service.selectFriendData(m); DirectMessageData
-		 * dmData = dmService.selectDmByName(m);
-		 * 
-		 * 
-		 * model.addAttribute("dmList", dmData.getDmList());
-		 * model.addAttribute("unreadDm", dmData.getUnread());
-		 * model.addAttribute("friends", friendsData.getFList());
-		 * model.addAttribute("pfriends", friendsData.getFpendingList());
-		 * model.addAttribute("rfriends", friendsData.getFReqList());
-		 * model.addAttribute("req", friendsData.getFReq());
-		 */
-		
+//		//댓글 가져오기
+//		ArrayList<ClubComment> coment = service.selectComent();
+//		model.addAttribute("coment", coment);
 		return "club/myClub";
-		
+	}
+	//게시물 클릭시 댓글 조회
+	@ResponseBody
+	@RequestMapping(value = "/postMoment.do",produces="application/json;charset=utf-8")
+	public String postMoment(int boardNo) {
+		ArrayList<ClubComment> list = service.postMoment(boardNo);
+		return new Gson().toJson(list);		
 	}
 	
 	//날짜별 조회시 totalCount를 다시 가져온다
