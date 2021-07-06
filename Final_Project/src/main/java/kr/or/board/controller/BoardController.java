@@ -242,7 +242,7 @@ public class BoardController {
 	      }else {
 	    	  model.addAttribute("msg","등록실패");
 	      }
-	      model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1);
+	      model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1+"&sort=1");
 	      return "common/msg";
 	}
 	
@@ -255,7 +255,7 @@ public class BoardController {
 		}else {
 			model.addAttribute("msg", "삭제 실패");
 		}
-		model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1);
+		model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1+"&sort=1");
 		return "common/msg";
 	}
 	
@@ -348,7 +348,7 @@ public class BoardController {
 		}else {
 			model.addAttribute("msg", "수정실패");
 		}
-		model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1);
+		model.addAttribute("loc","/boardList.do?reqPage="+1+"&type="+1+"sort=1");
 		return "common/msg";
 	}
 }

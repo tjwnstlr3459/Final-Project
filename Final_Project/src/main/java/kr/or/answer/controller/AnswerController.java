@@ -26,7 +26,7 @@ public class AnswerController {
 		}else {
 			model.addAttribute("msg","오류가 발생하였습니다. 다시 시도해주세요.");
 		}
-		model.addAttribute("loc","/adminBoardList.do?reqPage=1&type=2");
+		model.addAttribute("loc","/adminBoardList.do?reqPage=1&type=2&sort=1");
 		return"common/msg";
 	}
 }
