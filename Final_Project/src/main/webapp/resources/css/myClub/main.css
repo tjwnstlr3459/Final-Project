@@ -3553,7 +3553,20 @@ div {
   	white-space: nowrap;
 }
  */
-
+.mypageBtn{
+	width: 70%;
+    height: 30px;
+    background-color: #5bc0de;;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    /* color: white; */
+    font-size: 13px;
+}
+.mypageBtn a{
+	text-decoration: none;
+    color: white;
+}
 
 
 
