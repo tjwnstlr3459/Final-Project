@@ -211,6 +211,16 @@ WHERE CLUB_NO=#{clubNo}
 DELETE FROM CLUB_MEMBER WHERE CM_NO= #{cmNo}
 </delete>
 
+<!-- 쪽지보내기 -->
+<insert id="sendMail" parameterType="map">
+INSERT INTO DIRECT_MESSAGE VALUES(
+    DM_SEQ.NEXTVAL,
+    #{sender},
+    #{receiver},
+    #{messageText},
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'),
+    'N')
+</insert>
 </mapper>
 
 

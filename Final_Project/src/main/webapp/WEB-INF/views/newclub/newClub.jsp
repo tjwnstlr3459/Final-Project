@@ -111,7 +111,9 @@
 						<li class="active"><a href="#">게시글</a></li>
 						<li><a href="#">사진첩</a></li>
 						<li><a href="#">일정</a></li>
-						<li><a href="#">멤버</a></li>
+						<c:if test="${sessionScope.m.memberNick eq club.clubOpener}">
+							<li><a href="#">클럽관리</a></li>
+						</c:if>
 					</ul>
 				</div>
 				<div class=contain>
@@ -276,9 +278,13 @@
 													<td>${l.clubNick }</td>
 													<th>${l.intro}</th>
 													<td>${l.cmDate }</td>
-													<td style="text-align: center">쪽지</td>
+													<td style="text-align: center">
+													<button type="button" class="btn btn-info btn-lg" id="userMailBtn"
+									data-toggle="modal" data-target="#myModal4" value="${l.clubNick }">쪽지</button>
+														
+													</td>
 													<td>
-														<button type="button" onclick="blackMember(${l.cmNo })">추방</button>
+														<button type="button" id="blackBtn" class="btn btn-info btn-lg" onclick="blackMember(${l.cmNo })">추방</button>
 													</td>
 												</tr>
 											</c:forEach>
@@ -448,7 +454,7 @@
 		style="margin: 100px auto 0px;">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content"
-				style="height: 320px; background-color: #e6e6e6ed;">
+				style="background-color: #e6e6e6ed;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3 class="modal-title" style="margin-left: 20px;">달력 일정 추가하기</h3>
@@ -468,12 +474,6 @@
 						<div>
 							<input type="date" name="calStart" onchange="changeStart()"
 								value="">
-						</div>
-					</div>
-					<div>
-						<div>종료날 :</div>
-						<div>
-							<input type="date" name="calEnd" value="">
 						</div>
 					</div>
 					<div>
@@ -500,7 +500,64 @@
 			</div>
 		</div>
 	</div>
+	<!-- 모달4 -->
+	<div class="modal fade" id="myModal4" role="dialog"
+		style="margin: 100px auto 0px;display: none;">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content"
+				style="background-color: #e6e6e6ed;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title" style="margin-left: 20px;">Message</h3>
+				</div>
+				<div>
+					<textarea class="sendMessage" placeholder="보내고 싶은 메세지를 적어주세요" style="width: 80%;height: 100px"></textarea>
+				</div>
+				<div class="modal-body">
+					<input type="text" name="receiver" value="" style="display: none">
+					<input type="text" name="sender" value="${sessionScope.m.memberNick }" style="display: none">
+				</div>
+				<div class="modal-footer"
+					style="display: flex; justify-content: center;">
+					<button type="button" onclick="userMailSend()"
+						class="btn btn-default" style="background: #5bc0de; color: wheat;">보내기</button>
+					<button type="button" id="closeModal2" class="btn btn-default"
+						data-dismiss="modal"
+						style="background-color: #e84c4ca8; color: wheat;">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
+	//메세지 보내기
+	function userMailSend(){
+		var sender = $("input[name=sender]").val();
+		var messageText = $(".sendMessage").val();
+		var memberNick = $("#userMailBtn").val();
+		$("input[name=receiver]").val(memberNick);
+		var receiver = $("input[name=receiver]").val();
+		
+		console.log(sender);
+		console.log(messageText);
+		console.log(receiver);
+		
+		$.ajax({
+			url : "/sendMail.do",
+			data : {
+				sender : sender,
+				messageText : messageText,
+				receiver : receiver
+				},
+			type : "post",
+			success :function(data){
+				if(data>0){
+					alert("쪽지가 전송되었습니다.");
+				}else{
+					alert("전송실패")
+				}
+			}
+		})
+	}
 	//클럽 추방
 	function blackMember(obj){	
 		$.ajax({
@@ -631,7 +688,7 @@
 			}
 		})
 	}
-	/* 관리자 회원/예약  버튼*/
+		/* 관리자 회원/예약  버튼*/
         function userListAdmin(){
             $(".table-hover1").hide();
             $(".table-hover2").show();
@@ -640,6 +697,7 @@
             $(".table-hover1").show();
             $(".table-hover2").hide();
         }
+        
 	/*탭기능*/
 		var tabBtn = $(".navi > .menu > li"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".tab-cont > div"); //각각의 콘텐츠를 변수에 저장
