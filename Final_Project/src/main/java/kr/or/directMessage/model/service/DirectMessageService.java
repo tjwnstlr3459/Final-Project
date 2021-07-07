@@ -104,7 +104,7 @@ public class DirectMessageService {
 		String unreadDmNavigation  = "<div class='paging'>";
 		// 이전버튼 생성 여부
 		if (unreadNavi != 1) {
-			unreadDmNavigation  += "<a href='javascript:void(0)' onclick='readPaging(" + (index - paging) + ")'>&#60;</a>";
+			unreadDmNavigation  += "<a href='javascript:void(0)' onclick='unreadPaging(" + (index - paging) + ")'>&#60;</a>";
 		} else {
 			unreadDmNavigation  += "<div class='pageDisabled'>&#60;</div>";
 		}
@@ -114,7 +114,7 @@ public class DirectMessageService {
 			if (unreadNavi == index) {
 				unreadDmNavigation  += "<div class='pageThis'>" + unreadNavi + "</div>";
 			} else {
-				unreadDmNavigation  += "<a href='javascript:void(0)' onclick='readPaging(this)'>" + unreadNavi + "</a>";
+				unreadDmNavigation  += "<a href='javascript:void(0)' onclick='unreadPaging(this)'>" + unreadNavi + "</a>";
 			}
 			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
 			unreadNavi++;
@@ -124,7 +124,7 @@ public class DirectMessageService {
 		}
 		// 다음버튼 생성 여부
 		if (unreadNavi <= unreadNaviPage) {
-			unreadDmNavigation  += "<a href='javascript:void(0)' onclick='readPaging(" + (index + paging) + ")'>&#62;</a>";
+			unreadDmNavigation  += "<a href='javascript:void(0)' onclick='unreadPaging(" + (index + paging) + ")'>&#62;</a>";
 		} else {
 			unreadDmNavigation  += "<div class='pageDisabled'>&#62;</div>";
 		}

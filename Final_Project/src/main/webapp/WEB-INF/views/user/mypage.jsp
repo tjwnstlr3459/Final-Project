@@ -193,28 +193,33 @@
                 <div class="reportBox"  style="display:none;">
                     <div class="title">
                         	내 문의 내역
-                        <a href="/boardList.do?reqPage=1&type=1"><i class="fas fa-plus"></i></a>
+                        <a href="/boardList.do?reqPage=1&type=1&sort=1"><i class="fas fa-plus"></i></a>
                     </div>
-                    <div class="reports">
+                    <div class="reports myqueries">
 						<div class="row column-name">
 	                                <div class="dm-content-inout">제목</div>
 	                                <div class="dm-date">날짜</div>
-	                    		</div> 
-						<c:forEach items="${queryList}" var="query">
+	                                <div class="dm-read">처리 상태</div>
+	                    		</div>
+	                    <c:forEach items="${queryList}" var="query">
 								<div class="row listRow" onclick="reportDetail(this)">
 									<div class="dm-content-inout">${query.abTitle }</div>
 	                                <div class="dm-date">${query.enrollDate }</div>
+	                                <div class="dm-read">${query.status }</div>
 	                            </div>
-	                            <div class="reportContent">
-	                            	<div>${query.abContent }</div>
-	                            	<div>${query.fileName }</div>
-	                            	<div>${query.filePath }</div>
-	                            	<div>${query.status }</div>
+	                            <div class="reportContent">	                            	
+	                            	<div style="margin-bottom:10px"><b>문의 내용</b></div>
+	                            	<div class="bContent">${query.abContent }</div>
+	                            	<c:if test="${not empty query.fileName }">
+	                            	<div class="bFile">첨부파일: ${query.fileName }</div>
+	                            	</c:if>
 	                            	<c:if test="${query.status eq 'Y' }">
-	                            	<div>${query.anContent }</div>
-	                            	<div>${query.anFilename }</div>
-	                            	<div>${query.anFilepath }</div>
-	                            	<div>${query.anDate}</div>
+									<hr>
+									<div style="margin-top: 10px; margin-bottom: 10px;"><b>${query.anDate}</b>에 답변이 달렸습니다.</div>
+	                            	<div class="bContent">${query.anContent }</div>
+	                            	<c:if test="${not empty query.anFilename }">
+	                            	<div class="bFile">${query.anFilename }</div>	   
+	                            	</c:if>                         	
 	                            	</c:if>
 	                            </div>
 						</c:forEach>
@@ -224,17 +229,34 @@
                     
                     <div class="title">
                         	내 신고 내역
-                        <a href="/boardList.do?reqPage=1&type=1"><i class="fas fa-plus"></i></a>
+                        <a href="/boardList.do?reqPage=1&type=1&sort=1"><i class="fas fa-plus"></i></a>
                     </div>
-                    <div class="reports">
+                    <div class="reports myreports">
                     			<div class="row column-name">
 	                                <div class="dm-content-inout">제목</div>
 	                                <div class="dm-date">날짜</div>
+	                                <div class="dm-read">처리 상태</div>
 	                    		</div> 
 						<c:forEach items="${reportList}" var="report">
 								<div class="row listRow" onclick="reportDetail(this)">
 									<div class="dm-content-inout">${report.abTitle }</div>
 	                                <div class="dm-date">${report.enrollDate }</div>
+	                                <div class="dm-read">${report.status }</div>
+	                            </div>
+	                            <div class="reportContent">
+	                            	<div style="margin-bottom:10px"><b>문의 내용</b></div>
+	                            	<div class="bContent">${report.abContent }</div>
+	                            	<c:if test="${not empty report.fileName }">
+	                            	<div class="bFile">첨부파일: ${report.fileName }</div>
+	                            	</c:if>
+	                            	<c:if test="${report.status eq 'Y' }">
+									<hr>
+									<div style="margin-top: 10px; margin-bottom: 10px;"><b>${report.anDate}</b>에 답변이 달렸습니다.</div>
+	                            	<div class="bContent">${report.anContent }</div>
+	                            	<c:if test="${not empty report.anFilename }">
+	                            	<div class="bFile">${report.anFilename }</div>
+	                            	</c:if>	                            	
+	                            	</c:if>
 	                            </div>
 	                            <div class="reportContent">
 	                            	<div class="reportContent-main">${report.abContent }</div>
@@ -828,6 +850,42 @@
 			})
 		}
 		
+		//안 읽은 쪽지 페이징
+		function unreadPaging(obj) {
+			var page = obj.innerText;
+			var user = "<c:out value='${m.memberNick}'/>";
+			$.ajax({
+				url: "/moreUnreadDm.do",
+				data: {page:page},
+				type: "post",
+				success: function(data) {
+					console.log(data);
+					console.log(data.unreadDmList[0].dmNo);
+					var dmsTable = "";
+					var dmsList = $(".rcvDmsList");
+					dmsList.last().empty();
+					dmsTable += '<div class="row column-name"><div class="dm-sender">유저명</div>'
+						+ '<div class="dm-content-inout">내용</div><div class="dm-date">날짜</div>'
+						+ '<div class="dm-reply">답장</div></div>';
+					for(var i=0; i<10; i++) {						
+						dmsTable += '<div class="row listRow">';
+						dmsTable += '<div class="dm-sender">' + data.unreadDmList[i].sender +'</div>';
+						dmsTable += '<div class="dm-content"><span onclick="dmShow(1, ' + data.unreadDmList[i].dmNo + ', \'' + data.unreadDmList[i].sender + '\', \'' + data.unreadDmList[i].dmContent + '\')">' + data.unreadDmList[i].dmContent + '</span></div>';
+						dmsTable += '<div class="dm-date">' + data.unreadDmList[i].dmDate + '</div>';
+						dmsTable += '<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm(\'' + data.unreadDmList[i].sender + '\', \'' + user + '\')"></i></div>';
+						dmsTable += '</div>';
+						dmsList.html(dmsTable);
+					}
+					dmsList.append(data.unreadPaging);
+					
+				},
+				error: function() {
+					console.log("error");
+				}
+				
+			})
+		}
+		
 		//문의 신고 상세 페이지
 		var content = "";
 		function reportDetail(obj) {
@@ -839,9 +897,99 @@
 				content.style.display = "block";
 			} else {
 				content.style.display = "none";
-			}
-			
-			
+			}			
+		}
+		
+		//문의 페이징
+		function queryPaging(obj) {
+			var page = obj.innerText;
+			var user = "<c:out value='${m.memberNick}'/>";
+			$.ajax({
+				url: "/moreQuery.do",
+				data: {page:page},
+				type: "post",
+				success: function(data) {
+					var dmsTable = "";
+					var dmsList = $(".myqueries");
+					dmsList.last().empty();
+					dmsTable += '<div class="row column-name">'
+						+ '<div class="dm-content-inout">제목</div><div class="dm-date">날짜</div>'
+						+ '<div class="dm-read">처리 상태</div></div>';
+					for(var i=0; i<data.list.length; i++) {						
+						dmsTable += '<div class="row listRow" onclick="reportDetail(this)">';
+						dmsTable += '<div class="dm-content-inout">' + data.list[i].abTitle +'</div>';
+						dmsTable += '<div class="dm-date">' + data.list[i].enrollDate + '</div>';
+						dmsTable += '<div class="dm-read">' + data.list[i].status + '</div></div>';
+						dmsTable += '<div class="reportContent"><div style="margin-bottom:10px"><b>문의 내용</b></div>'; 
+						dmsTable += '<div class="bContent">' + data.list[i].abContent + '</div>';
+						if(!data.list[i].fileName == undefined) {
+							dmsTable += '<div class="bFile">첨부파일: ' + data.list[i].fileName + '</div>';	
+						}					
+						if(data.list[i].status == 'Y') {
+							dmsTable += '<hr>'
+							dmsTable += '<div style="margin-top: 10px; margin-bottom: 10px;"><b>' + data.list[i].anDate + '</b>에 답변이 달렸습니다.</div>';
+							dmsTable += '<div class="bContent">' + data.list[i].anContent + '</div>';
+							if(!data.list[i].anFilename == undefined) {
+								dmsTable += '<div class="bFile">첨부파일: ' + data.list[i].anFilename + '</div>';
+							}
+						}
+						dmsTable += '</div>';
+						dmsList.html(dmsTable);
+					}
+					dmsList.append(data.pageNavi);
+					
+				},
+				error: function() {
+					console.log("error");
+				}
+				
+			})
+		}
+		
+		//신고 페이징
+		function reportPaging(obj) {
+			var page = obj.innerText;
+			var user = "<c:out value='${m.memberNick}'/>";
+			$.ajax({
+				url: "/moreReport.do",
+				data: {page:page},
+				type: "post",
+				success: function(data) {
+					var dmsTable = "";
+					var dmsList = $(".myreports");
+					dmsList.last().empty();
+					dmsTable += '<div class="row column-name">'
+						+ '<div class="dm-content-inout">제목</div><div class="dm-date">날짜</div>'
+						+ '<div class="dm-read">처리 상태</div></div>';
+					for(var i=0; i<data.list.length; i++) {						
+						dmsTable += '<div class="row listRow" onclick="reportDetail(this)">';
+						dmsTable += '<div class="dm-content-inout">' + data.list[i].abTitle +'</div>';
+						dmsTable += '<div class="dm-date">' + data.list[i].enrollDate + '</div>';
+						dmsTable += '<div class="dm-read">' + data.list[i].status + '</div></div>';
+						dmsTable += '<div class="reportContent"><div style="margin-bottom:10px"><b>문의 내용</b></div>'; 
+						dmsTable += '<div class="bContent">' + data.list[i].abContent + '</div>';
+						if(!data.list[i].fileName == undefined) {
+							dmsTable += '<div class="bFile">첨부파일: ' + data.list[i].fileName + '</div>';	
+						}					
+						if(data.list[i].status == 'Y') {
+							dmsTable += '<hr>'
+							dmsTable += '<div style="margin-top: 10px; margin-bottom: 10px;"><b>' + data.list[i].anDate + '</b>에 답변이 달렸습니다.</div>';
+							dmsTable += '<div class="bContent">' + data.list[i].anContent + '</div>';
+							if(!data.list[i].anFilename == undefined) {
+								dmsTable += '<div class="bFile">첨부파일: ' + data.list[i].anFilename + '</div>';
+							}
+						}
+						dmsTable += '</div>';
+						dmsList.html(dmsTable);
+					}
+					dmsList.append(data.pageNavi);
+					
+				},
+				error: function() {
+					console.log("error");
+				}
+				
+			})
 		}
 		
 		//친구 메뉴

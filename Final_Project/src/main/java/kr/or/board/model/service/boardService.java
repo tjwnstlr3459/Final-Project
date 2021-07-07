@@ -207,7 +207,12 @@ public class boardService {
 		String allDmNavigation = "<div class='paging'>";
 		// 이전버튼 생성 여부
 		if (allNavi != 1) {
-			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index - paging) + ")'>&#60;</a>";
+			if (category == 2) {
+				allDmNavigation += "<a href='javascript:void(0)' onclick='queryPaging(" + (index - paging) + ")'>&#60;</a>";
+			} else {
+				allDmNavigation += "<a href='javascript:void(0)' onclick='reportPaging(" + (index - paging) + ")'>&#60;</a>";
+			}
+			
 		} else {
 			allDmNavigation += "<div class='pageDisabled'>&#60;</div>";
 		}
@@ -217,7 +222,11 @@ public class boardService {
 			if (allNavi == index) {
 				allDmNavigation += "<div class='pageThis'>" + allNavi + "</div>";
 			} else {
-				allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(this)'>" + allNavi + "</a>";
+				if(category == 2) {
+					allDmNavigation += "<a href='javascript:void(0)' onclick='queryPaging(this)'>" + allNavi + "</a>";
+				} else {
+					allDmNavigation += "<a href='javascript:void(0)' onclick='reportPaging(this)'>" + allNavi + "</a>";
+				}				
 			}
 			// 시작된 페이지 네비게이션 navi 증가 > 1,2,3,4,5 / 6,7,8,9,10 / .....
 			allNavi++;
@@ -227,7 +236,11 @@ public class boardService {
 		}
 		// 다음버튼 생성 여부
 		if (allNavi <= allTotalNaviPage) {
-			allDmNavigation += "<a href='javascript:void(0)' onclick='readPaging(" + (index + paging) + ")'>&#62;</a>";
+			if (category == 2) {
+				allDmNavigation += "<a href='javascript:void(0)' onclick='queryPaging(" + (index + paging) + ")'>&#62;</a>";
+			} else {
+				allDmNavigation += "<a href='javascript:void(0)' onclick='reportPaging(" + (index + paging) + ")'>&#62;</a>";
+			}			
 		} else {
 			allDmNavigation += "<div class='pageDisabled'>&#62;</div>";
 		}
@@ -239,7 +252,6 @@ public class boardService {
 
 
 }
-
 
 
 
