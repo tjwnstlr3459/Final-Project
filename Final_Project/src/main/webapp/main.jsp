@@ -8,9 +8,10 @@
 <title>너나들이에오신걸 환영합니다!</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
+<!-- <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+	rel='stylesheet' type='text/css'> -->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/main/css/font-awesome.css">
@@ -28,6 +29,14 @@
 
 <script
 	src="/resources/main/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+	<style>
+		body{
+		font-family: 'Noto Sans KR', sans-serif;
+		}
+		.menu-first > li > a:hover{
+			color: #ec523f;
+		}
+	</style>
 </head>
 <body>
 	<div class="site-main" id="sTop">
@@ -41,7 +50,7 @@
 								class="fa fa-facebook" target='_blank'></a></li>
 							<li><a href="https://www.instagram.com/nunadri_/"
 								class="fa fa-instagram" target='_blank'></a></li>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%-- 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:choose>
 								<c:when test="${!empty sessionScope.m }">
 									<c:choose>
@@ -61,8 +70,8 @@
 
 									<li><a href="/loginFrm.do" class="fa fa-sign-in"></a></li>
 								</c:otherwise>
-							</c:choose>
-						</ul>
+							</c:choose>--%>
+						</ul> 
 					</div>
 					<!-- /.col-md-12 -->
 				</div>
@@ -79,21 +88,15 @@
 								</h1>
 							</div>
 							<!-- /.logo-wrapper -->
-							<div class="col-md-10 col-sm-10 main-menu text-right"
-								style="width: 850px;">
+							<div class="col-md-10 col-sm-10 main-menu text-right">
 								<div class="toggle-menu visible-sm visible-xs">
 									<i class="fa fa-bars"></i>
 								</div>
 								<ul class="menu-first">
-									<li class="active"><a href="#">Home</a></li>
-									<li><a href="#clubCategory">Club category</a></li>
-									<li><a href="#clubFeed">club Feed</a></li>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<div class="toggle-menu visible-sm visible-xs"></div>
 									<c:choose>
 										<c:when test="${!empty sessionScope.m }">
 											<c:choose>
-												<c:when test="${sessionScope.m.grade gt 1 }">
+												<c:when test="${sessionScope.m.grade ge 2 }">
 													<li><a onclick="location.href='/myClub.do';"
 														style="cursor: pointer;">${sessionScope.m.memberNick }'s
 															CLUB</a></li>
@@ -101,16 +104,45 @@
 											</c:choose>
 										</c:when>
 									</c:choose>
-									<li><a onclick="location.href='/newClub.do?clubNo=38';"
-										style="cursor: pointer;">CLUB VIEW</a></li>
+									<c:if test="${empty sessionScope.m }">
+									 <li class="active"><a href="#">Home</a></li>
+									 </c:if>
+									 <c:if test="${sessionScope.m.grade lt 2 }">
+									 <li class="active"><a href="#">Home</a></li>
+									 </c:if>
+									<li><a href="#clubCategory">클럽 카테고리</a></li>
+									<li><a href="#clubFeed">클럽 피드</a></li>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<!-- <li><a onclick="location.href='/newClub.do?clubNo=38';"
+										style="cursor: pointer;">클럽뷰</a></li> -->
+									<c:choose>
+										<c:when test="${empty sessionScope.m }"> 
+									<li><a
+										onclick="location.href='/loginFrm.do';"
+										style="cursor: pointer;">로그인</a></li>
+										<li><a onclick="location.href='/join.do';"
+											style="cursor: pointer;">회원가입</a></li>
+										</c:when>
+										<c:otherwise>
+										<c:if test="${sessionScope.m.grade lt 2 }">
+									<li><a
+										onclick="location.href='/adminMain.do';"
+										style="cursor: pointer;">ADMIN</a></li>
+										<li><a onclick="location.href='/logout.do';"
+											style="cursor: pointer;">로그아웃</a></li>
+										</c:if>
+										<c:if test="${sessionScope.m.grade gt 1 }">
+									<li><a
+										onclick="location.href='/mypage.do';"
+										style="cursor: pointer;">MyPage</a></li>
+										<li><a onclick="location.href='/logout.do';"
+											style="cursor: pointer;">로그아웃</a></li>
+											</c:if>
+										</c:otherwise>
+									</c:choose>
 									<li><a
 										onclick="location.href='/boardList.do?reqPage=1&type=1&sort=1';"
-										style="cursor: pointer;">FEEDBACK</a></li>
-									<c:if test="${empty sessionScope.m }">
-										<li><a onclick="location.href='/join.do';"
-											style="cursor: pointer;">JOIN</a></li>
-									</c:if>
-									<!-- <li><a onclick="location.href='/badReport.do';" style="cursor: pointer;">Bad report</a></li> -->
+										style="cursor: pointer;">Q&A</a></li>
 								</ul>
 							</div>
 							<!-- /.main-menu -->
@@ -139,8 +171,6 @@
 							<p>
 								이곳에서 클럽을 만들고<br>사람들과 건전한 모임을 이어가세요
 							</p>
-							<br> <br> <br>
-							<!-- onclick="loginCheck();"-->
 								<a onclick="loginCheck();"
 									class="slider-btn" style="font-size: 25px; cursor: pointer;">클럽
 									만들기</a>
@@ -338,7 +368,7 @@
 				<!-- /.col-md-3 -->
 			</div>
 			<!-- /.row -->
-			<button onclick="loginCheck();" id="feed_info">CREATE CLUB</button>
+			<button onclick="loginCheck();" id="feed_info">클럽만들기</button>
 				
 		</div>
 		<!-- /.container -->
@@ -478,7 +508,7 @@
 					<!-- /.portfolio-thumb -->
 				</div>
 				<!-- /.portfolio-item -->
-				<button onclick="location.href='/freeBoardList.do'" id="feed_info">MORE</button>
+				<button onclick="location.href='/freeBoardList.do'" id="feed_info">피드더보기</button>
 			</div>
 			<!-- /.row -->
 		</div>

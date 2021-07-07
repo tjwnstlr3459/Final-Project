@@ -473,6 +473,40 @@ public class MemberController {
 		}
 		return "0";
 	}
+	
+	//안 읽은 쪽지 더보기
+	@ResponseBody
+	@RequestMapping(value="/moreUnreadDm.do", produces="application/json;charset=utf-8")
+	public String moreUnreadDm(@SessionAttribute(required = false) Member m, String page) {
+		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick(), Integer.parseInt(page));
+		if(dmData != null) {
+			return new Gson().toJson(dmData);
+		}
+		return "0";
+	}	
+	
+	//문의 더보기
+	@ResponseBody
+	@RequestMapping(value="/moreQuery.do", produces="application/json;charset=utf-8")
+	public String moreQuery(@SessionAttribute(required = false) Member m, String page) {
+		MyBoardData queryData = bService.selectMyBoard(m.getMemberNick(), Integer.parseInt(page), 2);
+		if(queryData != null) {
+			return new Gson().toJson(queryData);
+		}
+		return "0";
+	}	
+	
+	
+	//건의 더보기
+	@ResponseBody
+	@RequestMapping(value="/moreReport.do", produces="application/json;charset=utf-8")
+	public String moreReport(@SessionAttribute(required = false) Member m, String page) {
+		MyBoardData queryData = bService.selectMyBoard(m.getMemberNick(), Integer.parseInt(page), 3);
+		if(queryData != null) {
+			return new Gson().toJson(queryData);
+		}
+		return "0";
+	}	
 
 		
 	

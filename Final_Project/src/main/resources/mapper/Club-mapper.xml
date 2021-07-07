@@ -17,7 +17,7 @@
 		LAST_DATE as lastDate,
 		WARNING_COUNT as warningCount
 	FROM CLUB WHERE 
-	CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK= #{memberNick})
+	CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK= #{memberNick}) OR CLUB_OPENER=#{memberNick}
 </select>
 
 <!-- 회원이 작성한 클럽의 게시물 -->
@@ -63,7 +63,7 @@ SELECT * FROM
 	FROM CLUB_BOARD A,CLUB C 
 	WHERE C.CLUB_NO = A.CLUB_NO 
 	AND 
-C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m})
+C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m}) or club_opener=#{m}
 <if test="changeDate != 0">
 and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')	
 </if> 
@@ -201,14 +201,15 @@ from direct_message where receiver=#{memberNick} and read_status='N'
 <!-- 댓글 가져오기 -->
 <select id="postMoment" parameterType="int" resultType="ccm">
 select
-	CC_NO AS ccNo,
-	board_no as boardNo,
-	cc_writer as ccWriter,
-	cc_content as ccContent,
-	cc_cg as ccCG,
-	cc_ref as ccREF,
-	cc_good as ccGOOD
-from CLUB_COMMENT WHERE BOARD_NO=#{boardNo}
+	A.CC_NO AS ccNo,
+	A.board_no as boardNo,
+	A.cc_writer as ccWriter,
+	A.cc_content as ccContent,
+	A.cc_cg as ccCG,
+	A.cc_ref as ccREF,
+	A.cc_good as ccGOOD,
+    B.filepath
+from CLUB_COMMENT A, MEMBER B WHERE A.CC_WRITER = B.MEMBER_NICK AND BOARD_NO=#{boardNo}
 </select>
 <!-- 댓글등록 -->
 <insert id="insertComent" parameterType="map">
@@ -226,6 +227,8 @@ INSERT INTO CLUB_COMMENT VALUES(
 <delete id="deleteMent" parameterType="int">
 DELETE FROM CLUB_COMMENT WHERE CC_NO=#{mentNo}
 </delete>
+
+
 </mapper>
 
 

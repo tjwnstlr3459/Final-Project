@@ -9,11 +9,11 @@ textarea {
   box-sizing: border-box;
   margin-bottom: 3px;
 }
-input[type="submit"], a {
+input[type="submit"], .rest-table > a {
   display: inline-block;
   width: 300px;
   height: 35px;
-  line-height: 35px;
+  line-height:27px;
   color: white;
   font-weight: bold;
   background-color: #ec523f;
@@ -52,5 +52,3 @@ a {
 .content {
 	display: inline-block;
 }
-
-@media 

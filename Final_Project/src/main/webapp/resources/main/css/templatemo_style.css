@@ -366,6 +366,8 @@ hr {
   -moz-box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.07);
   -webkit-box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.07);
   box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.07);
+  width: 1200px;
+  margin : 0 auto;
 }
 /*로고 넣을곳*/
 .logo-wrapper {
@@ -390,7 +392,8 @@ hr {
 }
 .main-menu ul li a {
   text-transform: uppercase;
-  font-size: 14px;
+  font-weight:bold;
+  font-size: 17px;
   color: #444444;
   line-height: 100px;
   padding-top: 37px;
@@ -480,12 +483,12 @@ hr {
   text-transform: uppercase;
   font-weight: 700;
 }
-@media screen and (min-width: 989px) {
+/* @media screen and (min-width: 989px) {
   .flexslider .slider-caption {
     top: 230px;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) {
   .flexslider .slider-caption {
     top: 380px;
   }
@@ -499,6 +502,7 @@ hr {
     margin-right: 30px;
   }
 }
+
 @media screen and (max-width: 991px) {
   .logo-wrapper {
     background-size: contain;
@@ -518,22 +522,22 @@ hr {
     display: block;
   }
   .menu-first.show {
-    /*opacity: 1;*/
-    /*height: auto;  */
+    opacity: 1;
+    height: auto; 
     margin-top: 10px;
     display: block;
-    /*transition: opacity 1s, height 0;*/
+    transition: opacity 1s, height 0;
   }
   .menu-first {
     float: right;
     overflow: auto;
     width: 100%;
     display: none;
-    /*opacity: 1;  */
-    /*height: 0;  */
-    /*background: rgba(50, 50, 50, 0.88);*/
-    /*transition: opacity 1s, height 0 1s; */
-    /*transition: all 0.3s ease;    */
+    opacity: 1; 
+    height: 0; 
+    background: rgba(50, 50, 50, 0.88);
+    transition: opacity 1s, height 0 1s;
+    transition: all 0.3s ease;   
   }
   .main-menu ul li a {
     line-height: 40px;
@@ -546,6 +550,7 @@ hr {
     margin-right: 20px;
   }
 }
+*/
 @media screen and (max-width: 767px) {
   .main-header {
     top: 0;
@@ -554,7 +559,7 @@ hr {
     margin-top: 40px;
   }
   .logo-wrapper {
-    float: left;
+    display:none;
   }
   .menu-first {
     margin-top: 0;
@@ -563,13 +568,13 @@ hr {
     margin-top: 80px;
   }
 }
-
+/*
 @media screen and (max-height: 500px) {
   .menu-first.show {
     max-height: 250px;
     padding-right: 15px;
   }
-}
+} */
 
 .content-section {
   margin-top: 80px;
@@ -753,9 +758,13 @@ hr {
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 550px;
+  width:180px;
 }
 #footer {
   margin-top: 200px;
+}
+.menu-first{
+	margin-right:200px;
 }
 .menu-first > li{
 	margin: 0;

@@ -156,6 +156,12 @@ public class MemberService {
 		System.out.println(fData.getFReq());
 		return fData;
 	}
+	
+	//친구 리스트(웹소켓용)
+	public ArrayList<Member> selectFriends(String memberNick) {
+		ArrayList<Member> fList = new ArrayList<Member>();
+		return null;
+	}
 
 	// 이메일발송 메소드
 	public void sendEmail(Member m, String div) throws Exception {

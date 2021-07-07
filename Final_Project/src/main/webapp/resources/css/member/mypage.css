@@ -4,6 +4,12 @@
 p {
   margin: 0;
 }
+hr {
+  width: 97%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #bbb;
+}
 .container {
   margin: 0 auto;
   margin-top: 30px;
@@ -208,10 +214,12 @@ select {
   flex-wrap: wrap;
   width: 450px;
   justify-content: space-between;
+  margin-bottom:30px;
 }
 .friend {
   margin-right: 20px;
-  width: 70px;
+  width: 70px;  
+  position:relative;
 }
 
 .speech-bubble {
@@ -413,12 +421,16 @@ select {
 }
 
 .reports .dm-content-inout {
-	text-align:left;
-	width:490px;
+  text-align: left;
+  width: 415px;
 }
 .reports .dm-date {
-	width:100px;
+  width: 100px;
 }
+.reports .dm-read {
+  width: 80px;
+}
+
 .listRow {	
   box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
 }
@@ -430,12 +442,26 @@ select {
   color: #19ba3f;
 }
 .reportContent {
-	display:none;
-  	width: 600px;
-  	padding: 10px;
-  	background-color: #999;
-  	box-sizing: border-box;
-  }
+  display: none;
+  margin-left: 16px;
+  width: 600px;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #ddd;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+.bContent {
+  padding: 10px;
+  background-color: white;
+  padding-bottom: 40px;
+}
+.bFile {
+  background-color: white;
+  padding: 10px;
+  text-align: right;
+  font-size: 12px;
+}
   .paging {
   	margin: 0 auto;
     display:flex;
@@ -476,5 +502,22 @@ select {
   }
   .pageThis {
     font-weight:bold;
+  }
+  .onbadge {
+  position: absolute;
+  width:13px;
+  height:13px;
+  line-height:10px;
+  top: -5px;
+  right: -10px;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 13px;
+  background: red;
+  color: white;  
+  } 
+  .friendName {
+  color:black;
+  font-weight:bold;
   }
   

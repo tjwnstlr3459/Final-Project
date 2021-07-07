@@ -22,7 +22,7 @@ public class ClubDao {
 	
 	//회원이 가입한 클럽들 출력
 	public List<Club> memberClubList(Member m) {
-		List list = session.selectList("club.memberClubList",m);
+		List<Club> list = session.selectList("club.memberClubList",m);
 		return list;
 	}
 	
