@@ -366,6 +366,10 @@
 		//이미지, 닉넴임userInfomationImg
 		var userInfomationImg = $(".userInfomationImg").val();
 		var userInfomationNick = $(".userInfomationNick").val();
+		//해당 댓글 번호(삭제할때 댓글번호를 위해서)
+		var comentNo = $('.mentNoNo').html();
+		console.log(comentNo);
+		
 		$.ajax({
 			url : "/comentSend.do",
 			data : {
@@ -383,6 +387,7 @@
 					html += '<div class="modalComentMoment">';
 					html += '<div class="lastFinal" style="width: 70%; float: left">';
 					html += '<div class="testesttestest">';
+					html += '<div class="mentNoNo" type="text" style="display:none;">'+comentNo+'</div>';
 					html += '<div class="postWrite"style="line-height: 15px;font-weight: bold; font-size: 12px;margin-left:5px;margin-top: 3px;">'+userInfomationNick+'</div></div>';
 					html += '<div class="lightlight" style="width: 85%; float: left;">';
 					html += '<p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 5px;">'+comentCon+'</p></div></div>';
