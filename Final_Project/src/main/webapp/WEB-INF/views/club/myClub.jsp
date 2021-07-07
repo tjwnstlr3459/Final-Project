@@ -223,7 +223,7 @@
 					</div>
 					<input type="text" class="comentSendNo" value=""
 						style="display: none">
-					<div style="float: left;" onclick="comentSend()">
+					<div style="float: left;" onclick="comentSend(this)">
 						<img src="/resources/image/icons/check.png"
 							style="width: 30px; margin-left: 10px; margin-top: 10px;" />
 					</div>
@@ -231,11 +231,13 @@
 				<!--댓글 작성-->
 			</div>
 		</div>
-	</section>
+		<input type="text" class="userInfomationImg" value="${sessionScope.m.filepath}" style="display: none;">
+		<input type="text" class="userInfomationNick" value="${sessionScope.m.memberNick}" style="display: none;">
 	<!-- bricks -->
 	<div id="preloader">
 		<div id="loader"></div>
 	</div>
+	</section>
 	<!-- Java Script
    ================================================== -->
 	<script src="/resources/js/myClub/jquery-2.1.3.min.js"></script>
@@ -303,30 +305,6 @@
 		})
 		more(1);
 	}
-	//댓글 삭제
-	function delMent(obj){
-		//선택한 게시물의 인덱스값알아내기
-		var idx = $(".mentNoChek").index(obj); 
-		console.log(idx);
-		//각 버튼의 댓글 넘버 가져오기
-		var mentNo =$(".mentNoNo").eq(idx).html();
-		console.log(mentNo);
-		
-		$.ajax({
-			url : "/mentOut.do",
-			data : {
-				mentNo : mentNo
-			},
-			type : "post",
-			success : function(data) {
-				if(data>0){
-					alert("댓글이 삭제되었습니다.");
-				}else{
-					alert("댓글이 삭제 실패");
-				}
-			}
-		});
-	}
 		
 	//모달클릭
 	function func1(obj) {
@@ -354,15 +332,14 @@
 				boardNo : boardMoment
 			},
 			type : "post",
-			
 			success : function(data) {
 				$(".modalComent").empty();
 				for (var i = 0; i < data.length; i++) {					
 					var html = "";
 					html += '<div class="modalComentImg">';
 					html += '<div class="imgimg">';
-					html += '<img src="/resources/image/userPic/${sessionScope.m.filepath }" />';
-					html += '</div></div><div class="modalComentMoment">';
+					html += '<img src="/resources/image/userPic/'+data[i].filepath+'"/></div></div>';
+					html += '<div class="modalComentMoment">';
 					html += '<div class="lastFinal" style="width: 70%; float: left">';
 					html += '<div class="testesttestest">';
 					html += '<div class="mentNoNo" type="text" style="display:none;">'+data[i].ccNo+'</div>';
@@ -371,14 +348,14 @@
 					html += '<p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 5px;">'+data[i].ccContent+'</p></div></div>';
 					html += '<div style="width: 30px; float: left; height: 100%; display: flex; align-items: center;">'
 					html += '<img class="mentNoChek" onclick="delMent(this)"; style="width: 20px;" src="/resources/image/clubimg/del.png"/></div>';
-					html += '<div style="float: left"></div></div>'	;
+					html += '<div style="float: left"></div></div>';
 					$(".modalComent").append(html);
 				}
 			}
 		});
 		}
 		//댓글 입력
-		function comentSend(){
+		function comentSend(obj){
 		//해당 게시물 번호
 		var comentCon = $('input[name=coment]').val();
 		//해당게시물 댓글 내용
@@ -386,6 +363,9 @@
 		console.log(comentBoardNo);
 		console.log(comentCon);
 		
+		//이미지, 닉넴임userInfomationImg
+		var userInfomationImg = $(".userInfomationImg").val();
+		var userInfomationNick = $(".userInfomationNick").val();
 		$.ajax({
 			url : "/comentSend.do",
 			data : {
@@ -396,13 +376,55 @@
 			success : function(data){
 				if(data>0){
 					alert("등록되었습니다.");
+					var html="";
+					html += '<div class="modalComentImg">';
+					html += '<div class="imgimg">';
+					html += '<img src="/resources/image/userPic/'+userInfomationImg+'"/></div></div>';
+					html += '<div class="modalComentMoment">';
+					html += '<div class="lastFinal" style="width: 70%; float: left">';
+					html += '<div class="testesttestest">';
+					html += '<div class="postWrite"style="line-height: 15px;font-weight: bold; font-size: 12px;margin-left:5px;margin-top: 3px;">'+userInfomationNick+'</div></div>';
+					html += '<div class="lightlight" style="width: 85%; float: left;">';
+					html += '<p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 5px;">'+comentCon+'</p></div></div>';
+					html += '<div style="width: 30px; float: left; height: 100%; display: flex; align-items: center;">'
+					html += '<img class="mentNoChek" onclick="delMent(this)"; style="width: 20px;" src="/resources/image/clubimg/del.png"/></div>';
+					html += '<div style="float: left"></div></div>';
+					$(".modalComent").append(html);
 				}else{
 					alert("등록실패");
 				}
 			}
 		});
 	}
-	
+	//댓글 삭제
+	function delMent(obj){
+		//선택한 게시물의 인덱스값알아내기
+		var idx = $(".mentNoChek").index(obj); 
+		console.log(idx);
+		//각 버튼의 댓글 넘버 가져오기
+		var mentNo =$(".mentNoNo").eq(idx).html();
+		console.log(mentNo);
+		
+		$.ajax({
+			url : "/mentOut.do",
+			data : {
+				mentNo : mentNo
+			},
+			type : "post",
+			success : function(data) {
+				if(data>0){
+					alert("댓글이 삭제되었습니다.");
+					$(obj).parents(".modalComentMoment").prev().remove();
+					$(obj).parents(".modalComentMoment").remove();
+					 	/* location.reload(); 
+					 	location = location.href;
+						location.href = url;  */
+				}else{
+					alert("댓글이 삭제 실패");
+				}
+			}
+		});
+	}
 		
 	//더보기
 	$(function() {
