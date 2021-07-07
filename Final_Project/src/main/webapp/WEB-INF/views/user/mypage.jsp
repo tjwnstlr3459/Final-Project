@@ -66,7 +66,7 @@
                                 <img class="profile-img" src="resources/image/userPic/${rf.filepath }"/><br>
                             </div>
                             <div style="text-align: center;">
-                            	<a href="javascript:void(0)" onclick="accfMenu('${rf.memberNick }')">${rf.memberNick }</a>
+                            	<a href="javascript:void(0)"  class="friendName" onclick="accfMenu('${rf.memberNick }')">${rf.memberNick }</a>
                             </div>
                         </div>  
                     </c:forEach>
@@ -83,7 +83,7 @@
                     <c:forEach items="${friends }" var="f">
                     	<div class="friend">
                             <div class="myInfoImg">
-                                <img class="profile-img" src="resources/image/userPic/${f.filepath }"/><br>
+                                <img class="profile-img" src="resources/image/userPic/${f.filepath }"/>                        
                             </div>
                             <div style="text-align: center;">
                             	<a href="javascript:void(0)" class="friendName">${f.memberNick }</a>
@@ -581,18 +581,9 @@
             $(".modBox").hide();
             $(".changeBox").show();
         }
+        
         function leaveN() {
         	location.href="/leave.do";
-        }
-        
-        //?
-        function fMenu(obj) {
-        	console.log(this)
-        	console.log(obj)
-        	var nick = obj
-        	console.log(nick)
-        	var menu = "<div style='width:100px;height:100px;position:absolute'>둥둥</div>";
-        	$(this).next(menu);
         }
         
         //친구 추가        
@@ -832,7 +823,7 @@
 						} else {
 							dmsTable += '<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>';
 							dmsTable += '<div class="dm-sender">' + data.dmList[i].receiver +'</div>';
-							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(3, ' + data.dmList[i].dmNo + ', "' + data.dmList[i].receiver + '", "' + data.dmList[i].dmContent + '")">' + data.dmList[i].dmContent + '</span></div>';
+							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(3, ' + data.dmList[i].dmNo + ', \'' + data.dmList[i].receiver + '\', \'' + data.dmList[i].dmContent + '\')">' + data.dmList[i].dmContent + '</span></div>';
 							dmsTable += '<div class="dm-date">' + data.dmList[i].dmDate + '</div>';
 							dmsTable += '<div class="dm-read">' + data.dmList[i].readStatus + '</div>';
 							dmsTable += '<div class="dm-reply"></div>'
@@ -1023,7 +1014,7 @@
 			dmSender = "<c:out value='${m.memberNick}'/>";
 			
 			var dm = "<span class='fMenu' onclick='sendDm(\"" + dmReceiver + "\", \"" + dmSender + "\")'>쪽지 보내기</span>";
-			var chat = "<span class='fMenu'> onclick='sendChatReq()'>채팅 요청하기</span>";
+			var chat = "<span class='fMenu' onclick='sendChatReq(\"" + sendUser + "\", \"" + targetUser + "\")'>채팅 요청하기</span>";
 			var close = "<span class='fMenu' onclick='closeLayer(this)'>닫기</span>";
 			popup.append(dm);
 			popup.append(chat);
@@ -1041,9 +1032,13 @@
 		}
 		
 		//채팅 요청
-		function sendChatReq() {
-			var user = "<c:out value='${m.memberNick }'/>";
-			var chatReq = {type:"chatReq", msg:user};
+		function sendChatReq(sendUser, targetUser) {
+			var data = {type:"chatReq", user:sendUser, target:targetUser};
+			ws.send(JSON.stringify(data));	
+		}
+		function chatReq() {
+			var name = "<c:out value='${m.memberNick}'/>";
+			var data = {type:"chatReq", msg:name};
 			ws.send(JSON.stringify(data));
 		}
 		

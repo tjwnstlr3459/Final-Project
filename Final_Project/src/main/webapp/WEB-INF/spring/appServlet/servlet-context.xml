@@ -119,6 +119,12 @@
 	<websocket:handlers>
 		<websocket:mapping handler="inMemberCount" path="/inMemberCount.do"/>
 	</websocket:handlers>
+	
+	<!-- 웹소켓 로그인 접속자  -->
+	<beans:bean id="loginMember" class="kr.or.member.model.service.LoginMember"/>
+	<websocket:handlers>
+		<websocket:mapping handler="loginMember" path="/loginMember.do"/>
+	</websocket:handlers>
 
 	
 	<context:component-scan base-package="kr.or.iei" />

@@ -197,6 +197,8 @@ font-family: 'Noto Sans KR', sans-serif;
 		</ul>
 	</nav>
 	<script>
+	var ws;
+	
 	function loginCheck() {
 		if(${empty sessionScope.m}){
 		alert("로그인 후 가능한 서비스입니다.");
@@ -205,6 +207,53 @@ font-family: 'Noto Sans KR', sans-serif;
 			location.href="/createClubFrm.do";
 		}
 	}
+	$(function() {		
+		var loginList; 
+		
+		function loggedIn() {
+			var email = "<c:out value='${m.email}'/>";
+			console.log(email);
+			if(!(email == undefined)) {
+				ws = new WebSocket("ws:/192.168.10.20/loginMember.do");
+				//1. 웹소켓 연결 성공 시 실행 함수 지정
+				ws.onopen = loginMember;
+				//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
+				ws.onmessage = loginFriend;
+				//3. 웹소켓연결이 종료되면 수행할 함수 지정
+				ws.onclose = outMember;
+			}		
+		}
+		function loginMember() {
+			var name = "<c:out value='${m.memberNick}'/>";
+			console.log("로그인 유저 : " + name);
+			var data = {type:"login", user:name};
+			ws.send(JSON.stringify(data));
+		}
+		function loginFriend(param) {
+			loginList = JSON.parse(param.data);
+			console.log(loginList);
+			showFriend(loginList);
+			
+		}
+		function outMember() {
+			
+		}
+		function showFriend(loginList){
+			var friends = $(".friendName");
+			console.log(friends.length);
+			for(var i=0;i<friends.length;i++){				
+				for(var j=0;j<loginList.length;j++){
+					if(friends.eq(i).text() == loginList[j]){
+						friends.eq(i).attr("class","friendName onFriend");
+						friends.eq(i).parent().prev().append("<span class='onbadge'>on</span>");
+						break;
+					}
+				}
+			}
+		}
+		
+		loggedIn();
+	})
 	</script>
 </body>
 </html>

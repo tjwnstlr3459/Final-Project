@@ -214,10 +214,12 @@ select {
   flex-wrap: wrap;
   width: 450px;
   justify-content: space-between;
+  margin-bottom:30px;
 }
 .friend {
   margin-right: 20px;
-  width: 70px;
+  width: 70px;  
+  position:relative;
 }
 
 .speech-bubble {
@@ -500,5 +502,22 @@ select {
   }
   .pageThis {
     font-weight:bold;
+  }
+  .onbadge {
+  position: absolute;
+  width:13px;
+  height:13px;
+  line-height:10px;
+  top: -5px;
+  right: -10px;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 13px;
+  background: red;
+  color: white;  
+  } 
+  .friendName {
+  color:black;
+  font-weight:bold;
   }
   
