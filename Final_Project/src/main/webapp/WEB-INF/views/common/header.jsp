@@ -42,7 +42,6 @@ font-family: 'Noto Sans KR', sans-serif;
 	height: 85px;
 	font-size: 16px;
 	font-weight: bold;
-	width: 1920px;
 }
 
 .navbar_logo {
