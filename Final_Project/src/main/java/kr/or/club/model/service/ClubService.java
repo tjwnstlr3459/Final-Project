@@ -30,17 +30,17 @@ public class ClubService {
 	}
 	
 	//회원이 속한 모임에 클럽게시물 상세출력(더보기/chagneDate로 날짜조건별 조회)
-	public ArrayList<ClubBoard> morePhoto(int start, Member m, int changeDate) {
+	public ArrayList<ClubBoard> morePhoto(int start, Member m, int changeDate, String searchCon) {
 		//5개씩 사진 가져올거라서
 		int length = 10;
 		int end = start+length-1;
-		List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate);
+		List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate,searchCon);
 		return (ArrayList<ClubBoard>)list;
 	}
 	
 	//changeDate값에따라 날짜별 게시물조회 의 총갯수
-	public int totalCount(Member m, int changeDate) {
-		return dao.totalCount(m,changeDate);
+	public int totalCount(Member m, int changeDate, String searchCon) {
+		return dao.totalCount(m,changeDate,searchCon);
 	}
 
 	//임시게시물 등록

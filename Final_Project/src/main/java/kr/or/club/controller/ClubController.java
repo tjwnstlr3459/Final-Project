@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -32,26 +31,37 @@ import kr.or.newclub.model.vo.ClubComment;
 public class ClubController {
 	@Autowired
 	private ClubService service;
-
 	
 	// 회원이 속한 모임에 클럽게시물 추출
 	@RequestMapping(value = "/myClub.do")
-	public String myClub(@SessionAttribute(required = false) Member m,Model model){
-		
-		//클럽게시물 출력
+	public String myClub(@SessionAttribute(required = false) Member m,Model model,String searchCon){
+		//내가 속한 클럽 출력
 		ArrayList<Club> clubList = service.memberClubList(m);
-		System.out.println(clubList.size());
 		model.addAttribute("clubList",clubList);
 		//클럽게시물 총갯수 출력
-		int totalCount = service.totalCount(m,0);
+		int totalCount = service.totalCount(m,0,searchCon);
 		model.addAttribute("totalCount",totalCount);
 		//나의 쪽지 확인
 		int myMessage = service.myMessage(m);
 		model.addAttribute("myMessage", myMessage);
-//		//댓글 가져오기
-//		ArrayList<ClubComment> coment = service.selectComent();
-//		model.addAttribute("coment", coment);
 		return "club/myClub";
+	}
+	//검색 아작스
+	@ResponseBody
+	@RequestMapping(value = "/searchContent.do",produces = "application/json;charset=utf-8")
+	public String searchContent(@SessionAttribute(required = false)Member m,String searchCon,int start,int changeDate) {
+		ArrayList<ClubBoard> list = service.morePhoto(start,m,changeDate,searchCon);
+		return new Gson().toJson(list);
+	}
+	
+	//회원이 속한 모임에 클럽게시물 상세출력(더보기/chagneDate로 날짜조건별 조회)
+	@ResponseBody
+	@RequestMapping(value = "/photoMore.do")
+	public ArrayList<ClubBoard> photoMore(@SessionAttribute(required = false)Member m,String searchCon,Model model, int start,int changeDate) {
+	
+		ArrayList<ClubBoard> list = service.morePhoto(start,m,changeDate,searchCon);
+		model.addAttribute("listMore",list);		
+		return list;
 	}
 	//게시물 클릭시 댓글 조회
 	@ResponseBody
@@ -79,20 +89,12 @@ public class ClubController {
 	//날짜별 조회시 totalCount를 다시 가져온다
 	@ResponseBody
 	@RequestMapping(value="/selectTotalCount.do")
-	public String selectTotalCount(@SessionAttribute(required = false) Member m, int changeDate) {
+	public String selectTotalCount(@SessionAttribute(required = false) Member m,String searchCon, int changeDate) {
 		System.out.println(changeDate);
-		int totalCount = service.totalCount(m,changeDate);
+		int totalCount = service.totalCount(m,changeDate,searchCon);
 		return String.valueOf(totalCount);
 	}
 	
-	//회원이 속한 모임에 클럽게시물 상세출력(더보기/chagneDate로 날짜조건별 조회)
-	@ResponseBody
-	@RequestMapping(value = "/photoMore.do")
-	public ArrayList<ClubBoard> photoMore(@SessionAttribute(required = false) Member m,Model model, int start,int changeDate) {
-		ArrayList<ClubBoard> list = service.morePhoto(start,m,changeDate);
-		model.addAttribute("listMore",list);		
-		return list;
-	}
 	
 	//임시 게시물 등록페이지
 	@RequestMapping(value = "/insertPostWrite.do")
@@ -101,7 +103,7 @@ public class ClubController {
 	}
 	
 	
-	//게시물 등록
+	//임시게시물 등록
 	@RequestMapping(value="/insertPost.do")
    public String boardWrite(ClubBoard b, MultipartFile files[], HttpServletRequest request, Model model) {
       //파일 목록을 저장할 리스트 생성
@@ -193,17 +195,7 @@ public class ClubController {
 		ArrayList<ClubChart> list = service.selectClubPostCount(m);
 		return new Gson().toJson(list);
 		}
-	
-	/*
-	 * //마이클럽 날짜별 조건 게시물 불러오기
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/selectPhoto.do") public ArrayList<ClubBoard>
-	 * selectPhoto(@SessionAttribute(required = false) Member m,int start, String
-	 * changeDate,Model model){ ArrayList<ClubBoard> selectList =
-	 * service.selectPostList(m,start,changeDate); return null; }
-	 */
+
 	
 	//영범이구역 뿌잉 뿌잉
 	@RequestMapping(value="/viewClubList.do")
