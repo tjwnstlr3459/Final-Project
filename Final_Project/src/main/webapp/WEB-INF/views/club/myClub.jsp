@@ -114,7 +114,7 @@
 				<div class="rightConSelect">
 					<input type="text" name="search" class="inputStryle" />
 
-					<button class="postSearch">Search</button>
+					<button class="postSearch" onclick="postSearch()">Search</button>
 
 					<select class="selectDate" onchange="selectDateChange(this)">
 						<option value="0">모든날짜</option>
@@ -258,6 +258,66 @@
 }
 </style>
 <script>
+	//검색버튼 클릭시
+	function postSearch(){
+		var searchCon = $("input[name=search]").val();
+		console.log("검색버튼 클릭시 내용값 :"+searchCon);
+		/* location.href="/myClub.do?searchCon="+searchCon; */
+		
+		$.ajax({
+			url:"/searchContent.do",
+			data :{
+				searchCon : searchCon,
+				start : 1,
+				changeDate : 0,
+			},
+			type: "post",
+			success : function(data){
+				$(".photoWrapper").empty();
+				for (var i = 0; i < data.length; i++) {
+					var p = data[i];
+					var html = "";
+					html += '<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
+					html += '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;border-radius: 5% 5% 1% 1%;" >';
+					html += '<a href="#" class="thumb-link">';
+					if (p.filePath != null) {
+						html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
+					} else {
+						html += '<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex; margin-top:30px;width: 40%;"/>';
+					}
+					html += '</a>';
+					html += '</div>';
+					html += '<div class="entry-text" style="height: 150PX;">';
+					html += '<div class="entry-header">';
+					html += '<div class="entry-meta">';
+					html += '<span class="cat-links">';
+					html += '<div class="boardNo" style="display:none" values="p.boardNo">'
+							+ p.boardNo + '</div>';
+					html += '<div class="clubNo" style="display:none">'
+							+ p.clubNo + '</div>';
+					html += '<div class="cName" style="display:none">'
+							+ p.boardWriter + '</div>';
+					html += '<a href="#" class="clubName">'
+							+ p.clubName + '</a>';
+					html += '</span>';
+					html += '</div>';
+					html += '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 18px;text-overflow: ellipsis;white-space: nowrap;">';
+					html += '<a href="single-standard.html"class="bTitle">'
+							+ p.boardTitle + '</a>';
+					html += '</h1>';
+					html += '</div>';
+					html += '<div class="entry-excerpt" style="height: 70px;overflow: hidden;text-overflow: ellipsis;">'
+							+ p.boardContent + '</div>';
+					html += '</div>';
+					html += '</article>';
+
+					$(".photoWrapper").append(html);
+				}
+
+				
+			}
+		})
+	}
 	//유저가 속한 클럽들 게시물 차트 실행문
 	$(function() {
 		myClubChart();
@@ -292,7 +352,6 @@
 		$("#more-btn").prop("disable", false); //
 		$("#more-btn").val("0"); //
 		$("#more-btn").attr("currentCount", "0");
-
 		$.ajax({
 			url : "/selectTotalCount.do",
 			data : {
@@ -309,11 +368,9 @@
 	//모달클릭
 	function func1(obj) {
 		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
-
 		$(".postModal").css("display", "block");
 		$(".postModal").css("z-index", "10000");
 		$(".postModal").css("display", "flex");
-
 		//모달창 내 해당 값 넣기
 		$(".modalMemberName").html($(".cName").eq(idx).html()); //게시글 작성자
 		$(".modalClubName").html($(".clubName").eq(idx).html()); //해당 게시글 클럽명
@@ -459,6 +516,8 @@
 			});
 
 	function more(start) {//더보기 클릭시
+		var searchCon = $("input[name=search]").val();
+	console.log(searchCon)
 		$
 				.ajax({
 					url : "/photoMore.do",

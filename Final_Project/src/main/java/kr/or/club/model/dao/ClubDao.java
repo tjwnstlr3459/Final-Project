@@ -28,21 +28,23 @@ public class ClubDao {
 	
 
 	//더보기로 5개씩 출력하기(changeDate값별로 날짜별 조회 조건걸기)
-	public List<ClubBoard> morePhoto(int start, int end, Member m, int changeDate) {
+	public List<ClubBoard> morePhoto(int start, int end, Member m, int changeDate, String searchCon) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("m",m.getMemberNick());
 		map.put("changeDate", changeDate);
+		map.put("searchCon", searchCon);
 		List<ClubBoard> list = session.selectList("club.phtoMore",map);
 		return list;
 	}
 	
 	//전체게시물 수 확인
-	public int totalCount(Member m, int changeDate) {
+	public int totalCount(Member m, int changeDate, String searchCon) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("memberNick", m.getMemberNick());
 		map.put("changeDate", changeDate);
+		map.put("searchCon", searchCon);
 		
 		return session.selectOne("club.totalCount",map);
 	}
