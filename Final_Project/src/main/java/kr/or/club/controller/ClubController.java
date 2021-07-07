@@ -122,7 +122,7 @@ public class ClubController {
           //getRealPath() -> webapp 폴더
           String savePath = request.getSession()
         		  					.getServletContext()
-        		  					.getRealPath("/resources/fileupload/postImg/");
+        		  					.getRealPath("/resources/image/clubimg/");
           //파일이 1~여러개라 for문으로 묶어준다
           for(MultipartFile file : files) {
         	//실제 유저가 올린 파일명(filename)

@@ -475,7 +475,7 @@
 							html += '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;border-radius: 5% 5% 1% 1%;" >';
 							html += '<a href="#" class="thumb-link">';
 							if (p.filePath != null) {
-								html += '<img class="picPath" src="/resources/fileupload/postImg/'+p.filePath+'" class="postsCheck"alt="building"/>';
+								html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
 							} else {
 								html += '<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex; margin-top:30px;width: 40%;"/>';
 							}

@@ -63,7 +63,7 @@ SELECT * FROM
 	FROM CLUB_BOARD A,CLUB C 
 	WHERE C.CLUB_NO = A.CLUB_NO 
 	AND 
-C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m})
+C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK=#{m}) or club_opener=#{m}
 <if test="changeDate != 0">
 and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')	
 </if> 
