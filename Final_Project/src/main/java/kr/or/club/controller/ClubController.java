@@ -40,6 +40,7 @@ public class ClubController {
 		
 		//클럽게시물 출력
 		ArrayList<Club> clubList = service.memberClubList(m);
+		System.out.println(clubList.size());
 		model.addAttribute("clubList",clubList);
 		//클럽게시물 총갯수 출력
 		int totalCount = service.totalCount(m,0);
@@ -218,7 +219,7 @@ public class ClubController {
 		return "club/createClubFrm";
 	}
 	@RequestMapping(value="/createClub.do")
-	public String createClub(Club c, MultipartFile file, HttpServletRequest request, Model model) {
+	public String createClub(Member m,Club c, MultipartFile file, HttpServletRequest request, Model model) {
 		if (file.isEmpty()) {
 			model.addAttribute("msg", "클럽 이미지를 등록하세요!");
 			model.addAttribute("loc", "/createClubFrm.do");

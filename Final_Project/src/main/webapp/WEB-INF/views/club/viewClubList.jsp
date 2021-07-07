@@ -97,9 +97,9 @@ button:hover:before,button:hover:after{
 					<div class="card-header">${club.clubOpener} 님의 클럽입니다.</div>
 					<div class="card-body">
 						<h4 class="card-title">
-							${club.clubName}</a>
+							${club.clubName}
 						</h4>
-						<a href="/newClub.do?clubNo=38" style="text-decoration: none;" id="imgScale"><img class="card-text" src="/resources/clubImgUpload/${club.filePath }"
+						<a href="/newClub.do?clubNo=${club.clubNo }" style="text-decoration: none;" id="imgScale"><img class="card-text" src="/resources/clubImgUpload/${club.filePath }"
 							style="width: 250px; height: 200px;" alt="이미지들어갈곳"></img></a>
 					</div>
 					<p class="card-text" style="border-top:1px solid #ccc; line-height:50px;">개설일 : ${club.enrollDate}</p>

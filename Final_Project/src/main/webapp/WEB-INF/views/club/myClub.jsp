@@ -90,7 +90,7 @@
 				</div>
 				<hr />
 				<!-- 회원이 속한 클럽들 출력 -->
-				<c:forEach items="${clubList}" var="l" varStatus="i">
+				<c:forEach items="${clubList}" var="l">
 					<div class="myClubList">
 						<div class="clubListOne">
 							<a href="/newClub.do?clubNo=${l.clubNo }"><img

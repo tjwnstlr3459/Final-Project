@@ -159,6 +159,7 @@ public class ClubService {
 		return dao.deleteMent(mentNo);
 	}
 
+
 	
 	
 	/*

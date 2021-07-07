@@ -17,7 +17,7 @@
 		LAST_DATE as lastDate,
 		WARNING_COUNT as warningCount
 	FROM CLUB WHERE 
-	CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK= #{memberNick})
+	CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE CLUB_NICK= #{memberNick}) OR CLUB_OPENER=#{memberNick}
 </select>
 
 <!-- 회원이 작성한 클럽의 게시물 -->
@@ -227,6 +227,8 @@ INSERT INTO CLUB_COMMENT VALUES(
 <delete id="deleteMent" parameterType="int">
 DELETE FROM CLUB_COMMENT WHERE CC_NO=#{mentNo}
 </delete>
+
+
 </mapper>
 
 
