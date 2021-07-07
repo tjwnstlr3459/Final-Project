@@ -64,6 +64,7 @@ public class ClubController {
 	@RequestMapping(value ="/comentSend.do")
 	public int comentSend(@SessionAttribute(required = false) Member m,int comentBoardNo,String comentCon) {
 		int result = service.insertComent(m,comentBoardNo,comentCon);
+		
 		return result;
 	}
 	//댓글 삭제

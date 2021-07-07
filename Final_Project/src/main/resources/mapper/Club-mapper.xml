@@ -201,14 +201,15 @@ from direct_message where receiver=#{memberNick} and read_status='N'
 <!-- 댓글 가져오기 -->
 <select id="postMoment" parameterType="int" resultType="ccm">
 select
-	CC_NO AS ccNo,
-	board_no as boardNo,
-	cc_writer as ccWriter,
-	cc_content as ccContent,
-	cc_cg as ccCG,
-	cc_ref as ccREF,
-	cc_good as ccGOOD
-from CLUB_COMMENT WHERE BOARD_NO=#{boardNo}
+	A.CC_NO AS ccNo,
+	A.board_no as boardNo,
+	A.cc_writer as ccWriter,
+	A.cc_content as ccContent,
+	A.cc_cg as ccCG,
+	A.cc_ref as ccREF,
+	A.cc_good as ccGOOD,
+    B.filepath
+from CLUB_COMMENT A, MEMBER B WHERE A.CC_WRITER = B.MEMBER_NICK AND BOARD_NO=#{boardNo}
 </select>
 <!-- 댓글등록 -->
 <insert id="insertComent" parameterType="map">

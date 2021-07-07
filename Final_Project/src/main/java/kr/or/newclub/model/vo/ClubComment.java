@@ -12,4 +12,7 @@ public class ClubComment {
 	private String ccREF;
 	private String ccGOOD;
 	
+	//댓글 작성자의 프로필사진
+	private String filepath;
+	
 }
