@@ -96,7 +96,7 @@
 									<c:choose>
 										<c:when test="${!empty sessionScope.m }">
 											<c:choose>
-												<c:when test="${sessionScope.m.grade gt 1 }">
+												<c:when test="${sessionScope.m.grade ge 2 }">
 													<li><a onclick="location.href='/myClub.do';"
 														style="cursor: pointer;">${sessionScope.m.memberNick }'s
 															CLUB</a></li>
@@ -107,9 +107,12 @@
 									<c:if test="${empty sessionScope.m }">
 									 <li class="active"><a href="#">Home</a></li>
 									 </c:if>
+									 <c:if test="${sessionScope.m.grade lt 2 }">
+									 <li class="active"><a href="#">Home</a></li>
+									 </c:if>
 									<li><a href="#clubCategory">클럽 카테고리</a></li>
 									<li><a href="#clubFeed">클럽 피드</a></li>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- <li><a onclick="location.href='/newClub.do?clubNo=38';"
 										style="cursor: pointer;">클럽뷰</a></li> -->
 									<c:choose>
@@ -128,11 +131,13 @@
 										<li><a onclick="location.href='/logout.do';"
 											style="cursor: pointer;">로그아웃</a></li>
 										</c:if>
+										<c:if test="${sessionScope.m.grade gt 1 }">
 									<li><a
 										onclick="location.href='/mypage.do';"
 										style="cursor: pointer;">MyPage</a></li>
 										<li><a onclick="location.href='/logout.do';"
 											style="cursor: pointer;">로그아웃</a></li>
+											</c:if>
 										</c:otherwise>
 									</c:choose>
 									<li><a
