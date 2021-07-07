@@ -40,7 +40,7 @@ public class RestrictionDao {
 		return session.selectOne("restriction.restCount");
 	}
 
-	public int deleteRestMember(String restEmail) {
-		return session.delete("restriction.deleteRestMember",restEmail);
+	public int deleteRestMember(Restriction rest) {
+		return session.delete("restriction.deleteRestMember",rest);
 	}
 }

@@ -17,6 +17,7 @@ function selectAdminCount(){
 			memberAges(data);				//회원들이 연령대별 취미 차트 
 			defaultCount(data);				//페이지 로드 되면서 값을 넣어주는 함수
 			categoryRank(data);				//카테고리 랭크
+			//notAnswerAlarm(data.notAnswer);	//접수 중인 문의/신고 갯수
 		}
 	});
 }

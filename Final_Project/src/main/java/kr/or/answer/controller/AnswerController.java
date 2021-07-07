@@ -40,4 +40,14 @@ public class AnswerController {
 		return new Gson().toJson(an);
 		
 	}
+	
+	@RequestMapping(value="/updateAnswer.do")
+	@ResponseBody
+	public String updateAnswer(Answer an) {
+		int result = service.updateAnswer(an);
+		if(result>0) {
+			return "1";
+		}
+		return "0";			
+	}
 }

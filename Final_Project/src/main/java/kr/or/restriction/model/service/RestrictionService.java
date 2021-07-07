@@ -58,7 +58,7 @@ public class RestrictionService {
 		for(int i=0;i<naviPages;i++) {
 			//사용자가 클릭해서 보고있는 페이지인 경우 효과
 			if(navi==page) {
-				navigation += "<a href='/adminRestrictionList.do?page="+navi+"' class='naviFocus'>"+navi+"</a>";
+				navigation += "<a href='/adminRestrictionList.do?page="+navi+"' class='naviFocus' id='naviFocus'>"+navi+"</a>";
 			}else {
 				navigation += "<a href='/adminRestrictionList.do?page="+navi+"'>"+navi+"</a>";				
 			}
@@ -78,7 +78,7 @@ public class RestrictionService {
 		return rpd;
 	}
 	@Transactional
-	public int deleteRestMember(String restEmail) {
-		return dao.deleteRestMember(restEmail);
+	public int deleteRestMember(Restriction rest) {
+		return dao.deleteRestMember(rest);
 	}
 }

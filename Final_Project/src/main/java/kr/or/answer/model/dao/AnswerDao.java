@@ -19,4 +19,8 @@ public class AnswerDao {
 	public Answer selectAnswer(int abNo) {
 		return session.selectOne("answer.selectOneAnswer",abNo);
 	}
+
+	public int updateAnswer(Answer an) {
+		return session.update("answer.updateAnswer",an);
+	}
 }

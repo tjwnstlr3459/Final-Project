@@ -21,4 +21,8 @@ public class AnswerService {
 	public Answer selectAnswer(int abNo) {
 		return dao.selectAnswer(abNo);
 	}
+
+	public int updateAnswer(Answer an) {
+		return dao.updateAnswer(an);
+	}
 }

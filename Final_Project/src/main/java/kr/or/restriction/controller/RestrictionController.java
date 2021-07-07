@@ -43,10 +43,15 @@ public class RestrictionController {
 	//이용제한자 임의로 풀기(삭제)
 	@RequestMapping(value="/deleteRestMember.do")
 	@ResponseBody
-	public String deleteRestMember(String restEmail) {
-		int result = service.deleteRestMember(restEmail);
+	public String deleteRestMember(Restriction rest) {
+		int result = service.deleteRestMember(rest);
 		if(result>0) {
-			return "1";
+			int result1 = service.updateMemberGrade(rest);
+			if(result1>0) {
+				return "1";				
+			}else {
+				return "0";				
+			}
 		}
 		return "0";
 	}

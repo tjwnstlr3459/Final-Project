@@ -12,7 +12,17 @@
 		)
 	</insert>
 	<update id="updateMemberGrade" parameterType="rest">
-		update member set grade=3 where email=#{restEmail} 
+		update member set
+		<choose>
+			<when test="kindKey eq 'in'">
+			grade=3 
+			</when>
+			<otherwise>
+			grade=2 			
+			</otherwise>
+		</choose> 
+		
+		where email=#{restEmail} 
 	</update>
 	<!-- 매일 12시에 이용제한이 끝난 회원 삭제시켜주기 -->
 	<delete id="deleteRestEndRest">
@@ -30,7 +40,7 @@
 		            start_date as startDate,
 		            end_date as endDate,
 		            (select cg_name from category where cg_no = rest_cg) as cgName
-	        from restriction join category on(rest_no = cg_no) order by rest_no desc)rest)
+	        from restriction order by rest_no desc)rest)
 		where sort between #{start} and #{end}
 	</select>
 	<!-- 이용제한 테이블 row 갯수 -->
@@ -38,7 +48,7 @@
 		select count(*) from restriction
 	</select>
 	<!-- 이용제한회원 풀기 > delete -->
-	<delete id="deleteRestMember" parameterType="string">
+	<delete id="deleteRestMember" parameterType="rest">
 		delete from restriction where rest_email=#{restEmail}
 	</delete>
 	<!-- 로그인 시 제재내역 조회 -->

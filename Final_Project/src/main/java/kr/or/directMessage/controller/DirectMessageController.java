@@ -40,9 +40,13 @@ public class DirectMessageController {
 				model.addAttribute("loc","/adminClubList.do?page=1&sort=1");
 			}
 		}else {
-			model.addAttribute("msg","작성 실패");			
+			model.addAttribute("msg","작성 실패");	
+			if(kind.equals("member")) {
+				model.addAttribute("loc","/adminMemberList.do?page=1&sort=1");
+			}else {
+				model.addAttribute("loc","/adminClubList.do?page=1&sort=1");				
+			}
 		}
-		model.addAttribute("loc","/adminClubList.do?page=1&sort=1");
 		return "common/msg";
 	}
 	@RequestMapping(value="/insertMultiDm",method=RequestMethod.POST)

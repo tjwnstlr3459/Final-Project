@@ -12,4 +12,6 @@ public class Restriction {
 	private String endDate;
 	private String cgName;
 	private int sort;
+	//회원 grade update키
+	private String kindKey;
 }

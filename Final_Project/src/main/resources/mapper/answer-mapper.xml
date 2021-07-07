@@ -42,6 +42,10 @@ FROM ANSWER a,member b WHERE a.an_writer = b.member_nick and a.AB_NO=#{abNo}
 	    enroll_date as enrollDate
 	FROM ANSWER where ab_no=#{abNo}
 </select>
+<!-- 관리자 문의/신고 답변 수정 -->
+<update id="updateAnswer" parameterType="an">
+	update answer set an_writer=#{anWriter}, an_content=#{anContent} where an_no=#{anNo}
+</update>
 </mapper>
 
 

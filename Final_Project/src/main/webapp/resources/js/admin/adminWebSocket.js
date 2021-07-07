@@ -5,7 +5,7 @@ $(function(){
 		//memberEmail = email;
 		//웹 소켓 생성 > 연결 시도
 
-		ws = new WebSocket("ws:/192.168.10.47/inMemberCount.do");
+		ws = new WebSocket("ws:/192.168.10.24/inMemberCount.do");
 		//1. 웹소켓 연결 성공 시 실행 함수 지정
 		ws.onopen = inMember;
 		//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
@@ -21,7 +21,13 @@ $(function(){
 	*/
 	}
 	function receiveMsg(param){
-		if(window.location.pathname == "/adminMain.do") document.getElementById('visitor').innerHTML = param.data;
+		var jsonObj = JSON.parse(param.data);
+		if(window.location.pathname == "/adminMain.do") document.getElementById('visitor').innerHTML = jsonObj.visitorCount;
+		if(jsonObj.notAnswerCount > 0){
+			$('.alarm-box').show();
+		}else{
+			$('.alarm-box').hide();		
+		}
 	}
 	function outMember(){
 	

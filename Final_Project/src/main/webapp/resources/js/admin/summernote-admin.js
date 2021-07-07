@@ -44,8 +44,8 @@ $(function(){
 	 	$('.titleHead').html('경고 사유');							//모달 타이틀 설정
 	 	$('#summernote').attr('name','dmContent');			//요소 name을 설정
 	 	$('[name=receiver]').val(memberNick);				//받는사람 설정
-	 	
-	 	$('[name=clubNo]').val($(this).val());
+	 	console.log($(this).val()==''?0:$(this).val());
+	 	$('[name=clubNo]').val($(this).val()==''?0:$(this).val());
 	 	modalOpen();
 	 });
 	 //제재 버튼 클릭 시
@@ -158,17 +158,14 @@ $(function(){
 	 });
 	 //답변 수정 클릭 시
 	 $('.modifyBtn').click(function(){
-	 	$('.summernote').summernote('code',$('.answerContent').html());
+	 	modifyBtnClick();
 	 	$('.answer-table>tbody td').css('background-color','transparent');
 	 	$('.answerContent').hide();
 	 	$('.modifyAnswer-box').show();
 	 });
 	 //답변 수정 취소 클릭 시
 	 $('.canBtn').click(function(){
-	 $('.answer-table>tbody td').css('background-color','#2e2d31');
-	 	$('.summernote').summernote('code','');
-	 	$('.answerContent').show();
-	 	$('.modifyAnswer-box').hide();
+	 	answerDefault();
 	 });
 
 });
@@ -186,6 +183,7 @@ function sendFile(file, el) {
 		processData : false,
 		success : function(data) {
 			$(el).summernote('editor.insertImage', data.url);
+			console.log(data.url);
 		}
 	});
 }
@@ -202,6 +200,7 @@ function modalClose(){
 	$('.answer-box').hide();
 	$('.slideAnswerBtn').attr('disabled',false);
 	$('.answer-wrap').hide();
+	answerDefault();
 }
 //다중 선택된 회원 쪽지 보내기
 function insertMultiDm(){
@@ -245,9 +244,10 @@ function deleteMember(memberNo){
 	});
 }
 function deleteRestMember(restEmail){
+	var kindKey = "out";
 	$.ajax({
 		url : "/deleteRestMember.do",
-		data : {restEmail : restEmail},
+		data : {restEmail : restEmail, kindKey: kindKey},
 		type : "post",
 		success : function(data){
 			if(data == 1){
@@ -298,6 +298,7 @@ function selectOneBoard(abNo,cgName){
 //답변 슬라이드토글
 function answerToggle(){
 	$('.answer-box').slideToggle();
+	$('#summernote').summernote('code','');
 	$(this).attr('disabled',true);
 }
 //abNo 로 게시물의 답변 가져오기
@@ -311,9 +312,29 @@ function selectAnswer(abNo){
 				$('.btn-box').html(`<button class="btns slideAnswerBtn" onclick="answerToggle();">답변하기</button>`);
 			}else{
 				$('.btn-box').html('');
+				$('.summernote').summernote('code','');
 				$('.answerContent').html(data.anContent);
+				$('input[name=anNo]').val(data.anNo);
 				$('.answer-wrap').show();
 			}
 		}
 	});
+}
+//수정 클릭 시 수정 완료/취소 보이기 함수
+function modifyBtnClick(){
+	$('#anSummernote').summernote('code',$('.answerContent').html());
+	$('.modifyBtn').hide();
+	$('.comBtn').show();
+	$('.canBtn').show();
+}
+//답변 수정 중 모달창 닫을 시 초기화 함
+function answerDefault(){
+	$('#anSummernote').summernote('code','');
+	$('.modifyBtn').show();
+	$('.comBtn').hide();
+	$('.canBtn').hide();
+	$('.answerContent').show();
+ 	$('.answer-table>tbody td').css('background-color','#2e2d31');
+ 	$('.answerContent').show();
+ 	$('.modifyAnswer-box').hide();	
 }

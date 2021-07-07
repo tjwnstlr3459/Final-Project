@@ -28,7 +28,7 @@
     <!-- 왼쪽 관리자,메뉴 영역 -->
     <nav>
         <header>
-            <span class="logo"></span>
+            <a href="/main.jsp"><span class="logo"></span></a>
         </header>
         <div class="divLine"></div>
         <div class="adminInfoWrap">
@@ -42,7 +42,7 @@
         <div class="menuWrap">
             <ul class="menu">
                 <li><a href="/adminMain.do"><img src="/resources/image/icons/analytics_white.png" alt=""><span>차트 / 통계</span></a></li>
-                <li><a href="/adminBoardList.do?reqPage=1&type=2&sort=1"><img src="/resources/image/icons/supportAgent_white.png" alt=""><span>문의 / 신고</span></a></li>
+                <li><a href="/adminBoardList.do?reqPage=1&type=2&sort=1"><img src="/resources/image/icons/supportAgent_white.png" alt=""><span class="alarm-wrap">문의 / 신고<div class="alarm-box"><img src="/resources/image/icons/alarm-icon.png"></div></span></a></li>
                 <li><a href="/adminMemberList.do?page=1&sort=1&category=default&keyword=" id="mlClick"><img src="/resources/image/icons/person_white.png" alt=""><span>회원 목록</span></a></li>
                 <li><a href="/adminClubList.do?page=1&sort=1&category=default&keyword="><img src="/resources/image/icons/groups_white.png" alt=""><span>클럽 목록</span></a></li>
                 <li><a href="/adminRestrictionList.do?page=1"><img src="/resources/image/icons/gavel_white.png" alt=""><span>제재 목록</span></a></li>

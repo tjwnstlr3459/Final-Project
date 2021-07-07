@@ -78,10 +78,10 @@
                             		<td>${bl.cgName }</td><td>${bl.abWriter }</td><td><a class='btns selectOneBtn' onclick="selectOneBoard(${bl.abNo},'${bl.cgName }');" href="javascript:void(0)">${bl.abTitle }</a></td><td>${bl.enrollDate }</td>
                             		<c:choose>
                             			<c:when test="${bl.status.equals('N') }">
-		                            		<td>접수 중</td>
+		                            		<td class="answerIng">접수 중</td>
                             			</c:when>
                             			<c:otherwise>
-		                            		<td>답변 완료</td>
+		                            		<td class="answerComplete">답변 완료</td>
                             			</c:otherwise>
                             		</c:choose>
                             	</tr>
@@ -115,10 +115,10 @@
 							</tr>
 						</tbody>
 					</table>
-					<button id="closeBtn" class="btns cancelBtn">X</button>
+					<button id="closeBtn" class="btns cancelBtn"></button>
 					<div class="btn-box"></div>
 					<div class="answer-box">
-						<form action="/insertAnswer.do" id="answerForm">
+						<form action="/insertAnswer.do" id="answerForm" method="post">
 							<input type="hidden" name="abNo"><!-- 문의/답변 게시물 번호 -->
 							<input type="hidden" name="anWriter" value="${sessionScope.m.memberNick }"><!-- 작성자(관리자) -->
 							<textarea class="summernote" id="summernote" name="anContent"></textarea>
@@ -126,7 +126,7 @@
 						</form>
 					</div>
 					<div class="answer-wrap">
-						<h2 class="title-head">답변</h2>
+						<h2 class="title-head">관리자 답변</h2>
 						<table class="modal-table answer-table">
 						<tbody>
 							<tr>
@@ -134,6 +134,7 @@
 								<td colspan="3">
 									<span class="answerContent"></span>
 									<div class="modifyAnswer-box">
+										<input type="hidden" id="anNo" name="anNo">
 										<textarea class="summernote" id="anSummernote" name="anContent"></textarea>
 									</div>
 								</td>
@@ -153,11 +154,71 @@
 				</div>
 			</div>
 			<script>
-				$('.summernote').summernote({
+				$('#summernote').summernote({
+				 	   width: 911,
+				 	   minWidth:911,
+				 	   maxWidth:911,
+				 	   height:400,
+				 	  minHeight: null,             // 최소 높이
+				       maxHeight: null,             // 최대 높이
+				       focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+				       lang: "ko-KR",					// 한글 설정
+				       placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+				       toolbar: [
+						    // [groupName, [list of button]]
+						    ['fontname', ['fontname']],
+						    ['fontsize', ['fontsize']],
+						    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+						    ['color', ['forecolor','color']],
+						    ['table', ['table']],
+						    ['para', ['ul', 'ol', 'paragraph']],
+						    ['height', ['height']],
+						    ['insert',['picture','link','video']],
+						    ['view', ['fullscreen', 'help']]
+						  ],
+						fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+						fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+						//콜백함수
+						callbacks: {
+						    onImageUpload: function(files, editor, welEditable) {
+					            for(var i = files.length - 1; i >= 0; i--) {
+					            	sendFile(files[i], this);
+					            }
+						    }
+						}   
+				});
+				$('#anSummernote').summernote({
 				 	   width: 800,
 				 	   minWidth:800,
 				 	   maxWidth:800,
-				 	   height:400
+				 	   height:400,
+				 	  minHeight: null,             // 최소 높이
+				       maxHeight: null,             // 최대 높이
+				       focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+				       lang: "ko-KR",					// 한글 설정
+				       placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+				       toolbar: [
+						    // [groupName, [list of button]]
+						    ['fontname', ['fontname']],
+						    ['fontsize', ['fontsize']],
+						    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+						    ['color', ['forecolor','color']],
+						    ['table', ['table']],
+						    ['para', ['ul', 'ol', 'paragraph']],
+						    ['height', ['height']],
+						    ['insert',['picture','link','video']],
+						    ['view', ['fullscreen', 'help']]
+						  ],
+						fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+						fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+						//콜백함수
+						callbacks: {
+						    onImageUpload: function(files, editor, welEditable) {
+					            for(var i = files.length - 1; i >= 0; i--) {
+					            	sendFile(files[i], this);
+					            }
+						    }
+						}   
 				});
 			</script>
 		</section>

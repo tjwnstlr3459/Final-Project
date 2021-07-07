@@ -15,6 +15,8 @@ public class AdminCount {
 	private int destroyedClubCount;
 	//private int RestrictedClubCount;
 	private ArrayList<BestCategory> bcList;
+	//문의 / 신고의 미답변 수
+	private int notAnswer;
 	//회원 취미 수
 	private int memberSports;
 	private int memberTravel;

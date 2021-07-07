@@ -8,6 +8,7 @@
 		    (select count(*) from destroy) destroyedMemberCount,
 		    (select count(*) from restriction) restrictedMemberCount,
 		    (select count(*) from club) allClubCount,
+		    (select count(*) from board where status='N') notAnswer,
 		    (select count(*) from member where hobby1=4 or hobby2=4 or hobby3=4) memberSports,
 		    (select count(*) from member where hobby1=5 or hobby2=5 or hobby3=5) memberMusic,
 		    (select count(*) from member where hobby1=6 or hobby2=6 or hobby3=6) memberTravel,

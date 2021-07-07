@@ -45,7 +45,9 @@
 	                        <div class="option-wrap">
 	                            <!-- ajax>배열[]사용>controller 에서 String[] 을 매개변수로 받아서 사용 -->
 	                            <button type="button" class="btns" id="selectMessageBtn">선택 쪽지발송</button>
+	                            <!--  
 	                            <button type="button" class="btns" id="selectMailBtn">선택 메일발송</button>
+	                            -->
 	                            <c:if test="${sessionScope.m.grade eq 0 }">
 	                            <button type="button" class="btns" id="upgradeBtn">관리자 등록</button>
 	                            </c:if>
@@ -84,7 +86,7 @@
                         <table class="list memberList">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" id="allCheck"></th><th>no</th><th>이메일</th><th>닉네임</th><th>취미1</th><th>취미2</th><th>취미3</th><th>등급</th><th>경고/제재</th><th>가입일</th><th>최종 접속일</th>
+                                    <th><input type="checkbox" id="allCheck"></th><th>no</th><th>이메일</th><th>닉네임</th><th>취미1</th><th>취미2</th><th>취미3</th><th>등급</th><th>경고</th><th>가입일</th><th>최종 접속일</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +102,9 @@
                                     	</c:choose>
 	                                    </td>
 	                                    <td>${m.warningCount }</td><td>${m.enrollDate }</td><td>${m.lastDate }</td>
-	                                    <td><button class="btns warningBtn">경고</button><button class="btns restBtn">제재</button>
+	                                    <td>
+	                                    	<button class="btns warningBtn">경고</button>
+	                                    	<button class="btns restBtn">제재</button>
 	                                    	<c:if test="${sessionScope.m.grade eq 0 }">
 	                                    		<button class="btns deleteBtn">삭제</button>
 	                                    	</c:if>
@@ -126,6 +130,7 @@
             <div class="modal">
                 <div class="modal-box">
 					<form id="modalForm" class="frms" action="">
+					<input type="hidden" name="kindKey" value="in">
                     <h2 class="titleHead"></h2>
                     <select name="restCg" id="cgNo">
                     <c:forEach items="${cgList }" var="cg">
@@ -141,12 +146,13 @@
 	                   	<input type="hidden" name="restEmail"><!-- 이용제한 대상자 : 선택된 회원 이메일 js로 넣어준다. -->
 	                   	<input type="hidden" name="type"><!-- 전체 쪽지 발송 : 1  /  개인 경고/제재 : 2 -->
 	                   	<input type="hidden" name="kind" value="member">
+	                   	<input type="hidden" name="clubNo">
 	                   	<div class="btns-box">
 	                        <button type="button" class="btns enterBtn">확인</button>
 	                   	</div>                	
                     </div>
                    	</form>
-                    <button id="closeBtn" class="btns cancelBtn">X</button>
+                    <button id="closeBtn" class="btns cancelBtn"></button>
                 </div>
             </div>
 		</section>

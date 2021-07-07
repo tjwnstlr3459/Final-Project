@@ -75,7 +75,7 @@ public class boardService {
 				pageNavi += "<a class='page-link' href='/boardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"'>"+pageNo+"</a></li>";				
 			}else {
 				//눌러진페이지 엑티브 ex)3페이지 누르면 3이 엑티브되게
-				pageNavi += "<a class='' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"&sort="+sort+"'>"+pageNo+"</a></li>";
+				pageNavi += "<a class='naviFocus' id='naviFocus' href='/adminBoardList.do?reqPage="+pageNo+"&type="+type+"&sort="+sort+"&sort="+sort+"'>"+pageNo+"</a></li>";
 			}
 		}else {												//reqPage는 누른페이지 지정
 			if(type == 1) {
