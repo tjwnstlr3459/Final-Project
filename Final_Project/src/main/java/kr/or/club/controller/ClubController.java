@@ -40,6 +40,7 @@ public class ClubController {
 		
 		//클럽게시물 출력
 		ArrayList<Club> clubList = service.memberClubList(m);
+		System.out.println(clubList.size());
 		model.addAttribute("clubList",clubList);
 		//클럽게시물 총갯수 출력
 		int totalCount = service.totalCount(m,0);
@@ -64,6 +65,7 @@ public class ClubController {
 	@RequestMapping(value ="/comentSend.do")
 	public int comentSend(@SessionAttribute(required = false) Member m,int comentBoardNo,String comentCon) {
 		int result = service.insertComent(m,comentBoardNo,comentCon);
+		
 		return result;
 	}
 	//댓글 삭제
@@ -120,7 +122,7 @@ public class ClubController {
           //getRealPath() -> webapp 폴더
           String savePath = request.getSession()
         		  					.getServletContext()
-        		  					.getRealPath("/resources/fileupload/postImg/");
+        		  					.getRealPath("/resources/image/clubimg/");
           //파일이 1~여러개라 for문으로 묶어준다
           for(MultipartFile file : files) {
         	//실제 유저가 올린 파일명(filename)
@@ -217,7 +219,7 @@ public class ClubController {
 		return "club/createClubFrm";
 	}
 	@RequestMapping(value="/createClub.do")
-	public String createClub(Club c, MultipartFile file, HttpServletRequest request, Model model) {
+	public String createClub(Member m,Club c, MultipartFile file, HttpServletRequest request, Model model) {
 		if (file.isEmpty()) {
 			model.addAttribute("msg", "클럽 이미지를 등록하세요!");
 			model.addAttribute("loc", "/createClubFrm.do");

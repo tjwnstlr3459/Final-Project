@@ -56,16 +56,18 @@
         #wrapper span {
         	font-size: 15px;
         }
-
+	.item button{
+		text-align:center;
+	}
 </style>
 
 </head>
 <body>
 	 <%@include file="/WEB-INF/views/common/header.jsp"%>  
-	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED<sub style='font-size:15px;'>당신의 클럽을 자랑해봐요</sub></h1>
+	<h1 style="margin-left: 200px; margin-top:50px;">CLUB FEED<br><sub style='font-size:15px;'>클럽활동들을 자유롭게 올리는 곳입니다.</sub></h1>
 	<c:choose>
 	<c:when test="${!empty sessionScope.m }">
-	<button id="feed_info" style="float:right; margin-right: 60px; font-size: 14px;" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
+	<button id="feed_info" style="float:right; margin-right: 300px; font-size: 14px;" onclick="location.href='/insertFreeBoardFrm.do';">MAKE FEED</button>
 	</c:when>
 	</c:choose>
 	<div id="wrapper">
@@ -112,13 +114,13 @@
 						html += "<ul class='actions'>";
 						<c:choose>
 							<c:when test="${empty sessionScope.m}">
-							html += "<li><a onclick='loginCheck();' class='button' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
+							html += "<li><a onclick='loginCheckHeart();' class='button' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";
 							</c:when>
 							<c:otherwise>
 							if(fb.flag == 0){
-							html += "<li><a class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";								
+							html += "<li style='margin-left:12px;'><a class='button' onclick='addHeart(this);' style='font-size:10px;'><i class='far fa-heart' style='font-size:5px;'></i></a></li><br>";								
 							}else{
-							html += "<li><a class='button' onclick='minusHeart(this);' style='font-size:10px;'><i class='fas fa-heart' style='font-size:5px;'></i></a></li><br>";																
+							html += "<li style='margin-left:12px;'><a class='button' onclick='minusHeart(this);' style='font-size:10px;'><i class='fas fa-heart' style='font-size:5px;'></i></a></li><br>";																
 							}
 							</c:otherwise>
 						</c:choose>
@@ -243,10 +245,9 @@
 		            }
 		        }
 		        
-		        function loginCheck() {
+		        function loginCheckHeart() {
 					if(${empty sessionScope.m}){
 					alert("로그인 후 좋아요 가능합니다.");
-					location.href = "/loginFrm.do";				
 					}
 		        }
 	</script>

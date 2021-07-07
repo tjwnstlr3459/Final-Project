@@ -42,7 +42,6 @@ font-family: 'Noto Sans KR', sans-serif;
 	height: 85px;
 	font-size: 16px;
 	font-weight: bold;
-	width: 1920px;
 }
 
 .navbar_logo {
@@ -62,12 +61,13 @@ font-family: 'Noto Sans KR', sans-serif;
 }
 
 .navbar_menu li {
-	padding: 8px 30px;
+	padding: 15px 0px;
 	font-size: 16px;
 	font-weight: bold;
 }
 .navbar_menu {
         	margin-bottom: 0px;
+        	text-align:center;
         	        }
 .navbar_menu :hover {
 	background-color: #152447;
@@ -156,44 +156,86 @@ font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bolder;
 	color:black;
 }
+
+/*헤더드롭메뉴 조정중*/
+.dropmenu{
+	position:relative;
+}
+#dm_ul{ /* background-color: navy; */ text-align: center;}
+        .dropmenu ul ul{position: absolute; display: none;}
+        .dropmenu ul ul li{display: block;   color: black;}
+      .dropmenu ul li{display: inline-block;}
+      .dropmenu ul li a{display: block;  width: 170px; color: white; /* line-height: 43px; */
+        text-decoration: none;}
+		.sub li a {
+		width: 20px;
+		}
+		.sub{
+			padding:0px;
+			background-color: #152447;
+		}
+		.sub li{
+			text-align:center;
+			margin-top: 15px;
+		}
+		.sub li a{
+			text-align:center;
+		}
+		.sub{
+			border-radius:10px;
+			z-index: 1;
+		}
+
 </style>
 </head>
 <body>
-	<nav class="navbar" style="margin: 0px">
+	<nav class="navbar" style="margin: 0px; padding: 0px 200px 0px 200px;">
 		<div class="navbar_logo" style="margin-left:100px;">
 			<i class="fas fa-people-arrows"></i> <a href="/main.jsp">NUNADRI</a>
 		</div>
-		<ul class="navbar_menu">
-			<li><a href="/main.jsp#clubCategory">CLUB CATEGORY</a></li>
+		<div class="dropmenu">
+		 <ul class="navbar_menu">
+		 <c:if test="${sessionScope.m.grade ge 2 }">
+		 	<li><a href="#" onclick="location.href='/myClub.do';" style="cursor: pointer;">${sessionScope.m.memberNick }'s CLUB</a></li>
+		 </c:if>
+		 	<li><a href="#">클럽</a>
+          <ul class='sub'>
+            <li><a href="/main.jsp#clubCategory">클럽 카테고리</a></li>
+            <li><a href="/freeBoardList.do">클럽 피드</a></li>
+             <li><a href="#" onclick="loginCheck();" style='cursor:pointer;'>클럽 만들기</a></li> 
+            <!-- <li><a href="loginCheck();">클럽 만들기</a></li> -->
+          </ul>
+        </li>
+			<%-- <li><a href="/main.jsp#clubCategory">CLUB CATEGORY</a></li>
 			<li><a href="/freeBoardList.do">CLUB FEED</a></li>
 			<c:if test="${empty sessionScope.m }">
 			<li><a onclick="loginCheck();" style="cursor:pointer; color:#fff;">CREATE CLUB</a></li>
 			</c:if>
 			<c:if test="${!empty sessionScope.m }">
 			<li><a href="/createClubFrm.do">CREATE CLUB</a></li>
-			</c:if>
-			<li><a href="/newClub.do?clubNo=38">CLUB VIEW</a></li>
-			<li><a href="/boardList.do?reqPage=1&type=1&sort=1">FEEDBACK</a></li>
+			</c:if> --%>
 			<c:if test="${empty sessionScope.m }">
-				<li><a href="/loginFrm.do">LOGIN</a></li>
-				<li><a href="/join.do">JOIN</a></li>
+				<li><a href="/loginFrm.do">로그인</a></li>
+				<li><a href="/join.do">회원가입</a></li>
 			</c:if>
 			<c:if test="${sessionScope.m.grade lt 2 }">
 			<li><a href="/adminMain.do">ADMIN</a></li>
-			<li><a href="/logout.do">LOGOUT</a></li>
+			<li><a href="/logout.do">로그아웃</a></li>
 			</c:if>
 			<c:if test="${sessionScope.m.grade ge 2 }">
-			<li><a href="/myClub.do">${sessionScope.m.memberNick }'s CLUB</a></li>
-			<li><a href="/logout.do">LOGOUT</a></li>
+			<li><a href="/mypage.do">MY PAGE</a></li>
+			<li><a href="/logout.do">로그아웃</a></li>
 			</c:if>
+			<li><a href="/boardList.do?reqPage=1&type=1&sort=1">Q&A</a></li>
 
 		</ul>
+		</div>
 		<ul class="navbar_icons" style="margin-right: 150px;">
 			<li
 				onclick="window.open('https://www.facebook.com/%EB%84%88%EB%82%98%EB%93%A4%EC%9D%B4-102411682096038')"
-				style="cursor: pointer;"><i class="fab fa-facebook-f"></i></li>
+				style="cursor: pointer; color:black;"><i class="fab fa-facebook-f"></i></li>
 			<li onclick="window.open('https://www.instagram.com/nunadri_/')"
-				style="cursor: pointer;"><i class="fab fa-instagram"></i></li>
+				style="cursor: pointer; color:black;"><i class="fab fa-instagram"></i></li>
 		</ul>
 	</nav>
 	<script>
@@ -207,53 +249,10 @@ font-family: 'Noto Sans KR', sans-serif;
 			location.href="/createClubFrm.do";
 		}
 	}
-	$(function() {		
-		var loginList; 
-		
-		function loggedIn() {
-			var email = "<c:out value='${m.email}'/>";
-			console.log(email);
-			if(!(email == undefined)) {
-				ws = new WebSocket("ws:/192.168.10.20/loginMember.do");
-				//1. 웹소켓 연결 성공 시 실행 함수 지정
-				ws.onopen = loginMember;
-				//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
-				ws.onmessage = loginFriend;
-				//3. 웹소켓연결이 종료되면 수행할 함수 지정
-				ws.onclose = outMember;
-			}		
-		}
-		function loginMember() {
-			var name = "<c:out value='${m.memberNick}'/>";
-			console.log("로그인 유저 : " + name);
-			var data = {type:"login", user:name};
-			ws.send(JSON.stringify(data));
-		}
-		function loginFriend(param) {
-			loginList = JSON.parse(param.data);
-			console.log(loginList);
-			showFriend(loginList);
-			
-		}
-		function outMember() {
-			
-		}
-		function showFriend(loginList){
-			var friends = $(".friendName");
-			console.log(friends.length);
-			for(var i=0;i<friends.length;i++){				
-				for(var j=0;j<loginList.length;j++){
-					if(friends.eq(i).text() == loginList[j]){
-						friends.eq(i).attr("class","friendName onFriend");
-						friends.eq(i).parent().prev().append("<span class='onbadge'>on</span>");
-						break;
-					}
-				}
-			}
-		}
-		
-		loggedIn();
-	})
+
+	$(".dropmenu ul li").hover(function(){
+		$(this).find("ul").stop().fadeToggle(1);
+      });
 	</script>
 </body>
 </html>

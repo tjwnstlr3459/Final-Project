@@ -22,6 +22,12 @@ body{
 	width: 700px;
 	
 }
+li{
+	color: #fff;
+}
+.sub > li > a{
+	color: #fff;
+}
 </style>
 </head>
 <body>
