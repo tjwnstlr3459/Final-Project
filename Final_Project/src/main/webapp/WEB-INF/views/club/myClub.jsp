@@ -105,8 +105,9 @@
 						</div>
 					</div>
 				</c:forEach>
-				<canvas id="myChart" width="400px" height="600px"
-					style="margin-top: 20px"></canvas>
+				<!-- 차트넣기 -->
+				<canvas id="myChart" width="400px" height="600px"style="margin-top: 20px"></canvas>
+				
 			</div>
 
 			<div class="rightCon">
@@ -212,6 +213,7 @@
 					</div>
 				</div>
 				<hr />
+				<!--댓글 작성-->
 				<div class="modalComentWrite">
 					<div style="float: left;">
 						<div class="imgimg">
@@ -228,7 +230,7 @@
 							style="width: 30px; margin-left: 10px; margin-top: 10px;" />
 					</div>
 				</div>
-				<!--댓글 작성-->
+				<!--댓글 작성 끝-->
 			</div>
 		</div>
 		<input type="text" class="userInfomationImg" value="${sessionScope.m.filepath}" style="display: none;">
@@ -371,18 +373,19 @@
 		$(".postModal").css("display", "block");
 		$(".postModal").css("z-index", "10000");
 		$(".postModal").css("display", "flex");
+		
 		//모달창 내 해당 값 넣기
 		$(".modalMemberName").html($(".cName").eq(idx).html()); //게시글 작성자
 		$(".modalClubName").html($(".clubName").eq(idx).html()); //해당 게시글 클럽명
 		$(".postContent").html($(".entry-excerpt").eq(idx).html()); //게시글 내용
-		$(".postImg").html($(".picPath").eq(idx).clone());
-		$(".comentSendNo").val($(".boardNo").eq(idx).html());
+		$(".postImg").html($(".picPath").eq(idx).clone());			//사진경로
+		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
 
+		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
 		console.log($(".boardNo").eq(idx).html());
-
-		var boardMoment = $(".boardNo").eq(idx).html();
 		console.log(boardMoment);
-
+		
+		//모달창 내에 해당 게시물의 댓글들 불러오기
 		$.ajax({
 			url : "/postMoment.do",
 			data : {
@@ -390,7 +393,7 @@
 			},
 			type : "post",
 			success : function(data) {
-				$(".modalComent").empty();
+				$(".modalComent").empty();	//empty()를 해주지 않으면 게시물을 클릭할때만다 for문이 돌아서 기존 댓글들이 추가된다
 				for (var i = 0; i < data.length; i++) {					
 					var html = "";
 					html += '<div class="modalComentImg">';
@@ -413,12 +416,11 @@
 		}
 		//댓글 입력
 		function comentSend(obj){
-		//해당 게시물 번호
-		var comentCon = $('input[name=coment]').val();
-		//해당게시물 댓글 내용
-		var comentBoardNo = $(".comentSendNo").val();
-		console.log(comentBoardNo);
+		
+		var comentCon = $('input[name=coment]').val();//해당 게시물 번호
+		var comentBoardNo = $(".comentSendNo").val();//해당게시물 댓글 내용
 		console.log(comentCon);
+		console.log(comentBoardNo);
 		
 		//이미지, 닉넴임userInfomationImg
 		var userInfomationImg = $(".userInfomationImg").val();
@@ -592,27 +594,25 @@
 			}
 		});
 	}
-
 	//회원 취미 선택 통계
 	function myChart(data) {
 		console.log(data);
-		var list = new Array();
-		var post = new Array();
-
+		var list = new Array();	//클럽 이름을 담을 변수
+		var post = new Array(); //각각의 클럽 게시물 수를 담을 변수
 		for (var i = 0; i < data.length; i++) {
 			list.push(data[i].clubName);
 			post.push(data[i].clubPostCount)
 			console.log(list);
 		}
-
 		var myChart = new Chart(document.getElementById('myChart'),
 				{
-					type : "pie",
+					type : "pie",	//차트 형식
 					data : {
-						labels : list,
+						labels : list,	//클럽명
 						datasets : [ {
 							label : 'Dataset 1',
-							data : post,
+							data : post,	//클럽의 게시물 데이터
+							//차트의 보여질 각각의 색상 설정
 							backgroundColor : [ 'rgba(0, 0, 255, 0.3)',
 									'rgba(255, 0, 255, 0.3)',
 									'rgba(76, 216, 153, 0.5)',
