@@ -1,7 +1,7 @@
 /* 헤더 부분 */
 :root{
     --backColor:#2e2d31;			/* 관리자 메인 배경 색 */
-	--mainTextColor:#67dfdf;		/* 관리자 메인 글씨  */
+	--mainTextColor:#00FFFF;		/* 관리자 메인 글씨  */
 	--whiteTextColor:#ffffff;		/* 관리자 메뉴 글씨  */
 	--underLine:#4d4d4d;			/* 구분 밑 줄 */
 	--contentBackColor:#201f22;		/* 해당 메뉴의 컨텐츠 배경 색 */
@@ -452,6 +452,9 @@ section::-webkit-scrollbar-track {
 	padding-top:1px;
 }
 /* 버튼 css */
+.btn-box{
+	width:100%;
+}
 .btns{
 	box-sizing:border-box;
 	padding:0;
@@ -490,13 +493,47 @@ section::-webkit-scrollbar-track {
 	background-image:url('/resources/image/icons/x.png');
 	background-size:100%;
 }
+/* 모달 확인 버튼 */
+.enterBtn,
+.answerBtn{
+	background-color:#3333FF;
+	padding:3px;
+	color:#ffffff;
+	width:100%;
+	height:40px;
+}
 /* 답변 수정완료 버튼 */
 .comBtn{
+	background-color:#FF33CC;
+	color:#ffffff;
 	display:none;
+	width:100%;
+	height:40px;
+	margin-top:5px;
 }
 /* 답변 수정취소 버튼 */
 .canBtn{
+	background-color:#333333;
+	color:#ffffff;
 	display:none;
+	width:100%;
+	height:40px;
+	margin-top:5px;
+}
+/* 답변하기 버튼 */
+.slideAnswerBtn{
+	background-color:#FFCC00;
+	padding:3px;
+	width:100%;
+	height:40px;
+	margin:10px 0;
+}
+/* 답변 수정하기 버튼 */
+.modifyBtn{
+	background-color:#66FF99;
+	padding:3px;
+	width:100%;
+	height:40px;
 }
 /* 문의/신고 접수/답변 디자인 */
 .answerIng{

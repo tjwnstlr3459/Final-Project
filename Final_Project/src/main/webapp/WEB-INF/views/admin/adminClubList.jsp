@@ -125,7 +125,7 @@
 	                   	</div>                	
                     </div>
                    	</form>
-                    <button id="closeBtn" class="btns cancelBtn">X</button>
+                    <button id="closeBtn" class="btns cancelBtn"></button>
                 </div>
             </div>
 		</section>

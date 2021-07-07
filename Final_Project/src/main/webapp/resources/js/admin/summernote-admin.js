@@ -167,7 +167,10 @@ $(function(){
 	 $('.canBtn').click(function(){
 	 	answerDefault();
 	 });
-
+	 //답변하기 클릭 시
+	 $('.slideAnswerBtn').click(function(){
+	 	$('.btn-box').hide();
+	 });
 });
 
 //==========================================================================================
@@ -299,7 +302,7 @@ function selectOneBoard(abNo,cgName){
 function answerToggle(){
 	$('.answer-box').slideToggle();
 	$('#summernote').summernote('code','');
-	$(this).attr('disabled',true);
+	$('.slideAnswerBtn').attr('disabled',true);
 }
 //abNo 로 게시물의 답변 가져오기
 function selectAnswer(abNo){
@@ -324,6 +327,7 @@ function selectAnswer(abNo){
 function modifyBtnClick(){
 	$('#anSummernote').summernote('code',$('.answerContent').html());
 	$('.modifyBtn').hide();
+	$('.answer-wrap>h2').html('관리자 답변 수정');
 	$('.comBtn').show();
 	$('.canBtn').show();
 }
@@ -336,5 +340,6 @@ function answerDefault(){
 	$('.answerContent').show();
  	$('.answer-table>tbody td').css('background-color','#2e2d31');
  	$('.answerContent').show();
- 	$('.modifyAnswer-box').hide();	
+ 	$('.answer-wrap>h2').html('관리자 답변');
+ 	$('.modifyAnswer-box').hide();
 }
