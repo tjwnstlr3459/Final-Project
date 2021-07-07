@@ -53,8 +53,8 @@
 		<div class="row masonry">
 			<section id="page-header">
 				<div class="row current-cat">
-					<div class="col-full" style="width: 28%;">
-						<h1 style="margin: 0px">Latest Posts</h1>
+					<div class="col-full" style="width: 25%;margin-left: 10px;height: 40px;">
+						<h1 class="deepshadow">${sessionScope.m.memberNick }'s Club</h1>
 						<hr>
 					</div>
 
@@ -71,16 +71,12 @@
 						style="font-size: 17px; font-weight: bold; text-align: center;">환영합니다.</div>
 					<hr width="95%" style="margin: 0 auto" />
 					<div style="text-align: center;">
-						나에게 온 메세지 <a href="#">${myMessage }</a> 건
+						나에게 온 메세지 <a href="#" style="font-size: 17px;">${myMessage }</a> 건
 					</div>
 					<div style="text-align: center;">나의 관심 태그</div>
-					<span
-						style="padding: 2px; background-color: #ff000066; border-radius: 5px; margin-left: 35px;">#${m.ho1
-						}</span> <span
-						style="padding: 2px; background-color: #0054ff66; border-radius: 5px;">#${m.ho2
-						}</span> <span
-						style="padding: 2px; background-color: #af00ff66; border-radius: 5px;">#${m.ho3
-						}</span>
+					<span class="tagHobby" style="margin-left: 13px;">#${m.ho1}</span> 
+					<span class="tagHobby" style="background-color: #7a86ffcf" >#${m.ho2}</span> 
+					<span class="tagHobby" style="background-color: #e29ff5" >#${m.ho3}</span>
 					<div style="margin: 10px;">
 						<div class="mypageBtn">
 							<a href="mypage.do">마이페이지</a>

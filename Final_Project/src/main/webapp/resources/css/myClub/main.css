@@ -3606,23 +3606,17 @@ div {
   .mentScroll::-webkit-scrollbar-track {
     background-color: #bbb9b9;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.tagHobby{
+	padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ff000066;
+    border-radius: 5px;
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 2px;
+}
+.deepshadow{
+	margin: 0px;
+    text-shadow: 1px 1px 5px #fea;
+    color: #f96c6c;
+}
