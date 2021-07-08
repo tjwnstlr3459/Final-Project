@@ -1,6 +1,7 @@
 .container {
   text-align: center;
   margin-top: 50px;
+  margin-bottom: 30px;
 }
 
 .join {
@@ -192,6 +193,14 @@ a:hover {
   line-height: 35px;
   background-color: #00c73c;
   color: white;
+}
+.kakao {
+  display: inline-block;
+  width: 300px;
+  height: 35px;
+  line-height: 35px;
+  color: white;
+  background-color: #f7e600;
 }
 
 .modal {

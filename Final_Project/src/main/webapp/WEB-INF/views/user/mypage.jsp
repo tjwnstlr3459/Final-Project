@@ -196,11 +196,14 @@
                         <a href="/boardList.do?reqPage=1&type=1&sort=1"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="reports myqueries">
-						<div class="row column-name">
+                        <c:choose>
+	                    <c:when test="${not empty queryList }">
+	                    
+	                    <div class="row column-name">
 	                                <div class="dm-content-inout">제목</div>
 	                                <div class="dm-date">날짜</div>
 	                                <div class="dm-read">처리 상태</div>
-	                    		</div>
+	                    </div>
 	                    <c:forEach items="${queryList}" var="query">
 								<div class="row listRow" onclick="reportDetail(this)">
 									<div class="dm-content-inout">${query.abTitle }</div>
@@ -224,6 +227,12 @@
 	                            </div>
 						</c:forEach>
 						${queryNavigation}
+						
+	                    </c:when>
+	                    <c:otherwise>
+	                    	문의 내역이 없습니다.
+	                    </c:otherwise>
+	                    </c:choose>						
                     </div>
                     
                     
@@ -232,6 +241,9 @@
                         <a href="/boardList.do?reqPage=1&type=1&sort=1"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="reports myreports">
+                        <c:choose>
+	                    <c:when test="${not empty reportList }">
+	                    
                     			<div class="row column-name">
 	                                <div class="dm-content-inout">제목</div>
 	                                <div class="dm-date">날짜</div>
@@ -263,6 +275,13 @@
 	                            </div>
 						</c:forEach>
 						${reportNavigation}
+						
+	                    </c:when>
+	                    <c:otherwise>
+	                    	신고 내역이 없습니다.
+	                    </c:otherwise>
+	                    </c:choose>	
+
                     </div>
                     
                 </div>

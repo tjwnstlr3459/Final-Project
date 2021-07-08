@@ -40,8 +40,6 @@
     var memberPw = naver_id_login.getProfileData('id');
     var shaPw = CryptoJS.SHA256(memberPw).toString(); 
     
-    alert(shaPw);
-    
     $(document).ready(function() {
   	  $.ajax({
   			url: "/nLogin.do",
