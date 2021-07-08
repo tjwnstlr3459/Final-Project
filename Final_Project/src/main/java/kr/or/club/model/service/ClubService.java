@@ -166,6 +166,13 @@ public class ClubService {
 		return dao.postLike(map);
 	}
 
+	public int postDeletLike(int boardMoment, Member m) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("boardMoment",boardMoment);
+		map.put("m",m);
+		return dao.postDeletLike(map);
+	}
+
 
 	
 	

@@ -130,6 +130,11 @@ public class ClubDao {
 		return session.insert("club.postLike",map);
 	}
 
+	//게시물 좋아요 취소
+	public int postDeletLike(HashMap<String, Object> map) {
+		return session.delete("club.postDeletLike",map);
+	}
+
 
 	
 	

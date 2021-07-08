@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.Club;
+import kr.or.club.model.vo.ClubBoard;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.service.newClubService;
 import kr.or.newclub.model.vo.Apply;
@@ -41,9 +42,10 @@ public class newClubController {
 		int totalCount = service.totalCount(clubNo);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("clubNo", clubNo);
-		List list = service.boardList();
+		
+		//클럽게시물 출력
+		List list = service.boardList(clubNo);
 		model.addAttribute("list", list);
-
 		// 가입신청한 회원 출력
 		ArrayList<Apply> applyList = service.selectApply(clubNo);
 		model.addAttribute("applyList", applyList);
@@ -54,6 +56,8 @@ public class newClubController {
 		//클럽정보 출력
 		Club clubInfo = service.selectClub(clubNo);
 		model.addAttribute("club", clubInfo);
+		
+		
 		//로그인한 회원이 속한 클럽 넘버 알아내기
 		ArrayList<Club> memberClubNo = service.selectMemberClubNo(m);
 		

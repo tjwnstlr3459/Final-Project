@@ -831,6 +831,7 @@ body{
 				},
 				type : "post",
 				success : function(data) { //data에 포토객체가  gson to list 그거한거
+					
 					console.log(data);
 					   for (var i = 0; i < data.length; i++) {
 						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고 style="display:none"
