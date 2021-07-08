@@ -64,9 +64,17 @@ nav{
     margin:auto;
     margin-bottom:10px;
 }
-.adminImg>img{
+.adminImg>label{
+	display:block;
     width:100%;
     height:100%;
+}
+#adminLabel>img{
+	width:100%;
+	height:100%;
+}
+#adminPic{
+	display:none;
 }
 .adminInfo{
     width:150px;
