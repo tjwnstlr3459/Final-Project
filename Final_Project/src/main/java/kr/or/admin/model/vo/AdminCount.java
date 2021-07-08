@@ -25,6 +25,7 @@ public class AdminCount {
 	private int memberMovie;
 	private int memberBear;
 	private int memberEat;
+	private int memberMusic;
 	//연령대 별 회원 수
 	private int teenagers;
 	private int twenties;

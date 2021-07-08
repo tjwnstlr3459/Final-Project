@@ -6,4 +6,5 @@ import lombok.Data;
 public class Destroy {
 	private int desNo;
 	private String desDate;
+	private String desType;
 }

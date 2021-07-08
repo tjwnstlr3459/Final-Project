@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
-
+import kr.or.admin.model.service.AdminService;
 import kr.or.club.model.service.ClubService;
 import kr.or.club.model.vo.ClubBoard;
 import kr.or.club.model.vo.ClubChart;
@@ -31,6 +31,8 @@ import kr.or.newclub.model.vo.ClubComment;
 public class ClubController {
 	@Autowired
 	private ClubService service;
+	@Autowired
+	private AdminService aService;
 	
 	// 회원이 속한 모임에 클럽게시물 추출
 	@RequestMapping(value = "/myClub.do")
@@ -287,8 +289,8 @@ public class ClubController {
 	public String deleteClub(int clubNo) {
 		System.out.println("clubNo : "+clubNo);
 		int result = service.deleteClub(clubNo);
-		System.out.println(result);
 		if(result>0) {
+			int result1 = aService.insertDestroyed("C");
 			return "1";
 		}
 		return "0";

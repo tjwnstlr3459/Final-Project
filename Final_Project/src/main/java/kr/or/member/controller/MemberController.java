@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 
+import kr.or.admin.model.service.AdminService;
 import kr.or.board.model.service.boardService;
 import kr.or.board.model.vo.BoardPageData;
 import kr.or.board.model.vo.MyBoardData;
@@ -52,6 +53,9 @@ public class MemberController {
 	
 	@Autowired
 	private boardService bService;
+	
+	@Autowired
+	private AdminService aService;
 	
 	private NaverLogin naverLogin;
 	@Autowired
@@ -540,6 +544,7 @@ public class MemberController {
 	public String deleteMember(String memberNo) {
 		int result = service.deleteMember(memberNo);
 		if(result >0) {
+			int result1 = aService.insertDestroyed("M");
 			return "1";
 		}
 		return "0";

@@ -50,4 +50,8 @@ public class AdminDao {
 	public List selectAllAdmin() {
 		return session.selectList("admin.selectAllAdmin");
 	}
+
+	public int insertDestroyed(String type) {
+		return session.insert("admin.insertDestroyed",type);
+	}
 }

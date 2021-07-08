@@ -126,9 +126,11 @@ function memberCountChart(param,data){
 	var destroyCount = new Array();
 	var yearMonth = new Array();
 	//list길이만큼 배열 안에 list의 value값 넣어주기
+	for(val of param){
+		memberCount.push(val.memberCount);
+		yearMonth.push(val.enrollMonth);		
+	}
 	for(var i=0;i<data.length;i++){
-		memberCount.push(param[i].memberCount);
-		yearMonth.push(param[i].enrollMonth);
 		destroyCount.push(data[i].destroyCount);
 	}
 	//차트 구현
@@ -225,7 +227,7 @@ function adminList(data){
 	var row;
 	for(val of data){
 		var grade = val.grade==0?"MainAdmin":"SubAdmin";
-		row += `<tr><td><div class="adminPic"><img src="/resources/image/userPic/${val.filepath}"></div></td><td>${val.memberNick}</td><td>${grade}</td></tr>`;
+		row += `<tr><td style="height:50px;"><div class="adminPic"><img src="/resources/image/userPic/${val.filepath}"></div></td><td>${val.memberNick}</td><td>${grade}</td></tr>`;
 	}
 	$('.adminList>tbody').html(row);
 }

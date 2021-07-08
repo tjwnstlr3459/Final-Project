@@ -64,17 +64,10 @@ nav{
     margin:auto;
     margin-bottom:10px;
 }
-.adminImg>label{
-	display:block;
+.adminImg>img{
     width:100%;
     height:100%;
-}
-#adminLabel>img{
-	width:100%;
-	height:100%;
-}
-#adminPic{
-	display:none;
+    border-radius:150px;
 }
 .adminInfo{
     width:150px;

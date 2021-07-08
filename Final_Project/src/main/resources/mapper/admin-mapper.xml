@@ -5,7 +5,8 @@
 		select 
 		    distinct
 		    (select count(*) from member) allMemberCount,
-		    (select count(*) from destroy) destroyedMemberCount,
+		    (select count(*) from destroy where des_type='M') destroyedMemberCount,
+		    (select count(*) from destroy where des_type='C') destroyedClubCount,
 		    (select count(*) from restriction) restrictedMemberCount,
 		    (select count(*) from club) allClubCount,
 		    (select count(*) from board where status='N') notAnswer,
@@ -37,7 +38,7 @@
 	</select>
 	<!-- 한 달 기준 탈퇴 회원 count -->
 	 <select id="selectDestroyMemberCountMonth" resultType="dmcm">
-		select count(*) as destroyCount, substr(des_date,1,7) as destroyMonth from destroy group by substr(des_date,1,7) order by 2
+		select count(*) as destroyCount, substr(des_date,1,7) as destroyMonth from destroy where des_type='M' group by substr(des_date,1,7) order by 2
 	</select>
 	<!-- 개설된 클럽의 카테고리 순 랭크 뽑아오기 -->
 	<select id="selectBestCategory" resultType="bc">
@@ -47,4 +48,8 @@
 	<select id="selectAllAdmin" resultType="m">
 		select * from (select rownum as sort,m.* from (select member_no as memberNo, email, member_pw as memberPw, member_nick as memberNick, gender, age, address, intro, filename, filepath, grade, enroll_date as enrollDate, last_date as lastDate from member where grade &lt; 2 order by grade)m)
 	</select>
+	<!-- 관리자의 회원/클럽 삭제 시 탈퇴/폐설 테이블에 넣어주기 -->
+	<insert id="insertDestroyed" parameterType="string">
+		insert into destroy values (des_seq.nextval, to_char(sysdate, 'YYYY-MM-DD'), #{type})
+	</insert>
 </mapper>

@@ -106,4 +106,7 @@ public class AdminService {
 		*/
 		return (ArrayList<Member>)dao.selectAllAdmin();
 	}
+	public int insertDestroyed(String type) {
+		return dao.insertDestroyed(type);
+	}
 }

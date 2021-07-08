@@ -137,7 +137,7 @@ $(function(){
 	 			var memberNo = $(this).parent().parent().find('input').val();
 		 		deleteMember(memberNo);
 	 		}else if($('[name=kind]').val() == "club"){
-	 		console.log('club Test');
+	 			console.log('club Test');
 	 			deleteClub($(this).val());
 	 		}
 	 	}

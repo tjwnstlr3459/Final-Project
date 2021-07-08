@@ -100,6 +100,7 @@
 }
 .adminList td{
 	font-size:0.7rem;
+	height:40px;
 }
 .adminList td:first-child{
 	width:20%;
