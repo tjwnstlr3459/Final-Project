@@ -295,7 +295,7 @@
 							+ p.clubNo + '</div>';
 					html += '<div class="cName" style="display:none">'
 							+ p.boardWriter + '</div>';
-					html += '<a href="#" class="clubName">'
+					html += ' <a href="#" class="clubName">'
 							+ p.clubName + '</a>';
 					html += '</span>';
 					html += '</div>';
@@ -547,17 +547,17 @@
 							html += '<div class="clubNo" style="display:none">'
 									+ p.clubNo + '</div>';
 							html += '<div class="cName" style="display:none">'
-									+ p.boardWriter + '</div>';
+									+ p.boardWriter + '</div> <div class="miniBoardName">club</div>';
 							html += '<a href="#" class="clubName">'
 									+ p.clubName + '</a>';
 							html += '</span>';
 							html += '</div>';
-							html += '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 18px;text-overflow: ellipsis;white-space: nowrap;">';
+							html += '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;"><div class="miniTitle">Title</div>';
 							html += '<a href="single-standard.html"class="bTitle">'
 									+ p.boardTitle + '</a>';
 							html += '</h1>';
-							html += '</div>';
-							html += '<div class="entry-excerpt" style="height: 70px;overflow: hidden;text-overflow: ellipsis;">'
+							html += '</div><div class="miniCon">Content</div>';
+							html += '<div class="entry-excerpt" style="font-size: 12px;">'
 									+ p.boardContent + '</div>';
 							html += '</div>';
 							html += '</article>';

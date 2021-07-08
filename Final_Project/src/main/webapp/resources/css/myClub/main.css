@@ -104,7 +104,6 @@ h6,
 .h04,
 .h05,
 .h06 {
-  font-family: "montserrat-bold", sans-serif;
   color: #151515;
   font-style: normal;
   text-rendering: optimizeLegibility;
@@ -1215,13 +1214,16 @@ input::-moz-focus-inner {
 }
 
 .bricks-wrapper .entry-header .entry-meta {
-  font-family: "muli-regular", sans-serif;
   font-size: 1.5rem;
-  margin-bottom: 1.2rem;
+  height: 30px;
+  overflow: hidden;
 }
 .bricks-wrapper .entry-header .entry-meta a,
 .bricks-wrapper .entry-header .entry-meta a:visited {
   color: #000000;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 1px 1px 5px #ec523fb5;
 }
 
 .bricks-wrapper .entry-header .cat-links a::after {
@@ -1233,9 +1235,8 @@ input::-moz-focus-inner {
 }
 
 .bricks-wrapper .entry-excerpt {
-  font-size: 1.3rem;
-  line-height: 2rem;
-  color: #999999;
+    line-height: 1.7rem;
+    margin-top: 5px;
 }
 
 /* featured post slider - (_common-styles.scss) 
@@ -3617,6 +3618,51 @@ div {
 }
 .deepshadow{
 	margin: 0px;
-    text-shadow: 1px 1px 5px #fea;
+    text-shadow: 1px 1px 5px #eff0f2;
     color: #f96c6c;
 }
+.entry-title>a{
+	font-size: 13px;
+}
+.miniBoardName{
+	width: 20px;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 27px;
+    padding: 0;
+    color: #808080d9;
+    float: left;
+    margin-right: 5px;
+}
+.miniTitle{
+	color: #808080d9;
+}
+.entry-excerpt{
+	height: 70px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.miniCon{
+	font-size: 10px;
+    font-weight: bold;
+    color : #808080d9;
+    line-height: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
