@@ -49,9 +49,15 @@ public class ClubController {
 	//게시물 좋아요
 	@ResponseBody
 	@RequestMapping(value = "/postLike.do")
-	public int postLike(@SessionAttribute(required = false) Member m,int boardMoment,Model model) {
+	public int postLike(@SessionAttribute(required = false) Member m,int boardMoment) {
 		int result = service.postLike(boardMoment,m);
-		model.addAttribute("likeNum", result);
+		return result;
+	}
+	//게시물 좋아요 취소
+	@ResponseBody
+	@RequestMapping(value = "/postDeletLike.do")
+	public int postDeletLike(@SessionAttribute(required = false) Member m,int boardMoment) {
+		int result = service.postDeletLike(boardMoment,m);
 		return result;
 	}
 	//검색 아작스
