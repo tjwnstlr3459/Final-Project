@@ -34,6 +34,9 @@ $(function(){
 			}
 		});
 	});
+	$('#renewIcon').click(function(){
+		window.location.reload();
+	});
 
 });
 //문의 / 신고 갯수

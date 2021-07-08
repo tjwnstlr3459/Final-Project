@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 라이브러리/스크립트/css 링크 영역 -->
 	<!-- 관리자-헤더 css -->
 	<link rel="stylesheet" href="/resources/css/admin/adminHeader.css" type="text/css">
@@ -27,6 +27,11 @@
 <!-- header 영역 -->
     <!-- 왼쪽 관리자,메뉴 영역 -->
     <nav>
+    	<c:if test="${empty sessionScope.m }">
+    		<script type="text/javascript">
+    			window.location.href="/main.jsp";
+    		</script>
+    	</c:if>
         <header>
             <a href="/main.jsp"><span class="logo"></span></a>
         </header>

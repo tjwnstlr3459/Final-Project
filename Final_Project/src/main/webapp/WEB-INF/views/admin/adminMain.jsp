@@ -27,6 +27,7 @@
 		<jsp:include page="/WEB-INF/views/common/adminHeader.jsp" />
 		<!-- content -->
 		<section>
+			<div class="autorenew-wrap box-option"><img src="/resources/image/icons/autorenew-icon.png" id="renewIcon"></div>
 			<div class="counts">
 				<div class="box-option count-wrap"><!-- 접속자 -->
 					<div class="icon-box visitor-icon"></div>
