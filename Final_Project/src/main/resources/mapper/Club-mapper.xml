@@ -62,13 +62,13 @@ SELECT * FROM
     B.BOARD_good as cbGood,
     B.enroll_date as enrollDate,
     
-    (SELECT COUNT(*) FROM BOARD_LIKE BL WHERE BL.BOARD_NO = B.BOARD_NO) AS TOTALCOUNT,
+    (SELECT COUNT(*) FROM BOARD_LIKE BL WHERE BL.BOARD_NO = B.BOARD_NO) AS totalCount,
     DECODE(
-        (SELECT COUNT(*) FROM BOARD_LIKE BL2 WHERE BL2.BOARD_NO = B.BOARD_NO AND BL2.MEMBER_NICK='유저2'),
+        (SELECT COUNT(*) FROM BOARD_LIKE BL2 WHERE BL2.BOARD_NO = B.BOARD_NO AND BL2.MEMBER_NICK=#{m}),
         1,
-        '좋아요누름',
-        '좋아요안누름'
-    ) AS LIKECHECK
+        'likeOn',
+        'likeOff'
+    ) AS likeCheck
 FROM CLUB_BOARD B,CLUB C
 WHERE B.CLUB_NO = C.CLUB_NO
 AND C.CLUB_NO IN(
@@ -244,9 +244,12 @@ DELETE FROM CLUB_COMMENT WHERE CC_NO=#{mentNo}
 <!-- 게시물 좋아요 -->
 <update id="postLike" parameterType="map">
 insert into board_like values(
-    #{boardNo},
+    #{boardMoment},
     #{m.memberNick})
 </update>
+<delete id="postDeletLike" parameterType="map">
+DELETE FROM board_like WHERE BOARD_NO=#{boardMoment} and MEMBER_NICK=#{m.memberNick}
+</delete>
 </mapper>
 
 

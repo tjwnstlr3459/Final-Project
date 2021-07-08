@@ -26,8 +26,8 @@ public class newClubService {
 @Autowired
 private newClubDao dao;
 
-public List boardList() {
-	return dao.boardList();
+public List boardList(int clubNo) {
+	return dao.boardList(clubNo);
 
 }
 
