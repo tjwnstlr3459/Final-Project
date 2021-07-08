@@ -275,6 +275,10 @@ public class MemberController {
 	//소셜로그인 가입페이지
 	@RequestMapping(value="/socialJoin.do")
 	public String callback(Member m, Model model) {
+		System.out.println(m.getEmail());
+		System.out.println(m.getMemberPw());
+		System.out.println(m.getGender());
+		System.out.println(m.getAge());
 		model.addAttribute("member", m);
 		return "user/socialJoin";
 	}

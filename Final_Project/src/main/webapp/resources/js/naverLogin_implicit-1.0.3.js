@@ -219,11 +219,11 @@ var naver_id_login = function (client_id,redirect_uri)
 		}
 		else if (this.button_type == BANNER_SMALL_TYPE)
 		{
-			naver_id_login_contents="<a href='"+naver_id_login_url+"' "+naver_id_popup_option+" id='naver_id_login_anchor'><img src='http://static.nid.naver.com/oauth/small_"+color+"_in.PNG' border='0' title='네이버 아이디로 로그인' width='"+(this.button_height*656/250)+"px' height='"+this.button_height+"'></a> ";
+			naver_id_login_contents="<a href='"+naver_id_login_url+"' "+naver_id_popup_option+" id='naver_id_login_anchor'>네이버 아이디로 로그인</a> ";
 		}
 		else 
 		{
-			naver_id_login_contents="<a href='"+naver_id_login_url+"' "+naver_id_popup_option+" id='naver_id_login_anchor'>네이버로 가입</a> ";
+			naver_id_login_contents="<a href='"+naver_id_login_url+"' "+naver_id_popup_option+" id='naver_id_login_anchor'>네이버 아이디로 가입</a> ";
 		}
 		naver_id_login.innerHTML=naver_id_login_contents;
 		if (this.is_callback)
