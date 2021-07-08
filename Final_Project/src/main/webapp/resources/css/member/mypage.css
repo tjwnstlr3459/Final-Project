@@ -1,6 +1,4 @@
-/*div {
-            border: 1px solid black;
-        } */
+
 p {
   margin: 0;
 }
@@ -13,7 +11,7 @@ hr {
 .container {
   margin: 0 auto;
   margin-top: 30px;
-  width:1200px; 
+  width:90%;
 }
 a {
   text-decoration: none;
@@ -154,6 +152,12 @@ select {
   display: flex;
   align-items: flex-start;
 }
+.my {
+	background-color: #f4f4f4;
+	border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 8px 11px 0 rgb(0 0 0 / 30%), 0 1px 1px 0 rgb(0 0 0 / 1%);
+}
 .myInfo {
   display: flex;
   align-items: center;
@@ -211,13 +215,13 @@ select {
 }
 .friends {
   display: flex;
-  flex-wrap: wrap;
-  width: 450px;
-  justify-content: space-between;
+  flex-wrap:wrap;
+  justify-content:flex-start;
   margin-bottom:30px;
+  align-content: flex-start;
 }
 .friend {
-  margin-right: 20px;
+  margin-right: 40px;
   width: 70px;  
   position:relative;
 }
@@ -230,6 +234,7 @@ select {
   padding: 15px;
   width: 240px;
   box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .speech-bubble:after {
@@ -296,7 +301,7 @@ select {
   width: 200px;
 }
 
-#findID {
+#findID, .modalbutton {
   background-color: white;
   border: 1px solid #ec523f;
   color: black;
@@ -520,4 +525,19 @@ select {
   color:black;
   font-weight:bold;
   }
+  .friend-name {
+  text-align:center;
+  height:40px;
   
+  }
+  
+  @media screen and (max-width: 768px) {
+  	.container {
+	  width:720px; 
+	}
+	.friends {
+	  width:430px;
+	}
+  }  
+  
+

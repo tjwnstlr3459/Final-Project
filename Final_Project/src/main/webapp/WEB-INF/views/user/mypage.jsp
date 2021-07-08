@@ -32,8 +32,8 @@
                         <div class="myName">
                       		${m.memberNick }
                         </div>
-                        <div class="alarm">읽지 않은 쪽지 ${unreadDm }건</div>
-                        <div class="alarm">친구 요청 ${req }건</div>
+                        <div class="alarm">읽지 않은 쪽지 <a href="javascript:void(0)" onclick="myDm()">${unreadDm }</a>건</div>
+                        <div class="alarm">친구 요청 <a href="javascript:void(0)" onclick="myFriend()">${req }</a>건</div>
                     </div>
                 </div>
                 <div class="speech-bubble">
@@ -41,14 +41,14 @@
                 </div>
                 
                 <div class="infoMenu">
-                	<a href="javascript:void(0)" onclick="myFriend()">내 친구</a>
-                	<a href="javascript:void(0)" onclick="myDm()">쪽지함</a>
-                	<a href="javascript:void(0)" onclick="myReport()">내 문의·신고</a>
-                    <a href="javascript:void(0)" onclick="myInfoMod()">회원정보 수정</a>
+                	<a href="javascript:void(0)" onclick="myFriend()"><i class="fas fa-user-friends"></i> 내 친구</a>
+                	<a href="javascript:void(0)" onclick="myDm()"><i class="far fa-envelope"></i> 쪽지함</a>
+                	<a href="javascript:void(0)" onclick="myReport()"><i class="fas fa-question-circle"></i> 내 문의·신고</a>
+                    <a href="javascript:void(0)" onclick="myInfoMod()"><i class="fas fa-edit"></i> 회원정보 수정</a>
                     <c:if test="${m.joinMethod == 1 }">
-                    <a href="javascript:void(0)" onclick="myPwChange()">비밀번호 변경</a>
+                    <a href="javascript:void(0)" onclick="myPwChange()"><i class="fas fa-key"></i> 비밀번호 변경</a>
                     </c:if>
-                    <a href="javascript:void(0)" onclick="leaveN()">회원탈퇴</a>  
+                    <a href="javascript:void(0)" onclick="leaveN()"><i class="fas fa-sign-out-alt"></i> 회원탈퇴</a>  
                 </div>
             </div>
             <div class="main">
@@ -65,7 +65,7 @@
                             <div class="myInfoImg">
                                 <img class="profile-img" src="resources/image/userPic/${rf.filepath }"/><br>
                             </div>
-                            <div style="text-align: center;">
+                            <div class="friend-name">
                             	<a href="javascript:void(0)"  class="friendName" onclick="accfMenu('${rf.memberNick }')">${rf.memberNick }</a>
                             </div>
                         </div>  
@@ -85,7 +85,7 @@
                             <div class="myInfoImg">
                                 <img class="profile-img" src="resources/image/userPic/${f.filepath }"/>                        
                             </div>
-                            <div style="text-align: center;">
+                            <div class="friend-name">
                             	<a href="javascript:void(0)" class="friendName">${f.memberNick }</a>
                             </div>
                         </div>  
@@ -129,7 +129,6 @@
                     
                     <div class="title">
                         	내 쪽지
-                        <a href="javascript:void(0)" id="newDm"><i class="fas fa-plus"></i></a>
                     </div>
                     <div class="dmsList">
                         
@@ -615,7 +614,7 @@
                 				+ '<img class="profile-img" src="resources/image/userPic/' + data.filepath + '"/></div>'
                 				+ '<div class="myInfoMenu"><div class="myName">' + data.memberNick + '</div></div></div>'
                 				+ '<div class="speech-bubble">' + data.intro + '</div></div>');
-                		result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
+                		result.append("<button type='button' class='modalbutton' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가히기</button>");
                 		//result.append("<img src='resources/image/userPic/" + data.filepath + "'>");
                 		//result.append("<span>" + data.memberNick + " " + data.intro + "</span>");
                 		//result.append("<button type='button' onclick='addFriend(\"" + currUser + "\", \"" + data.memberNick + "\")'>친구추가</button>");
@@ -645,7 +644,7 @@
                 		result.append("<span>친구 요청 수락을 기다리는 중입니다.</span>");
                 	} else if(data == 2) {
                 		result.append("<span>친구 요청이 들어와 있습니다. 수락하시겠습니까?</span>");
-                		result.append("<button type='button' onclick='accFriend(\"" + receiver + "\", \"" + sender + "\")'>요청 수락</button>")
+                		result.append("<button type='button' class='modalbutton' onclick='accFriend(\"" + receiver + "\", \"" + sender + "\")'>요청 수락</button>")
                 	} else if(data == 3) {
                 		result.append("<span>요청 성공!</span>");
                 	} else {
@@ -700,7 +699,7 @@
                 				+ '<img class="profile-img" src="resources/image/userPic/' + data.filepath + '"/></div>'
                 				+ '<div class="myInfoMenu"><div class="myName">' + data.memberNick + '</div></div></div>'
                 				+ '<div class="speech-bubble">' + data.intro + '</div></div>');
-                		result.append("<button type='button' onclick='accFriend(\"" + inviter + "\", \"" + targetUser + "\")'>요청 수락</button>");	
+                		result.append("<button type='button' class='modalbutton' onclick='accFriend(\"" + inviter + "\", \"" + targetUser + "\")'>요청 수락</button>");	
                 	} else{
                 		result.html("<span>에러가 발생했습니다. 다시 시도해주세요.</span>");
                 	}
