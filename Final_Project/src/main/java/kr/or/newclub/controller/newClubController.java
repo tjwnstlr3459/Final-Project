@@ -228,7 +228,6 @@ public class newClubController {
 	}
 
 	/* 조회수 업데이트 */
-	@Transactional
 	@ResponseBody
 	@RequestMapping(value = "/viewUpdate.do")
 	public int viewUpdate(int boardNo) {
@@ -237,7 +236,6 @@ public class newClubController {
 		return result;
 	}
 	//게시물 삭제
-		@Transactional
 		 @ResponseBody
 		  @RequestMapping(value = "/boardDelete.do") 
 			public int boardDelete(int boardNo, Model model) {

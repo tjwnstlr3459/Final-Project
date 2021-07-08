@@ -15,7 +15,7 @@
     }
 
     .navi {
-        background: #ea9310;
+        background: #e1bee7;
         display: block;
         width: 1500px;
         height: 60px;
@@ -48,6 +48,7 @@
         color: #fff;
         padding: 10px 10px;
         font-weight: bold;
+        font-size: 18px;
         margin: 8px;
     }
 
@@ -119,24 +120,28 @@
         float: left;
     }
 	.boardWritebox{
-		width: 700px;
-		height: 400px;
-		margin-bottom: 10px;
-		padding: 5px;
+		width: 650px;
+		height: 403px;
+		margin-bottom: 20px;
+		padding: 10px;
         box-sizing: border-box;
-        background-color: rgb(248, 231, 200);
-        border-radius: 8px;
+        border-radius: 5px;
+        border: 1px solid rgb(187, 186, 186);
         margin: 0 auto;
-        border: 2px solid gray;
+        font-family: 'Jua', sans-serif;
+        background-color: #e9e8e9;
+        }
 	
-	}
+	
     .tab-cont {
+        background-color: #fff;
         width: 100%;
         padding: 5px;
         box-sizing: border-box;
         border-radius: 8px;
         margin: 0 auto;
         margin-top: 10px;
+        padding: 10px;
 /*   background-color: rgb(248, 231, 200); */
     }
   
@@ -146,7 +151,8 @@
         width: 300px;
         float: left;
         margin: 0 auto;
-        margin-left: 10px;
+        margin-left: 30px;
+        font-family: 'Jua', sans-serif;
 
     }
 
@@ -166,17 +172,25 @@
     
  /*게시물 전체 형태 css!*/
    .board-wrap{
+   	   font-family: 'Jua', sans-serif;
+   	   font-size: 17px;
 	   margin: 0 auto;
 	   width: 500px;
 	   overflow: hidden;
-	   border: 5px solid gray;
+       background: linear-gradient(to top left, #79a8bb, #b36dd4, #f06699);
+       border: 1px solid  #d54ef7;
+	   border-radius: 30px;
 	   margin-top: 10px;
 	   margin-bottom: 10px;
+	   /* background-color:  #f5a43ae8; */
+	   padding: 20px;
+       box-shadow: 5px 5px 8px 0px;
+
+	   
    }
    .userDate{
        height: 90px;
        width: 100%;
-       border-bottom: 1px solid gray;
    }
    .userImg {
        float: left;
@@ -187,15 +201,15 @@
        margin: 8px 3px 0px 8px;
        overflow: hidden;
        background-size: contain;
-       background-image: url(../../image/userimg.png);
+       background-image: url(../../image/프로필사진.jpg);
    }
    .userName{
        float: left;
        /* width: 50px; */
-       width: 30%;
+       width: 40%;
        height: 60px;
        padding: 30px 0px 0px 20px;
-
+    
 
    }
    .enrollDate{
@@ -206,18 +220,29 @@
        padding-top: 32px
    }
    .boardTitle{
-       height: 50px;
-       width: 100%;
-       border-bottom: 1px solid gray;
+	    background-color: white;
+	    height: 50px;
+	    width: 100%;
+	    padding: 12px;
+	    border-radius: 10px;
+	    margin-bottom: 10px;
+        border: 5px double #f57aef;
+
    }
    .boardContent{
-       border-bottom: 1px solid gray;
-       padding: 15px;
-   }
+        padding: 15px;
+        border: 5px double #f57aef;
+        margin-bottom: 5px;
+        background-color: white;
+        border-radius: 10px;
+    }
      .boardComment{
-       height: 80px;
-       width: 100%;
-       border-bottom: 1px solid gray;
+	    width: 100%;
+	    background-color: white;
+	    border-radius: 10px;
+	    padding: 15px;
+	    margin-bottom: 10px;
+        border: 5px double #f57aef;
    }
    .boardFooter{
        height: 15%;
@@ -228,33 +253,75 @@
        width: 100%;
        border-bottom: 1px solid gray;
        overflow: hidden;
+       
 
  }
    .btn-wrap{
        height: 60px;
        width: 100%;
-       padding: 30px 0px 0px 30px;
+       padding: 20px 0px 0px 30px;
    }
    .userNum{
    		float: left;
-        width: 190px;
+        width: 40%;
     	height: 55px;
     	font-size: 15px;
     	text-align: center;
     	font-weight: bold;
+    	font-size: 18px;
+    	padding-top: 20px;
    }
    .userGood{
-       width: 200px;
+       text-align: center;
+       width: 60%;
        height: 60px;
        float: left;
        text-align: center;
+       padding-left: 100px;
+       margin-bottom: 10px;
+       
    }
-   #ctView{
-    	
-    	
-    }
+   .img1{
+   	   display: block;
+       float:left;
+       border-radius: 35px;
+       margin-right: 10px;
+       border: 5px double white;
+   }
+   .img2{
+   	display: block;
+    float:left;
+    border-radius: 25px;
+    border: 5px double white;
+}
+/*댓글 부분*/
+.listComment{
+    margin: 0px;
+    float: left;
+}
+.delBtnbox{
+    float: left;
+}
+.listComment{
+    float: left;
+    width: 400px;
+    height: 60px;
+}
+.nameUser{
+    float: left;
+    margin-right: 20px;
+    width: 70px;
+    height: 30px;
+    background-color: rgb(241, 109, 241);
+    color: white;
+    border: 1px solid pink;
+    text-align: center;
+    padding-top: 3px;
+}
+.contentComment{
+	padding-top:10px;
+}
 
- 
     
 /* 준식@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 .bottomAdmin {

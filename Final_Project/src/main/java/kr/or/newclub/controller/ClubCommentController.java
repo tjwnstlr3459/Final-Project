@@ -35,4 +35,12 @@ public class ClubCommentController {
 		System.out.println("insert 결과" + result);
 		return result;
 	}
+	@ResponseBody
+	@RequestMapping(value = "/commentDelete.do")
+	public int commentDelete(int ccNo) {
+		System.out.println(ccNo);
+		int result = service.commentDelete(ccNo);
+		return result; 
+	
+	}
 }

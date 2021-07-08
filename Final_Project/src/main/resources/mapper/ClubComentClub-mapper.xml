@@ -19,5 +19,9 @@
 <insert id="insertComment" parameterType="ccm">
 	INSERT INTO CLUB_COMMENT VALUES(CC_SEQ.NEXTVAL,#{boardNo},#{ccWriter},#{ccContent},0,NULL,0)
 </insert>
+<!-- 댓글삭제 -->
+<delete id="deleteComment" parameterType="int">
+	delete from club_comment where cc_no=#{ccNo}
+</delete>
 
 </mapper>

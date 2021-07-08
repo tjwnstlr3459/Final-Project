@@ -84,6 +84,7 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			return dao.deleteRefusal(clubNo,listNo);
 		}
 		//조회수 업데이트
+		@Transactional
 		public int viewUpdate(int boardNo) {
 			return dao.viewUpdate(boardNo);
 		}
