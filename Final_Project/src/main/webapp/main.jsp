@@ -112,7 +112,6 @@
 									 </c:if>
 									<li><a href="#clubCategory">클럽 카테고리</a></li>
 									<li><a href="#clubFeed">클럽 피드</a></li>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- <li><a onclick="location.href='/newClub.do?clubNo=38';"
 										style="cursor: pointer;">클럽뷰</a></li> -->
 									<c:choose>

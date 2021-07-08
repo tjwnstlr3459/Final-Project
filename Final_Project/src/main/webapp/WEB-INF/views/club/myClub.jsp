@@ -123,7 +123,7 @@
 				</div>
 
 				<!-- brick-wrapper -->
-				<div class="bricks-wrapper" style="height: 1200px">
+				<div class="bricks-wrapper" style="height: 1200px;margin-left: 5px">
 					<div class="grid-sizer"></div>
 					<div class="photoWrapper"
 						style="width: 100%; height: 800px; overflow-y: scroll">

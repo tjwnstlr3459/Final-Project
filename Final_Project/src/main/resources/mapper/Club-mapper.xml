@@ -63,7 +63,10 @@ SELECT * FROM
 	FROM CLUB_BOARD A,CLUB C 
 	WHERE C.CLUB_NO = A.CLUB_NO 
 	AND 
-C.CLUB_NO IN(SELECT CLUB_NO FROM CLUB_MEMBER WHERE (CLUB_NICK=#{m} or club_opener=#{m}) and (board_title like '%'||#{searchCon}||'%' or board_content like '%'||#{searchCon}||'%'))
+C.CLUB_NO IN(SELECT club_no
+FROM CLUB_board CB 
+WHERE CLUB_NO IN(SELECT CLUB_NO FROM CLUB CB WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{m}) OR CLUB_OPENER=#{m})GROUP BY CLUB_NO) 
+and (board_title like '%'||#{searchCon}||'%' or board_content like '%'||#{searchCon}||'%')
 <if test="changeDate != 0">
 and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')	
 </if> 
@@ -118,11 +121,14 @@ insert into club_board values(
 <!-- 마이클럽 차트(회원이 속한 클럽별 게시물갯수) -->
 <select id="selectClubPostCount" parameterType="m" resultType="cc">
 SELECT 
-    CLUB_NO,
-    COUNT(*)as clubPostCount,
-    (SELECT CLUB_NAME FROM CLUB C WHERE C.CLUB_NO = CB.CLUB_NO) AS CLUBNAME  
-FROM CLUB_BOARD CB 
-WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{memberNick}) GROUP BY CLUB_NO
+    club_no,
+    count(*) as clubPostCount,
+    (SELECT CLUB_NAME FROM CLUB C WHERE C.CLUB_NO = CB.CLUB_NO) AS CLUBNAME
+FROM CLUB_board CB 
+WHERE CLUB_NO IN(SELECT 
+    CLUB_NO 
+FROM CLUB CB 
+WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{memberNick}) OR CLUB_OPENER=#{memberNick} GROUP BY CLUB_NO) GROUP BY CLUB_NO
 </select>
 
 
