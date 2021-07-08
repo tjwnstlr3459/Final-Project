@@ -168,12 +168,14 @@
 						<a href="#" onclick="homeEnter()"><img
 							src="/resources/image/icons/home.png" /></a>
 					</div>
-					<div>
-						<img style="margin-top: 2px;"
-							src="/resources/image/icons/loveBean.png" />
+					<div onclick="postLikeDo(this)">
+						<input class="postLikeNum" type="text" value="0" style="display: none;">
+						<span class="postImgPan">
+							<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />
+						</span>
 					</div>
-					<div class="postLikeCount" style="width: 100%">userName 님 외
-						127명이 좋아합니다.</div>
+					<div style="width: 100%">바람돌이 님 외
+						<a class="postLikeCount" href="#"></a>명이 좋아합니다.</div>
 				</div>
 				<!--좋아요-->
 				<hr />
@@ -255,13 +257,65 @@
 	display: none; /* Chrome, Safari, Opera*/
 }
 </style>
+
 <script>
+	//게시물 좋아요
+	function postLikeDo(obj){
+		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
+		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
+		var number = 1;
+		console.log(boardMoment);
+		console.log(number);
+		console.log($(".postLikeNum").val());
+		
+		var heartBean = '<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />';
+		var heart = '<img style="width: 20px;margin-top: 5px;"src="/resources/image/icons/heart2.png" />';
+		//좋아요수 업데이트 로직
+		if($(".postLikeNum").val() == 0){
+		$.ajax({
+			url:"/postLike.do",
+			data : {
+				boardMoment:boardMoment
+			},
+			type:"get",
+			success : function(data){
+				if(data>0){
+					/* alert("좋아요 확인"); */
+					//좋아요 클릭 조건(-1이면 취소버튼이 활성화)
+					$(".postLikeNum").val(-1);
+					//이미지 변화
+					$(".postImgPan").empty();
+					$(".postImgPan").append(heart);
+				}
+			}
+		});
+		}else{
+			number = -1;
+			//좋아요 취소 업데이트 로직
+			$.ajax({
+				url:"/postLike.do",
+				data : {
+					boardMoment:boardMoment
+				},
+				type:"get",
+				success : function(data){
+					if(data>0){
+						//하단의 좋아요수 변화
+						//좋아요 클릭 조건(0이면 좋아요버튼이 활성화)
+						$(".postLikeNum").val(0);
+						//이미지 변화
+						$(".postImgPan").empty();
+						$(".postImgPan").append(heartBean);
+					}
+				}
+			});
+		}
+		
+	}
 	//검색버튼 클릭시
 	function postSearch(){
 		var searchCon = $("input[name=search]").val();
 		console.log("검색버튼 클릭시 내용값 :"+searchCon);
-		/* location.href="/myClub.do?searchCon="+searchCon; */
-		
 		$.ajax({
 			url:"/searchContent.do",
 			data :{
@@ -366,6 +420,7 @@
 	//모달클릭
 	function func1(obj) {
 		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
+		console.log("idx : "+idx);
 		$(".postModal").css("display", "block");
 		$(".postModal").css("z-index", "10000");
 		$(".postModal").css("display", "flex");
@@ -376,7 +431,17 @@
 		$(".postContent").html($(".entry-excerpt").eq(idx).html()); //게시글 내용
 		$(".postImg").html($(".picPath").eq(idx).clone());			//사진경로
 		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
-
+		/* $(".postLikeCount").eq(idx).html("얍얍");	//좋아요 수 넣어주기 */
+		
+		
+		console.log("좋아요 개숫 : "+$(".likeCountLoad").eq(idx).html());
+		
+		$(".postLikeCount").html( $(".likeCountLoad").eq(idx).html()) ;
+		
+		console.log($(".postLikeCount").html());
+		//console.log("해당 게시물 좋아요 수 : "+$(".postLikeCount").eq(idx).html("얍얍"));
+		
+		
 		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
 		console.log($(".boardNo").eq(idx).html());
 		console.log(boardMoment);
@@ -389,23 +454,30 @@
 			},
 			type : "post",
 			success : function(data) {
+				console.log(data.length);
 				$(".modalComent").empty();	//empty()를 해주지 않으면 게시물을 클릭할때만다 for문이 돌아서 기존 댓글들이 추가된다
-				for (var i = 0; i < data.length; i++) {					
+				if(data.length == 0){
 					var html = "";
-					html += '<div class="modalComentImg">';
-					html += '<div class="imgimg">';
-					html += '<img src="/resources/image/userPic/'+data[i].filepath+'"/></div></div>';
-					html += '<div class="modalComentMoment">';
-					html += '<div class="lastFinal" style="width: 70%; float: left">';
-					html += '<div class="testesttestest">';
-					html += '<div class="mentNoNo" type="text" style="display:none;">'+data[i].ccNo+'</div>';
-					html += '<div class="postWrite"style="line-height: 15px;font-weight: bold; font-size: 12px;margin-left:5px;margin-top: 3px;">'+data[i].ccWriter+'</div></div>';
-					html += '<div class="lightlight" style="width: 85%; float: left;">';
-					html += '<p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 5px;">'+data[i].ccContent+'</p></div></div>';
-					html += '<div style="width: 30px; float: left; height: 100%; display: flex; align-items: center;">'
-					html += '<img class="mentNoChek" onclick="delMent(this)"; style="width: 20px;" src="/resources/image/clubimg/del.png"/></div>';
-					html += '<div style="float: left"></div></div>';
+					html += '<p class="postMentContentBean"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 120px;">댓글이 없습니다.</p>';
 					$(".modalComent").append(html);
+				}else{
+					for (var i = 0; i < data.length; i++) {					
+						var html = "";
+						html += '<div class="modalComentImg">';
+						html += '<div class="imgimg">';
+						html += '<img src="/resources/image/userPic/'+data[i].filepath+'"/></div></div>';
+						html += '<div class="modalComentMoment">';
+						html += '<div class="lastFinal" style="width: 70%; float: left">';
+						html += '<div class="testesttestest">';
+						html += '<div class="mentNoNo" type="text" style="display:none;">'+data[i].ccNo+'</div>';
+						html += '<div class="postWrite"style="line-height: 15px;font-weight: bold; font-size: 12px;margin-left:5px;margin-top: 3px;">'+data[i].ccWriter+'</div></div>';					
+						html += '<div class="lightlight" style="width: 85%; float: left;">';		
+						html += '<p class="postMentContent"style="margin-bottom: 10px;font-size: 12px; line-height: 15px; margin: 0px; float: left;margin-left: 5px;">'+data[i].ccContent+'</p></div></div>';					
+						html += '<div style="width: 30px; float: left; height: 100%; display: flex; align-items: center;">'
+						html += '<img class="mentNoChek" onclick="delMent(this)"; style="width: 20px;" src="/resources/image/clubimg/del.png"/></div>';
+						html += '<div style="float: left"></div></div>';
+						$(".modalComent").append(html);
+					}
 				}
 			}
 		});
@@ -424,6 +496,8 @@
 		//해당 댓글 번호(삭제할때 댓글번호를 위해서)
 		var comentNo = $('.mentNoNo').html();
 		console.log(comentNo);
+		//무댓글이면 "댓글이 없습니다"문구 삭제
+		$(".postMentContentBean").remove();
 		
 		$.ajax({
 			url : "/comentSend.do",
@@ -450,6 +524,7 @@
 					html += '<img class="mentNoChek" onclick="delMent(this)"; style="width: 20px;" src="/resources/image/clubimg/del.png"/></div>';
 					html += '<div style="float: left"></div></div>';
 					$(".modalComent").append(html);
+					$(".comentWrite").val("");//댓글입력후 입력창에 남아있는 글자 초기화
 				}else{
 					alert("등록실패");
 				}
@@ -512,73 +587,75 @@
 					//$("#more-btn").val(Number(start) + 5);
 				}
 			});
-
-	function more(start) {//더보기 클릭시
+	
+	//더보기 클릭시
+	function more(start) {
 		var searchCon = $("input[name=search]").val();
 	console.log(searchCon)
-		$
-				.ajax({
-					url : "/photoMore.do",
-					data : {
-						start : start,
-						changeDate : changeDate
-					}, //시작번호를 매개변수로 1-5 1-10f
-					type : "post",
-					success : function(data) {
-						for (var i = 0; i < data.length; i++) {
-							var p = data[i];
-							var html = "";
-							html += '<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
-							html += '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;border-radius: 5% 5% 1% 1%;" >';
-							html += '<a href="#" class="thumb-link">';
-							if (p.filePath != null) {
-								html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
-							} else {
-								html += '<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex; margin-top:30px;width: 40%;"/>';
-							}
-							html += '</a>';
-							html += '</div>';
-							html += '<div class="entry-text" style="height: 150PX;">';
-							html += '<div class="entry-header">';
-							html += '<div class="entry-meta">';
-							html += '<span class="cat-links">';
-							html += '<div class="boardNo" style="display:none" values="p.boardNo">'
-									+ p.boardNo + '</div>';
-							html += '<div class="clubNo" style="display:none">'
-									+ p.clubNo + '</div>';
-							html += '<div class="cName" style="display:none">'
-									+ p.boardWriter + '</div> <div class="miniBoardName">club</div>';
-							html += '<a href="#" class="clubName">'
-									+ p.clubName + '</a>';
-							html += '</span>';
-							html += '</div>';
-							html += '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;"><div class="miniTitle">Title</div>';
-							html += '<a href="single-standard.html"class="bTitle">'
-									+ p.boardTitle + '</a>';
-							html += '</h1>';
-							html += '</div><div class="miniCon">Content</div>';
-							html += '<div class="entry-excerpt" style="font-size: 12px;">'
-									+ p.boardContent + '</div>';
-							html += '</div>';
-							html += '</article>';
-
-							$(".photoWrapper").append(html);
-						}
-
-						//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
-						$("#more-btn").val(Number(start) + 10);
-						var curr = $("#more-btn").attr("currentCount"); //현재값
-						$("#more-btn").attr("currentCount", curr + data.length);//현재값 = 현재값+데이터길이 변경 
-
-						var totalCount = $("#more-btn").attr("totalCount");//전체게시물
-
-						var currCount = $("#more-btn").attr("currentCount");//내가 최종적으로가져온게시물
-						if (currCount == totalCount) {//가져올게없다면
-							$("#more-btn").attr("disabled", true); //최대치면 버튼 비활성화
-						}
+		$.ajax({
+			url : "/photoMore.do",
+			data : {
+				start : start,
+				changeDate : changeDate
+			}, //시작번호를 매개변수로 1-5 1-10f
+			type : "post",
+			success : function(data) {
+				
+				for (var i = 0; i < data.length; i++) {
+					var p = data[i];
+					console.log(p.gcount);
+					/* console.log("콘솔확인 : ");
+					console.log(p.cbGood); */
+					var html = "";
+					html += '<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
+					html += '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;border-radius: 5% 5% 1% 1%;" >';
+					html += '<a href="#" class="thumb-link">';
+					if (p.filePath != null) {
+						html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
+					} else {
+						html += '<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex; margin-top:30px;width: 40%;"/>';
 					}
-				});
+					html += '</a>';
+					html += '</div>';
+					html += '<div class="entry-text" style="height: 150PX;">';
+					html += '<div class="entry-header">';
+					html += '<div class="entry-meta">';
+					html += '<span class="cat-links">';
+					html += '<div class="boardNo" style="display:none" values="p.boardNo">'+ p.boardNo + '</div>';
+					html += '<div class="clubNo" style="display:none">'+ p.clubNo + '</div>';
+					html += '<div class="likeCountLoad" style="display:none">'+ p.gcount + '</div>';
+					html += '<div class="cName" style="display:none">'+ p.boardWriter + '</div> <div class="miniBoardName">club</div>';
+					html += '<a href="#" class="clubName">'+ p.clubName + '</a>';
+					html += '</span>';
+					html += '</div>';
+					html += '<h1 class="entry-title" style="width:124px; margin-bottom:0px; height:30px; overflow: hidden;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;"><div class="miniTitle">Title</div>';
+					html += '<a href="single-standard.html"class="bTitle">'
+							+ p.boardTitle + '</a>';
+					html += '</h1>';
+					html += '</div><div class="miniCon">Content</div>';
+					html += '<div class="entry-excerpt" style="font-size: 12px;">'
+							+ p.boardContent + '</div>';
+					html += '</div>';
+					html += '</article>';
+
+					$(".photoWrapper").append(html);
+				}
+
+				//이미지 추가가 끝나고나면 더보기 버튼의 value, 값조정 1->6->11
+				$("#more-btn").val(Number(start) + 10);
+				var curr = $("#more-btn").attr("currentCount"); //현재값
+				$("#more-btn").attr("currentCount", curr + data.length);//현재값 = 현재값+데이터길이 변경 
+
+				var totalCount = $("#more-btn").attr("totalCount");//전체게시물
+
+				var currCount = $("#more-btn").attr("currentCount");//내가 최종적으로가져온게시물
+				if (currCount == totalCount) {//가져올게없다면
+					$("#more-btn").attr("disabled", true); //최대치면 버튼 비활성화
+				}
+			}
+		});
 	}
+	//차트실행문이 작동되면 회원이 속한 클럽의(클럽네임,클럽게시물수) 가져오기
 	function myClubChart() {
 		$.ajax({
 			url : "/clubPostCount.do",
@@ -590,7 +667,7 @@
 			}
 		});
 	}
-	//회원 취미 선택 통계
+	//차트에 회원 게시물수 넣어 통계내기
 	function myChart(data) {
 		console.log(data);
 		var list = new Array();	//클럽 이름을 담을 변수
@@ -602,33 +679,34 @@
 		}
 		var myChart = new Chart(document.getElementById('myChart'),
 				{
-					type : "pie",	//차트 형식
-					data : {
-						labels : list,	//클럽명
-						datasets : [ {
-							label : 'Dataset 1',
-							data : post,	//클럽의 게시물 데이터
-							//차트의 보여질 각각의 색상 설정
-							backgroundColor : [ 'rgba(0, 0, 255, 0.3)',
-									'rgba(255, 0, 255, 0.3)',
-									'rgba(76, 216, 153, 0.5)',
-									'rgba(0, 255, 255, 0.3)',
-									'rgba(255, 0, 0, 0.3)', ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						plugins : {
-							legend : {
-								position : 'top'
-							},
-							title : {
-								display : true,
-								text : '회원님의 모임게시물 통계'
-							}
+				type : "pie",	//차트 형식
+				data : {
+					labels : list,	//클럽명
+					datasets : [ {
+						label : 'Dataset 1',
+						data : post,	//클럽의 게시물 데이터
+						//차트의 보여질 각각의 색상 설정
+						backgroundColor : [ 'rgba(0, 0, 255, 0.3)',
+								'rgba(255, 0, 255, 0.3)',
+								'rgba(76, 216, 153, 0.5)',
+								'rgba(0, 255, 255, 0.3)',
+								'rgba(255, 0, 0, 0.3)', ],
+					} ]
+				},
+				options : {
+					responsive : true,
+					plugins : {
+						legend : {
+							position : 'top'
+						},
+						title : {
+							display : true,
+							text : '회원님의 모임게시물 통계'
 						}
 					}
-				});
+				}
+			}
+		);
 	}
 </script>
 

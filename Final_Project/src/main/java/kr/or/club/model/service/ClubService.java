@@ -158,6 +158,13 @@ public class ClubService {
 	public int deleteMent(int mentNo) {
 		return dao.deleteMent(mentNo);
 	}
+	//게시물 좋아요
+	public int postLike(int boardMoment, Member m) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("boardMoment",boardMoment);
+		map.put("m",m);
+		return dao.postLike(map);
+	}
 
 
 	

@@ -46,6 +46,14 @@ public class ClubController {
 		model.addAttribute("myMessage", myMessage);
 		return "club/myClub";
 	}
+	//게시물 좋아요
+	@ResponseBody
+	@RequestMapping(value = "/postLike.do")
+	public int postLike(@SessionAttribute(required = false) Member m,int boardMoment,Model model) {
+		int result = service.postLike(boardMoment,m);
+		model.addAttribute("likeNum", result);
+		return result;
+	}
 	//검색 아작스
 	@ResponseBody
 	@RequestMapping(value = "/searchContent.do",produces = "application/json;charset=utf-8")
