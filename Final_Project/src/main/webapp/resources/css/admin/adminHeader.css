@@ -638,7 +638,12 @@ section::-webkit-scrollbar-track {
 		transform:rotate(3600deg);
 	}
 }
-
+.clubMove{
+	transition-duration:0.3s;
+}
+.clubMove:hover{
+	color:var(--mainTextColor);
+}
 
 
 

@@ -87,14 +87,14 @@
                             <tbody>
                             	<c:forEach items="${list }" var="c">
 	                                <tr>
-	                                    <td>${c.sort }</td><td>${c.cgName }</td><td>${c.clubName }</td><td>${c.clubOpener }</td><td>${c.warningCount }</td><td>${c.enrollDate }</td><td>${c.lastDate }</td>
+	                                    <td>${c.sort }</td><td>${c.cgName }</td><td><a href="javascript:void(0)" class="clubMove" onclick="openClubPage(${c.clubNo});">${c.clubName }</a></td><td>${c.clubOpener }</td><td>${c.warningCount }</td><td>${c.enrollDate }</td><td>${c.lastDate }</td>
 	                                    <td>
 	                                    	<button class="btns warningBtn" value="${c.clubNo }">경고</button>
 	                                    	<c:if test="${sessionScope.m.grade eq 0 }">
 	                                    	<button class="btns deleteBtn" value="${c.clubNo }">삭제</button>
 	                                    	</c:if>
 	                                    </td>
-	                                </tr>                            		
+	                                </tr>
                             	</c:forEach>
                             </tbody>
                             <tfoot>

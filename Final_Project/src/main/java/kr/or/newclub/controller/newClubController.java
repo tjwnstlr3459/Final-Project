@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import kr.or.admin.model.service.AdminService;
 import kr.or.board.model.vo.Board;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
@@ -34,6 +35,8 @@ import kr.or.newclub.model.vo.clubBoard;
 public class newClubController {
 	@Autowired
 	private newClubService service;
+	@Autowired
+	private AdminService aService;
 
 	//클럽상세페이지
 	@RequestMapping(value = "/newClub.do")
@@ -76,8 +79,9 @@ public class newClubController {
 	//클럽 소개글 수정
 	@ResponseBody
 	@RequestMapping(value = "/clubInfoModify.do", produces = "application/json;charset=utf-8")
-	public int clubInfoModify(int clubNo,String clubIntro) {
+	public int clubInfoModify(int clubNo,String clubIntro,Club c) {
 		int result = service.clubIntroModify(clubNo,clubIntro);
+		int clubUpdate = aService.updateClubLastDate(c);
 		return result;
 	}
 	
@@ -124,7 +128,11 @@ public class newClubController {
 	@ResponseBody
 	@RequestMapping(value = "/calendarAdd.do")
 	public int calendarAdd(Calendar Calendar) {
+		Club c = new Club();
+		c.setClubNo(Calendar.getClubNo());
 		int result = service.calendarAdd(Calendar);
+		int clubUpdate = aService.updateClubLastDate(c);
+		
 		return result;
 	}
 	//클럽 인원 추방
@@ -159,7 +167,7 @@ public class newClubController {
 	@Transactional
 	@RequestMapping(value = "/boardWrite.do")
 	// jsp이름이랑 같아야함//3개받아오고(제목,내용,작성자등)/파일경로가지고오기)
-	public String boardWrite(int boardCG,int clubNo,clubBoard b, MultipartFile files[], HttpServletRequest request, Model model) {
+	public String boardWrite(int boardCG,int clubNo,clubBoard b, MultipartFile files[], HttpServletRequest request, Model model, Club c) {
 		// files이름 주의! input에 name과 달라야함
 		// 파일 목록을 저장할 리스트 생성
 		// 같은 클래스명이라 밑에 처럼 길게 나옴
@@ -235,6 +243,7 @@ public class newClubController {
 		// DB에 넣기
 		int result = service.insertBoard(b);
 		if (result > 0) {
+			int result1 = aService.updateClubLastDate(c);
 			model.addAttribute("msg", "등록성공");
 		} else {
 			model.addAttribute("msg", "등록실패");
@@ -250,6 +259,7 @@ public class newClubController {
 	@RequestMapping(value = "/viewUpdate.do")
 	public int viewUpdate(int boardNo) {
 		int result = service.viewUpdate(boardNo);// 클럽멤버에 넣기
+		int clubUpdate = aService.updateClubLastDateBoardNo(boardNo);
 
 		return result;
 	}
@@ -259,7 +269,7 @@ public class newClubController {
 	  @RequestMapping(value = "/boardDelete.do") 
 		public int boardDelete(int boardNo, Model model) {
 		int result = service.boardDelete(boardNo);
-
+		int clubUpdate = aService.updateClubLastDateBoardNo(boardNo);
 		return result;
 	}
 	}

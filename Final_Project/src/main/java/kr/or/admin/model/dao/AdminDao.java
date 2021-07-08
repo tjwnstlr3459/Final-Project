@@ -12,6 +12,7 @@ import kr.or.admin.model.vo.BestCategory;
 import kr.or.admin.model.vo.DestroyMemberCountMonth;
 import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
+import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 
 @Repository
@@ -53,5 +54,13 @@ public class AdminDao {
 
 	public int insertDestroyed(String type) {
 		return session.insert("admin.insertDestroyed",type);
+	}
+
+	public int updateClubLastDate(Club c) {
+		return session.update("club.updateClubLastDate",c);
+	}
+
+	public int updateClubLastDateBoardNo(int boardNo) {
+		return session.update("club.updateClubLastDateBoardNo",boardNo);
 	}
 }

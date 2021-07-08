@@ -15,6 +15,7 @@ import kr.or.admin.model.vo.DestroyMemberCountMonth;
 import kr.or.admin.model.vo.MemberCountMonth;
 import kr.or.admin.model.vo.Visit;
 import kr.or.category.model.vo.Category;
+import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.MemberPageData;
 
@@ -108,5 +109,11 @@ public class AdminService {
 	}
 	public int insertDestroyed(String type) {
 		return dao.insertDestroyed(type);
+	}
+	public int updateClubLastDate(Club c) {
+		return dao.updateClubLastDate(c);
+	}
+	public int updateClubLastDateBoardNo(int boardNo) {
+		return dao.updateClubLastDateBoardNo(boardNo);
 	}
 }

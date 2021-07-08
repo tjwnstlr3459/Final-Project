@@ -37,7 +37,6 @@ $(function(){
 	$('#renewIcon').click(function(){
 		window.location.reload();
 	});
-
 });
 //문의 / 신고 갯수
 function notAnswerAlarm(count){
@@ -46,4 +45,9 @@ function notAnswerAlarm(count){
 	}else{
 		$('.alarm-box').hide();	
 	}
+}
+//클럽 클릭 시 새로운 창에서 클럽페이지 띄움
+function openClubPage(clubNo){
+	console.log(clubNo);
+	window.open(`/newClub.do?clubNo=${clubNo}`,'테스트 새창','width=1200,height=800, location=no');
 }
