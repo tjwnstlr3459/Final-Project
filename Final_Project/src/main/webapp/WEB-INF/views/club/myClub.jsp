@@ -260,6 +260,7 @@
 					//이미지 변화
 					$(".postImgPan").eq(idx).empty();
 					$(".postImgPan").eq(idx).html(heart);
+					
 					$(".likeCheck").eq(idx).empty();
 					$(".likeCheck").eq(idx).html("likeOn");
 				}
@@ -412,14 +413,25 @@
 		$(".postImg").html($(".picPath").eq(idx).clone());			//사진경로
 		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
 		$(".postLikeCount").html( $(".totalCount").eq(idx).html());	//좋아요 모달에 넣어주기
-		$(".postLikeNum").eq(idx).val($(".likeCheck").eq(idx).html());
+		
+		/* $(".postLikeNum").eq(idx).val($(".likeCheck").eq(idx).html());
 		console.log("모달클릭시 초기 likeCheck : "+$(".likeCheck").eq(idx).html());
 		
 		if($(".likeCheck").eq(idx).html()== 'likeOn'){
 			$(".postImgPan").eq(idx).html(heart);
 		}else{
 			$(".postImgPan").eq(idx).html(heartBean);
-		}
+		} */
+		
+		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		/* $.ajax({
+			url : "/selectLikeCheck.do",
+			type:"post",
+			success : function(data){
+				
+				
+			}
+		}) */
 
 		
 		console.log("좋아요 개숫 : "+$(".likeCountLoad").eq(idx).html());	//좋아요 갯수
