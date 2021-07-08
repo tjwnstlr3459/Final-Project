@@ -54,6 +54,9 @@
 	href="/resources/css/newClub/modal.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/newClub/photo.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <!-- 메인달력 -->
 <link href="/resources/css/reservation/packages/core/main.css"
@@ -97,6 +100,9 @@
 	margin-bottom: 40px;
 	z-index: 900;
 }
+body{
+	background: #f3f1f1;
+}
 </style>
 
 </head>
@@ -104,7 +110,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="wrapper">
-		<div class="container">
+		<div>
 			<div class="wrap">
 				<div class="navi">
 					<ul class="menu">
@@ -192,16 +198,19 @@
 											value="${sessionScope.m.memberNick }" readonly>
 										<hr>
 										제목 : <input type="text" name="boardTitle"
-											style="width: 200px;"><br> 파일 : <input
-											type="file" name="files" multiple style="margin: 0px;">
+											style="width: 200px;">
+										<hr> 
+										파일 : <input type="file" name="files" multiple style="margin: 0px;">
+										<hr>
 										내용 :
-										<textarea rows="6" cols="88" name="boardContent"
-											style="resize: none;"></textarea>
-										<input type="text" name="boardCG" value="${club.clubCg }"
-											style="display: none;"> <br> <input
-											type="submit" value="등록">
+										<textarea rows="5" cols="90" name="boardContent"
+											style="resize: none; margin-top:10px;"></textarea>
+										<input type="text" name="boardCG" value="${club.clubCg }" style="display: none;">
+										<br>
+										<input type="submit" value="등록">
 									</form>
 								</div>
+								<hr>
 								<!-- 게시물 형태 바뀐부분 -->
 								<%-- <c:forEach items="${list }" var="board">
 										<div class="board-wrap">
@@ -359,7 +368,7 @@
 					<div class="right1">
 						<%-- <button onclick="initChat('${sessionScope.m.memberId }')">채팅시작</button>
 						<hr> --%>
-						<div class="commentbox" style="width: 280px; height: 30px;">클럽
+						<div class="commentbox1" style="width: 300px; height: 50px;">클럽
 							멤버와 채팅하기</div>
 						<div class="chatting">
 							<div class="messageArea"></div>
@@ -392,32 +401,33 @@
 			<!-- 댓글달기 -->
 			<div class="commentBox" style="width: 500px; height: 120px;">
 				<!-- <form action="/insertComment.do" method="post"> -->
-				<ul style="list-style: none; margin: 0; padding: 0;">
-					<li style="float: left;"><img class="userImg"
-						src="/resources/image/userPic/default.png"
-						style="margin: 30px 10px 30px 0px;"></li>
-					<li style="float: left; margin-top: 30px;"><textarea
-							class="ccContent" name="ccContent" placeholder="댓글을 입력해주세요"
-							style="width: 330px;"></textarea></li>
-					<li style="float: left; margin-top: 30px"><input type="hidden"
-						name="boardNo"> <input type="hidden" name="ccWriter"
-						value="${sessionScope.m.memberNick}">
-						<button onclick="insertComment();"
-							style="margin: 10px 0px 0px 10px;">등록</button> <!-- <button type="submit">등록</button> -->
-
-					</li>
-				</ul>
+					<ul style="list-style: none; margin: 0; padding: 0;">
+						<li style="float:left;">
+							<img class="userImg" src="/resources/image/프로필사진.png" style="margin:30px 10px 30px 0px;" >
+						</li>
+						<li style="float:left; margin-top: 30px;">
+							
+							<textarea class="ccContent" name="ccContent" placeholder="댓글을 입력해주세요" style="width: 360px;"></textarea>
+						</li>
+						<li style="float:left; margin-top:30px">
+							<input type="hidden" name="boardNo">
+							<input type="hidden" name="ccWriter" value="${sessionScope.m.memberNick}">
+							<button onclick="insertComment();" style="margin:1px 0px 10px 10px; height: 50px;width: 60px;">등록</button>
+							<!-- <button type="submit">등록</button> -->
+							
+						</li>
+					</ul>
 				<!-- </form>	 -->
 			</div>
 			<%-- <c:forEach items="${list1 }" var="cmt">
-				<div class="listComment" style="width: 500px; height:100px;">
+				<div class="listComment" style="width: 300px; height:100px;">
 					<div class="nameUser">${cmt.ccWriter}</div>
 					<div class="contentComment">${cmt.ccContent}</div>
 				</div>
 			</c:forEach>  --%>
 			<div class="commentView"></div>
 			<button id="closeBtn" style="display: line;">닫기</button>
-			<button onclick="boardDelete();">게시글 삭제</button>
+			<button onclick="boardDelete();"style="margin-left: 200px;">게시글 삭제</button>
 			<!--m.nickname==boardWriter?  -->
 		</div>
 
@@ -821,6 +831,7 @@
 				},
 				type : "post",
 				success : function(data) { //data에 포토객체가  gson to list 그거한거
+					
 					console.log(data);
 					   for (var i = 0; i < data.length; i++) {
 						var p = data[i]; //p에 데이터인덱스 근깐 포토객체으 인덱스가p에 들어갈거고 style="display:none"
@@ -834,13 +845,15 @@
 						html +=     '</div>';    
 						html +=   '<div class= "boardTitle">'+p.boardTitle+'</div>';
 						if(p.filepath != undefined){	
-						html +=   '<div class= "boardContent">'+'<img style="width:460px; height:270px; object-fit:contain;" src=/resources/image/clubimg/'+ p.filepath +'></div>';
+						html +=   '<div class= "boardContent">'+'<img style="width:420px; height:270px; object-fit:contain;" src=/resources/image/clubimg/'+ p.filepath +'></div>';
 						}
 						html +=   '<div class= "boardComment">'+ p.boardContent +'</div>';
 						html +=   '<div class= "boardFooter">';
 						html +=       '<div class= "numView">';
 						html +=           '<div class="userNum">'+'조회수'+'<span ="ctView">'+p.boardViews+'</span>명</div>';
-						html +=           '<div class="userGood">'+'좋아요'+'</div>';
+						html +=           '<div class="userGood">';
+						html +=					'<img class="img1" src=/resources/image/clubimg/하트.png>'+'<img class="img2" src=/resources/image/clubimg/저장사진.png></div>';
+						html +=   		  '</div>';
 						html +=       '</div>';    
 						html +=   '<div class= "btn-wrap">';
 						html +=      '<button id="openModal" onclick="modalClick(this);">' + '상세보기'+'</button>';
@@ -871,23 +884,13 @@
 			 var target = $(".modalWrap"); // 넣을 위치 지정
 			 
 			 var sendBoardNo = $(".modalWrap").find("input[name=boardNo]"); // 댓글의 히든 boardNo
+			 console.log(sendBoardNo);
 			 //alert(sendBoardNo.length);
-			 var boardNo = btnWrap.siblings(".boardNoTest").text(); // boardNo1 의 값
+			 var boardNo = $(openbtn).parent().parent().children().eq(0).text(); // boardNo1 의 값
 			 sendBoardNo.val(boardNo); // 댓글 용 보드 넘버 넣기
 			 console.log(sendBoardNo.val()); // 정상적으로 넣어진 boardNo의 값 확인 ex) 129
 			
-			/*  <div class="modalWrap"> <!--숨어있는 모달-->
-	            <h2>게시물 상세보기</h2>
-	            <hr>
-	            <div class="userDate">
-		            <div class="userImg"></div>
-					<div class="userName"></div>
-					<div class="enrollDate"></div>
-	            </div>
-	            <div class= "boardTitle"></div>
-				<div class= "boardComment"></div>
-	            <button id="closeBtn">닫기</button>
-	        </div> */
+
 	        //console.log(value.siblings(".userDate").children("userName").text());
 	        
 	         target.children("div").eq(0).children().eq(1).text(btnWrap.siblings(".userDate").children(".userName").text()); // 내용 적을 곳
@@ -896,21 +899,27 @@
 			 target.children("div").eq(2).text(btnWrap.siblings(".boardComment").text());
 			 target.children("div").eq(3).text(boardNo);
 			 
-			 //여기에 AJAX구현 (댓글 LIST 불러오기)
+			 
 			 $.ajax({
-				url : "/commentList.do",// 
+				url : "/commentList.do",
 				data : {boardNo:boardNo},
 				type : "post",
 				success : function(data){ // data = 컨트롤러 리턴값 == 0 , 1
 					 console.log("댓글 수 : "+data.length);
+					 $(".commentView").empty();
 					   for (var i = 0; i < data.length; i++) {
 						var p = data[i]; 
+						console.log(p.ccNo);
+						console.log(p.ccWriter);
+						console.log(p.ccContent);
 						var html = ""; //html초기화
 						
-						html += '<div class="listComment" style="width: 500px; height:80px;">';
+						html += '<div class="listComment">';
 						html += '<div class="nameUser">'+ p.ccWriter+'</div>';
 						html +=	'<div class="contentComment">'+ p.ccContent+'</div>';
+						html += '<input type="hidden" name="ccNo" value='+p.ccNo+'>';
 						html +=	'</div>';
+						html += '<div class= "delBtnbox" style="width: 50px; height:50px;">';
 						$(".commentView").append(html); 
 						
 						
@@ -931,6 +940,9 @@
 				
 				});
 		}
+		
+		 
+		 
 		 
 		 //댓글 작성 기능(댓글쓰기 기능!)--질문하기 글쓰기가 먹히질 않음
 		 function insertComment(){
@@ -948,7 +960,7 @@
 								alert("등록 성공");
 								var html = ""; //html초기화
 								
-								html += '<div class="listComment" style="width: 500px; height:100px;">';
+								html += '<div class="listComment">';
 								html += '<div class="nameUser">'+ ccWriter+'</div>';
 								html +=	'<div class="contentComment">'+ ccContent+'</div>';
 								html +=	'</div>';
@@ -963,7 +975,7 @@
 			 });
 		 }
 		 
-		//삭제기능
+		//게시물 삭제기능
 		function boardDelete(){
 			 var target = $(".modalWrap"); // 넣을 위치 지정
 			 var boardNo = target.children("div").eq(3).text();
@@ -978,8 +990,14 @@
 						location.reload();
 						
 					}
+				
+				
+				
+				
 				});
 		 }
+		 
+		 
 		$(function() {
 		    initChat('${sessionScope.m.memberNick}'); 
 	});
@@ -989,7 +1007,7 @@
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws://192.168.10.47//chat.do")
+      ws = new WebSocket("ws://192.168.10.4///chat.do")
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수
@@ -1037,6 +1055,27 @@
          }
       })
    });
+   //댓글삭제 기능
+   function delComment(deletebtn){
+		 var delBtnbox = $(deletebtn).parent(); 
+		 var ccNo= delBtnbox.siblings(".listComment").children().eq(2).val();
+		 console.log(ccNo);
+		 
+		 $.ajax({
+				url : "/commentDelete.do",
+				data : {ccNo : ccNo},
+				type : "post",
+				success : function(data){
+					if(data > 0){
+						alert("삭제 성공!");
+						location.reload();
+					}else{
+						alert("삭제 실패");
+					}
+				}
+				});
+		 
+	 }
 </script>
 
 

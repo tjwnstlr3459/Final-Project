@@ -1,12 +1,11 @@
 @charset "UTF-8";
-   .commentbox{
-   border: 2px solid gray;
-   background-color: #ea9310;
+   .commentbox1{
+   background: linear-gradient(to top left, #b36dd4, #f06699);
    margin-bottom: 10px;
    text-align: center;
    border-radius: 20px;
    font-size: 20px;
-   padding: 10px 0px 0px 50px;
+   padding: 13px 0px 0px 0px;
    color: white;
    }
    .chatting{
@@ -14,12 +13,15 @@
    display: none;
    }
    .messageArea{
-   overflow-y : auto;
-   border: 2px solid gray;;
-   height: 500px;
-   display: flex;
-   flex-direction: column;
-   background-color: #f0c948;
+      overflow-y: auto;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      background-color: #e1bee7;
+      box-shadow: 1px 1px 1px 1px gray;
+      margin-bottom: 13px;
+
    }
    .messageArea>p{
    text-align: center;
@@ -42,7 +44,7 @@
    border-radius: 5px;
    }
    .right{
-   background-color: #4ac51a;
+   background: linear-gradient(to top left, #b36dd4, #f06699);
    align-self: flex-end;
    font-weight: bold;
    }

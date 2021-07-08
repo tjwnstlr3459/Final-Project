@@ -124,6 +124,7 @@ public class AdminController {
 	public String insertVisit(HttpServletRequest request) {
 		//getRemoteAddr() : 유저의 ip를 리턴하는 메소드 HttpServletRequest를 import해서 사용
 		String visitorIp = request.getRemoteAddr();
+		System.out.println(visitorIp);
 		Map<String, String> map = new HashMap<String, String>();
 		//루프백ip 와 로컬호스트로 접속할 경우 visit 테이블에 insert 하지않는다.
 		if(!(visitorIp.equals("127.0.0.1") || visitorIp.equals("0:0:0:0:0:0:0:1"))) {

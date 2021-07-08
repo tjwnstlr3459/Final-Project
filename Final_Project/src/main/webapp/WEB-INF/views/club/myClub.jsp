@@ -171,7 +171,7 @@
 					<div onclick="postLikeDo(this)">
 						<input class="postLikeNum" type="text" value="0" style="display: none;">
 						<span class="postImgPan">
-							<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />
+							<!-- <img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" /> -->
 						</span>
 					</div>
 					<div style="width: 100%">바람돌이 님 외
@@ -181,33 +181,8 @@
 				<hr />
 				<div class="mentScroll"
 					style="max-height: 150px; overflow: scroll; overflow-x: hidden;">
+					<!-- 댓글 -->
 					<div class="modalComent">
-						<%-- <!--댓글-->
-					<div>
-						<div class="imgimg">
-							<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
-						</div>
-					</div>
-					<div>
-						<div class="lastFinal" style="width: 70%; float: left">
-							<!-- 작성자 -->
-							<div class="testesttestest">
-								<div class="postWrite"style="font-weight: bold; font-size: 12px; float: left;">
-								</div>
-							</div>
-							<!-- 내용 -->
-							<div class="lightlight" style="width: 85%; float: left;">
-								<p class="postMentContent"style="font-size: 12px; line-height: 15px; margin: 0px; float: left; margin-bottom: 10px;">
-
-								</p>
-							</div>
-						</div>
-						<div
-							style="width: 30px; float: left; height: 100%; display: flex; align-items: center;">
-							<img src="/resources/image/icons/down.png" style="width: 30px;" />
-						</div>
-						<div style="float: left"></div>
-					</div> --%>
 					</div>
 				</div>
 				<hr />
@@ -263,15 +238,14 @@
 	function postLikeDo(obj){
 		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
 		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
-		var number = 1;
-		console.log(boardMoment);
-		console.log(number);
+		console.log("보드 넘버 :"+boardMoment);
 		console.log($(".postLikeNum").val());
+		console.log("하트 눌렀을때 likeCheck :"+$(".likeCheck").eq(idx).html());
 		
 		var heartBean = '<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />';
 		var heart = '<img style="width: 20px;margin-top: 5px;"src="/resources/image/icons/heart2.png" />';
 		//좋아요수 업데이트 로직
-		if($(".postLikeNum").val() == 0){
+		if($(".likeCheck").eq(idx).html() == "likeOff"){
 		$.ajax({
 			url:"/postLike.do",
 			data : {
@@ -280,37 +254,41 @@
 			type:"get",
 			success : function(data){
 				if(data>0){
-					/* alert("좋아요 확인"); */
+					alert("좋아요 확인");
 					//좋아요 클릭 조건(-1이면 취소버튼이 활성화)
-					$(".postLikeNum").val(-1);
+					/* $(".postLikeNum").val(-1); */
 					//이미지 변화
-					$(".postImgPan").empty();
-					$(".postImgPan").append(heart);
+					$(".postImgPan").eq(idx).empty();
+					$(".postImgPan").eq(idx).html(heart);
+					
+					$(".likeCheck").eq(idx).empty();
+					$(".likeCheck").eq(idx).html("likeOn");
 				}
 			}
 		});
 		}else{
-			number = -1;
 			//좋아요 취소 업데이트 로직
 			$.ajax({
-				url:"/postLike.do",
+				url:"/postDeletLike.do",
 				data : {
 					boardMoment:boardMoment
 				},
 				type:"get",
 				success : function(data){
 					if(data>0){
+						alert("좋아요 취소");
 						//하단의 좋아요수 변화
 						//좋아요 클릭 조건(0이면 좋아요버튼이 활성화)
-						$(".postLikeNum").val(0);
+						/* $(".postLikeNum").val(0); */
 						//이미지 변화
-						$(".postImgPan").empty();
-						$(".postImgPan").append(heartBean);
+						$(".postImgPan").eq(idx).empty();
+						$(".postImgPan").eq(idx).html(heartBean);
+						$(".likeCheck").eq(idx).empty();
+						$(".likeCheck").eq(idx).html("likeOff");
 					}
 				}
 			});
 		}
-		
 	}
 	//검색버튼 클릭시
 	function postSearch(){
@@ -413,13 +391,16 @@
 			success : function(data) {
 				$("#more-btn").attr("totalCount", data);
 			}
-		})
-		more(1);
+		});
 	}
 		
 	//모달클릭
 	function func1(obj) {
 		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
+		
+		var heartBean = '<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />';
+		var heart = '<img style="width: 20px;margin-top: 5px;"src="/resources/image/icons/heart2.png" />';
+		
 		console.log("idx : "+idx);
 		$(".postModal").css("display", "block");
 		$(".postModal").css("z-index", "10000");
@@ -431,16 +412,29 @@
 		$(".postContent").html($(".entry-excerpt").eq(idx).html()); //게시글 내용
 		$(".postImg").html($(".picPath").eq(idx).clone());			//사진경로
 		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
-		/* $(".postLikeCount").eq(idx).html("얍얍");	//좋아요 수 넣어주기 */
+		$(".postLikeCount").html( $(".totalCount").eq(idx).html());	//좋아요 모달에 넣어주기
 		
+		/* $(".postLikeNum").eq(idx).val($(".likeCheck").eq(idx).html());
+		console.log("모달클릭시 초기 likeCheck : "+$(".likeCheck").eq(idx).html());
 		
-		console.log("좋아요 개숫 : "+$(".likeCountLoad").eq(idx).html());
+		if($(".likeCheck").eq(idx).html()== 'likeOn'){
+			$(".postImgPan").eq(idx).html(heart);
+		}else{
+			$(".postImgPan").eq(idx).html(heartBean);
+		} */
 		
-		$(".postLikeCount").html( $(".likeCountLoad").eq(idx).html()) ;
+		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		/* $.ajax({
+			url : "/selectLikeCheck.do",
+			type:"post",
+			success : function(data){
+				
+				
+			}
+		}) */
+
 		
-		console.log($(".postLikeCount").html());
-		//console.log("해당 게시물 좋아요 수 : "+$(".postLikeCount").eq(idx).html("얍얍"));
-		
+		console.log("좋아요 개숫 : "+$(".likeCountLoad").eq(idx).html());	//좋아요 갯수
 		
 		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
 		console.log($(".boardNo").eq(idx).html());
@@ -603,7 +597,6 @@
 				
 				for (var i = 0; i < data.length; i++) {
 					var p = data[i];
-					console.log(p.gcount);
 					/* console.log("콘솔확인 : ");
 					console.log(p.cbGood); */
 					var html = "";
@@ -623,7 +616,8 @@
 					html += '<span class="cat-links">';
 					html += '<div class="boardNo" style="display:none" values="p.boardNo">'+ p.boardNo + '</div>';
 					html += '<div class="clubNo" style="display:none">'+ p.clubNo + '</div>';
-					html += '<div class="likeCountLoad" style="display:none">'+ p.gcount + '</div>';
+					html += '<div class="likeCheck" style="display:">'+ p.likeCheck + '</div>';
+					html += '<div class="totalCount" style="display:none">'+ p.totalCount + '</div>';
 					html += '<div class="cName" style="display:none">'+ p.boardWriter + '</div> <div class="miniBoardName">club</div>';
 					html += '<a href="#" class="clubName">'+ p.clubName + '</a>';
 					html += '</span>';

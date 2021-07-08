@@ -5,15 +5,16 @@
     width: 690px;
     height: 2000px;
     margin: 0 auto;
-    border: 1px solid gray;
     margin-bottom: 10px;
     padding-left: 8px;
+    background: linear-gradient(to top left, #79a8bb, #b36dd4, #f06699);
+    border: 4px solid  #f5a0e7;
 }
 
 .album{
     width: calc(640px/3);
     height: 200px;
-    border: 1px solid gray;
+    border: 3px solid  #241829;
     float: left;
     object-fit:contain;
     overflow: hidden;

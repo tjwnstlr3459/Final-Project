@@ -13,15 +13,19 @@ public class ClubCommentDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	public List commentList(int boardNo) {
+	public List<ClubComment> commentList(int boardNo) {
 		System.out.println(boardNo);
-		List list = session.selectList("clubcomment.commentList",boardNo);
-		return list;
+		List<ClubComment> list1 = session.selectList("clubcomment.commentList",boardNo);
+		return list1;
 	}
 
 	public int insertComment(ClubComment ccm) {
 		return session.insert("clubcomment.insertComment",ccm);
 		
+	}
+
+	public int commentDelete(int ccNo) {
+		return session.delete("clubcomment.deleteComment",ccNo);
 	}
 
 }

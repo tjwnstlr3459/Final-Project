@@ -39,4 +39,12 @@ public class ClubCommentController {
 		int clubUpdate = aService.updateClubLastDateBoardNo(ccm.getBoardNo());
 		return result;
 	}
+	@ResponseBody
+	@RequestMapping(value = "/commentDelete.do")
+	public int commentDelete(int ccNo) {
+		System.out.println(ccNo);
+		int result = service.commentDelete(ccNo);
+		return result; 
+	
+	}
 }

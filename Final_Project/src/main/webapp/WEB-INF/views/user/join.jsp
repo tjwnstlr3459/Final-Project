@@ -114,18 +114,19 @@
                 <button type="button" id="mailCfrm">이메일 체크</button>
 
             </form>
+            <!-- 구글 가입
             <form id="gLogin" method="post">
             
             </form> 
+            -->
             
             <div class="social">
-                <span>소셜 서비스로 가입</span>
-                <a href="#">구글 로그인</a>
-                <a href="#">카카오 로그인</a>
-                <a href="${nUrl}">네이버 로그인</a>
+                <span><b>소셜 서비스로 가입하기</b></span>
+                <a href="javascript:void(0)" class="kakao" onclick="kakaoLogin()">카카오 아이디로 가입</a>
                 <div id="naver_id_login"></div>
-                <a id="kakao-login-btn"></a>
+                <!-- 구글 가입
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                 -->
             </div>           
         </div>
     </div> 
@@ -141,30 +142,54 @@
 	 </script>
 	 <!-- 카카오 소셜로그인 -->
 	 <script>
-	 	Kakao.init('b0e4792bb9bc14ffbeebc4cac841f141'); //발급받은 키 중 javascript키를 사용해준다.
-	 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
-	 	Kakao.Auth.createLoginButton({
-	 	    container: '#kakao-login-btn',
-	 	    success: kakaoLogin()
-	 	  })
-	 	  function kakaoLogin() {
-		    Kakao.Auth.login({
-		      success: function (response) {
-		        Kakao.API.request({
-		          url: '/v2/user/me',
-		          success: function (response) {
-		        	  console.log(response)
-		          },
-		          fail: function (error) {
-		            console.log(error)
-		          },
-		        })
-		      },
-		      fail: function (error) {
-		        console.log(error)
-		      },
-		    })
-		  }
+	 Kakao.init('b0e4792bb9bc14ffbeebc4cac841f141'); 
+	  //카카오로그인
+	  function kakaoLogin() {
+	      Kakao.Auth.login({
+	        scope: 'account_email,gender,age_range',
+	        success: function (response) {
+	          Kakao.API.request({
+	            url: '/v2/user/me',
+	            success: function (res) {
+	              var email = res.kakao_account.email;
+	           	  var pw = res.id;
+	           	  var gender = res.kakao_account.gender;
+	           	  var age = res.kakao_account.age_range;
+	           	  //var shaPw = CryptoJS.SHA256(pw).toString(); 
+	           	  console.log(email + " " + pw + " " + gender + " " + age)
+	          	  $.ajax({
+	        			url: "/nLogin.do",
+	        			data: {email:email},
+	        			type: "post",
+	        			success: function(data) {
+	        				if(data == "1" || data == "2") {
+	        					alert("이미 가입된 아이디입니다. 로그인 화면으로 이동합니다.")
+	        					location.href='/loginFrm.do';
+	        				} else {
+	        					var form = $("#joinForm");
+	        					form.attr("action", "/socialJoin.do");
+	        					$("[name=email]").val(email);
+	        					$("[name=memberPw]").val(pw);
+	        					$("[name=gender]").val(gender);
+	        					$("[name=age]").val(age);
+	        					form.submit();
+	        				}
+	        			},
+	        			error: function() {
+	        				console.log("에러")
+	        			}
+	        		})
+	            },
+	            fail: function (error) {
+	              console.log(error)
+	            },
+	          })
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	    }
 	 </script>
 	 <!-- 구글 소셜로그인 -->
 	 <script>

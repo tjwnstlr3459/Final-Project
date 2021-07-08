@@ -26,8 +26,8 @@ public class newClubService {
 @Autowired
 private newClubDao dao;
 
-public List boardList() {
-	return dao.boardList();
+public List boardList(int clubNo) {
+	return dao.boardList(clubNo);
 
 }
 
@@ -84,6 +84,7 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			return dao.deleteRefusal(clubNo,listNo);
 		}
 		//조회수 업데이트
+		@Transactional
 		public int viewUpdate(int boardNo) {
 			return dao.viewUpdate(boardNo);
 		}

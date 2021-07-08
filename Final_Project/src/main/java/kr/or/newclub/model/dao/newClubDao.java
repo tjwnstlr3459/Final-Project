@@ -21,8 +21,8 @@ public class newClubDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	public List boardList() {
-		List list = session.selectList("newclub.boardList");
+	public List boardList(int clubNo) {
+		List list = session.selectList("newclub.boardList",clubNo);
 		return list;
 	}
 

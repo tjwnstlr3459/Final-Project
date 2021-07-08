@@ -8,7 +8,10 @@
 <link rel="stylesheet" type="text/css" href="resources/css/join.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<!-- 네이버 로그인 -->
+<script type="text/javascript" src="resources/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<!-- 카카오 로그인 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 </head>
 <body>
@@ -28,14 +31,13 @@
 		        </div>
 		        <input type="submit" value="로그인">
 	        </form>
-	        <div class="findpw"><a href="javascript:void(0)" id="find">비밀번호 찾기</a></div>
+	        <div class="findpw"><a href="/join.do">회원가입</a> / <a href="javascript:void(0)" id="find">비밀번호 찾기</a></div>
 	        
 	        <div class="social">
-                <span>소셜 로그인</span>
-                <a href="#">구글 로그인</a>
-                <a href="#">카카오 로그인</a>
-                <a href="${nUrl}">네이버 로그인</a>
+                <span style="display:block;margin-top:30px;margin-bottom:5px;"><b>소셜 로그인</b></span>
+                <a href="javascript:void(0)" class="kakao" onclick="kakaoLogin()">카카오 아이디로 로그인</a>
                 <div id="naver_id_login"></div>
+                
             </div> 
         </div>        
 	</div>
@@ -55,14 +57,49 @@
 		</div>	
 	</div>
 	<%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
+	<!-- 네이버 소셜로그인 -->
 	<script type="text/javascript">
 	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/nLogin.jsp");
 	  	var state = naver_id_login.getUniqState();
-	  	naver_id_login.setButton("white", 1,50);
+	  	naver_id_login.setButton("white", 2,65);
 	  	naver_id_login.setDomain("http://127.0.0.1");
 	  	naver_id_login.setState(state);
 	  	naver_id_login.init_naver_id_login();
 	 </script>
+	 <!-- 카카오 소셜로그인 -->
+	 <script>
+	 Kakao.init('b0e4792bb9bc14ffbeebc4cac841f141'); 
+	  //카카오로그인
+	  function kakaoLogin() {
+	      Kakao.Auth.login({
+	        success: function (response) {
+	          Kakao.API.request({
+	            url: '/v2/user/me',
+	            success: function (res) {
+		            var email = res.kakao_account.email;
+		           	var pw = res.id;
+		           	console.log(email)
+		           	console.log(pw)
+		           	var form = $("form");
+		           	$("[name=email]").val(email);
+					$("[name=memberPw]").val(pw);
+					form.submit();
+	            },
+	            fail: function (error) {
+	            	console.log(error)
+	            	alert("로그인에 실패했습니다. 잠시 후 다시 시도해주세요.")
+	            },
+	          })
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	          alert("로그인에 실패했습니다. 잠시 후 다시 시도해주세요.")
+	        },
+	      })
+	    }
+	 </script>
+	 
+	 
 	 <script>
 		$("#find").click(function() {
 			$(".modal").fadeIn();
