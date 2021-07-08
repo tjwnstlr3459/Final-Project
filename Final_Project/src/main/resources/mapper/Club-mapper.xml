@@ -48,29 +48,36 @@ ORDER BY A.ENROLL_DATE DESC
 SELECT * FROM
 (select rownum as rnum,p.*from
 (SELECT 
-    A.board_no as boardNo,
-    A.club_no as clubNo,
-    A.board_cg as boardCg,
-    A.BOARD_WRITER as boardWriter,
-    A.board_title as boardTitle,
-    A.board_content as boardContent,
-    A.fileName,
-    A.filePath,
-    A.board_views as boardViews,
-    A.BOARD_good as cbGood,
-    A.enroll_date as enrollDate,
-    C.CLUB_NAME AS clubName 
-	FROM CLUB_BOARD A,CLUB C 
-	WHERE C.CLUB_NO = A.CLUB_NO 
-	AND 
-C.CLUB_NO IN(SELECT club_no
-FROM CLUB_board CB 
-WHERE CLUB_NO IN(SELECT CLUB_NO FROM CLUB CB WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{m}) OR CLUB_OPENER=#{m})GROUP BY CLUB_NO) 
+    B.BOARD_NO  as boardNo, 
+    C.CLUB_NAME as clubName,
+    
+    B.club_no as clubNo,
+    B.board_cg as boardCg,
+    B.BOARD_TITLE as boardTitle,
+    B.BOARD_WRITER as boardWriter,
+    B.board_content as boardContent,
+    B.fileName,
+    B.filePath,
+    B.board_views as boardViews,
+    B.BOARD_good as cbGood,
+    B.enroll_date as enrollDate,
+    
+    (SELECT COUNT(*) FROM BOARD_LIKE BL WHERE BL.BOARD_NO = B.BOARD_NO) AS TOTALCOUNT,
+    DECODE(
+        (SELECT COUNT(*) FROM BOARD_LIKE BL2 WHERE BL2.BOARD_NO = B.BOARD_NO AND BL2.MEMBER_NICK='유저2'),
+        1,
+        '좋아요누름',
+        '좋아요안누름'
+    ) AS LIKECHECK
+FROM CLUB_BOARD B,CLUB C
+WHERE B.CLUB_NO = C.CLUB_NO
+AND C.CLUB_NO IN(
+SELECT CLUB_NO FROM CLUB CB WHERE CLUB_NO IN(select club_NO from club_member where club_nick=#{m}) OR CLUB_OPENER=#{m})
 and (board_title like '%'||#{searchCon}||'%' or board_content like '%'||#{searchCon}||'%')
 <if test="changeDate != 0">
 and a.enroll_date between to_char(sysdate-#{changeDate},'yyyy-mm-dd') and to_char(sysdate,'YYYY-MM-DD')	
 </if> 
-ORDER BY A.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
+ORDER BY B.ENROLL_DATE DESC)P) WHERE RNUM BETWEEN #{start} AND #{end}
 </select>
 
 
@@ -234,7 +241,12 @@ INSERT INTO CLUB_COMMENT VALUES(
 DELETE FROM CLUB_COMMENT WHERE CC_NO=#{mentNo}
 </delete>
 
-
+<!-- 게시물 좋아요 -->
+<update id="postLike" parameterType="map">
+insert into board_like values(
+    #{boardNo},
+    #{m.memberNick})
+</update>
 </mapper>
 
 

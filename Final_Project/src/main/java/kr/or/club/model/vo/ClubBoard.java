@@ -17,4 +17,6 @@ public class ClubBoard {
 	private String enrollDate;
 	//클럽명까지 출력을 위해
 	private String clubName;
+	//게시물 좋아요를 같이 받기위해
+	private int gCount;
 }
