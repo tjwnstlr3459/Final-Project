@@ -15,14 +15,14 @@
   }
   /* 모달설정 */
   .modalWrap{
-     background-color: white;
+   background: linear-gradient(to top left, #79a8bb, #b36dd4, #f06699);
+   border: 4px solid  #f5a0e7;
+     opacity: 0.9;
      padding: 30px 50px;
      border-radius: 10px;
      width: 600px;
-     min-width: 350px
-     overflow-y : auto;
-     display: flex;
-     flex-direction: column;
+     min-width: 350px;
+     font-family: 'Jua', sans-serif;
   }
   #closeBtn{
 	 margin: 0 auto;

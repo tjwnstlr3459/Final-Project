@@ -253,6 +253,7 @@ public class newClubController {
 
 		return result;
 	}
+	
 	//게시물 삭제
 	@Transactional
 	 @ResponseBody
