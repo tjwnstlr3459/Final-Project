@@ -175,7 +175,7 @@ from direct_message where receiver=#{memberNick} and read_status='N'
 		0,
 		#{ispublic},
 		to_char(sysdate,'yyyy-mm-dd'),
-		null,
+		to_char(sysdate,'yyyy-mm-dd'),
 		0
 	)
 </insert>
@@ -246,6 +246,14 @@ DELETE FROM CLUB_COMMENT WHERE CC_NO=#{mentNo}
 insert into board_like values(
     #{boardMoment},
     #{m.memberNick})
+</update>
+<!-- 클럽이 활동한 경우 최종 활동일 update해주기 clubNo를 넘겨줄 때 -->
+<update id="updateClubLastDate" parameterType="c">
+	update club set last_date=to_char(sysdate,'yyyy-mm-dd') where club_no=#{clubNo}
+</update>
+<!-- 클럽이 활동한 경우 최종 활동일 update해주기 clubNo를 넘겨줄 때 -->
+<update id="updateClubLastDateBoardNo" parameterType="int">	
+	update club set last_date=to_char(sysdate,'yyyy-mm-dd') where club_no=(select club_no from club_board where board_no=#{boardNo})
 </update>
 <delete id="postDeletLike" parameterType="map">
 DELETE FROM board_like WHERE BOARD_NO=#{boardMoment} and MEMBER_NICK=#{m.memberNick}

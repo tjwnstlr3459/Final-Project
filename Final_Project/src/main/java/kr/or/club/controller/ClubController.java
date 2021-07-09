@@ -196,6 +196,7 @@ public class ClubController {
       //DB에 넣기
       int result = service.insertPost(b,fileList);
       if(result != -1 && result == fileList.size()) {
+    	  int clubUpdate = aService.updateClubLastDateBoardNo(b.getBoardNo());
     	  model.addAttribute("msg","등록성공");
       }else {
     	  model.addAttribute("msg","등록실패");

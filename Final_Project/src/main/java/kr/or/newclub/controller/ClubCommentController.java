@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import kr.or.admin.model.service.AdminService;
 import kr.or.newclub.model.service.ClubCommentService;
 import kr.or.newclub.model.vo.ClubComment;
 
@@ -17,6 +18,8 @@ import kr.or.newclub.model.vo.ClubComment;
 public class ClubCommentController {
 	@Autowired
 	private ClubCommentService service;
+	@Autowired
+	private AdminService aService;
 
 	@ResponseBody
 	@RequestMapping(value = "/commentList.do", produces = "application/json;charset=utf-8")
@@ -33,6 +36,7 @@ public class ClubCommentController {
 	public int insertComment(ClubComment ccm) {
 		int result = service.insertComment(ccm);
 		System.out.println("insert 결과" + result);
+		int clubUpdate = aService.updateClubLastDateBoardNo(ccm.getBoardNo());
 		return result;
 	}
 	@ResponseBody

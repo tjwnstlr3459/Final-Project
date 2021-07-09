@@ -197,8 +197,9 @@ section::-webkit-scrollbar-track {
     outline:none;
 }
 /* 검색창 자체 너비 지정 */
-.searchBar-wrap>input[type="search"]{
+.searchBar-wrap > input[type="search"]{
 	width:400px;
+	height:40px;
 }
 #searchBtn{
 	padding:0;
@@ -263,7 +264,8 @@ section::-webkit-scrollbar-track {
 	text-decoration:none;
 	 color:#ffffff;
 }
-.inquiryList tbody>tr:hover{
+.inquiryList tbody>tr:hover,
+.clubList tbody>tr:hover{
 	background:var(--background);
 }
 /* 메뉴별 타이틀 */
@@ -284,6 +286,7 @@ section::-webkit-scrollbar-track {
 	overflow:hidden;
 	white-space:nowrap;
 	text-overflow:ellipsis;
+	margin:auto;
 }
 #ofHidden>p{
 	margin:0;
@@ -627,18 +630,22 @@ section::-webkit-scrollbar-track {
 }
 #renewIcon:hover{
 	animation-name:iconInfi;
-	animation-duration: 10s;
+	animation-duration: 2s;
 	animation-iteration-count: infinite;
+	transform-origin: 50% 50%;
 }
 @keyframes iconInfi{
-	from{
-		
-	}
-	to{
-		transform:rotate(3600deg);
+	100%{
+		transform:rotate(360deg);
 	}
 }
-
+.clubMove{
+	transition-duration:0.3s;
+}
+.clubMove:hover,
+.selectOneBtn:hover{
+	color:#FF66FF;
+}
 
 
 
