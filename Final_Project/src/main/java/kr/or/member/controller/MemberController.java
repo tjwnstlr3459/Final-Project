@@ -319,6 +319,20 @@ public class MemberController {
 		Member member = service.selectOneMember(m);
 		FriendsData friendsData = service.selectFriendData(m.getMemberNick());
 		DirectMessageData dmData = dmService.selectDmByName(m.getMemberNick(), 1);
+		for(int i=0; i<dmData.getDmList().size(); i++) {
+			String content = dmData.getDmList().get(i).getDmContent();
+			String replaceContent1 = content.replaceAll("<", "&#60;");
+			String replaceContent2 = replaceContent1.replaceAll(">", "&#62;");
+			dmData.getDmList().get(i).setDmContent(replaceContent2);
+			System.out.println(replaceContent2);
+		}
+		for(int i=0; i<dmData.getUnreadDmList().size(); i++) {
+			String content = dmData.getUnreadDmList().get(i).getDmContent();
+			String replaceContent1 = content.replaceAll("<", "&#60;");
+			String replaceContent2 = replaceContent1.replaceAll(">", "&#62;");
+			dmData.getUnreadDmList().get(i).setDmContent(replaceContent2);
+			System.out.println(replaceContent2);
+		}
 		MyBoardData queryData = bService.selectMyBoard(m.getMemberNick(), 1, 2);
 		MyBoardData reportData = bService.selectMyBoard(m.getMemberNick(), 1, 3);
 		ArrayList<Category> category = service.getCategory();

@@ -133,7 +133,7 @@
 										<c:if test="${sessionScope.m.grade gt 1 }">
 									<li><a
 										onclick="location.href='/mypage.do';"
-										style="cursor: pointer;">MyPage</a></li>
+										style="cursor: pointer;">마이페이지</a></li>
 										<li><a onclick="location.href='/logout.do';"
 											style="cursor: pointer;">로그아웃</a></li>
 											</c:if>

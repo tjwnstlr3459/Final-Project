@@ -521,7 +521,7 @@ select {
   background: red;
   color: white;  
   } 
-  .friendName {
+  .friendName, .newfriendName {
   color:black;
   font-weight:bold;
   }
@@ -539,5 +539,7 @@ select {
 	  width:430px;
 	}
   }  
-  
+  .showDetail{
+  	display:block;
+  }
 
