@@ -746,21 +746,37 @@ body{
 				    editable: true,
 				    eventLimit: true,
 				    
+				    
 				    //날짜 클릭시 모달 활성화
 				    dateClick: function (data) {
 				       /* $("#myModal3").css("display","block");
 				       $("#myModal3").addClass("in"); */
 				       $("#myModal3").click();
 				       onload="calModal()";
-				      /*  console.log(data.dateStr); */
+				       console.log($(".service_date").val(data.dateStr));
+				       
+			
 				    },
+				       eventClick : function(data){
+				    	   var idx = $(".fc-event-container").index();
+				    	   console.log(idx);
+				    	   console.log(data);
+				    	   
+				    	 
+					    	   if(confirm("일정을 삭제하시겠습니까?")){
+					    		   $(".fc-event-container").eq(this).empty();
+					    	   }
+				    		   
+				    	   
+				    	   
+				       }
 				  });
 				  var test;
 				  test.render();
 				  //달력값 불러와서 적용
 				  
 				  var calendarList = $(".calList").val();
-				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-02',end:'2021-07-02'});
+				  test.addEvent({title:'사이트 개설일',color:'#0083ffa1',textColor:'#FFFFFF',start:'2021-06-28',end:'2021-06-28',id:'1'});
 				  //해당클럽의 번호를 넘겨주어 클럽의 달력게시물을 가져오기
 				  var clubNo = ${clubNo};
 					$.ajax({
