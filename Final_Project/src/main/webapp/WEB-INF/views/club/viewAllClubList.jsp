@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/freeBoardFrm/bootstrap.css">
-<title>${cgName}에해당하는클럽들</title>
+<title>너나들이 전체 클럽</title>
 <style>
 	body{
   color:black;
@@ -58,7 +58,7 @@ button:hover:before,button:hover:after{
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	<h1 style="font-size: 40px; text-align: center; margin-top:20px;">${cgName}</h1>
+	<%--  <h1 style="font-size: 40px; text-align: center; margin-top:20px;">${cgName}</h1> 
 	<br>
 	<c:choose>
 	 <c:when test="${cgName eq '영화' }">
@@ -68,7 +68,7 @@ button:hover:before,button:hover:after{
 	<h5 style="text-align: center; font-size: 19px;">${cgName }을 사랑하는 사람들이 개설한 클럽목록입니다.</h5>
 	</c:otherwise>
 	</c:choose>
-	<hr>
+	<hr> --%>
 	<h3 style="text-align: center;">CLUB LIST</h3>
 	<c:if test="${!empty sessionScope.m }">
 	<div>

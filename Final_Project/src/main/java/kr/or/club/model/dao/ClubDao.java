@@ -136,6 +136,12 @@ public class ClubDao {
 	}
 
 
+	public ArrayList<Club> viewAllClubList() {
+		List<Club> list = session.selectList("club.viewAllClubList");
+		return (ArrayList<Club>)list;
+	}
+
+
 	
 	
 	

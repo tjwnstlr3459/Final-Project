@@ -160,7 +160,8 @@ INSERT INTO CALENDAR VALUES(
     #{calBack},
     #{calFont},
     #{calStart},
-    #{calEnd})
+    #{calEnd},
+    CAL_SEQ.NEXTVAL)
 </insert>
 
 <!-- 달력 일정 불러오기 -->
@@ -172,7 +173,8 @@ SELECT
     CAL_BACK AS calBack,  
     CAL_FONT AS calFont,   
     CAL_START AS calStart,
-    CAL_END AS calEnd     
+    CAL_END AS calEnd,
+    ID AS id     
 FROM CALENDAR WHERE CLUB_NO=#{clubNo}
 </select>
 
@@ -221,6 +223,11 @@ INSERT INTO DIRECT_MESSAGE VALUES(
     TO_CHAR(SYSDATE,'YYYY-MM-DD'),
     'N')
 </insert>
+
+<!-- 달력일정 삭제 -->
+<delete id="reservationDelete" parameterType="int">
+DELETE FROM CALENDAR WHERE ID = #{id}
+</delete>
 </mapper>
 
 
