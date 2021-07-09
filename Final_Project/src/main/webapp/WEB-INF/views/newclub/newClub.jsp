@@ -269,7 +269,7 @@ body{
 							<div>
 								<div class="contentMent"
 									style="font-weight: bold; font-size: 25px;">관리목록</div>
-								<input class="adminCheckButton" style="margin-left: 300px;"
+								<input class="adminCheckButton" style="margin-left: 370px;"
 									type="button" value="회원목록" onclick="memberListAdmin();">
 								<input class="adminCheckButton" type="button" value="예약목록"
 									onclick="userListAdmin();">
@@ -479,12 +479,18 @@ body{
 				</div>
 
 				<div class="modal-body">
-					<input type="text" name="clubNo" value="${clubNo }"
+					<input type="text" name="id" value=""
 						style="display: none">
 					<div>
 						<div>일정명 :</div>
 						<div>
 							<input type="text" name="calTitle">
+						</div>
+					</div>
+					<div style="display: none;">
+						<div>숨겨진 넘버</div>
+						<div>
+							<input type="text" name="id" value="">
 						</div>
 					</div>
 					<div>
@@ -625,6 +631,7 @@ body{
 			calEnd : $("input[name=calEnd]").val(),
 			calBack : $("input[name=calBack]").val(),
 			calFont : $("input[name=calFont]").val(),
+			idValue : $("input[name= idValue ]").val(),
 		}
 		$.ajax({
 			url : "/calendarAdd.do",
@@ -639,7 +646,11 @@ body{
 					alert("일정 추가 실패");
 				}
 			}
-		})
+		});
+		console.log("idValue :"+ $("input[name=idValue]").val());
+		var test = $("input[name=idValue]").val();
+		console.log(test);
+		console.log("idValue :"+ $("input[name=idValue]").val());
 	}
 	//클럽 가입 수락
 	function accept(obj){	//클릭한 게시물의 번호값 가져오기
@@ -753,22 +764,38 @@ body{
 				       $("#myModal3").addClass("in"); */
 				       $("#myModal3").click();
 				       onload="calModal()";
-				       console.log($(".service_date").val(data.dateStr));
+				       
+				      
+				       console.log(reserNo);
 				       
 			
 				    },
-				       eventClick : function(data){
-				    	   var idx = $(".fc-event-container").index();
-				    	   console.log(idx);
+				    	//날짜 일정 클릭시 값 알아내고 삭제
+				       	eventClick : function(data){
+				       	   //data 확인하기
 				    	   console.log(data);
-				    	   
-				    	 
-					    	   if(confirm("일정을 삭제하시겠습니까?")){
-					    		   $(".fc-event-container").eq(this).empty();
-					    	   }
+				    	   //data 안에 event 안에 id값 추출
+				    	   console.log("id값 : " +data.event.id);
+				    	   var reserNo = data.event.id;
 				    		   
-				    	   
-				    	   
+					    	   if(confirm("일정을 삭제하시겠습니까?")){
+					    		   
+					    		   $.ajax({
+					    			   url:"/reservationDelete.do",
+					    			   data : {
+					    				   reserNo : reserNo
+					    			   },
+					    			   type : "post",
+					    			   success : function(data){
+					    				   if(data>0){
+					    					   alert("일정이 삭제 되었습니다.");
+				    				  		   location.href="/newClub.do?clubNo=${clubNo}&menuNo=2";
+					    				   }else{
+					    					   alert("일정이 삭제실패");
+					    				   }
+					    			   }
+					    		   });
+					    	   }
 				       }
 				  });
 				  var test;
@@ -792,14 +819,16 @@ body{
 								var textColor = data[i].calFont;
 								var start = data[i].calStart;
 								var end = data[i].calEnd;
+								var calNo = data[i].id;
 								//값넣기
 								
 								test.addEvent({title : title,
 												color : color,
 												textColor : textColor,
 												start : start,
-												end : end
-								});
+												end : end,
+												id : calNo
+								});		
 							}
 						}
 					})

@@ -139,6 +139,14 @@ public class newClubController {
 		
 		return result;
 	}
+	//달력 일정 삭제
+	@ResponseBody
+	@RequestMapping(value = "reservationDelete")
+	public int reservationDelete(int reserNo) {
+		int result = service.reservationDelete(reserNo);
+		return result;
+	}
+	
 	//클럽 인원 추방
 	@ResponseBody
 	@RequestMapping(value = "/MemberBlack.do")
