@@ -42,7 +42,7 @@
 	
 </script>
 <body id="top"
-	style="background-image: url('/resources/css/myClub/micons/3.jpg'); background-size: cover;">
+	style="background-color: #d4c8c86e;">
 	<!-- page header
    ================================================== -->
 
@@ -157,6 +157,7 @@
 				</div>
 				<!--아이디 정보-->
 				<hr />
+				
 				<div class="postImg">
 					<%-- <img class="postImg" src="/resources/fileupload/postImg/${filePath }" /> --%>
 				</div>
@@ -164,6 +165,7 @@
 				<div class="postContent"></div>
 				<!--내용-->
 				<div class="postLike">
+					<div  class="modalIndexNumber"style="display: none;"></div>
 					<div class="child">
 						<a href="#" onclick="homeEnter()"><img
 							src="/resources/image/icons/home.png" /></a>
@@ -171,7 +173,7 @@
 					<div onclick="postLikeDo(this)">
 						<input class="postLikeNum" type="text" value="0" style="display: none;">
 						<span class="postImgPan">
-							<!-- <img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" /> -->
+							
 						</span>
 					</div>
 					<div style="width: 100%">바람돌이 님 외
@@ -236,14 +238,21 @@
 <script>
 	//게시물 좋아요
 	function postLikeDo(obj){
-		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
+		/* $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기 */
+		var idx = $(".modalIndexNumber").html();
+		console.log("idx 111 : "+idx);
+		
 		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
+		
 		console.log("보드 넘버 :"+boardMoment);
 		console.log($(".postLikeNum").val());
 		console.log("하트 눌렀을때 likeCheck :"+$(".likeCheck").eq(idx).html());
+		console.log("모달별 인덱스 넘버 : "+$(".modalIndexNumber").html());
 		
 		var heartBean = '<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />';
 		var heart = '<img style="width: 20px;margin-top: 5px;"src="/resources/image/icons/heart2.png" />';
+		
+		
 		//좋아요수 업데이트 로직
 		if($(".likeCheck").eq(idx).html() == "likeOff"){
 		$.ajax({
@@ -258,10 +267,11 @@
 					//좋아요 클릭 조건(-1이면 취소버튼이 활성화)
 					/* $(".postLikeNum").val(-1); */
 					//이미지 변화
-					$(".postImgPan").eq(idx).empty();
-					$(".postImgPan").eq(idx).html(heart);
-					
-					$(".likeCheck").eq(idx).empty();
+					$(".postImgPan").empty();
+					$(".postImgPan").html(heart);
+					//좋아요 누름 체크
+					console.log("idx : "+idx);
+					console.log($(".likeCheck").length);
 					$(".likeCheck").eq(idx).html("likeOn");
 				}
 			}
@@ -281,8 +291,9 @@
 						//좋아요 클릭 조건(0이면 좋아요버튼이 활성화)
 						/* $(".postLikeNum").val(0); */
 						//이미지 변화
-						$(".postImgPan").eq(idx).empty();
-						$(".postImgPan").eq(idx).html(heartBean);
+						$(".postImgPan").empty();
+						$(".postImgPan").html(heartBean);
+						//좋아요 누름 해제
 						$(".likeCheck").eq(idx).empty();
 						$(".likeCheck").eq(idx).html("likeOff");
 					}
@@ -293,7 +304,7 @@
 	//검색버튼 클릭시
 	function postSearch(){
 		var searchCon = $("input[name=search]").val();
-		console.log("검색버튼 클릭시 내용값 :"+searchCon);
+		/* console.log("검색버튼 클릭시 내용값 :"+searchCon); */
 		$.ajax({
 			url:"/searchContent.do",
 			data :{
@@ -357,7 +368,7 @@
 	function homeEnter() {
 		var homeNo = $(".clubNo").html();
 		location.href = "/newClub.do?clubNo=" + homeNo;
-		console.log(homeNo);
+		/* console.log(homeNo); */
 	}
 	var changeDate = 0;
 	/* $(".postsCheck").click(function() {
@@ -397,11 +408,12 @@
 	//모달클릭
 	function func1(obj) {
 		var idx = $(".entry-thumb").index(obj); //선택한 게시물의 인덱스값알아내기
-		
+		console.log("idx : " + idx);
 		var heartBean = '<img style="margin-top: 2px;"src="/resources/image/icons/loveBean.png" />';
 		var heart = '<img style="width: 20px;margin-top: 5px;"src="/resources/image/icons/heart2.png" />';
+		var indexNumber = '<div class="indexNumber" style="display:none">'+ idx + '</div>';
 		
-		console.log("idx : "+idx);
+		/* console.log("idx : "+idx); */
 		$(".postModal").css("display", "block");
 		$(".postModal").css("z-index", "10000");
 		$(".postModal").css("display", "flex");
@@ -414,14 +426,21 @@
 		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
 		$(".postLikeCount").html( $(".totalCount").eq(idx).html());	//좋아요 모달에 넣어주기
 		
-		/* $(".postLikeNum").eq(idx).val($(".likeCheck").eq(idx).html());
-		console.log("모달클릭시 초기 likeCheck : "+$(".likeCheck").eq(idx).html());
+		$(".modalIndexNumber").eq(0).html(idx);
+		console.log($(".modalIndexNumber"));
 		
-		if($(".likeCheck").eq(idx).html()== 'likeOn'){
-			$(".postImgPan").eq(idx).html(heart);
+		var likeCheckLike = $(".likeCheck").eq(idx).html();
+		console.log("모달클릭시 초기 likeCheck : "+likeCheckLike);
+		
+		if(likeCheckLike == 'likeOn'){
+			
+			$(".postImgPan").empty();
+			$(".postImgPan").append('<img style="width: 20px;margin-top: 5px;"src="/resources/image/icons/heart2.png" />');
 		}else{
-			$(".postImgPan").eq(idx).html(heartBean);
-		} */
+			console.log(0);
+			$(".postImgPan").empty();
+			$(".postImgPan").append(heartBean);
+		}
 		
 		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		/* $.ajax({
@@ -437,8 +456,8 @@
 		console.log("좋아요 개숫 : "+$(".likeCountLoad").eq(idx).html());	//좋아요 갯수
 		
 		var boardMoment = $(".boardNo").eq(idx).html();	//게시글 보드넘버
-		console.log($(".boardNo").eq(idx).html());
-		console.log(boardMoment);
+		/* console.log($(".boardNo").eq(idx).html());
+		console.log(boardMoment); */
 		
 		//모달창 내에 해당 게시물의 댓글들 불러오기
 		$.ajax({
@@ -481,8 +500,8 @@
 		
 		var comentCon = $('input[name=coment]').val();//해당 게시물 번호
 		var comentBoardNo = $(".comentSendNo").val();//해당게시물 댓글 내용
-		console.log(comentCon);
-		console.log(comentBoardNo);
+		/* console.log(comentCon);
+		console.log(comentBoardNo); */
 		
 		//이미지, 닉넴임userInfomationImg
 		var userInfomationImg = $(".userInfomationImg").val();
@@ -529,10 +548,10 @@
 	function delMent(obj){
 		//선택한 게시물의 인덱스값알아내기
 		var idx = $(".mentNoChek").index(obj); 
-		console.log(idx);
+		/* console.log(idx); */
 		//각 버튼의 댓글 넘버 가져오기
 		var mentNo =$(".mentNoNo").eq(idx).html();
-		console.log(mentNo);
+		/* console.log(mentNo); */
 		
 		$.ajax({
 			url : "/mentOut.do",
@@ -585,7 +604,7 @@
 	//더보기 클릭시
 	function more(start) {
 		var searchCon = $("input[name=search]").val();
-	console.log(searchCon)
+	/* console.log(searchCon) */
 		$.ajax({
 			url : "/photoMore.do",
 			data : {
@@ -600,8 +619,8 @@
 					/* console.log("콘솔확인 : ");
 					console.log(p.cbGood); */
 					var html = "";
-					html += '<article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
-					html += '<div class="entry-thumb" onclick="func1(this)"  style="height:135px;border-radius: 5% 5% 1% 1%;" >';
+					html += '<div style="float:left;width:180px; height:280px;margin-left: 10px;margin-right: 10px;margin-bottom: 40px;"><article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
+					html += '<div class="entry-thumb" onclick="func1(this)"  style="border-radius: 5% 5% 1% 1%;width: 180px;" >';
 					html += '<a href="#" class="thumb-link">';
 					if (p.filePath != null) {
 						html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
@@ -616,7 +635,7 @@
 					html += '<span class="cat-links">';
 					html += '<div class="boardNo" style="display:none" values="p.boardNo">'+ p.boardNo + '</div>';
 					html += '<div class="clubNo" style="display:none">'+ p.clubNo + '</div>';
-					html += '<div class="likeCheck" style="display:">'+ p.likeCheck + '</div>';
+					html += '<div class="likeCheck" style="display:none;">'+ p.likeCheck + '</div>';
 					html += '<div class="totalCount" style="display:none">'+ p.totalCount + '</div>';
 					html += '<div class="cName" style="display:none">'+ p.boardWriter + '</div> <div class="miniBoardName">club</div>';
 					html += '<a href="#" class="clubName">'+ p.clubName + '</a>';
@@ -630,7 +649,7 @@
 					html += '<div class="entry-excerpt" style="font-size: 12px;">'
 							+ p.boardContent + '</div>';
 					html += '</div>';
-					html += '</article>';
+					html += '</article></div>';
 
 					$(".photoWrapper").append(html);
 				}
@@ -655,7 +674,7 @@
 			url : "/clubPostCount.do",
 			type : "post",
 			success : function(data) {
-				console.log(data);
+				/* console.log(data); */
 				myChart(data); //회원들이 선택한 취미 차트
 
 			}
@@ -663,13 +682,13 @@
 	}
 	//차트에 회원 게시물수 넣어 통계내기
 	function myChart(data) {
-		console.log(data);
+		/* console.log(data); */
 		var list = new Array();	//클럽 이름을 담을 변수
 		var post = new Array(); //각각의 클럽 게시물 수를 담을 변수
 		for (var i = 0; i < data.length; i++) {
 			list.push(data[i].clubName);
 			post.push(data[i].clubPostCount)
-			console.log(list);
+			/* console.log(list); */
 		}
 		var myChart = new Chart(document.getElementById('myChart'),
 				{
