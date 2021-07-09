@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="/resources/main/css/animate.css">
 <link rel="stylesheet" href="/resources/main/css/templatemo_misc.css">
 <link rel="stylesheet" href="/resources/main/css/templatemo_style.css">
+<link rel="stylesheet" href="/resources/css/footer.css">
 
 <script src="/resources/main/js/vendor/jquery-1.11.0.min.js"></script>
 <!-- <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script> -->
@@ -368,6 +369,7 @@
 			</div>
 			<!-- /.row -->
 			<button onclick="loginCheck();" id="feed_info">클럽만들기</button>
+			<button onclick="location.href='/viewAllClubList.do';" id="feed_info">전체클럽</button>
 				
 		</div>
 		<!-- /.container -->

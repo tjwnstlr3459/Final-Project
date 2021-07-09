@@ -1,0 +1,37 @@
+.row-footer {
+	padding: 30px;
+	font-size: 12px;
+   background-color:#ddd;
+   display:flex;
+   justify-content: space-between;
+   align-items:flex-end;
+   color:#666666
+}
+#footer {
+	margin-top:100px;
+	width:100%;
+   height:60px;
+   position:relative;
+}
+.row-footer a {
+	display:inline-block;
+	margin-right: 5px;
+	margin-left: 5px;
+	color: black;
+}
+.row-footer a:hover {
+	text-decoration:underline;
+}
+.row-footer a:first-of-type {
+	margin-left:0;
+}
+
+.company-info > span {
+	display:inline-block;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.company-info > span:first-of-type {
+	margin-left: 0px;
+}

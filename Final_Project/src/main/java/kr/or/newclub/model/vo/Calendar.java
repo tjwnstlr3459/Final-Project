@@ -11,4 +11,5 @@ public class Calendar {
 	private String calFont;
 	private String calStart;
 	private String calEnd;
+	private String id;
 }
