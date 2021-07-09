@@ -102,6 +102,7 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			return dao.selectClub(clubNo);
 		}
 		//클럽소개글 수정
+		@Transactional
 		public int clubIntroModify(int clubNo, String clubIntro) {
 			HashMap<Object, Object> map = new HashMap<Object, Object>();
 			map.put("clubNo", clubNo);
@@ -118,16 +119,24 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 			return dao.boardDelete(boardNo);
 		}
 		//클럽 추방
+		@Transactional
 		public int deleteMember(int cmNo) {
 			return dao.deleteMember(cmNo);
 		}
+		
 		//쪽지 보내기
+		@Transactional
 		public int sendMail(String sender, String messageText, String receiver) {
 			HashMap<Object, Object> map = new HashMap<Object, Object>();
 			map.put("sender", sender);
 			map.put("messageText", messageText);
 			map.put("receiver", receiver);
 			return dao.sendMail(map);
+		}
+		//달력 일정 삭제
+		@Transactional
+		public int reservationDelete(int reserNo) {
+			return dao.reservationDelete(reserNo);
 		}
 }
 
