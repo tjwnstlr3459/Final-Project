@@ -625,7 +625,7 @@
 					if (p.filePath != null) {
 						html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
 					} else {
-						html += '<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex; margin-top:30px;width: 40%;"/>';
+						html += '<img class="picPath" src="/resources/image/icons/camera.png" class="postsCheck"alt="building" style="margin: 0 auto;display: flex;margin-top:20px; margin-bottom: 20px;width: 40%;"/>';
 					}
 					html += '</a>';
 					html += '</div>';
