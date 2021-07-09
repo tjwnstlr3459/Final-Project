@@ -66,7 +66,7 @@
                                 <img class="profile-img" src="resources/image/userPic/${rf.filepath }"/><br>
                             </div>
                             <div class="friend-name">
-                            	<a href="javascript:void(0)"  class="friendName" onclick="accfMenu('${rf.memberNick }')">${rf.memberNick }</a>
+                            	<a href="javascript:void(0)"  class="newfriendName" onclick="accfMenu('${rf.memberNick }')">${rf.memberNick }</a>
                             </div>
                         </div>  
                     </c:forEach>
@@ -117,7 +117,7 @@
                     		<c:forEach items="${unreadDmList }" var="dm">
 	                                <div class="row listRow">
 		                    			<div class="dm-sender">${dm.sender }</div>
-		                                <div class="dm-content"><span onclick="dmShow(1, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
+		                                <div class="dm-content"><span onclick="dmShow(1, ${dm.dmNo}, '${dm.sender}')">${dm.dmContent }</span></div>
 		                                <div class="dm-date">${dm.dmDate }</div>
 		                                <div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm('${dm.sender}', '${m.memberNick }')"></i></div>
 	                    			</div>
@@ -157,11 +157,11 @@
 	                                    	<c:choose>
 	                                    		<c:when test="${dm.receiver == m.memberNick}">
 	                                    			<div class="dm-sender">${dm.sender }</div>
-	                                    			<div class="dm-content-inout"><span onclick="dmShow(2, ${dm.dmNo}, '${dm.sender}', '${dm.dmContent }')">${dm.dmContent }</span></div>
+	                                    			<div class="dm-content-inout"><span onclick="dmShow(2, ${dm.dmNo}, '${dm.sender}')">${dm.dmContent }</span></div>
 	                                    		</c:when>
 	                                    		<c:otherwise>
 	                                    			<div class="dm-sender">${dm.receiver }</div>
-	                                    			<div class="dm-content-inout"><span onclick="dmShow(3, ${dm.dmNo}, '${dm.receiver}', '${dm.dmContent }')">${dm.dmContent }</span></div>
+	                                    			<div class="dm-content-inout"><span onclick="dmShow(3, ${dm.dmNo}, '${dm.receiver}')">${dm.dmContent }</span></div>
 	                                    		</c:otherwise>
 	                                    	</c:choose>		                                
 			                                <div class="dm-date">${dm.dmDate }</div>
@@ -834,14 +834,14 @@
 						if(data.dmList[i].receiver == user) {
 							dmsTable += '<div class="dm-sr" style="color:red"><i class="fas fa-reply"></i></div>';
 							dmsTable += '<div class="dm-sender">' + data.dmList[i].sender +'</div>';
-							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(2, ' + data.dmList[i].dmNo + ', \'' + data.dmList[i].sender + '\', \'' + data.dmList[i].dmContent + '\')">' + data.dmList[i].dmContent + '</span></div>';
+							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(2, ' + data.dmList[i].dmNo + ', \'' + data.dmList[i].sender + '\')">' + data.dmList[i].dmContent + '</span></div>';
 							dmsTable += '<div class="dm-date">' + data.dmList[i].dmDate + '</div>';
 							dmsTable += '<div class="dm-read">' + data.dmList[i].readStatus + '</div>';
 							dmsTable += '<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm(\'' + data.dmList[i].sender + '\', \'' + user + '\')"></i></div>';
 						} else {
 							dmsTable += '<div class="dm-sr" style="color:blue"><i class="fas fa-share"></i></div>';
 							dmsTable += '<div class="dm-sender">' + data.dmList[i].receiver +'</div>';
-							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(3, ' + data.dmList[i].dmNo + ', \'' + data.dmList[i].receiver + '\', \'' + data.dmList[i].dmContent + '\')">' + data.dmList[i].dmContent + '</span></div>';
+							dmsTable += '<div class="dm-content-inout"><span onclick="dmShow(3, ' + data.dmList[i].dmNo + ', \'' + data.dmList[i].receiver + '\')">' + data.dmList[i].dmContent + '</span></div>';
 							dmsTable += '<div class="dm-date">' + data.dmList[i].dmDate + '</div>';
 							dmsTable += '<div class="dm-read">' + data.dmList[i].readStatus + '</div>';
 							dmsTable += '<div class="dm-reply"></div>'
@@ -879,7 +879,7 @@
 					for(var i=0; i<10; i++) {						
 						dmsTable += '<div class="row listRow">';
 						dmsTable += '<div class="dm-sender">' + data.unreadDmList[i].sender +'</div>';
-						dmsTable += '<div class="dm-content"><span onclick="dmShow(1, ' + data.unreadDmList[i].dmNo + ', \'' + data.unreadDmList[i].sender + '\', \'' + data.unreadDmList[i].dmContent + '\')">' + data.unreadDmList[i].dmContent + '</span></div>';
+						dmsTable += '<div class="dm-content"><span onclick="dmShow(1, ' + data.unreadDmList[i].dmNo + ', \'' + data.unreadDmList[i].sender + '\')">' + data.unreadDmList[i].dmContent + '</span></div>';
 						dmsTable += '<div class="dm-date">' + data.unreadDmList[i].dmDate + '</div>';
 						dmsTable += '<div class="dm-reply"><i class="fas fa-share" style="cursor: pointer;" onclick="sendDm(\'' + data.unreadDmList[i].sender + '\', \'' + user + '\')"></i></div>';
 						dmsTable += '</div>';
@@ -898,7 +898,16 @@
 		//문의 신고 상세 페이지
 		var content = "";
 		function reportDetail(obj) {
-			if(content != "") {
+			
+			$(".reportContent").not($(obj).next()).hide();
+			
+			console.log($(obj).next().css("display"));
+			if($(obj).next().css("display")=="none"){
+				$(obj).next().show();
+			} else {
+				$(obj).next().hide();
+			}
+			/* if(content != "") {
 				content.style.display = "none";
 			}
 			content = obj.nextElementSibling;
@@ -906,7 +915,7 @@
 				content.style.display = "block";
 			} else {
 				content.style.display = "none";
-			}			
+			} */			
 		}
 		
 		//문의 페이징

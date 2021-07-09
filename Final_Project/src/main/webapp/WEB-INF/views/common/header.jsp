@@ -223,7 +223,7 @@ font-family: 'Noto Sans KR', sans-serif;
 			<li><a href="/logout.do">로그아웃</a></li>
 			</c:if>
 			<c:if test="${sessionScope.m.grade ge 2 }">
-			<li><a href="/mypage.do">MY PAGE</a></li>
+			<li><a href="/mypage.do">마이페이지</a></li>
 			<li><a href="/logout.do">로그아웃</a></li>
 			</c:if>
 			<li><a href="/boardList.do?reqPage=1&type=1&sort=1">Q&A</a></li>
