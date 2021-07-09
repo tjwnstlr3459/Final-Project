@@ -13,6 +13,7 @@
 	crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/resources/css/footer.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 	<!-- 현재 접속자 파싱 웹소켓 -->
@@ -93,7 +94,6 @@ font-family: 'Noto Sans KR', sans-serif;
 	text-transform: uppercase;
 	font-weight: 700;
 	float: right;
-	margin-right: 200px;
 	text-decoration: none;
 }
 

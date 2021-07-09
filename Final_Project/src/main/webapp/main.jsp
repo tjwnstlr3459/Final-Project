@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="/resources/main/css/animate.css">
 <link rel="stylesheet" href="/resources/main/css/templatemo_misc.css">
 <link rel="stylesheet" href="/resources/main/css/templatemo_style.css">
+<link rel="stylesheet" href="/resources/css/footer.css">
 
 <script src="/resources/main/js/vendor/jquery-1.11.0.min.js"></script>
 <!-- <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script> -->

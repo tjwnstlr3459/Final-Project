@@ -533,7 +533,7 @@
 	</div>
 	<!-- 친구 메뉴용 팝업 레이어  -->
 	<div class="popupLayer"></div>
-    
+     <%@include file="/WEB-INF/views/common/footer.jsp" %>
     
     <script>
     	var dmSender;
@@ -1251,7 +1251,10 @@
             			sessionStorage.setItem("info", "true");
             			location.reload();
             		}
-            	}           
+            	},
+            	error: function() {
+            		console.log("error")
+            	}
             })       
             
             
