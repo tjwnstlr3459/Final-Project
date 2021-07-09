@@ -173,6 +173,11 @@ public class ClubService {
 		return dao.postDeletLike(map);
 	}
 
+	public ArrayList<Club> viewAllClubList() {
+		ArrayList<Club> list = dao.viewAllClubList();
+		return list;
+	}
+
 
 	
 	
