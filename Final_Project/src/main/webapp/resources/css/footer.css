@@ -1,13 +1,11 @@
 .row-footer {
 	padding: 30px;
 	font-size: 12px;
-	width:100%;
-	 position:absolute;
    background-color:#ddd;
    display:flex;
    justify-content: space-between;
    align-items:flex-end;
-   color:#666666;
+   color:#666666
 }
 #footer {
 	margin-top:100px;
