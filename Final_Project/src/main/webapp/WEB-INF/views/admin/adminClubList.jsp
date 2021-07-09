@@ -78,7 +78,7 @@
 	                    </div>
                     </form>
                     <div class="list-table">
-                        <table class="list userList">
+                        <table class="list clubList">
                             <thead>
                                 <tr>
                                     <th>번호</th><th>카테고리</th><th>클럽명</th><th>개설자</th><th>경고</th><th>개설일</th><th>최종활동일</th>
