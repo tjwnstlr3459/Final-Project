@@ -12,12 +12,28 @@
         height: 1000px;
         margin: 0px;
         padding: 0px;
+        display:flex;
+        justify-content:space-between;
+    }
+    .contain {
+        min-width: 1600px;
+        height: 1000px;
+        margin: 0px;
+        padding: 0px;
+        display:flex;
+        justify-content: center;
+/*     	min-width:1380px;
+        width: 100%;
+        height: 1400px;
+        margin: 0 auto;
+        float: left; */
     }
 
     .navi {
+        min-width:1600px;
         background: #e1bee7;
         display: block;
-        width: 1500px;
+        /* width: 1500px; */
         height: 60px;
         overflow: hidden;
         margin-bottom: 20px;
@@ -64,19 +80,9 @@
 
     }
 
-    .contain {
-    	min-width:1380px;
-        width: 100%;
-        height: 1400px;
-        margin: 0 auto;
-        float: left;
-    }
-
     .left1 {
         height: 100%;
         width: 300px;
-        float: left;
-        margin-left: 50px;
     }
 
     .profile {
@@ -114,10 +120,10 @@
     }
 
     .middle {
-    	margin-right: 20px;
         width: 700px;
         height: 100%;
         float: left;
+        margin:0 50px;
     }
 	.boardWritebox{
 		width: 650px;
@@ -130,12 +136,14 @@
         margin: 0 auto;
         font-family: 'Jua', sans-serif;
         background-color: #e9e8e9;
-        }
-	
+    }
+	.boardWritebox textarea{
+		width:100%;
+	}
 	
     .tab-cont {
         background-color: #fff;
-        width: 100%;
+        width: 700px;
         padding: 5px;
         box-sizing: border-box;
         border-radius: 8px;
@@ -150,8 +158,6 @@
         height: 100%;
         width: 300px;
         float: left;
-        margin: 0 auto;
-        margin-left: 30px;
         font-family: 'Jua', sans-serif;
 
     }

@@ -122,7 +122,7 @@ body{
 						</c:if>
 					</ul>
 				</div>
-				<div class=contain>
+				<div class="contain">
 					<div class="left1">
 						<div class="profile">
 							<div class="clubimg">
@@ -269,7 +269,7 @@ body{
 							<div>
 								<div class="contentMent"
 									style="font-weight: bold; font-size: 25px;">관리목록</div>
-								<input class="adminCheckButton" style="margin-left: 373px;"
+								<input class="adminCheckButton" style="margin-left: 300px;"
 									type="button" value="회원목록" onclick="memberListAdmin();">
 								<input class="adminCheckButton" type="button" value="예약목록"
 									onclick="userListAdmin();">
@@ -620,7 +620,7 @@ body{
 	function calendarModal(){
 		var Calendar={
 			clubNo : $("input[name=clubNo]").val(),
-			calTitle : f$("input[name=calTitle]").val(),
+			calTitle : $("input[name=calTitle]").val(),
 			calStart : $("input[name=calStart]").val(),
 			calEnd : $("input[name=calEnd]").val(),
 			calBack : $("input[name=calBack]").val(),
