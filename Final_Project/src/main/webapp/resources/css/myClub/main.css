@@ -2212,8 +2212,8 @@ header .logo a {
   max-width: 870px;
 }
 
-#page-header h1 {
-  margin-bottom: 3rem;
+#page-header h1 {/* 
+  margin-bottom: 3rem; */
 }
 
 #page-header p {
@@ -3650,7 +3650,15 @@ div {
     line-height: 15px;
 }
 
-
+.noNo{
+	width: 50px;
+    height: 25px;
+    font-size: 14px;
+    margin: 0 auto;
+    line-height: 3px;
+    display: flex;
+    justify-content: center;
+}
 
 
 

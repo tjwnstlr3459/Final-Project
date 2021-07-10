@@ -20,6 +20,7 @@
 				<div class="bottomContent">
 					<div class="bottomMent">
 						<a style="font-size: 30px; font-weight: 500;">공지사항</a>
+						<c:if test="${sessionScope.m.grade lt 2 }">
 						<div class="sendBtnChek">
 							<a href="/modify.do?abNo=${board.abNo }">수정</a>
 						</div>
@@ -28,6 +29,7 @@
 							class="sendBtnChek">
 							<a href="#" class="delete">삭제</a>
 						</div>
+						</c:if>
 					</div>
 					<div class="bottomContentFont">
 						<!--공지 상세보기-->

@@ -53,9 +53,8 @@
 		<div class="row masonry">
 			<section id="page-header">
 				<div class="row current-cat">
-					<div class="col-full" style="width: 25%;margin-left: 10px;height: 40px;">
+					<div class="col-full" style="margin-left: 10px;height: 40px;">
 						<h1 class="deepshadow">${sessionScope.m.memberNick }'s Club</h1>
-						<hr>
 					</div>
 
 				</div>
@@ -64,7 +63,7 @@
 				<!-- 클러리스트 -->
 				<div class="myInfo">
 					<div class="myInfoImg">
-						<img src="/resources/image/userPic/${sessionScope.m.filename }" />
+						<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
 					</div>
 					<div class="userName" style="text-align: center;">${sessionScope.m.memberNick}님</div>
 					<div
@@ -126,7 +125,7 @@
 				<div class="bricks-wrapper" style="height: 1200px;margin-left: 5px">
 					<div class="grid-sizer"></div>
 					<div class="photoWrapper"
-						style="width: 100%; height: 800px; overflow-y: scroll">
+						style="width: 100%; height: 1000px; overflow-y: scroll">
 						<!--  style="width:100%;height:800px; overflow-x:scroll; overflow-y:scroll; -->
 					</div>
 				</div>
@@ -620,7 +619,7 @@
 					console.log(p.cbGood); */
 					var html = "";
 					html += '<div style="float:left;width:180px; height:280px;margin-left: 10px;margin-right: 10px;margin-bottom: 40px;"><article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
-					html += '<div class="entry-thumb" onclick="func1(this)"  style="border-radius: 5% 5% 1% 1%;width: 180px;" >';
+					html += '<div class="entry-thumb" onclick="func1(this)"  style="max-height: 160px;border-radius: 5% 5% 1% 1%;width: 180px;" >';
 					html += '<a href="#" class="thumb-link">';
 					if (p.filePath != null) {
 						html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';
