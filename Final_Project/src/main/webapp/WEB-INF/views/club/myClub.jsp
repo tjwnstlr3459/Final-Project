@@ -164,9 +164,10 @@
 				<div class="postContent"></div>
 				<!--내용-->
 				<div class="postLike">
-					<div  class="modalIndexNumber"style="display: none;"></div>
-					<div class="child">
-						<a href="#" onclick="homeEnter()"><img
+					<div class="modalIndexNumber"style="display: none;"></div>
+					<div class="modalClubNo"style="display: none;"></div>
+					<div class="child"> 
+						<a href="#" onclick="homeEnter(this)"><img
 							src="/resources/image/icons/home.png" /></a>
 					</div>
 					<div onclick="postLikeDo(this)">
@@ -263,8 +264,6 @@
 			success : function(data){
 				if(data>0){
 					alert("좋아요 확인");
-					//좋아요 클릭 조건(-1이면 취소버튼이 활성화)
-					/* $(".postLikeNum").val(-1); */
 					//이미지 변화
 					$(".postImgPan").empty();
 					$(".postImgPan").html(heart);
@@ -272,6 +271,8 @@
 					console.log("idx : "+idx);
 					console.log($(".likeCheck").length);
 					$(".likeCheck").eq(idx).html("likeOn");
+					//좋아요 누르면 count올라가게
+					
 				}
 			}
 		});
@@ -287,8 +288,6 @@
 					if(data>0){
 						alert("좋아요 취소");
 						//하단의 좋아요수 변화
-						//좋아요 클릭 조건(0이면 좋아요버튼이 활성화)
-						/* $(".postLikeNum").val(0); */
 						//이미지 변화
 						$(".postImgPan").empty();
 						$(".postImgPan").html(heartBean);
@@ -365,9 +364,8 @@
 
 	//해당 상세페이지로 이동
 	function homeEnter() {
-		var homeNo = $(".clubNo").html();
-		location.href = "/newClub.do?clubNo=" + homeNo;
-		/* console.log(homeNo); */
+		var clubNo = $(".modalClubNo").html();
+		location.href = "/newClub.do?clubNo=" + clubNo;
 	}
 	var changeDate = 0;
 	/* $(".postsCheck").click(function() {
@@ -420,6 +418,8 @@
 		//모달창 내 해당 값 넣기
 		$(".modalMemberName").html($(".cName").eq(idx).html()); //게시글 작성자
 		$(".modalClubName").html($(".clubName").eq(idx).html()); //해당 게시글 클럽명
+		$(".modalClubNo").html($(".clubNo").eq(idx).html()); //해당 클럽 넘버 넣어주기
+		
 		$(".postContent").html($(".entry-excerpt").eq(idx).html()); //게시글 내용
 		$(".postImg").html($(".picPath").eq(idx).clone());			//사진경로
 		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
