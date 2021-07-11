@@ -59,7 +59,11 @@ public class newClubController {
 		//클럽정보 출력
 		Club clubInfo = service.selectClub(clubNo);
 		model.addAttribute("club", clubInfo);
-		
+		//클럽회원 수 가져오기
+		int cmCount = service.cmCount(clubNo);
+		model.addAttribute("cmCount",cmCount);
+		System.out.println(clubNo);
+		System.out.println(cmCount);
 		
 		//로그인한 회원이 속한 클럽 넘버 알아내기
 		ArrayList<Club> memberClubNo = service.selectMemberClubNo(m);

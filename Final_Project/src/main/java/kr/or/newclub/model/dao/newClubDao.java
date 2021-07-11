@@ -145,6 +145,10 @@ public class newClubDao {
 		return session.insert("newclub.insertInvite",a);
 	}
 
+	public int cmCount(int clubNo) {
+		return session.selectOne("newclub.cmCount",clubNo);
+	}
+
 }
 
 

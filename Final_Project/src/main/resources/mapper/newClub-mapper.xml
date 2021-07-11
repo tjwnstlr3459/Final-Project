@@ -238,6 +238,10 @@ DELETE FROM CALENDAR WHERE ID = #{id}
     #{iaContent},
     TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 </insert>
+<!-- 클럽 회원 수 -->
+<select id="cmCount" parameterType="int" resultType="int">
+	select count(*) from club_member where club_no=#{clubNo}
+</select>
 </mapper>
 
 

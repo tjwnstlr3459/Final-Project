@@ -142,6 +142,10 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int insertInvite(Apply a) {
 			return dao.insertInvite(a);
 		}
+
+		public int cmCount(int clubNo) {
+			return dao.cmCount(clubNo);
+		}
 }
 
 

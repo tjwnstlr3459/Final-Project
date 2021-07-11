@@ -135,8 +135,10 @@ body{
 							</div>
 							<hr style="margin: 0">
 							<div class="clubinfo1">
-								<div class="memberNum">멤버 수</div>
+								<div class="memberNum">멤버 수 <span class="cmCount"> ${cmCount }</span>명</div>
+								<c:if test="${club.clubOpener eq sessionScope.m.memberNick }">
 								<div class="memberNum" id="inviteMember">초대하기</div>
+								</c:if>
 							</div>
 
 							<div style="display: flex; justify-content: center;">
