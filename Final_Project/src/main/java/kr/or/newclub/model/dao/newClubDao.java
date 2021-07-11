@@ -141,6 +141,10 @@ public class newClubDao {
 		return session.delete("newclub.reservationDelete",reserNo);
 	}
 
+	public int insertInvite(Apply a) {
+		return session.insert("newclub.insertInvite",a);
+	}
+
 }
 
 

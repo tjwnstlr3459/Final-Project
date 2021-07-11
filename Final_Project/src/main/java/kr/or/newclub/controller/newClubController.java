@@ -285,4 +285,19 @@ public class newClubController {
 		int clubUpdate = aService.updateClubLastDateBoardNo(boardNo);
 		return result;
 	}
+	//클럽에서 초대
+	@RequestMapping(value="/insertInvite.do")
+	@ResponseBody
+	public String insertInvite(Apply a) {
+		System.out.println(a.getClubNo());
+		System.out.println(a.getIaContent());
+		System.out.println(a.getReceiver());
+		System.out.println(a.getIaType());
+		int result = service.insertInvite(a);
+		if(result > 0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
 	}

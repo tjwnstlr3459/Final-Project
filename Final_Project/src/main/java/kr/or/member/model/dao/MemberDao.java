@@ -111,6 +111,10 @@ public class MemberDao {
 		return sqlSession.insert("member.insertDestroy");
 	}
 
+	public Member searchInviteNick(Member m) {
+		return sqlSession.selectOne("member.searchInviteNick",m);
+	}
+
 
 
 }

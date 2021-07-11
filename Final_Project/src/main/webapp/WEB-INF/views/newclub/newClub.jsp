@@ -136,7 +136,7 @@ body{
 							<hr style="margin: 0">
 							<div class="clubinfo1">
 								<div class="memberNum">멤버 수</div>
-								<div class="memberNum">초대하기</div>
+								<div class="memberNum" id="inviteMember">초대하기</div>
 							</div>
 
 							<div style="display: flex; justify-content: center;">
@@ -552,7 +552,72 @@ body{
 			</div>
 		</div>
 	</div>
+	<!-- 초대하기 모달 -->
+	<div class="modal-wrap" id="inviteModal">
+		<div class="modal-box">
+			<h2 class="inviteHead">초대하기</h2>
+			<button type="button" id="closeBtns"></button>
+			<div class="search-wrap">
+				<input type="text" id="inviteNick" placeholder="초대할 회원 닉네임">
+				<button type="button" id="searchBtn">찾기</button>
+			</div>
+			<input type="hidden" id="clubNumber" value="${clubNo }">
+			<input type="hidden" id="clubReceiver">
+			<div class="invite-wrap">
+				<!-- js로 넣을 곳 -->
+			</div>
+		</div>
+	</div>
 	<script>
+	//초대하기 모달 띄우기
+	$('#inviteMember').click(function(){
+		$('.modal-wrap').css('display','flex');
+	});
+	//초대하기 모달 x버튼 클릭 시 닫기
+	$('#closeBtns').click(function(){
+		$('.modal-wrap').css('display','none');
+		$('.invite-wrap').html('');
+	});
+	//초대할 멤버 찾기 클릭 시 ajax로 결과 받아오기
+	$('#searchBtn').click(function(){
+		var searchNick = $('#inviteNick').val();
+		$.ajax({
+			url:"/searchInviteNick.do",
+			data:{memberNick : searchNick},
+			success:function(data){
+				console.log(data);
+				if(data != ''){				
+					var inner = '<div class="invite-info"><img src="/resources/image/userPic/'+data.filepath+'">'+data.memberNick+'</div><button type="button" id="inviteBtn" onclick="insertInvite();">초대</button>';
+					$('#clubReceiver').val(data.memberNick);
+				}else{
+					var inner = `일치하는 회원이 없습니다.`;
+				}
+				$('#inviteNick').val('');
+				$('.invite-wrap').html(inner);
+			}
+		});
+	});
+	//초대버튼 클릭 시 ajax로 결과 받기
+	function insertInvite(){
+		var clubNo = $('#clubNumber').val();
+		var nick = $('#clubReceiver').val();
+		console.log(clubNo);
+		console.log(nick);
+		$.ajax({
+			url:"/insertInvite.do",
+			type:"post",
+			data:{clubNo : clubNo, receiver:nick, iaContent: "초대합니다!", iaType:"I"},
+			success:function(data){
+				if(data == "1"){
+					alert('초대 신청하였습니다.');
+				}else{
+					alert('정상적으로 처리되지 않았습니다. 다시 시도해주세요.');
+				}
+				$('.modal-wrap').css('display','none');
+				$('.invite-wrap').html('');
+			}
+		});
+	}
 	//메세지 보내기
 	function userMailSend(){
 		var sender = $("input[name=sender]").val();

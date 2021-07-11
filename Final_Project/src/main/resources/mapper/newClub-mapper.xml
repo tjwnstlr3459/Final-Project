@@ -228,6 +228,16 @@ INSERT INTO DIRECT_MESSAGE VALUES(
 <delete id="reservationDelete" parameterType="int">
 DELETE FROM CALENDAR WHERE ID = #{id}
 </delete>
+<!-- 클럽에서 초대 -->
+<insert id="insertInvite" parameterType="a">
+	INSERT INTO INVITE_APPLY VALUES(
+    IA_SEQ.NEXTVAL,
+    #{clubNo},
+    #{receiver},
+    #{iaType},
+    #{iaContent},
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</insert>
 </mapper>
 
 

@@ -517,8 +517,84 @@ body.modal-open[style] {
     margin-top: 25px;
     text-align: center;
 }
-
-
+/* 초대하기 모달 */
+.modal-wrap{
+	position:fixed;
+	top:0;
+	left:0;
+	display:none;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.3);
+	justify-content:center;
+	align-items:center;
+}
+.modal-box{
+	padding:10px;
+	background-color:#ffffff;
+	border-radius:10px;
+	position:relative;
+}
+.inviteHead{
+	width:200px;
+	padding-bottom:10px;
+	margin-top:5px;
+	border-bottom:2px solid #FF00FF;
+}
+.search-wrap,
+.invite-wrap{
+	width:200px;
+	display:flex;
+}
+.invite-wrap{
+	flex-direction:column;
+}
+.invite-wrap>*{
+	width:100%;
+}
+.invite-info{
+	height:30px;
+	text-align:center;
+}
+.invite-info>img{
+	width:30px;
+	height:30px;
+}
+#inviteMember{
+	width:100px;
+	cursor:pointer;
+	text-align:center;
+	border-radius:5px;
+	margin:auto;
+	padding:5px;
+	box-sizing:border-box;
+	box-shadow:0 0 1px black;
+	transition-duration:0.3s;
+}
+#inviteMember:hover{
+	box-shadow:0 0 5px black;
+	font-size:1.7rem;
+}
+#inviteNick{
+	flex-grow:3;
+}
+#searchBtn{
+	flex-grow:1;
+}
+#closeBtns{
+	width:30px;
+	height:30px;
+	background-image:url('/resources/image/icons/x.png');
+	background-size:100%;
+	background-color:transparent;
+	position:absolute;
+	top:15px;
+	right:10px;
+	border:none;
+	outline:none;
+	box-shadow:0 0 5px black;
+	border-radius:5px;
+}
 
     
 

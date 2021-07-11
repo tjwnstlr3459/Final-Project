@@ -567,4 +567,15 @@ public class MemberController {
 		}
 		return "0";
 	}
+	//클럽초대할 멤버 찾기
+	@RequestMapping(value="/searchInviteNick.do",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String searchInviteNick(Member m) {
+		Member mem = service.searchInviteNick(m);
+		if(mem != null) {
+			return new Gson().toJson(mem);
+		}else {
+			return null;
+		}
+	}
 }

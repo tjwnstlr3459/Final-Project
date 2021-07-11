@@ -298,4 +298,8 @@ public class MemberService {
 			return 0;
 		}
 	}
+
+	public Member searchInviteNick(Member m) {
+		return dao.searchInviteNick(m);
+	}
 }

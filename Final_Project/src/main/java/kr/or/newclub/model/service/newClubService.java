@@ -138,6 +138,10 @@ public ArrayList<Board> clubBoardMore(int start, int clubNo) {
 		public int reservationDelete(int reserNo) {
 			return dao.reservationDelete(reserNo);
 		}
+
+		public int insertInvite(Apply a) {
+			return dao.insertInvite(a);
+		}
 }
 
 
