@@ -595,6 +595,15 @@ body.modal-open[style] {
 	box-shadow:0 0 5px black;
 	border-radius:5px;
 }
+.noNo{
+	border: 0px;
+    background-color: #9554f3c9;
+    color: white;
+    border-radius: 5px;
+    width: 45px;
+    height: 25px;
+    line-height: 5px;
+}
 
     
 

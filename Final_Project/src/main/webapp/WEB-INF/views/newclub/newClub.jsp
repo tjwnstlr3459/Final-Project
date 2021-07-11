@@ -329,11 +329,11 @@ body{
 													<td>${l.iaContent }</td>
 													<td>${l.iaDate }</td>
 													<td style="text-align: center">
-														<button type="button" class="noNo"
+														<button type="button" style="border: 0px;background-color: #9554f3c9;color: white;border-radius: 5px;width: 45px;height: 25px;line-height: 5px;"
 															onclick="accept(${l.iaNo })">수락</button>
 													</td>
 													<td style="text-align: center">
-														<button class="noNo" type="button" onclick="refusal(${l.iaNo })">거절</button>
+														<button style="border: 0px;background-color: #9554f3c9;color: white;border-radius: 5px;width: 45px;height: 25px;line-height: 5px;" class="noNo" type="button" onclick="refusal(${l.iaNo })">거절</button>
 														<!-- location.href='/deleteRefusal.do?listNo=${l.iaNo }&clubNo=${clubNo }&menuNo=3' -->
 													</td>
 												</tr>
@@ -545,7 +545,7 @@ body{
 					style="display: flex; justify-content: center;">
 					<button type="button" onclick="userMailSend()"
 						class="btn btn-default" style="background: #5bc0de; color: wheat;">보내기</button>
-					<button type="button" id="closeModal2" class="btn btn-default"
+					<button type="button" id="closeModal3" class="btn btn-default"
 						data-dismiss="modal"
 						style="background-color: #e84c4ca8; color: wheat;">닫기</button>
 				</div>
@@ -641,6 +641,7 @@ body{
 			success :function(data){
 				if(data>0){
 					alert("쪽지가 전송되었습니다.");
+					$("#closeModal3").click();
 				}else{
 					alert("전송실패")
 				}
@@ -818,7 +819,7 @@ body{
 				var calendarEl = document.getElementById("test");			
 				  test = new FullCalendar.Calendar(calendarEl, {
 				    plugins: ["interaction", "dayGrid"],
-				    defaultDate: "2021-06-06",
+				    defaultDate: "2021-07-01",
 				    editable: true,
 				    eventLimit: true,
 				    
