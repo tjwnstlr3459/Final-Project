@@ -69,6 +69,8 @@ button:hover:before,button:hover:after{
 	</c:otherwise>
 	</c:choose>
 	<hr> --%>
+	<h1 style="font-size: 40px; text-align: center; margin-top:20px;">전체 클럽 리스트</h1>
+	<hr>
 	<h3 style="text-align: center;">CLUB LIST</h3>
 	<c:if test="${!empty sessionScope.m }">
 	<div>

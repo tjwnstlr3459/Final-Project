@@ -200,7 +200,7 @@ font-family: 'Noto Sans KR', sans-serif;
 		 <c:if test="${sessionScope.m.grade ge 2 }">
 		 	<li><a href="#" onclick="location.href='/myClub.do';" style="cursor: pointer;">${sessionScope.m.memberNick }'s CLUB</a></li>
 		 </c:if>
-		 	<li><a href="#">클럽</a>
+		 	<li><a style="cursor:pointer;" disabled>클럽</a>
           <ul class='sub'>
             <li><a href="/main.jsp#clubCategory">클럽 카테고리</a></li>
             <li><a href="/freeBoardList.do">클럽 피드</a></li>
