@@ -1014,7 +1014,8 @@
 		$(".friendName").click(function(e) {
 			var targetUser = $(this).text();
 			//
-			dmReceiver = $(this).text();
+			dmReceiver = $(this).text();	
+			
 			
 			var sWidth = window.innerWidth;
 			var sHeight = window.innerHeight;
@@ -1044,7 +1045,9 @@
 			var chat = "<span class='fMenu' onclick='sendChatReq(\"" + sendUser + "\", \"" + targetUser + "\")'>채팅 요청하기</span>";
 			var close = "<span class='fMenu' onclick='closeLayer(this)'>닫기</span>";
 			popup.append(dm);
-			popup.append(chat);
+			if($(this).hasClass("onFriend")) {
+				popup.append(chat);
+			}
 			popup.append(close);
 			
 			$(".popupLayer").css({

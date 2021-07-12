@@ -15,9 +15,11 @@
   height: 35px;
   color: white;
   font-weight: bold;
+  font-size: 1em;
   background-color: #ec523f;
   border: 0;
   margin: 10px 10px;
+  padding:0;
 }
 
 @keyframes blink-effect {

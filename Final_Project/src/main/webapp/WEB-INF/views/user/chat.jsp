@@ -108,7 +108,8 @@
 			var email = "<c:out value='${m.email}'/>";
 			console.log(email);
 			if(!(email == undefined)) {
-				chatWs = new WebSocket("ws:/172.30.1.42/memberChat.do");
+				//chatWs = new WebSocket("ws:/172.30.1.5/memberChat.do");
+				chatWs = new WebSocket("ws:/khdsa1.iptime.org:18080/memberChat.do");				
 				//1. 웹소켓 연결 성공 시 실행 함수 지정
 				chatWs.onopen = initChat;
 				//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
@@ -153,23 +154,6 @@
 		function appendChat(msg) {
 			$(".messageArea").append(msg);
 			$(".messageArea").scrollTop($(".messageArea")[0].scrollHeight);
-		}
-		function print(loginList) {
-			$(".rcvchat").html(loginList);
-			$(".rcvchat").attr("display", "block");
-		}
-		function showFriend(loginList){
-			var friends = $(".friendName");
-			console.log(friends.length);
-			for(var i=0;i<friends.length;i++){				
-				for(var j=0;j<loginList.length;j++){
-					if(friends.eq(i).text() == loginList[j]){
-						friends.eq(i).attr("class","friendName onFriend");
-						friends.eq(i).parent().prev().append("<span class='onbadge'>on</span>");
-						break;
-					}
-				}
-			}
 		}
 		function endChat() {
 			appendChat("<p>서버와의 연결이 끊어졌습니다.</p>");

@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/resources/css/footer.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="resources/css/member/chat.css">
 
 	<!-- 현재 접속자 파싱 웹소켓 -->
 	<script src="/resources/js/admin/adminWebSocket.js"></script>
@@ -239,8 +240,17 @@ font-family: 'Noto Sans KR', sans-serif;
 				style="cursor: pointer; color:black;"><i class="fab fa-instagram"></i></li>
 		</ul>
 	</nav>
+	<div class="modalchat">
+		<div class="modalchat-content">
+				<div class="rcvchat">		
+							
+				</div>
+			</div>
+		</div>	
+	</div>
 	<script>
 	var ws;
+	var chatWs;
 	
 	function loginCheck() {
 		if(${empty sessionScope.m}){
@@ -250,10 +260,98 @@ font-family: 'Noto Sans KR', sans-serif;
 			location.href="/createClubFrm.do";
 		}
 	}
+	$(function() {		
+		var loginList; 
+		
+		function loggedIn() {
+			var email = "<c:out value='${m.email}'/>";
+			console.log(email);
+			if(!(email == undefined)) {
+				//ws = new WebSocket("ws:/172.30.1.5/loginMember.do");
+				ws = new WebSocket("ws:/khdsa1.iptime.org:18080/loginMember.do");
+				//1. 웹소켓 연결 성공 시 실행 함수 지정
+				ws.onopen = loginMember;
+				//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
+				ws.onmessage = loginFriend;
+				//3. 웹소켓연결이 종료되면 수행할 함수 지정
+				ws.onclose = outMember;
+			}		
+		}
+		function loginMember() {
+			var name = "<c:out value='${m.memberNick}'/>";
+			console.log("로그인 유저 : " + name);
+			var data = {type:"login", user:name};
+			ws.send(JSON.stringify(data));
+		}
+		function loginFriend(param) {
+			loginList = JSON.parse(param.data);
+			console.log(loginList);
+			if (loginList.hasOwnProperty('name')) { //name 키가 있을 때
+				print(loginList); //채팅 요청 div 보여주기
+			} else { //키가 따로 없을 때
+				showFriend(loginList); //로그인된 친구 표시하기
+			}		
+		}
+		function outMember() {
+			
+		}
+		//채팅 요청 출력
+		function print(req) {
+			$(".modalchat").show();
+			$(".rcvchat").html('<i class="fas fa-bell fa-beat blink"></i> ' + req.string);
+			$(".rcvchat").after('<button type="button" class="chatButton" onclick="accChat(\'' + loginList.name + '\')">요청 수락</button>');
+			$(".rcvchat").after().after('<button type="button" class="chatButton" onclick="refChat(\'' + loginList.name + '\')">요청 거절</button>');
+		}
+		//로그인된 친구 표시
+		function showFriend(loginList){
+			var friends = $(".friendName");
+			console.log(friends.length);
+			for(var i=0;i<friends.length;i++){				
+				for(var j=0;j<loginList.length;j++){
+					if(friends.eq(i).text() == loginList[j]){
+						friends.eq(i).attr("class","friendName onFriend");
+						friends.eq(i).parent().prev().append("<span class='onbadge'>on</span>");
+						break;
+					}
+				}
+			}
+		}	
+		
+		loggedIn();
+	})
 
 	$(".dropmenu ul li").hover(function(){
 		$(this).find("ul").stop().fadeToggle(1);
       });
+	
+	function accChat(target) {
+		window.open("/onechat.do?targetUser=" + target, "너나들이-채팅", "width=400, height=600");
+		$(".modalchat").hide();
+	}
+	function refChat(target) {
+		$(".modalchat").hide();
+		//chatWs = new WebSocket("ws:/172.30.1.5/memberChat.do");
+		chatWs = new WebSocket("ws:/khdsa1.iptime.org:18080/memberChat.do");
+		//1. 웹소켓 연결 성공 시 실행 함수 지정
+		chatWs.onopen = function() {
+			var name = "<c:out value='${m.memberNick}'/>";
+			console.log("요청 유저 : " + target);
+			console.log("거절 유저 : " + name);
+			var data = {type:"refuse", user:name, target:target};
+			chatWs.send(JSON.stringify(data));
+		}
+		//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
+		chatWs.onmessage = loginFriend;
+		//3. 웹소켓연결이 종료되면 수행할 함수 지정
+		chatWs.onclose = outMember;
+	}
+	function sendRefusal(target) {
+		var name = "<c:out value='${m.memberNick}'/>";
+		console.log("요청 유저 : " + target);
+		console.log("거절 유저 : " + name);
+		var data = {type:"refuse", user:name, target:target};
+		chatWs.send(JSON.stringify(data));
+	}
 	</script>
 </body>
 </html>

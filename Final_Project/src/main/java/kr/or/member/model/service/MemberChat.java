@@ -48,14 +48,16 @@ public class MemberChat extends TextWebSocketHandler {
 		String user = element.getAsJsonObject().get("user").getAsString();
 		String target = element.getAsJsonObject().get("target").getAsString();
 		
-		if(type.equals("chatin")) {
+		
+		if(type.equals("chatin")) { //채팅방에 들어왔을 때
 			memberList.put(session, user);				
 			
-			for (WebSocketSession key : memberList.keySet()) {
-				String value = memberList.get(key);
-			    System.out.println("[key]:" + key + ", [value]:" + value);
-			}    
+//			for (WebSocketSession key : memberList.keySet()) {
+//				String value = memberList.get(key);
+//			    System.out.println("[key]:" + key + ", [value]:" + value);
+//			}    
 			
+			//메시지를 보낼 유저 검색
 			WebSocketSession targetUser = null;
 			for(WebSocketSession s : memberList.keySet()) {
 		        if(memberList.get(s).equals(target)) {
@@ -68,7 +70,7 @@ public class MemberChat extends TextWebSocketHandler {
 				System.out.println(sendMsg);
 				TextMessage tm = new TextMessage(sendMsg);
 				targetUser.sendMessage(tm);
-			}
+			} 
 			
 			
 //			for(WebSocketSession s : sessionList) { //세션리스트에 있는 모든 사람에게 보냄
@@ -77,8 +79,9 @@ public class MemberChat extends TextWebSocketHandler {
 //					s.sendMessage(tm);
 //				}
 //			}
-		} else if(type.equals("refuse")) {
+		} else if(type.equals("refuse")) { //채팅을 거절했을 때
 			
+			//세션에서 메시지를 보낼 상대가 있는지 검색
 			WebSocketSession targetUser = null;
 			for(WebSocketSession s : memberList.keySet()) {
 		        if(memberList.get(s).equals(target)) {
@@ -86,14 +89,15 @@ public class MemberChat extends TextWebSocketHandler {
 		            targetUser = s;
 		        }
 		    }
-			if(targetUser != null) {
+			if(targetUser != null) { //상대가 있다면 상대에게 메시지 전송
 				String sendMsg = "{\"refuse\" : \"true\", \"string\" : \"" + user + "님이 채팅 요청을 거절했습니다. 채팅이 종료됩니다.\"}";
 				System.out.println(sendMsg);
 				TextMessage tm = new TextMessage(sendMsg);
 				targetUser.sendMessage(tm);
 			}
 			
-		} else if(type.equals("chat")) {
+		} else if(type.equals("chat")) { //채팅 메시지를 받았을 때
+			//세션에서 메시지를 보낼 상대가 있는지 검색
 			WebSocketSession targetUser = null;
 			for(WebSocketSession s : memberList.keySet()) {
 		        if(memberList.get(s).equals(target)) {
@@ -101,7 +105,7 @@ public class MemberChat extends TextWebSocketHandler {
 		            targetUser = s;
 		        }
 		    }
-			if(targetUser != null) {
+			if(targetUser != null) { //상대가 있다면 상대에게 메시지 전송
 				String msg = element.getAsJsonObject().get("msg").getAsString();
 				String sendMsg = "{\"chat\" : \"true\", \"string\" : \"" + msg + "\"}";
 				System.out.println(sendMsg);
