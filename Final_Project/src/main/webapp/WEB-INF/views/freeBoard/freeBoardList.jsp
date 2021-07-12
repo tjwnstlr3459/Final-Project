@@ -173,7 +173,7 @@
 		});  
 		}
 		function deleteCheck(obj) {
-			var fbNo = $(obj).parents().eq(1).children().eq(3).val()
+			var fbNo = $(obj).parent().eq(0).parent().eq(0).parent().eq(0).children().eq(0).children().eq(3).val();
 			if(confirm('피드를 정말 삭제하시겠습니까?')){				
 				location.href='/deleteFreeBoard.do?fbNo='+fbNo;
 				
