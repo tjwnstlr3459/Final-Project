@@ -1120,7 +1120,8 @@ body{
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws:/192.168.0.2/chat.do")
+      /* ws = new WebSocket("ws:/192.168.0.2/chat.do"); */
+      ws = new WebSocket("ws://khdsa1.iptime.org:18080/chat.do");
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수

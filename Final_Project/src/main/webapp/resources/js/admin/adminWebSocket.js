@@ -4,7 +4,8 @@ $(function(){
 	function initMember(){
 		//memberEmail = email;
 		//웹 소켓 생성 > 연결 시도
-		ws = new WebSocket("ws:/192.168.219.105/inMemberCount.do");
+		//ws = new WebSocket("ws:/192.168.219.105/inMemberCount.do");
+		ws = new WebSocket("ws://khdsa1.iptime.org:18080/chat.do");
 		//1. 웹소켓 연결 성공 시 실행 함수 지정
 		ws.onopen = inMember;
 		//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
@@ -37,7 +38,8 @@ $(function(){
 	function initChat() {
 		var email = "<c:out value='${m.email}'/>";
 		if(!email == undefined) {
-			ws = new WebSocket("ws:/192.168.10.20/inMemberCount.do");
+			//ws = new WebSocket("ws:/192.168.10.20/inMemberCount.do");
+			ws = new WebSocket("ws://khdsa1.iptime.org:18080/chat.do");
 			//1. 웹소켓 연결 성공 시 실행 함수 지정
 			ws.onopen = inMember;
 			//2. 웹소켓으로 서버가 데이터를 전송할 시 로직을 수행할 함수 지정
