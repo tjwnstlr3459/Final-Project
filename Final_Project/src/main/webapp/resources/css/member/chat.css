@@ -1,0 +1,30 @@
+.modalchat {
+	width:100vw;
+	display:none;
+}
+.modalchat-content {
+	text-align:center;
+}
+.rcvchat {
+	padding: 10px 0px;
+	text-align:center;
+	font-size:14px;
+}
+.chatButton {
+  width: 100px;
+  height: 35px;
+  color: white;
+  font-weight: bold;
+  background-color: #ec523f;
+  border: 0;
+  margin: 10px 10px;
+}
+
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink-effect 1s step-end infinite;

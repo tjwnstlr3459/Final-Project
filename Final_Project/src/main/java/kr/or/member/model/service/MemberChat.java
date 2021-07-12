@@ -17,7 +17,7 @@ import com.google.gson.JsonParser;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Member;
 
-public class LoginMember extends TextWebSocketHandler {
+public class MemberChat extends TextWebSocketHandler {
 	private ArrayList<WebSocketSession> sessionList;		//접속한 회원의 세션(eamil)을 저장하는 list
 	private Map<WebSocketSession, String> memberList;		//각 세션별로 접속한 회원의 아이디를 저장하는 map
 	@Autowired
@@ -25,7 +25,7 @@ public class LoginMember extends TextWebSocketHandler {
 	@Autowired
 	private MemberService service;
 	
-	public LoginMember() {
+	public MemberChat() {
 		super();
 		sessionList = new ArrayList<WebSocketSession>();
 		memberList = new HashMap<WebSocketSession, String>(); 
@@ -46,42 +46,15 @@ public class LoginMember extends TextWebSocketHandler {
 		String type = element.getAsJsonObject().get("type").getAsString();
 		//user 키의 값 추출
 		String user = element.getAsJsonObject().get("user").getAsString();
+		String target = element.getAsJsonObject().get("target").getAsString();
 		
-		if(type.equals("login")) {
-			//map에 세션에 해당하는 memberID를 저장 
-			if(!memberList.containsValue(user)) {
-				memberList.put(session, user);
-			}			
+		if(type.equals("chatin")) {
+			memberList.put(session, user);				
 			
 			for (WebSocketSession key : memberList.keySet()) {
 				String value = memberList.get(key);
 			    System.out.println("[key]:" + key + ", [value]:" + value);
 			}    
-			
-			//해당하는 memberID의 친구 리스트 가져오기
-			service.selectFriends(user);
-			ArrayList<Member> fList = (ArrayList<Member>)dao.selectFriend(user);
-			ArrayList<String> loginUser = new ArrayList<String>();
-			for(int i=0; i<fList.size(); i++) {
-				if(memberList.containsValue(fList.get(i).getMemberNick())) {
-					loginUser.add(fList.get(i).getMemberNick());
-				}
-			}
-			String sendMsg = new Gson().toJson(loginUser);
-			TextMessage tm = new TextMessage(sendMsg);
-			session.sendMessage(tm);
-			
-//			for(WebSocketSession s : sessionList) { //세션리스트에 있는 모든 사람에게 보냄
-//				if(!session.equals(s)) { //들어온 본인에게는 보내지 않음
-//					TextMessage tm = new TextMessage(sendMsg);
-//					s.sendMessage(tm);
-//				}
-//			}
-		} else if(type.equals("chatReq")) {
-			//target 키의 값 추출
-			String target = element.getAsJsonObject().get("target").getAsString();
-			System.out.println(user);
-			System.out.println(target);
 			
 			WebSocketSession targetUser = null;
 			for(WebSocketSession s : memberList.keySet()) {
@@ -91,16 +64,50 @@ public class LoginMember extends TextWebSocketHandler {
 		        }
 		    }
 			if(targetUser != null) {
-				String sendMsg = "{\"name\" : \"" + user + "\", \"string\" : \"" + user + "님이 채팅을 요청하셨습니다. 채팅을 시작하시겠습니까?\"}";
+				String sendMsg = "{\"message\" : \"true\", \"string\" : \"" + user + "님이 입장했습니다.\"}";
 				System.out.println(sendMsg);
 				TextMessage tm = new TextMessage(sendMsg);
 				targetUser.sendMessage(tm);
-			} else {
-				String sendMsg = "채팅 요청 중 에러가 발생했습니다. 다시 시도해주세요.";
-				TextMessage tm = new TextMessage(sendMsg);	
-				session.sendMessage(tm);
 			}
 			
+			
+//			for(WebSocketSession s : sessionList) { //세션리스트에 있는 모든 사람에게 보냄
+//				if(!session.equals(s)) { //들어온 본인에게는 보내지 않음
+//					TextMessage tm = new TextMessage(sendMsg);
+//					s.sendMessage(tm);
+//				}
+//			}
+		} else if(type.equals("refuse")) {
+			
+			WebSocketSession targetUser = null;
+			for(WebSocketSession s : memberList.keySet()) {
+		        if(memberList.get(s).equals(target)) {
+		        	System.out.println(s);
+		            targetUser = s;
+		        }
+		    }
+			if(targetUser != null) {
+				String sendMsg = "{\"refuse\" : \"true\", \"string\" : \"" + user + "님이 채팅 요청을 거절했습니다. 채팅이 종료됩니다.\"}";
+				System.out.println(sendMsg);
+				TextMessage tm = new TextMessage(sendMsg);
+				targetUser.sendMessage(tm);
+			}
+			
+		} else if(type.equals("chat")) {
+			WebSocketSession targetUser = null;
+			for(WebSocketSession s : memberList.keySet()) {
+		        if(memberList.get(s).equals(target)) {
+		        	System.out.println(s);
+		            targetUser = s;
+		        }
+		    }
+			if(targetUser != null) {
+				String msg = element.getAsJsonObject().get("msg").getAsString();
+				String sendMsg = "{\"chat\" : \"true\", \"string\" : \"" + msg + "\"}";
+				System.out.println(sendMsg);
+				TextMessage tm = new TextMessage(sendMsg);
+				targetUser.sendMessage(tm);
+			} 		
 		}
 	}
 	// 클라이언트가 연결을 끊을 때 수행되는 메소드

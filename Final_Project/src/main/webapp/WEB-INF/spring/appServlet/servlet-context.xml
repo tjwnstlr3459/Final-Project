@@ -108,7 +108,6 @@
 	<task:annotation-driven/>
 	
 	 <!-- 웹소켓 전체채팅용 설정 -->
-
 	<beans:bean id="allMemberChat" class="kr.or.newclub.model.service.allMemberChat"/>
 	<websocket:handlers>
 		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
@@ -124,6 +123,12 @@
 	<beans:bean id="loginMember" class="kr.or.member.model.service.LoginMember"/>
 	<websocket:handlers>
 		<websocket:mapping handler="loginMember" path="/loginMember.do"/>
+	</websocket:handlers>
+	
+	<!-- 웹소켓 개인 채팅용  -->
+	<beans:bean id="memberChat" class="kr.or.member.model.service.MemberChat"/>
+	<websocket:handlers>
+		<websocket:mapping handler="memberChat" path="/memberChat.do"/>
 	</websocket:handlers>
 
 	

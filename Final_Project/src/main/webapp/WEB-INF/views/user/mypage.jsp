@@ -1062,10 +1062,11 @@
 		function sendChatReq(sendUser, targetUser) {
 			var data = {type:"chatReq", user:sendUser, target:targetUser};
 			ws.send(JSON.stringify(data));	
+			window.open("/onechat.do?targetUser=" + targetUser, "너나들이-채팅", "width=400, height=570, location=no, resizable=no, fullscreen=no");
 		}
 		function chatReq() {
 			var name = "<c:out value='${m.memberNick}'/>";
-			var data = {type:"chatReq", msg:name};
+			var data = {type:"chatReq", msg:name}
 			ws.send(JSON.stringify(data));
 		}
 		

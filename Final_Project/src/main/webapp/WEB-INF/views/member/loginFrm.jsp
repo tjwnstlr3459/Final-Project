@@ -59,7 +59,7 @@
 	<%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
 	<!-- 네이버 소셜로그인 -->
 	<script type="text/javascript">
-	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/nLogin.jsp");
+	  	var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://172.30.1.42/view/nLogin.jsp");
 	  	var state = naver_id_login.getUniqState();
 	  	naver_id_login.setButton("white", 2,65);
 	  	naver_id_login.setDomain("http://127.0.0.1");

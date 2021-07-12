@@ -529,7 +529,13 @@ public class MemberController {
 		}
 		return "0";
 	}	
-
+	
+	@RequestMapping(value="/onechat.do")
+	public String onechat(@SessionAttribute(required = false) Member m, String targetUser, Model model) {
+		model.addAttribute("m", m);
+		model.addAttribute("target", targetUser);
+		return "user/chat";
+	}
 		
 	
 	//전체회원list get

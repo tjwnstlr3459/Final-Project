@@ -19,7 +19,7 @@
 	</form>
 	
 <script type="text/javascript">
-  var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://127.0.0.1/view/callback.jsp");
+  var naver_id_login = new naver_id_login("QqHxZVXS15sYfRiy7g5M", "http://172.30.1.42/view/callback.jsp");
   // 접근 토큰 값 출력
   //alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
