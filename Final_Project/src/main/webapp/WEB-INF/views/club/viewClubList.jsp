@@ -80,7 +80,7 @@ button:hover:before,button:hover:after{
 		<div class="categoryNavi">
 				 <b style="text-align:center; font-size:27px; margin-left: 70px;">Category</b><br><br> 
 			<ul>
-				<li><a href="#">전체</a></li>
+				<li><a href="/viewAllClubList.do">전체</a></li>
 				<li><a href="/viewClubList.do?cgNo=4">스포츠</a></li>
 				<li><a href="/viewClubList.do?cgNo=6">여행</a></li>
 				<li><a href="/viewClubList.do?cgNo=10">술</a></li>
@@ -95,7 +95,8 @@ button:hover:before,button:hover:after{
 			<c:forEach items="${list }" var="club">
 				<div class="card border-white-primary mb-3"
 					style="max-width: 20rem;">
-					<div class="card-header">${club.clubOpener} 님의 클럽입니다.</div>
+					<div class="card-header">${club.clubOpener} 님의 클럽입니다.
+					</div>
 					<div class="card-body">
 						<h4 class="card-title">
 							${club.clubName}

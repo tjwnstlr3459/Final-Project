@@ -206,6 +206,9 @@ section::-webkit-scrollbar-track {
 	margin:0;
 	width:40px;
 	height:40px;
+	border-radius:20px;
+	background-color:#999999;
+	box-shadow:0 0 5px #ffffff;
 }
 #searchBtn>img{
 	width:100%;
@@ -597,6 +600,9 @@ section::-webkit-scrollbar-track {
 }
 /* 선택된 회원에게 쪽지 발송 버튼 */
 /* 관리자 등록 버튼 */
+#selectMessageBtn{
+	margin-right:5px;
+}
 #selectMessageBtn,
 #upgradeBtn{
 	background-color:#999999;

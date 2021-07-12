@@ -136,6 +136,18 @@ public class newClubDao {
 	public int sendMail(HashMap<Object, Object> map) {
 		return session.insert("newclub.sendMail",map);
 	}
+	//달력 일정 삭제
+	public int reservationDelete(int reserNo) {
+		return session.delete("newclub.reservationDelete",reserNo);
+	}
+
+	public int insertInvite(Apply a) {
+		return session.insert("newclub.insertInvite",a);
+	}
+
+	public int cmCount(int clubNo) {
+		return session.selectOne("newclub.cmCount",clubNo);
+	}
 
 }
 

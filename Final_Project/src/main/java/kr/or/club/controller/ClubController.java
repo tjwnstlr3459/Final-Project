@@ -26,6 +26,7 @@ import kr.or.club.model.vo.ClubChart;
 import kr.or.club.model.vo.Club;
 import kr.or.member.model.vo.Member;
 import kr.or.newclub.model.vo.ClubComment;
+import kr.or.newclub.model.vo.clubBoard;
 
 @Controller
 public class ClubController {
@@ -303,7 +304,12 @@ public class ClubController {
 		return "0";
 	}
 	
-	
+	@RequestMapping(value="/viewAllClubList.do")
+	public String viewAllClubList(Model model) {
+		ArrayList<Club> list = service.viewAllClubList();
+		model.addAttribute("list", list);
+		return "club/viewAllClubList";
+	}
 	}
 
 

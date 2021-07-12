@@ -217,7 +217,28 @@
 	<insert id="insertDestroy">
 		insert into destroy values (des_seq.nextval, to_char(sysdate, 'YYYY-MM-DD'), 'M')
 	</insert>
-	
+	<!-- 클럽 초대하기 회원 닉네임 찾기 -->
+	<select id="searchInviteNick" parameterType="m" resultType="m">
+		select member_no as memberNo,
+			   email,
+			   member_pw as memberPw,
+			   member_nick as memberNick,
+			   gender,
+			   address,
+			   intro,
+			   hobby1,
+			   hobby2,
+			   hobby3,
+			   filename,
+			   filepath,
+			   warning_count as warningCount,
+			   grade,
+			   enroll_date as enrollDate,
+			   last_date as lastDate,
+			   age,
+			   join_method as joinMethod
+		from member where member_nick=#{memberNick}
+	</select>
 </mapper>
 
 

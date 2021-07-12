@@ -20,6 +20,7 @@
 				<div class="bottomContent">
 					<div class="bottomMent">
 						<a style="font-size: 30px; font-weight: 500;">공지사항</a>
+						<c:if test="${sessionScope.m.grade lt 2 }">
 						<div class="sendBtnChek">
 							<a href="/modify.do?abNo=${board.abNo }">수정</a>
 						</div>
@@ -28,6 +29,7 @@
 							class="sendBtnChek">
 							<a href="#" class="delete">삭제</a>
 						</div>
+						</c:if>
 					</div>
 					<div class="bottomContentFont">
 						<!--공지 상세보기-->
@@ -42,7 +44,7 @@
 								<div>작성자</div>
 								<div class="writer" style="width: 27%">${board.abWriter }</div>
 								<div>이메일</div>
-								<div class="email" style="width: 27.7%">${board.abWriter }</div>
+								<div class="email" style="width: 27.7%">${board.abWriter }@google.com</div>
 								<div>조회수</div>
 								<div>${board.selCount }</div>
 							</div>
@@ -176,7 +178,7 @@
 		<!-- 푸터 -->
 
 
-		<!-- 모달 -->
+		<%-- <!-- 모달 -->
 		<div class="boardModalPan" style="display: none;">
 			<div class="boardModal">
 				<div class="closeModal">
@@ -222,7 +224,7 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div> --%>
 	</div>
 </body>
 <script>

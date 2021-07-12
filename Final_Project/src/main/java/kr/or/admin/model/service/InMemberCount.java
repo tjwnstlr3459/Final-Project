@@ -58,8 +58,14 @@ public class InMemberCount extends TextWebSocketHandler{ 	//상속으로 생성�
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception{
 		sessionList.remove(session);
 		for(WebSocketSession s : sessionList) {
-			TextMessage count = new TextMessage(Integer.toString(sessionList.size()));
-			s.sendMessage(count);
+			//TextMessage count = new TextMessage(Integer.toString(sessionList.size()));
+			//보내는 값이 하나가 아니기 때문에 map으로 보내기 위한 생성
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			int visitorCount = sessionList.size();
+			//map에 put
+			map.put("visitorCount", visitorCount);
+			TextMessage countData = new TextMessage(new Gson().toJson(map));
+			s.sendMessage(countData);
 		}
 		System.out.println("사용자 종료 > 현재 접속자 수 : "+sessionList.size());
 	}

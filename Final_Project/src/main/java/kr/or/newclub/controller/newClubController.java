@@ -59,7 +59,11 @@ public class newClubController {
 		//클럽정보 출력
 		Club clubInfo = service.selectClub(clubNo);
 		model.addAttribute("club", clubInfo);
-		
+		//클럽회원 수 가져오기
+		int cmCount = service.cmCount(clubNo);
+		model.addAttribute("cmCount",cmCount);
+		System.out.println(clubNo);
+		System.out.println(cmCount);
 		
 		//로그인한 회원이 속한 클럽 넘버 알아내기
 		ArrayList<Club> memberClubNo = service.selectMemberClubNo(m);
@@ -139,6 +143,14 @@ public class newClubController {
 		
 		return result;
 	}
+	//달력 일정 삭제
+	@ResponseBody
+	@RequestMapping(value = "reservationDelete")
+	public int reservationDelete(int reserNo) {
+		int result = service.reservationDelete(reserNo);
+		return result;
+	}
+	
 	//클럽 인원 추방
 	@ResponseBody
 	@RequestMapping(value = "/MemberBlack.do")
@@ -276,5 +288,20 @@ public class newClubController {
 		int result = service.boardDelete(boardNo);
 		int clubUpdate = aService.updateClubLastDateBoardNo(boardNo);
 		return result;
+	}
+	//클럽에서 초대
+	@RequestMapping(value="/insertInvite.do")
+	@ResponseBody
+	public String insertInvite(Apply a) {
+		System.out.println(a.getClubNo());
+		System.out.println(a.getIaContent());
+		System.out.println(a.getReceiver());
+		System.out.println(a.getIaType());
+		int result = service.insertInvite(a);
+		if(result > 0) {
+			return "1";
+		}else {
+			return "0";
+		}
 	}
 	}

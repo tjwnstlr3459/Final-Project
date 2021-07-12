@@ -369,6 +369,7 @@
 			</div>
 			<!-- /.row -->
 			<button onclick="loginCheck();" id="feed_info">클럽만들기</button>
+			<button onclick="location.href='/viewAllClubList.do';" id="feed_info">전체클럽</button>
 				
 		</div>
 		<!-- /.container -->

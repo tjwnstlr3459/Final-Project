@@ -32,7 +32,7 @@ public class ClubService {
 	//회원이 속한 모임에 클럽게시물 상세출력(더보기/chagneDate로 날짜조건별 조회)
 	public ArrayList<ClubBoard> morePhoto(int start, Member m, int changeDate, String searchCon) {
 		//5개씩 사진 가져올거라서
-		int length = 10;
+		int length = 20;
 		int end = start+length-1;
 		List<ClubBoard> list = dao.morePhoto(start,end,m,changeDate,searchCon);
 		return (ArrayList<ClubBoard>)list;
@@ -171,6 +171,11 @@ public class ClubService {
 		map.put("boardMoment",boardMoment);
 		map.put("m",m);
 		return dao.postDeletLike(map);
+	}
+
+	public ArrayList<Club> viewAllClubList() {
+		ArrayList<Club> list = dao.viewAllClubList();
+		return list;
 	}
 
 

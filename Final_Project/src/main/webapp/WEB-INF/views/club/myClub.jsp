@@ -53,9 +53,8 @@
 		<div class="row masonry">
 			<section id="page-header">
 				<div class="row current-cat">
-					<div class="col-full" style="width: 25%;margin-left: 10px;height: 40px;">
+					<div class="col-full" style="margin-left: 10px;height: 40px;">
 						<h1 class="deepshadow">${sessionScope.m.memberNick }'s Club</h1>
-						<hr>
 					</div>
 
 				</div>
@@ -64,7 +63,7 @@
 				<!-- 클러리스트 -->
 				<div class="myInfo">
 					<div class="myInfoImg">
-						<img src="/resources/image/userPic/${sessionScope.m.filename }" />
+						<img src="/resources/image/userPic/${sessionScope.m.filepath }" />
 					</div>
 					<div class="userName" style="text-align: center;">${sessionScope.m.memberNick}님</div>
 					<div
@@ -126,7 +125,7 @@
 				<div class="bricks-wrapper" style="height: 1200px;margin-left: 5px">
 					<div class="grid-sizer"></div>
 					<div class="photoWrapper"
-						style="width: 100%; height: 800px; overflow-y: scroll">
+						style="width: 100%; height: 1000px; overflow-y: scroll">
 						<!--  style="width:100%;height:800px; overflow-x:scroll; overflow-y:scroll; -->
 					</div>
 				</div>
@@ -165,9 +164,10 @@
 				<div class="postContent"></div>
 				<!--내용-->
 				<div class="postLike">
-					<div  class="modalIndexNumber"style="display: none;"></div>
-					<div class="child">
-						<a href="#" onclick="homeEnter()"><img
+					<div class="modalIndexNumber"style="display: none;"></div>
+					<div class="modalClubNo"style="display: none;"></div>
+					<div class="child"> 
+						<a href="#" onclick="homeEnter(this)"><img
 							src="/resources/image/icons/home.png" /></a>
 					</div>
 					<div onclick="postLikeDo(this)">
@@ -264,8 +264,6 @@
 			success : function(data){
 				if(data>0){
 					alert("좋아요 확인");
-					//좋아요 클릭 조건(-1이면 취소버튼이 활성화)
-					/* $(".postLikeNum").val(-1); */
 					//이미지 변화
 					$(".postImgPan").empty();
 					$(".postImgPan").html(heart);
@@ -273,6 +271,8 @@
 					console.log("idx : "+idx);
 					console.log($(".likeCheck").length);
 					$(".likeCheck").eq(idx).html("likeOn");
+					//좋아요 누르면 count올라가게
+					
 				}
 			}
 		});
@@ -288,8 +288,6 @@
 					if(data>0){
 						alert("좋아요 취소");
 						//하단의 좋아요수 변화
-						//좋아요 클릭 조건(0이면 좋아요버튼이 활성화)
-						/* $(".postLikeNum").val(0); */
 						//이미지 변화
 						$(".postImgPan").empty();
 						$(".postImgPan").html(heartBean);
@@ -366,9 +364,8 @@
 
 	//해당 상세페이지로 이동
 	function homeEnter() {
-		var homeNo = $(".clubNo").html();
-		location.href = "/newClub.do?clubNo=" + homeNo;
-		/* console.log(homeNo); */
+		var clubNo = $(".modalClubNo").html();
+		location.href = "/newClub.do?clubNo=" + clubNo;
 	}
 	var changeDate = 0;
 	/* $(".postsCheck").click(function() {
@@ -421,6 +418,8 @@
 		//모달창 내 해당 값 넣기
 		$(".modalMemberName").html($(".cName").eq(idx).html()); //게시글 작성자
 		$(".modalClubName").html($(".clubName").eq(idx).html()); //해당 게시글 클럽명
+		$(".modalClubNo").html($(".clubNo").eq(idx).html()); //해당 클럽 넘버 넣어주기
+		
 		$(".postContent").html($(".entry-excerpt").eq(idx).html()); //게시글 내용
 		$(".postImg").html($(".picPath").eq(idx).clone());			//사진경로
 		$(".comentSendNo").val($(".boardNo").eq(idx).html());	//게시글의 보드넘버
@@ -620,7 +619,7 @@
 					console.log(p.cbGood); */
 					var html = "";
 					html += '<div style="float:left;width:180px; height:280px;margin-left: 10px;margin-right: 10px;margin-bottom: 40px;"><article class="brick entry format-standard animate-this"id="check"style="z-index: 0">';
-					html += '<div class="entry-thumb" onclick="func1(this)"  style="border-radius: 5% 5% 1% 1%;width: 180px;" >';
+					html += '<div class="entry-thumb" onclick="func1(this)"  style="max-height: 160px;border-radius: 5% 5% 1% 1%;width: 180px;" >';
 					html += '<a href="#" class="thumb-link">';
 					if (p.filePath != null) {
 						html += '<img class="picPath" src="/resources/image/clubimg/'+p.filePath+'" class="postsCheck"alt="building"/>';

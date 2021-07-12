@@ -126,7 +126,7 @@ body{
 					<div class="left1">
 						<div class="profile">
 							<div class="clubimg">
-								<img style="height: 100%"
+								<img style="height: 100%";
 									src="/resources/clubImgUpload/${club.filePath }">
 							</div>
 							<div class="clubTitleMent">클럽소개</div>
@@ -135,8 +135,10 @@ body{
 							</div>
 							<hr style="margin: 0">
 							<div class="clubinfo1">
-								<div class="memberNum">멤버 수</div>
-								<div class="memberNum">초대하기</div>
+								<div class="memberNum">멤버 수 <span class="cmCount"> ${cmCount }</span>명</div>
+								<c:if test="${club.clubOpener eq sessionScope.m.memberNick }">
+								<div class="memberNum" id="inviteMember">초대하기</div>
+								</c:if>
 							</div>
 
 							<div style="display: flex; justify-content: center;">
@@ -269,7 +271,7 @@ body{
 							<div>
 								<div class="contentMent"
 									style="font-weight: bold; font-size: 25px;">관리목록</div>
-								<input class="adminCheckButton" style="margin-left: 300px;"
+								<input class="adminCheckButton" style="margin-left: 370px;"
 									type="button" value="회원목록" onclick="memberListAdmin();">
 								<input class="adminCheckButton" type="button" value="예약목록"
 									onclick="userListAdmin();">
@@ -329,11 +331,11 @@ body{
 													<td>${l.iaContent }</td>
 													<td>${l.iaDate }</td>
 													<td style="text-align: center">
-														<button type="button" class="noNo"
+														<button type="button" style="border: 0px;background-color: #9554f3c9;color: white;border-radius: 5px;width: 45px;height: 25px;line-height: 5px;"
 															onclick="accept(${l.iaNo })">수락</button>
 													</td>
 													<td style="text-align: center">
-														<button type="button" onclick="refusal(${l.iaNo })">거절</button>
+														<button style="border: 0px;background-color: #9554f3c9;color: white;border-radius: 5px;width: 45px;height: 25px;line-height: 5px;" class="noNo" type="button" onclick="refusal(${l.iaNo })">거절</button>
 														<!-- location.href='/deleteRefusal.do?listNo=${l.iaNo }&clubNo=${clubNo }&menuNo=3' -->
 													</td>
 												</tr>
@@ -479,12 +481,18 @@ body{
 				</div>
 
 				<div class="modal-body">
-					<input type="text" name="clubNo" value="${clubNo }"
+					<input type="text" name="id" value=""
 						style="display: none">
 					<div>
 						<div>일정명 :</div>
 						<div>
 							<input type="text" name="calTitle">
+						</div>
+					</div>
+					<div style="display: none;">
+						<div>숨겨진 넘버</div>
+						<div>
+							<input type="text" name="id" value="">
 						</div>
 					</div>
 					<div>
@@ -539,14 +547,79 @@ body{
 					style="display: flex; justify-content: center;">
 					<button type="button" onclick="userMailSend()"
 						class="btn btn-default" style="background: #5bc0de; color: wheat;">보내기</button>
-					<button type="button" id="closeModal2" class="btn btn-default"
+					<button type="button" id="closeModal3" class="btn btn-default"
 						data-dismiss="modal"
 						style="background-color: #e84c4ca8; color: wheat;">닫기</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 초대하기 모달 -->
+	<div class="modal-wrap" id="inviteModal">
+		<div class="modal-box">
+			<h2 class="inviteHead">초대하기</h2>
+			<button type="button" id="closeBtns"></button>
+			<div class="search-wrap">
+				<input type="text" id="inviteNick" placeholder="초대할 회원 닉네임">
+				<button type="button" id="searchBtn">찾기</button>
+			</div>
+			<input type="hidden" id="clubNumber" value="${clubNo }">
+			<input type="hidden" id="clubReceiver">
+			<div class="invite-wrap">
+				<!-- js로 넣을 곳 -->
+			</div>
+		</div>
+	</div>
 	<script>
+	//초대하기 모달 띄우기
+	$('#inviteMember').click(function(){
+		$('.modal-wrap').css('display','flex');
+	});
+	//초대하기 모달 x버튼 클릭 시 닫기
+	$('#closeBtns').click(function(){
+		$('.modal-wrap').css('display','none');
+		$('.invite-wrap').html('');
+	});
+	//초대할 멤버 찾기 클릭 시 ajax로 결과 받아오기
+	$('#searchBtn').click(function(){
+		var searchNick = $('#inviteNick').val();
+		$.ajax({
+			url:"/searchInviteNick.do",
+			data:{memberNick : searchNick},
+			success:function(data){
+				console.log(data);
+				if(data != ''){				
+					var inner = '<div class="invite-info"><img src="/resources/image/userPic/'+data.filepath+'">'+data.memberNick+'</div><button type="button" id="inviteBtn" onclick="insertInvite();">초대</button>';
+					$('#clubReceiver').val(data.memberNick);
+				}else{
+					var inner = `일치하는 회원이 없습니다.`;
+				}
+				$('#inviteNick').val('');
+				$('.invite-wrap').html(inner);
+			}
+		});
+	});
+	//초대버튼 클릭 시 ajax로 결과 받기
+	function insertInvite(){
+		var clubNo = $('#clubNumber').val();
+		var nick = $('#clubReceiver').val();
+		console.log(clubNo);
+		console.log(nick);
+		$.ajax({
+			url:"/insertInvite.do",
+			type:"post",
+			data:{clubNo : clubNo, receiver:nick, iaContent: "초대합니다!", iaType:"I"},
+			success:function(data){
+				if(data == "1"){
+					alert('초대 신청하였습니다.');
+				}else{
+					alert('정상적으로 처리되지 않았습니다. 다시 시도해주세요.');
+				}
+				$('.modal-wrap').css('display','none');
+				$('.invite-wrap').html('');
+			}
+		});
+	}
 	//메세지 보내기
 	function userMailSend(){
 		var sender = $("input[name=sender]").val();
@@ -570,6 +643,7 @@ body{
 			success :function(data){
 				if(data>0){
 					alert("쪽지가 전송되었습니다.");
+					$("#closeModal3").click();
 				}else{
 					alert("전송실패")
 				}
@@ -625,6 +699,7 @@ body{
 			calEnd : $("input[name=calEnd]").val(),
 			calBack : $("input[name=calBack]").val(),
 			calFont : $("input[name=calFont]").val(),
+			idValue : $("input[name= idValue ]").val(),
 		}
 		$.ajax({
 			url : "/calendarAdd.do",
@@ -639,7 +714,11 @@ body{
 					alert("일정 추가 실패");
 				}
 			}
-		})
+		});
+		console.log("idValue :"+ $("input[name=idValue]").val());
+		var test = $("input[name=idValue]").val();
+		console.log(test);
+		console.log("idValue :"+ $("input[name=idValue]").val());
 	}
 	//클럽 가입 수락
 	function accept(obj){	//클릭한 게시물의 번호값 가져오기
@@ -742,9 +821,10 @@ body{
 				var calendarEl = document.getElementById("test");			
 				  test = new FullCalendar.Calendar(calendarEl, {
 				    plugins: ["interaction", "dayGrid"],
-				    defaultDate: "2021-06-06",
+				    defaultDate: "2021-07-01",
 				    editable: true,
 				    eventLimit: true,
+				    
 				    
 				    //날짜 클릭시 모달 활성화
 				    dateClick: function (data) {
@@ -752,15 +832,46 @@ body{
 				       $("#myModal3").addClass("in"); */
 				       $("#myModal3").click();
 				       onload="calModal()";
-				      /*  console.log(data.dateStr); */
+				       
+				      
+				       console.log(reserNo);
+				       
+			
 				    },
+				    	//날짜 일정 클릭시 값 알아내고 삭제
+				       	eventClick : function(data){
+				       	   //data 확인하기
+				    	   console.log(data);
+				    	   //data 안에 event 안에 id값 추출
+				    	   console.log("id값 : " +data.event.id);
+				    	   var reserNo = data.event.id;
+				    		   
+					    	   if(confirm("일정을 삭제하시겠습니까?")){
+					    		   
+					    		   $.ajax({
+					    			   url:"/reservationDelete.do",
+					    			   data : {
+					    				   reserNo : reserNo
+					    			   },
+					    			   type : "post",
+					    			   success : function(data){
+					    				   if(data>0){
+					    					   alert("일정이 삭제 되었습니다.");
+				    				  		   location.href="/newClub.do?clubNo=${clubNo}&menuNo=2";
+					    				   }else{
+					    					   alert("일정이 삭제실패");
+					    				   }
+					    			   }
+					    		   });
+					    	   }
+				       }
 				  });
 				  var test;
 				  test.render();
 				  //달력값 불러와서 적용
 				  
 				  var calendarList = $(".calList").val();
-				  test.addEvent({title:'민형이생일',color:'blue',textColor:'#FFFFFF',start:'2021-07-02',end:'2021-07-02'});
+				  test.addEvent({title:'사이트 개설일',color:'#0083ffa1',textColor:'#FFFFFF',start:'2021-06-28',end:'2021-06-28',id:'1'});
 				  //해당클럽의 번호를 넘겨주어 클럽의 달력게시물을 가져오기
 				  var clubNo = ${clubNo};
 					$.ajax({
@@ -776,14 +887,16 @@ body{
 								var textColor = data[i].calFont;
 								var start = data[i].calStart;
 								var end = data[i].calEnd;
+								var calNo = data[i].id;
 								//값넣기
 								
 								test.addEvent({title : title,
 												color : color,
 												textColor : textColor,
 												start : start,
-												end : end
-								});
+												end : end,
+												id : calNo
+								});		
 							}
 						}
 					})
@@ -1007,7 +1120,7 @@ body{
    function initChat(param){
       memberId = param;
       //웹소켓 연결시도
-      ws = new WebSocket("ws://192.168.10.4///chat.do")
+      ws = new WebSocket("ws:/192.168.0.2/chat.do")
       //소켓 연결 성공 시 실행될 함수 지정
       ws.onopen = startChat;
       //소켓으로 서버가 데이터를 전송하면 로직을 수행할 함수

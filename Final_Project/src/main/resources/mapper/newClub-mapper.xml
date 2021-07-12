@@ -160,7 +160,8 @@ INSERT INTO CALENDAR VALUES(
     #{calBack},
     #{calFont},
     #{calStart},
-    #{calEnd})
+    #{calEnd},
+    CAL_SEQ.NEXTVAL)
 </insert>
 
 <!-- 달력 일정 불러오기 -->
@@ -172,7 +173,8 @@ SELECT
     CAL_BACK AS calBack,  
     CAL_FONT AS calFont,   
     CAL_START AS calStart,
-    CAL_END AS calEnd     
+    CAL_END AS calEnd,
+    ID AS id     
 FROM CALENDAR WHERE CLUB_NO=#{clubNo}
 </select>
 
@@ -221,6 +223,25 @@ INSERT INTO DIRECT_MESSAGE VALUES(
     TO_CHAR(SYSDATE,'YYYY-MM-DD'),
     'N')
 </insert>
+
+<!-- 달력일정 삭제 -->
+<delete id="reservationDelete" parameterType="int">
+DELETE FROM CALENDAR WHERE ID = #{id}
+</delete>
+<!-- 클럽에서 초대 -->
+<insert id="insertInvite" parameterType="a">
+	INSERT INTO INVITE_APPLY VALUES(
+    IA_SEQ.NEXTVAL,
+    #{clubNo},
+    #{receiver},
+    #{iaType},
+    #{iaContent},
+    TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</insert>
+<!-- 클럽 회원 수 -->
+<select id="cmCount" parameterType="int" resultType="int">
+	select count(*) from club_member where club_no=#{clubNo}
+</select>
 </mapper>
 
 
