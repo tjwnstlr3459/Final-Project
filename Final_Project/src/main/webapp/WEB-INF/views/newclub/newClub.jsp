@@ -828,16 +828,11 @@ body{
 				    
 				    //날짜 클릭시 모달 활성화
 				    dateClick: function (data) {
-				       /* $("#myModal3").css("display","block");
-				       $("#myModal3").addClass("in"); */
 				       $("#myModal3").click();
 				       onload="calModal()";
-				       
-				      
 				       console.log(reserNo);
-				       
-			
 				    },
+				    
 				    	//날짜 일정 클릭시 값 알아내고 삭제
 				       	eventClick : function(data){
 				       	   //data 확인하기
@@ -869,9 +864,10 @@ body{
 				  var test;
 				  test.render();
 				  //달력값 불러와서 적용
-				  
 				  var calendarList = $(".calList").val();
-				  test.addEvent({title:'사이트 개설일',color:'#0083ffa1',textColor:'#FFFFFF',start:'2021-06-28',end:'2021-06-28',id:'1'});
+				  
+				  //기본적인 달력 이벤트 추가 양식
+				  test.addEvent({title:'사이트 개설일',color:'#0083ffa1',textColor:'#FFFFFF',start:'2021-06-28',end:'2021-06-28'});
 				  //해당클럽의 번호를 넘겨주어 클럽의 달력게시물을 가져오기
 				  var clubNo = ${clubNo};
 					$.ajax({
@@ -889,7 +885,6 @@ body{
 								var end = data[i].calEnd;
 								var calNo = data[i].id;
 								//값넣기
-								
 								test.addEvent({title : title,
 												color : color,
 												textColor : textColor,
